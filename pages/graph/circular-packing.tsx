@@ -9,6 +9,7 @@ import { data, data2 } from "../data/hierarchy-1-level-random";
 import { LinkAsButton } from "../component/LinkAsButton";
 import { CircularPackingAnimatedResize } from "../viz/CircularPackingAnimatedResize/CircularPackingAnimatedResize";
 import { Button } from "../component/Button";
+import CodeSandboxButton from "../component/CodeSandboxButton";
 
 const graphDescription = (
   <p>
@@ -43,6 +44,7 @@ export default function Home() {
       <div className="flex justify-center">
         <CircularPackingBasic data={data} height={500} width={500} />
       </div>
+      <CodeSandboxButton vizName={"CircularPackingBasic"} />
 
       <h2>Animating dataset transition</h2>
       <p>
