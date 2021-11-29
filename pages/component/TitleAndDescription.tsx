@@ -1,7 +1,7 @@
 import React from "react";
 
 import SocialMediaButtons from "./SocialMediaButtons";
-import { chartTypesInfo } from "../util/sectionDescriptions";
+import { ChartId, chartTypesInfo } from "../util/sectionDescriptions";
 import { fullUrlToInternalLink } from "../util/utils";
 import Link from "next/link";
 import { VerticalSeparator } from "./VerticalSeparator";
@@ -10,7 +10,7 @@ import { LinkAsButton } from "./LinkAsButton";
 type TitleAndDescription = {
   title: string;
   description: JSX.Element;
-  chartType?: string;
+  chartType?: ChartId;
 };
 
 export default function TitleAndDescription({

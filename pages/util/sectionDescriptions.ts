@@ -220,7 +220,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/circularpacking.html",
     reactURL: "https://react-graph-gallery.com/graph/circular-packing/",
     label: "Circular Packing",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "line",
