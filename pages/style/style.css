@@ -1,0 +1,164 @@
+:root {
+    --light-grey:  #f8f9fa;
+    --medium-grey: #e5e5e5;
+    --dark-grey: #C8C8C8;
+    --react-gallery: #9a6fb0;
+    --light-black: #484848;
+}
+
+/* Each section has a specific color */
+.distribution{
+    color: #e0ac2b
+}
+.correlation{
+    color: #7f7f7f;
+}
+.ranking{
+    color: #a4c969;
+}
+.partOfAWhole{
+    color: #e85252;
+}
+.evolution{
+    color: #6689c6;
+}
+.map{
+    color: #9a6fb0;
+}
+.flow{
+    color: #a53253;
+}
+
+/* ---------- PAGE LAYOUT ----------------- */
+/* Inspired from https://www.joshwcomeau.com/css/full-bleed/ */
+.wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: grid;
+    grid-template-columns:
+      1fr
+      min(900px, 100%)
+      1fr;
+  }
+.wrapper > * {
+    grid-column: 2;
+}
+.full-bleed {
+    width: 100%;
+    grid-column: 1 / 4;
+}
+
+/* ---------- Global CSS ----------------- */
+body {
+    overflow-x: hidden;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+}
+p {
+    line-height: 1.75;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+}
+code {
+    position: relative;
+    display: inline;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.9em;
+    letter-spacing: 1.2px;
+    padding: 4.5px 6px;
+    margin: 1px -1px;
+    background: var(--medium-grey);
+    border-radius: 3px;
+}
+a {
+    color: var(--react-gallery)
+}
+a:hover {
+    color: #251667
+}
+blockquote {
+    background: var(--light-grey);
+    border-left: 2px solid var(--react-gallery);
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+blockquote p {
+    display: inline;
+}
+
+/* ---------- Titles ----------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300 !important;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+  /* scroll margin allows to add a bit of space around the title we're targeting with the table of content */
+  scroll-margin: 100px;
+}
+
+h2 {
+    font-size: 22px !important;
+    width: 100%;
+    border-bottom: 1px solid var(--medium-grey);
+    margin-top: 30px !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+/* ---------- Section ----------------- */
+.lightSection {
+    padding-top: 2px;
+    padding-bottom: 10px;
+}
+
+.greySection {
+    background-color: var(--light-grey);
+    padding-top: 2px;
+    padding-bottom: 10px;
+}
+
+/* ---------- Horizontal separator ----------------- */
+.smallHr {
+    margin-top: 23px;
+    margin-bottom: 23px;
+    border: 0;
+    border-top: 1px solid black;
+    width: 0;
+    animation: separator-width 2s ease-in-out forwards;
+  }
+  @keyframes separator-width {
+    0% {
+      width: 0;
+    }
+    100% {
+        width: 200px;
+    }
+  }
+
+/* ---------- Button ----------------- */
+.btn {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 500 !important;
+    border-color: var(--react-gallery) !important;
+    color: var(--react-gallery) !important;
+    border-width: 2px !important;
+    background-color: transparent !important;
+    margin: 3px !important;
+  }
+
+  .btn-xl {
+    font-size: 18px !important;
+    padding: 20px 40px !important;
+  }
+
+  .btn:active, .btn:focus, .btn:hover {
+    background-color: var(--react-gallery) !important;
+    border-color: var(--react-gallery) !important;
+    color: white !important;
+  }
+
+
+
+
+
