@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
 import { Tree } from "../../data/hierarchy-1-level-random";
+import { useSpring, animated } from "react-spring";
 
 type CircularPackingAnimatedResizeProps = {
   width: number;
@@ -34,7 +35,7 @@ export const CircularPackingAnimatedResize = ({
         .descendants()
         .slice(1)
         .map((node) => (
-          <circle
+          <AnimatedCircle
             key={node.data.name}
             cx={node.x}
             cy={node.y}
@@ -49,7 +50,7 @@ export const CircularPackingAnimatedResize = ({
         .descendants()
         .slice(1)
         .map((node) => (
-          <text
+          <AnimatedText
             key={node.data.name}
             x={node.x}
             y={node.y}
@@ -59,8 +60,47 @@ export const CircularPackingAnimatedResize = ({
             alignmentBaseline="middle"
           >
             {node.data.name}
-          </text>
+          </AnimatedText>
         ))}
     </svg>
+  );
+};
+
+const AnimatedCircle = ({
+  cx,
+  cy,
+  r,
+  ...props
+}: React.SVGAttributes<SVGCircleElement>) => {
+  const animatedProps = useSpring({
+    cx,
+    cy,
+    r,
+  });
+  return (
+    <animated.circle
+      {...props}
+      r={animatedProps.r as any}
+      cx={animatedProps.cx as any}
+      cy={animatedProps.cy as any}
+    />
+  );
+};
+
+const AnimatedText = ({
+  x,
+  y,
+  ...props
+}: React.SVGAttributes<SVGTextElement>) => {
+  const animatedProps = useSpring({
+    x,
+    y,
+  });
+  return (
+    <animated.text
+      {...props}
+      x={animatedProps.x as any}
+      y={animatedProps.y as any}
+    />
   );
 };

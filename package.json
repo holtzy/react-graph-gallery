@@ -24,5 +24,8 @@
     "postcss": "^8.4.1",
     "tailwindcss": "^2.2.19",
     "typescript": "4.5.2"
+  },
+  "peerDependencies": {
+    "react-spring": "^8.0.27"
   }
 }
