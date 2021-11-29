@@ -87,8 +87,8 @@ export const ViolinBasic = ({ width, height, data }: ViolinBasicProps) => {
             <path
               key={i}
               d={path}
-              stroke="none"
-              fill="#69b3a2"
+              stroke="#553C9A"
+              fill="#B794F4"
               transform={`translate(${xScale(group)},0)`}
             />
           );

@@ -24,18 +24,14 @@ export const LinkAsButton = ({
       " bg-white hover:bg-purple-700 hover:text-white text-purple-700";
   }
 
-  const link = (
-    <a>
-      <span className={appearance}>{children}</span>
-    </a>
-  );
+  const link = <span className={appearance}>{children}</span>;
 
   if (isOutsideLink) {
-    return link;
+    return <a href={href}>{link}</a>;
   } else {
     return (
       <Link href={href} passHref>
-        {link}
+        <a>{link}</a>
       </Link>
     );
   }

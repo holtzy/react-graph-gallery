@@ -56,7 +56,9 @@ export default function Home() {
       </p>
 
       <h2>Final code</h2>
-      <LinkAsButton href="">Code</LinkAsButton>
+      <LinkAsButton href="https://github.com/holtzy/react-graph-gallery/tree/main/pages/viz/ViolinBasic">
+        Code
+      </LinkAsButton>
 
       <div className="mt-20" />
       <Contact />
