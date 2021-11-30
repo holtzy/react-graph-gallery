@@ -1,9 +1,9 @@
 import React from "react";
-import { Layout } from "./component/Layout";
-import TitleAndDescription from "./component/TitleAndDescription";
-import ChartFamilySection from "./component/ChartFamilySection";
-import Contact from "./component/Contact";
-import SectionLogo from "./component/SectionLogo";
+import { Layout } from "../component/Layout";
+import TitleAndDescription from "../component/TitleAndDescription";
+import ChartFamilySection from "../component/ChartFamilySection";
+import Contact from "../component/Contact";
+import SectionLogo from "../component/SectionLogo";
 import Link from "next/link";
 
 const siteDescription = (
