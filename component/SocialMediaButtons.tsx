@@ -5,7 +5,7 @@ export default function SocialMediaButtons() {
     <div className="flex flex-row my-2">
       <a
         href="https://github.com/holtzy"
-        className="mr-1 h-8 w-8 rounded-full bg-black text-white flex justify-center"
+        className="mr-1 h-8 w-8 rounded-full bg-black text-white hover:text-purple-200 flex justify-center"
       >
         <svg
           width="21"
@@ -24,7 +24,7 @@ export default function SocialMediaButtons() {
       </a>
       <a
         href="https://twitter.com/R_Graph_Gallery"
-        className="mr-1 h-8 w-8 rounded-full bg-black text-white flex justify-center"
+        className="mr-1 h-8 w-8 rounded-full bg-black text-white hover:text-purple-200 flex justify-center"
       >
         <svg
           width="15"
@@ -45,7 +45,7 @@ export default function SocialMediaButtons() {
 
       <a
         href="https://www.linkedin.com/in/yan-holtz-2477534a/"
-        className="mr-1 h-8 w-8 rounded-full bg-black text-white flex justify-center"
+        className="mr-1 h-8 w-8 rounded-full bg-black text-white hover:text-purple-200 flex justify-center"
       >
         <svg
           width="15"
@@ -66,7 +66,7 @@ export default function SocialMediaButtons() {
 
       <a
         href="https://www.yan-holtz.com"
-        className="mr-1 h-8 w-8 rounded-full bg-black text-white flex justify-center"
+        className="mr-1 h-8 w-8 rounded-full bg-black text-white hover:text-purple-200 flex justify-center"
       >
         <svg
           width="20"
