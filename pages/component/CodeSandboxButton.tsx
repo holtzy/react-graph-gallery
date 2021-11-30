@@ -22,7 +22,7 @@ export default function CodeSandboxButton({ vizName }: CodeSandboxButtonProps) {
       <br />
       <br />
       {showSandbox && (
-        <div className="full-bleed">
+        <div className="full-blee">
           <CodeSandbox vizName={vizName} />
         </div>
       )}
