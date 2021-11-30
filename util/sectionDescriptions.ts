@@ -20,7 +20,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "distribution",
     logo: "Violin150",
     dataToVizURL: "https://www.data-to-viz.com/graph/violin.html",
-    reactURL: "https://react-graph-gallery.com/graph/violin-plot/",
+    reactURL: "https://react-graph-gallery.com/violin-plot/",
     label: "Violin",
     isAvailable: true
   },
@@ -29,7 +29,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "distribution",
     logo: "Density150",
     dataToVizURL: "https://www.data-to-viz.com/graph/density.html",
-    reactURL: "https://react-graph-gallery.com/graph/density-plot/",
+    reactURL: "https://react-graph-gallery.com/density-plot/",
     label: "Density",
     isAvailable: false
   },
@@ -38,7 +38,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "distribution",
     logo: "Histogram150",
     dataToVizURL: "https://www.data-to-viz.com/graph/histogram.html",
-    reactURL: "https://react-graph-gallery.com/graph/histogram/",
+    reactURL: "https://react-graph-gallery.com/histogram/",
     label: "Histogram",
     isAvailable: false
   },
@@ -47,7 +47,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "distribution",
     logo: "Box1150",
     dataToVizURL: "https://www.data-to-viz.com/caveat/boxplot.html",
-    reactURL: "https://react-graph-gallery.com/graph/boxplot/",
+    reactURL: "https://react-graph-gallery.com/boxplot/",
     label: "Boxplot",
     isAvailable: false
   },
@@ -56,7 +56,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "distribution",
     logo: "Joyplot150",
     dataToVizURL: "https://www.data-to-viz.com/graph/ridgeline.html",
-    reactURL: "https://react-graph-gallery.com/graph/ridgeline/",
+    reactURL: "https://react-graph-gallery.com/ridgeline/",
     label: "Ridgeline",
     isAvailable: false
   },
@@ -65,7 +65,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "ScatterPlot150",
     dataToVizURL: "https://www.data-to-viz.com/graph/scatter.html",
-    reactURL: "https://react-graph-gallery.com/graph/scatter-plot/",
+    reactURL: "https://react-graph-gallery.com/scatter-plot/",
     label: "Scatterplot",
     isAvailable: false
   },
@@ -74,7 +74,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "Heatmap150",
     dataToVizURL: "https://www.data-to-viz.com/graph/heatmap.html",
-    reactURL: "https://react-graph-gallery.com/graph/heatmap/",
+    reactURL: "https://react-graph-gallery.com/heatmap/",
     label: "Heatmap",
     isAvailable: false
   },
@@ -83,7 +83,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "Correlogram150",
     dataToVizURL: "https://www.data-to-viz.com/graph/correlogram.html",
-    reactURL: "https://react-graph-gallery.com/graph/correlogram/",
+    reactURL: "https://react-graph-gallery.com/correlogram/",
     label: "Correlogram",
     isAvailable: false
   },
@@ -92,7 +92,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "BubblePlot150",
     dataToVizURL: "https://www.data-to-viz.com/graph/bubble.html",
-    reactURL: "https://react-graph-gallery.com/graph/bubble-plot/",
+    reactURL: "https://react-graph-gallery.com/bubble-plot/",
     label: "Bubble",
     isAvailable: false
   },
@@ -101,7 +101,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "ScatterConnected150",
     dataToVizURL: "https://www.data-to-viz.com/graph/connectedscatter.html",
-    reactURL: "https://react-graph-gallery.com/graph/connected-scatter-plot/",
+    reactURL: "https://react-graph-gallery.com/connected-scatter-plot/",
     label: "Connected Scatter",
     isAvailable: false
   },
@@ -110,7 +110,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "correlation",
     logo: "2dDensity150",
     dataToVizURL: "https://www.data-to-viz.com/graph/density2d.html",
-    reactURL: "https://react-graph-gallery.com/graph/2d-density-plot/",
+    reactURL: "https://react-graph-gallery.com/2d-density-plot/",
     label: "2D Density",
     isAvailable: false
   },
@@ -119,7 +119,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "Bar150",
     dataToVizURL: "https://www.data-to-viz.com/graph/barplot.html",
-    reactURL: "https://react-graph-gallery.com/graph/barplot/",
+    reactURL: "https://react-graph-gallery.com/barplot/",
     label: "Barplot",
     isAvailable: false
   },
@@ -128,7 +128,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "Spider150",
     dataToVizURL: "https://www.data-to-viz.com/caveat/spider.html",
-    reactURL: "https://react-graph-gallery.com/graph/radar-chart/",
+    reactURL: "https://react-graph-gallery.com/radar-chart/",
     label: "Spider / Radar",
     isAvailable: false
   },
@@ -137,7 +137,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "Wordcloud150",
     dataToVizURL: "https://www.data-to-viz.com/graph/wordcloud.html",
-    reactURL: "https://react-graph-gallery.com/graph/wordcloud/",
+    reactURL: "https://react-graph-gallery.com/wordcloud/",
     label: "Wordcloud",
     isAvailable: false
   },
@@ -146,7 +146,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "Parallel1150",
     dataToVizURL: "https://www.data-to-viz.com/graph/parallel.html",
-    reactURL: "https://react-graph-gallery.com/graph/parallel-plot/",
+    reactURL: "https://react-graph-gallery.com/parallel-plot/",
     label: "Parallel",
     isAvailable: false
   },
@@ -155,7 +155,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "Lollipop150",
     dataToVizURL: "https://www.data-to-viz.com/graph/lollipop.html",
-    reactURL: "https://react-graph-gallery.com/graph/lollipop-plot/",
+    reactURL: "https://react-graph-gallery.com/lollipop-plot/",
     label: "Lollipop",
     isAvailable: false
   },
@@ -164,7 +164,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "ranking",
     logo: "CircularBarplot150",
     dataToVizURL: "https://www.data-to-viz.com/graph/circularbarplot.html",
-    reactURL: "https://react-graph-gallery.com/graph/circular-barplot/",
+    reactURL: "https://react-graph-gallery.com/circular-barplot/",
     label: "Circular Barplot",
     isAvailable: false
   },
@@ -173,7 +173,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "Tree150",
     dataToVizURL: "https://www.data-to-viz.com/graph/treemap.html",
-    reactURL: "https://react-graph-gallery.com/graph/treemap/",
+    reactURL: "https://react-graph-gallery.com/treemap/",
     label: "Treemap",
     isAvailable: false
   },
@@ -182,7 +182,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "Venn150",
     dataToVizURL: "https://www.data-to-viz.com/graph/venn.html",
-    reactURL: "https://react-graph-gallery.com/graph/venn-diagram/",
+    reactURL: "https://react-graph-gallery.com/venn-diagram/",
     label: "Venn Diagram",
     isAvailable: false
   },
@@ -191,7 +191,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "Doughnut150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/donut-plot/",
+    reactURL: "https://react-graph-gallery.com/donut-plot/",
     label: "Donut",
     isAvailable: false
   },
@@ -200,7 +200,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "Pie150",
     dataToVizURL: "https://www.data-to-viz.com/caveat/pie.html",
-    reactURL: "https://react-graph-gallery.com/graph/pie-plot/",
+    reactURL: "https://react-graph-gallery.com/pie-plot/",
     label: "Pie Chart",
     isAvailable: false
   },
@@ -209,7 +209,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "Dendrogram150",
     dataToVizURL: "https://www.data-to-viz.com/graph/dendrogram.html",
-    reactURL: "https://react-graph-gallery.com/graph/dendrogram/",
+    reactURL: "https://react-graph-gallery.com/dendrogram/",
     label: "Dendrogram",
     isAvailable: false
   },
@@ -218,7 +218,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "partOfAWhole",
     logo: "CircularPacking150",
     dataToVizURL: "https://www.data-to-viz.com/graph/circularpacking.html",
-    reactURL: "https://react-graph-gallery.com/graph/circular-packing/",
+    reactURL: "https://react-graph-gallery.com/circular-packing/",
     label: "Circular Packing",
     isAvailable: true
   },
@@ -227,7 +227,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "evolution",
     logo: "Line150",
     dataToVizURL: "https://www.data-to-viz.com/graph/line.html",
-    reactURL: "https://react-graph-gallery.com/graph/line-chart/",
+    reactURL: "https://react-graph-gallery.com/line-chart/",
     label: "Line chart",
     isAvailable: false
   },
@@ -236,7 +236,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "evolution",
     logo: "Area150",
     dataToVizURL: "https://www.data-to-viz.com/graph/area.html",
-    reactURL: "https://react-graph-gallery.com/graph/area-plot/",
+    reactURL: "https://react-graph-gallery.com/area-plot/",
     label: "Area chart",
     isAvailable: false
   },
@@ -245,7 +245,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "evolution",
     logo: "StackedArea150",
     dataToVizURL: "https://www.data-to-viz.com/graph/stackedarea.html",
-    reactURL: "https://react-graph-gallery.com/graph/stacked-area-plot/",
+    reactURL: "https://react-graph-gallery.com/stacked-area-plot/",
     label: "Stacked Area",
     isAvailable: false
   },
@@ -254,7 +254,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "evolution",
     logo: "Stream150",
     dataToVizURL: "https://www.data-to-viz.com/graph/streamgraph.html",
-    reactURL: "https://react-graph-gallery.com/graph/streamchart/",
+    reactURL: "https://react-graph-gallery.com/streamchart/",
     label: "Streamgraph",
     isAvailable: false
   },
@@ -263,7 +263,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "evolution",
     logo: "time150",
     dataToVizURL: "https://www.data-to-viz.com",
-    reactURL: "https://react-graph-gallery.com/graph/timeseries/",
+    reactURL: "https://react-graph-gallery.com/timeseries/",
     label: "Timeseries",
     isAvailable: false
   },
@@ -272,7 +272,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "Map150",
     dataToVizURL: "https://www.data-to-viz.com/graph/map.html",
-    reactURL: "https://react-graph-gallery.com/graph/map/",
+    reactURL: "https://react-graph-gallery.com/map/",
     label: "Map",
     isAvailable: false
   },
@@ -281,7 +281,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "Choropleth150",
     dataToVizURL: "https://www.data-to-viz.com/graph/choropleth.html",
-    reactURL: "https://react-graph-gallery.com/graph/choropleth-map/",
+    reactURL: "https://react-graph-gallery.com/choropleth-map/",
     label: "Choropleth",
     isAvailable: false
   },
@@ -290,7 +290,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "MapHexbin150",
     dataToVizURL: "https://www.data-to-viz.com/graph/hexbinmap.html",
-    reactURL: "https://react-graph-gallery.com/graph/hexbin-map/",
+    reactURL: "https://react-graph-gallery.com/hexbin-map/",
     label: "Hexbin",
     isAvailable: false
   },
@@ -299,7 +299,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "Cartogram150",
     dataToVizURL: "https://www.data-to-viz.com/graph/cartogram.html",
-    reactURL: "https://react-graph-gallery.com/graph/cartogram/",
+    reactURL: "https://react-graph-gallery.com/cartogram/",
     label: "Cartogram",
     isAvailable: false
   },
@@ -308,7 +308,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "ConnectedMap150",
     dataToVizURL: "https://www.data-to-viz.com/story/MapConnection.html",
-    reactURL: "https://react-graph-gallery.com/graph/connection-map/",
+    reactURL: "https://react-graph-gallery.com/connection-map/",
     label: "Connection",
     isAvailable: false
   },
@@ -317,7 +317,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "map",
     logo: "BubbleMap150",
     dataToVizURL: "https://www.data-to-viz.com/graph/bubblemap.html",
-    reactURL: "https://react-graph-gallery.com/graph/bubble-map/",
+    reactURL: "https://react-graph-gallery.com/bubble-map/",
     label: "Bubble",
     isAvailable: false
   },
@@ -326,7 +326,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "flow",
     logo: "Chord150",
     dataToVizURL: "https://www.data-to-viz.com/graph/chord.html",
-    reactURL: "https://react-graph-gallery.com/graph/chord-diagram/",
+    reactURL: "https://react-graph-gallery.com/chord-diagram/",
     label: "Chord Diagram",
     isAvailable: false
   },
@@ -335,7 +335,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "flow",
     logo: "Network150",
     dataToVizURL: "https://www.data-to-viz.com/graph/network.html",
-    reactURL: "https://react-graph-gallery.com/graph/network-chart/",
+    reactURL: "https://react-graph-gallery.com/network-chart/",
     label: "Network",
     isAvailable: false
   },
@@ -344,7 +344,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "flow",
     logo: "Sankey150",
     dataToVizURL: "https://www.data-to-viz.com/graph/sankey.html",
-    reactURL: "https://react-graph-gallery.com/graph/sankey-diagram/",
+    reactURL: "https://react-graph-gallery.com/sankey-diagram/",
     label: "Sankey",
     isAvailable: false
   },
@@ -353,7 +353,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "flow",
     logo: "Arc150",
     dataToVizURL: "https://www.data-to-viz.com/graph/arc.html",
-    reactURL: "https://react-graph-gallery.com/graph/arc-diagram/",
+    reactURL: "https://react-graph-gallery.com/arc-diagram/",
     label: "Arc Diagram",
     isAvailable: false
   },
@@ -362,7 +362,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "flow",
     logo: "Bundle150",
     dataToVizURL: "https://www.data-to-viz.com/graph/edge_bundling.html",
-    reactURL: "https://react-graph-gallery.com/graph/hierarchical-edge-bundling/",
+    reactURL: "https://react-graph-gallery.com/hierarchical-edge-bundling/",
     label: "Edge Bundling",
     isAvailable: false
   },
@@ -371,7 +371,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "general",
     logo: "Colours150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/react-colors/",
+    reactURL: "https://react-graph-gallery.com/react-colors/",
     label: "Colors",
     isAvailable: false
   },
@@ -380,7 +380,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "general",
     logo: "Interactive150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/plotly/",
+    reactURL: "https://react-graph-gallery.com/plotly/",
     label: "Interactivity",
     isAvailable: false
   },
@@ -389,7 +389,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "general",
     logo: "anim150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/animation/",
+    reactURL: "https://react-graph-gallery.com/animation/",
     label: "Animation",
     isAvailable: false
   },
@@ -398,7 +398,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "general",
     logo: "Cheat150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/cheat-sheets/",
+    reactURL: "https://react-graph-gallery.com/cheat-sheets/",
     label: "Cheat sheets",
     isAvailable: false
   },
@@ -416,7 +416,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     family: "general",
     logo: "3d150",
     dataToVizURL: "",
-    reactURL: "https://react-graph-gallery.com/graph/3d/",
+    reactURL: "https://react-graph-gallery.com/3d/",
     label: "3D",
     isAvailable: false
   },

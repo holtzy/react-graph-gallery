@@ -32,7 +32,6 @@ export default function Contact({ pageSlug }: ContactProps) {
       </p>
 
       <div className={"py-7"}>
-        <LinkAsButton href={"/graph/violin-plot"}>Violin</LinkAsButton>
         <LinkAsButton href="https://github.com/holtzy/react-graph-gallery">
           Github
         </LinkAsButton>
