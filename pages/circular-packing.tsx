@@ -10,6 +10,7 @@ import { Button } from "../component/Button";
 import CodeSandboxButton from "../component/CodeSandboxButton";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
+import { CodeBlock } from "../component/CodeBlock";
 
 const graphDescription = (
   <p>
@@ -21,6 +22,12 @@ const graphDescription = (
     displayed as circles. Size is usually proportional to a numeric variable.
   </p>
 );
+
+const snippet1 = `
+const foo = 'foo';
+const bar = 'bar';
+console.log(foo + bar);
+`.trim();
 
 export default function Home() {
   const [animData, setAnimData] = useState(data);
@@ -41,11 +48,7 @@ export default function Home() {
         <p>The dataset is hierarchical</p>
         <p>The dataset is hierarchical</p>
         <p>The dataset is hierarchical</p>
-        <p>The dataset is hierarchical</p>
-        <p>The dataset is hierarchical</p>
-        <p>The dataset is hierarchical</p>
-        <p>The dataset is hierarchical</p>
-        <p>The dataset is hierarchical</p>
+        <CodeBlock code={snippet1} />
       </AccordionSection>
 
       <h2>Most basic circular packing with React and D3.js</h2>
