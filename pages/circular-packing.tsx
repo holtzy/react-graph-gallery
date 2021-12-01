@@ -8,6 +8,8 @@ import { LinkAsButton } from "../component/LinkAsButton";
 import { CircularPackingAnimatedResize } from "../viz/CircularPackingAnimatedResize/CircularPackingAnimatedResize";
 import { Button } from "../component/Button";
 import CodeSandboxButton from "../component/CodeSandboxButton";
+import ChartFamilySection from "../component/ChartFamilySection";
+import { AccordionSection } from "../component/AccordionSection";
 
 const graphDescription = (
   <p>
@@ -32,6 +34,19 @@ export default function Home() {
         description={graphDescription}
         chartType="circularPacking"
       />
+
+      <AccordionSection title={"Dataset"} startOpen={false}>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+        <p>The dataset is hierarchical</p>
+      </AccordionSection>
 
       <h2>Most basic circular packing with React and D3.js</h2>
       <p>
@@ -81,6 +96,10 @@ export default function Home() {
       <LinkAsButton href="https://github.com/holtzy/react-graph-gallery/tree/main/pages/viz/ViolinBasic">
         Code
       </LinkAsButton>
+
+      <hr className="full-bleed  border bg-gray-200 my-3" />
+
+      <ChartFamilySection chartFamily="partOfAWhole" />
 
       <div className="mt-20" />
       <Contact />

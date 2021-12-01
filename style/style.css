@@ -58,15 +58,12 @@ p {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
 }
 code {
-    position: relative;
-    display: inline;
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: #afb8c133;
+    border-radius: 6px;
     font-family: 'Fira Mono', monospace;
-    font-size: 0.9em;
-    letter-spacing: 1.2px;
-    padding: 4.5px 6px;
-    margin: 1px -1px;
-    background: var(--medium-grey);
-    border-radius: 3px;
 }
 a {
     color: var(--react-gallery)
@@ -101,7 +98,7 @@ h2 {
     font-size: 22px !important;
     width: 100%;
     border-bottom: 1px solid var(--medium-grey);
-    margin-top: 30px !important;
+    margin-top: 80px !important;
     margin-bottom: 10px !important;
     padding-bottom: 10px !important;
 }
