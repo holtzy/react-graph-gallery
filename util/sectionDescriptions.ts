@@ -202,7 +202,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/caveat/pie.html",
     reactURL: "https://react-graph-gallery.com/pie-plot/",
     label: "Pie Chart",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "dendrogram",

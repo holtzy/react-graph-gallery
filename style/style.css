@@ -47,6 +47,9 @@
     width: 100%;
     grid-column: 1 / 4;
 }
+.grey-section {
+    background-color: var(--light-grey);
+}
 
 /* ---------- Global CSS ----------------- */
 body {
@@ -103,17 +106,6 @@ h2 {
     padding-bottom: 10px !important;
 }
 
-/* ---------- Section ----------------- */
-.lightSection {
-    padding-top: 2px;
-    padding-bottom: 10px;
-}
-
-.greySection {
-    background-color: var(--light-grey);
-    padding-top: 2px;
-    padding-bottom: 10px;
-}
 
 /* ---------- Horizontal separator ----------------- */
 .smallHr {

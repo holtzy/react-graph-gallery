@@ -19,12 +19,15 @@ export default function CodeSandboxButton({ vizName }: CodeSandboxButtonProps) {
       {showSandbox && (
         <Button onClick={() => setShowSandbox(false)}>Hide Sandbox</Button>
       )}
-      <br />
-      <br />
+
       {showSandbox && (
-        <div className="full-blee">
-          <CodeSandbox vizName={vizName} />
-        </div>
+        <>
+          <br />
+          <br />
+          <div className="">
+            <CodeSandbox vizName={vizName} />
+          </div>
+        </>
       )}
     </>
   );

@@ -12,12 +12,12 @@ export const AccordionSection = ({
   children,
 }: AccordionSectionProps) => {
   const [isOpen, setIsOpen] = useState(startOpen);
-  const cssHeight = isOpen ? "max-h-0" : "max-h-full";
+  const cssHeight = isOpen ? "max-h-full" : "max-h-0";
 
   return (
     <>
       <h2 className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? (
+        {!isOpen ? (
           <span className="text-purple-700 w-4 mr-2 hover:text-purple-900 inline-block">
             &#43;
           </span>
