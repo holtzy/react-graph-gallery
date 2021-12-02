@@ -4,7 +4,7 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import { LinkAsButton } from "../component/LinkAsButton";
 import { Button } from "../component/Button";
-import CodeSandboxButton from "../component/CodeSandboxButton";
+import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
@@ -122,15 +122,12 @@ export default function Home() {
           And that's it. This array of path can be renderer using react using a
           map pretty easily.
         </p>
+        <br />
+        <br />
 
-        <div className="full-bleed grey-section flex justify-center flex-col">
-          <div className="w-full flex justify-center">
-            <PieChartBasic data={data} height={500} width={500} />
-          </div>
-          <div className="">
-            <CodeSandboxButton vizName="PieChartBasic" />
-          </div>
-        </div>
+        <ChartOrSandbox vizName={"PieChartBasic"}>
+          <PieChartBasic data={data} height={500} width={500} />
+        </ChartOrSandbox>
       </AccordionSection>
 
       <hr className="full-bleed  bord er bg-gray-200 my-3" />
