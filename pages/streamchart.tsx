@@ -2,31 +2,36 @@ import React, { useState } from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
+import { LinkAsButton } from "../component/LinkAsButton";
+import { Button } from "../component/Button";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { PieChartBasic } from "../viz/PieChartBasic/PieChartBasic";
-import { data } from "../data/one-value-per-group-random";
-import { data as eventData } from "../data/event-list";
-import { EventBarChart } from "../viz/EventBarChart/EventBarChart";
+import { data } from "../data/group-evolution-first-name";
 
 const graphDescription = (
   <p>
-    The <a href="https://www.data-to-viz.com/caveat/pie.html">pie chart</a> is
-    both the most common and the most criticized chart. D3.js has a{" "}
-    <code>pie()</code> function that creates some svg <code>path</code> for you,
-    ready to be renderered with React.
+    A <a href="https://www.data-to-viz.com/caveat/pie.html">stream chart</a>{" "}
+    displays the evolution of several groups using nice flowing shapes
   </p>
 );
 
 const snippet1 = `
 const data = [
-  {name:"Mark", value: 90},
-  {name:"Robert", value: 12},
-  {name:"Emily", value: 34},
-  {name:"Marion", value: 53},
-  {name:"Nicolas", value: 98},
+    {
+      "year": 1880,
+      "Amanda": 241,
+      "Ashley": 0,
+      "Betty": 117,
+      "Deborah": 12,
+      "Dorothy": 112,
+      "Helen": 636,
+      "Linda": 27,
+      "Patricia": 0
+    },
+    ....
 ]
 `.trim();
 
@@ -72,34 +77,25 @@ export default function Home() {
 
   return (
     <Layout
-      title="Pie chart with React"
-      seoDescription="How to build a pie chart with React and D3.js. A set of re-usable components"
+      title="Streamgraph with React"
+      seoDescription="How to build a streamgraph with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
-        title="Pie chart"
+        title="Stream graph"
         description={graphDescription}
-        chartType="pie"
+        chartType="stream"
       />
-
-      <ChartOrSandbox vizName={"PieChartBasic"}>
-        <EventBarChart data={eventData} height={300} width={800} />
-      </ChartOrSandbox>
 
       <AccordionSection title={"Dataset"} startOpen={true}>
         <p>
-          The dataset required to build a pie chart is pretty simple. It is an
-          array where each item represents a group of the pie chart. Each item
-          is an object with 2 properties. They provide the group name (
-          <code>name</code>) and its value (<code>value</code>).
+          Different solution. Here I use an array of object. Each object is a
+          timestamp, providing the value of each group
         </p>
         <br />
-        <p>
-          For instance, here is the dataset used for the simple pie chart below:
-        </p>
         <CodeBlock code={snippet1} />
       </AccordionSection>
 
-      <AccordionSection title={"Most basic pie chart"} startOpen={true}>
+      <AccordionSection title={"Most basic streamgraph"} startOpen={true}>
         <p>
           As usual, the math is done thanks to d3.js, and the rendering using
           React
@@ -113,14 +109,6 @@ export default function Home() {
         </p>
         <CodeBlock code={snippet2} />
         <br />
-        <p>
-          From those start and end angles we now need to build a proper string
-          that we can pass as the <code>d</code> attribute of a{" "}
-          <code>path</code>. This is pretty easy thanks to the{" "}
-          <code>arc()</code> function of d3. This function must be applied to
-          every item of the pie object created above.
-        </p>
-        <CodeBlock code={snippet3} />
         <br />
         <p>
           And that's it. This array of path can be renderer using react using a
@@ -130,7 +118,7 @@ export default function Home() {
         <br />
 
         <ChartOrSandbox vizName={"PieChartBasic"}>
-          <PieChartBasic data={data} height={500} width={500} />
+          <StreamGraphBasic data={data} height={500} width={500} />
         </ChartOrSandbox>
       </AccordionSection>
 

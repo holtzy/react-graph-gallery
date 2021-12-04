@@ -34,7 +34,7 @@ export const PieChartBasic = ({ width, height, data }: PieChartBasicProps) => {
       })
     );
   }, [radius, pie]);
-  console.log(arcs);
+
   return (
     <svg
       width={width}

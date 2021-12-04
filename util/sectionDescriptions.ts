@@ -256,7 +256,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/streamgraph.html",
     reactURL: "https://react-graph-gallery.com/streamchart/",
     label: "Streamgraph",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "timeseries",

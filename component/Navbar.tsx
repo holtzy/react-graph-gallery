@@ -13,13 +13,18 @@ export default function Navbar() {
         >
           <div className="flex items-center">
             <Link href="/">
-              <span className="ml-2 text-black font-light text-md lg:text-md">
+              <span className="ml-2 text-black font-light text-md lg:text-md cursor-pointer">
                 &larr; React Graph Gallery
               </span>
             </Link>
           </div>
 
           <div className="">
+            <Link href="/how-to">
+              <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
+                How to
+              </span>
+            </Link>
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
               className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
