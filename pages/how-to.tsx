@@ -100,7 +100,7 @@ export default function HowTo() {
         }
         timeToRead={5}
         link="shape-morphism-for-dataviz-with-react"
-        isAvailable={false}
+        isAvailable
       >
         <span>
           How can we build a smooth transition between a{" "}
