@@ -7,6 +7,7 @@ import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { TriangleToPolygonStepByStep } from "../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStep";
+import { TriangleToPolygonAnimated } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimated";
 
 const graphDescription = (
   <p>
@@ -112,10 +113,13 @@ export default function Home() {
         startOpen={true}
       >
         <p>
-          I knew nothing about shape morphism 3 weeks ago. It took me a lot of
-          effort to browse the web and find what the most appropriate tools are.
-          To avoid you the hassle, here is a quick summary:
+          Now that we know how to build an interpolated shape between a starting
+          and an ending point, let's animated this transition using{" "}
+          <code>react-spring</code>.
         </p>
+        <ChartOrSandbox vizName={"TriangleToPolygonStepByStep"}>
+          <TriangleToPolygonAnimated height={200} width={400} />
+        </ChartOrSandbox>
       </AccordionSection>
 
       <AccordionSection
