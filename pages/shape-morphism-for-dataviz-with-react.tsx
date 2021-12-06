@@ -117,7 +117,7 @@ export default function Home() {
           and an ending point, let's animated this transition using{" "}
           <code>react-spring</code>.
         </p>
-        <ChartOrSandbox vizName={"TriangleToPolygonStepByStep"}>
+        <ChartOrSandbox vizName={"TriangleToPolygonAnimated"}>
           <TriangleToPolygonAnimated height={200} width={400} />
         </ChartOrSandbox>
       </AccordionSection>
