@@ -55,11 +55,14 @@
 body {
     overflow-x: hidden;
     font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-size: 1rem;
 }
 p {
-    line-height: 1.75;
+    line-height: 1.73;
     font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-weight: 200;
 }
+/* This code rule applies only to inline code. Code formatted by prism has its style set in a custom sheet. */
 code {
     padding: .2em .4em;
     margin: 0;
@@ -69,6 +72,7 @@ code {
     font-family: 'Fira Mono', monospace;
 }
 a {
+    font-weight: 400;
     color: var(--react-gallery)
 }
 a:hover {
@@ -101,7 +105,7 @@ h2 {
     font-size: 22px !important;
     width: 100%;
     border-bottom: 1px solid var(--medium-grey);
-    margin-top: 80px !important;
+    margin-top: 100px !important;
     margin-bottom: 10px !important;
     padding-bottom: 10px !important;
 }

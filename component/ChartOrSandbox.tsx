@@ -13,10 +13,14 @@ export const ChartOrSandbox = ({ vizName, children }: ChartOrSandboxProps) => {
   return (
     <>
       {!showSandbox && (
-        <Button onClick={() => setShowSandbox(true)}>Show Sandbox</Button>
+        <Button size="sm" onClick={() => setShowSandbox(true)}>
+          Show Sandbox
+        </Button>
       )}
       {showSandbox && (
-        <Button onClick={() => setShowSandbox(false)}>Hide Sandbox</Button>
+        <Button size="sm" onClick={() => setShowSandbox(false)}>
+          Hide Sandbox
+        </Button>
       )}
 
       {showSandbox ? (

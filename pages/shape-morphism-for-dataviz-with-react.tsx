@@ -96,9 +96,9 @@ export default function Home() {
         <CodeBlock code={snippet2} />
         <br />
         <p>
-          interpolate() returns a function. This function accepts only 1
-          argument: a value between 0 (start) and 1 (end). It will return the
-          interpolated shape for this progress.
+          <code>interpolate()</code> returns a function. This function accepts
+          only 1 argument: a value between 0 (start) and 1 (end). It will return
+          the interpolated shape for this progress.
         </p>
         <CodeBlock code={snippet3} />
         <br />
