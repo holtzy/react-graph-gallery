@@ -8,6 +8,8 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { TriangleToPolygonStepByStep } from "../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStep";
 import { TriangleToPolygonAnimated } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimated";
+import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
+import { data as violinData } from "../data/distribution-multi-groups-random";
 
 const graphDescription = (
   <p>
@@ -59,6 +61,16 @@ export default function Home() {
         </p>
         <br />
         <p>This is the kind of thing we're gonna learn to build:</p>
+        <br />
+        <div className="full-bleed grey-section flex justify-center flex-col">
+          <div className="w-full flex justify-center">
+            <BoxplotToViolinTransition
+              height={400}
+              width={800}
+              data={violinData}
+            />
+          </div>
+        </div>
       </AccordionSection>
 
       <AccordionSection
@@ -139,6 +151,13 @@ export default function Home() {
           effort to browse the web and find what the most appropriate tools are.
           To avoid you the hassle, here is a quick summary:
         </p>
+        <ChartOrSandbox vizName={"BoxplotToViolinTransition"}>
+          <BoxplotToViolinTransition
+            height={400}
+            width={800}
+            data={violinData}
+          />
+        </ChartOrSandbox>
       </AccordionSection>
 
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
