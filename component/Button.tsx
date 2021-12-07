@@ -28,7 +28,6 @@ export const Button = ({
       " bg-white hover:bg-purple-700 hover:text-white text-purple-700";
   }
 
-  console.log(appearance);
   return (
     <button className={appearance} onClick={onClick}>
       {children}

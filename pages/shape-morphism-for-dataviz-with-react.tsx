@@ -10,12 +10,16 @@ import { TriangleToPolygonStepByStep } from "../viz/TriangleToPolygonStepByStep/
 import { TriangleToPolygonAnimated } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimated";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
 import { data as violinData } from "../data/distribution-multi-groups-random";
+import { TakeHome } from "../component/TakeHome";
+import { LinkAsButton } from "../component/LinkAsButton";
+import { D3InterpolatePathDemo } from "../viz/D3InterpolatePathDemo/D3InterpolatePathDemo";
 
 const graphDescription = (
   <p>
     Shape morphism is the art of transitioning between 2 shapes as smoothly as
     possible. This post explores how it can be useful for data visualization and
-    how it can be done using <code>React</code>.
+    how it can be done using <code>React</code>, <code>d3.js</code>,{" "}
+    <code>react-spring</code> and <code>flubber</code>.
   </p>
 );
 
@@ -43,6 +47,26 @@ export default function Home() {
         title="Shape morphism for data visualization"
         description={graphDescription}
       />
+
+      <div className="w-full flex justify-center mb-14 -mt-20">
+        <D3InterpolatePathDemo width={200} height={200} />
+      </div>
+
+      <blockquote>
+        This post is about shape morphism, which means animating the properties
+        that define the actual shape of the elements.
+        <br />
+        As always when talking about animation, it is good to recall this
+        citation by{" "}
+        <a href="https://www.joshwcomeau.com/animation/css-transitions/">
+          Josh Comeau
+        </a>
+        : <br />
+        <br />
+        <TakeHome>
+          Animation is like salt: too much of it spoils the dish
+        </TakeHome>
+      </blockquote>
 
       <AccordionSection title={"What are we trying to do"} startOpen={true}>
         <p>
@@ -81,6 +105,133 @@ export default function Home() {
           I knew nothing about shape morphism 3 weeks ago. It took me a lot of
           effort to browse the web and find what the most appropriate tools are.
           To avoid you the hassle, here is a quick summary:
+        </p>
+        <ul className="ml-10">
+          <br />
+          <li>
+            <p>
+              - <code>SMIL</code> (Synchronized Multimedia Integration Language)
+              is a feature introduced in firefox 4, allowing to follow a motion
+              path. Basically it means you can use an <code>animate</code>{" "}
+              element in your svg that will support shape morphism.
+            </p>
+            <p>
+              Unfortunately, this feature is probably get deprecated soon.
+              Furthermore, it supports transition only between shapes with the
+              same number of nodes.{" "}
+              <LinkAsButton
+                size="sm"
+                href="https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL"
+                isFaded
+              >
+                Doc
+              </LinkAsButton>
+              <LinkAsButton
+                size="sm"
+                href="https://codepen.io/chriscoyier/pen/DpFfE"
+                isFaded
+              >
+                CodePen
+              </LinkAsButton>
+              .
+            </p>
+          </li>
+
+          <br />
+          <li>
+            <p>
+              - pure <code>CSS</code>: Chrome has started to allow shape
+              morphing through css. You can simply change the <code>d</code>{" "}
+              attribute of a <code>path</code> in a css file and add some
+              <code>transition</code> to it. But chrome only and same number of
+              nodes only.
+              <LinkAsButton
+                size="sm"
+                href="https://codepen.io/chriscoyier/pen/NRwANp"
+                isFaded
+              >
+                CodePen
+              </LinkAsButton>
+            </p>
+          </li>
+          <br />
+          <li>
+            <p>
+              - <code>greenSock MorphSvg plugin</code>: a promising javascript
+              library for shape morphism, widely cited on the internet. Supports
+              shapes with different number of nodes. But it's not free and not
+              open source.
+              <LinkAsButton
+                size="sm"
+                href="https://greensock.com/morphSVG"
+                isFaded
+              >
+                Website
+              </LinkAsButton>
+              <LinkAsButton
+                size="sm"
+                href="https://codepen.io/GreenSock/pen/LpxOqR"
+                isFaded
+              >
+                CodePen
+              </LinkAsButton>
+            </p>
+          </li>
+
+          <br />
+          <li>
+            <p>
+              - <code>d3-interpolate</code> is a d3 module that provides a
+              variety of interpolation methods. It works for paths, even with
+              different number of nodes. But when the shape 2 has more nodes
+              than shape 1 it just adds some nodes to the end of the shape 1
+              path. This result in a{" "}
+              <a href="https://bocoup.com/blog/improving-d3-path-animation">
+                bad visual effect
+              </a>
+              .
+              <LinkAsButton
+                size="sm"
+                href="https://github.com/d3/d3-interpolate"
+                isFaded
+              >
+                Doc
+              </LinkAsButton>
+            </p>
+          </li>
+
+          <br />
+          <li>
+            <p>
+              - <code>d3-interpolate-path</code> is an open-source js library
+              that adds an interpolator optimized for SVG <code>path</code>{" "}
+              elements. It works very well for path including segments only, but
+              from my experience less well for arcs.
+              <LinkAsButton
+                size="sm"
+                href="https://github.com/pbeshai/d3-interpolate-path"
+                isFaded
+              >
+                Doc
+              </LinkAsButton>
+              <LinkAsButton
+                size="sm"
+                href="https://pbeshai.github.io/d3-interpolate-path/"
+                isFaded
+              >
+                Demo
+              </LinkAsButton>
+            </p>
+          </li>
+        </ul>
+        <br />
+        <p>
+          None of the item of this list suits my need.{" "}
+          <TakeHome>
+            We need an open source library capable of interpolating any path,
+            even with different number of nodes library{" "}
+          </TakeHome>
+          .
         </p>
       </AccordionSection>
 
