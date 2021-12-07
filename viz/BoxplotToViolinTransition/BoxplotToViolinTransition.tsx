@@ -47,7 +47,7 @@ export const BoxplotToViolinTransition = (
     .scaleBand()
     .range([0, boundsWidth])
     .domain(groups)
-    .padding(0.05);
+    .padding(0.25);
 
   // Render the X and Y axis using d3.js, not react
   useEffect(() => {
@@ -94,7 +94,7 @@ export const BoxplotToViolinTransition = (
       <svg
         width={width}
         height={height}
-        style={{ backgroundColor: "#F8F8F8", display: "inline-block" }}
+        style={{ backgroundColor: "#F8F88", display: "inline-block" }}
       >
         {/* first group is for the violin and box shapes */}
         <g

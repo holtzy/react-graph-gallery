@@ -86,11 +86,11 @@ export default function Home() {
         <br />
         <p>This is the kind of thing we're gonna learn to build:</p>
         <br />
-        <div className="full-bleed grey-section flex justify-center flex-col">
+        <div className="full-bleed flex justify-center flex-col">
           <div className="w-full flex justify-center">
             <BoxplotToViolinTransition
-              height={400}
-              width={800}
+              height={300}
+              width={600}
               data={violinData}
             />
           </div>
@@ -229,7 +229,7 @@ export default function Home() {
           None of the item of this list suits my need.{" "}
           <TakeHome>
             We need an open source library capable of interpolating any path,
-            even with different number of nodes library{" "}
+            even with different number of nodes.
           </TakeHome>
           .
         </p>
@@ -304,8 +304,8 @@ export default function Home() {
         </p>
         <ChartOrSandbox vizName={"BoxplotToViolinTransition"}>
           <BoxplotToViolinTransition
-            height={400}
-            width={800}
+            height={300}
+            width={600}
             data={violinData}
           />
         </ChartOrSandbox>

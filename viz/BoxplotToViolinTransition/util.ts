@@ -1,11 +1,13 @@
 import * as d3 from "d3";
-import { ScaleLinear } from "d3-scale";
 
 // A function that builds the svg path of a violin from a set of numbers
 export const buildViolinPath = (data: number[], yScale: d3.ScaleLinear<number, number, never>, width: number) => {
-    const binBuilder = d3.bin()
-      .domain(yScale.domain() as [number, number])
-      .thresholds(yScale.ticks(27))
+  const min = Math.min(...data)
+  const max = Math.max(...data)
+
+  const binBuilder = d3.bin()
+      .domain([min, max])
+      .thresholds(yScale.ticks(14))
       .value((d) => d);
     const bins = binBuilder(data);
 
@@ -31,6 +33,11 @@ export const buildViolinPath = (data: number[], yScale: d3.ScaleLinear<number, n
     const q1 = d3.quantile(data_sorted, 0.25);
     const median = d3.quantile(data_sorted, 0.5);
     const q3 = d3.quantile(data_sorted, 0.75);
+
+    if(!q1 || !q3){
+      return null
+    }
+
     const interQuantileRange = q3 - q1;
     const min = q1 - 1.5 * interQuantileRange;
     const max = q1 + 1.5 * interQuantileRange;

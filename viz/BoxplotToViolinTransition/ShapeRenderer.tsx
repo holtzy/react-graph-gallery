@@ -39,6 +39,7 @@ export const ShapeRenderer = ({ path, xTranslate }: ShapeRendererProps) => {
       stroke="#9a6fb0"
       fill="#9a6fb0"
       fillOpacity={0.3}
+      strokeWidth={2}
     />
   );
 };
