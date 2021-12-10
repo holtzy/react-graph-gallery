@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { TriangleToPolygonStepByStep } from "./TriangleToPolygonStepByStep";
+import { TriangleToPolygonAnimated } from "./TriangleToPolygonAnimated";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<TriangleToPolygonStepByStep width={800} height={300} />, rootElement);
+ReactDOM.render(<TriangleToPolygonAnimated width={800} height={300} />, rootElement);
