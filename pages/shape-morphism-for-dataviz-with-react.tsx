@@ -68,6 +68,91 @@ export default function Home() {
         </TakeHome>
       </blockquote>
 
+      <AccordionSection
+        title={"Shape morphism for dataviz: some examples"}
+        startOpen={true}
+      >
+        <p>
+          Here is a list of nifty viz examples using shape morphism to
+          transition between several viz types
+        </p>
+        <br />
+        <ul className="ml-10">
+          <li>
+            <p>
+              -{" "}
+              <a href="https://observablehq.com/@karimdouieb/try-to-impeach-this-challenge-accepted">
+                Try to empeach this
+              </a>
+              : choropleth to bubble map transition by{" "}
+              <a href="https://twitter.com/karim_douieb">Karim Douïeb</a>
+            </p>
+            <br />
+            <p>
+              -{" "}
+              <a href="https://bl.ocks.org/mbostock/1256572">d3.js show reel</a>
+              : several chart transition to showcase d3.js possibilities by{" "}
+              <a href="https://bost.ocks.org/mike/">Mike Bostock</a>
+            </p>
+            <br />
+            <p>
+              -{" "}
+              <a href="https://interactive.spiegel.de/int/pub/ressort/mobilitaet/2021/motorisierung/v0/index.9.html?height=900&mobile_height=800&subtitle=Pkw+je+1000+Einwohner&title=Motorisierungsgrad+in+Deutschland%2C">
+                Choropleth to bubble plot transition
+              </a>
+              , the the Spiegel
+            </p>
+            <br />
+            <p>
+              -{" "}
+              <a href="https://pudding.cool/2019/04/eu-regions/">
+                Choropleth to scatterplot
+              </a>{" "}
+              transition with scrolly-telling. By{" "}
+              <a href="http://www.maartenlambrechts.com/">Maarten Lambrechts</a>{" "}
+              for the Pudding.
+            </p>
+            <br />
+            <p>
+              -{" "}
+              <a href="https://github.com/zumbov2/votemapswitzerland">
+                Choropleth to circle pack
+              </a>
+              , made with R by{" "}
+              <a href="https://twitter.com/DavidZumbach">David Zumbach</a>
+            </p>
+          </li>
+        </ul>
+      </AccordionSection>
+
+      <AccordionSection title={"Shape morphism: why"} startOpen={true}>
+        <p>
+          In the field of data visualization shape morphism is mostly usefull to
+          transition between 2 chart types. It is pretty hard to implement that
+          kind of smooth transition so why should we even care?
+        </p>
+        <ul>
+          <br />
+          <li>
+            <p>- Eye catching effect</p>
+          </li>
+          <br />
+          <li>
+            <p>
+              - Highlight the direct relationship between 2 charts. During the
+              transition one can follow a specific item and understand it's the
+              same.
+            </p>
+          </li>
+          <li>
+            <p>
+              - Make sure that we're looking at the same dataset, but
+              represented differently
+            </p>
+          </li>
+        </ul>
+      </AccordionSection>
+
       <AccordionSection title={"What are we trying to do"} startOpen={true}>
         <p>
           Sometimes in dataviz we want to transition between 2 chart types,
@@ -181,6 +266,25 @@ export default function Home() {
           <br />
           <li>
             <p>
+              - <code>superformula</code> is a mathematic formula that can be
+              used to describe many complex shapes. Using 6 numbers as
+              parameters, this formula can build many complex shapes.
+              Interpolating between 2 shapes becomes easy: we just have to
+              interpolate those numbers. Problem: it does not work with any
+              shape and building a chart from this formula is thus impossible.
+              <LinkAsButton
+                size="sm"
+                href="https://bl.ocks.org/mbostock/1020902"
+                isFaded
+              >
+                Example
+              </LinkAsButton>
+            </p>
+          </li>
+
+          <br />
+          <li>
+            <p>
               - <code>d3-interpolate</code> is a d3 module that provides a
               variety of interpolation methods. It works for paths, even with
               different number of nodes. But when the shape 2 has more nodes
@@ -217,6 +321,30 @@ export default function Home() {
               <LinkAsButton
                 size="sm"
                 href="https://pbeshai.github.io/d3-interpolate-path/"
+                isFaded
+              >
+                Demo
+              </LinkAsButton>
+            </p>
+          </li>
+
+          <br />
+          <li>
+            <p>
+              - <code>Vizzu</code> is a library for animated data visualizations
+              and data stories. It looks very promising for transition between
+              chart types. But since it is a library, it means that
+              customization is limited to the offered options.
+              <LinkAsButton
+                size="sm"
+                href="https://github.com/vizzuhq/vizzu-lib"
+                isFaded
+              >
+                Doc
+              </LinkAsButton>
+              <LinkAsButton
+                size="sm"
+                href="https://lib.vizzuhq.com/0.3.0/#example-1.1.7"
                 isFaded
               >
                 Demo
