@@ -116,10 +116,6 @@ export default function Home() {
         </p>
         <br />
         <br />
-
-        <ChartOrSandbox vizName={"PieChartBasic"}>
-          <StreamGraphBasic data={data} height={500} width={500} />
-        </ChartOrSandbox>
       </AccordionSection>
 
       <hr className="full-bleed  bord er bg-gray-200 my-3" />

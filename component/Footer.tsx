@@ -6,7 +6,9 @@ export default function Footer() {
   return (
     <div className="h-24 w-full grid grid-cols-3 gap-1 ">
       <div className="text-sm font-light flex flex-row justify-start items-center">
-        <p>Copyright © the React Graph Gallery 2021</p>
+        <p className="hidden sm:inline">
+          Copyright © the React Graph Gallery 2021
+        </p>
       </div>
 
       <div className="flex flex-row justify-center items-center ">
@@ -14,7 +16,7 @@ export default function Footer() {
       </div>
 
       <div className="text-sm font-light flex flex-row justify-end items-center">
-        <span>
+        <span className="hidden sm:inline">
           <Link href="/about">About</Link>
           <span> | </span>
           <a href="https://github.com/holtzy/react-graph-gallery/blob/master/LICENSE">

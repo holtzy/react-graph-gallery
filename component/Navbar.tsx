@@ -27,17 +27,17 @@ export default function Navbar() {
             </Link>
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
-              className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
+              className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
             >
               Chart types
             </span>
             <a href="#">
-              <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
+              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
                 Related
               </span>
             </a>
             <a href="#">
-              <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
+              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
                 About
               </span>
             </a>

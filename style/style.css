@@ -44,6 +44,8 @@
     grid-column: 2;
 }
 .full-bleed {
+    padding-left: 0px;
+    padding-right: 0px;
     width: 100%;
     grid-column: 1 / 4;
 }

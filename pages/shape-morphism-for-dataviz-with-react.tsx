@@ -397,6 +397,12 @@ export default function Home() {
         <ChartOrSandbox vizName={"TriangleToPolygonStepByStep"}>
           <TriangleToPolygonStepByStep height={200} width={400} />
         </ChartOrSandbox>
+
+        <br />
+        <blockquote>
+          Awesome video by the Flubber creator:{" "}
+          <a href="https://www.youtube.com/watch?v=PLc1y-gim_0">link</a>
+        </blockquote>
       </AccordionSection>
 
       <AccordionSection
