@@ -66,12 +66,10 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={
-          "Responsiveness: a wrapper that makes your viz fits its container"
-        }
+        title={"Responsiveness: a hook that makes your viz fits its container"}
         timeToRead={5}
-        link="react-wrapper-for-responsive-d3-graph"
-        isAvailable={false}
+        link="make-a-graph-responsive"
+        isAvailable={true}
       >
         <span>
           Viz components often take a <code>width</code> and a{" "}
