@@ -71,15 +71,27 @@ export default function Home() {
         description={graphDescription}
         chartType="violin"
       />
-      <h2>What are we trying to build?</h2>
+      <h2>🚀 Just show me the graph and its code!</h2>
       <p>
         A violin chart allows to visualize the distribution of one or several
         groups. Here, groups are spread on the X axis, when the Y axis
         represents the numeric value.
       </p>
-      <div className="flex justify-center">
-        <ViolinBasic data={data} height={400} width={600} />
-      </div>
+      <br />
+      <p>
+        If you're in a hurry and don't want to read the explanations and
+        additional example below, just click on the <code>show code</code>{" "}
+        button to get the full reproducible example!
+      </p>
+      <ChartOrSandbox vizName={"ViolinBasic"}>
+        <div style={{ height: 300, width: 500 }} ref={violinChartRef}>
+          <ViolinBasic
+            height={violinChartSize.height}
+            width={violinChartSize.width}
+            data={ViolinData}
+          />
+        </div>
+      </ChartOrSandbox>
 
       <AccordionSection title={"The data"} startOpen={true}>
         <p>
@@ -151,12 +163,17 @@ export default function Home() {
         title={"Rendering a basic violin chart with React"}
         startOpen={true}
       >
-        <p>We now</p>
-
-        <CodeBlock code={snippet2} />
-        <p></p>
+        <p>
+          There is nothing special to notice concerning the rendering. Each
+          violin svg path built is passed to a svg <code>path</code> element in
+          its <code>d</code> attribute.
+        </p>
+        <p>
+          Note that in the example below I'm using d3 to render the axes, not
+          react. This will be discussed more in depth in a blogpost.
+        </p>
         <ChartOrSandbox vizName={"ViolinBasic"}>
-          <div style={{ height: 300, width: "100%" }} ref={violinChartRef}>
+          <div style={{ height: 300, width: 500 }} ref={violinChartRef}>
             <ViolinBasic
               height={violinChartSize.height}
               width={violinChartSize.width}

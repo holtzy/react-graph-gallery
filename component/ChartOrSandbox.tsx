@@ -11,27 +11,24 @@ export const ChartOrSandbox = ({ vizName, children }: ChartOrSandboxProps) => {
   const [showSandbox, setShowSandbox] = useState(false);
 
   return (
-    <>
-      {!showSandbox && (
-        <Button size="sm" onClick={() => setShowSandbox(true)}>
-          Show Sandbox
-        </Button>
-      )}
-      {showSandbox && (
-        <Button size="sm" onClick={() => setShowSandbox(false)}>
-          Hide Sandbox
-        </Button>
-      )}
-
+    <div className="my-4">
       {showSandbox ? (
         <div className="">
           <CodeSandbox vizName={vizName} />
         </div>
       ) : (
-        <div className="full-bleed grey-section flex justify-center flex-col">
-          <div className="w-full flex justify-center">{children}</div>
+        <div className="w-full flex justify-center">
+          <div className="border border-purple-300 rounded-md p-4">
+            {children}
+          </div>
         </div>
       )}
-    </>
+
+      <div className="flex justify-center mt-2">
+        <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
+          {showSandbox ? "Hide Sandbox" : "Show code"}
+        </Button>
+      </div>
+    </div>
   );
 };

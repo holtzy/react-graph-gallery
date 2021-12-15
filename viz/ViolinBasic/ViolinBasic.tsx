@@ -99,11 +99,7 @@ export const ViolinBasic = ({ width, height, data }: ViolinBasicProps) => {
 
   return (
     <div>
-      <svg
-        width={width}
-        height={height}
-        style={{ backgroundColor: "#F8F88", display: "inline-block" }}
-      >
+      <svg width={width} height={height} style={{ display: "inline-block" }}>
         {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}
