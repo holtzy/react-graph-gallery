@@ -17,11 +17,9 @@ export default function Footer() {
 
       <div className="text-sm font-light flex flex-row justify-end items-center">
         <span className="hidden sm:inline">
-          <Link href="/about">About</Link>
+          <span>About</span>
           <span> | </span>
-          <a href="https://github.com/holtzy/react-graph-gallery/blob/master/LICENSE">
-            License
-          </a>
+          <span>License</span>
         </span>
       </div>
     </div>

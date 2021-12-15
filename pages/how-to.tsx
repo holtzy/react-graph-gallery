@@ -33,10 +33,18 @@ const BlogPostItem = ({
 
   return (
     <div className={opacity}>
-      <h2>{title}</h2>
+      {isAvailable ? (
+        <Link href={link}>
+          <h2 className="cursor-pointer">{title}</h2>
+        </Link>
+      ) : (
+        <h2>{title}</h2>
+      )}
       {children}
       {isAvailable && <Link href={link}> Read more...</Link>}
-      <p className="text-gray-400 font-light">{timeToRead + " minutes read"}</p>
+      <p className="text-gray-400 font-light mt-2">
+        {timeToRead + " minutes read"}
+      </p>
     </div>
   );
 };
@@ -56,7 +64,7 @@ export default function HowTo() {
         title={"Using react and d3.js: The 2 strategies"}
         timeToRead={4}
         link="how-to-includes-a-d3-chart-in-react"
-        isAvailable
+        isAvailable={false}
       >
         <span>
           React modifies the DOM. So does d3.js. It makes it hard to make them

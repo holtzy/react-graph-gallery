@@ -32,12 +32,12 @@ export default function Navbar() {
               Chart types
             </span>
             <a href="#">
-              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
+              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-not-allowed">
                 Related
               </span>
             </a>
             <a href="#">
-              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
+              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-not-allowed">
                 About
               </span>
             </a>

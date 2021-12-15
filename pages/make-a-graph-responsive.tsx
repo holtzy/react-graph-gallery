@@ -176,7 +176,7 @@ export default function Home() {
 
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
 
-      <ChartFamilySection chartFamily="partOfAWhole" />
+      <ChartFamilySection chartFamily="general" />
 
       <div className="mt-20" />
       <Contact />
