@@ -81,10 +81,6 @@ export default function Home() {
         chartType="pie"
       />
 
-      <ChartOrSandbox vizName={"PieChartBasic"}>
-        <EventBarChart data={eventData} height={300} width={800} />
-      </ChartOrSandbox>
-
       <AccordionSection title={"Dataset"} startOpen={true}>
         <p>
           The dataset required to build a pie chart is pretty simple. It is an

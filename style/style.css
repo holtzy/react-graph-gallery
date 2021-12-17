@@ -85,6 +85,9 @@ blockquote {
     border-left: 2px solid var(--react-gallery);
     padding: 0.5em 10px;
     quotes: "\201C""\201D""\2018""\2019";
+    line-height: 1.73;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-weight: 200;
   }
 blockquote p {
     display: inline;

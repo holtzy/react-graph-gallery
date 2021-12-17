@@ -21,15 +21,12 @@ export const CircularPackingBasic = ({
   }, [data]);
 
   const root = useMemo(() => {
-    return d3.pack<Tree>().size([width, height]).padding(4)(hierarchy);
+    const packGenerator = d3.pack<Tree>().size([width, height]).padding(4);
+    return packGenerator(hierarchy);
   }, [hierarchy, width, height]);
 
   return (
-    <svg
-      width={width}
-      height={height}
-      style={{ backgroundColor: "#f8f9fa", display: "inline-block" }}
-    >
+    <svg width={width} height={height} style={{ display: "inline-block" }}>
       {root
         .descendants()
         .slice(1)
