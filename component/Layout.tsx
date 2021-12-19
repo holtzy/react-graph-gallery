@@ -7,22 +7,33 @@ import Head from "next/head";
 // - adds the footer
 // - adds the head: everything needed for SEO and social media sharing
 
-export const Layout = (props: {
+type LayoutProps = {
   children: React.ReactNode;
   title: string;
   seoDescription: string;
-}) => {
+};
+
+export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
   return (
     <>
       <Head>
+        <title>{title}</title>
+        <meta name="description" content={seoDescription} />
         <link
           href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto+Mono:wght@300&display=swap"
           rel="stylesheet"
         />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={seoDescription} />
+        <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        />
       </Head>
       <div className="wrapper">
         <Navbar />
-        {props.children}
+        {children}
         <Footer />
       </div>
     </>
