@@ -28,7 +28,7 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
         <meta property="og:description" content={seoDescription} />
         <meta
           property="og:image"
-          content="https://example.com/images/cool-page.jpg"
+          content="https://raw.githubusercontent.com/holtzy/react-graph-gallery/main/public/overview-gallery.png"
         />
       </Head>
       <div className="wrapper">
