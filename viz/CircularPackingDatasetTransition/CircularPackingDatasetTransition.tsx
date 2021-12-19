@@ -3,17 +3,17 @@ import * as d3 from "d3";
 import { Tree } from "../../data/hierarchy-1-level-random";
 import { useSpring, animated } from "react-spring";
 
-type CircularPackingAnimatedResizeProps = {
+type CircularPackingDatasetTransitionProps = {
   width: number;
   height: number;
   data: Tree;
 };
 
-export const CircularPackingAnimatedResize = ({
+export const CircularPackingDatasetTransition = ({
   width,
   height,
   data,
-}: CircularPackingAnimatedResizeProps) => {
+}: CircularPackingDatasetTransitionProps) => {
   const hierarchy = useMemo(() => {
     return d3
       .hierarchy(data)
@@ -26,11 +26,7 @@ export const CircularPackingAnimatedResize = ({
   }, [hierarchy, width, height]);
 
   return (
-    <svg
-      width={width}
-      height={height}
-      style={{ backgroundColor: "#f8f9fa", display: "inline-block" }}
-    >
+    <svg width={width} height={height} style={{ display: "inline-block" }}>
       {root
         .descendants()
         .slice(1)

@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import { CircularPackingBasic } from "../viz/CircularPackingBasic/CircularPackingBasic";
 import { data, data2 } from "../data/hierarchy-1-level-random";
-import { LinkAsButton } from "../component/LinkAsButton";
-import { CircularPackingAnimatedResize } from "../viz/CircularPackingAnimatedResize/CircularPackingAnimatedResize";
+import { CircularPackingDatasetTransition } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransition";
 import { Button } from "../component/Button";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
@@ -19,7 +18,7 @@ const graphDescription = (
     <a href="https://www.data-to-viz.com/graph/circularpacking.html">
       circular packing chart
     </a>{" "}
-    displays a hierarchical dataset as a set of nested circle. Nodes are
+    displays a hierarchical dataset as a set of nested circles. Nodes are
     displayed as circles. Size is usually proportional to a numeric variable.
   </p>
 );
@@ -34,6 +33,24 @@ const data = {
     {type: 'leaf', name:"Robert", value: 12},
     {type: 'leaf', name:"Emily", value: 34},
     ...
+}
+`.trim();
+
+const snippet2 = `
+const AnimatedCircle = ({cx,cy,r,...props}) => {
+  const animatedProps = useSpring({
+    cx,
+    cy,
+    r,
+  });
+  return (
+    <animated.circle
+      {...props}
+      r={animatedProps.r}
+      cx={animatedProps.cx}
+      cy={animatedProps.cy}
+    />
+  );
 }
 `.trim();
 
@@ -97,44 +114,53 @@ export default function Home() {
         </ChartOrSandbox>
       </AccordionSection>
 
-      <h2>Animating dataset transition</h2>
-      <p>
-        The circular packing component receives a <code>data</code> props. When
-        data changes, the circles update. It is possible to update this
-        transition using <code>react-spring</code>.
-      </p>
-      <div className="flex flex-row justify-center">
-        <Button onClick={() => setAnimData(data)} isFilled={animData === data}>
-          Data 1
-        </Button>
-        <Button
-          onClick={() => setAnimData(data2)}
-          isFilled={animData === data2}
-        >
-          Data 2
-        </Button>
-      </div>
-      <div className="flex justify-center">
-        <CircularPackingAnimatedResize
-          data={animData}
-          height={500}
-          width={500}
-        />
-      </div>
+      <AccordionSection title={"Animating dataset transition"} startOpen={true}>
+        <p>
+          The following examples explains how to transition between 2 datasets.
+          Each circle smoothly goes to its new position with its new radius.
+        </p>
+        <p>
+          This is possible thanks to the <code>react-spring</code> library that
+          does the interpolation and animation. When a new dataset is passed to
+          the component, the <code>hierarchy()</code> and <code>pack()</code>{" "}
+          functions are triggered to compute the new position and radius of each
+          node. But instead of passing this information to an usual{" "}
+          <code>circle</code> or <code>text</code>
+          svg element, it is passed to an animated component that looks like
+          this:
+        </p>
+        <CodeBlock code={snippet2} />
+        <p>
+          This component uses the <code>useSpring</code> hook of react spring to
+          interpolate the <code>cx</code>, <code>cy</code> and <code>r</code>{" "}
+          properties. Those values are passed to a special svg element (
+          <code>animated.circle</code>) that does the animation.
+        </p>
 
-      <h2>
-        The <code>bin()</code> function of D3.js
-      </h2>
-      <p>
-        The bin() function of d3.js allows to split the numeric variable in
-        several bins, and count how many items there are in each bin.
-      </p>
+        <div className="flex flex-row justify-center mt-10">
+          <Button
+            onClick={() => setAnimData(data)}
+            isFilled={animData === data}
+          >
+            Data 1
+          </Button>
+          <Button
+            onClick={() => setAnimData(data2)}
+            isFilled={animData === data2}
+          >
+            Data 2
+          </Button>
+        </div>
+        <ChartOrSandbox vizName={"CircularPackingDatasetTransition"}>
+          <CircularPackingDatasetTransition
+            data={animData}
+            height={500}
+            width={500}
+          />
+        </ChartOrSandbox>
+      </AccordionSection>
 
-      <h2>Final code</h2>
-      <LinkAsButton href="https://github.com/holtzy/react-graph-gallery/tree/main/pages/viz/ViolinBasic">
-        Code
-      </LinkAsButton>
-
+      <br />
       <hr className="full-bleed  border bg-gray-200 my-3" />
 
       <ChartFamilySection chartFamily="partOfAWhole" />
