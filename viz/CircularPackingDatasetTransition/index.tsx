@@ -13,7 +13,7 @@ const Content = () => {
         <button onClick={() => setDataset(data2)}>Data 2</button>
       </div>
       <CircularPackingDatasetTransition
-        width={800}
+        width={400}
         height={300}
         data={dataset}
       />
