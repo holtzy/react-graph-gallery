@@ -22,10 +22,10 @@ export default function Contact({ pageSlug }: ContactProps) {
         👋 This document is a work by{" "}
         <a href="https://www.yan-holtz.com">Yan Holtz</a>. Any feedback is
         highly encouraged. You can{" "}
-        <a href="https://github.com/holtzy/The-React-Graph-Gallery/issues">
+        <a href="https://github.com/holtzy/react-graph-gallery/issues">
           fill an issue
         </a>{" "}
-        on Github, drop me a message on
+        on Github, drop me a message on{" "}
         <a href="https://twitter.com/r_graph_gallery?lang=en">Twitter</a>, or
         send an email pasting <code>yan.holtz.data</code> with{" "}
         <code>gmail.com</code>.

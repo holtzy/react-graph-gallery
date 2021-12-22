@@ -4,8 +4,6 @@ import { chartTypesInfo } from "../util/sectionDescriptions";
 import SectionLogo from "./SectionLogo";
 import { fullUrlToInternalLink } from "../util/utils";
 import Link from "next/link";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
 
 type AllChartsModalProps = {
   setIsOpen: (arg: boolean) => void;
@@ -16,21 +14,31 @@ export const AllChartsModal = (props: AllChartsModalProps) => {
   const [name, setName] = React.useState("");
 
   const logoList = chartTypesInfo.map((chart, i) => {
-    const cursor = chart.isAvailable ? "cursor-pointer" : "cursor-not-allowed";
-    const opacity = chart.isAvailable ? "opacity-100" : "opacity-40";
+    if (chart.isAvailable) {
+      return (
+        <div
+          style={{ width: 75, height: 75 }}
+          className={"relative my-4 mx-2 cursor-pointer opacity-100"}
+          key={i}
+          onMouseEnter={() => setName(chart.label)}
+          onMouseLeave={() => setName("")}
+        >
+          <a href={fullUrlToInternalLink(chart.reactURL)}>
+            <SectionLogo chartLogo={chart.logo} />
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div
         style={{ width: 75, height: 75 }}
-        className={
-          "relative my-4 mx-2 opacity-10" + " " + opacity + " " + cursor
-        }
+        className={"relative my-4 mx-2 opacity-40 cursor-not-allowed"}
         key={i}
         onMouseEnter={() => setName(chart.label)}
         onMouseLeave={() => setName("")}
       >
-        <Link href={fullUrlToInternalLink(chart.reactURL)}>
-          <SectionLogo chartLogo={chart.logo} />
-        </Link>
+        <SectionLogo chartLogo={chart.logo} />
       </div>
     );
   });

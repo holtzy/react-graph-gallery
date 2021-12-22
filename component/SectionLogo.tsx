@@ -2,8 +2,6 @@ import React from "react";
 import Image from "next/image";
 import type { ChartLogo } from "../util/sectionDescriptions";
 
-import animationGif from "../public/section/anim150.gif";
-
 // This component displays a logo representing a chart type of the gallery. Example: bar chart
 // The logo will fit the height of its container
 
