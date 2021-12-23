@@ -47,7 +47,9 @@ export default function SectionLogoWithOverlay({
             </div>
           )}
         </div>
-        <p className={"font-light text-gray-600" + " " + opacity}>{caption}</p>
+        <p className={"font-light text-sm text-gray-600" + " " + opacity}>
+          {caption}
+        </p>
       </div>
     </Link>
   );

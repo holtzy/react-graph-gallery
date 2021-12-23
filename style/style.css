@@ -37,7 +37,7 @@
     display: grid;
     grid-template-columns:
       1fr
-      min(900px, 100%)
+      min(822px, 100%)
       1fr;
   }
 .wrapper > * {
@@ -57,7 +57,7 @@
 body {
     overflow-x: hidden;
     font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-    font-size: 1rem;
+    font-size: 19px;
 }
 p {
     line-height: 1.73;
