@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className="">
             <Link href="/how-to">
               <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
-                How to
+                How to...
               </span>
             </Link>
             <span

@@ -17,11 +17,7 @@ export const ChartOrSandbox = ({ vizName, children }: ChartOrSandboxProps) => {
           <CodeSandbox vizName={vizName} />
         </div>
       ) : (
-        <div className="w-full flex justify-center">
-          <div className="border border-purple-300 rounded-md p-4">
-            {children}
-          </div>
-        </div>
+        <div className="w-full flex justify-center">{children}</div>
       )}
 
       <div className="flex justify-center mt-2">

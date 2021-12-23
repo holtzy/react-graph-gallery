@@ -15,9 +15,9 @@ import { DensityChartBasic } from "../viz/DensityChartBasic/DensityChartBasic";
 const graphDescription = (
   <p>
     Most of the viz components of this gallery accept a <code>width</code> and a{" "}
-    <code>height</code> component. Yet, most of the time the dimensions of the
-    viz we're building are unknown. This blogpost explains how to build a{" "}
-    <code>hook</code>
+    <code>height</code> property. Yet, most of the time the dimensions of the
+    viz we're building are unknown. We just want them to fit their container.
+    Let's build a <code>hook</code>
     that retrieves the parent container dimension and passes it to the viz.
   </p>
 );
@@ -61,7 +61,7 @@ const chartSize = useDimensions(chartRef);
 
 const snippet4 = `
 return(
-  <div ref={violinChartRef}>
+  <div ref={chartRef}>
     <MyChartComponent
       height={chartSize.height}
       width={chartSize.width}
@@ -147,7 +147,7 @@ export default function Home() {
 
         <p>
           Last but not least, do not forget to pass this ref to the container
-          you want to track. You know have an object called{" "}
+          you want to track. You now have an object called{" "}
           <code>chartSize</code> here that has 2 properties, <code>height</code>{" "}
           and <code>width</code>. You can use those properties for your chart
           component.
@@ -160,8 +160,18 @@ export default function Home() {
           width and a height property, becoming responsive thanks to this hook:
         </p>
         <br />
+        <p>
+          {"height: " +
+            violinChartSize.height +
+            "  width: " +
+            violinChartSize.width}
+        </p>
         <ChartOrSandbox vizName={"ViolinBasic"}>
-          <div style={{ height: 300, width: "100%" }} ref={violinChartRef}>
+          <div
+            style={{ height: 300, width: "100%", maxWidth: 600 }}
+            ref={violinChartRef}
+            className="border border-purple-300 rounded-md"
+          >
             <ViolinBasic
               height={violinChartSize.height}
               width={violinChartSize.width}
@@ -169,6 +179,35 @@ export default function Home() {
             />
           </div>
         </ChartOrSandbox>
+      </AccordionSection>
+
+      <AccordionSection title={"Caveat"} startOpen={true}>
+        <p>
+          Remember that the element we are tracking needs to have a{" "}
+          <code>height</code> and a <code>width</code>. Otherwise the hook will
+          basically return nothing.
+        </p>
+        <h3>
+          &rarr; Container is displayed as <code>inline</code>
+        </h3>
+        <p>
+          An html elemente that is displayed as <code>inline</code> (
+          <code>display: inline;</code>) cannot have a width and height.{" "}
+          <code>span</code>
+          elements are inline by default.
+        </p>
+        <h3>&rarr; By default, a div has no height</h3>
+        <p>
+          By default, the width of a div is 100%, and its height fits its
+          content. Which means that with no content, there is no height.
+        </p>
+        <h3>&rarr; Width 100% is ignored, flex example</h3>
+        <p>
+          By default, the width of a div is 100%, and its height fits its
+          content. Which means that with no content, there is no height.
+        </p>
+        <h3>&rarr; Mind the border</h3>
+        <p>Josh Comeau post about border being part of the main box.</p>
       </AccordionSection>
 
       <br />
