@@ -70,9 +70,6 @@ return(
 `.trim();
 
 export default function Home() {
-  const violinChartRef = useRef<HTMLDivElement>(null);
-  const violinChartSize = useDimensions(violinChartRef);
-
   const densityChartRef = useRef<HTMLDivElement>(null);
   const densityChartSize = useDimensions(densityChartRef);
 
@@ -160,25 +157,17 @@ export default function Home() {
           width and a height property, becoming responsive thanks to this hook:
         </p>
         <br />
-        <p>
-          {"height: " +
-            violinChartSize.height +
-            "  width: " +
-            violinChartSize.width}
-        </p>
-        <ChartOrSandbox vizName={"ViolinBasic"}>
-          <div
-            style={{ height: 300, width: "100%", maxWidth: 600 }}
-            ref={violinChartRef}
-            className="border border-purple-300 rounded-md"
-          >
+
+        <ChartOrSandbox
+          vizName={"ViolinBasic"}
+          render={(dim) => (
             <ViolinBasic
-              height={violinChartSize.height}
-              width={violinChartSize.width}
               data={ViolinData}
+              width={dim.width}
+              height={dim.height}
             />
-          </div>
-        </ChartOrSandbox>
+          )}
+        />
       </AccordionSection>
 
       <AccordionSection title={"Caveat"} startOpen={true}>
