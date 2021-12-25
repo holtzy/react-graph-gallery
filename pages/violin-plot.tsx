@@ -3,15 +3,11 @@ import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
-import SectionLogo from "../component/SectionLogo";
 import { ViolinBasic } from "../viz/ViolinBasic/ViolinBasic";
-import { data } from "../data/distribution-multi-groups-random";
-import { LinkAsButton } from "../component/LinkAsButton";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { data as violinData } from "../data/distribution-multi-groups-random";
-import { useDimensions } from "../hook/use-dimensions";
 import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
@@ -58,9 +54,6 @@ const area = areaBuilder(bins);
 `.trim();
 
 export default function Home() {
-  const violinChartRef = useRef<HTMLDivElement>(null);
-  const violinChartSize = useDimensions(violinChartRef);
-
   return (
     <Layout
       title="Violin plot with React"
@@ -218,6 +211,12 @@ export default function Home() {
       >
         <p>Oh no! This chart isn't available yet!</p>
       </AccordionSection>
+
+      <br />
+      <br />
+      <br />
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      <ChartFamilySection chartFamily="distribution" />
 
       <div className="mt-20" />
       <Contact />

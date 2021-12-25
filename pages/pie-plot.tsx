@@ -138,8 +138,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <hr className="full-bleed  bord er bg-gray-200 my-3" />
-
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
 
       <div className="mt-20" />

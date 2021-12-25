@@ -10,7 +10,6 @@ import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { useDimensions } from "../hook/use-dimensions";
 
 const graphDescription = (
   <p>
@@ -176,9 +175,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <br />
-      <hr className="full-bleed  border bg-gray-200 my-3" />
-
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
 
       <div className="mt-20" />
