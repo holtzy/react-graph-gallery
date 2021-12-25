@@ -45,11 +45,7 @@ export const TriangleToPolygonAnimated = ({
         </button>
       </div>
       <div>
-        <svg
-          width={width}
-          height={height}
-          style={{ backgroundColor: "#f8f9fa", display: "inline-block" }}
-        >
+        <svg width={width} height={height} style={{ display: "inline-block" }}>
           <animated.path
             d={springProps.t.to((t: any) => pathInterpolator(t))}
             stroke="#9a6fb0"

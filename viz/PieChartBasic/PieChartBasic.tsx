@@ -11,7 +11,7 @@ type PieChartBasicProps = {
   data: DataItem[];
 };
 
-const MARGIN = 70;
+const MARGIN = 30;
 
 const colors = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"];
 
@@ -36,11 +36,7 @@ export const PieChartBasic = ({ width, height, data }: PieChartBasicProps) => {
   }, [radius, pie]);
 
   return (
-    <svg
-      width={width}
-      height={height}
-      style={{ backgroundColor: "#f8f9fa", display: "inline-block" }}
-    >
+    <svg width={width} height={height} style={{ display: "inline-block" }}>
       <g transform={`translate(${width / 2}, ${height / 2})`}>
         {arcs.map((arc, i) => {
           return <path key={i} d={arc} fill={colors[i]} />;

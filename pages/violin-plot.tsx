@@ -10,7 +10,7 @@ import { LinkAsButton } from "../component/LinkAsButton";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { data as ViolinData } from "../data/distribution-multi-groups-random";
+import { data as violinData } from "../data/distribution-multi-groups-random";
 import { useDimensions } from "../hook/use-dimensions";
 import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
@@ -83,16 +83,17 @@ export default function Home() {
         additional example below, just click on the <code>show code</code>{" "}
         button to get the full reproducible example!
       </p>
-      <ChartOrSandbox vizName={"ViolinBasic"}>
-        <div style={{ height: 300, width: 500 }} ref={violinChartRef}>
+      <ChartOrSandbox
+        vizName={"ViolinBasic"}
+        maxWidth={600}
+        render={(dim) => (
           <ViolinBasic
-            height={violinChartSize.height}
-            width={violinChartSize.width}
-            data={ViolinData}
+            data={violinData}
+            width={dim.width}
+            height={dim.height}
           />
-        </div>
-      </ChartOrSandbox>
-
+        )}
+      />
       <AccordionSection title={"The data"} startOpen={true}>
         <p>
           The dataset used to build a violin chart is usually an array of
@@ -172,15 +173,17 @@ export default function Home() {
           Note that in the example below I'm using d3 to render the axes, not
           react. This will be discussed more in depth in a blogpost.
         </p>
-        <ChartOrSandbox vizName={"ViolinBasic"}>
-          <div style={{ height: 300, width: 500 }} ref={violinChartRef}>
+        <ChartOrSandbox
+          vizName={"ViolinBasic"}
+          maxWidth={600}
+          render={(dim) => (
             <ViolinBasic
-              height={violinChartSize.height}
-              width={violinChartSize.width}
-              data={ViolinData}
+              data={violinData}
+              width={dim.width}
+              height={dim.height}
             />
-          </div>
-        </ChartOrSandbox>
+          )}
+        />
       </AccordionSection>
       <AccordionSection
         title={"Variation: violin to boxplot transition"}
@@ -196,13 +199,18 @@ export default function Home() {
           understand how it works!
         </p>
         <br />
-        <ChartOrSandbox vizName={"BoxplotToViolinTransition"}>
-          <BoxplotToViolinTransition
-            height={300}
-            width={600}
-            data={ViolinData}
-          />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"BoxplotToViolinTransition"}
+          maxWidth={600}
+          height={350}
+          render={(dim) => (
+            <BoxplotToViolinTransition
+              width={dim.width}
+              height={dim.height - 60}
+              data={violinData}
+            />
+          )}
+        />
       </AccordionSection>
       <AccordionSection
         title={"Variation: violin plot with jitter"}

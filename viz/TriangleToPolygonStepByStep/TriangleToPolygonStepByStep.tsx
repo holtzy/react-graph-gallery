@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { interpolate } from "flubber"; // ES6
+import { useState } from "react";
+import { interpolate } from "flubber";
 
 type TriangleToPolygonStepByStepProps = {
   width: number;
@@ -43,11 +43,7 @@ export const TriangleToPolygonStepByStep = ({
         <span style={buttonStyle}>{"step: " + step.toFixed(1)}</span>
       </div>
       <div>
-        <svg
-          width={width}
-          height={height}
-          style={{ backgroundColor: "#f8f9fa", display: "inline-block" }}
-        >
+        <svg width={width} height={height} style={{ display: "inline-block" }}>
           <path
             d={interpolatedShape}
             fill="transparent"

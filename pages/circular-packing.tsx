@@ -109,9 +109,18 @@ export default function Home() {
           to get the following chart.
         </p>
         <br />
-        <ChartOrSandbox vizName={"CircularPackingBasic"}>
-          <CircularPackingBasic height={500} width={500} data={data} />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"CircularPackingBasic"}
+          maxWidth={400}
+          height={400}
+          render={(dim) => (
+            <CircularPackingBasic
+              data={data}
+              width={dim.width || 1}
+              height={dim.height || 1}
+            />
+          )}
+        />
       </AccordionSection>
 
       <AccordionSection title={"Animating dataset transition"} startOpen={true}>
@@ -141,23 +150,30 @@ export default function Home() {
           <Button
             onClick={() => setAnimData(data)}
             isFilled={animData === data}
+            size="sm"
           >
             Data 1
           </Button>
           <Button
             onClick={() => setAnimData(data2)}
             isFilled={animData === data2}
+            size="sm"
           >
             Data 2
           </Button>
         </div>
-        <ChartOrSandbox vizName={"CircularPackingDatasetTransition"}>
-          <CircularPackingDatasetTransition
-            data={animData}
-            height={500}
-            width={500}
-          />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"CircularPackingDatasetTransition"}
+          maxWidth={400}
+          height={400}
+          render={(dim) => (
+            <CircularPackingDatasetTransition
+              data={animData}
+              width={dim.width || 1}
+              height={dim.height || 1}
+            />
+          )}
+        />
       </AccordionSection>
 
       <br />

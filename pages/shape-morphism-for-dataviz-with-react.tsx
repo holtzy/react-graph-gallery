@@ -394,9 +394,20 @@ export default function Home() {
         <CodeBlock code={snippet3} />
         <br />
         <p>Here is a visualization of the final result</p>
-        <ChartOrSandbox vizName={"TriangleToPolygonStepByStep"}>
-          <TriangleToPolygonStepByStep height={200} width={400} />
-        </ChartOrSandbox>
+
+        <ChartOrSandbox
+          vizName={"TriangleToPolygonStepByStep"}
+          maxWidth={450}
+          height={250}
+          render={(dim) => (
+            <div className="px-8">
+              <TriangleToPolygonStepByStep
+                width={dim.width}
+                height={dim.height}
+              />
+            </div>
+          )}
+        />
 
         <br />
         <blockquote>
@@ -414,9 +425,19 @@ export default function Home() {
           and an ending point, let's animated this transition using{" "}
           <code>react-spring</code>.
         </p>
-        <ChartOrSandbox vizName={"TriangleToPolygonAnimated"}>
-          <TriangleToPolygonAnimated height={200} width={400} />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"TriangleToPolygonAnimated"}
+          maxWidth={450}
+          height={250}
+          render={(dim) => (
+            <div className="px-8">
+              <TriangleToPolygonAnimated
+                width={dim.width}
+                height={dim.height}
+              />
+            </div>
+          )}
+        />
       </AccordionSection>
 
       <AccordionSection
@@ -436,13 +457,18 @@ export default function Home() {
           effort to browse the web and find what the most appropriate tools are.
           To avoid you the hassle, here is a quick summary:
         </p>
-        <ChartOrSandbox vizName={"BoxplotToViolinTransition"}>
-          <BoxplotToViolinTransition
-            height={300}
-            width={600}
-            data={violinData}
-          />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"BoxplotToViolinTransition"}
+          maxWidth={600}
+          height={350}
+          render={(dim) => (
+            <BoxplotToViolinTransition
+              width={dim.width}
+              height={dim.height - 60}
+              data={violinData}
+            />
+          )}
+        />
       </AccordionSection>
 
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />

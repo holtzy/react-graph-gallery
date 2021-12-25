@@ -160,6 +160,7 @@ export default function Home() {
 
         <ChartOrSandbox
           vizName={"ViolinBasic"}
+          maxWidth={600}
           render={(dim) => (
             <ViolinBasic
               data={ViolinData}

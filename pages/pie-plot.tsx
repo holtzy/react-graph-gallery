@@ -125,9 +125,17 @@ export default function Home() {
         <br />
         <br />
 
-        <ChartOrSandbox vizName={"PieChartBasic"}>
-          <PieChartBasic data={data} height={500} width={500} />
-        </ChartOrSandbox>
+        <ChartOrSandbox
+          vizName={"PieChartBasic"}
+          maxWidth={400}
+          render={(dim) => (
+            <PieChartBasic
+              data={animData}
+              width={dim.width}
+              height={dim.height}
+            />
+          )}
+        />
       </AccordionSection>
 
       <hr className="full-bleed  bord er bg-gray-200 my-3" />
