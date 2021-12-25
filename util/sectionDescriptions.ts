@@ -67,7 +67,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/scatter.html",
     reactURL: "https://react-graph-gallery.com/scatter-plot/",
     label: "Scatterplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "heatmap",
