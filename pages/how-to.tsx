@@ -74,6 +74,19 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
+        title={"Axes: build them with react (and a bit of d3)"}
+        timeToRead={8}
+        link="build-axis-with-react"
+        isAvailable={true}
+      >
+        <span>
+          Most of the viz types need some axes to be insightful. This post
+          explains how to build them from a d3 scale, using the tick() method of
+          d3 to create re-usable react components.
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
         title={"Responsiveness: a hook that makes your viz fits its container"}
         timeToRead={5}
         link="make-a-graph-responsive"
@@ -84,6 +97,19 @@ export default function HowTo() {
           <code>height</code> properties as input. This blogposts explains how
           to build a wrapper around it that computes the parent's div dimension
           and pass it as props
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
+        title={"Graph to graph interaction"}
+        timeToRead={4}
+        link="to-do"
+        isAvailable={false}
+      >
+        <span>
+          Let's say you have a choropleth map on a side, a timeseries on the
+          other. How can you add cross-viz interactions, like hovering a country
+          to highlight its trend on the timeseries?
         </span>
       </BlogPostItem>
 
@@ -113,6 +139,20 @@ export default function HowTo() {
           <Link href="/pie-plot">pie chart</Link> and a barplot? The{" "}
           <code>flubber</code> js library allows to interpolate shapes and{" "}
           <code>react-spring</code> can animate this interpolation.
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
+        title={"Improve chart performance with Canvas"}
+        timeToRead={5}
+        link="to-do"
+        isAvailable={false}
+      >
+        <span>
+          Rendering a chart using svg is limited in term of performace. The DOM
+          gets to crowded and updating it ends up being slow. Using canvas is
+          the best workaround but you need to be able to draw your svg path
+          using it!
         </span>
       </BlogPostItem>
 
