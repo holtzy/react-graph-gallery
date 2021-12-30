@@ -32,7 +32,7 @@ export const ChartOrSandbox = ({
           <div
             style={{ height, width: "100%", maxWidth }}
             ref={chartRef}
-            className="border border-purple-300 rounded-md"
+            className="flex justify-center border border-purple-300 rounded-md"
           >
             {render(chartSize)}
           </div>

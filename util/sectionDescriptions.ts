@@ -49,7 +49,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/caveat/boxplot.html",
     reactURL: "https://react-graph-gallery.com/boxplot/",
     label: "Boxplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "ridgeline",
