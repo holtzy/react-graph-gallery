@@ -114,10 +114,10 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"spring animations with react spring"}
+        title={"Spring animations with react spring"}
         timeToRead={5}
-        link="react-dataviz-animation-react-spring"
-        isAvailable={false}
+        link="react-dataviz-animation-with-react-spring"
+        isAvailable={true}
       >
         <span>
           It's often necessary to transition between 2 states of a graph.
