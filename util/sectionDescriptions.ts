@@ -175,7 +175,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/treemap.html",
     reactURL: "https://react-graph-gallery.com/treemap/",
     label: "Treemap",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "venn",

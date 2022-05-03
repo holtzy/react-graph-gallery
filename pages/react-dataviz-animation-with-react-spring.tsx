@@ -11,6 +11,7 @@ import { AxisBasicD3 } from "../viz/AxisBasicD3/AxisBasicD3";
 import { CodeBlock } from "../component/CodeBlock";
 import { TakeHome } from "../component/TakeHome";
 import { ReactSpringMostBasic } from "../viz/ReactSpringMostBasic/ReactSpringMostBasic";
+import { ReactSpringAxis } from "../viz/ReactSpringAxis/ReactSpringAxis";
 
 const graphDescription = (
   <p>
@@ -156,6 +157,22 @@ export default function Home() {
           height={200}
           render={(dim) => (
             <ReactSpringMostBasic width={dim.width} height={dim.height} />
+          )}
+        />
+      </AccordionSection>
+
+      <AccordionSection title={"Animating axes"} startOpen={true}>
+        <p>
+          A common hassle is to animate axes, since it's a lot of svg elements.
+        </p>
+        <ChartOrSandbox
+          vizName={"ReactSpringAxis"}
+          maxWidth={800}
+          height={200}
+          render={(dim) => (
+            <div>
+              <ReactSpringAxis width={dim.width} height={dim.height} />
+            </div>
           )}
         />
       </AccordionSection>

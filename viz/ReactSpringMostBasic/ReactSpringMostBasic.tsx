@@ -13,6 +13,7 @@ const buttonStyle = {
   margin: "10px 2px",
   fontSize: 14,
   color: "#9a6fb0",
+  opacity: 0.7,
 };
 
 export const ReactSpringMostBasic = ({

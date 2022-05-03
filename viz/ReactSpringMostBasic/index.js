@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { TriangleToPolygonAnimated } from "./TriangleToPolygonAnimated";
+import { ReactSpringMostBasic } from "./ReactSpringMostBasic";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<TriangleToPolygonAnimated width={800} height={300} />, rootElement);
+ReactDOM.render(<ReactSpringMostBasic width={800} height={300} />, rootElement);
