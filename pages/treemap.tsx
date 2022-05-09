@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <Layout
       title="Treemap with React"
-      seoDescription="How to build a violin plot with React and D3.js. A set of re-usable components"
+      seoDescription="How to build a treemap with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
         title="Treemap"

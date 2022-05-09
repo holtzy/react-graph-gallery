@@ -121,7 +121,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/barplot.html",
     reactURL: "https://react-graph-gallery.com/barplot/",
     label: "Barplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "radar",
