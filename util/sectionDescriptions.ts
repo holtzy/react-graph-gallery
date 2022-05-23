@@ -229,7 +229,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/line.html",
     reactURL: "https://react-graph-gallery.com/line-chart/",
     label: "Line chart",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "area",
