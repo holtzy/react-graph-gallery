@@ -238,7 +238,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     dataToVizURL: "https://www.data-to-viz.com/graph/area.html",
     reactURL: "https://react-graph-gallery.com/area-plot/",
     label: "Area chart",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "stackedArea",

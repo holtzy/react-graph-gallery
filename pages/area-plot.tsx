@@ -7,17 +7,18 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { data } from "../viz/LineChartBasic/data";
-import { LineChart } from "../viz/LineChartBasic/LineChart";
+import { AreaChart } from "../viz/AreaChartBasic/AreaChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
 
 const graphDescription = (
   <p>
-    A <a href="https://www.data-to-viz.com/graph/line.html">line chart</a> or
-    line graph displays the evolution of one or several numeric variables. This
-    section describes how to build line charts on the web with{" "}
-    <code>d3.js</code> and <code>react</code>. It starts very basic and then
-    explains how to add more complex features like brushing, adding hover
+    An <a href="https://www.data-to-viz.com/graph/area.html">area chart</a>{" "}
+    displays the evolution of one numeric variables. It is like a{" "}
+    <Link href="/line-chart">line chart</Link>, but with the area below the line
+    being filled. This section describes how to build area charts on the web
+    with <code>d3.js</code> and <code>react</code>. It starts very basic and
+    then explains how to add more complex features like brushing, adding hover
     effects and more.
   </p>
 );
@@ -35,13 +36,13 @@ const data = [
 export default function Home() {
   return (
     <Layout
-      title="Line charts with React"
-      seoDescription="How to build a line chart with React and D3.js. A set of re-usable components"
+      title="Area charts with React"
+      seoDescription="How to build an area chart with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
-        title="Line charts"
+        title="Area charts"
         description={graphDescription}
-        chartType="line"
+        chartType="area"
       />
 
       <AccordionSection title={"Dataset"} startOpen={true}>
@@ -60,11 +61,11 @@ export default function Home() {
         </p>
       </AccordionSection>
 
-      <AccordionSection title={"Most basic line chart"} startOpen={true}>
+      <AccordionSection title={"Most basic area chart"} startOpen={true}>
         <p>
           There is nothing really tricky when it comes to build a basic barplot
           with react, all is pretty close to the{" "}
-          <a href="https://d3-graph-gallery.com/graph/line_basic.html">
+          <a href="https://d3-graph-gallery.com/graph/area_basic.html">
             d3-only examples
           </a>
           .
@@ -81,10 +82,10 @@ export default function Home() {
           timeseries section.
         </p>
         <ChartOrSandbox
-          vizName={"LineChartBasic"}
+          vizName={"AreaChartBasic"}
           height={400}
           render={(dim) => (
-            <LineChart data={data} width={dim.width} height={dim.height} />
+            <AreaChart data={data} width={dim.width} height={dim.height} />
           )}
         />
       </AccordionSection>
