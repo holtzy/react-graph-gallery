@@ -106,7 +106,7 @@ export default function Home() {
           instance)
         </p>
         <ChartOrSandbox
-          vizName={"TreemapBasic"}
+          vizName={"BarplotBasic"}
           height={400}
           render={(dim) => (
             <Barplot data={data} width={dim.width} height={dim.height} />
