@@ -20,12 +20,12 @@ export const StackedAreaChart = ({
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Data Wrangling: stack the data
-  const stack = d3
+  const stackSeries = d3
     .stack()
-    .keys(["a", "b", "c", "d"])
+    .keys(["groupA", "groupB", "groupC", "groupD"])
     .order(d3.stackOrderNone)
     .offset(d3.stackOffsetNone);
-  const series = stack(data);
+  const series = stackSeries(data);
 
   // Y axis
   const max = 300; // todo
@@ -77,7 +77,7 @@ export const StackedAreaChart = ({
         opacity={1}
         stroke="none"
         fill="#9a6fb0"
-        fillOpacity={i / 10}
+        fillOpacity={i / 10 + 0.1}
       />
     );
   });

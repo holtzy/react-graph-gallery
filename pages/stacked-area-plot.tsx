@@ -17,25 +17,37 @@ const graphDescription = (
     <a href="https://www.data-to-viz.com/graph/area.html">stacked area chart</a>{" "}
     is an evolution of an <Link href="area-plot">area chart</Link> used to
     display the evolution of several groups in a dataset. This section explains
-    how to build it with d3.js and react. It focus on stacking, so make sure to
-    read the <Link href="area-plot">area chart</Link> first.
+    how to build it with <code>d3.js</code> and <code>react</code>. It focus on
+    stacking, so make sure to read the <Link href="area-plot">area chart</Link>{" "}
+    section first.
   </p>
 );
 
 const snippet1 = `
 const data = [
   {
-    a: 38,
-    b: 19,
-    c: 9,
+    x: 1,
+    groupA: 38,
+    groupB: 19,
   },
   {
-    a: 16,
-    b: 14,
-    c: 96,
+    x: 2,
+    groupA: 16,
+    groupB: 14,
   },
   ...
-]
+];
+`.trim();
+
+const snippet2 = `
+const stackSeries = d3
+  .stack()
+  .keys(["groupA", "groupB"])
+// stackSeries is a function that takes the kind of dataset above and stack the series
+`.trim();
+
+const snippet3 = `
+const series = stackSeries(data);
 `.trim();
 
 export default function Home() {
@@ -52,9 +64,13 @@ export default function Home() {
 
       <AccordionSection title={"Dataset"} startOpen={true}>
         <p>
-          The dataset required to build a line chart is usually an array where
-          each item is an object providing the <code>x</code> and the{" "}
-          <code>x</code> values of the data point.
+          Most of the time the input dataset is an array where each item is an
+          object.
+          <br />
+          Each object provides information for a step on the X axis. It has a
+          value like <code>x</code> that provides the exact position on the X
+          axis. It then has several numeric values, one for each group of the
+          dataset.
         </p>
         <br />
         <p>Here is a minimal example:</p>
@@ -66,25 +82,48 @@ export default function Home() {
         </p>
       </AccordionSection>
 
-      <AccordionSection title={"Most basic area chart"} startOpen={true}>
+      <AccordionSection title={"Data wrangling"} startOpen={true}>
         <p>
-          There is nothing really tricky when it comes to build a basic barplot
-          with react, all is pretty close to the{" "}
-          <a href="https://d3-graph-gallery.com/graph/area_basic.html">
-            d3-only examples
-          </a>
-          .
+          The trickiest part of a stacked area chart is probably the{" "}
+          <b>stacking</b> step.
+          <br />
+          Series are displayed one on top of each other and you have to compute
+          their positions on the Y axis. Fortunately <code>d3.js</code> is here
+          to the rescue with a <code>d3.stack()</code> function.
+        </p>
+        <h3>&rarr; Build a stack generator</h3>
+        <p>
+          <code>d3.stack()</code> constructs a stack generator. Basically, it is
+          a function that outputs a function.
+        </p>
+        <CodeBlock code={snippet2} />
+        <h3>&rarr; Use the generator</h3>
+        <p>
+          Now that this stack generator is available, we just have to run it on
+          our dataset to get the stacked values
+        </p>
+        <CodeBlock code={snippet3} />
+        <h3>&rarr; Output</h3>
+        <p>
+          The output has kind of an usual shape and it's important to understand
+          how it's formatted. It's an array with the same length than the
+          initial dataset. Once more, each item is linked to a positon on the x
+          axis.
         </p>
         <p>
-          First of all you probably want to add some margins around the
-          dimensions provided in the component properties as described{" "}
-          <Link href="/build-axis-with-react">here</Link>.
+          Each item is an array of length 2, associated with a specific series.
+          This is a mess to explain.
         </p>
+      </AccordionSection>
+
+      <AccordionSection
+        title={"Most basic stacked area chart"}
+        startOpen={true}
+      >
         <p>
-          Both the X and Y axis are using a numeric scale thanks to the{" "}
-          <code>scaleLinear()</code> function here. Note that a usual struggle
-          is to deal with the date format but this is described in the
-          timeseries section.
+          Once the data is properly stacked it becomes easy to map on it and add
+          an area for each series, following the same idea than for a usual area
+          chart. Here is a minimal code example wrapping the whole process.
         </p>
         <ChartOrSandbox
           vizName={"StackedAreaChartBasic"}
@@ -99,7 +138,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <div className="full-bleed">
+      <div className="full-bleed my-24">
         <ParallaxSection
           height={200}
           imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
@@ -111,13 +150,6 @@ export default function Home() {
         </ParallaxSection>
       </div>
 
-      <AccordionSection title={"Multiple groups"} startOpen={true}>
-        <p>Todo, same thing but with several groups</p>
-      </AccordionSection>
-
-      <br />
-      <br />
-      <br />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />

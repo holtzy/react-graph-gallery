@@ -76,9 +76,11 @@ code {
     font-family: 'Fira Mono', monospace;
 }
 a {
-    font-weight: 400;
-    color: var(--react-gallery)
-}
+    color: var(--react-gallery);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: .1px;
+  }
 a:hover {
     color: #251667
 }

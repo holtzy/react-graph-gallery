@@ -12,6 +12,8 @@ type TitleAndDescription = {
   description: JSX.Element;
   chartType?: ChartId;
   showSectionLink?: boolean;
+  showInspirationLink?: boolean;
+  showD3GalleryLink?: boolean;
 };
 
 export default function TitleAndDescription({
@@ -19,6 +21,8 @@ export default function TitleAndDescription({
   description,
   chartType,
   showSectionLink = false,
+  showInspirationLink = true,
+  showD3GalleryLink = true,
 }: TitleAndDescription) {
   const chartInfo = chartTypesInfo.filter((chart) => chart.id === chartType)[0];
 
@@ -28,13 +32,30 @@ export default function TitleAndDescription({
         <h1 className="text-4xl text-center">{title}</h1>
         <VerticalSeparator />
         <SocialMediaButtons />
-        <div className="max-w-lg text-center py-4">{description}</div>
+        <div className="max-w-lg text-center py-2">{description}</div>
+
         {chartType && (
-          <div className="flex flex-row flex-wrap justify-center mt-4">
+          <div className="flex flex-row flex-wrap justify-center">
             {showSectionLink && (
               <div className="my-2">
                 <LinkAsButton href={fullUrlToInternalLink(chartInfo.reactURL)}>
                   {chartInfo.label + " section"}
+                </LinkAsButton>
+              </div>
+            )}
+            {showInspirationLink && (
+              <div className="my-2">
+                <LinkAsButton
+                  href={"https://www.dataviz-inspiration.com/" + chartInfo.id}
+                >
+                  {"inspiration"}
+                </LinkAsButton>
+              </div>
+            )}
+            {showD3GalleryLink && (
+              <div className="my-2">
+                <LinkAsButton href={chartInfo.d3URL}>
+                  {"d3 gallery"}
                 </LinkAsButton>
               </div>
             )}
