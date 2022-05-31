@@ -1,0 +1,10 @@
+.scatterplotCircle {
+    opacity: .1;
+    stroke: "#9a6fb0";
+    fill: "#9a6fb0";
+}
+.scatterplotCircle:hover {
+    opacity: 1;
+    stroke: "#9a6fb0";
+    fill: "#9a6fb0";
+}

@@ -101,6 +101,20 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
+        title={"Hover interaction"}
+        timeToRead={6}
+        link="add-hover-interaction-to-graph"
+        isAvailable={true}
+      >
+        <span>
+          <b>Interactivity</b> is an important part of dataviz when working in
+          the browser. Adding a hover effect can improve the user experience by
+          highlighting a series on the chart. Here are a couple way to implement
+          it, always keeping performances in mind.
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
         title={"Graph to graph interaction"}
         timeToRead={4}
         link="to-do"
