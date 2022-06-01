@@ -167,6 +167,17 @@ h3 {
     color: white !important;
   }
 
+/* ---------- By default tailwind unstyle list. Let's fix this ----------------- */
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 20px;
+}
+li {
+    padding-bottom: 6px;
+}
+
+
 
 
 

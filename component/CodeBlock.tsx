@@ -18,7 +18,7 @@ export const CodeBlock = ({ code }: CodeBlockProps) => {
       return;
     }
     Prism.highlightElement(codeRef.current);
-  }, [codeRef]);
+  }, [codeRef, code]);
 
   return (
     <pre className="rounded-md line-numbers">

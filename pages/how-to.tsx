@@ -170,6 +170,19 @@ export default function HowTo() {
         </span>
       </BlogPostItem>
 
+      <BlogPostItem
+        title={"Fix the blurry canvas on Retina screens"}
+        timeToRead={5}
+        link="fix-canvas-blurry-dataviz"
+        isAvailable={true}
+      >
+        <span>
+          When using canvas for your viz, the result will be blurry on retina
+          screens if you don't scale the canvas properly. Here is why and how to
+          implement it.
+        </span>
+      </BlogPostItem>
+
       <hr className="full-bleed  border bg-gray-200 mt-10 mb-3" />
 
       <ChartFamilySection chartFamily="general" />

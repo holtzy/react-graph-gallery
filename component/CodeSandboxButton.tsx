@@ -6,16 +6,20 @@ import { CodeSandbox } from "./CodeSandbox";
 
 type CodeSandboxButtonProps = {
   vizName: string;
+  label: string;
 };
 
-export default function CodeSandboxButton({ vizName }: CodeSandboxButtonProps) {
+export default function CodeSandboxButton({
+  vizName,
+  label,
+}: CodeSandboxButtonProps) {
   const [showSandbox, setShowSandbox] = React.useState(false);
 
   return (
     <>
       {!showSandbox && (
         <Button size={"sm"} onClick={() => setShowSandbox(true)}>
-          Show Sandbox
+          {label}
         </Button>
       )}
       {showSandbox && (
