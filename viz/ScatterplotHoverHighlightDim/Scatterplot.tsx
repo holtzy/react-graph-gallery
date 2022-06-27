@@ -28,6 +28,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   return (
     <div>
       <svg
+        className={styles.svgArea}
         width={width}
         height={height}
         style={{

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type AccordionSectionProps = {
   startOpen: boolean;
-  title: string;
+  title: React.ReactNode;
   children: React.ReactNode;
 };
 

@@ -26,11 +26,27 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   });
 
   return (
-    <div>
+    <div className="relative">
       <svg
         width={width}
         height={height}
         style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          borderWidth: "0px 0px 1px 1px",
+          backgroundColor: "white",
+        }}
+      >
+        {allShapes}
+      </svg>
+      <svg
+        width={width}
+        height={height}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
           borderWidth: "0px 0px 1px 1px",
           backgroundColor: "white",
         }}

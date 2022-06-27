@@ -84,7 +84,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/heatmap",
     reactURL: "https://react-graph-gallery.com/heatmap/",
     label: "Heatmap",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "correlogram",

@@ -6,10 +6,11 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
-import { useDimensions } from "../hook/use-dimensions";
-import { DensityChartBasic } from "../viz/DensityChartBasic/DensityChartBasic";
-import { Scatterplot } from "../viz/ScatterplotHoverHighlight/Scatterplot";
+import { Scatterplot as ScatterplotHoverHighlight } from "../viz/ScatterplotHoverHighlight/Scatterplot";
+import { Scatterplot as ScatterplotHoverHighlightDim } from "../viz/ScatterplotHoverHighlightDim/Scatterplot";
+import { Scatterplot as ScatterplotHoverHighlightTwoLayers } from "../viz/ScatterplotHoverHighlightTwoLayers/Scatterplot";
 import { data } from "../viz/ScatterplotHoverHighlight/data";
+import { Caption } from "../component/Caption";
 
 const graphDescription = (
   <p>
@@ -68,9 +69,6 @@ return(
 `.trim();
 
 export default function Home() {
-  const scatterChartRef = useRef<HTMLDivElement>(null);
-  const scatterChartSize = useDimensions(scatterChartRef);
-
   return (
     <Layout
       title="Hover interaction on a chart with React"
@@ -81,43 +79,103 @@ export default function Home() {
         description={graphDescription}
       />
 
-      {/* Demo of a few charts with hover interaction */}
-      <div className="w-full flex flex-col justify-center items-center">
-        <div
-          style={{ height: 200, width: "100%", maxWidth: 400 }}
-          ref={scatterChartRef}
-        >
-          <Scatterplot
-            width={scatterChartSize.width}
-            height={scatterChartSize.height}
-            data={data}
-          />
+      {/* DEMO ROW */}
+      <div className="py-6 grey-section full-bleed flex flex-row gap-x-8 justify-center items-center">
+        <div className="p-2 bg-white">
+          <ScatterplotHoverHighlight width={250} height={250} data={data} />
         </div>
-        <p className="text-sm text-gray-500 max-w-xs italic text-center mt-4 font-light">
-          This scatterplot has a hover effect. Hover over a circle and see the
-          highlight happening.
-        </p>
+        <div className="p-2 bg-white">
+          <ScatterplotHoverHighlightDim width={250} height={250} data={data} />
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <Caption>
+          Experimenting with different highlight strategies on a scatterplot.
+          From left to right: using a <code>:hover</code> pseudo class | using
+          the pseudo class AND dimming.
+        </Caption>
       </div>
 
       <AccordionSection
-        title={"Adding a css class on the hovered shape"}
+        title={
+          <span>
+            Using the <code>:hover</code> css pseudo class
+          </span>
+        }
         startOpen={true}
       >
         <p>
-          Most basic strategy. Just add a class to the shape that is hovered.
-          Easy, but probably not the best way since other shapes are still very
-          visible so the highlight isn't strong. Also, perf issues.
+          A CSS <b>pseudo-class</b> is a keyword added to a selector that
+          specifies a special state of the selected element(s) (
+          <a href="A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s)">
+            mdn doc
+          </a>
+          ).
+        </p>
+        <p>
+          Basically, it means that you can add a class to each shape of a graph,
+          and change its appearance when the user hover over it.
+        </p>
+        <p>
+          For instance, the scatterplot below is composed by a myriad of{" "}
+          <code>circle</code> elements, each having a{" "}
+          <code>.scatterplotCircle</code> class. In the css file, I can use{" "}
+          <code>.scatterplotCircle</code> to style the circles, and{" "}
+          <code>.scatterplotCircle:hover</code> to style the hovered circles. 🎉
+        </p>
+        <ChartOrSandbox
+          vizName={"ScatterplotHoverHighlight"}
+          maxWidth={400}
+          render={(dim) => (
+            <ScatterplotHoverHighlight
+              data={data}
+              width={dim.width}
+              height={dim.height}
+            />
+          )}
+        />
+        <p>
+          <u>Pro</u>: This is the most basic strategy. It is very easy to
+          implement and has good performances since there is nothing that needs
+          to be redrawn expect the highlighted point.
+          <br />
+          <u>Con</u>: Not the best design: all the other circles are still very
+          prominent so the highlight isn't strong.Works only to highlight the
+          hovered circle. If the information of the circle to highlight comes as
+          a prop, we need something else.
         </p>
       </AccordionSection>
 
       <AccordionSection
-        title={"Dimming the other series with CSS"}
+        title={
+          <span>
+            <code>:hover</code> pseudo class AND dimming
+          </span>
+        }
         startOpen={true}
       >
         <p>
           More elegant in term of design. Requires to dim all series by adding a
           class to the parent div. Then highlight the hovered shape by removing
           it's dim.
+        </p>
+        <ChartOrSandbox
+          vizName={"ScatterplotHoverHighlightDim"}
+          maxWidth={400}
+          render={(dim) => (
+            <ScatterplotHoverHighlightDim
+              data={data}
+              width={dim.width}
+              height={dim.height}
+            />
+          )}
+        />
+        <p>
+          <u>Pro</u>: Better design. Easy to implement.
+          <br />
+          <u>Con</u>: If mouse enter chart area withouth hovering a circle, I'm
+          still fading everything. I can highlight a circle that is below
+          another. Perf issue if many dots?
         </p>
       </AccordionSection>
 
@@ -132,15 +190,18 @@ export default function Home() {
           function:
         </p>
         <CodeBlock code={snippet2} />
-        <br />
-
         <ChartOrSandbox
-          vizName={"Scatterplot"}
-          maxWidth={600}
+          vizName={"ScatterplotHoverHighlightTwoLayers"}
+          maxWidth={400}
           render={(dim) => (
-            <Scatterplot data={data} width={dim.width} height={dim.height} />
+            <ScatterplotHoverHighlightTwoLayers
+              data={data}
+              width={dim.width}
+              height={dim.height}
+            />
           )}
         />
+        <br />
       </AccordionSection>
 
       <br />
