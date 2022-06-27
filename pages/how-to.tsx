@@ -134,7 +134,7 @@ export default function HowTo() {
         isAvailable={true}
       >
         <span>
-          It's often necessary to transition between 2 states of a graph.
+          It's often necessary to transition between 2 ys of a graph.
           React-spring is here to help, allowing to use spring animations
           easily.
         </span>

@@ -21,7 +21,7 @@ const graphDescription = (
 const snippet1 = `
 const data = [
     {
-      "year": 1880,
+      "x": 1880,
       "Amanda": 241,
       "Ashley": 0,
       "Betty": 117,

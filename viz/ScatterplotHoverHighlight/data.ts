@@ -938,7 +938,7 @@ export const data = [
       "x": 33203.26128
     },
     {
-      "subGroup": "United States",
+      "subGroup": "United ys",
       "group": "Americas",
       "y": 78.242,
       "z": 301139947,

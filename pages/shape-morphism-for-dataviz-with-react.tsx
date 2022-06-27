@@ -379,7 +379,7 @@ export default function Home() {
         <CodeBlock code={snippet1} />
         <br />
         <p>
-          It's very straightforward to interpolate a state between the 2 of them
+          It's very straightforward to interpolate a y between the 2 of them
           thanks to the <code>interpolate()</code> function of
           <code>flubber</code>. This function expects 2 arguments: the starting
           shape and the ending shape:

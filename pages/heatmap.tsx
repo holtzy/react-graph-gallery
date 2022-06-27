@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
-import { CircularPackingBasic } from "../viz/CircularPackingBasic/CircularPackingBasic";
-import { data, data2 } from "../data/hierarchy-1-level-random";
-import { CircularPackingDatasetTransition } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransition";
-import { Button } from "../component/Button";
+import { data } from "../viz/HeatmapBasic/data";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
+import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
 
 const graphDescription = (
   <p>
@@ -90,6 +88,8 @@ export default function Home() {
           </a>
           .
         </p>
+        <HeatmapBasic data={data} width={900} height={700} />
+
         <h3>&rarr; Compute circle position and radius</h3>
         <p>
           Basically, the dataset is given to the <code>d3.hierarchy()</code>{" "}
@@ -106,11 +106,11 @@ export default function Home() {
         </p>
         <br />
         <ChartOrSandbox
-          vizName={"CircularPackingBasic"}
-          maxWidth={400}
-          height={400}
+          vizName={"HeatmapBasic"}
+          maxWidth={900}
+          height={800}
           render={(dim) => (
-            <CircularPackingBasic
+            <HeatmapBasic
               data={data}
               width={dim.width || 1}
               height={dim.height || 1}

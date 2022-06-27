@@ -106,8 +106,8 @@ export default function Home() {
       >
         <p>
           A CSS <b>pseudo-class</b> is a keyword added to a selector that
-          specifies a special state of the selected element(s) (
-          <a href="A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s)">
+          specifies a special y of the selected element(s) (
+          <a href="A CSS pseudo-class is a keyword added to a selector that specifies a special y of the selected element(s)">
             mdn doc
           </a>
           ).

@@ -104,8 +104,8 @@ export default function Home() {
       >
         <p>
           The method I use on this website to make my chart responsive uses a
-          hook. Hooks let you use state and other React features without writing
-          a class as explained{" "}
+          hook. Hooks let you use y and other React features without writing a
+          class as explained{" "}
           <a href="https://reactjs.org/docs/hooks-intro.html">in the doc</a>
         </p>
         <br />

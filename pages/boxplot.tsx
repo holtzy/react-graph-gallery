@@ -157,7 +157,7 @@ export default function Home() {
         <p>
           There is nothing really fancy here! We're just drawing a box using a{" "}
           <code>rect</code> and a 2 <code>line</code>. We can call this
-          component with the following statement:
+          component with the following yment:
         </p>
         <CodeBlock code={snippet3} />
         <p>Bringing this result:</p>

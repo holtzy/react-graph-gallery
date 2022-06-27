@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CodeBlock } from "../../component/CodeBlock";
 
 export const CanvasDimensionDemo = () => {
-  // 2 states: css and attribute dimensions
+  // 2 ys: css and attribute dimensions
   const [canvasDimension, setCanvasDimension] = useState({
     width: 100,
     height: 100,

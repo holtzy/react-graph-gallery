@@ -1,6 +1,6 @@
 export const data = [
     {
-      "year": 1880,
+      "x": 1880,
       "Amanda": 241,
       "Ashley": 0,
       "Betty": 117,
@@ -11,7 +11,7 @@ export const data = [
       "Patricia": 0
     },
     {
-      "year": 1881,
+      "x": 1881,
       "Amanda": 263,
       "Ashley": 0,
       "Betty": 112,
@@ -22,7 +22,7 @@ export const data = [
       "Patricia": 0
     },
     {
-      "year": 1882,
+      "x": 1882,
       "Amanda": 288,
       "Ashley": 0,
       "Betty": 123,
@@ -33,7 +33,7 @@ export const data = [
       "Patricia": 0
     },
     {
-      "year": 1883,
+      "x": 1883,
       "Amanda": 287,
       "Ashley": 0,
       "Betty": 120,
@@ -44,7 +44,7 @@ export const data = [
       "Patricia": 0
     },
     {
-      "year": 1884,
+      "x": 1884,
       "Amanda": 337,
       "Ashley": 0,
       "Betty": 144,
@@ -55,7 +55,7 @@ export const data = [
       "Patricia": 6
     },
     {
-      "year": 1885,
+      "x": 1885,
       "Amanda": 339,
       "Ashley": 0,
       "Betty": 155,
@@ -66,7 +66,7 @@ export const data = [
       "Patricia": 5
     },
     {
-      "year": 1886,
+      "x": 1886,
       "Amanda": 370,
       "Ashley": 0,
       "Betty": 167,
@@ -77,7 +77,7 @@ export const data = [
       "Patricia": 8
     },
     {
-      "year": 1887,
+      "x": 1887,
       "Amanda": 338,
       "Ashley": 0,
       "Betty": 178,
@@ -88,7 +88,7 @@ export const data = [
       "Patricia": 10
     },
     {
-      "year": 1888,
+      "x": 1888,
       "Amanda": 404,
       "Ashley": 0,
       "Betty": 214,
@@ -99,7 +99,7 @@ export const data = [
       "Patricia": 12
     },
     {
-      "year": 1889,
+      "x": 1889,
       "Amanda": 413,
       "Ashley": 0,
       "Betty": 189,
@@ -110,7 +110,7 @@ export const data = [
       "Patricia": 17
     },
     {
-      "year": 1890,
+      "x": 1890,
       "Amanda": 392,
       "Ashley": 0,
       "Betty": 216,
@@ -121,7 +121,7 @@ export const data = [
       "Patricia": 11
     },
     {
-      "year": 1891,
+      "x": 1891,
       "Amanda": 371,
       "Ashley": 0,
       "Betty": 239,
@@ -132,7 +132,7 @@ export const data = [
       "Patricia": 12
     },
     {
-      "year": 1892,
+      "x": 1892,
       "Amanda": 455,
       "Ashley": 0,
       "Betty": 255,
@@ -143,7 +143,7 @@ export const data = [
       "Patricia": 21
     },
     {
-      "year": 1893,
+      "x": 1893,
       "Amanda": 387,
       "Ashley": 0,
       "Betty": 298,
@@ -154,7 +154,7 @@ export const data = [
       "Patricia": 28
     },
     {
-      "year": 1894,
+      "x": 1894,
       "Amanda": 418,
       "Ashley": 0,
       "Betty": 298,
@@ -165,7 +165,7 @@ export const data = [
       "Patricia": 36
     },
     {
-      "year": 1895,
+      "x": 1895,
       "Amanda": 431,
       "Ashley": 0,
       "Betty": 350,
@@ -176,7 +176,7 @@ export const data = [
       "Patricia": 35
     },
     {
-      "year": 1896,
+      "x": 1896,
       "Amanda": 367,
       "Ashley": 0,
       "Betty": 342,
@@ -187,7 +187,7 @@ export const data = [
       "Patricia": 37
     },
     {
-      "year": 1897,
+      "x": 1897,
       "Amanda": 354,
       "Ashley": 0,
       "Betty": 367,
@@ -198,7 +198,7 @@ export const data = [
       "Patricia": 49
     },
     {
-      "year": 1898,
+      "x": 1898,
       "Amanda": 371,
       "Ashley": 0,
       "Betty": 421,
@@ -209,7 +209,7 @@ export const data = [
       "Patricia": 47
     },
     {
-      "year": 1899,
+      "x": 1899,
       "Amanda": 326,
       "Ashley": 0,
       "Betty": 410,
@@ -220,7 +220,7 @@ export const data = [
       "Patricia": 56
     },
     {
-      "year": 1900,
+      "x": 1900,
       "Amanda": 377,
       "Ashley": 0,
       "Betty": 664,
@@ -231,7 +231,7 @@ export const data = [
       "Patricia": 89
     },
     {
-      "year": 1901,
+      "x": 1901,
       "Amanda": 317,
       "Ashley": 0,
       "Betty": 474,
@@ -242,7 +242,7 @@ export const data = [
       "Patricia": 68
     },
     {
-      "year": 1902,
+      "x": 1902,
       "Amanda": 301,
       "Ashley": 0,
       "Betty": 580,
@@ -253,7 +253,7 @@ export const data = [
       "Patricia": 85
     },
     {
-      "year": 1903,
+      "x": 1903,
       "Amanda": 247,
       "Ashley": 0,
       "Betty": 596,
@@ -264,7 +264,7 @@ export const data = [
       "Patricia": 79
     },
     {
-      "year": 1904,
+      "x": 1904,
       "Amanda": 294,
       "Ashley": 0,
       "Betty": 707,
@@ -275,7 +275,7 @@ export const data = [
       "Patricia": 124
     },
     {
-      "year": 1905,
+      "x": 1905,
       "Amanda": 311,
       "Ashley": 0,
       "Betty": 807,
@@ -286,7 +286,7 @@ export const data = [
       "Patricia": 121
     },
     {
-      "year": 1906,
+      "x": 1906,
       "Amanda": 260,
       "Ashley": 0,
       "Betty": 865,
@@ -297,7 +297,7 @@ export const data = [
       "Patricia": 157
     },
     {
-      "year": 1907,
+      "x": 1907,
       "Amanda": 285,
       "Ashley": 0,
       "Betty": 1018,
@@ -308,7 +308,7 @@ export const data = [
       "Patricia": 177
     },
     {
-      "year": 1908,
+      "x": 1908,
       "Amanda": 260,
       "Ashley": 0,
       "Betty": 1128,
@@ -319,7 +319,7 @@ export const data = [
       "Patricia": 205
     },
     {
-      "year": 1909,
+      "x": 1909,
       "Amanda": 271,
       "Ashley": 0,
       "Betty": 1082,
@@ -330,7 +330,7 @@ export const data = [
       "Patricia": 233
     },
     {
-      "year": 1910,
+      "x": 1910,
       "Amanda": 278,
       "Ashley": 0,
       "Betty": 1389,
@@ -341,7 +341,7 @@ export const data = [
       "Patricia": 316
     },
     {
-      "year": 1911,
+      "x": 1911,
       "Amanda": 280,
       "Ashley": 0,
       "Betty": 1456,
@@ -352,7 +352,7 @@ export const data = [
       "Patricia": 325
     },
     {
-      "year": 1912,
+      "x": 1912,
       "Amanda": 310,
       "Ashley": 0,
       "Betty": 2011,
@@ -363,7 +363,7 @@ export const data = [
       "Patricia": 504
     },
     {
-      "year": 1913,
+      "x": 1913,
       "Amanda": 346,
       "Ashley": 0,
       "Betty": 2239,
@@ -374,7 +374,7 @@ export const data = [
       "Patricia": 588
     },
     {
-      "year": 1914,
+      "x": 1914,
       "Amanda": 375,
       "Ashley": 0,
       "Betty": 2933,
@@ -385,7 +385,7 @@ export const data = [
       "Patricia": 656
     },
     {
-      "year": 1915,
+      "x": 1915,
       "Amanda": 412,
       "Ashley": 0,
       "Betty": 4182,
@@ -396,7 +396,7 @@ export const data = [
       "Patricia": 895
     },
     {
-      "year": 1916,
+      "x": 1916,
       "Amanda": 421,
       "Ashley": 0,
       "Betty": 5136,
@@ -407,7 +407,7 @@ export const data = [
       "Patricia": 1078
     },
     {
-      "year": 1917,
+      "x": 1917,
       "Amanda": 445,
       "Ashley": 5,
       "Betty": 6639,
@@ -418,7 +418,7 @@ export const data = [
       "Patricia": 1441
     },
     {
-      "year": 1918,
+      "x": 1918,
       "Amanda": 397,
       "Ashley": 0,
       "Betty": 8802,
@@ -429,7 +429,7 @@ export const data = [
       "Patricia": 1760
     },
     {
-      "year": 1919,
+      "x": 1919,
       "Amanda": 379,
       "Ashley": 0,
       "Betty": 10107,
@@ -440,7 +440,7 @@ export const data = [
       "Patricia": 2144
     },
     {
-      "year": 1920,
+      "x": 1920,
       "Amanda": 379,
       "Ashley": 0,
       "Betty": 14017,
@@ -451,7 +451,7 @@ export const data = [
       "Patricia": 2502
     },
     {
-      "year": 1921,
+      "x": 1921,
       "Amanda": 392,
       "Ashley": 0,
       "Betty": 17637,
@@ -462,7 +462,7 @@ export const data = [
       "Patricia": 3382
     },
     {
-      "year": 1922,
+      "x": 1922,
       "Amanda": 341,
       "Ashley": 0,
       "Betty": 20893,
@@ -473,7 +473,7 @@ export const data = [
       "Patricia": 3902
     },
     {
-      "year": 1923,
+      "x": 1923,
       "Amanda": 362,
       "Ashley": 0,
       "Betty": 25990,
@@ -484,7 +484,7 @@ export const data = [
       "Patricia": 4800
     },
     {
-      "year": 1924,
+      "x": 1924,
       "Amanda": 341,
       "Ashley": 0,
       "Betty": 30602,
@@ -495,7 +495,7 @@ export const data = [
       "Patricia": 6958
     },
     {
-      "year": 1925,
+      "x": 1925,
       "Amanda": 310,
       "Ashley": 0,
       "Betty": 32817,
@@ -506,7 +506,7 @@ export const data = [
       "Patricia": 8095
     },
     {
-      "year": 1926,
+      "x": 1926,
       "Amanda": 310,
       "Ashley": 0,
       "Betty": 32959,
@@ -517,7 +517,7 @@ export const data = [
       "Patricia": 8590
     },
     {
-      "year": 1927,
+      "x": 1927,
       "Amanda": 234,
       "Ashley": 0,
       "Betty": 35422,
@@ -528,7 +528,7 @@ export const data = [
       "Patricia": 10553
     },
     {
-      "year": 1928,
+      "x": 1928,
       "Amanda": 247,
       "Ashley": 0,
       "Betty": 36078,
@@ -539,7 +539,7 @@ export const data = [
       "Patricia": 12332
     },
     {
-      "year": 1929,
+      "x": 1929,
       "Amanda": 209,
       "Ashley": 0,
       "Betty": 36669,
@@ -550,7 +550,7 @@ export const data = [
       "Patricia": 13626
     },
     {
-      "year": 1930,
+      "x": 1930,
       "Amanda": 196,
       "Ashley": 0,
       "Betty": 38239,
@@ -561,7 +561,7 @@ export const data = [
       "Patricia": 15749
     },
     {
-      "year": 1931,
+      "x": 1931,
       "Amanda": 209,
       "Ashley": 0,
       "Betty": 36102,
@@ -572,7 +572,7 @@ export const data = [
       "Patricia": 16468
     },
     {
-      "year": 1932,
+      "x": 1932,
       "Amanda": 213,
       "Ashley": 0,
       "Betty": 34411,
@@ -583,7 +583,7 @@ export const data = [
       "Patricia": 17991
     },
     {
-      "year": 1933,
+      "x": 1933,
       "Amanda": 199,
       "Ashley": 0,
       "Betty": 31526,
@@ -594,7 +594,7 @@ export const data = [
       "Patricia": 18625
     },
     {
-      "year": 1934,
+      "x": 1934,
       "Amanda": 189,
       "Ashley": 0,
       "Betty": 31078,
@@ -605,7 +605,7 @@ export const data = [
       "Patricia": 20847
     },
     {
-      "year": 1935,
+      "x": 1935,
       "Amanda": 211,
       "Ashley": 0,
       "Betty": 28673,
@@ -616,7 +616,7 @@ export const data = [
       "Patricia": 22876
     },
     {
-      "year": 1936,
+      "x": 1936,
       "Amanda": 192,
       "Ashley": 0,
       "Betty": 25863,
@@ -627,7 +627,7 @@ export const data = [
       "Patricia": 23912
     },
     {
-      "year": 1937,
+      "x": 1937,
       "Amanda": 176,
       "Ashley": 0,
       "Betty": 25328,
@@ -638,7 +638,7 @@ export const data = [
       "Patricia": 26837
     },
     {
-      "year": 1938,
+      "x": 1938,
       "Amanda": 192,
       "Ashley": 7,
       "Betty": 25502,
@@ -649,7 +649,7 @@ export const data = [
       "Patricia": 27555
     },
     {
-      "year": 1939,
+      "x": 1939,
       "Amanda": 185,
       "Ashley": 0,
       "Betty": 23639,
@@ -660,7 +660,7 @@ export const data = [
       "Patricia": 29704
     },
     {
-      "year": 1940,
+      "x": 1940,
       "Amanda": 218,
       "Ashley": 0,
       "Betty": 22074,
@@ -671,7 +671,7 @@ export const data = [
       "Patricia": 32661
     },
     {
-      "year": 1941,
+      "x": 1941,
       "Amanda": 223,
       "Ashley": 6,
       "Betty": 20900,
@@ -682,7 +682,7 @@ export const data = [
       "Patricia": 36901
     },
     {
-      "year": 1942,
+      "x": 1942,
       "Amanda": 295,
       "Ashley": 8,
       "Betty": 21654,
@@ -693,7 +693,7 @@ export const data = [
       "Patricia": 39454
     },
     {
-      "year": 1943,
+      "x": 1943,
       "Amanda": 284,
       "Ashley": 10,
       "Betty": 21595,
@@ -704,7 +704,7 @@ export const data = [
       "Patricia": 39620
     },
     {
-      "year": 1944,
+      "x": 1944,
       "Amanda": 238,
       "Ashley": 12,
       "Betty": 19757,
@@ -715,7 +715,7 @@ export const data = [
       "Patricia": 36872
     },
     {
-      "year": 1945,
+      "x": 1945,
       "Amanda": 280,
       "Ashley": 10,
       "Betty": 18383,
@@ -726,7 +726,7 @@ export const data = [
       "Patricia": 35840
     },
     {
-      "year": 1946,
+      "x": 1946,
       "Amanda": 274,
       "Ashley": 7,
       "Betty": 19714,
@@ -737,7 +737,7 @@ export const data = [
       "Patricia": 46295
     },
     {
-      "year": 1947,
+      "x": 1947,
       "Amanda": 310,
       "Ashley": 11,
       "Betty": 18962,
@@ -748,7 +748,7 @@ export const data = [
       "Patricia": 51274
     },
     {
-      "year": 1948,
+      "x": 1948,
       "Amanda": 306,
       "Ashley": 13,
       "Betty": 16622,
@@ -759,7 +759,7 @@ export const data = [
       "Patricia": 46135
     },
     {
-      "year": 1949,
+      "x": 1949,
       "Amanda": 333,
       "Ashley": 11,
       "Betty": 14946,
@@ -770,7 +770,7 @@ export const data = [
       "Patricia": 46337
     },
     {
-      "year": 1950,
+      "x": 1950,
       "Amanda": 379,
       "Ashley": 15,
       "Betty": 13614,
@@ -781,7 +781,7 @@ export const data = [
       "Patricia": 47952
     },
     {
-      "year": 1951,
+      "x": 1951,
       "Amanda": 409,
       "Ashley": 15,
       "Betty": 12820,
@@ -792,7 +792,7 @@ export const data = [
       "Patricia": 56433
     },
     {
-      "year": 1952,
+      "x": 1952,
       "Amanda": 418,
       "Ashley": 24,
       "Betty": 12125,
@@ -803,7 +803,7 @@ export const data = [
       "Patricia": 53090
     },
     {
-      "year": 1953,
+      "x": 1953,
       "Amanda": 428,
       "Ashley": 15,
       "Betty": 11367,
@@ -814,7 +814,7 @@ export const data = [
       "Patricia": 51007
     },
     {
-      "year": 1954,
+      "x": 1954,
       "Amanda": 428,
       "Ashley": 21,
       "Betty": 10615,
@@ -825,7 +825,7 @@ export const data = [
       "Patricia": 49133
     },
     {
-      "year": 1955,
+      "x": 1955,
       "Amanda": 452,
       "Ashley": 8,
       "Betty": 9928,
@@ -836,7 +836,7 @@ export const data = [
       "Patricia": 46210
     },
     {
-      "year": 1956,
+      "x": 1956,
       "Amanda": 643,
       "Ashley": 25,
       "Betty": 9213,
@@ -847,7 +847,7 @@ export const data = [
       "Patricia": 43332
     },
     {
-      "year": 1957,
+      "x": 1957,
       "Amanda": 667,
       "Ashley": 27,
       "Betty": 8474,
@@ -858,7 +858,7 @@ export const data = [
       "Patricia": 39277
     },
     {
-      "year": 1958,
+      "x": 1958,
       "Amanda": 796,
       "Ashley": 38,
       "Betty": 7709,
@@ -869,7 +869,7 @@ export const data = [
       "Patricia": 37932
     },
     {
-      "year": 1959,
+      "x": 1959,
       "Amanda": 858,
       "Ashley": 37,
       "Betty": 7317,
@@ -880,7 +880,7 @@ export const data = [
       "Patricia": 35221
     },
     {
-      "year": 1960,
+      "x": 1960,
       "Amanda": 977,
       "Ashley": 57,
       "Betty": 6503,
@@ -891,7 +891,7 @@ export const data = [
       "Patricia": 32107
     },
     {
-      "year": 1961,
+      "x": 1961,
       "Amanda": 1057,
       "Ashley": 80,
       "Betty": 5580,
@@ -902,7 +902,7 @@ export const data = [
       "Patricia": 28867
     },
     {
-      "year": 1962,
+      "x": 1962,
       "Amanda": 948,
       "Ashley": 95,
       "Betty": 4765,
@@ -913,7 +913,7 @@ export const data = [
       "Patricia": 26538
     },
     {
-      "year": 1963,
+      "x": 1963,
       "Amanda": 1035,
       "Ashley": 108,
       "Betty": 4154,
@@ -924,7 +924,7 @@ export const data = [
       "Patricia": 25363
     },
     {
-      "year": 1964,
+      "x": 1964,
       "Amanda": 1275,
       "Ashley": 180,
       "Betty": 4067,
@@ -935,7 +935,7 @@ export const data = [
       "Patricia": 26087
     },
     {
-      "year": 1965,
+      "x": 1965,
       "Amanda": 1650,
       "Ashley": 218,
       "Betty": 3565,
@@ -946,7 +946,7 @@ export const data = [
       "Patricia": 23551
     },
     {
-      "year": 1966,
+      "x": 1966,
       "Amanda": 2329,
       "Ashley": 263,
       "Betty": 2948,
@@ -957,7 +957,7 @@ export const data = [
       "Patricia": 20115
     },
     {
-      "year": 1967,
+      "x": 1967,
       "Amanda": 2663,
       "Ashley": 386,
       "Betty": 2543,
@@ -968,7 +968,7 @@ export const data = [
       "Patricia": 17746
     },
     {
-      "year": 1968,
+      "x": 1968,
       "Amanda": 2430,
       "Ashley": 544,
       "Betty": 2134,
@@ -979,7 +979,7 @@ export const data = [
       "Patricia": 15806
     },
     {
-      "year": 1969,
+      "x": 1969,
       "Amanda": 2817,
       "Ashley": 643,
       "Betty": 2133,
@@ -990,7 +990,7 @@ export const data = [
       "Patricia": 14957
     },
     {
-      "year": 1970,
+      "x": 1970,
       "Amanda": 3550,
       "Ashley": 932,
       "Betty": 1967,
@@ -1001,7 +1001,7 @@ export const data = [
       "Patricia": 13404
     },
     {
-      "year": 1971,
+      "x": 1971,
       "Amanda": 4133,
       "Ashley": 1164,
       "Betty": 1763,
@@ -1012,7 +1012,7 @@ export const data = [
       "Patricia": 11466
     },
     {
-      "year": 1972,
+      "x": 1972,
       "Amanda": 4181,
       "Ashley": 1176,
       "Betty": 1366,
@@ -1023,7 +1023,7 @@ export const data = [
       "Patricia": 9602
     },
     {
-      "year": 1973,
+      "x": 1973,
       "Amanda": 5627,
       "Ashley": 1253,
       "Betty": 1323,
@@ -1034,7 +1034,7 @@ export const data = [
       "Patricia": 8477
     },
     {
-      "year": 1974,
+      "x": 1974,
       "Amanda": 7476,
       "Ashley": 1626,
       "Betty": 1130,
@@ -1045,7 +1045,7 @@ export const data = [
       "Patricia": 8040
     },
     {
-      "year": 1975,
+      "x": 1975,
       "Amanda": 12653,
       "Ashley": 1988,
       "Betty": 1021,
@@ -1056,7 +1056,7 @@ export const data = [
       "Patricia": 7056
     },
     {
-      "year": 1976,
+      "x": 1976,
       "Amanda": 15591,
       "Ashley": 2292,
       "Betty": 908,
@@ -1067,7 +1067,7 @@ export const data = [
       "Patricia": 6017
     },
     {
-      "year": 1977,
+      "x": 1977,
       "Amanda": 18280,
       "Ashley": 2706,
       "Betty": 807,
@@ -1078,7 +1078,7 @@ export const data = [
       "Patricia": 5907
     },
     {
-      "year": 1978,
+      "x": 1978,
       "Amanda": 20522,
       "Ashley": 3484,
       "Betty": 715,
@@ -1089,7 +1089,7 @@ export const data = [
       "Patricia": 5498
     },
     {
-      "year": 1979,
+      "x": 1979,
       "Amanda": 31927,
       "Ashley": 4450,
       "Betty": 711,
@@ -1100,7 +1100,7 @@ export const data = [
       "Patricia": 5651
     },
     {
-      "year": 1980,
+      "x": 1980,
       "Amanda": 35819,
       "Ashley": 7296,
       "Betty": 658,
@@ -1111,7 +1111,7 @@ export const data = [
       "Patricia": 5309
     },
     {
-      "year": 1981,
+      "x": 1981,
       "Amanda": 34373,
       "Ashley": 8877,
       "Betty": 662,
@@ -1122,7 +1122,7 @@ export const data = [
       "Patricia": 5285
     },
     {
-      "year": 1982,
+      "x": 1982,
       "Amanda": 34210,
       "Ashley": 14851,
       "Betty": 635,
@@ -1133,7 +1133,7 @@ export const data = [
       "Patricia": 5167
     },
     {
-      "year": 1983,
+      "x": 1983,
       "Amanda": 33754,
       "Ashley": 33290,
       "Betty": 563,
@@ -1144,7 +1144,7 @@ export const data = [
       "Patricia": 4922
     },
     {
-      "year": 1984,
+      "x": 1984,
       "Amanda": 33906,
       "Ashley": 38759,
       "Betty": 503,
@@ -1155,7 +1155,7 @@ export const data = [
       "Patricia": 4475
     },
     {
-      "year": 1985,
+      "x": 1985,
       "Amanda": 39050,
       "Ashley": 47007,
       "Betty": 502,
@@ -1166,7 +1166,7 @@ export const data = [
       "Patricia": 4398
     },
     {
-      "year": 1986,
+      "x": 1986,
       "Amanda": 40522,
       "Ashley": 49674,
       "Betty": 407,
@@ -1177,7 +1177,7 @@ export const data = [
       "Patricia": 4246
     },
     {
-      "year": 1987,
+      "x": 1987,
       "Amanda": 41786,
       "Ashley": 54845,
       "Betty": 435,
@@ -1188,7 +1188,7 @@ export const data = [
       "Patricia": 3913
     },
     {
-      "year": 1988,
+      "x": 1988,
       "Amanda": 39451,
       "Ashley": 49963,
       "Betty": 395,
@@ -1199,7 +1199,7 @@ export const data = [
       "Patricia": 3798
     },
     {
-      "year": 1989,
+      "x": 1989,
       "Amanda": 36827,
       "Ashley": 47585,
       "Betty": 399,
@@ -1210,7 +1210,7 @@ export const data = [
       "Patricia": 3606
     },
     {
-      "year": 1990,
+      "x": 1990,
       "Amanda": 34405,
       "Ashley": 45553,
       "Betty": 406,
@@ -1221,7 +1221,7 @@ export const data = [
       "Patricia": 3578
     },
     {
-      "year": 1991,
+      "x": 1991,
       "Amanda": 28887,
       "Ashley": 43482,
       "Betty": 345,
@@ -1232,7 +1232,7 @@ export const data = [
       "Patricia": 3418
     },
     {
-      "year": 1992,
+      "x": 1992,
       "Amanda": 25034,
       "Ashley": 38452,
       "Betty": 296,
@@ -1243,7 +1243,7 @@ export const data = [
       "Patricia": 2951
     },
     {
-      "year": 1993,
+      "x": 1993,
       "Amanda": 20809,
       "Ashley": 34847,
       "Betty": 292,
@@ -1254,7 +1254,7 @@ export const data = [
       "Patricia": 2660
     },
     {
-      "year": 1994,
+      "x": 1994,
       "Amanda": 18715,
       "Ashley": 30278,
       "Betty": 275,
@@ -1265,7 +1265,7 @@ export const data = [
       "Patricia": 2363
     },
     {
-      "year": 1995,
+      "x": 1995,
       "Amanda": 16345,
       "Ashley": 26603,
       "Betty": 234,
@@ -1276,7 +1276,7 @@ export const data = [
       "Patricia": 2160
     },
     {
-      "year": 1996,
+      "x": 1996,
       "Amanda": 13973,
       "Ashley": 23676,
       "Betty": 217,
@@ -1287,7 +1287,7 @@ export const data = [
       "Patricia": 1970
     },
     {
-      "year": 1997,
+      "x": 1997,
       "Amanda": 12239,
       "Ashley": 20895,
       "Betty": 189,
@@ -1298,7 +1298,7 @@ export const data = [
       "Patricia": 1781
     },
     {
-      "year": 1998,
+      "x": 1998,
       "Amanda": 10908,
       "Ashley": 19871,
       "Betty": 194,
@@ -1309,7 +1309,7 @@ export const data = [
       "Patricia": 1704
     },
     {
-      "year": 1999,
+      "x": 1999,
       "Amanda": 9741,
       "Ashley": 18132,
       "Betty": 182,
@@ -1320,7 +1320,7 @@ export const data = [
       "Patricia": 1532
     },
     {
-      "year": 2000,
+      "x": 2000,
       "Amanda": 8550,
       "Ashley": 17997,
       "Betty": 174,
@@ -1331,7 +1331,7 @@ export const data = [
       "Patricia": 1392
     },
     {
-      "year": 2001,
+      "x": 2001,
       "Amanda": 6963,
       "Ashley": 16524,
       "Betty": 153,
@@ -1342,7 +1342,7 @@ export const data = [
       "Patricia": 1223
     },
     {
-      "year": 2002,
+      "x": 2002,
       "Amanda": 6132,
       "Ashley": 15339,
       "Betty": 127,
@@ -1353,7 +1353,7 @@ export const data = [
       "Patricia": 1113
     },
     {
-      "year": 2003,
+      "x": 2003,
       "Amanda": 5339,
       "Ashley": 14512,
       "Betty": 142,
@@ -1364,7 +1364,7 @@ export const data = [
       "Patricia": 1011
     },
     {
-      "year": 2004,
+      "x": 2004,
       "Amanda": 4677,
       "Ashley": 14370,
       "Betty": 136,
@@ -1375,7 +1375,7 @@ export const data = [
       "Patricia": 997
     },
     {
-      "year": 2005,
+      "x": 2005,
       "Amanda": 4088,
       "Ashley": 13270,
       "Betty": 132,
@@ -1386,7 +1386,7 @@ export const data = [
       "Patricia": 877
     },
     {
-      "year": 2006,
+      "x": 2006,
       "Amanda": 3355,
       "Ashley": 12340,
       "Betty": 135,
@@ -1397,7 +1397,7 @@ export const data = [
       "Patricia": 775
     },
     {
-      "year": 2007,
+      "x": 2007,
       "Amanda": 3038,
       "Ashley": 11423,
       "Betty": 134,
@@ -1408,7 +1408,7 @@ export const data = [
       "Patricia": 725
     },
     {
-      "year": 2008,
+      "x": 2008,
       "Amanda": 2439,
       "Ashley": 9402,
       "Betty": 137,
@@ -1419,7 +1419,7 @@ export const data = [
       "Patricia": 629
     },
     {
-      "year": 2009,
+      "x": 2009,
       "Amanda": 1952,
       "Ashley": 7811,
       "Betty": 148,
@@ -1430,7 +1430,7 @@ export const data = [
       "Patricia": 564
     },
     {
-      "year": 2010,
+      "x": 2010,
       "Amanda": 1655,
       "Ashley": 6306,
       "Betty": 132,
@@ -1441,7 +1441,7 @@ export const data = [
       "Patricia": 479
     },
     {
-      "year": 2011,
+      "x": 2011,
       "Amanda": 1409,
       "Ashley": 5398,
       "Betty": 167,
@@ -1452,7 +1452,7 @@ export const data = [
       "Patricia": 427
     },
     {
-      "year": 2012,
+      "x": 2012,
       "Amanda": 1228,
       "Ashley": 4696,
       "Betty": 140,
@@ -1463,7 +1463,7 @@ export const data = [
       "Patricia": 394
     },
     {
-      "year": 2013,
+      "x": 2013,
       "Amanda": 1064,
       "Ashley": 3936,
       "Betty": 174,
@@ -1474,7 +1474,7 @@ export const data = [
       "Patricia": 419
     },
     {
-      "year": 2014,
+      "x": 2014,
       "Amanda": 1048,
       "Ashley": 3547,
       "Betty": 193,
@@ -1485,7 +1485,7 @@ export const data = [
       "Patricia": 377
     },
     {
-      "year": 2015,
+      "x": 2015,
       "Amanda": 1013,
       "Ashley": 3409,
       "Betty": 186,
