@@ -183,6 +183,19 @@ export default function HowTo() {
         </span>
       </BlogPostItem>
 
+      <BlogPostItem
+        title={"Stacked barplot: how to deal with negative values"}
+        timeToRead={6}
+        link="stacked-barplot-with-negative-values"
+        isAvailable={true}
+      >
+        <span>
+          A stacked barchart displays the values of items split in group and
+          subgroups. It's a quite common chart type, but dealing with negative
+          values in the dataset brings some interesting dataviz discussions.
+        </span>
+      </BlogPostItem>
+
       <hr className="full-bleed  border bg-gray-200 mt-10 mb-3" />
 
       <ChartFamilySection chartFamily="general" />
