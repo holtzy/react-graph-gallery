@@ -57,7 +57,7 @@ export const StackedBarplot = ({
   var colorScale = d3
     .scaleOrdinal<string>()
     .domain(allGroups)
-    .range(d3.schemeSet3);
+    .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
 
   // Render the X and Y axis using d3.js, not react
   useLayoutEffect(() => {
@@ -85,7 +85,7 @@ export const StackedBarplot = ({
               height={yScale(group[0]) - yScale(group[1])}
               width={xScale.bandwidth()}
               fill={colorScale(subgroup.key)}
-              opacity={0.5}
+              opacity={1}
             ></rect>
           );
         })}

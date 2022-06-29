@@ -233,28 +233,29 @@ export default function Post() {
         }
         startOpen={true}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-6 gap-8">
-          <div className="col-span-4">
-            <p>d</p>
-          </div>
-          <div className="col-span-2 flex flex-col items-center justify-center">
-            <img src="/img/stacked-barplot-explanation-3.png" />
-            <Caption>
-              Stacking with negative values with all negative values below the 0
-              axis
-            </Caption>
-          </div>
+        <div className="col-span-4">
+          <p>
+            Another strategy can be applied to stack the items including
+            negative values.
+          </p>
+          <p>
+            Items can be added one by one, with rectangles going up when values
+            are positive and going down when values are negative.
+          </p>
+        </div>
+        <div className="col-span-2 flex flex-col items-center justify-center">
+          <img src="/img/stacked-barplot-explanation-4.png" />
+          <Caption>
+            Stacking items by overlapping the items on top of each other.
+          </Caption>
         </div>
 
         <br />
 
         <p>
-          Using almost the same code we can build the stacked barplot including
-          those negative values. Note that when stacking the data with the{" "}
-          <code>stack()</code> function of d3, the specific{" "}
-          <code>stackOffsetDiverging</code> offset parameter must be passed,
-          handling all the work for us (
-          <a href="https://github.com/d3/d3-shape#stack-offsets">doc</a>).
+          It's important to understand that here, the item order is important.
+          We will get very different results depending on the order since not
+          all groups are visible.
         </p>
 
         <br />
@@ -280,8 +281,10 @@ export default function Post() {
               Pros
             </p>
             <ul>
-              <li>Easy to read the value of each item</li>
-              <li>Obvious what's negative and what's positive</li>
+              <li>
+                Depending on the group order, the Y value can reflect the sum of
+                the items. But it's not guarantee.
+              </li>
             </ul>
           </div>
           <br />
@@ -290,20 +293,81 @@ export default function Post() {
               Cons
             </p>
             <ul>
-              <li>Impossible to know the total value of each stack</li>
               <li>
-                A series can jump from the bottom to the top of the chart and is
-                thus hard to follow
+                Groups overlap each other. Information is hidden. Chart is
+                unreadable
               </li>
             </ul>
           </div>
         </div>
       </AccordionSection>
 
+      {/*
+      *
+      Part 4: Conclusion
+      *
+      */}
+      <AccordionSection title={"Conclusion"} startOpen={true}>
+        <p>
+          In my opinion the first option (<b>diverging</b>) makes much more
+          sense than the second one (<b>overlapping</b>). The cons are very
+          limited:
+        </p>
+        <ul>
+          <li>
+            It is true that the net total value is not available. But if that's
+            what interests you, you don't have to split the dataset by
+            subgroups, just create a line chart with a single line!
+          </li>
+          <li>
+            Having a group flipping from top to bottom is indeed annoying.
+            However, the hover effect that is included allows to quickly see
+            what happens for a specific group.
+          </li>
+        </ul>
+
+        <br />
+        <p>
+          It's also important to note that most dataviz tools choosed this
+          approach. Here is an example using the same dataset using the ggplot2
+          library.
+        </p>
+
+        <br />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 ">
+          <img src="/img/stacked-barchart-ggplot2.png" />
+          <img src="/img/stacked-barchart-datawrapper.png" />
+        </div>
+
+        <div className="w-100 flex flex-row justify-center">
+          <Caption>
+            Same dataset that includes negative values plotted with ggplot2
+            (left) and data wrapper (right)
+          </Caption>
+        </div>
+
+        <br />
+        <p>
+          Last but not least, I really like this example by chartio that fix the
+          non available total issue by adding a line on top of the stacked
+          barchart to show the total:
+        </p>
+
+        <br />
+        <img src="/img/stacked-barchart-chartio.png" />
+
+        <div className="w-100 flex flex-row justify-center">
+          <Caption>
+            Chartio displays the total of each timestamp using a line chart on
+            top of the stacked items.
+          </Caption>
+        </div>
+      </AccordionSection>
+
       <br />
       <br />
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
-      <ChartFamilySection chartFamily="general" />
+      <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />
       <Contact />
     </Layout>

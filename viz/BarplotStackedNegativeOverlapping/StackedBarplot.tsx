@@ -53,7 +53,7 @@ export const StackedBarplot = ({
   var colorScale = d3
     .scaleOrdinal<string>()
     .domain(allGroups)
-    .range(d3.schemeSet3);
+    .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
 
   // Render the X and Y axis using d3.js, not react
   useLayoutEffect(() => {
@@ -69,8 +69,6 @@ export const StackedBarplot = ({
     svgElement.append("g").call(yAxisGenerator);
   }, [xScale, yScale, boundsHeight]);
 
-  console.log("series", series);
-
   const rectangles = series.map((subgroup, i) => {
     return (
       <g key={i}>
@@ -80,7 +78,7 @@ export const StackedBarplot = ({
           return (
             <rect
               key={j}
-              x={xScale(group.data.x) + 2 * i}
+              x={xScale(group.data.x)}
               y={isNegative ? yScale(group[0]) : yScale(group[1])}
               height={
                 isNegative
@@ -89,7 +87,7 @@ export const StackedBarplot = ({
               }
               width={xScale.bandwidth()}
               fill={colorScale(subgroup.key)}
-              opacity={0.5}
+              opacity={1}
             ></rect>
           );
         })}
