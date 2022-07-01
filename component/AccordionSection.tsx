@@ -13,6 +13,7 @@ export const AccordionSection = ({
 }: AccordionSectionProps) => {
   const [isOpen, setIsOpen] = useState(startOpen);
   const cssHeight = isOpen ? "max-h-full" : "max-h-0";
+  const overflow = isOpen ? "overflow-visible" : "overflow-hidden";
 
   return (
     <>
@@ -30,9 +31,11 @@ export const AccordionSection = ({
       </h2>
       <div
         className={
-          "overflow-hidden transition-max-height ease-in duration-100 " +
+          "transition-max-height ease-in duration-300 " +
           " " +
-          cssHeight
+          cssHeight +
+          " " +
+          overflow
         }
       >
         {children}

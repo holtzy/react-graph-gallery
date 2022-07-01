@@ -73,6 +73,7 @@ export default function Home() {
         </p>
         <br />
         <p>Here is a minimal example of the data structure:</p>
+
         <CodeBlock code={snippet1} />
       </AccordionSection>
 
@@ -88,8 +89,14 @@ export default function Home() {
           </a>
           .
         </p>
-        <HeatmapBasic data={data} width={900} height={700} />
-
+        <div
+          style={{ marginLeft: "-50vw", left: "50%" }}
+          className="bg-gray-100 w-screen relative"
+        >
+          <div className="flex justify-center">
+            <HeatmapBasic data={data} width={900} height={700} />
+          </div>
+        </div>
         <h3>&rarr; Compute circle position and radius</h3>
         <p>
           Basically, the dataset is given to the <code>d3.hierarchy()</code>{" "}
