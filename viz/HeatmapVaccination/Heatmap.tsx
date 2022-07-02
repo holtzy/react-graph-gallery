@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as d3 from "d3";
 
 const MARGIN = { top: 10, right: 10, bottom: 50, left: 50 };
@@ -40,9 +40,9 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 
   // Color scale
   var colorScale = d3
-    .scaleSequential()
-    .interpolator(d3.interpolateInferno)
-    .domain([min, max]);
+    .scaleSequentialSqrt()
+    .interpolator(d3.interpolateReds)
+    .domain([0, max]);
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
@@ -58,7 +58,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
         width={xScale.bandwidth()}
         height={yScale.bandwidth()}
         opacity={1}
-        fill={colorScale(d.value)}
+        fill={d.value === 0 ? "white" : colorScale(d.value)}
       />
     );
   });

@@ -194,12 +194,15 @@ export default function Home() {
         startOpen={true}
       >
         <p>
-          The dataset is an array where each item provides information for a
-          cell of the heatmap.
+          This is an application of the heatmap component described above to a
+          real life dataset.
         </p>
         <p>
-          Each item of the object requires at least a <code>value</code>{" "}
-          property that is a number. This number will be used to color the cell.
+          It's actually a recreation the{" "}
+          <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/">
+            this chart
+          </a>{" "}
+          by Tynan DeBold and Dov Friedman
         </p>
         <p>
           Each item also requires some <code>x</code> and <code>y</code>{" "}
@@ -217,9 +220,11 @@ export default function Home() {
         <ChartOrSandbox
           VizComponent={HeatmapVaccinationDemo}
           vizName={"HeatmapVaccination"}
-          maxWidth={900}
+          maxWidth={1300}
           height={700}
-          caption={"A heatmap showing the impact of vaccination on the disease"}
+          caption={
+            "Number of Measles infected people over 70-some years and across all 50 states. Can you guess when a vaccine was introduced?"
+          }
         />{" "}
       </AccordionSection>
 
