@@ -198,25 +198,19 @@ export default function Home() {
           real life dataset.
         </p>
         <p>
-          It's actually a recreation the{" "}
+          It's actually a recreation of{" "}
           <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/">
             this chart
           </a>{" "}
-          by Tynan DeBold and Dov Friedman
+          by Tynan DeBold and Dov Friedman. Data was available{" "}
+          <a href="https://www.tycho.pitt.edu/data/">here</a>.
         </p>
         <p>
-          Each item also requires some <code>x</code> and <code>y</code>{" "}
-          properties, providing the position of the cell in the 2d space. Note
-          that those values are strings since anything can be used. We are
-          dealing with ordinal scales here.
+          It was necessary to tweak the color scale, switching to a square
+          transformation with <code>scaleSequentialSqrt</code>. This allows to
+          give less importance the extreme values that would absorb the
+          variation otherwise.
         </p>
-        <p>
-          Note that you can add any kind of information in those cell objects
-          that you can use to customize the cell later on. For instance, any
-          information that you would like to add in a tooltip.
-        </p>
-        <br />
-        <p>Here is a minimal example of the data structure:</p>
         <ChartOrSandbox
           VizComponent={HeatmapVaccinationDemo}
           vizName={"HeatmapVaccination"}
