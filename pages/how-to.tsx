@@ -196,7 +196,20 @@ export default function HowTo() {
         </span>
       </BlogPostItem>
 
-      <hr className="full-bleed  border bg-gray-200 mt-10 mb-3" />
+      <BlogPostItem
+        title={"What is a color"}
+        timeToRead={3}
+        link="what-is-a-color"
+        isAvailable={true}
+      >
+        <span>
+          There are so many ways to define a color when talking with a computer.
+          Let's take a tour and see what's the most appropriate for a dataviz
+          point of view.
+        </span>
+      </BlogPostItem>
+
+      <hr className="full-bleed border bg-gray-200 mt-10 mb-3" />
 
       <ChartFamilySection chartFamily="general" />
 

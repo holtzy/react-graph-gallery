@@ -334,6 +334,7 @@ export default function Post() {
         </p>
 
         <br />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 ">
           <img src="/img/stacked-barchart-ggplot2.png" />
           <img src="/img/stacked-barchart-datawrapper.png" />

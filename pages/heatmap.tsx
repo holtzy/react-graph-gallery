@@ -20,16 +20,11 @@ const graphDescription = (
 );
 
 const snippet1 = `
-const data = {
-  type: 'node',
-  name: "boss",
-  value: 2300,
-  children: [
-    {type: 'leaf', name:"Mark", value: 90},
-    {type: 'leaf', name:"Robert", value: 12},
-    {type: 'leaf', name:"Emily", value: 34},
-    ...
-}
+const data = [
+  { x: 'A', y: 'A', value: 12 },
+  { x: 'B', y: 'A', value: 2 },
+  { x: 'C', y: 'A', value: 9 }
+];
 `.trim();
 
 const snippet2 = `
@@ -64,12 +59,23 @@ export default function Home() {
 
       <AccordionSection title={"Dataset"} startOpen={true}>
         <p>
-          The dataset describes a hierarchy using a recursive structure. Each
-          item in this structure is called a node, the lowest nodes of the
-          hierarchy being called leaves. The dataset is an object that has at
-          least 3 properties: <code>name</code>, <code>value</code> and{" "}
-          <code>children</code>. Children is an array of nodes that have this
-          structure too.
+          The dataset is an array where each item provides information for a
+          cell of the heatmap.
+        </p>
+        <p>
+          Each item of the object requires at least a <code>value</code>{" "}
+          property that is a number. This number will be used to color the cell.
+        </p>
+        <p>
+          Each item also requires some <code>x</code> and <code>y</code>{" "}
+          properties, providing the position of the cell in the 2d space. Note
+          that those values are strings since anything can be used. We are
+          dealing with ordinal scales here.
+        </p>
+        <p>
+          Note that you can add any kind of information in those cell objects
+          that you can use to customize the cell later on. For instance, any
+          information that you would like to add in a tooltip.
         </p>
         <br />
         <p>Here is a minimal example of the data structure:</p>
@@ -78,7 +84,7 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={"Most basic circular packing with React and D3.js"}
+        title={"Most basic heatmap with React and D3.js"}
         startOpen={true}
       >
         <p>
@@ -89,14 +95,14 @@ export default function Home() {
           </a>
           .
         </p>
-        <div
+        {/* <div
           style={{ marginLeft: "-50vw", left: "50%" }}
           className="bg-gray-100 w-screen relative"
         >
           <div className="flex justify-center">
             <HeatmapBasic data={data} width={900} height={700} />
           </div>
-        </div>
+        </div> */}
         <h3>&rarr; Compute circle position and radius</h3>
         <p>
           Basically, the dataset is given to the <code>d3.hierarchy()</code>{" "}
@@ -115,7 +121,7 @@ export default function Home() {
         <ChartOrSandbox
           vizName={"HeatmapBasic"}
           maxWidth={900}
-          height={800}
+          height={400}
           render={(dim) => (
             <HeatmapBasic
               data={data}

@@ -15,7 +15,6 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  console.log("data", data);
   // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
   const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
@@ -42,7 +41,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   // Color scale
   var colorScale = d3
     .scaleSequential()
-    .interpolator(d3.interpolateInferno)
+    .range(["#D1F2EB", "#0E6251"])
     .domain([min, max]);
 
   // Build the shapes
