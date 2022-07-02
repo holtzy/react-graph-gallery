@@ -10,7 +10,8 @@ import { data } from "../data/correlation-2-num-variables-gapminder";
 import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
-import { ScatterplotBasic } from "../viz/ScatterplotBasic/ScatterplotBasic";
+import { ScatterplotBasic } from "../viz/ScatterplotBasic/Scatterplot";
+import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
 
 const graphDescription = (
   <p>
@@ -103,16 +104,11 @@ export default function Home() {
         </p>
 
         <ChartOrSandbox
+          VizComponent={ScatterplotBasicDemo}
           vizName={"ScatterplotBasic"}
           maxWidth={600}
           height={500}
-          render={(dim) => (
-            <ScatterplotBasic
-              data={data}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          caption="Most basic scatterplot built with react and d3.js"
         />
       </AccordionSection>
 

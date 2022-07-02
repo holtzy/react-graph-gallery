@@ -3,17 +3,13 @@ import * as d3 from "d3";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
-type ScatterplotBasicProps = {
+type ScatterplotProps = {
   width: number;
   height: number;
   data: { lifeExp: number; gdpPercap: number }[];
 };
 
-export const ScatterplotBasic = ({
-  width,
-  height,
-  data,
-}: ScatterplotBasicProps) => {
+export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   // Layout. The div size is set by the given props.
   // The bounds (=area inside the axis) is calculated by substracting the margins
   const axesRef = useRef(null);
@@ -65,7 +61,11 @@ export const ScatterplotBasic = ({
 
   return (
     <div>
-      <svg width={width} height={height} style={{ display: "inline-block" }}>
+      <svg
+        width={width}
+        height={height}
+        style={{ display: "inline-block", background: "white" }}
+      >
         {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}

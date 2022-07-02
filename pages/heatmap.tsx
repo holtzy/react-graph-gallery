@@ -114,6 +114,7 @@ export default function Home() {
         <br />
         <ChartOrSandbox
           VizComponent={HeatmapBasicDemo}
+          vizName={"HeatmapBasic"}
           maxWidth={600}
           height={300}
           caption={"Most basic heatmap made with react and d3.js"}

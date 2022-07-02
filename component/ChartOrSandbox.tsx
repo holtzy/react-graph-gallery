@@ -6,6 +6,7 @@ import { CodeSandbox } from "./CodeSandbox";
 
 type ChartOrSandboxProps = {
   VizComponent: (props: { width: number; height: number }) => JSX.Element; // A component that calls the viz component (e.g. heatmap) with everything needed except width and height
+  vizName: string;
   height?: number;
   maxWidth?: number;
   caption?: string;
@@ -13,6 +14,7 @@ type ChartOrSandboxProps = {
 
 export const ChartOrSandbox = ({
   VizComponent,
+  vizName,
   height = 400,
   maxWidth = 800,
   caption,
@@ -31,8 +33,15 @@ export const ChartOrSandbox = ({
       className="my-4 py-4 w-screen relative bg-gray-50"
     >
       {showSandbox ? (
-        <div>
-          <CodeSandbox vizName={vizName} />
+        <div className="flex flex-col items-center justify-center w-full">
+          <div style={{ maxWidth: 2000 }} className="w-full">
+            <CodeSandbox vizName={vizName} />
+          </div>
+          <div className="flex justify-center mt-2">
+            <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
+              Hide Sandbox
+            </Button>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
@@ -42,7 +51,7 @@ export const ChartOrSandbox = ({
           <Caption>{caption}</Caption>
           <div className="flex justify-center">
             <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
-              {showSandbox ? "Hide Sandbox" : "Show code"}
+              Show code
             </Button>
           </div>
         </div>
