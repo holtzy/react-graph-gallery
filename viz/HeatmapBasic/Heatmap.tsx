@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 10, right: 10, bottom: 50, left: 50 };
+const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
 
 type HeatmapProps = {
   width: number;
@@ -60,25 +60,25 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
         height={yScale.bandwidth()}
         opacity={1}
         fill={colorScale(d.value)}
+        rx={5}
+        stroke={"white"}
       />
     );
   });
 
   const xLabels = allXGroups.map((name, i) => {
-    if (name % 10 === 0) {
-      return (
-        <text
-          key={i}
-          x={xScale(name)}
-          y={boundsHeight + 10}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize={10}
-        >
-          {name}
-        </text>
-      );
-    }
+    return (
+      <text
+        key={i}
+        x={xScale(name) + xScale.bandwidth() / 2}
+        y={boundsHeight + 10}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize={10}
+      >
+        {name}
+      </text>
+    );
   });
 
   const yLabels = allYGroups.map((name, i) => (

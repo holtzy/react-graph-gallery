@@ -4,46 +4,48 @@ import { Button } from "./Button";
 import { CodeSandbox } from "./CodeSandbox";
 
 type ChartOrSandboxProps = {
-  vizName: string;
-  render: (dim: { width: number; height: number }) => ReactNode;
+  VizComponent: (props: { width: number; height: number }) => JSX.Element; // A component that calls the viz component (e.g. heatmap) with everything needed except width and height
   height?: number;
   maxWidth?: number;
+  caption?: string;
 };
 
 export const ChartOrSandbox = ({
-  vizName,
-  render,
-  height = 300,
-  maxWidth,
+  VizComponent,
+  height = 400,
+  maxWidth = 800,
+  caption,
 }: ChartOrSandboxProps) => {
   const [showSandbox, setShowSandbox] = useState(false);
 
+  // the chart / sandbox will fill the available space until maxWidth is reached
   const chartRef = useRef<HTMLDivElement>(null);
   const chartSize = useDimensions(chartRef);
 
   return (
-    <div className="my-4">
+    // Add a full screen width wrapper with grey background around everything.
+    // It has to be "relative". Note that it goes out of the article container if necessary!
+    <div
+      style={{ marginLeft: "-50vw", left: "50%" }}
+      className="my-4 py-4 w-screen relative bg-gray-50"
+    >
       {showSandbox ? (
-        <div className="">
+        <div>
           <CodeSandbox vizName={vizName} />
         </div>
       ) : (
-        <div className="w-full flex justify-center">
-          <div
-            style={{ height, width: "100%", maxWidth }}
-            ref={chartRef}
-            className="flex justify-center border-t border-b border-purple-300"
-          >
-            {render(chartSize)}
+        <div className="flex justify-center">
+          <div style={{ height, width: "100%", maxWidth }} ref={chartRef}>
+            <VizComponent height={height} width={chartSize.width} />
           </div>
         </div>
       )}
 
-      <div className="flex justify-center mt-2">
+      {/* <div className="flex justify-center mt-2">
         <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
           {showSandbox ? "Hide Sandbox" : "Show code"}
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
