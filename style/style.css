@@ -84,6 +84,12 @@ a {
 a:hover {
     color: #251667
 }
+/* If a span is inserted in a link, don't underline it (used for link as button) */
+a > span {
+    text-decoration:none;
+    display: inline-block
+}
+
 blockquote {
     background: var(--light-grey);
     border-left: 2px solid var(--react-gallery);
