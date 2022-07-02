@@ -116,7 +116,7 @@ export default function Home() {
           VizComponent={HeatmapBasicDemo}
           maxWidth={600}
           height={300}
-          caption={"someDetails"}
+          caption={"Most basic heatmap made with react and d3.js"}
         />
       </AccordionSection>
 

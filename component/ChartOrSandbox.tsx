@@ -1,6 +1,7 @@
 import { ReactNode, useRef, useState } from "react";
 import { useDimensions } from "../hook/use-dimensions";
 import { Button } from "./Button";
+import { Caption } from "./Caption";
 import { CodeSandbox } from "./CodeSandbox";
 
 type ChartOrSandboxProps = {
@@ -34,18 +35,18 @@ export const ChartOrSandbox = ({
           <CodeSandbox vizName={vizName} />
         </div>
       ) : (
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center justify-center">
           <div style={{ height, width: "100%", maxWidth }} ref={chartRef}>
             <VizComponent height={height} width={chartSize.width} />
           </div>
+          <Caption>{caption}</Caption>
+          <div className="flex justify-center">
+            <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
+              {showSandbox ? "Hide Sandbox" : "Show code"}
+            </Button>
+          </div>
         </div>
       )}
-
-      {/* <div className="flex justify-center mt-2">
-        <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
-          {showSandbox ? "Hide Sandbox" : "Show code"}
-        </Button>
-      </div> */}
     </div>
   );
 };
