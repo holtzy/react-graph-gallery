@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as d3 from "d3";
 
 const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
@@ -10,12 +10,10 @@ type HeatmapProps = {
 };
 
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
-  // Layout. The div size is set by the given props.
   // The bounds (=area inside the axis) is calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  console.log("data", data);
   // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
   const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
@@ -45,7 +43,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
     .interpolator(d3.interpolateInferno)
     .domain([min, max]);
 
-  // Build the shapes
+  // Build the rectangles
   const allShapes = data.map((d, i) => {
     if (d.value === null) {
       return;

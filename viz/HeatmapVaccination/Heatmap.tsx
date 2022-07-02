@@ -41,7 +41,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   // Color scale
   var colorScale = d3
     .scaleSequential()
-    .range(["#D1F2EB", "#0E6251"])
+    .interpolator(d3.interpolateInferno)
     .domain([min, max]);
 
   // Build the shapes
