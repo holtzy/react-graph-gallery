@@ -10,6 +10,7 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
 import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";
 import { HeatmapVaccinationDemo } from "../viz/HeatmapVaccination/HeatmapVaccinationDemo";
+import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipDemo";
 
 const graphDescription = (
   <p>
@@ -187,6 +188,46 @@ export default function Home() {
         <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
           Read more about responsiveness
         </a>
+      </AccordionSection>
+
+      <AccordionSection title={"Adding a tooltip"} startOpen={true}>
+        <p>
+          The component above is not responsive. It expects 2 props called{" "}
+          <code>width</code> and <code>height</code> and will render a heatmap
+          of those dimensions.
+        </p>
+        <p>
+          Making the heatmap responsive requires to add a <b>wrapper</b>{" "}
+          component that gets the dimension of the parent <code>div</code>, and
+          listen to a potential dimension change.
+        </p>
+        <p>
+          The process is extensively described in{" "}
+          <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
+            this post
+          </a>{" "}
+          of the gallery. Basically most of the job is made by a hook called{" "}
+          <code>useDimensions</code> that targets a specific <code>ref</code>.
+          This is a quick summary of how it works:
+        </p>
+        <CodeBlock code={snippet3} />
+        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
+          Read more about responsiveness
+        </a>
+        <br />
+        <ChartOrSandbox
+          VizComponent={HeatmapTooltipDemo}
+          vizName={"HeatmapTooltip"}
+          maxWidth={600}
+          height={300}
+          caption={
+            "This heatmap has a tooltip! Hover over a cell to get its exact value."
+          }
+        />
+        <p>
+          There is much more to say about tooltips. This topic is extensively
+          described in this dedicated blogpost.
+        </p>
       </AccordionSection>
 
       <AccordionSection
