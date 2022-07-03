@@ -1,9 +1,6 @@
-import { useMemo, useState } from "react";
-import * as d3 from "d3";
+import { useState } from "react";
 import { Renderer } from "./Renderer";
 import { Tooltip } from "./Tooltip";
-
-const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
 
 type HeatmapProps = {
   width: number;

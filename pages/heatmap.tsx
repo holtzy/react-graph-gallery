@@ -57,6 +57,17 @@ return(
 )
 `.trim();
 
+const snippet4 = `
+<div style={{ position: "relative" }}>
+  <Renderer ..someProps />
+  <Tooltip ..someProps />
+</div>
+`.trim();
+
+const snippet5 = `
+const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
+`.trim();
+
 export default function Home() {
   return (
     <Layout
@@ -192,28 +203,54 @@ export default function Home() {
 
       <AccordionSection title={"Adding a tooltip"} startOpen={true}>
         <p>
-          The component above is not responsive. It expects 2 props called{" "}
-          <code>width</code> and <code>height</code> and will render a heatmap
-          of those dimensions.
+          The tooltip is a must have for a heatmap. It allows to get as much
+          detail as needed for each cell. It's not an easy task though. There
+          are several strategies described more in depth here, but here is what
+          I suggest in the following example:
+        </p>
+        <h3>&rarr; Two layers: renderer and tooltip</h3>
+        <p>
+          The first task is to split the <code>Heatmap</code> component in 2
+          layers. The first layer called <code>Renderer</code> will render the
+          cells as seen previously. The second is an <code>absolute</code> div
+          put on top of the first one, used only to show the tooltip{" "}
+          <code>div</code>.
         </p>
         <p>
-          Making the heatmap responsive requires to add a <b>wrapper</b>{" "}
-          component that gets the dimension of the parent <code>div</code>, and
-          listen to a potential dimension change.
+          This way, the x & y coordinates of cells in the first layer correspond
+          with the second layer.
+        </p>
+        <CodeBlock code={snippet4} />
+
+        <h3>&rarr; A common state</h3>
+        <p>
+          On top of the 2 layers we need a state that stores information about
+          the cell being hovered over. You can create it with a{" "}
+          <code>useState</code>
+          statement.
         </p>
         <p>
-          The process is extensively described in{" "}
-          <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-            this post
-          </a>{" "}
-          of the gallery. Basically most of the job is made by a hook called{" "}
-          <code>useDimensions</code> that targets a specific <code>ref</code>.
-          This is a quick summary of how it works:
+          The state can now be passed to the <code>Tooltip</code> layer. The
+          function to update it can be passed to the <code>Renderer</code> layer
+          that will update it when a cell is hovered over.
         </p>
-        <CodeBlock code={snippet3} />
-        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-          Read more about responsiveness
-        </a>
+        <CodeBlock code={snippet5} />
+
+        <h3>&rarr; Hover, update state, render tooltips</h3>
+        <p>
+          The heatmap cells listen to <code>onMouseEnter</code> events and
+          update the tooltip state with accurate coordinates when it happens.
+        </p>
+        <p>
+          The tooltip renders a div at the right position thanks to those
+          informations.
+        </p>
+        <p>
+          There is much more to say about those parts, but it deserves its own
+          blog post since it's then used for all chart types.
+        </p>
+
+        <p></p>
         <br />
         <ChartOrSandbox
           VizComponent={HeatmapTooltipDemo}
@@ -224,10 +261,7 @@ export default function Home() {
             "This heatmap has a tooltip! Hover over a cell to get its exact value."
           }
         />
-        <p>
-          There is much more to say about tooltips. This topic is extensively
-          described in this dedicated blogpost.
-        </p>
+        <p>Read more on tooltips</p>
       </AccordionSection>
 
       <AccordionSection
