@@ -35,13 +35,13 @@ export const buildViolinPath = (
 
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 
-type ViolinBasicProps = {
+type ViolinProps = {
   width: number;
   height: number;
   data: { name: string; value: number }[];
 };
 
-export const ViolinBasic = ({ width, height, data }: ViolinBasicProps) => {
+export const Violin = ({ width, height, data }: ViolinProps) => {
   // Layout. The div size is set by the given props.
   // The bounds (=area inside the axis) is calculated by substracting the margins
   const axesRef = useRef(null);

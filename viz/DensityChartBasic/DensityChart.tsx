@@ -20,17 +20,13 @@ function kernelEpanechnikov(k) {
   };
 }
 
-type DensityChartBasicProps = {
+type DensityChartProps = {
   width: number;
   height: number;
   data: number[];
 };
 
-export const DensityChartBasic = ({
-  width,
-  height,
-  data,
-}: DensityChartBasicProps) => {
+export const DensityChart = ({ width, height, data }: DensityChartProps) => {
   const xScale = useMemo(() => {
     const max = Math.max(...data);
     return d3

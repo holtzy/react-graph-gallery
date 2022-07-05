@@ -3,7 +3,7 @@ import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
-import { ViolinBasic } from "../viz/ViolinBasic/ViolinBasic";
+import { ViolinBasic } from "../viz/ViolinBasic/Violin";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
@@ -11,6 +11,8 @@ import { data as violinData } from "../data/distribution-multi-groups-random";
 import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
+import { ViolinBasicDemo } from "../viz/ViolinBasic/ViolinBasicDemo";
+import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
 
 const graphDescription = (
   <p>
@@ -78,14 +80,9 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         vizName={"ViolinBasic"}
+        VizComponent={ViolinBasicDemo}
         maxWidth={600}
-        render={(dim) => (
-          <ViolinBasic
-            data={violinData}
-            width={dim.width}
-            height={dim.height}
-          />
-        )}
+        height={400}
       />
       <AccordionSection title={"The data"} startOpen={true}>
         <p>
@@ -168,14 +165,9 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"ViolinBasic"}
+          VizComponent={ViolinBasicDemo}
           maxWidth={600}
-          render={(dim) => (
-            <ViolinBasic
-              data={violinData}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          height={400}
         />
       </AccordionSection>
       <AccordionSection
@@ -194,15 +186,10 @@ export default function Home() {
         <br />
         <ChartOrSandbox
           vizName={"BoxplotToViolinTransition"}
+          VizComponent={BoxplotToViolinTransitionDemo}
           maxWidth={600}
-          height={350}
-          render={(dim) => (
-            <BoxplotToViolinTransition
-              width={dim.width}
-              height={dim.height - 60}
-              data={violinData}
-            />
-          )}
+          height={300}
+          caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
         />
       </AccordionSection>
       <AccordionSection
