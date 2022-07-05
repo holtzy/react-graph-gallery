@@ -1,11 +1,16 @@
 import { useState } from "react";
-import ReactDOM from "react-dom";
 import { CircularPackingDatasetTransition } from "./CircularPackingDatasetTransition";
 import { data, data2, Tree } from "./data";
 
-const Content = () => {
+export const CircularPackingDatasetTransitionDemo = ({
+  width = 700,
+  height = 400,
+}) => {
   const [dataset, setDataset] = useState<Tree>(data);
 
+  if (width === 0) {
+    return null;
+  }
   return (
     <>
       <div>
@@ -13,13 +18,10 @@ const Content = () => {
         <button onClick={() => setDataset(data2)}>Data 2</button>
       </div>
       <CircularPackingDatasetTransition
-        width={400}
-        height={300}
+        width={width}
+        height={height}
         data={dataset}
       />
     </>
   );
 };
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Content />, rootElement);

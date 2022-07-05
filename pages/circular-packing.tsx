@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
-import { CircularPackingBasic } from "../viz/CircularPackingBasic/CircularPackingBasic";
-import { data, data2 } from "../data/hierarchy-1-level-random";
-import { CircularPackingDatasetTransition } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransition";
-import { Button } from "../component/Button";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
+import { CircularPackingBasicDemo } from "../viz/CircularPackingBasic/CircularPackingBasicDemo";
+import { CircularPackingDatasetTransitionDemo } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransitionDemo";
 
 const graphDescription = (
   <p>
@@ -54,8 +52,6 @@ const AnimatedCircle = ({cx,cy,r,...props}) => {
 `.trim();
 
 export default function Home() {
-  const [animData, setAnimData] = useState(data);
-
   return (
     <Layout
       title="Circular Packing chart with React"
@@ -110,15 +106,10 @@ export default function Home() {
         <br />
         <ChartOrSandbox
           vizName={"CircularPackingBasic"}
+          VizComponent={CircularPackingBasicDemo}
           maxWidth={400}
           height={400}
-          render={(dim) => (
-            <CircularPackingBasic
-              data={data}
-              width={dim.width || 1}
-              height={dim.height || 1}
-            />
-          )}
+          caption="most basic circle packing chart built with react and d3.js"
         />
       </AccordionSection>
 
@@ -145,33 +136,12 @@ export default function Home() {
           <code>animated.circle</code>) that does the animation.
         </p>
 
-        <div className="flex flex-row justify-center mt-10">
-          <Button
-            onClick={() => setAnimData(data)}
-            isFilled={animData === data}
-            size="sm"
-          >
-            Data 1
-          </Button>
-          <Button
-            onClick={() => setAnimData(data2)}
-            isFilled={animData === data2}
-            size="sm"
-          >
-            Data 2
-          </Button>
-        </div>
         <ChartOrSandbox
           vizName={"CircularPackingDatasetTransition"}
+          VizComponent={CircularPackingDatasetTransitionDemo}
           maxWidth={400}
           height={400}
-          render={(dim) => (
-            <CircularPackingDatasetTransition
-              data={animData}
-              width={dim.width || 1}
-              height={dim.height || 1}
-            />
-          )}
+          caption="Animating the transition between 2 similar dataset with react and d3.js (for rendering) and react spring (for animation)."
         />
       </AccordionSection>
 

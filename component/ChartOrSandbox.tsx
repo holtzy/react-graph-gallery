@@ -5,7 +5,10 @@ import { Caption } from "./Caption";
 import { CodeSandbox } from "./CodeSandbox";
 
 type ChartOrSandboxProps = {
-  VizComponent: (props: { width: number; height: number }) => JSX.Element; // A component that calls the viz component (e.g. heatmap) with everything needed except width and height
+  VizComponent: (props: {
+    width: number;
+    height: number;
+  }) => JSX.Element | null; // A component that calls the viz component (e.g. heatmap) with everything needed except width and height
   vizName: string;
   height?: number;
   maxWidth?: number;

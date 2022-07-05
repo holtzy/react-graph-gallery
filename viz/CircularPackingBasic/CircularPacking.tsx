@@ -2,17 +2,18 @@ import { useMemo } from "react";
 import * as d3 from "d3";
 import { Tree } from "../../data/hierarchy-1-level-random";
 
-type CircularPackingBasicProps = {
+type CircularPackingProps = {
   width: number;
   height: number;
   data: Tree;
 };
 
-export const CircularPackingBasic = ({
+export const CircularPacking = ({
   width,
   height,
   data,
-}: CircularPackingBasicProps) => {
+}: CircularPackingProps) => {
+  console.log(data);
   const hierarchy = useMemo(() => {
     return d3
       .hierarchy(data)
