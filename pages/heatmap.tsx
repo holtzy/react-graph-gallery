@@ -14,11 +14,12 @@ import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipD
 
 const graphDescription = (
   <p>
-    A <a href="https://www.data-to-viz.com/graph/heatmap.html">heatmap</a>{" "}
-    displays the value of a numeric variable as a color, split in 2 dimensions.
-    This section explains how to use d3 to compute the different scales that are
-    needed, and how to use react to effectively render the heatmap on the
-    screen.
+    This page explains how to build a{" "}
+    <a href="https://www.data-to-viz.com/graph/heatmap.html">heatmap</a> using
+    <code>react</code> and <code>d3.js</code>. It starts by describing how the
+    input data must be formatted and build a very basic heatmap from it. Then,
+    several examples with code explain how to add the usual customizations:
+    responsiveness, tooltip, hover interaction and more.
   </p>
 );
 
