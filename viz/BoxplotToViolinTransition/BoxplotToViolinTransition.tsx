@@ -12,7 +12,7 @@ const buttonStyle = {
   color: "#9a6fb0",
 };
 
-const MARGIN = { top: 10, right: 10, bottom: 25, left: 25 };
+const MARGIN = { top: 10, right: 10, bottom: 75, left: 25 };
 
 type BoxplotToViolinTransitionProps = {
   width: number;

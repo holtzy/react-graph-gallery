@@ -47,7 +47,7 @@ export const StackedBarplot = ({
       .domain(allGroups)
       .range([0, boundsWidth])
       .padding(0.2);
-  }, [data, height]);
+  }, [data, width]);
 
   // Color Scale
   var colorScale = d3

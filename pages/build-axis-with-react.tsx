@@ -10,6 +10,8 @@ import { AxisBasic } from "../viz/AxisBasic/AxisBasic";
 import { AxisBasicD3 } from "../viz/AxisBasicD3/AxisBasicD3";
 import { CodeBlock } from "../component/CodeBlock";
 import { TakeHome } from "../component/TakeHome";
+import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
+import { AxisBasicD3Demo } from "../viz/AxisBasicD3/AxisBasicD3Demo";
 
 const graphDescription = (
   <p>
@@ -223,9 +225,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"AxisBasic"}
+          VizComponent={AxisBasicDemo}
           maxWidth={600}
           height={300}
-          render={(dim) => <AxisBasic width={dim.width} height={dim.height} />}
+          caption="This axis is rendered without using d3.js to render."
         />
       </AccordionSection>
 
@@ -239,11 +242,12 @@ export default function Home() {
         <p>Here is an example below:</p>
         <ChartOrSandbox
           vizName={"AxisBasicD3"}
+          VizComponent={AxisBasicD3Demo}
           maxWidth={600}
           height={300}
-          render={(dim) => (
-            <AxisBasicD3 width={dim.width} height={dim.height} />
-          )}
+          caption={
+            "This axis is rendered using d3. The d3 necessary functions are called from a useEffect"
+          }
         />
       </AccordionSection>
 

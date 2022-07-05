@@ -12,6 +12,7 @@ import { data as data2levels } from "../viz/Treemap2Levels/data";
 import { Barplot } from "../viz/BarplotBasic/Barplot";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
+import { BarplotBasicDemo } from "../viz/BarplotBasic/BarplotBasicDemo";
 
 const graphDescription = (
   <p>
@@ -107,10 +108,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"BarplotBasic"}
+          VizComponent={BarplotBasicDemo}
           height={400}
-          render={(dim) => (
-            <Barplot data={data} width={dim.width} height={dim.height} />
-          )}
+          maxWidth={600}
+          caption="Most basic barplot built with d3.js for scales, and react for rendering"
         />
       </AccordionSection>
 

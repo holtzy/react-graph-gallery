@@ -4,6 +4,7 @@ import * as d3 from "d3";
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
 type DataPoint = { x: number; y: number };
+
 type AreaChartProps = {
   width: number;
   height: number;
@@ -11,6 +12,7 @@ type AreaChartProps = {
 };
 
 export const AreaChart = ({ width, height, data }: AreaChartProps) => {
+  console.log("width", width);
   // bounds = area inside the graph axis = calculated by substracting the margins
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
@@ -32,7 +34,7 @@ export const AreaChart = ({ width, height, data }: AreaChartProps) => {
       .scaleLinear()
       .domain([xMin || 0, xMax || 0])
       .range([0, boundsWidth]);
-  }, [data, height]);
+  }, [data, width]);
 
   // Render the X and Y axis using d3.js, not react
   useLayoutEffect(() => {

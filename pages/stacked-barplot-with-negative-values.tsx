@@ -17,6 +17,9 @@ import { data as dataDiverging } from "../viz/BarplotStackedNegativeDiverging/da
 
 import { StackedBarplot as StackedBarplotOverlapping } from "../viz/BarplotStackedNegativeOverlapping/StackedBarplot";
 import { data as dataOverlapping } from "../viz/BarplotStackedNegativeOverlapping/data";
+import { BarplotStackedBasicDemo } from "../viz/BarplotStackedBasic/BarplotStackedBasicDemo";
+import { BarplotStackedNegativeDivergingBasicDemo } from "../viz/BarplotStackedNegativeDiverging/BarplotStackedNegativeDivergingDemo";
+import { BarplotStackedNegativeOverlappingDemo } from "../viz/BarplotStackedNegativeOverlapping/BarplotStackedNegativeOverlappingDemo";
 
 const graphDescription = (
   <p>
@@ -111,11 +114,13 @@ export default function Post() {
         <br />
 
         <ChartOrSandbox
-          vizName={"StackedAreaChartBasic"}
+          vizName={"BarplotStackedBasic"}
+          VizComponent={BarplotStackedBasicDemo}
           height={400}
-          render={(dim) => (
-            <StackedBarplot data={data} width={dim.width} height={dim.height} />
-          )}
+          maxWidth={600}
+          caption={
+            "A stacked area chart with positive values only. Built with react and d3.js"
+          }
         />
 
         <br />
@@ -182,15 +187,13 @@ export default function Post() {
         <br />
 
         <ChartOrSandbox
-          vizName={"StackedBarplotOverlapping"}
+          vizName={"BarplotStackedNegativeDivergingBasic"}
+          VizComponent={BarplotStackedNegativeDivergingBasicDemo}
           height={400}
-          render={(dim) => (
-            <StackedBarplotDiverging
-              data={dataDiverging}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          maxWidth={700}
+          caption={
+            "With the diverging strategy, all negative values are located under the 0 baseline."
+          }
         />
 
         <br />
@@ -261,15 +264,13 @@ export default function Post() {
         <br />
 
         <ChartOrSandbox
-          vizName={"StackedBarplotOverlapping"}
+          vizName={"BarplotStackedNegativeOverlappingDemo"}
+          VizComponent={BarplotStackedNegativeOverlappingDemo}
           height={400}
-          render={(dim) => (
-            <StackedBarplotOverlapping
-              data={dataOverlapping}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          maxWidth={700}
+          caption={
+            "With the overlapping strategy items are drawn successively, going up and down and overlapping if necessary"
+          }
         />
 
         <br />

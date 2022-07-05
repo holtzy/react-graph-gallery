@@ -25,7 +25,7 @@ export const VerticalBox = ({
   fill,
 }: VerticalBoxProps) => {
   return (
-    <>
+    <g>
       <line
         x1={width / 2}
         x2={width / 2}
@@ -50,6 +50,6 @@ export const VerticalBox = ({
         stroke={stroke}
         width={STROKE_WIDTH}
       />
-    </>
+    </g>
   );
 };

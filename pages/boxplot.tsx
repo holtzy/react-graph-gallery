@@ -11,6 +11,9 @@ import Link from "next/link";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
 import { Boxplot } from "../viz/BoxplotBasic/Boxplot";
 import { VerticalBox } from "../viz/BoxDemoVertical/VerticalBox";
+import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo";
+import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
+import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
 
 const graphDescription = (
   <p>
@@ -157,28 +160,16 @@ export default function Home() {
         <p>
           There is nothing really fancy here! We're just drawing a box using a{" "}
           <code>rect</code> and a 2 <code>line</code>. We can call this
-          component with the following yment:
+          component with the following statement:
         </p>
         <CodeBlock code={snippet3} />
         <p>Bringing this result:</p>
         <ChartOrSandbox
           vizName={"BoxDemoVertical"}
-          maxWidth={200}
+          VizComponent={BoxDemoVerticalDemo}
+          maxWidth={110}
           height={300}
-          render={() => (
-            <svg width={102} height={300}>
-              <VerticalBox
-                width={100}
-                min={280}
-                q1={200}
-                median={100}
-                q3={80}
-                max={10}
-                stroke="black"
-                fill={"#ead4f5"}
-              />
-            </svg>
-          )}
+          caption="A box rendered in svg thanks to react"
         />
       </AccordionSection>
 
@@ -192,11 +183,10 @@ export default function Home() {
           It leads us to this most basic boxplot built with react and d3.js 🎉:
         </p>
         <ChartOrSandbox
-          vizName={"Boxplot"}
+          vizName={"BoxplotBasic"}
+          VizComponent={BoxplotBasicDemo}
           maxWidth={600}
-          render={(dim) => (
-            <Boxplot data={violinData} width={dim.width} height={dim.height} />
-          )}
+          caption="Most basic boxplot made with d3.js and react"
         />
       </AccordionSection>
 
@@ -216,15 +206,10 @@ export default function Home() {
         <br />
         <ChartOrSandbox
           vizName={"BoxplotToViolinTransition"}
+          VizComponent={BoxplotToViolinTransitionDemo}
           maxWidth={600}
-          height={350}
-          render={(dim) => (
-            <BoxplotToViolinTransition
-              width={dim.width}
-              height={dim.height - 60}
-              data={violinData}
-            />
-          )}
+          height={300}
+          caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
         />
       </AccordionSection>
       <AccordionSection

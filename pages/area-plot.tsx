@@ -10,6 +10,7 @@ import { data } from "../viz/LineChartBasic/data";
 import { AreaChart } from "../viz/AreaChartBasic/AreaChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
+import { AreaChartBasicDemo } from "../viz/AreaChartBasic/AreaChartBasicDemo";
 
 const graphDescription = (
   <p>
@@ -83,10 +84,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"AreaChartBasic"}
+          VizComponent={AreaChartBasicDemo}
           height={400}
-          render={(dim) => (
-            <AreaChart data={data} width={dim.width} height={dim.height} />
-          )}
+          maxWidth={600}
+          caption="A very basic area chart made using react and d3.js"
         />
       </AccordionSection>
 
