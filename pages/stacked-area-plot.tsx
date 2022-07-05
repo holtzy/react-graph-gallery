@@ -10,6 +10,7 @@ import { data } from "../viz/StackedAreaChartBasic/data";
 import { StackedAreaChart } from "../viz/StackedAreaChartBasic/StackedAreaChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
+import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
 
 const graphDescription = (
   <p>
@@ -127,14 +128,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"StackedAreaChartBasic"}
+          VizComponent={StackedAreaChartBasicDemo}
           height={400}
-          render={(dim) => (
-            <StackedAreaChart
-              data={data}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          maxWidth={600}
+          caption="basic stacked area chart with react and d3.js"
         />
       </AccordionSection>
 

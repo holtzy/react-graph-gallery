@@ -43,7 +43,7 @@ export const StackedAreaChart = ({
       .scaleLinear()
       .domain([xMin || 0, xMax || 0])
       .range([0, boundsWidth]);
-  }, [data, height]);
+  }, [data, width]);
 
   // Render the X and Y axis using d3.js, not react
   useLayoutEffect(() => {
