@@ -10,6 +10,7 @@ import { data } from "../viz/LineChartBasic/data";
 import { LineChart } from "../viz/LineChartBasic/LineChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
+import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
 
 const graphDescription = (
   <p>
@@ -82,10 +83,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"LineChartBasic"}
+          VizComponent={LineChartBasicDemo}
           height={400}
-          render={(dim) => (
-            <LineChart data={data} width={dim.width} height={dim.height} />
-          )}
+          maxWidth={600}
+          caption="most basic line chart with react and d3.js"
         />
       </AccordionSection>
 
