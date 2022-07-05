@@ -5,7 +5,7 @@ type DataItem = {
   name: string;
   value: number;
 };
-type PieChartBasicProps = {
+type PieChartProps = {
   width: number;
   height: number;
   data: DataItem[];
@@ -15,7 +15,7 @@ const MARGIN = 30;
 
 const colors = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"];
 
-export const PieChartBasic = ({ width, height, data }: PieChartBasicProps) => {
+export const PieChart = ({ width, height, data }: PieChartProps) => {
   const radius = Math.min(width, height) / 2 - MARGIN;
 
   const pie = useMemo(() => {

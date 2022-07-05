@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import { data } from "./data/";
-import { PieChartBasic } from "./PieChartBasic";
+import { PieChart } from "./PieChart";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<PieChartBasic data={data} width={400} height={400} />, rootElement);
+ReactDOM.render(<PieChart data={data} width={400} height={400} />, rootElement);

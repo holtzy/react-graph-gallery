@@ -6,10 +6,11 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
-import { PieChartBasic } from "../viz/PieChartBasic/PieChartBasic";
+import { PieChartBasic } from "../viz/PieChartBasic/PieChart";
 import { data } from "../data/one-value-per-group-random";
 import { data as eventData } from "../data/event-list";
 import { EventBarChart } from "../viz/EventBarChart/EventBarChart";
+import { PieChartBasicDemo } from "../viz/PieChartBasic/PieChartBasicDemo";
 
 const graphDescription = (
   <p>
@@ -127,14 +128,10 @@ export default function Home() {
 
         <ChartOrSandbox
           vizName={"PieChartBasic"}
+          VizComponent={PieChartBasicDemo}
           maxWidth={400}
-          render={(dim) => (
-            <PieChartBasic
-              data={animData}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          height={400}
+          caption="basic pie chart with react and d3.js"
         />
       </AccordionSection>
 
