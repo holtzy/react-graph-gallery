@@ -8,7 +8,7 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
-import { PieChartBasic } from "../viz/PieChartBasic/PieChartBasic";
+import { PieChartBasic } from "../viz/PieChartBasic/PieChart";
 import { data } from "../data/group-evolution-first-name";
 
 const graphDescription = (

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
@@ -8,9 +8,11 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { Scatterplot as ScatterplotHoverHighlight } from "../viz/ScatterplotHoverHighlight/Scatterplot";
 import { Scatterplot as ScatterplotHoverHighlightDim } from "../viz/ScatterplotHoverHighlightDim/Scatterplot";
-import { Scatterplot as ScatterplotHoverHighlightTwoLayers } from "../viz/ScatterplotHoverHighlightTwoLayers/Scatterplot";
 import { data } from "../viz/ScatterplotHoverHighlight/data";
 import { Caption } from "../component/Caption";
+import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
+import { ScatterplotHoverHighlightDimDemo } from "../viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo";
+import { ScatterplotHoverHighlightTwoLayersDemo } from "../viz/ScatterplotHoverHighlightTwoLayers/ScatterplotHoverHighlightTwoLayersDemo";
 
 const graphDescription = (
   <p>
@@ -125,14 +127,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"ScatterplotHoverHighlight"}
+          VizComponent={ScatterplotHoverHighlightDemo}
           maxWidth={400}
-          render={(dim) => (
-            <ScatterplotHoverHighlight
-              data={data}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          height={500}
+          caption="Scatterplot with hover highlight"
         />
         <p>
           <u>Pro</u>: This is the most basic strategy. It is very easy to
@@ -161,14 +159,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"ScatterplotHoverHighlightDim"}
+          VizComponent={ScatterplotHoverHighlightDimDemo}
           maxWidth={400}
-          render={(dim) => (
-            <ScatterplotHoverHighlightDim
-              data={data}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          height={500}
+          caption="Use dimming to highlight a specific point"
         />
         <p>
           <u>Pro</u>: Better design. Easy to implement.
@@ -192,14 +186,10 @@ export default function Home() {
         <CodeBlock code={snippet2} />
         <ChartOrSandbox
           vizName={"ScatterplotHoverHighlightTwoLayers"}
+          VizComponent={ScatterplotHoverHighlightTwoLayersDemo}
           maxWidth={400}
-          render={(dim) => (
-            <ScatterplotHoverHighlightTwoLayers
-              data={data}
-              width={dim.width}
-              height={dim.height}
-            />
-          )}
+          height={500}
+          caption="Use dimming to highlight a specific point"
         />
         <br />
       </AccordionSection>
