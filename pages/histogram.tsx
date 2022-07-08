@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
@@ -10,6 +10,8 @@ import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxi
 import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
 import { HistogramSeveralGroupsDemo } from "../viz/HistogramSeveralGroups/HistogramSeveralGroupsDemo";
 import { HistogramSeveralGroupsSplitPanelDemo } from "../viz/HistogramSeveralGroupsSplitPanel/HistogramSeveralGroupsSplitPanelDemo";
+import { ParallaxSection } from "../component/ParallaxSection";
+import { LinkAsButton } from "../component/LinkAsButton";
 
 const graphDescription = (
   <p>
@@ -66,6 +68,8 @@ const snippet6 = `
 `.trim();
 
 export default function Home() {
+  const [chart, setChart] = useState(0);
+
   return (
     <Layout
       title="Histogram with React"
@@ -241,37 +245,100 @@ export default function Home() {
         <p>Click on the overview to see details and code.</p>
         <br />
         <div className="flex gap-4">
-          <img
-            className="border-blue-300"
-            src="/chartView/histMultiGroup.png"
-            style={{ height: 70 }}
-          />
-          <img
-            src="/chartView/histMultiGroupSplit.png"
-            style={{ height: 70 }}
-          />
+          <div className="cursor-pointer shadow-md">
+            <img
+              src="/chartView/histMultiGroup.png"
+              style={{ height: 70 }}
+              onClick={() => setChart(0)}
+            />
+          </div>
+          <div className="cursor-pointer shadow-md">
+            <img
+              src="/chartView/histMultiGroupSplit.png"
+              style={{ height: 70 }}
+              onClick={() => setChart(1)}
+            />
+          </div>
         </div>
 
-        <ChartOrSandbox
-          VizComponent={HistogramSeveralGroupsDemo}
-          vizName={"HistogramSeveralGroups"}
-          maxWidth={900}
-          height={300}
-          caption={
-            "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
-          }
-        />
-
+        {chart === 0 && (
+          <ChartOrSandbox
+            VizComponent={HistogramSeveralGroupsDemo}
+            vizName={"HistogramSeveralGroups"}
+            maxWidth={900}
+            height={300}
+            caption={
+              "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
+            }
+          />
+        )}
+        {chart === 1 && (
+          <ChartOrSandbox
+            VizComponent={HistogramSeveralGroupsSplitPanelDemo}
+            vizName={"HistogramSeveralGroupsSplitPanel"}
+            maxWidth={900}
+            height={300}
+            caption={
+              "Using small multiples to compare the distribution of several groups in a dataset."
+            }
+          />
+        )}
         <br />
-        <ChartOrSandbox
-          VizComponent={HistogramSeveralGroupsSplitPanelDemo}
-          vizName={"HistogramSeveralGroupsSplitPanel"}
-          maxWidth={900}
-          height={300}
-          caption={
-            "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
-          }
-        />
+        <p>
+          If you're looking for inspiration to create your next histogram, note
+          that{" "}
+          <a href="https://www.dataviz-inspiration.com">
+            dataviz-inspiration.com
+          </a>{" "}
+          showcases many examples. Definitely the best place to get ...
+          inspiration!
+        </p>
+      </AccordionSection>
+
+      <div className="full-bleed">
+        <ParallaxSection
+          height={250}
+          imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
+          opacity={0.3}
+        >
+          <div className="flex justify-center items-center h-full">
+            <div
+              style={{ maxWidth: 400 }}
+              className="flex flex-col items-center"
+            >
+              <p className="text-center text-sm">
+                <a href="https://www.dataviz-inspiration.com">
+                  dataviz-inspiration.com
+                </a>{" "}
+                showcases hundreds of stunning dataviz projects. Have a look to
+                get some ideas on how to make your histogram looks good!
+              </p>
+              <LinkAsButton
+                href={"https://www.dataviz-inspiration.com"}
+                isFilled
+                size="md"
+              >
+                {"visit"}
+              </LinkAsButton>
+            </div>
+          </div>
+        </ParallaxSection>
+      </div>
+
+      <AccordionSection title={"Dataset transition"} startOpen={true}>
+        <p>
+          The last step needed for a powerful histogram react component is a
+          proper way to transition between various dataset. When the{" "}
+          <code>data</code> prop updates, we need a stunning way to transition
+          to the new values.
+        </p>
+        <p>
+          As a result, the dataset is pretty simple: it is simply an{" "}
+          <code>array</code> of <code>number</code>.
+        </p>
+        <br />
+        <p>Here is a minimal example of the data structure:</p>
+        <CodeBlock code={snippet1} />
       </AccordionSection>
 
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />

@@ -32,7 +32,7 @@ export default function TitleAndDescription({
         <h1 className="text-4xl text-center">{title}</h1>
         <VerticalSeparator />
         <SocialMediaButtons />
-        <div className="max-w-lg text-center py-2">{description}</div>
+        <div className="max-w-xxl text-center py-2">{description}</div>
 
         {chartType && (
           <div className="flex flex-row flex-wrap justify-center">
