@@ -1,34 +1,45 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 30, right: 30, bottom: 40, left: 50 };
-const BUCKET_NUMBER = 70;
+const MARGIN = { top: 30, right: 10, bottom: 40, left: 40 };
+const BUCKET_NUMBER = 20;
 const BUCKET_PADDING = 1;
+const COLORS = ["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"];
 
 type HistogramProps = {
   width: number;
   height: number;
-  data: number[];
+  data: { group: string; values: number[] }[];
 };
 
-export const Histogram = ({ width, height, data }: HistogramProps) => {
+type SingleHistogramProps = {
+  width: number;
+  height: number;
+  data: number[];
+  color: string;
+  xRange: [number, number];
+};
+
+const SingleHistogram = ({
+  width,
+  height,
+  data,
+  color,
+  xRange,
+}: SingleHistogramProps) => {
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const xScale = useMemo(() => {
-    const max = Math.max(...data);
-    return d3
-      .scaleLinear()
-      .domain([0, 1000]) // note: limiting to 1000 instead of max here because of extreme values in the dataset
-      .range([10, boundsWidth]);
+    return d3.scaleLinear().domain(xRange).range([0, boundsWidth]);
   }, [data, width]);
 
   const buckets = useMemo(() => {
     const bucketGenerator = d3
       .bin()
       .value((d) => d)
-      .domain(xScale.domain())
+      .domain(xRange)
       .thresholds(xScale.ticks(BUCKET_NUMBER));
     return bucketGenerator(data);
   }, [xScale]);
@@ -57,7 +68,7 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     return (
       <rect
         key={i}
-        fill="#69b3a2"
+        fill={color}
         x={xScale(bucket.x0) + BUCKET_PADDING / 2}
         width={xScale(bucket.x1) - xScale(bucket.x0) - BUCKET_PADDING}
         y={yScale(bucket.length)}
@@ -82,5 +93,28 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
         transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
       />
     </svg>
+  );
+};
+
+export const Histogram = ({ width, height, data }: HistogramProps) => {
+  const allGroups = data.map((group) => group.group);
+  const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(COLORS);
+
+  const maxPerGroup = data.map((group) => Math.max(...group.values));
+  const max = Math.max(...maxPerGroup);
+
+  return (
+    <div style={{ width, height, display: "flex" }}>
+      {data.map((group, i) => (
+        <SingleHistogram
+          key={i}
+          width={width / allGroups.length}
+          height={height}
+          color={colorScale(group.group)}
+          xRange={[0, max]}
+          data={group.values}
+        />
+      ))}
+    </div>
   );
 };

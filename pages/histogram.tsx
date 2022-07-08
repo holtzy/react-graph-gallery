@@ -6,9 +6,10 @@ import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { DensityChartBasicDemo } from "../viz/DensityChartBasic/DensityChartBasicDemo";
-import { DensityChartWithAxisDemo } from "../viz/DensityChartWithAxis/DensityChartWithAxisDemo";
 import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
+import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
+import { HistogramSeveralGroupsDemo } from "../viz/HistogramSeveralGroups/HistogramSeveralGroupsDemo";
+import { HistogramSeveralGroupsSplitPanelDemo } from "../viz/HistogramSeveralGroupsSplitPanel/HistogramSeveralGroupsSplitPanelDemo";
 
 const graphDescription = (
   <p>
@@ -23,38 +24,30 @@ const graphDescription = (
 );
 
 const snippet1 = `
-export const data = [
-  75.0,
-  104.0,
-  369.0,
-  300.0,
-  92.0
-]
+const data = [1, 2, 2, 2, 3, 4, 5, 6, 6, 6, 9]
 `.trim();
 
 const snippet2 = `
-function kernelDensityEstimator(kernel, X) {
-  return function(V) {
-    return X.map(function(x) {
-      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
-    });
-  };
-}
-
-function kernelEpanechnikov(k) {
-  return function(v) {
-    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-  };
-}
+const bucketGenerator = d3
+  .bin()
+  .value((d) => d)
+  .domain([0, 10])
+  .thresholds([0, 2, 4, 6, 8, 10]);
 `.trim();
 
 const snippet3 = `
-const data = [11, 22, 21, 33, 43, 49, 2, 4, 5, 1, 6];
-const buckets = [0, 10, 20, 30, 40, 50];
+bucketGenerator(data)
 `.trim();
 
 const snippet4 = `
-const computeKde = kernelDensityEstimator(kernelEpanechnikov(7), buckets);
+[
+  [x0: 0, x1: 2],
+  [2, 2, 2, 3, x0: 2, x1: 4],
+  [4, 5, x0: 4, x1: 6],
+  [6, 6, 6, x0: 6, x1: 8],
+  [x0: 8, x1: 10],
+  [x0: 10, x1: 10],
+]
 `.trim();
 
 const snippet5 = `
@@ -115,62 +108,73 @@ export default function Home() {
 
         <h3>&rarr; The bin generator</h3>
         <p>
-          The <code>bin()</code> function returns a function that is a bin
-          generator. Here is an example of its usage:
+          The <code>bin()</code> function returns a <b>function</b> that is a
+          bin generator. Example:
         </p>
-        <p>Here is how the formulas look like:</p>
+        <CodeBlock code={snippet2} />
         <p>
-          <CodeBlock code={snippet2} />
+          3 arguments are passed to the <code>bin()</code> function:
         </p>
+        <ul>
+          <li>
+            <code>value</code> is the accessor function. For each item of the
+            array we will pass to the <code>bucketGenerator</code>, this is how
+            to get the numeric value of interest.
+          </li>
+          <li>
+            <code>domain</code> is the lower and upper bounds of the histogram.
+          </li>
+          <li>
+            <code>thresholds</code> is an array with the limits of each bucket.
+            Note that it can be easily computed from a usual{" "}
+            <code>scaleLinear</code>.
+          </li>
+        </ul>
 
-        <h3>&rarr; Computing the density</h3>
-        <p>
-          You don't have to understand each row of this code, but you have to
-          understand how to use it.
-        </p>
-        <p>
-          Everything starts with a set of numeric values (the data we want to
-          study) and a set of buckets. The more buckets you create, the smoother
-          the density will be.
-        </p>
+        <h3>&rarr; Bucket format</h3>
+        <p>The bucketGenerator can be applied to our dummy dataset:</p>
         <CodeBlock code={snippet3} />
         <p>
-          We can now create a function that computes a density from a dataset,
-          given some buckets:
+          The result is an array of arrays. Each item represents a bucket. Each
+          bucket is composed by all the values assigned to this bucket. Its{" "}
+          <code>length</code> is the bucket size, i.e. the future bar height.
+        </p>
+        <p>
+          Each bin has two additional attributes: <code>x0</code> and{" "}
+          <code>x1</code> being the lower (inclusive) and upper (exclusive)
+          bounds of the bin.
         </p>
         <CodeBlock code={snippet4} />
-        <p>And finally compute the density for our dataset:</p>
-        <CodeBlock code={snippet5} />
+        <p>Let's transform those buckets in bars.</p>
       </AccordionSection>
 
       <AccordionSection title={"Plotting the bars"} startOpen={true}>
         <p>
-          Now that the density coordinates are available, it's just a matter of
-          creating the <code>path</code> of a <code>svg</code> shape.
+          Now that the bucket information is available, we have to{" "}
+          <code>map</code> through it and draw a rectangle per bucket.
         </p>
         <p>
-          Fortunately, d3 comes with the handy <code>d3.line()</code> function
-          that allows to go from a set of coordinates to a path easily. In order
-          to keep the smoothing, you can use the <code>.curve()</code> attribute
-          as described in the code below.
+          There is nothing unusual here. The <code>xScale</code> and{" "}
+          <code>yScale</code> are computed using the <code>scaleLinear()</code>{" "}
+          function of d3. It's important to wrap this in a <code>useMemo</code>{" "}
+          hook to avoid recomputing unnecessarily.
         </p>
         <br />
         <ChartOrSandbox
-          VizComponent={DensityChartBasicDemo}
-          vizName={"DensityChartBasic"}
+          VizComponent={HistogramBasicDemo}
+          vizName={"HistogramBasic"}
           maxWidth={600}
           height={300}
           caption={
-            "Most basic density chart made with react and d3.js. Almost there, we we miss the axes here."
+            "Values of the dataset as distributed into bins. Bins are represented as rectangles."
           }
         />
       </AccordionSection>
 
       <AccordionSection title={"Adding axis"} startOpen={true}>
         <p>
-          The density chart above is pretty useless since we have no clue on
-          what the X axis represents. We need to display the bucket values to
-          make the chart insightful.
+          The last step to get a decent chart is to draw some axis. Otherwise
+          the bucket bounds are not available removing all insight of the chart.
         </p>
         <p>
           There are 2 main strategies to add axis to a react chart made with
@@ -181,14 +185,15 @@ export default function Home() {
           .
         </p>
         <p>
-          In the example below, I chosed to use the d3 way to render the X axis
-          only:
+          In the example below, I chosed to use the d3 way to render both axis.
+          Note also that a real dataset is used this time, showing the
+          distribution of Air BnB prices on the french riviera.
         </p>
         <br />
         <ChartOrSandbox
           VizComponent={HistogramWithAxisDemo}
           vizName={"HistogramWithAxis"}
-          maxWidth={600}
+          maxWidth={900}
           height={300}
           caption={
             "Adding a X axis with d3 makes the chart much more insightful."
@@ -197,7 +202,7 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={"Responsive density chart with react"}
+        title={"Responsive histogram with react"}
         startOpen={true}
       >
         <p>
@@ -226,12 +231,47 @@ export default function Home() {
         <br />
       </AccordionSection>
 
-      <AccordionSection
-        title={"Density chart with multiple groups"}
-        startOpen={true}
-      >
-        <p>Coming soon!</p>
+      <AccordionSection title={"Histogram variations"} startOpen={true}>
+        <p>
+          Once you've understood how to build a basic histogram with d3 and
+          react, it opens an infinite world of customization. Here are a few
+          examples: adding several groups, splitting the window to show groups
+          separately and more.
+        </p>
+        <p>Click on the overview to see details and code.</p>
         <br />
+        <div className="flex gap-4">
+          <img
+            className="border-blue-300"
+            src="/chartView/histMultiGroup.png"
+            style={{ height: 70 }}
+          />
+          <img
+            src="/chartView/histMultiGroupSplit.png"
+            style={{ height: 70 }}
+          />
+        </div>
+
+        <ChartOrSandbox
+          VizComponent={HistogramSeveralGroupsDemo}
+          vizName={"HistogramSeveralGroups"}
+          maxWidth={900}
+          height={300}
+          caption={
+            "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
+          }
+        />
+
+        <br />
+        <ChartOrSandbox
+          VizComponent={HistogramSeveralGroupsSplitPanelDemo}
+          vizName={"HistogramSeveralGroupsSplitPanel"}
+          maxWidth={900}
+          height={300}
+          caption={
+            "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
+          }
+        />
       </AccordionSection>
 
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />

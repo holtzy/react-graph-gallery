@@ -2,13 +2,15 @@ import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 
 const MARGIN = { top: 30, right: 30, bottom: 40, left: 50 };
-const BUCKET_NUMBER = 70;
-const BUCKET_PADDING = 1;
+const BUCKET_NUMBER = 20;
+const BUCKET_PADDING = 4;
+
+const COLORS = ["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"];
 
 type HistogramProps = {
   width: number;
   height: number;
-  data: number[];
+  data: { group: string; values: number[] }[];
 };
 
 export const Histogram = ({ width, height, data }: HistogramProps) => {
@@ -16,25 +18,35 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
+  const allGroups = data.map((group) => group.group);
+  const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(COLORS);
+
   const xScale = useMemo(() => {
-    const max = Math.max(...data);
-    return d3
-      .scaleLinear()
-      .domain([0, 1000]) // note: limiting to 1000 instead of max here because of extreme values in the dataset
-      .range([10, boundsWidth]);
+    const maxPerGroup = data.map((group) => Math.max(...group.values));
+    const max = Math.max(...maxPerGroup);
+    return d3.scaleLinear().domain([0, max]).range([10, boundsWidth]).nice();
   }, [data, width]);
 
-  const buckets = useMemo(() => {
-    const bucketGenerator = d3
+  const bucketGenerator = useMemo(() => {
+    return d3
       .bin()
       .value((d) => d)
       .domain(xScale.domain())
       .thresholds(xScale.ticks(BUCKET_NUMBER));
-    return bucketGenerator(data);
   }, [xScale]);
 
+  const groupBuckets = useMemo(() => {
+    return data.map((group) => {
+      return { group, buckets: bucketGenerator(group.values) };
+    });
+  }, [data]);
+
   const yScale = useMemo(() => {
-    const max = Math.max(...buckets.map((bucket) => bucket?.length));
+    const max = Math.max(
+      ...groupBuckets.map((group) =>
+        Math.max(...group.buckets.map((bucket) => bucket?.length))
+      )
+    );
     return d3.scaleLinear().range([boundsHeight, 0]).domain([0, max]).nice();
   }, [data, height]);
 
@@ -53,18 +65,19 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     svgElement.append("g").call(yAxisGenerator);
   }, [xScale, yScale, boundsHeight]);
 
-  const allRects = buckets.map((bucket, i) => {
-    return (
+  const allRects = groupBuckets.map((group, i) =>
+    group.buckets.map((bucket, j) => (
       <rect
-        key={i}
-        fill="#69b3a2"
+        key={i + "_" + j}
+        fill={colorScale(group.group)}
+        opacity={0.7}
         x={xScale(bucket.x0) + BUCKET_PADDING / 2}
         width={xScale(bucket.x1) - xScale(bucket.x0) - BUCKET_PADDING}
         y={yScale(bucket.length)}
         height={boundsHeight - yScale(bucket.length)}
       />
-    );
-  });
+    ))
+  );
 
   return (
     <svg width={width} height={height}>
