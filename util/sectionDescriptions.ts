@@ -44,7 +44,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/histogram",
     reactURL: "https://react-graph-gallery.com/histogram/",
     label: "Histogram",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "boxplot",
