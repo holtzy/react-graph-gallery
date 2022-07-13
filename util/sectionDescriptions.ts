@@ -154,7 +154,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/wordcloud",
     reactURL: "https://react-graph-gallery.com/wordcloud/",
     label: "Wordcloud",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "parallel",
