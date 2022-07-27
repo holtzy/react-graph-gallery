@@ -6,12 +6,11 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { useDimensions } from "../hook/use-dimensions";
-import { AxisBasic } from "../viz/AxisBasic/AxisBasic";
-import { AxisBasicD3 } from "../viz/AxisBasicD3/AxisBasicD3";
-import { CodeBlock } from "../component/CodeBlock";
 import { TakeHome } from "../component/TakeHome";
 import { ReactSpringMostBasic } from "../viz/ReactSpringMostBasic/ReactSpringMostBasic";
 import { ReactSpringAxis } from "../viz/ReactSpringAxis/ReactSpringAxis";
+import { ReactSpringMostBasicDemo } from "../viz/ReactSpringMostBasic/ReactSpringMostBasicDemo";
+import { ReactSpringAxisDemo } from "../viz/ReactSpringAxis/ReactSpringAxisDemo";
 
 const graphDescription = (
   <p>
@@ -25,69 +24,7 @@ const snippet1 = `
 const TICK_LENGTH = 6;
 
 export const AxisBottom = ({ xScale, pixelsPerTick }) => {
-  const range = xScale.range();
 
-  const ticks = useMemo(() => {
-    const width = range[1] - range[0];
-    const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
-
-    return xScale.ticks(numberOfTicksTarget).map((value) => ({
-      value,
-      xOffset: xScale(value),
-    }));
-  }, [xScale]);
-
-  return (
-    <>
-      {/* Main horizontal line */}
-      <path
-        d={["M", range[0], 0, "L", range[1], 0].join(" ")}
-        fill="none"
-        stroke="currentColor"
-      />
-
-      {/* Ticks and labels */}
-      {ticks.map(({ value, xOffset }) => (
-        <g key={value} transform={\`translate(\${xOffset}, 0)\`}>
-          <line y2={TICK_LENGTH} stroke="currentColor" />
-          <text
-            key={value}
-            style={{
-              fontSize: "10px",
-              textAnchor: "middle",
-              transform: "translateY(20px)",
-            }}
-          >
-            {value}
-          </text>
-        </g>
-      ))}
-    </>
-  );
-};
-`.trim();
-
-const snippet2 = `
-const TICK_LENGTH = 6;
-
-export const AxisLeft = ({ yScale, pixelsPerTick }) => {
-  const range = yScale.range();
-
-};
-`.trim();
-
-const snippet3 = `
-const chartSize = useDimensions(chartRef);
-`.trim();
-
-const snippet4 = `
-return(
-  <div ref={chartRef}>
-    <MyChartComponent
-      height={chartSize.height}
-      width={chartSize.width}
-  </div>
-)
 `.trim();
 
 export default function Home() {
@@ -153,11 +90,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"ReactSpringMostBasic"}
+          VizComponent={ReactSpringMostBasicDemo}
           maxWidth={800}
           height={200}
-          render={(dim) => (
-            <ReactSpringMostBasic width={dim.width} height={dim.height} />
-          )}
+          caption="A very basic animation using react and react-spring."
         />
       </AccordionSection>
 
@@ -167,13 +103,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"ReactSpringAxis"}
+          VizComponent={ReactSpringAxisDemo}
           maxWidth={800}
           height={200}
-          render={(dim) => (
-            <div>
-              <ReactSpringAxis width={dim.width} height={dim.height} />
-            </div>
-          )}
+          caption="A very basic animation using react and react-spring."
         />
       </AccordionSection>
 
