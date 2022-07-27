@@ -6,10 +6,8 @@ import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { TreemapBasic } from "../viz/TreemapBasic/TreemapBasic";
-import { data } from "../viz/TreemapBasic/data";
-import { Treemap } from "../viz/Treemap2Levels/Treemap";
-import { data as data2levels } from "../viz/Treemap2Levels/data";
+import { TreemapBasicDemo } from "../viz/TreemapBasic/TreemapBasicDemo";
+import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";
 
 const graphDescription = (
   <p>
@@ -32,26 +30,6 @@ const data = {
     {type: 'leaf', name:"Emily", value: 34},
     ...
 }
-`.trim();
-
-const snippet2 = `
-// data is something like [12, 4, 7, 9, ....]
-const binBuilder = d3
-  .bin()
-  .domain([min, max])
-  .thresholds(yScale.ticks(14)) // how many bins we want?
-  .value((d) => d); // accessor function, just return the value since we're dealing with an array of number
-const bins = binBuilder(data);
-`.trim();
-
-const snippet3 = `
-const areaBuilder = d3
-  .area()
-  .x0((d) => wScale(-d.length))
-  .x1((d) => wScale(d.length))
-  .y((d) => yScale(d.x0))
-  .curve(d3.curveBumpY);
-const area = areaBuilder(bins);
 `.trim();
 
 export default function Home() {
@@ -117,10 +95,10 @@ export default function Home() {
         </p>
         <ChartOrSandbox
           vizName={"TreemapBasic"}
+          VizComponent={TreemapBasicDemo}
+          maxWidth={600}
           height={400}
-          render={(dim) => (
-            <TreemapBasic data={data} width={dim.width} height={dim.height} />
-          )}
+          caption="The most basic treemap made with react and d3.js."
         />
       </AccordionSection>
 
@@ -133,10 +111,10 @@ export default function Home() {
 
         <ChartOrSandbox
           vizName={"Treemap2Levels"}
+          VizComponent={Treemap2LevelsDemo}
+          maxWidth={600}
           height={400}
-          render={(dim) => (
-            <Treemap data={data2levels} width={dim.width} height={dim.height} />
-          )}
+          caption="Treemap with 2 levels of hierarchy, made with react and d3.js."
         />
       </AccordionSection>
 

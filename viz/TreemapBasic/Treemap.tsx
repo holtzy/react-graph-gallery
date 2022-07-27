@@ -2,13 +2,13 @@ import { useMemo } from "react";
 import { Tree } from "./data";
 import * as d3 from "d3";
 
-type TreemapBasicProps = {
+type TreemapProps = {
   width: number;
   height: number;
   data: Tree;
 };
 
-export const TreemapBasic = ({ width, height, data }: TreemapBasicProps) => {
+export const Treemap = ({ width, height, data }: TreemapProps) => {
   const hierarchy = useMemo(() => {
     return d3.hierarchy(data).sum((d) => d.value);
   }, [data]);
