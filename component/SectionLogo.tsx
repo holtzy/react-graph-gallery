@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import type { ChartLogo } from "../util/sectionDescriptions";
 
 // This component displays a logo representing a chart type of the gallery. Example: bar chart
@@ -33,11 +32,11 @@ export default function SectionLogo({ chartLogo }: SectionLogoProps) {
   }
 
   return (
-    <Image
+    <img
       alt={"todo"}
       src={"/section/" + chartLogo + ".png"}
-      layout="fill"
-      objectFit="contain"
+      // layout="fill"
+      // objectFit="contain"
     />
   );
 }
