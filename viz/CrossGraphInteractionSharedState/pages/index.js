@@ -1,4 +1,4 @@
-import { App } from "./App";
+import { App } from "../App";
 
 export default function IndexPage() {
     return (
