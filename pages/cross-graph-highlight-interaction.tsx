@@ -8,6 +8,7 @@ import { CodeBlock } from "../component/CodeBlock";
 import { CrossGraphInteractionSharedStateDemo } from "../viz/CrossGraphInteractionSharedState/CrossGraphInteractionSharedStateDemo";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { CrossGraphInteractionWithContextDemo } from "../viz/CrossGraphInteractionWithContext/CrossGraphInteractionWithContextDemo";
+import { CrossGraphInteractionBetterRenderDemo } from "../viz/CrossGraphInteractionBetterRender/CrossGraphInteractionBetterRenderDemo";
 
 const graphDescription = (
   <p>
@@ -18,21 +19,22 @@ const graphDescription = (
 );
 
 const snippet1 = `
-const TICK_LENGTH = 6;
+const [group, setGroup] = useState<number | null>(null);
+`.trim();
 
-export const AxisBottom = ({ xScale, pixelsPerTick }) => {
-  const range = xScale.range();
+const snippet2 = `
+<Barplot
+  width={300}
+  height={220}
+  group={group}
+  setGroup={setGroup}
+/>
+`.trim();
 
-  const ticks = useMemo(() => {
-    const width = range[1] - range[0];
-    const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
-
-    return xScale.ticks(numberOfTicksTarget).map((value) => ({
-      value,
-      xOffset: xScale(value),
-    }));
-  }, [xScale]);
-
+const snippet3 = `
+style={{
+  opacity: group === i ? 1 : 0.4,
+}}
 `.trim();
 
 export default function Home() {
@@ -45,6 +47,11 @@ export default function Home() {
         title="Cross graph highlight interaction"
         description={graphDescription}
       />
+
+      <blockquote>
+        Disclaimer: the concepts explained here where showed to me by my
+        colleague <a href="https://github.com/gvergnaud">Gabriel Vergnaud</a>.
+      </blockquote>
 
       <AccordionSection
         title={"What is cross graph interaction"}
@@ -60,13 +67,45 @@ export default function Home() {
         title={"Naive solution: a shared state"}
         startOpen={false}
       >
-        <p>A first solution: a shared state.</p>
+        <p>
+          A first solution: a shared state. You defined a react state at the
+          level of the component that wraps all your viz with{" "}
+          <code>useState</code>:
+        </p>
         <CodeBlock code={snippet1} />
-        <p>Works for a simple use case</p>
-        <p>But does not for a big sample size</p>
+        <p>
+          You then pass the state and the setter function to each viz. Something
+          like:
+        </p>
+        <CodeBlock code={snippet2} />
+        <p>
+          Then, for each shape item of the graph you're building, you check
+          wether or not the shape should be highlighted, and changes the way
+          it's rendered if so.
+        </p>
+        <p>
+          In the example below I slightly increase the opacity, so the{" "}
+          <code>div</code> as this in its style attribute:
+        </p>
+        <CodeBlock code={snippet3} />
+        <p>Here is the result for 4 barplots with 1500 items each:</p>
         <ChartOrSandbox
           vizName={"CrossGraphInteractionSharedState"}
           VizComponent={CrossGraphInteractionSharedStateDemo}
+          maxWidth={600}
+          height={500}
+          caption="Four barplots with 1500 groups each. Hovering a group on a chart highlights it on other charts, with very poor performances."
+        />
+        <p>As you can see it works, but is very slow.</p>
+        <p></p>
+      </AccordionSection>
+
+      <AccordionSection title={"Improving rerendering"} startOpen={false}>
+        <p>A first solution: a shared state.</p>
+
+        <ChartOrSandbox
+          vizName={"CrossGraphInteractionBetterRender"}
+          VizComponent={CrossGraphInteractionBetterRenderDemo}
           maxWidth={600}
           height={500}
           caption="Four barplots with 3000 groups each. Hovering a group on a chart highlights it on other charts, with very poor performances."

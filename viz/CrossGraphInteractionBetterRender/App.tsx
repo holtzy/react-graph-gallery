@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Barplot } from "./Barplot";
 
 type AppProps = {

@@ -1,6 +1,5 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
-import { useCrossGraphInteraction } from "./cross-graph-interaction";
 import styles from "./Barplot.module.css";
 
 const NUMBER_OF_GROUP = 1500;
@@ -8,10 +7,18 @@ const NUMBER_OF_GROUP = 1500;
 type BarplotProps = {
   width: number;
   height: number;
+  group: number | null;
+  setGroup: (group: number | null) => void;
   color: string;
 };
 
-export const Barplot = ({ width, height, color }: BarplotProps) => {
+export const Barplot = ({
+  width,
+  height,
+  group,
+  setGroup,
+  color,
+}: BarplotProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   // Create a fake dataset when component mounts
@@ -48,30 +55,35 @@ export const Barplot = ({ width, height, color }: BarplotProps) => {
     }
   };
 
-  const emit = useCrossGraphInteraction((group) => highlightGroup(group));
+  useEffect(() => {
+    highlightGroup(String(group));
+  }, [group]);
 
-  const allShapes = data.map((d, i) => {
-    return (
-      <div
-        key={i}
-        onMouseEnter={() => emit(String(i))}
-        onMouseLeave={() => emit(null)}
-        className={styles.barContainer + " " + "group_" + String(i)}
-        style={{ width }}
-      >
+  const allShapes = useMemo(() => {
+    return data.map((d, i) => {
+      console.log("again!");
+      return (
         <div
-          className={styles.bar}
-          style={{
-            width: xScale(d),
-            backgroundColor: color,
-          }}
-        />
-        <div className={styles.text}>
-          <p>{i}</p>
+          key={i}
+          onMouseEnter={() => setGroup(i)}
+          onMouseLeave={() => setGroup(null)}
+          className={styles.barContainer + " " + "group_" + String(i)}
+          style={{ width }}
+        >
+          <div
+            className={styles.bar}
+            style={{
+              width: xScale(d),
+              backgroundColor: color,
+            }}
+          />
+          <div className={styles.text}>
+            <p>{i}</p>
+          </div>
         </div>
-      </div>
-    );
-  });
+      );
+    });
+  }, [data, width, height, color]);
 
   return (
     <div ref={ref} style={{ width, height, overflow: "scroll" }}>

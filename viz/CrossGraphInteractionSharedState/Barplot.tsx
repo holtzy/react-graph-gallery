@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
 
-const NUMBER_OF_GROUP = 500;
+const NUMBER_OF_GROUP = 1500;
 
 type BarplotProps = {
   width: number;
