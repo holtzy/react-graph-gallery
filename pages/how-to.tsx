@@ -116,9 +116,9 @@ export default function HowTo() {
 
       <BlogPostItem
         title={"Graph to graph interaction"}
-        timeToRead={4}
-        link="to-do"
-        isAvailable={false}
+        timeToRead={10}
+        link="cross-graph-highlight-interaction"
+        isAvailable={true}
       >
         <span>
           Let's say you have a choropleth map on a side, a timeseries on the
