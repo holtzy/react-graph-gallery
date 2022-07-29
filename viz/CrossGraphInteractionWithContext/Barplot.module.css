@@ -1,0 +1,25 @@
+.barContainer {
+    height: 15px;
+    position: relative;
+    margin: 1px
+}
+
+.bar {
+    position: absolute;
+    height: 100%;
+    opacity: .4;
+    border-radius: 2px;
+}
+
+.text {
+    position: absolute;
+    height: 100%;
+    font-size: 8px;
+    margin-left: 4px;
+    margin-top: 2px;
+    color: "grey";
+}
+
+.highlighted {
+    opacity: .8
+}

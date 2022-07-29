@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useRef,
 } from "react";
@@ -9,32 +10,30 @@ import { isEqual } from "lodash";
 
 // Create a react context
 // Wrap some react components in CrossGraphInteractionContext.provider and they will have access to its value
-const CrossGraphInteractionContext = createContext<EventEmitter<
-  string[] | null
-> | null>(null);
+const CrossGraphInteractionContext = createContext<EventEmitter | null>(null);
 
 // Create an event emitter
-class EventEmitter<T> {
+class EventEmitter {
   private eventTarget: EventTarget;
   constructor() {
     this.eventTarget = new EventTarget();
   }
 
-  addListener(callback: (tags: T) => void) {
-    const handler = (e: CustomEvent<T>) => {
+  addListener(callback: (group: string | null) => void) {
+    const handler = (e: CustomEvent<string | null>) => {
       callback(e.detail);
     };
 
-    this.eventTarget.addEventListener("tagschange", handler as any);
+    this.eventTarget.addEventListener("groupchange", handler as any);
 
     return () => {
-      this.eventTarget.removeEventListener("tagschange", handler as any);
+      this.eventTarget.removeEventListener("groupchange", handler as any);
     };
   }
 
-  emit(tags: T) {
+  emit(group: string) {
     this.eventTarget.dispatchEvent(
-      new CustomEvent<T>("tagschange", { detail: tags })
+      new CustomEvent<string | null>("groupchange", { detail: group })
     );
   }
 }
@@ -45,7 +44,7 @@ export const CrossGraphInteractionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const eventTargetRef = useRef(new EventEmitter<string | null>());
+  const eventTargetRef = useRef(new EventEmitter());
 
   return (
     <CrossGraphInteractionContext.Provider value={eventTargetRef.current}>
@@ -54,42 +53,38 @@ export const CrossGraphInteractionProvider = ({
   );
 };
 
-// The hook allowing to each graph (=the consumers) to use the context and emit something in it.
+// The hook allowing to each graph (= the consumers) to use the context and emit something in it.
 export const useCrossGraphInteraction = (
-  group: string,
-  { onReceiveGroup }: { onReceiveGroup: (tags: string | null) => void }
+  onReceiveGroup: (group: string | null) => void
 ) => {
   // become a consumer of the context
   const eventEmitter = useContext(CrossGraphInteractionContext);
 
-  const onReceivegroupRef = useRef(onReceiveGroup);
-
+  const onReceiveGroupRef = useRef(onReceiveGroup);
   useLayoutEffect(() => {
-    onReceivegroupRef.current = onReceiveGroup;
+    onReceiveGroupRef.current = onReceiveGroup;
   });
 
-  const previousTagsRef = useRef<string[] | null>(null);
+  const previousGroupRef = useRef<string | null>(null);
 
-  const onGroupChange = useCallback((tags: string[] | null) => {
-    const prevTags = previousTagsRef.current;
-    if (!isEqual(tags, prevTags)) {
-      onReceiveTagsRef.current(tags);
+  const onGroupChange = useCallback((group: string | null) => {
+    const prevGroup = previousGroupRef.current;
+    if (!isEqual(group, prevGroup)) {
+      onReceiveGroupRef.current(group);
     }
-    previousTagsRef.current = tags;
+    previousGroupRef.current = group;
   }, []);
 
   useEffect(() => {
-    return eventEmitter?.addListener((tags) => {
-      const filteredTags =
-        tags?.filter((tag) => groupTagKeys.includes(getTagKey(tag))) ?? [];
-      onTagsChange(filteredTags.length === 0 ? null : filteredTags);
+    return eventEmitter?.addListener((group) => {
+      onGroupChange(group);
     });
-  }, [onTagsChange, eventEmitter, ...groupTagKeys]);
+  }, [onGroupChange, eventEmitter]);
 
-  const emitCrossWidgetTags = React.useCallback(
-    (tags: string[] | null) => eventEmitter?.emit(tags),
+  const emitCrossGraphGroup = useCallback(
+    (group: string | null) => eventEmitter?.emit(group),
     [eventEmitter]
   );
 
-  return { emitCrossWidgetTags };
+  return emitCrossGraphGroup;
 };

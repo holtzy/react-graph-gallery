@@ -1,23 +1,19 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import * as d3 from "d3";
+import { useCrossGraphInteraction } from "./cross-graph-interaction";
+import styles from "./Barplot.module.css";
 
-const NUMBER_OF_GROUP = 30;
+const NUMBER_OF_GROUP = 3;
 
 type BarplotProps = {
   width: number;
   height: number;
-  group: number | null;
-  setGroup: (group: number | null) => void;
   color: string;
 };
 
-export const Barplot = ({
-  width,
-  height,
-  group,
-  setGroup,
-  color,
-}: BarplotProps) => {
+export const Barplot = ({ width, height, color }: BarplotProps) => {
+  const [group, setGroup] = useState<number | null>(null);
+
   // Create a fake dataset when component mounts
   const data = useMemo(() => {
     let data = [];
@@ -32,25 +28,26 @@ export const Barplot = ({
     return d3.scaleLinear().domain([0, 100]).range([0, width]);
   }, [width]);
 
+  const emit = useCrossGraphInteraction((group) => setGroup(Number(group)));
+
   const allShapes = data.map((d, i) => {
     return (
       <div
         key={i}
-        onMouseEnter={() => setGroup(i)}
-        onMouseLeave={() => setGroup(null)}
-        style={{ width, height: 15, position: "relative", margin: 1 }}
+        // onMouseEnter={() => emit(String(i))}
+        // onMouseLeave={() => emit(null)}
+        className={styles.barContainer}
+        style={{ width }}
       >
         <div
+          className={styles.bar}
           style={{
-            position: "absolute",
-            height: "100%",
             width: xScale(d),
             backgroundColor: color,
-            opacity: group === i ? 1 : 0.4,
-            borderRadius: 2,
           }}
         />
         <div
+          className={styles.text}
           style={{
             position: "absolute",
             height: "100%",
