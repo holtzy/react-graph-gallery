@@ -13,7 +13,6 @@ export const CircularPacking = ({
   height,
   data,
 }: CircularPackingProps) => {
-  console.log(data);
   const hierarchy = useMemo(() => {
     return d3
       .hierarchy(data)

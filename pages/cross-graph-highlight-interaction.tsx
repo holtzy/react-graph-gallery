@@ -64,13 +64,13 @@ export default function Home() {
         <CodeBlock code={snippet1} />
         <p>Works for a simple use case</p>
         <p>But does not for a big sample size</p>
-        {/* <ChartOrSandbox
+        <ChartOrSandbox
           vizName={"CrossGraphInteractionSharedState"}
           VizComponent={CrossGraphInteractionSharedStateDemo}
           maxWidth={600}
           height={500}
           caption="Four barplots with 3000 groups each. Hovering a group on a chart highlights it on other charts, with very poor performances."
-        /> */}
+        />
         <p>Why is it so slow?</p>
         <p></p>
       </AccordionSection>

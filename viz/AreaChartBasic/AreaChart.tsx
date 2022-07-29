@@ -12,7 +12,6 @@ type AreaChartProps = {
 };
 
 export const AreaChart = ({ width, height, data }: AreaChartProps) => {
-  console.log("width", width);
   // bounds = area inside the graph axis = calculated by substracting the margins
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;

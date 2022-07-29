@@ -1,9 +1,9 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import { useCrossGraphInteraction } from "./cross-graph-interaction";
 import styles from "./Barplot.module.css";
 
-const NUMBER_OF_GROUP = 3;
+const NUMBER_OF_GROUP = 500;
 
 type BarplotProps = {
   width: number;
@@ -12,7 +12,7 @@ type BarplotProps = {
 };
 
 export const Barplot = ({ width, height, color }: BarplotProps) => {
-  const [group, setGroup] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   // Create a fake dataset when component mounts
   const data = useMemo(() => {
@@ -28,15 +28,35 @@ export const Barplot = ({ width, height, color }: BarplotProps) => {
     return d3.scaleLinear().domain([0, 100]).range([0, width]);
   }, [width]);
 
-  const emit = useCrossGraphInteraction((group) => setGroup(Number(group)));
+  const highlightGroup = (group: string | null) => {
+    if (!ref.current) return;
+
+    const highlightedElements = ref.current.querySelectorAll(
+      `.${styles.highlighted}`
+    );
+
+    for (const element of Array.from(highlightedElements)) {
+      element.classList.remove(`${styles.highlighted}`);
+    }
+
+    if (!group) return;
+
+    const elements = ref.current.querySelectorAll(".group_" + group);
+
+    for (const element of Array.from(elements)) {
+      element.classList.add(`${styles.highlighted}`);
+    }
+  };
+
+  const emit = useCrossGraphInteraction((group) => highlightGroup(group));
 
   const allShapes = data.map((d, i) => {
     return (
       <div
         key={i}
-        // onMouseEnter={() => emit(String(i))}
-        // onMouseLeave={() => emit(null)}
-        className={styles.barContainer}
+        onMouseEnter={() => emit(String(i))}
+        onMouseLeave={() => emit(null)}
+        className={styles.barContainer + " " + "group_" + String(i)}
         style={{ width }}
       >
         <div
@@ -46,22 +66,16 @@ export const Barplot = ({ width, height, color }: BarplotProps) => {
             backgroundColor: color,
           }}
         />
-        <div
-          className={styles.text}
-          style={{
-            position: "absolute",
-            height: "100%",
-            fontSize: 8,
-            marginLeft: 4,
-            marginTop: 2,
-            color: "grey",
-          }}
-        >
+        <div className={styles.text}>
           <p>{i}</p>
         </div>
       </div>
     );
   });
 
-  return <div style={{ width, height, overflow: "scroll" }}>{allShapes}</div>;
+  return (
+    <div ref={ref} style={{ width, height, overflow: "scroll" }}>
+      {allShapes}
+    </div>
+  );
 };

@@ -1,13 +1,13 @@
 .barContainer {
     height: 15px;
     position: relative;
-    margin: 1px
+    margin: 1px;
+    opacity: .1;
 }
 
 .bar {
     position: absolute;
     height: 100%;
-    opacity: .4;
     border-radius: 2px;
 }
 
@@ -21,5 +21,5 @@
 }
 
 .highlighted {
-    opacity: .8
+    opacity: 1
 }
