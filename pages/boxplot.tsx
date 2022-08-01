@@ -246,7 +246,7 @@ export default function Home() {
           vizName={"BoxplotJitter"}
           VizComponent={BoxplotJitterDemo}
           maxWidth={600}
-          height={300}
+          height={450}
           caption={
             <span>
               Showing individual data points using jittering on top of your
