@@ -1,16 +1,13 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
-import { ViolinBasic } from "../viz/ViolinBasic/Violin";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { data as violinData } from "../data/distribution-multi-groups-random";
 import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
-import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
 import { ViolinBasicDemo } from "../viz/ViolinBasic/ViolinBasicDemo";
 import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
 
@@ -66,7 +63,7 @@ export default function Home() {
         description={graphDescription}
         chartType="violin"
       />
-      <h2>🚀 Just show me the graph and its code!</h2>
+      <h2>🚀 Quick start</h2>
       <p>
         A violin chart allows to visualize the distribution of one or several
         groups. Here, groups are spread on the X axis, when the Y axis
@@ -83,7 +80,17 @@ export default function Home() {
         VizComponent={ViolinBasicDemo}
         maxWidth={600}
         height={400}
+        caption={
+          "A violin plot built with React and d3.js. Click on the button below to get an interactive sandbox with reproducible code."
+        }
       />
+
+      {/*
+      -
+      -
+        Section 1
+      -
+      - */}
       <AccordionSection title={"The data"} startOpen={true}>
         <p>
           The dataset used to build a violin chart is usually an array of
@@ -102,6 +109,12 @@ export default function Home() {
         </p>
       </AccordionSection>
 
+      {/*
+      -
+      -
+        Section 2
+      -
+      - */}
       <AccordionSection
         title={"Building a violin shape with d3.js"}
         startOpen={true}
@@ -150,6 +163,12 @@ export default function Home() {
         </TakeHome>
       </AccordionSection>
 
+      {/*
+      -
+      -
+        Section 3
+      -
+      - */}
       <AccordionSection
         title={"Rendering a basic violin chart with React"}
         startOpen={true}
@@ -170,9 +189,16 @@ export default function Home() {
           height={400}
         />
       </AccordionSection>
+
+      {/*
+      -
+      -
+        Section 4
+      -
+      - */}
       <AccordionSection
         title={"Variation: violin to boxplot transition"}
-        startOpen={false}
+        startOpen={true}
       >
         <p>
           The react graph gallery has a{" "}
@@ -192,6 +218,13 @@ export default function Home() {
           caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
         />
       </AccordionSection>
+
+      {/*
+      -
+      -
+        Section 4
+      -
+      - */}
       <AccordionSection
         title={"Variation: violin plot with jitter"}
         startOpen={false}
