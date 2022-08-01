@@ -14,6 +14,7 @@ import { VerticalBox } from "../viz/BoxDemoVertical/VerticalBox";
 import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo";
 import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
 import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
+import { BoxplotJitterDemo } from "../viz/BoxplotJitter/BoxplotJitterDemo";
 
 const graphDescription = (
   <p>
@@ -212,11 +213,51 @@ export default function Home() {
           caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
         />
       </AccordionSection>
+
       <AccordionSection
         title={"Variation: boxplot with jitter"}
-        startOpen={false}
+        startOpen={true}
       >
-        <p>Oh no! This chart isn't available yet!</p>
+        <p>
+          Even if powerful to summarize the distribution of a numeric variable,
+          the boxplot{" "}
+          <a href="https://www.data-to-viz.com/caveat/boxplot.html">
+            has flaws
+          </a>
+          .
+        </p>
+        <p>
+          It basically <b>hides the underlying distribution</b>. For instance, a
+          low sample size or a bi-modal distribution are impossible to detect
+          reading the boxes only.
+        </p>
+        <p>
+          <b>Jittering</b> is a good workaround. Add all individual data points
+          with low size, low opacity, and some random shift to the right or to
+          the left (jitter). The underlying distribution becomes instantly
+          available.
+        </p>
+        <p>
+          Note that another good alternative is the{" "}
+          <Link href="/violin-plot">violin plot</Link>, especially for high
+          sample size.
+        </p>
+        <ChartOrSandbox
+          vizName={"BoxplotJitter"}
+          VizComponent={BoxplotJitterDemo}
+          maxWidth={600}
+          height={300}
+          caption={
+            <span>
+              Showing individual data points using jittering on top of your
+              boxplot adds trust. Reader now knows you're not{" "}
+              <a href="https://www.data-to-viz.com/caveat/boxplot.html">
+                hiding
+              </a>{" "}
+              anything.
+            </span>
+          }
+        />
       </AccordionSection>
 
       <br />

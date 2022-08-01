@@ -12,7 +12,7 @@ type ChartOrSandboxProps = {
   vizName: string;
   height?: number;
   maxWidth?: number;
-  caption?: string | HTMLElement;
+  caption?: string | HTMLElement | Element;
 };
 
 export const ChartOrSandbox = ({
@@ -33,7 +33,7 @@ export const ChartOrSandbox = ({
     // It has to be "relative". Note that it goes out of the article container if necessary!
     <div
       style={{ marginLeft: "-50vw", left: "50%" }}
-      className="my-4 py-4 w-screen relative bg-gray-50"
+      className="my-4 py-4 w-screen relative"
     >
       {showSandbox ? (
         <div className="flex flex-col items-center justify-center w-full">
@@ -48,8 +48,10 @@ export const ChartOrSandbox = ({
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <div style={{ height, width: "100%", maxWidth }} ref={chartRef}>
-            <VizComponent height={height} width={chartSize.width} />
+          <div className="bg-gray-50 w-screen flex justify-center">
+            <div style={{ height, width: "100%", maxWidth }} ref={chartRef}>
+              <VizComponent height={height} width={chartSize.width} />
+            </div>
           </div>
           <Caption>{caption}</Caption>
           <div className="flex justify-center">
