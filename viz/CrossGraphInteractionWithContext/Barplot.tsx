@@ -29,6 +29,8 @@ export const Barplot = ({ width, height, color }: BarplotProps) => {
   }, [width]);
 
   const highlightGroup = (group: string | null) => {
+    console.log("hightlight!");
+
     if (!ref.current) return;
 
     const highlightedElements = ref.current.querySelectorAll(

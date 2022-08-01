@@ -28,7 +28,7 @@ export default function SectionLogoWithOverlay({
   const cursor = isAvailable ? "cursor-pointer" : "cursor-not-allowed";
 
   return (
-    <Link href={link}>
+    <Link href={isAvailable ? link : ""}>
       <div className="flex flex-col items-center">
         <div
           style={{ width: size, height: size }}
@@ -36,9 +36,14 @@ export default function SectionLogoWithOverlay({
             "relative mr-2 rounded-full" + " " + opacity + " " + cursor
           }
         >
-          <SectionLogo chartLogo={chartLogo} />
+          {/* Logo*/}
+          <div className="absolute">
+            <SectionLogo chartLogo={chartLogo} />
+          </div>
+
+          {/* Overlay that appears on hover */}
           {isGeneralFamily ? (
-            <div className="opacity-0 hover:opacity-60 flex items-center justify-center w-full h-full z-30">
+            <div className="absolute opacity-0 hover:opacity-60 flex items-center justify-center w-full h-full z-30">
               <SvgHexagon size={size} />
             </div>
           ) : (
@@ -47,6 +52,8 @@ export default function SectionLogoWithOverlay({
             </div>
           )}
         </div>
+
+        {/* Caption */}
         <p className={"font-light text-sm text-gray-600" + " " + opacity}>
           {caption}
         </p>

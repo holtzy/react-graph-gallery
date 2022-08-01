@@ -92,7 +92,7 @@ export default function Home() {
           1,024 x 768.
         </p>
         <div className="flex flex-col items-center">
-          <img src="/img/screen_mockup.png" style={{ maxWidth: 600 }} />
+          <img src="./img/screen_mockup.png" style={{ maxWidth: 600 }} />
           <Caption>
             When you watch{" "}
             <a href="https://www.dataviz-inspiration.com">

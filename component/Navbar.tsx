@@ -20,11 +20,12 @@ export default function Navbar() {
           </div>
 
           <div className="">
-            <Link href="/how-to">
-              <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
-                How to...
-              </span>
-            </Link>
+            <a
+              href="how-to"
+              className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
+            >
+              How to...
+            </a>
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
               className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
