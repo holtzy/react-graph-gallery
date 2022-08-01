@@ -25,7 +25,6 @@ export const ParallaxSection = ({
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className="mt-12"
       />
       <div className="absolute top-0 left-0 w-full h-full">{children}</div>
     </div>

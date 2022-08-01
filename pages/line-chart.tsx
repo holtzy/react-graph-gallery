@@ -11,6 +11,7 @@ import { LineChart } from "../viz/LineChartBasic/LineChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
 import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <p>
@@ -90,17 +91,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <div className="full-bleed">
-        <ParallaxSection
-          height={200}
-          imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
-          opacity={0.3}
-        >
-          <div className="flex justify-center items-center h-full">
-            <p>Barplot inspiration</p>
-          </div>
-        </ParallaxSection>
-      </div>
+      <DatavizInspirationParallaxLink chartId="line" />
 
       <AccordionSection title={"Multiple groups"} startOpen={true}>
         <p>Todo, same thing but with several groups</p>

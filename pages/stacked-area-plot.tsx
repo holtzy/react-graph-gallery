@@ -11,6 +11,7 @@ import { StackedAreaChart } from "../viz/StackedAreaChartBasic/StackedAreaChart"
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
 import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <p>
@@ -135,17 +136,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <div className="full-bleed my-24">
-        <ParallaxSection
-          height={200}
-          imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
-          opacity={0.3}
-        >
-          <div className="flex justify-center items-center h-full">
-            <p>Barplot inspiration</p>
-          </div>
-        </ParallaxSection>
-      </div>
+      <DatavizInspirationParallaxLink chartId="stackedArea" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />

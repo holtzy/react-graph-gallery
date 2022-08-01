@@ -1,5 +1,6 @@
 import React from "react";
 import { ChartId } from "../util/sectionDescriptions";
+import { AccordionSection } from "./AccordionSection";
 import { LinkAsButton } from "./LinkAsButton";
 import { ParallaxSection } from "./ParallaxSection";
 
@@ -11,8 +12,8 @@ export default function DatavizInspirationParallaxLink({
   chartId,
 }: DatavizInspirationParallaxLinkProps) {
   return (
-    <>
-      <p className="mt-10">
+    <AccordionSection title={"More inspiration"} startOpen={true}>
+      <p>
         If you're looking for inspiration to create your next histogram, note
         that{" "}
         <a href="https://www.dataviz-inspiration.com">
@@ -22,7 +23,7 @@ export default function DatavizInspirationParallaxLink({
         inspiration!
       </p>
 
-      <div className="full-bleed mb-10">
+      <div className="border mb-10">
         <ParallaxSection
           height={250}
           imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
@@ -51,6 +52,6 @@ export default function DatavizInspirationParallaxLink({
           </div>
         </ParallaxSection>
       </div>
-    </>
+    </AccordionSection>
   );
 }

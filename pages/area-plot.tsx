@@ -11,6 +11,7 @@ import { AreaChart } from "../viz/AreaChartBasic/AreaChart";
 import Link from "next/link";
 import { ParallaxSection } from "../component/ParallaxSection";
 import { AreaChartBasicDemo } from "../viz/AreaChartBasic/AreaChartBasicDemo";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <p>
@@ -91,17 +92,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <div className="full-bleed">
-        <ParallaxSection
-          height={200}
-          imgLink="https://github.com/holtzy/dataviz-inspiration/blob/main/public/misc/overview1.png?raw=true"
-          opacity={0.3}
-        >
-          <div className="flex justify-center items-center h-full">
-            <p>Barplot inspiration</p>
-          </div>
-        </ParallaxSection>
-      </div>
+      <DatavizInspirationParallaxLink chartId="area" />
 
       <AccordionSection title={"Multiple groups"} startOpen={true}>
         <p>Todo, same thing but with several groups</p>

@@ -10,6 +10,7 @@ import { TakeHome } from "../component/TakeHome";
 import Link from "next/link";
 import { ViolinBasicDemo } from "../viz/ViolinBasic/ViolinBasicDemo";
 import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <p>
@@ -189,6 +190,8 @@ export default function Home() {
           height={400}
         />
       </AccordionSection>
+
+      <DatavizInspirationParallaxLink chartId="violin" />
 
       {/*
       -
