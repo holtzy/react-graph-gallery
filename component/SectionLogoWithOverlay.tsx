@@ -7,7 +7,7 @@ const generalList = chartTypesInfo
   .filter((info) => info.family === "general")
   .map((info) => info.logo);
 
-type SectionLogoWithOverlay = {
+type SectionLogoWithOverlayProps = {
   chartLogo: ChartLogo;
   caption: string;
   link: string;
@@ -20,7 +20,7 @@ export default function SectionLogoWithOverlay({
   link,
   isAvailable,
   size,
-}: SectionLogoWithOverlay) {
+}: SectionLogoWithOverlayProps) {
   // If the logo is in the "general" family, do not display an overlay.
   const isGeneralFamily = generalList.includes(chartLogo);
 
