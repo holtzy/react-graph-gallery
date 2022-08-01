@@ -104,7 +104,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/bubble",
     reactURL: "https://react-graph-gallery.com/bubble-plot/",
     label: "Bubble",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "connectedScatter",
