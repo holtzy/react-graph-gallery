@@ -6,8 +6,8 @@ import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
 import Link from "next/link";
+import { BubblePlotBasicDemo } from "../viz/BubbleBasic/BubbleBasicDemo";
 
 const graphDescription = (
   <p>
@@ -84,20 +84,42 @@ export default function Home() {
         </blockquote>
       </div>
 
-      <AccordionSection title={"Most basic scatterplot"} startOpen={true}>
+      <AccordionSection title={"Static bubble chart"} startOpen={true}>
         <p>
-          Use <code>scaleLinear</code> for the scales. Tricky part is to build
-          the axis: can be done with with d3.js or with React. Deserves its own
-          blogpost.
+          A few additional steps are required to move from a{" "}
+          <Link href="scatter-plot">scatterplot</Link> to a bubble chart.
         </p>
+        <ul>
+          <li>
+            One more <code>linearScale</code> is needed to control the circle
+            size. The <code>range</code> is an arbitrary array where you define
+            the min and max sizes you want to display. Don't forget you can use
+            a log scale if you have extreme values in the dataset.
+          </li>
+          <li>
+            Optionally, a fourth scale can be added for the color using a{" "}
+            <code>scaleOrdinal</code>.
+          </li>
+          <li>
+            A bubble chart often have circle overlaps. It's strongly advised to
+            use transparency and to sort the data: draw the big bubbles below,
+            the small ones on top.
+          </li>
+        </ul>
 
         <ChartOrSandbox
-          VizComponent={ScatterplotBasicDemo}
-          vizName={"ScatterplotBasic"}
+          VizComponent={BubblePlotBasicDemo}
+          vizName={"BubblePlotBasic"}
           maxWidth={600}
           height={500}
-          caption="Most basic scatterplot built with react and d3.js"
+          caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
         />
+
+        <p>
+          This is starting to look not too bad, but we definitely need a{" "}
+          <b>legend</b> here, to understand what the size and color of each
+          circle mean.
+        </p>
       </AccordionSection>
 
       <br />

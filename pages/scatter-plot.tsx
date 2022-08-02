@@ -112,6 +112,10 @@ export default function Home() {
         />
       </AccordionSection>
 
+      <AccordionSection title={"Hover effect"} startOpen={true}>
+        <p>TODO</p>
+      </AccordionSection>
+
       <br />
       <br />
       <br />
