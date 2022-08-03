@@ -8,5 +8,4 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  // assetPrefix: ".", // necessary to load CSS properly
 }

@@ -23,9 +23,9 @@ export const AllChartsModal = (props: AllChartsModalProps) => {
           onMouseEnter={() => setName(chart.label)}
           onMouseLeave={() => setName("")}
         >
-          <a href={fullUrlToInternalLink(chart.reactURL)}>
+          <Link href={fullUrlToInternalLink(chart.reactURL)}>
             <SectionLogo chartLogo={chart.logo} />
-          </a>
+          </Link>
         </div>
       );
     }
