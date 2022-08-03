@@ -7,12 +7,13 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
-import { BubblePlotBasicDemo } from "../viz/BubbleBasic/BubbleBasicDemo";
+import { BubblePlotBasicDemo } from "../viz/BubblePlotBasic/BubblePlotBasicDemo";
+import { BubblePlotLegendDemo } from "../viz/BubblePlotLegend/BubblePlotLegendDemo";
+import { BubblePlotTooltipDemo } from "../viz/BubblePlotTooltip/BubblePlotTooltipDemo";
 
 const graphDescription = (
   <p>
-    TEST A{" "}
-    <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a> is
+    A <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a> is
     an extension of a scatterplot, where each circle has its size proportional
     to a numeric values. This page describes how to build a bubble chart with
     <code>d3.js</code> in the context of a <code>react</code> application.
@@ -120,6 +121,51 @@ export default function Home() {
           This is starting to look not too bad, but we definitely need a{" "}
           <b>legend</b> here, to understand what the size and color of each
           circle mean.
+        </p>
+      </AccordionSection>
+
+      <AccordionSection title={"Bubble chart with legend"} startOpen={true}>
+        <p>
+          There are{" "}
+          <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
+            many different ways
+          </a>{" "}
+          to add a legend to a d3.js graph.
+        </p>
+        <p>
+          Here we need a legend that will properly describe both a numeric value
+          (for the bubble <b>size</b>) and an ordinal value (for the{" "}
+          <b>color</b>).
+        </p>
+
+        <ChartOrSandbox
+          VizComponent={BubblePlotLegendDemo}
+          vizName={"BubblePlotLegend"}
+          maxWidth={600}
+          height={500}
+          caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
+        />
+
+        <p>
+          Not too bad but note to self: this needs some polish and a complete
+          write-up.
+        </p>
+      </AccordionSection>
+
+      <AccordionSection title={"Bubble chart with tooltip"} startOpen={true}>
+        <p>Complete writeup</p>
+
+        <ChartOrSandbox
+          VizComponent={BubblePlotTooltipDemo}
+          vizName={"BubblePlotTooltip"}
+          maxWidth={600}
+          height={500}
+          caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
+        />
+
+        <p>
+          Not too bad but note to self: this needs some polish and a complete
+          write-up.
         </p>
       </AccordionSection>
 
