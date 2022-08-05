@@ -9,6 +9,7 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { CircularBarplotBasicDemo } from "../viz/CircularBarplotBasic/CircularBarplotBasicDemo";
+import { CircularBarplotLabelDemo } from "../viz/CircularBarplotLabel/CircularBarplotLabelDemo";
 
 const graphDescription = (
   <p>
@@ -176,6 +177,23 @@ export default function Home() {
           That's a good start but it looks pretty much like a snail so far.
           Let's make it a real chart with labels and values.
         </p>
+      </AccordionSection>
+
+      <AccordionSection title={"Labels and Values"} startOpen={true}>
+        <p>
+          Add a text element to show the name of each bar. A bit or logic to
+          write to determine wether or not a label must be flipped, and how to
+          position it properly.
+        </p>
+        <ChartOrSandbox
+          vizName={"CircularBarplotLabel"}
+          VizComponent={CircularBarplotLabelDemo}
+          height={500}
+          maxWidth={600}
+          caption={
+            "Add some labels to each bar of the circular barchart to make it insightful"
+          }
+        />
       </AccordionSection>
 
       <DatavizInspirationParallaxLink chartId="circularBarplot" />

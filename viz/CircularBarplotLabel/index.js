@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom";
+import { data } from "./data/";
 import { CircularBarplot } from "./CircularBarplot";
 
 const rootElement = document.getElementById("root");
