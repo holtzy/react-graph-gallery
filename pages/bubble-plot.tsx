@@ -143,7 +143,7 @@ export default function Home() {
           vizName={"BubblePlotLegend"}
           maxWidth={600}
           height={500}
-          caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
+          caption="Adding a legend to make sense of the bubble size. Legend is hand made, adding svg shapes with React."
         />
 
         <p>
