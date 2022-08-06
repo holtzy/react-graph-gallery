@@ -43,7 +43,6 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
           y={yScale(d.name)}
           width={xScale(d.value)}
           height={yScale.bandwidth()}
-          className="barplot-bar"
           opacity={0.7}
           stroke="#9d174d"
           fill="#9d174d"

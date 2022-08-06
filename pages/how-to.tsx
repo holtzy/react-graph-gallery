@@ -209,6 +209,18 @@ export default function HowTo() {
         </span>
       </BlogPostItem>
 
+      <BlogPostItem
+        title={"Buiding a futuristic viz"}
+        timeToRead={3}
+        link="viz-from-the-future"
+        isAvailable={true}
+      >
+        <span>
+          What makes a viz look from the future. And how to implement it with
+          d3.js and reac.
+        </span>
+      </BlogPostItem>
+
       <hr className="full-bleed border bg-gray-200 mt-10 mb-3" />
 
       <ChartFamilySection chartFamily="general" />
