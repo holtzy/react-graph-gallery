@@ -1,128 +1,153 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
-import { LinkAsButton } from "../component/LinkAsButton";
-import { Button } from "../component/Button";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
+import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/CodeBlock";
-import { PieChartBasic } from "../viz/PieChartBasic/PieChart";
-import { data } from "../data/group-evolution-first-name";
+import { ChartOrSandbox } from "../component/ChartOrSandbox";
+import Link from "next/link";
+import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
+import { StreamGraphBasicDemo } from "../viz/StreamGraphBasic/StreamGraphBasicDemo";
 
 const graphDescription = (
   <p>
-    A <a href="https://www.data-to-viz.com/caveat/pie.html">stream chart</a>{" "}
-    displays the evolution of several groups using nice flowing shapes
+    A{" "}
+    <a href="https://www.data-to-viz.com/graph/streamgraph.html">streamgraph</a>{" "}
+    is a variation of the more common{" "}
+    <Link href="stacked-area-plot">stacked area chart</Link>. This section
+    explains how to stack and smooth the data with <code>d3.js</code>, and
+    render the shapes with <code>react</code>. It starts from the basic and goes
+    until necessary customization like tooltips, hover effect, legend and
+    annotation, always with editable sandboxes.
   </p>
 );
 
 const snippet1 = `
 const data = [
-    {
-      "x": 1880,
-      "Amanda": 241,
-      "Ashley": 0,
-      "Betty": 117,
-      "Deborah": 12,
-      "Dorothy": 112,
-      "Helen": 636,
-      "Linda": 27,
-      "Patricia": 0
-    },
-    ....
-]
+  {
+    x: 1,
+    groupA: 38,
+    groupB: 19,
+  },
+  {
+    x: 2,
+    groupA: 16,
+    groupB: 14,
+  },
+  ...
+];
 `.trim();
 
 const snippet2 = `
-const pieGenerator = d3.pie().value((d) => d.value);
-const pie = pieGenerator(data);
-
-/*
-[
-  {
-      "data": {"name": "Mark", "value": 90},
-      "index": 1,
-      "value": 90,
-      "startAngle": 2.145477909768639,
-      "endAngle": 4.115814765678614,
-      "padAngle": 0
-  }, .... same for other groups
-]
-*/
+const stackSeries = d3
+  .stack()
+  .keys(groups)
+  .order(d3.stackOrderNone)
+  .offset(d3.stackOffsetSilhouette);
+const series = stackSeries(data);
 `.trim();
 
 const snippet3 = `
-const arcPathGenerator = d3.arc();
-const arcs pie.map((p) =>
-      arcPathGenerator({
-        innerRadius: 0,
-        outerRadius: radius,
-        startAngle: p.startAngle,
-        endAngle: p.endAngle,
-      })
-    );
-
-/*
-[
-  "M151,97 A180,180,0,0,1,-148,101 L0,0Z",
-  .... other groups
-]
-*/
+const series = stackSeries(data);
 `.trim();
 
 export default function Home() {
-  const [animData, setAnimData] = useState(data);
-
   return (
     <Layout
-      title="Streamgraph with React"
-      seoDescription="How to build a streamgraph with React and D3.js. A set of re-usable components"
+      title="Streamchart with React"
+      seoDescription="How to build a stream chart with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
-        title="Stream graph"
+        title="Streamcharts"
         description={graphDescription}
         chartType="stream"
       />
 
       <AccordionSection title={"Dataset"} startOpen={true}>
         <p>
-          Different solution. Here I use an array of object. Each object is a
-          timestamp, providing the value of each group
+          Most of the time the input dataset is an array where each item is an
+          object.
         </p>
-        <br />
+        <p>
+          Each object provides information for a step on the X axis. It has a
+          value like <code>x</code> that provides the exact position on the X
+          axis. It then has several numeric values, one for each group of the
+          dataset.
+        </p>
+        <p>Here is a minimal example:</p>
         <CodeBlock code={snippet1} />
+        <p>
+          Note: if your data is in <code>.csv</code> format, you can translate
+          it thanks to the <code>d3.csv()</code> function as suggested{" "}
+          <a href="https://d3-graph-gallery.com/graph/line_basic.html">here</a>.
+        </p>
+      </AccordionSection>
+
+      <AccordionSection title={"Data wrangling"} startOpen={true}>
+        <p>
+          Building a stream chart requires to stack the data. Series are
+          displayed one on top of each other and you have to compute their
+          positions on the Y axis.
+        </p>
+        <p>
+          Fortunately, <code>D3.js</code> has a handy <code>stack()</code>{" "}
+          function that does exactly that. The process is deeply explained in
+          the <Link href="stacked-area-plot">stacked area chart</Link> section
+          of the gallery.
+        </p>
+        <p>
+          The only variation required here is to use the
+          <code>d3.stackOffsetSilhouette</code> offset option. Instead of
+          stacking everything above the 0 baseline, it will put groups on both
+          part of it.
+        </p>
+        <p>
+          Computing the position of the chart series should look something like:
+        </p>
+        <CodeBlock code={snippet2} />
       </AccordionSection>
 
       <AccordionSection title={"Most basic streamgraph"} startOpen={true}>
         <p>
-          As usual, the math is done thanks to d3.js, and the rendering using
-          React
+          Once more, the process to render the shape is very close to the{" "}
+          <Link href="stacked-area-plot">stacked area chart</Link>. A few
+          variations are required though.
         </p>
-        <br />
+        <h3>&rarr; Smoothing</h3>
         <p>
-          First of all, the <code>pie()</code> function is used to compute the
-          start and end angles of each group. By default this function expects
-          an array of number as input. Thus we have to tell it how to find the
-          value to use in our dataset using an assesor function
+          We need to smooth the area shape to get the good-looking organic flow.
+          Once more d3 is here to the rescue with a{" "}
+          <a href="https://github.com/d3/d3-shape#curves">curve</a> function
+          that does all the work for us.
         </p>
-        <CodeBlock code={snippet2} />
-        <br />
-        <br />
+        <h3>&rarr; Axis</h3>
         <p>
-          And that's it. This array of path can be renderer using react using a
-          map pretty easily.
+          <Link href="build-axis-with-react">Usual axes</Link> do not work for
+          streamgraphs. The Y axis would make no sense since shapes are on both
+          side of the 0 baseline. The X axis would feel lost alone at the very
+          bottom of the chart.
         </p>
-        <br />
-        <br />
+        <p>
+          Here I suggest to replace the X axis with vertical ablines. The Y axis
+          is removed and we will see later how
+        </p>
+        <ChartOrSandbox
+          vizName={"StreamGraphBasic"}
+          VizComponent={StreamGraphBasicDemo}
+          height={400}
+          maxWidth={600}
+          caption="Most basic streamgraph with react and d3.js"
+        />
       </AccordionSection>
 
-      <hr className="full-bleed  bord er bg-gray-200 my-3" />
+      <DatavizInspirationParallaxLink chartId="stackedArea" />
 
-      <ChartFamilySection chartFamily="partOfAWhole" />
-
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
+
       <Contact />
     </Layout>
   );

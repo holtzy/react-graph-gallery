@@ -38,6 +38,12 @@ export default function Home() {
         startOpen={true}
       >
         <p>You know minority report?</p>
+        <p>
+          <a href="https://www.behance.net/gallery/92170213/FUI-HUD-Screens">
+            This video
+          </a>{" "}
+          is what I mean
+        </p>
         <ul>
           <li>Dark mode</li>
           <li>Flashy, Neon color</li>
