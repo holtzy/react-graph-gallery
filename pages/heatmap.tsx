@@ -11,6 +11,7 @@ import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
 import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";
 import { HeatmapVaccinationDemo } from "../viz/HeatmapVaccination/HeatmapVaccinationDemo";
 import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipDemo";
+import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
   <p>
@@ -173,34 +174,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <AccordionSection
-        title={"Responsive heatmap with react"}
-        startOpen={true}
-      >
-        <p>
-          The component above is not responsive. It expects 2 props called{" "}
-          <code>width</code> and <code>height</code> and will render a heatmap
-          of those dimensions.
-        </p>
-        <p>
-          Making the heatmap responsive requires to add a <b>wrapper</b>{" "}
-          component that gets the dimension of the parent <code>div</code>, and
-          listen to a potential dimension change.
-        </p>
-        <p>
-          The process is extensively described in{" "}
-          <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-            this post
-          </a>{" "}
-          of the gallery. Basically most of the job is made by a hook called{" "}
-          <code>useDimensions</code> that targets a specific <code>ref</code>.
-          This is a quick summary of how it works:
-        </p>
-        <CodeBlock code={snippet3} />
-        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-          Read more about responsiveness
-        </a>
-      </AccordionSection>
+      <ResponsiveExplanationSection chartId="heatmap" />
 
       <AccordionSection title={"Adding a tooltip"} startOpen={true}>
         <p>

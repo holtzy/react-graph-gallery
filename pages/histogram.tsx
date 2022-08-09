@@ -13,6 +13,7 @@ import { HistogramSeveralGroupsSplitPanelDemo } from "../viz/HistogramSeveralGro
 import { ParallaxSection } from "../component/ParallaxSection";
 import { LinkAsButton } from "../component/LinkAsButton";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
+import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
   <p>
@@ -206,35 +207,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <AccordionSection
-        title={"Responsive histogram with react"}
-        startOpen={true}
-      >
-        <p>
-          The component above is not responsive. It expects 2 props called{" "}
-          <code>width</code> and <code>height</code> and will render a density
-          chart of those dimensions.
-        </p>
-        <p>
-          Making the density responsive requires to add a <b>wrapper</b>{" "}
-          component that gets the dimension of the parent <code>div</code>, and
-          listen to a potential dimension change.
-        </p>
-        <p>
-          The process is extensively described in{" "}
-          <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-            this post
-          </a>{" "}
-          of the gallery. Basically most of the job is made by a hook called{" "}
-          <code>useDimensions</code> that targets a specific <code>ref</code>.
-          This is a quick summary of how it works:
-        </p>
-        <CodeBlock code={snippet3} />
-        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-          Read more about responsiveness
-        </a>
-        <br />
-      </AccordionSection>
+      <ResponsiveExplanationSection chartId="histogram" />
 
       <AccordionSection title={"Histogram variations"} startOpen={true}>
         <p>

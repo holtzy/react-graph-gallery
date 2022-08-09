@@ -10,6 +10,7 @@ import Link from "next/link";
 import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { StreamGraphBasicDemo } from "../viz/StreamGraphBasic/StreamGraphBasicDemo";
+import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
   <p>
@@ -126,8 +127,9 @@ export default function Home() {
         <p>
           <Link href="build-axis-with-react">Usual axes</Link> do not work for
           streamgraphs. The Y axis would make no sense since shapes are on both
-          side of the 0 baseline. The X axis would feel lost alone at the very
-          bottom of the chart.
+          side of the 0 baseline. It is commonly{" "}
+          <a href="https://www.dataviz-inspiration.com/stream">removed</a>. The
+          X axis would feel lost alone at the very bottom of the chart.
         </p>
         <p>
           Here I suggest to replace the X axis with vertical ablines. The Y axis
@@ -141,6 +143,8 @@ export default function Home() {
           caption="Most basic streamgraph with react and d3.js"
         />
       </AccordionSection>
+
+      <ResponsiveExplanationSection chartId="stream" />
 
       <DatavizInspirationParallaxLink chartId="stackedArea" />
 

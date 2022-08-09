@@ -9,6 +9,7 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { DensityChartBasicDemo } from "../viz/DensityChartBasic/DensityChartBasicDemo";
 import Link from "next/link";
 import { RidgelineBasicDemo } from "../viz/RideglineBasic/RidgelineBasicDemo";
+import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
   <p>
@@ -144,35 +145,7 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <AccordionSection
-        title={"Responsive ridgeline chart with react"}
-        startOpen={true}
-      >
-        <p>
-          The component above is not responsive. It expects 2 props called{" "}
-          <code>width</code> and <code>height</code> and will render a ridgeline
-          chart of those dimensions.
-        </p>
-        <p>
-          Making the ridgeline responsive requires to add a <b>wrapper</b>{" "}
-          component that gets the dimension of the parent <code>div</code>, and
-          listen to a potential dimension change.
-        </p>
-        <p>
-          The process is extensively described in{" "}
-          <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-            this post
-          </a>{" "}
-          of the gallery. Basically most of the job is made by a hook called{" "}
-          <code>useDimensions</code> that targets a specific <code>ref</code>.
-        </p>
-        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-          Read more about responsiveness
-        </a>
-        <br />
-        <br />
-        <br />
-      </AccordionSection>
+      <ResponsiveExplanationSection chartId="ridgeline" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="distribution" />
