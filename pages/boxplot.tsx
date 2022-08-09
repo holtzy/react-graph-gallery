@@ -1,16 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { data as violinData } from "../data/distribution-multi-groups-random";
 import Link from "next/link";
-import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
-import { Boxplot } from "../viz/BoxplotBasic/Boxplot";
-import { VerticalBox } from "../viz/BoxDemoVertical/VerticalBox";
 import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo";
 import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
 import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";

@@ -5,7 +5,7 @@ import Contact from "../component/Contact";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { PieChartBasic } from "../viz/PieChartBasic/PieChart";
 import { data } from "../data/one-value-per-group-random";
 import { data as eventData } from "../data/event-list";

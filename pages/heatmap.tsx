@@ -5,7 +5,7 @@ import Contact from "../component/Contact";
 import { data } from "../viz/HeatmapBasic/data";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
 import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";

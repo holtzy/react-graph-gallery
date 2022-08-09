@@ -4,7 +4,7 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { Caption } from "../component/Caption";
+import { Caption } from "../component/UI/Caption";
 import CodeSandboxButton from "../component/CodeSandboxButton";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";

@@ -5,7 +5,7 @@ import Contact from "../component/Contact";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ViolinBasic } from "../viz/ViolinBasic/Violin";
 import { data as ViolinData } from "../data/distribution-multi-groups-random";
 import { data as densityChartData } from "../data/one-numeric-variable-random";

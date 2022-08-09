@@ -4,12 +4,9 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { data } from "../viz/LineChartBasic/data";
-import { AreaChart } from "../viz/AreaChartBasic/AreaChart";
 import Link from "next/link";
-import { ParallaxSection } from "../component/ParallaxSection";
 import { AreaChartBasicDemo } from "../viz/AreaChartBasic/AreaChartBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 

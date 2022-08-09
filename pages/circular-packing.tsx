@@ -4,7 +4,7 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { CircularPackingBasicDemo } from "../viz/CircularPackingBasic/CircularPackingBasicDemo";
 import { CircularPackingDatasetTransitionDemo } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransitionDemo";

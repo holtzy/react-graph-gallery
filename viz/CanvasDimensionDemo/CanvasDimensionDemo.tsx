@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CodeBlock } from "../../component/CodeBlock";
+import { CodeBlock } from "../../component/UI/CodeBlock";
 
 export const CanvasDimensionDemo = () => {
   // 2 ys: css and attribute dimensions

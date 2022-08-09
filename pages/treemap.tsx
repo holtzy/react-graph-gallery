@@ -4,7 +4,7 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { TreemapBasicDemo } from "../viz/TreemapBasic/TreemapBasicDemo";
 import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";

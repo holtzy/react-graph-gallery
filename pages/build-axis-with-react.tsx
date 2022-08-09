@@ -8,7 +8,7 @@ import { AccordionSection } from "../component/AccordionSection";
 import { useDimensions } from "../hook/use-dimensions";
 import { AxisBasic } from "../viz/AxisBasic/AxisBasic";
 import { AxisBasicD3 } from "../viz/AxisBasicD3/AxisBasicD3";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { TakeHome } from "../component/TakeHome";
 import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
 import { AxisBasicD3Demo } from "../viz/AxisBasicD3/AxisBasicD3Demo";

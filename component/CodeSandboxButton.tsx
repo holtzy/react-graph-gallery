@@ -1,7 +1,7 @@
 // Each folder in the /src/viz folder is a codesandbox showing the related viz component
 // Just pass the folder name to this component and it will embed the codesandbox
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "./UI/Button";
 import { CodeSandbox } from "./CodeSandbox";
 
 type CodeSandboxButtonProps = {

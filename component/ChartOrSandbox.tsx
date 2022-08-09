@@ -1,7 +1,7 @@
 import { ReactNode, useRef, useState } from "react";
 import { useDimensions } from "../hook/use-dimensions";
-import { Button } from "./Button";
-import { Caption } from "./Caption";
+import { Button } from "./UI/Button";
+import { Caption } from "./UI/Caption";
 import { CodeSandbox } from "./CodeSandbox";
 
 type ChartOrSandboxProps = {

@@ -5,7 +5,7 @@ import Contact from "../component/Contact";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { FuturisticColorDemo } from "../viz/FuturisticColor/FuturisticColorDemo";
 
 const graphDescription = <p>Building a viz from the future?</p>;

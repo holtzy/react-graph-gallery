@@ -4,7 +4,7 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { CrossGraphInteractionSharedStateDemo } from "../viz/CrossGraphInteractionSharedState/CrossGraphInteractionSharedStateDemo";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { CrossGraphInteractionWithContextDemo } from "../viz/CrossGraphInteractionWithContext/CrossGraphInteractionWithContextDemo";

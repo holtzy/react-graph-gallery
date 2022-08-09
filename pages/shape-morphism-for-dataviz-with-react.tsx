@@ -5,7 +5,7 @@ import Contact from "../component/Contact";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/CodeBlock";
+import { CodeBlock } from "../component/UI/CodeBlock";
 import { TriangleToPolygonStepByStep } from "../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStep";
 import { TriangleToPolygonAnimated } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimated";
 import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
