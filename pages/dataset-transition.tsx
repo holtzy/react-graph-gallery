@@ -11,13 +11,10 @@ import { ReactSpringMostBasic } from "../viz/ReactSpringMostBasic/ReactSpringMos
 import { ReactSpringAxis } from "../viz/ReactSpringAxis/ReactSpringAxis";
 import { ReactSpringMostBasicDemo } from "../viz/ReactSpringMostBasic/ReactSpringMostBasicDemo";
 import { ReactSpringAxisDemo } from "../viz/ReactSpringAxis/ReactSpringAxisDemo";
+import { DonutDatasetTransition } from "../viz/DonutDatasetTransition/DonutDatasetTransition";
 
 const graphDescription = (
-  <p>
-    This post is dedicated to <code>react-spring</code>, a javascript library
-    for spring animations. It quickly explains what it is and how it works, and
-    then explains how it can be used in the field of data visualization.
-  </p>
+  <p>How to smoothly transition from a dataset to the other.</p>
 );
 
 const snippet1 = `
@@ -33,23 +30,26 @@ export default function Home() {
 
   return (
     <Layout
-      title="React-spring for data visualization"
-      seoDescription="This blogpost explains how to use react-spring to smoothly animate transitions on your charts made with react and d3.js."
+      title="Smooth dataset transition"
+      seoDescription="This blogpost explains how to animate the a dataset transition using react-spring."
     >
       <TitleAndDescription
-        title="React-spring for data visualization"
+        title="Animated dataset transition"
         description={graphDescription}
       />
 
       {/* Basic demo */}
       <div className="w-full flex flex-col justify-center items-center">
         <div
-          style={{ height: 150, width: "100%", maxWidth: 500 }}
+          style={{ height: 250, width: "100%", maxWidth: 500 }}
           ref={demoRef}
         >
-          <ReactSpringMostBasic width={demoDim.width} height={demoDim.height} />
+          <DonutDatasetTransition
+            width={demoDim.width}
+            height={demoDim.height}
+          />
         </div>
-        <p className="text-sm text-gray-500 max-w-md italic text-center mt-4 font-light">
+        <p className="text-sm text-gray-500 max-w-md italic text-center mt-8 font-light">
           A minimal react-spring dataviz example. A viz component expect a{" "}
           <code>position</code> and a <code>color</code> prop. But it smoothly
           animates the transition.

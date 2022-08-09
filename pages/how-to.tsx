@@ -113,6 +113,20 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
+        title={"Dataset transition"}
+        timeToRead={5}
+        link="dataset-transition"
+        isAvailable={true}
+        categories={["animation"]}
+      >
+        <span>
+          Adding a smooth transition between dataset often adds a nice touch to
+          your viz component. Let's see how to implement it with{" "}
+          <code>react-spring</code>.
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
         title={
           "Shape morphism: animate the transition between 2 distincts charts"
         }

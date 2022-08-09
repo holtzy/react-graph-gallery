@@ -60,7 +60,11 @@ export const BlogPostItem = ({
         <h2>{title}</h2>
       )}
       {children}
-      {isAvailable && <Link href={link}> Read more...</Link>}
+      {isAvailable && (
+        <Link href={link}>
+          <a className="ml-4">Read more</a>
+        </Link>
+      )}
       <p className="text-gray-400 font-light mt-2">
         {timeToRead + " minutes read"}
       </p>
