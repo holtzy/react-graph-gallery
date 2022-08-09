@@ -43,13 +43,21 @@ const Slice = ({ slice, radius, color }) => {
   const arcPathGenerator = d3.arc();
 
   const xxx = useSpring({
-    path: arcPathGenerator({
-      innerRadius: 40,
-      outerRadius: radius,
-      startAngle: slice.startAngle,
-      endAngle: slice.endAngle,
-    }),
+    pos: [slice.startAngle, slice.endAngle],
   });
 
-  return <animated.path d={xxx.path} fill={color} />;
+  return (
+    <animated.path
+      d={xxx.pos.to((x, y) => {
+        console.log("x", x, y);
+        return arcPathGenerator({
+          innerRadius: 40,
+          outerRadius: radius,
+          startAngle: x,
+          endAngle: y,
+        });
+      })}
+      fill={color}
+    />
+  );
 };
