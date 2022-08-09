@@ -4,6 +4,28 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Link from "next/link";
+import { Pill } from "../component/UI/Pill";
+
+type BlogCategory =
+  | "fundamental"
+  | "animation"
+  | "responsiveness"
+  | "interaction"
+  | "axis"
+  | "advanced"
+  | "canvas";
+
+type CategoryColor = { [topic in BlogCategory]: string };
+
+const categoryColors: CategoryColor = {
+  fundamental: "#e07a5f",
+  animation: "#3d405b",
+  responsiveness: "#81b29a",
+  interaction: "#f2cc8f",
+  axis: "#15616d",
+  advanced: "red",
+  canvas: "#003566",
+};
 
 const graphDescription = (
   <p>
@@ -20,6 +42,7 @@ type BlogPostItemProps = {
   link: string;
   isAvailable: boolean;
   timeToRead: number;
+  categories?: BlogCategory[];
 };
 
 const BlogPostItem = ({
@@ -28,11 +51,21 @@ const BlogPostItem = ({
   link,
   isAvailable,
   timeToRead,
+  categories,
 }: BlogPostItemProps) => {
   const opacity = isAvailable ? "opacity-100" : "opacity-25";
 
+  const pills = categories?.map((category, i) => (
+    <Pill
+      key={i}
+      label={category}
+      color={categoryColors[category]}
+      opacity={0.5}
+    />
+  ));
+
   return (
-    <div className={opacity}>
+    <div className={opacity + " cursor-pointer hover:bg-gray-100"}>
       {isAvailable ? (
         <Link href={link}>
           <h2 className="cursor-pointer">{title}</h2>
@@ -45,6 +78,7 @@ const BlogPostItem = ({
       <p className="text-gray-400 font-light mt-2">
         {timeToRead + " minutes read"}
       </p>
+      {pills}
     </div>
   );
 };
@@ -65,11 +99,12 @@ export default function HowTo() {
         timeToRead={4}
         link="how-to-includes-a-d3-chart-in-react"
         isAvailable={false}
+        categories={["fundamental"]}
       >
         <span>
-          React modifies the DOM. So does d3.js. It makes it hard to make them
-          work together. This blog post describes the 2 main strategies to do
-          so.
+          React modifies the DOM. So does d3.js. It makes it advanced to make
+          them work together. This blog post describes the 2 main strategies to
+          do so.
         </span>
       </BlogPostItem>
 
@@ -78,6 +113,7 @@ export default function HowTo() {
         timeToRead={8}
         link="build-axis-with-react"
         isAvailable={true}
+        categories={["fundamental", "axis"]}
       >
         <span>
           Most of the viz types need some axes to be insightful. This post
@@ -91,6 +127,7 @@ export default function HowTo() {
         timeToRead={5}
         link="make-a-graph-responsive"
         isAvailable={true}
+        categories={["fundamental", "responsiveness", "interaction"]}
       >
         <span>
           Viz components often take a <code>width</code> and a{" "}
@@ -105,6 +142,7 @@ export default function HowTo() {
         timeToRead={6}
         link="add-hover-interaction-to-graph"
         isAvailable={true}
+        categories={["fundamental", "interaction"]}
       >
         <span>
           <b>Interactivity</b> is an important part of dataviz when working in
@@ -119,6 +157,7 @@ export default function HowTo() {
         timeToRead={10}
         link="cross-graph-highlight-interaction"
         isAvailable={true}
+        categories={["interaction", "advanced"]}
       >
         <span>
           Let's say you have a choropleth map on a side, a timeseries on the
@@ -132,6 +171,7 @@ export default function HowTo() {
         timeToRead={5}
         link="react-dataviz-animation-with-react-spring"
         isAvailable={true}
+        categories={["fundamental", "animation"]}
       >
         <span>
           It's often necessary to transition between 2 ys of a graph.
@@ -147,6 +187,7 @@ export default function HowTo() {
         timeToRead={5}
         link="shape-morphism-for-dataviz-with-react"
         isAvailable
+        categories={["advanced", "animation"]}
       >
         <span>
           How can we build a smooth transition between a{" "}
@@ -161,6 +202,7 @@ export default function HowTo() {
         timeToRead={5}
         link="to-do"
         isAvailable={false}
+        categories={["fundamental", "canvas"]}
       >
         <span>
           Rendering a chart using svg is limited in term of performace. The DOM
@@ -175,6 +217,7 @@ export default function HowTo() {
         timeToRead={5}
         link="fix-canvas-blurry-dataviz"
         isAvailable={true}
+        categories={["canvas", "advanced"]}
       >
         <span>
           When using canvas for your viz, the result will be blurry on retina
@@ -188,6 +231,7 @@ export default function HowTo() {
         timeToRead={6}
         link="stacked-barplot-with-negative-values"
         isAvailable={true}
+        categories={["fundamental", "axis"]}
       >
         <span>
           A stacked barchart displays the values of items split in group and
@@ -201,6 +245,7 @@ export default function HowTo() {
         timeToRead={3}
         link="what-is-a-color"
         isAvailable={true}
+        categories={["fundamental", "axis"]}
       >
         <span>
           There are so many ways to define a color when talking with a computer.
@@ -214,6 +259,7 @@ export default function HowTo() {
         timeToRead={3}
         link="viz-from-the-future"
         isAvailable={true}
+        categories={["fundamental", "axis"]}
       >
         <span>
           What makes a viz look from the future. And how to implement it with
