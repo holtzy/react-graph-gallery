@@ -61,7 +61,6 @@ export const Barplot = ({
 
   const allShapes = useMemo(() => {
     return data.map((d, i) => {
-      console.log("again!");
       return (
         <div
           key={i}

@@ -76,7 +76,6 @@ type BarItemProps = {
 
 const BarItem = (props: BarItemProps) => {
   const { name, value, barHeight, barWidth, x, y } = props;
-  console.log("props", props);
 
   const springProps = useSpring({
     to: {

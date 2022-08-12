@@ -27,7 +27,6 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const [hoveredItem, setHoveredCircle] = useState<string | null>(null);
-  console.log("hoveredItem", hoveredItem);
 
   //Scales
   const yScale = useMemo(() => {

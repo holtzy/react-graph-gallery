@@ -16,13 +16,9 @@ export const Lollipop = ({ width, height, data }: LollipopProps) => {
 
   // Y axis is for groups since the barplot is horizontal
   const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name);
-  console.log("groups", groups);
   const yScale = useMemo(() => {
     return d3.scaleBand().domain(groups).range([0, boundsHeight]);
   }, [data, height]);
-
-  console.log(yScale);
-  console.log("yScale", yScale("Emiccly"));
 
   // X axis
   const xScale = useMemo(() => {
