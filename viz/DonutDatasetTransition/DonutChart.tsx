@@ -15,7 +15,14 @@ type DonutChartProps = {
 
 const MARGIN = 30;
 
-const colors = ["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"];
+const colors = [
+  "#e0ac2b",
+  "#e85252",
+  "#6689c6",
+  "#9a6fb0",
+  "#a53253",
+  "#69b3a2",
+];
 
 export const DonutChart = ({ width, height, data }: DonutChartProps) => {
   const radius = Math.min(width, height) / 2 - MARGIN;
@@ -39,25 +46,37 @@ export const DonutChart = ({ width, height, data }: DonutChartProps) => {
   );
 };
 
-const Slice = ({ slice, radius, color }) => {
+type SliceProps = {
+  color: string;
+  radius: number;
+  slice: d3.PieArcDatum<DataItem>;
+};
+const Slice = ({ slice, radius, color }: SliceProps) => {
   const arcPathGenerator = d3.arc();
 
-  const xxx = useSpring({
-    pos: [slice.startAngle, slice.endAngle],
+  const springProps = useSpring({
+    from: {
+      pos: [slice.endAngle, slice.endAngle],
+      opacity: 0,
+    },
+    to: {
+      pos: [slice.startAngle, slice.endAngle],
+      opacity: slice.startAngle ? 1 : 0,
+    },
   });
 
   return (
     <animated.path
-      d={xxx.pos.to((x, y) => {
-        console.log("x", x, y);
+      d={springProps.pos.to((start, end) => {
         return arcPathGenerator({
           innerRadius: 40,
           outerRadius: radius,
-          startAngle: x,
-          endAngle: y,
+          startAngle: start,
+          endAngle: end,
         });
       })}
       fill={color}
+      opacity={springProps.opacity}
     />
   );
 };

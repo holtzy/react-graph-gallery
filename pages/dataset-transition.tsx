@@ -56,21 +56,18 @@ export default function Home() {
         </p>
       </div>
 
-      <AccordionSection title={"What is a spring animation?"} startOpen={true}>
+      <AccordionSection title={"Barplot transition"} startOpen={true}>
         <p>
-          Spring animations are different than typical CSS easing animation.
-          They're built on spring physics, which gives a more fluid and organic
-          feel. The best way to be introduced to this concept is to read Josh
-          Comeau's{" "}
-          <a href="https://www.joshwcomeau.com/animation/a-friendly-introduction-to-spring-physics/">
-            friendly Introduction to Spring Physics
-          </a>
+          Consider a change where dataset has the same structure, just the
+          values change. Same number of items.
         </p>
-        <p>To quote him directly:</p>
-        <TakeHome>
-          Spring physics are like a secret ingredient; they make all animations
-          taste better
-        </TakeHome>
+        <ChartOrSandbox
+          vizName={"ReactSpringMostBasic"}
+          VizComponent={ReactSpringMostBasicDemo}
+          maxWidth={800}
+          height={200}
+          caption="A very basic animation using react and react-spring."
+        />
       </AccordionSection>
 
       <AccordionSection
@@ -88,13 +85,6 @@ export default function Home() {
           Let's start with a basic example showing how to animate a very basic
           viz component that just renders a circle.
         </p>
-        <ChartOrSandbox
-          vizName={"ReactSpringMostBasic"}
-          VizComponent={ReactSpringMostBasicDemo}
-          maxWidth={800}
-          height={200}
-          caption="A very basic animation using react and react-spring."
-        />
       </AccordionSection>
 
       <AccordionSection title={"Animating axes"} startOpen={true}>
