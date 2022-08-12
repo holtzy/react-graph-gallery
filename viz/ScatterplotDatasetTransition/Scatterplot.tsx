@@ -54,11 +54,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
 
   return (
     <div>
-      <svg
-        width={width}
-        height={height}
-        style={{ display: "inline-block", background: "white" }}
-      >
+      <svg width={width} height={height}>
         {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}

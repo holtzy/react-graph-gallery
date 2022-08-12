@@ -2,6 +2,8 @@ import { useState } from "react";
 import { data, data2 } from "./data";
 import { Barplot } from "./Barplot";
 
+const BUTTONS_HEIGHT = 50;
+
 type BarplotDatasetTransitionProps = {
   width: number;
   height: number;
@@ -25,7 +27,7 @@ export const BarplotDatasetTransition = ({
 
   return (
     <div>
-      <div>
+      <div style={{ height: BUTTONS_HEIGHT }}>
         <button style={buttonStyle} onClick={() => setSelectedData(data)}>
           Data 1
         </button>
@@ -33,9 +35,11 @@ export const BarplotDatasetTransition = ({
           Data 2
         </button>
       </div>
-      <div style={{ width, height }}>
-        <Barplot width={width} height={height} data={selectedData} />
-      </div>
+      <Barplot
+        width={width}
+        height={height - BUTTONS_HEIGHT}
+        data={selectedData}
+      />
     </div>
   );
 };

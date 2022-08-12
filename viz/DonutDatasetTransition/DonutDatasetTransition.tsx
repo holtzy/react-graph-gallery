@@ -2,6 +2,8 @@ import { useState } from "react";
 import { data, data2 } from "./data";
 import { DonutChart } from "./DonutChart";
 
+const BUTTONS_HEIGHT = 50;
+
 type DonutDatasetTransitionProps = {
   width: number;
   height: number;
@@ -25,7 +27,7 @@ export const DonutDatasetTransition = ({
 
   return (
     <div>
-      <div>
+      <div style={{ height: BUTTONS_HEIGHT }}>
         <button style={buttonStyle} onClick={() => setSelectedData(data)}>
           Data 1
         </button>
@@ -33,9 +35,11 @@ export const DonutDatasetTransition = ({
           Data 2
         </button>
       </div>
-      <div style={{ width, height }}>
-        <DonutChart width={width} height={height} data={selectedData} />
-      </div>
+      <DonutChart
+        width={width}
+        height={height - BUTTONS_HEIGHT}
+        data={selectedData}
+      />
     </div>
   );
 };

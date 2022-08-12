@@ -10,6 +10,7 @@ import { DonutDatasetTransition } from "../viz/DonutDatasetTransition/DonutDatas
 import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
 import { ScatterplotDatasetTransitionDemo } from "../viz/ScatterplotDatasetTransition/ScatterplotDatasetTransitionDemo";
 import { DonutDatasetTransitionDemo } from "../viz/DonutDatasetTransition/DonutDatasetTransitionDemo";
+import { CodeBlock } from "../component/UI/CodeBlock";
 
 const graphDescription = (
   <p>
@@ -20,10 +21,21 @@ const graphDescription = (
 );
 
 const snippet1 = `
-const TICK_LENGTH = 6;
+const springProps = useSpring({
+  to: {
+    barWidth,
+  }
+});
+`.trim();
 
-export const AxisBottom = ({ xScale, pixelsPerTick }) => {
-
+const snippet2 = `
+<animated.rect
+  x={x}
+  y={y}
+  width={springProps.barWidth}
+  height={height}
+  fill="#9d174d"
+/>
 `.trim();
 
 export default function Home() {
@@ -68,6 +80,17 @@ export default function Home() {
         </p>
         <p>Also, just animating a prop of a shape</p>
         <p>Very simple, just animate the bar width</p>
+        <p>Spring looks like this</p>
+        <CodeBlock code={snippet1} />
+        <p>
+          Now, we have a springProps object that has a <code>barWidth</code>{" "}
+          property.
+        </p>
+        <p>
+          We can pass it to a <code>animated.rect</code> svg element.
+        </p>
+        <CodeBlock code={snippet2} />
+
         <ChartOrSandbox
           vizName={"BarplotDatasetTransition"}
           VizComponent={BarplotDatasetTransitionDemo}
@@ -93,7 +116,7 @@ export default function Home() {
         <ChartOrSandbox
           vizName={"ScatterplotDatasetTransition"}
           VizComponent={ScatterplotDatasetTransitionDemo}
-          maxWidth={800}
+          maxWidth={500}
           height={450}
           caption="A very basic animation using react and react-spring."
         />
@@ -113,7 +136,7 @@ export default function Home() {
         <ChartOrSandbox
           vizName={"DonutDatasetTransition"}
           VizComponent={DonutDatasetTransitionDemo}
-          maxWidth={800}
+          maxWidth={500}
           height={450}
           caption="A very basic animation using react and react-spring."
         />

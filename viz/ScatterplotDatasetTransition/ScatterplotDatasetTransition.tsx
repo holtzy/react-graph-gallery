@@ -2,6 +2,8 @@ import { useState } from "react";
 import { data, data2 } from "./data";
 import { Scatterplot } from "./Scatterplot";
 
+const BUTTONS_HEIGHT = 50;
+
 type ScatterplotDatasetTransitionProps = {
   width: number;
   height: number;
@@ -25,7 +27,7 @@ export const ScatterplotDatasetTransition = ({
 
   return (
     <div>
-      <div>
+      <div style={{ height: BUTTONS_HEIGHT }}>
         <button style={buttonStyle} onClick={() => setSelectedData(data)}>
           Data 1
         </button>
@@ -33,9 +35,11 @@ export const ScatterplotDatasetTransition = ({
           Data 2
         </button>
       </div>
-      <div style={{ width, height }}>
-        <Scatterplot width={width} height={height} data={selectedData} />
-      </div>
+      <Scatterplot
+        width={width}
+        height={height - BUTTONS_HEIGHT}
+        data={selectedData}
+      />
     </div>
   );
 };
