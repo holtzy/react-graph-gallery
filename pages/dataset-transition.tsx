@@ -6,12 +6,8 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { useDimensions } from "../hook/use-dimensions";
-import { TakeHome } from "../component/TakeHome";
-import { ReactSpringMostBasic } from "../viz/ReactSpringMostBasic/ReactSpringMostBasic";
-import { ReactSpringAxis } from "../viz/ReactSpringAxis/ReactSpringAxis";
-import { ReactSpringMostBasicDemo } from "../viz/ReactSpringMostBasic/ReactSpringMostBasicDemo";
-import { ReactSpringAxisDemo } from "../viz/ReactSpringAxis/ReactSpringAxisDemo";
 import { DonutDatasetTransition } from "../viz/DonutDatasetTransition/DonutDatasetTransition";
+import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
 
 const graphDescription = (
   <p>How to smoothly transition from a dataset to the other.</p>
@@ -62,40 +58,10 @@ export default function Home() {
           values change. Same number of items.
         </p>
         <ChartOrSandbox
-          vizName={"ReactSpringMostBasic"}
-          VizComponent={ReactSpringMostBasicDemo}
+          vizName={"BarplotDatasetTransition"}
+          VizComponent={BarplotDatasetTransitionDemo}
           maxWidth={800}
-          height={200}
-          caption="A very basic animation using react and react-spring."
-        />
-      </AccordionSection>
-
-      <AccordionSection
-        title={"Most basic react spring example"}
-        startOpen={true}
-      >
-        <p>
-          The best tool to build a spring animation in the react world is{" "}
-          <a href="https://react-spring.io/">react-spring</a>, a library
-          dedicated to it. If you're not familiar with it already you probably
-          want to take a look at their{" "}
-          <a href="https://react-spring.io/">home page</a>.
-        </p>
-        <p>
-          Let's start with a basic example showing how to animate a very basic
-          viz component that just renders a circle.
-        </p>
-      </AccordionSection>
-
-      <AccordionSection title={"Animating axes"} startOpen={true}>
-        <p>
-          A common hassle is to animate axes, since it's a lot of svg elements.
-        </p>
-        <ChartOrSandbox
-          vizName={"ReactSpringAxis"}
-          VizComponent={ReactSpringAxisDemo}
-          maxWidth={800}
-          height={200}
+          height={450}
           caption="A very basic animation using react and react-spring."
         />
       </AccordionSection>
