@@ -60,6 +60,33 @@ const centroid = arcGenerator.centroid(sliceInfo); // [x,y] position of the cent
 const slicePath = arcGenerator(sliceInfo); // string: the path of the slice
 `.trim();
 
+const snippet5 = `
+onMouseEnter={() => {
+  if (ref.current) {
+    ref.current.classList.add(hasHighlight);
+  }
+}}
+`.trim();
+
+const snippet6 = `
+.container .slice {
+  transition-duration: 0.3s;
+  transition-property: filter, opacity;
+  filter: saturate(100%);
+  opacity: 1;
+}
+
+.container.hasHighlight .slice {
+  filter: saturate(50%);
+  opacity: 0.2;
+}
+
+.container.hasHighlight .slice:hover {
+  filter: saturate(100%);
+  opacity: 1;
+}
+`.trim();
+
 export default function Home() {
   return (
     <Layout
@@ -161,11 +188,45 @@ export default function Home() {
           height={400}
           caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
         />
-        <p>Add something about limitaion: legend overlap, too many groups..</p>
+        <p>
+          This approach is a good start when it comes to add legend on a donut
+          chart. It has some limitations though.
+        </p>
+        <p>
+          If many groups are available, we will likely get some overlaps between
+          labels, resulting in a messy figure. This could be avoided but would
+          require a good amount of additional code. It is thus ignored here.
+        </p>
       </AccordionSection>
 
       <AccordionSection title={"Hover effect"} startOpen={true}>
-        <p>Never that many DOM items, so ok not to have a hover layer.</p>
+        <p>
+          A nice interactive touch for a donut chart is to add a hover effect.
+          On the graph below, hovering over a slice will highlight it.
+        </p>
+        <p>
+          Several approaches are available to trigger that king of interaction.
+          They are extensively described in this{" "}
+          <Link href="add-hover-interaction-to-graph">specific post</Link>.
+        </p>
+        <p>
+          For a donut chart I suggest to slightly dim the groups that are not
+          hovered over. This can be done by toogling a class on the donut svg
+          container and using css selectors smartly.
+        </p>
+        <p>
+          Adding a <code>hasHighlight</code> class can be done using the{" "}
+          <code>onMouseEnter</code> attribute of any svg element. The opposite
+          can then be done using <code>onMouseLeave</code> and the{" "}
+          <code>remove()</code> function.
+        </p>
+        <CodeBlock code={snippet5} />
+        <p>
+          Then, this is how the css should look like to keep a strong opacity on
+          the hovered group only:
+        </p>
+        <CodeBlock code={snippet6} />
+
         <ChartOrSandbox
           vizName={"DonutChartHover"}
           VizComponent={DonutChartHoverDemo}

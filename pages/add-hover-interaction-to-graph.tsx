@@ -13,6 +13,7 @@ import { Caption } from "../component/UI/Caption";
 import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
 import { ScatterplotHoverHighlightDimDemo } from "../viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo";
 import { ScatterplotHoverHighlightTwoLayersDemo } from "../viz/ScatterplotHoverHighlightTwoLayers/ScatterplotHoverHighlightTwoLayersDemo";
+import { DonutChartHoverDemo } from "../viz/DonutChartHover/DonutChartHoverDemo";
 
 const graphDescription = (
   <p>
@@ -24,31 +25,14 @@ const graphDescription = (
 );
 
 const snippet1 = `
-export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
-
-  const getDimensions = () => {
-    return {
-      width: targetRef.current ? targetRef.current.offsetWidth : 0,
-      height: targetRef.current ? targetRef.current.offsetHeight : 0
-    };
-  };
-
-  const [dimensions, setDimensions] = useState(getDimensions);
-
-  const handleResize = () => {
-    setDimensions(getDimensions());
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useLayoutEffect(() => {
-    handleResize();
-  }, []);
-
-  return dimensions;
+.circle {
+  fill-opacity: 1;
+}
+.svgArea:hover .circle {
+  fill-opacity: .1;
+}
+.svgArea .circle:hover {
+  fill-opacity: 1;
 }
 `.trim();
 
@@ -145,11 +129,7 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={
-          <span>
-            <code>:hover</code> pseudo class AND dimming
-          </span>
-        }
+        title={<span>Dim other groups, css only</span>}
         startOpen={true}
       >
         <p>
@@ -157,6 +137,8 @@ export default function Home() {
           class to the parent div. Then highlight the hovered shape by removing
           it's dim.
         </p>
+        <p>Do it for treemap</p>
+        <CodeBlock code={snippet1} />
         <ChartOrSandbox
           vizName={"ScatterplotHoverHighlightDim"}
           VizComponent={ScatterplotHoverHighlightDimDemo}
@@ -174,6 +156,24 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
+        title={<span>Dim other groups, toggle class in js</span>}
+        startOpen={true}
+      >
+        <p>
+          More elegant in term of design. Requires to dim all series by adding a
+          class to the parent div. Then highlight the hovered shape by removing
+          it's dim.
+        </p>
+        <ChartOrSandbox
+          vizName={"DonutChartHover"}
+          VizComponent={DonutChartHoverDemo}
+          maxWidth={800}
+          height={400}
+          caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
+        />
+      </AccordionSection>
+
+      <AccordionSection
         title={"Canvas and second layer for performances"}
         startOpen={true}
       >
@@ -183,7 +183,7 @@ export default function Home() {
           the react <code>useRef()</code>
           function:
         </p>
-        <CodeBlock code={snippet2} />
+        {/* <CodeBlock code={snippet2} /> */}
         <ChartOrSandbox
           vizName={"ScatterplotHoverHighlightTwoLayers"}
           VizComponent={ScatterplotHoverHighlightTwoLayersDemo}
