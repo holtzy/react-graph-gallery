@@ -7,13 +7,12 @@ import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { Scatterplot as ScatterplotHoverHighlight } from "../viz/ScatterplotHoverHighlight/Scatterplot";
-import { Scatterplot as ScatterplotHoverHighlightDim } from "../viz/ScatterplotHoverHighlightDim/Scatterplot";
 import { data } from "../viz/ScatterplotHoverHighlight/data";
 import { Caption } from "../component/UI/Caption";
 import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
-import { ScatterplotHoverHighlightDimDemo } from "../viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo";
 import { ScatterplotHoverHighlightTwoLayersDemo } from "../viz/ScatterplotHoverHighlightTwoLayers/ScatterplotHoverHighlightTwoLayersDemo";
 import { DonutChartHoverDemo } from "../viz/DonutChartHover/DonutChartHoverDemo";
+import { TreemapHoverEffectDemo } from "../viz/TreemapHoverEffect/TreemapHoverEffectDemo";
 
 const graphDescription = (
   <p>
@@ -69,9 +68,6 @@ export default function Home() {
       <div className="py-6 grey-section full-bleed flex flex-row gap-x-8 justify-center items-center">
         <div className="p-2 bg-white">
           <ScatterplotHoverHighlight width={250} height={250} data={data} />
-        </div>
-        <div className="p-2 bg-white">
-          <ScatterplotHoverHighlightDim width={250} height={250} data={data} />
         </div>
       </div>
       <div className="flex justify-center">
@@ -140,11 +136,11 @@ export default function Home() {
         <p>Do it for treemap</p>
         <CodeBlock code={snippet1} />
         <ChartOrSandbox
-          vizName={"ScatterplotHoverHighlightDim"}
-          VizComponent={ScatterplotHoverHighlightDimDemo}
-          maxWidth={400}
-          height={500}
-          caption="Use dimming to highlight a specific point"
+          vizName={"TreemapHoverEffect"}
+          VizComponent={TreemapHoverEffectDemo}
+          maxWidth={600}
+          height={400}
+          caption="Hover over a group on the treemap to see the other groups fading."
         />
         <p>
           <u>Pro</u>: Better design. Easy to implement.
