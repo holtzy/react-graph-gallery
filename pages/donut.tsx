@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
@@ -6,10 +6,10 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
-import { data } from "../data/one-value-per-group-random";
 import { DonutChartBasicDemo } from "../viz/DonutChartBasic/DonutChartBasicDemo";
 import Link from "next/link";
 import { DonutChartLegendDemo } from "../viz/DonutChartLegend/DonutChartLegendDemo";
+import { DonutChartHoverDemo } from "../viz/DonutChartHover/DonutChartHoverDemo";
 
 const graphDescription = (
   <p>
@@ -49,9 +49,18 @@ const arcs pie.map((p) =>
     );
 `.trim();
 
-export default function Home() {
-  const [animData, setAnimData] = useState(data);
+const snippet4 = `
+const sliceInfo = {
+  innerRadius,
+  outerRadius: radius,
+  startAngle: start,
+  endAngle: end,
+};
+const centroid = arcGenerator.centroid(sliceInfo); // [x,y] position of the centroid
+const slicePath = arcGenerator(sliceInfo); // string: the path of the slice
+`.trim();
 
+export default function Home() {
   return (
     <Layout
       title="Donut chart with React"
@@ -118,18 +127,51 @@ export default function Home() {
       <AccordionSection title={"Legend"} startOpen={true}>
         <p>
           The minimal donut chart above is completely useless as long as it does
-          not display the group names. Adding a legend would be straightforward
-          but that's a bad practice.
+          not display the group names. Adding a side legend would be
+          straightforward but that's a bad practice. It's indeed very annoying
+          for the reader to continuously switch between the legend and the
+          chart.
         </p>
-        <br />
-        <p>Let's instead add some inline legend.</p>
-        <CodeBlock code={snippet1} />
+        <p>
+          Instead I suggest to add clean inline legends. A little dot will be
+          located on each slice centroid. From there a first segment will go out
+          of the donut, followed by a second horizontal segment that goes to the
+          label.
+        </p>
+        <p>
+          The difficulty here is to get the position of the slice centroid and
+          of the line inflexion point.
+        </p>
+        <p>
+          The <code>centroid()</code> function of d3 is all we need for that. It
+          gives the <code>x</code> and <code></code>y positions of the centroid
+          of an <code>arc</code>, arc that we used to build the donut slice
+          anyway.
+        </p>
+        <CodeBlock code={snippet4} />
+        <p>
+          The exact same techniique is used to get the position of the inflexion
+          point. An additional arc is computed, located out of the donut area,
+          and with a thickness of 0. Its centroid is the inflexion point.
+        </p>
         <ChartOrSandbox
           vizName={"DonutChartLegend"}
           VizComponent={DonutChartLegendDemo}
           maxWidth={800}
           height={400}
-          caption="basic donut chart with react and d3.js"
+          caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
+        />
+        <p>Add something about limitaion: legend overlap, too many groups..</p>
+      </AccordionSection>
+
+      <AccordionSection title={"Hover effect"} startOpen={true}>
+        <p>Never that many DOM items, so ok not to have a hover layer.</p>
+        <ChartOrSandbox
+          vizName={"DonutChartHover"}
+          VizComponent={DonutChartHoverDemo}
+          maxWidth={800}
+          height={400}
+          caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
         />
       </AccordionSection>
 
