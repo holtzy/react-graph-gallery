@@ -8,6 +8,7 @@ import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { TreemapBasicDemo } from "../viz/TreemapBasic/TreemapBasicDemo";
 import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";
+import { TreemapHoverEffectDemo } from "../viz/TreemapHoverEffect/TreemapHoverEffectDemo";
 
 const graphDescription = (
   <p>
@@ -115,6 +116,18 @@ export default function Home() {
           maxWidth={600}
           height={400}
           caption="Treemap with 2 levels of hierarchy, made with react and d3.js."
+        />
+      </AccordionSection>
+
+      <AccordionSection title={"Hover effect"} startOpen={true}>
+        <p>Dim other groups when a group is hovered over.</p>
+
+        <ChartOrSandbox
+          vizName={"TreemapHoverEffect"}
+          VizComponent={TreemapHoverEffectDemo}
+          maxWidth={600}
+          height={400}
+          caption="Hover over a group on the treemap to see the other groups fading."
         />
       </AccordionSection>
 

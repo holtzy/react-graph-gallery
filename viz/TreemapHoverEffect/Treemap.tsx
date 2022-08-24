@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Tree } from "./data";
 import * as d3 from "d3";
+import styles from "./treemap.module.css";
 
 type TreemapProps = {
   width: number;
@@ -38,7 +39,7 @@ export const Treemap = ({ width, height, data }: TreemapProps) => {
   const allShapes = root.leaves().map((leaf, i) => {
     const parentName = leaf.parent?.data.name;
     return (
-      <g key={leaf.id}>
+      <g key={leaf.id} className={styles.rectangle}>
         <rect
           x={leaf.x0}
           y={leaf.y0}
@@ -76,7 +77,7 @@ export const Treemap = ({ width, height, data }: TreemapProps) => {
 
   return (
     <div>
-      <svg width={width} height={height}>
+      <svg width={width} height={height} className={styles.container}>
         {allShapes}
       </svg>
     </div>
