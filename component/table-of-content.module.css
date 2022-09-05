@@ -1,0 +1,30 @@
+.tableOfContent {
+    position: fixed;
+    left: 30px;
+    top: 40%;
+    width: 13%;
+    overflow: hidden;
+}
+
+@media (max-width: 1400px){
+    .tableOfContent {
+        display: none;
+    }
+}
+
+.tocItem {
+    border-left: solid;
+    border-left-color: transparent;
+    padding-left: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: lightgray;
+    font-size: 16px;
+}
+
+.tocItemActive {
+    border-left-color: var(--react-gallery);
+    color: black;
+}

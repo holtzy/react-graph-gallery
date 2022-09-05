@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Head from "next/head";
+import TableOfContent from "./TableOfContent";
 
 // The Layout component
 // - adds the top navBar
@@ -61,6 +62,7 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
         {children}
         <Footer />
       </div>
+      <TableOfContent />
     </>
   );
 };

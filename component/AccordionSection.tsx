@@ -4,12 +4,14 @@ type AccordionSectionProps = {
   startOpen: boolean;
   title: React.ReactNode;
   children: React.ReactNode;
+  toc?: string;
 };
 
 export const AccordionSection = ({
   startOpen,
   title,
   children,
+  toc,
 }: AccordionSectionProps) => {
   const [isOpen, setIsOpen] = useState(startOpen);
   const cssHeight = isOpen ? "max-h-full" : "max-h-0";
@@ -17,7 +19,11 @@ export const AccordionSection = ({
 
   return (
     <>
-      <h2 className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+      <h2
+        className="cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+        id={toc} // used for the table of content
+      >
         {!isOpen ? (
           <span className="text-purple-700 w-4 mr-2 hover:text-purple-900 inline-block">
             &#43;

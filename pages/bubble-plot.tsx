@@ -10,6 +10,7 @@ import Link from "next/link";
 import { BubblePlotBasicDemo } from "../viz/BubblePlotBasic/BubblePlotBasicDemo";
 import { BubblePlotLegendDemo } from "../viz/BubblePlotLegend/BubblePlotLegendDemo";
 import { BubblePlotTooltipDemo } from "../viz/BubblePlotTooltip/BubblePlotTooltipDemo";
+import TableOfContent from "../component/TableOfContent";
 
 const graphDescription = (
   <p>
@@ -52,7 +53,7 @@ export default function Home() {
         chartType="bubble"
       />
 
-      <AccordionSection title={"The data"} startOpen={true}>
+      <AccordionSection title={"The data"} startOpen={true} toc={"data"}>
         <p>
           The dataset used to build a bubble plot is usually an array of object
           where each object is a data point. For each object, at least{" "}
@@ -86,7 +87,11 @@ export default function Home() {
         </blockquote>
       </div>
 
-      <AccordionSection title={"Static bubble chart"} startOpen={true}>
+      <AccordionSection
+        title={"Static bubble chart"}
+        startOpen={true}
+        toc={"Static"}
+      >
         <p>
           A few additional steps are required to move from a{" "}
           <Link href="scatter-plot">scatterplot</Link> to a bubble chart.
@@ -124,7 +129,11 @@ export default function Home() {
         </p>
       </AccordionSection>
 
-      <AccordionSection title={"Bubble chart with legend"} startOpen={true}>
+      <AccordionSection
+        title={"Bubble chart with legend"}
+        startOpen={true}
+        toc={"Legend"}
+      >
         <p>
           There are{" "}
           <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
@@ -152,7 +161,11 @@ export default function Home() {
         </p>
       </AccordionSection>
 
-      <AccordionSection title={"Bubble chart with tooltip"} startOpen={true}>
+      <AccordionSection
+        title={"Bubble chart with tooltip"}
+        startOpen={true}
+        toc={"Tooltip"}
+      >
         <p>Complete writeup</p>
 
         <ChartOrSandbox
