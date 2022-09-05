@@ -56,14 +56,12 @@
 /* ---------- Global CSS ----------------- */
 body {
     overflow-x: hidden;
-    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+    font-family: 'Montserrat' !important;
     font-size: 19px;
-    font-weight: 200;
+    font-weight: 300;
+    line-height: 1.63;
 }
 p {
-    line-height: 1.63;
-    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-    font-weight: 200;
     margin-bottom: 10px;
 }
 /* This code rule applies only to inline code. Code formatted by prism has its style set in a custom sheet. */

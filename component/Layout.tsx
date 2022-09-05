@@ -44,6 +44,10 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
           href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto+Mono:wght@300&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="keywords"
           content="React, D3, D3.js, data, dataviz, data visualization, DOM, web, dev, chart, graph"
