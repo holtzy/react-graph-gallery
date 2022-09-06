@@ -1,0 +1,17 @@
+.axisContainer {
+    color: black;
+    stroke: black;
+    stroke-width: .5px;
+    shape-rendering:crispEdges;
+    opacity: .7;
+}
+
+.label {
+    font-size: 8px;
+    text-anchor: middle;
+    transform: translateY(15px);
+}
+
+.title {
+    font-size: 8px;
+}

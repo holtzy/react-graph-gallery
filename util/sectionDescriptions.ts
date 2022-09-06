@@ -94,7 +94,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/correlogram",
     reactURL: "https://react-graph-gallery.com/correlogram/",
     label: "Correlogram",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "bubble",
