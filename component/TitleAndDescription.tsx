@@ -8,7 +8,7 @@ import { VerticalSeparator } from "./VerticalSeparator";
 import { LinkAsButton } from "./LinkAsButton";
 
 type TitleAndDescription = {
-  title: string;
+  title: string | JSX.Element;
   description: JSX.Element;
   chartType?: ChartId;
   showSectionLink?: boolean;
@@ -33,7 +33,6 @@ export default function TitleAndDescription({
         <VerticalSeparator />
         <SocialMediaButtons />
         <div className="max-w-xxl text-center py-2">{description}</div>
-
         {chartType && (
           <div className="flex flex-row flex-wrap justify-center">
             {showSectionLink && (

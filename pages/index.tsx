@@ -22,7 +22,12 @@ export default function Home() {
       seoDescription="The React Graph Gallery displays hundreds of charts made with React, always with explanation and reproduciible code"
     >
       <TitleAndDescription
-        title="The React Graph Gallery"
+        title={
+          <span className="text-5xl">
+            The <span className="gradient text-5xl font-extrabold">React</span>{" "}
+            Graph Gallery
+          </span>
+        }
         description={siteDescription}
       />
 
