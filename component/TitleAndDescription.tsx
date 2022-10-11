@@ -28,13 +28,14 @@ export default function TitleAndDescription({
 
   return (
     <>
-      <div className="w-full pt-1 sm:pt-28 pb-20 px-10 flex flex-col items-center align-center">
-        <h1 className="text-4xl text-center">{title}</h1>
+      <div className="w-full pt-1 sm:pt-28 pb-20 ">
+        <h1 className="">{title}</h1>
         <VerticalSeparator />
-        <SocialMediaButtons />
-        <div className="max-w-xxl text-center py-2">{description}</div>
+        <div className="max-w-xxl  py-2">
+          <p>{description}</p>
+        </div>
         {chartType && (
-          <div className="flex flex-row flex-wrap justify-center">
+          <div className="flex flex-row flex-wrap">
             {showSectionLink && (
               <div className="my-2">
                 <LinkAsButton href={fullUrlToInternalLink(chartInfo.reactURL)}>

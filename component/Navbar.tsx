@@ -13,8 +13,8 @@ export default function Navbar() {
         >
           <div className="flex items-center">
             <Link href="/">
-              <span className="ml-2 text-black font-light text-md lg:text-md cursor-pointer">
-                &larr; React Graph Gallery
+              <span className="ml-2 text-black text-md lg:text-md cursor-pointer">
+                The <span className="gradient">React</span> Graph Gallery
               </span>
             </Link>
           </div>

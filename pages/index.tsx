@@ -5,6 +5,7 @@ import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
 import SectionLogo from "../component/SectionLogo";
 import Link from "next/link";
+import { TypingAnimation } from "../component/TypingAnimation";
 
 const siteDescription = (
   <p>
@@ -23,9 +24,8 @@ export default function Home() {
     >
       <TitleAndDescription
         title={
-          <span className="text-5xl">
-            The <span className="gradient text-5xl font-extrabold">React</span>{" "}
-            Graph Gallery
+          <span>
+            Build <TypingAnimation /> charts for the web
           </span>
         }
         description={siteDescription}

@@ -74,80 +74,76 @@ export default function Home() {
         chartType="scatter"
       />
 
-      <AccordionSection title={"The data"} startOpen={true}>
-        <p>
-          The dataset used to build a scatterplot is usually an array of object.
-          For each object, at least 2 properties providing a value for the x and
-          y axis are needed. It usually also have properties that describe the
-          data point.
-        </p>
-        <CodeBlock code={snippet1} />
-        <p>
-          <u>Note</u>: this section is based on the{" "}
-          <a href="https://www.data-to-viz.com/story/ThreeNum.html">
-            gapminder
-          </a>{" "}
-          dataset that provides some info like the life expectancy and the
-          population for evere country.
-        </p>
-      </AccordionSection>
+      <h2 id="data">The Data</h2>
+      <p>
+        The dataset used to build a scatterplot is usually an array of object.
+        For each object, at least 2 properties providing a value for the x and y
+        axis are needed. It usually also have properties that describe the data
+        point.
+      </p>
+      <CodeBlock code={snippet1} />
+      <p>
+        <u>Note</u>: this section is based on the{" "}
+        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
+        dataset that provides some info like the life expectancy and the
+        population for evere country.
+      </p>
 
-      <AccordionSection title={"Most basic scatterplot"} startOpen={true}>
-        <p>
-          Use <code>scaleLinear</code> for the scales. Tricky part is to build
-          the axis: can be done with with d3.js or with React. Deserves its own
-          blogpost.
-        </p>
+      <h2 id="most basic">Most basic scatterplot</h2>
+      <p>
+        Use <code>scaleLinear</code> for the scales. Tricky part is to build the
+        axis: can be done with with d3.js or with React. Deserves its own
+        blogpost.
+      </p>
 
-        <ChartOrSandbox
-          VizComponent={ScatterplotBasicDemo}
-          vizName={"ScatterplotBasic"}
-          maxWidth={600}
-          height={500}
-          caption="Most basic scatterplot built with react and d3.js"
-        />
-      </AccordionSection>
+      <ChartOrSandbox
+        VizComponent={ScatterplotBasicDemo}
+        vizName={"ScatterplotBasic"}
+        maxWidth={600}
+        height={500}
+        caption="Most basic scatterplot built with react and d3.js"
+      />
 
-      <AccordionSection title={"Real life"} startOpen={true}>
-        <p>Let's apply the concepts learnt above on a real life example.</p>
-        <p>
-          I really like this scatterplot originally published on the data
-          wrapper blog. It shows a strong correlation between vulnerability to
-          climate change and CO2 emissions.
-        </p>
-        <p>
-          The chart has several features that are interesting to reproduce on a
-          technical point of view:
-        </p>
-        <ul>
-          <li>
-            Custom <b>annotation</b>: only a fraction of the country names are
-            written
-          </li>
-          <li>
-            Hover effect: hovered country is highlighted with a black stroke.
-            After a short delay, countries of other groups are dimmed. Note that
-            the effect is triggered once the mouse approaches the marker, no
-            need to be perfectly on top.
-          </li>
-          <li>Tooltip: highly customized and linked to mouse position</li>
-        </ul>
-        <ChartOrSandbox
-          VizComponent={ScatterplotClimateCrisisDemo}
-          vizName={"ScatterplotClimateCrisis"}
-          maxWidth={700}
-          height={900}
-          caption={
-            <span>
-              Reproduction of a chart originally published by{" "}
-              <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
-                Data Wrapper
-              </a>{" "}
-              using react and d3.js.
-            </span>
-          }
-        />
-      </AccordionSection>
+      <h2 id="real life">Real life application</h2>
+      <p>Let's apply the concepts learnt above on a real life example.</p>
+      <p>
+        I really like this scatterplot originally published on the data wrapper
+        blog. It shows a strong correlation between vulnerability to climate
+        change and CO2 emissions.
+      </p>
+      <br />
+      <p>
+        The chart has several features that are interesting to reproduce on a
+        technical point of view:
+      </p>
+      <ul>
+        <li>
+          Custom <b>annotation</b>: only a fraction of the country names are
+          written
+        </li>
+        <li>
+          Hover effect: hovered country is highlighted with a black stroke.
+          After a short delay, countries of other groups are dimmed. Note that
+          the effect is triggered once the mouse approaches the marker, no need
+          to be perfectly on top.
+        </li>
+        <li>Tooltip: highly customized and linked to mouse position</li>
+      </ul>
+      <ChartOrSandbox
+        VizComponent={ScatterplotClimateCrisisDemo}
+        vizName={"ScatterplotClimateCrisis"}
+        maxWidth={700}
+        height={900}
+        caption={
+          <span>
+            Reproduction of a chart originally published by{" "}
+            <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
+              Data Wrapper
+            </a>{" "}
+            using react and d3.js.
+          </span>
+        }
+      />
 
       <br />
       <br />
