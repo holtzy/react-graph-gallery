@@ -1,0 +1,34 @@
+1 - Introduction
+    - Dataviz on the web
+    - what is React
+    - what is d3.js
+    - why it's hard to combine them
+    - solution 1: the d3 way
+    - solution 2: the react way
+# -> I know how to draw a circle
+
+2 - Draw a basic chart
+    - Read data
+    - Create scales
+    - Add shapes
+    - Add axis
+    - Make it pretty
+    - Make it responsive
+# -> I know how to make a decent static chart
+
+3 - Interactivity
+    - Hover interaction
+    - Tooltip
+    - Graph to graph interaction
+    - Zooming
+    - Callback
+# -> I know how to make my chart alive
+
+4 - Animation
+    - basic: css animation
+    - spring animation with react spring
+    - dataset transition
+    - shape morphism
+# -> I know how to animate changes in my app
+
+

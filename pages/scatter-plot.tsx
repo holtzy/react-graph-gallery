@@ -7,6 +7,7 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
+import { ScatterplotClimateCrisisDemo } from "../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
 
 const graphDescription = (
   <p>
@@ -107,8 +108,14 @@ export default function Home() {
         />
       </AccordionSection>
 
-      <AccordionSection title={"Hover effect"} startOpen={true}>
-        <p>TODO</p>
+      <AccordionSection title={"Real life"} startOpen={true}>
+        <ChartOrSandbox
+          VizComponent={ScatterplotClimateCrisisDemo}
+          vizName={"ScatterplotClimateCrisis"}
+          maxWidth={700}
+          height={700}
+          caption="Data wrapper example"
+        />
       </AccordionSection>
 
       <br />
