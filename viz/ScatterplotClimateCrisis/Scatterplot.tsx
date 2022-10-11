@@ -10,8 +10,8 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const [hoveredGroup, setHoveredGroup] = useState<string>();
 
   // Scales
-  const xScale = d3.scaleLinear().domain([0.2, 0.8]).range([0, width]);
-  const yScale = d3.scaleLinear().domain([0.1, 0.9]).range([height, 0]);
+  const xScale = d3.scaleLinear().domain([0.23, 0.69]).range([0, width]);
+  const yScale = d3.scaleLinear().domain([0.12, 0.83]).range([height, 0]);
   const sizeScale = d3.scaleSqrt().domain([0, 32]).range([3, 40]);
 
   // All squares, 1 per country
@@ -94,6 +94,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
             x={xText}
             y={yText}
             fontSize={12}
+            fontWeight={500}
             textAnchor={textAnchor} // horizontal alignment
             dominantBaseline={"middle"} // vertical alignment
           >
@@ -109,19 +110,63 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const axes = (
     <g>
       {/* vertical and horizontal lines */}
-      <line x1={0} x2={width} y1={y} y2={y} stroke="black" />
-      <line x1={x} x2={x} y1={0} y2={height} stroke="black" />
+      <line
+        x1={0}
+        x2={width}
+        y1={y}
+        y2={y}
+        stroke="#ababab"
+        strokeDasharray="2"
+      />
+      <line
+        x1={x}
+        x2={x}
+        y1={0}
+        y2={height}
+        stroke="#ababab"
+        strokeDasharray="2"
+      />
+
       {/* labels for X axis */}
-      <text x={0} y={y - 15} fontSize={14} textRendering={"optimizeLegibility"}>
+      <text
+        x={0}
+        y={y - 15}
+        fill="#ababab"
+        fontSize={16}
+        textRendering={"optimizeLegibility"}
+        dominantBaseline={"Auto"}
+      >
         High Readiness
       </text>
-      <text x={0} y={y - 30}>
+      <text
+        x={0}
+        y={y - 37}
+        fill="#ababab"
+        fontSize={16}
+        textRendering={"optimizeLegibility"}
+        dominantBaseline={"Auto"}
+      >
         &uarr;
       </text>
-      <text x={0} y={y + 15} fontSize={14}>
+
+      <text
+        x={0}
+        y={y + 15}
+        fill="#ababab"
+        fontSize={16}
+        textRendering={"optimizeLegibility"}
+        dominantBaseline={"Hanging"}
+      >
         Low Readiness
       </text>
-      <text x={0} y={y + 30}>
+      <text
+        x={0}
+        y={y + 37}
+        fill="#ababab"
+        fontSize={16}
+        textRendering={"optimizeLegibility"}
+        dominantBaseline={"Hanging"}
+      >
         &darr;
       </text>
     </g>
