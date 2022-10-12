@@ -8,6 +8,8 @@ import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
 import { ScatterplotClimateCrisisDemo } from "../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
+import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
+import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
 
 const graphDescription = (
   <p>
@@ -74,6 +76,11 @@ export default function Home() {
         chartType="scatter"
       />
 
+      {/*
+      //
+      // Data
+      //
+      */}
       <h2 id="data">The Data</h2>
       <p>
         The dataset used to build a scatterplot is usually an array of object.
@@ -89,7 +96,28 @@ export default function Home() {
         population for evere country.
       </p>
 
-      <h2 id="most basic">Most basic scatterplot</h2>
+      {/*
+      //
+      // Axes
+      //
+      */}
+      <h2 id="Scales and axes">Scales and axes</h2>
+      <p>Two options: using d3 or using React</p>
+
+      <ChartOrSandbox
+        VizComponent={AxisBasicDemo}
+        vizName={"AxisBasicDemo"}
+        maxWidth={500}
+        height={300}
+        caption="How to draw axes using React and d3.js"
+      />
+
+      {/*
+      //
+      // Add markers
+      //
+      */}
+      <h2 id="Add markers">Add markers</h2>
       <p>
         Use <code>scaleLinear</code> for the scales. Tricky part is to build the
         axis: can be done with with d3.js or with React. Deserves its own
@@ -102,6 +130,25 @@ export default function Home() {
         maxWidth={600}
         height={500}
         caption="Most basic scatterplot built with react and d3.js"
+      />
+
+      {/*
+      //
+      // Hover effects
+      //
+      */}
+      <h2 id="Hover effect">Hover effect</h2>
+      <p>
+        Use <code>scaleLinear</code> for the scales. Tricky part is to build the
+        axis: can be done with with d3.js or with React. Deserves its own
+        blogpost.
+      </p>
+      <ChartOrSandbox
+        VizComponent={ScatterplotHoverHighlightDemo}
+        vizName={"ScatterplotHoverHighlightDemo"}
+        maxWidth={600}
+        height={500}
+        caption="Hover effect"
       />
 
       <h2 id="real life">Real life application</h2>
