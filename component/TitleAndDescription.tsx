@@ -38,7 +38,10 @@ export default function TitleAndDescription({
           <div className="flex flex-row flex-wrap">
             {showSectionLink && (
               <div className="my-2">
-                <LinkAsButton href={fullUrlToInternalLink(chartInfo.reactURL)}>
+                <LinkAsButton
+                  href={fullUrlToInternalLink(chartInfo.reactURL)}
+                  size="sm"
+                >
                   {chartInfo.label + " section"}
                 </LinkAsButton>
               </div>
@@ -47,6 +50,7 @@ export default function TitleAndDescription({
               <div className="my-2">
                 <LinkAsButton
                   href={"https://www.dataviz-inspiration.com/" + chartInfo.id}
+                  size="sm"
                 >
                   {"inspiration"}
                 </LinkAsButton>
@@ -54,14 +58,14 @@ export default function TitleAndDescription({
             )}
             {showD3GalleryLink && (
               <div className="my-2">
-                <LinkAsButton href={chartInfo.d3URL}>
+                <LinkAsButton href={chartInfo.d3URL} size="sm">
                   {"d3 gallery"}
                 </LinkAsButton>
               </div>
             )}
             <div>
               <div className="my-2">
-                <LinkAsButton href={chartInfo.dataToVizURL} isFilled>
+                <LinkAsButton href={chartInfo.dataToVizURL} isFilled size="sm">
                   {"About this chart"}
                 </LinkAsButton>
               </div>

@@ -65,17 +65,16 @@ body {
 
 p {
     margin-bottom: 10px;
-
 }
 
 /* This code rule applies only to inline code. Code formatted by prism has its style set in a custom sheet. */
 code {
-    /* padding: .2em .4em;
+    padding: .2em .4em;
     margin: 0;
     font-size: 85%;
     background-color: #afb8c133;
     border-radius: 6px;
-    font-family: 'Fira Mono', monospace; */
+    font-family: 'Fira Mono', monospace;
 }
 a {
     color: var(--react-gallery);
@@ -97,9 +96,6 @@ blockquote {
     border-left: 2px solid var(--react-gallery);
     padding: 0.5em 10px;
     quotes: "\201C""\201D""\2018""\2019";
-    line-height: 1.73;
-    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-    font-weight: 200;
   }
 blockquote p {
     display: inline;
@@ -208,6 +204,22 @@ li {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+}
+.backgroundGradient {
+    background-image: linear-gradient(
+        4deg,
+        hsl(240deg 100% 20%) 0%,
+        hsl(260deg 100% 23%) 11%,
+        hsl(279deg 100% 27%) 22%,
+        hsl(298deg 100% 30%) 33%,
+        hsl(318deg 100% 33%) 44%,
+        hsl(337deg 100% 37%) 56%,
+        hsl(357deg 100% 40%) 67%,
+        hsl(16deg 100% 43%) 78%,
+        hsl(36deg 100% 47%) 89%,
+        hsl(55deg 100% 50%) 100%
+      );
+    background-size: 100%;
 }
 
 

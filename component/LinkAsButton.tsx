@@ -25,7 +25,7 @@ export const LinkAsButton = ({
     appearance += " bg-purple-500 hover:bg-purple-700 text-white ";
   } else {
     appearance +=
-      " bg-white hover:bg-purple-700 hover:text-white text-purple-700 s";
+      " bg-white hover:bg-purple-700 hover:text-white text-purple-700 ";
   }
 
   if (size === "sm") {

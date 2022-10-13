@@ -11,10 +11,9 @@ export const ResponsiveExplanationSection = ({
   const label = chartTypesInfo.filter((chart) => chart.id === chartId)[0].label;
 
   return (
-    <AccordionSection
-      title={"Responsive " + label + " with react"}
-      startOpen={true}
-    >
+    <>
+      <h2 id="responsiveness">{"Responsive " + label + " with react"}</h2>
+
       <p>
         The component above is not responsive. It expects 2 props called{" "}
         <code>width</code> and <code>height</code> and will render a {label} of
@@ -39,6 +38,6 @@ export const ResponsiveExplanationSection = ({
       <br />
       <br />
       <br />
-    </AccordionSection>
+    </>
   );
 };

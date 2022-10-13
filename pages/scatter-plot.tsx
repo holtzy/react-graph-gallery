@@ -10,6 +10,7 @@ import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDe
 import { ScatterplotClimateCrisisDemo } from "../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
 import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
 import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
+import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
   <p>
@@ -123,7 +124,6 @@ export default function Home() {
         axis: can be done with with d3.js or with React. Deserves its own
         blogpost.
       </p>
-
       <ChartOrSandbox
         VizComponent={ScatterplotBasicDemo}
         vizName={"ScatterplotBasic"}
@@ -131,6 +131,13 @@ export default function Home() {
         height={500}
         caption="Most basic scatterplot built with react and d3.js"
       />
+
+      {/*
+      //
+      // Responsiveness
+      //
+      */}
+      <ResponsiveExplanationSection chartId="scatter" />
 
       {/*
       //

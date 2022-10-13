@@ -20,27 +20,33 @@ export default function Navbar() {
           </div>
 
           <div className="">
-            <Link href="how-to">
+            {/* <Link href="how-to">
               <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
                 How to...
               </span>
-            </Link>
+            </Link> */}
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
               className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
             >
               Chart types
             </span>
-            <a href="#">
+            {/* <a href="#">
               <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-not-allowed">
                 Related
               </span>
-            </a>
-            <a href="#">
-              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-not-allowed">
+            </a> */}
+            <Link href="about">
+              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
                 About
               </span>
-            </a>
+            </Link>
+
+            <Link href="subscribe">
+              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
+                Subscribe
+              </span>
+            </Link>
           </div>
         </div>
         <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />

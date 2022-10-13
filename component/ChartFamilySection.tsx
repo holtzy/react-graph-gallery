@@ -45,7 +45,7 @@ export default function ChartFamilySection({
         className={
           chartFamily +
           " " +
-          "uppercase mt-12 text-md font-extralight border-b mb-2 border-gray-100 tracking-wider"
+          " mt-12 text-md border-b mb-2 border-gray-100 tracking-wider"
         }
       >
         {TITLES?.[chartFamily]}

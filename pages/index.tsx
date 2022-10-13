@@ -31,12 +31,13 @@ export default function Home() {
         description={siteDescription}
       />
 
-      <blockquote>
+      {/* <blockquote>
         The React Graph Gallery project just started. It is massively work in
         progress, following some requests of the{" "}
         <a href="https://www.d3-graph-gallery.com">d3-graph-gallery</a> users.
         Please consider it as my personal notes.
-      </blockquote>
+      </blockquote> */}
+
       <div className="mb-20">
         <ChartFamilySection chartFamily="distribution" />
         <ChartFamilySection chartFamily="correlation" />
