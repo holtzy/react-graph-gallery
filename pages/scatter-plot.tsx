@@ -21,7 +21,7 @@ const graphDescription = (
       d3.js version
     </a>
     , except that circle elements are rendered using react. Then it describes
-    how to implement the tricky parts: axis, tooltip, zoom and more.
+    how to implement the tricky parts: axis, tooltip, zoom and more. What
   </p>
 );
 

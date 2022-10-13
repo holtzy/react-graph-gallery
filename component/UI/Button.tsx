@@ -12,7 +12,7 @@ export const Button = ({
   isFilled,
   size = "md",
 }: ButtonProps) => {
-  let appearance = "rounded m-1 cursor-pointer border-purple-700 border ";
+  let appearance = "rounded m-1 cursor-pointer border-reactGallery border ";
 
   if (size === "sm") {
     appearance += "text-sm py-1 px-2";
@@ -22,10 +22,10 @@ export const Button = ({
   }
 
   if (isFilled) {
-    appearance += " bg-purple-500 hover:bg-purple-700 text-white";
+    appearance += " bg-reactGallery hover:bg-reactGallery text-white";
   } else {
     appearance +=
-      " bg-white hover:bg-purple-700 hover:text-white text-purple-700";
+      " bg-white hover:bg-reactGallery hover:text-white text-reactGallery";
   }
 
   return (
