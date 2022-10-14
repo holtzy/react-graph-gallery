@@ -16,33 +16,66 @@ export default function Home() {
       <h2>WHy</h2>
       <p>This is why</p>
 
-      <div id={"formID"} className=" inline-block" />
       <div id="revue-embed">
         <form
-          action="http://newsletter.victordibia.com/add_subscriber"
+          action="https://www.getrevue.co/profile/r_graph_gallery/add_subscriber"
           method="post"
           id="revue-form"
           name="revue-form"
           target="_blank"
         >
           <div className="revue-form-group">
+            <label for="member_email">Email address</label>
             <input
-              placeholder="email@example.com"
+              className="revue-form-field"
+              placeholder="Your email address..."
               type="email"
               name="member[email]"
               id="member_email"
             ></input>
           </div>
-
+          <div className="revue-form-group">
+            <label for="member_first_name">
+              First name <span className="optional">(Optional)</span>
+            </label>
+            <input
+              className="revue-form-field"
+              placeholder="First name... (Optional)"
+              type="text"
+              name="member[first_name]"
+              id="member_first_name"
+            ></input>
+          </div>
+          <div className="revue-form-group">
+            <label for="member_last_name">
+              Last name <span className="optional">(Optional)</span>
+            </label>
+            <input
+              className="revue-form-field"
+              placeholder="Last name... (Optional)"
+              type="text"
+              name="member[last_name]"
+              id="member_last_name"
+            ></input>
+          </div>
           <div className="revue-form-actions">
-            <button
+            <input
               type="submit"
-              onClick={"subscribeClick"}
+              value="Subscribe"
               name="member[subscribe]"
               id="member_submit"
-            >
-              Subscribe
-            </button>
+            ></input>
+          </div>
+          <div className="revue-form-footer">
+            By subscribing, you agree with Revue’s{" "}
+            <a target="_blank" href="https://www.getrevue.co/terms">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a target="_blank" href="https://www.getrevue.co/privacy">
+              Privacy Policy
+            </a>
+            .
           </div>
         </form>
       </div>
