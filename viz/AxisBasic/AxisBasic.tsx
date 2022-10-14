@@ -29,7 +29,7 @@ export const AxisBasic = ({ width, height }: AxisBasicProps) => {
 
   return (
     <div>
-      <svg width={width} height={height}>
+      <svg width={width} height={height} shapeRendering={"crispEdges"}>
         <g
           width={boundsWidth}
           height={boundsHeight}

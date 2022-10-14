@@ -131,10 +131,10 @@ export default function Home() {
 
       {/*
       //
-      // Add markers
+      // Add circles
       //
       */}
-      <h2 id="Add markers">Add markers</h2>
+      <h2 id="Add markers">Add circles</h2>
       <p>
         We are now pretty close from a first scatterplot. There is just one more
         critical part missing: <b>markers</b>.
@@ -161,7 +161,7 @@ export default function Home() {
         VizComponent={ScatterplotBasicDemo}
         vizName={"ScatterplotBasic"}
         maxWidth={500}
-        height={300}
+        height={500}
         caption="Add a svg circle for each item of the dataset to get a first scatterplot"
       />
       <p>
