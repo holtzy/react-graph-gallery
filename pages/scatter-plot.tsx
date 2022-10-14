@@ -190,7 +190,7 @@ export default function Home() {
       <ChartOrSandbox
         VizComponent={ScatterplotHoverHighlightDemo}
         vizName={"ScatterplotHoverHighlightDemo"}
-        maxWidth={600}
+        maxWidth={500}
         height={500}
         caption="Hover effect"
       />
