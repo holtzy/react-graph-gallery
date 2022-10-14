@@ -19,7 +19,7 @@ export const LinkAsButton = ({
   const isOutsideLink = href.startsWith("www") || href.startsWith("http");
 
   let appearance =
-    "font-normal rounded m-1 cursor-pointer border-reactGallery border ";
+    "font-normal rounded mr-1 cursor-pointer border-reactGallery border ";
 
   if (isFilled) {
     appearance += " bg-reactGallery hover:bg-reactGallery text-white ";

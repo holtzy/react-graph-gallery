@@ -6,7 +6,7 @@ const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 type ScatterplotProps = {
   width: number;
   height: number;
-  data: { lifeExp: number; gdpPercap: number }[];
+  data: { x: number; y: number }[];
 };
 
 export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
@@ -16,17 +16,9 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  // Y axis
-  const yScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.lifeExp));
-    return d3.scaleLinear().domain([min, max]).range([boundsHeight, 0]);
-  }, [data, height]);
-
-  // Y axis
-  const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.gdpPercap));
-    return d3.scaleLinear().domain([0, max]).range([0, boundsWidth]);
-  }, [data, width]);
+  // Scales
+  const yScale = d3.scaleLinear().domain([0, 10]).range([boundsHeight, 0]);
+  const xScale = d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
 
   // Render the X and Y axis using d3.js, not react
   useEffect(() => {
@@ -47,13 +39,13 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
     return (
       <circle
         key={i}
-        r={4}
-        cx={xScale(d.gdpPercap)}
-        cy={yScale(d.lifeExp)}
+        r={7}
+        cx={xScale(d.y)}
+        cy={yScale(d.x)}
         opacity={1}
-        stroke="#9a6fb0"
-        fill="#9a6fb0"
-        fillOpacity={0.7}
+        stroke="#cb1dd1"
+        fill="#cb1dd1"
+        fillOpacity={0.2}
         strokeWidth={1}
       />
     );
