@@ -11,6 +11,7 @@ import { ScatterplotClimateCrisisDemo } from "../viz/ScatterplotClimateCrisis/Sc
 import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
 import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <p>
@@ -158,6 +159,18 @@ export default function Home() {
         caption="Hover effect"
       />
 
+      {/*
+      //
+      // Inspiration
+      //
+      */}
+      <DatavizInspirationParallaxLink chartId="scatter" />
+
+      {/*
+      //
+      // Real life
+      //
+      */}
       <h2 id="real life">Real life application</h2>
       <p>Let's apply the concepts learnt above on a real life example.</p>
       <p>

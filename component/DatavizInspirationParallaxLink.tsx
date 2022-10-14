@@ -1,6 +1,5 @@
 import React from "react";
-import { ChartId } from "../util/sectionDescriptions";
-import { AccordionSection } from "./AccordionSection";
+import { ChartId, chartTypesInfo } from "../util/sectionDescriptions";
 import { LinkAsButton } from "./LinkAsButton";
 import { ParallaxSection } from "./ParallaxSection";
 
@@ -11,11 +10,15 @@ type DatavizInspirationParallaxLinkProps = {
 export default function DatavizInspirationParallaxLink({
   chartId,
 }: DatavizInspirationParallaxLinkProps) {
+  const chartName =
+    chartTypesInfo.find((d) => d.id === chartId)?.label || "chart";
+
   return (
-    <AccordionSection title={"More inspiration"} startOpen={true}>
+    <>
+      <h2 id="inspiration">More inspiration</h2>
       <p>
-        If you're looking for inspiration to create your next histogram, note
-        that{" "}
+        If you're looking for inspiration to create your next{" "}
+        <span>{chartName}</span>, note that{" "}
         <a href="https://www.dataviz-inspiration.com">
           dataviz-inspiration.com
         </a>{" "}
@@ -39,7 +42,8 @@ export default function DatavizInspirationParallaxLink({
                   dataviz-inspiration.com
                 </a>{" "}
                 showcases hundreds of stunning dataviz projects. Have a look to
-                get some ideas on how to make your histogram looks good!
+                get some ideas on how to make your <span>{chartName}</span>{" "}
+                looks good!
               </p>
               <LinkAsButton
                 href={"https://www.dataviz-inspiration.com"}
@@ -52,6 +56,6 @@ export default function DatavizInspirationParallaxLink({
           </div>
         </ParallaxSection>
       </div>
-    </AccordionSection>
+    </>
   );
 }
