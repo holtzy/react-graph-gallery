@@ -13,13 +13,15 @@ type ScatterplotProps = {
 
 // Simplified version of a scatterplot
 export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
-  // Take margins into account
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Scales
-  const yScale = d3.scaleLinear().domain([30, 85]).range([height, 0]);
-  const xScale = d3.scaleLinear().domain([-3000, 70000]).range([0, width]);
+  const yScale = d3.scaleLinear().domain([35, 85]).range([boundsHeight, 0]);
+  const xScale = d3
+    .scaleLinear()
+    .domain([-3000, 50000])
+    .range([0, boundsWidth]);
   const allGroups = data.map((d) => String(d.group));
   const colorScale = d3
     .scaleOrdinal<string>()
@@ -34,11 +36,9 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
         r={5}
         cx={xScale(d.x)}
         cy={yScale(d.y)}
-        opacity={1}
+        className={styles.scatterplotCircle}
         stroke={colorScale(d.group)}
         fill={colorScale(d.group)}
-        fillOpacity={0.6}
-        strokeWidth={1}
       />
     );
   });

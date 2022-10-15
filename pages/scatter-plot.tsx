@@ -178,6 +178,46 @@ export default function Home() {
 
       {/*
       //
+      // Tooltip
+      //
+      */}
+      <h2 id="Tooltips">Tooltips</h2>
+      <p>
+        There is a very common <b>frustration</b> with scatterplots: you're
+        interested in a specific data points (let's say it's out of the general
+        trend for instance), but you <b>ignore everything</b> about this item.
+      </p>
+      <p>
+        This is when tooltips come into play. You can add as much information as
+        you want in it, making the chart much more insightful.
+      </p>
+      <p>
+        In the following chart based on the{" "}
+        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
+        dataset, don't you want to know what are the countries with the highest
+        life expectancy or GDP per capita? Labeling all circles would result in
+        a very <b>cluttered</b> figure, so let's learn how to add tooltips
+        instead.
+      </p>
+      <ChartOrSandbox
+        VizComponent={ScatterplotHoverHighlightDemo}
+        vizName={"ScatterplotHoverHighlightDemo"}
+        maxWidth={500}
+        height={500}
+        caption="Hover effect"
+      />
+      <p>
+        There are <b>many different approaches</b> to build tooltips, and one
+        can even build it using{" "}
+        <a href="https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/">
+          css only
+        </a>
+        . But in my experience the best way to build it concists in the
+        following:
+      </p>
+
+      {/*
+      //
       // Hover effects
       //
       */}
