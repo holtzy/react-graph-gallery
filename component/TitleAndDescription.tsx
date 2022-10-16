@@ -6,6 +6,7 @@ import { fullUrlToInternalLink } from "../util/utils";
 
 import { HorizontalSeparator } from "./UI/HorizontalSeparator";
 import { LinkAsButton } from "./LinkAsButton";
+import { Tooltip } from "./UI/Tooltip";
 
 type TitleAndDescription = {
   title: string | JSX.Element;
@@ -20,7 +21,7 @@ export default function TitleAndDescription({
   title,
   description,
   chartType,
-  showSectionLink = false,
+  showSectionLink = false, // e.g: link to the scatterplot section
   showInspirationLink = true,
   showD3GalleryLink = true,
 }: TitleAndDescription) {
@@ -47,31 +48,43 @@ export default function TitleAndDescription({
         {chartType && (
           <div className="flex flex-row flex-wrap">
             {showSectionLink && (
-              <LinkAsButton
-                href={fullUrlToInternalLink(chartInfo.reactURL)}
-                size="sm"
-              >
-                {chartInfo.label + " section"}
-              </LinkAsButton>
+              <Tooltip text="kkkk" direction="bottom">
+                <LinkAsButton
+                  href={fullUrlToInternalLink(chartInfo.reactURL)}
+                  size="sm"
+                >
+                  {chartInfo.label + " section"}
+                </LinkAsButton>
+              </Tooltip>
             )}
             {showInspirationLink && (
-              <LinkAsButton
-                href={"https://www.dataviz-inspiration.com/" + chartInfo.id}
-                size="sm"
+              <Tooltip
+                text="Hundreds of stunning dataviz projects to gather inspiration"
+                direction="bottom"
               >
-                {"inspiration"}
-              </LinkAsButton>
+                <LinkAsButton
+                  href={"https://www.dataviz-inspiration.com/" + chartInfo.id}
+                  size="sm"
+                >
+                  {"inspiration"}
+                </LinkAsButton>
+              </Tooltip>
             )}
             {showD3GalleryLink && (
-              <LinkAsButton href={chartInfo.d3URL} size="sm">
-                {"d3 gallery"}
-              </LinkAsButton>
+              <Tooltip
+                text="Pure d3 implementation, no React"
+                direction="bottom"
+              >
+                <LinkAsButton href={chartInfo.d3URL} size="sm">
+                  {"d3 gallery"}
+                </LinkAsButton>
+              </Tooltip>
             )}
-            <div>
+            <Tooltip text="Dataviz theory about this chart" direction="bottom">
               <LinkAsButton href={chartInfo.dataToVizURL} isFilled size="sm">
                 {"About this chart"}
               </LinkAsButton>
-            </div>
+            </Tooltip>
           </div>
         )}
       </div>

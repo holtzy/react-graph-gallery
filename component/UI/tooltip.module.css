@@ -1,0 +1,83 @@
+.tooltip {
+    position:relative; /* making the .tooltip span a container for the tooltip text */
+}
+
+.tooltip:before {
+    content: attr(id); /* here's the magic */
+    position:absolute;
+    min-width:100px;
+    max-width: 200px;
+    padding:5px;
+    border-radius:4px;
+    background:#000;
+    color: #fff;
+    text-align:center;
+    font-size: 10px;
+    line-height: 14px;
+
+    opacity:0;
+    transition:.3s opacity;
+  }
+
+
+
+/* Tooltip can be left, right, bottom or top */
+.tooltip.right:before {
+    left:100%;
+    margin-left:5px;
+    top:50%;
+    transform:translateY(-50%);
+}
+.tooltip.left:before {
+    right:100%;
+    margin-right:5px;
+    top:50%;
+    transform:translateY(-50%);
+}
+.tooltip.bottom:before {
+    top:100%;
+    margin-top:5px;
+    left:50%;
+    transform:translateX(-50%);
+}
+.tooltip.top:before {
+    bottom:100%;
+    margin-bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* Add an arrow */
+.tooltip:after {
+    content: "";
+    position:absolute;
+    opacity:0;
+    transition:.3s opacity;
+    border:10px solid #000; /* Arrow width */
+}
+.tooltip.right:after {
+    left:100%;
+    top:50%;
+    transform:translateY(-50%);
+    margin-left:-10px;
+    border-color: transparent black transparent transparent;
+}
+.tooltip.left:after {
+    right:100%;
+    margin-right:-10px;
+    top:50%;
+    transform:translateY(-50%);
+    border-color: transparent transparent transparent black;
+}
+.tooltip.bottom:after {
+    top:100%;
+    margin-top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    border-color:  transparent transparent  black transparent ;
+}
+
+/* Show the tooltip on hover */
+.tooltip:hover:before, .tooltip:hover:after {
+    opacity:1;
+}
