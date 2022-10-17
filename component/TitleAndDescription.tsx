@@ -1,6 +1,5 @@
 import React from "react";
 
-import SocialMediaButtons from "./SocialMediaButtons";
 import { ChartId, chartTypesInfo } from "../util/sectionDescriptions";
 import { fullUrlToInternalLink } from "../util/utils";
 
@@ -31,7 +30,7 @@ export default function TitleAndDescription({
     <>
       <div className="w-full pt-1 sm:pt-28 pb-20 ">
         {/* Title */}
-        <h1 className="">{title}</h1>
+        <h1>{title}</h1>
 
         {/* Horizontal Separator */}
         <HorizontalSeparator />
@@ -42,9 +41,11 @@ export default function TitleAndDescription({
         </div>
 
         {/* Buttons title */}
-        <span className="text-gray-400 text-sm font-light">Useful links</span>
+        {chartType && (
+          <span className="text-gray-400 text-sm font-light">Useful links</span>
+        )}
 
-        {/* Description */}
+        {/* Buttons */}
         {chartType && (
           <div className="flex flex-row flex-wrap">
             {showSectionLink && (
