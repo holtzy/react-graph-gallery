@@ -12,6 +12,7 @@ import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { Accordion } from "../component/UI/Accordion";
+import { ScatterplotTooltipDemo } from "../viz/ScatterplotTooltip/ScatterplotTooltipDemo";
 
 const graphDescription = (
   <>
@@ -200,8 +201,8 @@ export default function Home() {
         instead.
       </p>
       <ChartOrSandbox
-        VizComponent={ScatterplotHoverHighlightDemo}
-        vizName={"ScatterplotHoverHighlightDemo"}
+        VizComponent={ScatterplotTooltipDemo}
+        vizName={"ScatterplotTooltipDemo"}
         maxWidth={500}
         height={500}
         caption="Hover effect"
