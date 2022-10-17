@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import styles from "./scatterplot.module.css";
 import { AxisLeft } from "./AxisLeft";
 import { AxisBottom } from "./AxisBottom";
+import { useState } from "react";
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -15,6 +16,8 @@ type ScatterplotProps = {
 export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
+
+  const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   // Scales
   const yScale = d3.scaleLinear().domain([35, 85]).range([boundsHeight, 0]);
@@ -30,22 +33,29 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
+    const className =
+      hoveredGroup && d.group !== hoveredGroup
+        ? styles.scatterplotCircle + " " + styles.dimmed
+        : styles.scatterplotCircle;
+
     return (
       <circle
         key={i}
         r={5}
         cx={xScale(d.x)}
         cy={yScale(d.y)}
-        className={styles.scatterplotCircle}
+        className={className}
         stroke={colorScale(d.group)}
         fill={colorScale(d.group)}
+        onMouseOver={() => setHoveredGroup(d.group)}
+        onMouseLeave={() => setHoveredGroup(null)}
       />
     );
   });
 
   return (
     <div>
-      <svg width={width} height={height} shapeRendering={"crispEdges"}>
+      <svg width={width} height={height}>
         {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}

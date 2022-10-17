@@ -18,14 +18,8 @@ export const AxisBasic = ({ width, height }: AxisBasicProps) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Compute the scales (usually done using the dataset as input)
-  const xScale = useMemo(
-    () => d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]),
-    [width]
-  );
-  const yScale = useMemo(
-    () => d3.scaleLinear().domain([0, 11]).range([boundsHeight, 0]),
-    [width]
-  );
+  const xScale = d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
+  const yScale = d3.scaleLinear().domain([0, 11]).range([boundsHeight, 0]);
 
   return (
     <div>

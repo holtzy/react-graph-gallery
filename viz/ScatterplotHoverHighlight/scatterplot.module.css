@@ -1,10 +1,22 @@
 .scatterplotCircle {
     fill-opacity: .3;
-    stroke-width: 2;
+    stroke-width: 2px;
 }
-svg .scatterplotCircle:hover {
+
+.scatterplotCircle.dimmed {
+    filter: saturate(0);
+    opacity: .2;
+    transition: opacity, filter;
+    transition-delay: .5s;
+    transition-duration: .5s
+}
+
+.scatterplotCircle:hover {
+    cursor: pointer;
     opacity: 1;
-    stroke: red;
-    fill: red;
-    fill-opacity: .8;
+    stroke: black;
+    fill-opacity: 1;
+    stroke-width: 1px;
 }
+
+

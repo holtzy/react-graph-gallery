@@ -26,7 +26,11 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
     <>
       {/* Ticks and labels */}
       {ticks.map(({ value, yOffset }) => (
-        <g key={value} transform={`translate(0, ${yOffset})`}>
+        <g
+          key={value}
+          transform={`translate(0, ${yOffset})`}
+          shapeRendering={"crispEdges"}
+        >
           <line
             x1={-TICK_LENGTH}
             x2={width + TICK_LENGTH}

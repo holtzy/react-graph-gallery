@@ -49,7 +49,6 @@ export default function Home() {
         description={graphDescription}
         chartType="scatter"
       />
-
       {/*
       //
       // Data
@@ -84,11 +83,23 @@ export default function Home() {
       //
       */}
       <h2 id="Scales and axes">Scales and axes</h2>
-      <p>A chart basically encodes data items into shapes</p>
       <h3>&rarr; Scales</h3>
+      <p>
+        Building a scatterplot requires to transform a <b>dimension</b> (a
+        numeric variable like life expectancy) in a <b>position in pixels</b>.
+        This is done using a fundamental dataviz concept called <b>scale</b>.
+      </p>
+      <p>
+        D3.js comes with a handful set of{" "}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
+        <code>scaleLinear</code> is what we need for the X and Y axis. Here is a
+        quick overview on how to build and use a scale:
+      </p>
+      <CodeBlock code={snippet5} />
+
       <h3>&rarr; Axes</h3>
       <p>
-        Axes are complicated elements. They are composed of a main{" "}
+        Axes are rather complicated elements. They are composed of a main{" "}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
         often are decorated with a <b>title</b>.
       </p>
@@ -121,14 +132,23 @@ export default function Home() {
           </p>
         }
       />
-
-      <Accordion startOpen={false} title="X axis react code">
+      <p>
+        The code for those X and Y axis components is provided below. The
+        following examples will show how straightforward it is to tweak them to
+        reach other <b>chart styles</b>.
+      </p>
+      <Accordion startOpen={false} title="code for the X axis react component">
         <CodeBlock code={snippet2} />
       </Accordion>
-
-      <Accordion startOpen={false} title="Y axis react code">
+      <Accordion startOpen={false} title="code for the Y axis react component">
         <CodeBlock code={snippet3} />
       </Accordion>
+      <p>
+        <br />
+        <u>Note</u>: do not forget to use the <code>crispEdges</code> value of
+        the <code>shape-rendering</code> svg attribute. Otherwise the vertical
+        and horizontal segments might be blurry.
+      </p>
 
       {/*
       //
@@ -224,9 +244,23 @@ export default function Home() {
       */}
       <h2 id="Hover effect">Hover effect</h2>
       <p>
-        Use <code>scaleLinear</code> for the scales. Tricky part is to build the
-        axis: can be done with with d3.js or with React. Deserves its own
-        blogpost.
+        Showing a tooltip on hover is definitely helpful, but it's often a nice
+        touch to add a <b>hover effect</b>. Hover effects on scatterplots are
+        usually used for 2 main reasons:
+      </p>
+      <ul>
+        <li>
+          Highlight <b>one circle</b>: makes sure the tooltip you're reading is
+          associated with the circle you're targeting.
+        </li>
+        <li>
+          Highlight <b>a group</b>: it's often interesting to see all the
+          related points in the dataset.
+        </li>
+      </ul>
+      <p>
+        Let's implement both on the chart below. Hovering over a country will
+        fade all circles except the ones of the same continent.
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotHoverHighlightDemo}
@@ -235,14 +269,12 @@ export default function Home() {
         height={500}
         caption="Hover effect"
       />
-
       {/*
       //
       // Inspiration
       //
       */}
       <DatavizInspirationParallaxLink chartId="scatter" />
-
       {/*
       //
       // Real life
@@ -288,13 +320,11 @@ export default function Home() {
           </span>
         }
       />
-
       <br />
       <br />
       <br />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="correlation" />
-
       <div className="mt-20" />
       <Contact />
     </Layout>
@@ -398,4 +428,14 @@ const allShapes = data.map((d, i) => {
     />
   );
 });
+`.trim();
+
+const snippet5 = `
+const scale = d3.scaleLinear()
+  .domain([0, 10]) // data goes from 0 to 10
+  .range([0, 200]); // axis goes from 0 to 200
+
+console.log(scale(0)); // 0 -> item with a value of 0 will be at the extreme left of the axis
+console.log(scale(5)); // 100 -> middle of the axis
+console.log(scale(10)); // 200 -> extreme right
 `.trim();
