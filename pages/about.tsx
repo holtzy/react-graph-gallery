@@ -5,6 +5,7 @@ import Contact from "../component/Contact";
 import { AxisBasicD3Demo } from "../viz/AxisBasicD3/AxisBasicD3Demo";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
+import Link from "next/link";
 
 const graphDescription = (
   <p className="text-gray-400">
@@ -144,8 +145,8 @@ export default function Home() {
         minimum amount of time. Reach me out on{" "}
         <a href="https://twitter.com/R_Graph_Gallery">twitter</a>, contribute on
         <a href="https://github.com/holtzy/react-graph-gallery">github</a> and
-        subscribe to the <a href="/subscribe">newsletter</a> to know when new
-        chart types are published!
+        subscribe to the <Link href="/subscribe">newsletter</Link> to know when
+        new chart types are published!
       </p>
 
       <Contact />

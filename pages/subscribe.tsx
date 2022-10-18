@@ -25,7 +25,7 @@ export default function Home() {
           target="_blank"
         >
           <div className="revue-form-group">
-            <label for="member_email">Email address</label>
+            <label htmlFor="member_email">Email address</label>
             <input
               className="revue-form-field"
               placeholder="Your email address..."
@@ -35,7 +35,7 @@ export default function Home() {
             ></input>
           </div>
           <div className="revue-form-group">
-            <label for="member_first_name">
+            <label htmlFor="member_first_name">
               First name <span className="optional">(Optional)</span>
             </label>
             <input
@@ -47,7 +47,7 @@ export default function Home() {
             ></input>
           </div>
           <div className="revue-form-group">
-            <label for="member_last_name">
+            <label htmlFor="member_last_name">
               Last name <span className="optional">(Optional)</span>
             </label>
             <input
@@ -68,11 +68,19 @@ export default function Home() {
           </div>
           <div className="revue-form-footer">
             By subscribing, you agree with Revue’s{" "}
-            <a target="_blank" href="https://www.getrevue.co/terms">
+            <a
+              target="_blank"
+              href="https://www.getrevue.co/terms"
+              rel="noreferrer"
+            >
               Terms of Service
             </a>{" "}
             and{" "}
-            <a target="_blank" href="https://www.getrevue.co/privacy">
+            <a
+              target="_blank"
+              href="https://www.getrevue.co/privacy"
+              rel="noreferrer"
+            >
               Privacy Policy
             </a>
             .
