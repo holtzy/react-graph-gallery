@@ -25,7 +25,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
     return (
       <circle
         key={i}
-        r={7}
+        r={13}
         cx={xScale(d.y)}
         cy={yScale(d.x)}
         opacity={1}
@@ -39,7 +39,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
 
   return (
     <div>
-      <svg width={width} height={height} shapeRendering={"crispEdges"}>
+      <svg width={width} height={height}>
         {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}

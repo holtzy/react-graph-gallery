@@ -1,13 +1,16 @@
 import { useState } from "react";
 import * as d3 from "d3";
-import { ScatterplotProps } from "./types";
+import { InteractionData, ScatterplotProps } from "./types";
+import { Axes } from "./Axes";
+import styles from "./scatterplot.module.css";
+import { Tooltip } from "./Tooltip";
 
 export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   // Sort the data: bigger squares must appear at the bottom
   const sortedData = data.sort((a, b) => b.size - a.size);
 
   // State
-  const [hoveredGroup, setHoveredGroup] = useState<string>();
+  const [interactionData, setInteractionData] = useState<InteractionData>();
 
   // Scales
   const xScale = d3.scaleLinear().domain([0.23, 0.69]).range([0, width]);
@@ -17,35 +20,42 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   // All squares, 1 per country
   const squares = sortedData.map((d, i) => {
     const size = sizeScale(d.size);
-    const x = xScale(d.x); // position of the baricenter of the square
-    const y = yScale(d.y);
-    const stroke = d.annotation ? "black" : "white";
-    const isShown = !hoveredGroup || hoveredGroup === d.categoryy;
-    const opacity = isShown ? 1 : 0;
+
+    const xPos = xScale(d.x) - size / 2;
+    const yPos = yScale(d.y) - size / 2;
+
+    const isDimmed = interactionData && interactionData.color !== d.color;
+    const className = isDimmed
+      ? styles.scatterplotSquare + " " + styles.dimmed
+      : styles.scatterplotSquare;
 
     return (
       <g
         key={i}
-        onMouseMove={() => setHoveredGroup(d.categoryy)}
-        onMouseLeave={() => setHoveredGroup(undefined)}
-        opacity={opacity}
+        onMouseMove={() =>
+          setInteractionData({
+            xPos,
+            yPos,
+            ...d,
+          })
+        }
+        onMouseLeave={() => setInteractionData(undefined)}
       >
         <rect
-          x={x - size / 2}
-          y={y - size / 2}
+          x={xPos}
+          y={yPos}
           opacity={1}
           fill={d.color}
-          fillOpacity={0.7}
-          strokeWidth={0.5}
-          stroke={stroke}
           width={size}
           height={size}
+          className={className}
         />
       </g>
     );
   });
 
   // Build the annotations (black rectangle and country name)
+  // This is made separately, because it needs to appear on top of all colored rectangles
   const annotations = sortedData
     .filter((d) => d.annotation)
     .map((d, i) => {
@@ -68,8 +78,8 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
           ? y + size / 2 + 7
           : y;
 
-      const isShown = !hoveredGroup || hoveredGroup === d.categoryy;
-      const opacity = isShown ? 1 : 0;
+      const isDimmed = interactionData && interactionData.color !== d.color;
+      const className = isDimmed ? styles.dimmed : "";
 
       const textAnchor =
         d.annotation === "left"
@@ -79,7 +89,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
           : "middle";
 
       return (
-        <g key={i} opacity={opacity}>
+        <g key={i} className={className}>
           <rect
             x={x - size / 2}
             y={y - size / 2}
@@ -104,83 +114,32 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
       );
     });
 
-  // Add the X and Y axis
-  const x = xScale(0.43);
-  const y = yScale(0.41);
-  const axes = (
-    <g>
-      {/* vertical and horizontal lines */}
-      <line
-        x1={0}
-        x2={width}
-        y1={y}
-        y2={y}
-        stroke="#ababab"
-        strokeDasharray="2"
-      />
-      <line
-        x1={x}
-        x2={x}
-        y1={0}
-        y2={height}
-        stroke="#ababab"
-        strokeDasharray="2"
-      />
-
-      {/* labels for X axis */}
-      <text
-        x={0}
-        y={y - 15}
-        fill="#ababab"
-        fontSize={16}
-        textRendering={"optimizeLegibility"}
-        dominantBaseline={"Auto"}
-      >
-        High Readiness
-      </text>
-      <text
-        x={0}
-        y={y - 37}
-        fill="#ababab"
-        fontSize={16}
-        textRendering={"optimizeLegibility"}
-        dominantBaseline={"Auto"}
-      >
-        &uarr;
-      </text>
-
-      <text
-        x={0}
-        y={y + 15}
-        fill="#ababab"
-        fontSize={16}
-        textRendering={"optimizeLegibility"}
-        dominantBaseline={"Hanging"}
-      >
-        Low Readiness
-      </text>
-      <text
-        x={0}
-        y={y + 37}
-        fill="#ababab"
-        fontSize={16}
-        textRendering={"optimizeLegibility"}
-        dominantBaseline={"Hanging"}
-      >
-        &darr;
-      </text>
-    </g>
-  );
-
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <svg width={width} height={height} shapeRendering={"crispEdges"}>
-        <g width={width} height={height}>
-          {axes}
+        <g>
+          <Axes
+            x={xScale(0.43)}
+            y={yScale(0.41)}
+            width={width}
+            height={height}
+          />
           {squares}
           {annotations}
         </g>
       </svg>
+      <div
+        style={{
+          position: "absolute",
+          width,
+          height,
+          top: 0,
+          left: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <Tooltip interactionData={interactionData} />
+      </div>
     </div>
   );
 };

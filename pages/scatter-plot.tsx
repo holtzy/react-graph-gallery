@@ -269,6 +269,12 @@ export default function Home() {
         height={500}
         caption="Hover effect"
       />
+      <p>
+        Explains how it works: internal state. Dim other dots. Gray scale.
+        Animation in one direction only.
+      </p>
+      <p>So much more to say: deserves its own blogpost.</p>
+
       {/*
       //
       // Inspiration
