@@ -43,7 +43,9 @@ export default function Home() {
         title={
           <h1>
             Scatterplot{" "}
-            <span className="text-gray-100">with React and d3.js</span>
+            <span className="hidden sm:inline text-gray-100">
+              with React and d3.js
+            </span>
           </h1>
         }
         description={graphDescription}

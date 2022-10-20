@@ -25,32 +25,31 @@ export default function Navbar() {
                 How to...
               </span>
             </Link> */}
+
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
-              className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
+              className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer hover:text-reactGallery"
             >
               Chart types
             </span>
-            {/* <a href="#">
-              <span className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-not-allowed">
-                Related
-              </span>
-            </a> */}
+
             <Link href="about">
-              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
+              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 About
               </span>
             </Link>
 
             <Link href="subscribe">
-              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
+              <span className="hidden cursor-pointer sm:inline pl-8 text-black text-sm lg:text-md uppercase tracking-wider font-light hover:text-reactGallery">
                 Subscribe
               </span>
             </Link>
           </div>
         </div>
+
         <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
       </nav>
+
       {isAllSectionModalOpen && (
         <AllChartsModal
           isOpen={isAllSectionModalOpen}

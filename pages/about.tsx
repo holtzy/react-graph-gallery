@@ -45,7 +45,7 @@ export default function Home() {
 
       <h2>3 ways to draw a chart in react</h2>
 
-      <h3>&rarr; 1️⃣ Charting libraries</h3>
+      <h3>1️⃣ Charting libraries</h3>
       <p>
         There is a <b>myriad</b> of charting libraries offering react components
         for every chart type.{" "}
@@ -67,7 +67,7 @@ export default function Home() {
       </p>
 
       <h3>
-        &rarr; 2️⃣ D3 for rendering in a <code>useEffect</code> hook
+        2️⃣ D3 for rendering in a <code>useEffect</code> hook
       </h3>
       <p>
         If you're familiar with d3.js already, it's possible to use any of its
@@ -98,7 +98,7 @@ export default function Home() {
         react and d3. That's hard to maintain for large application.
       </p>
 
-      <h3>&rarr; 3️⃣ D3 for maths, React for rendering</h3>
+      <h3>3️⃣ D3 for maths, React for rendering</h3>
       <p>
         This gallery suggests to use <b>d3.js only for the math</b> utils it
         provides. And to add entries to the DOM using react, like for any other
