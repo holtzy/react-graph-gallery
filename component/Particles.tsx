@@ -13,6 +13,7 @@ export const ParticlesBg = () => {
 
   return (
     <Particles
+      className="h-full"
       id="tsparticles"
       init={particlesInit}
       options={{
@@ -22,7 +23,7 @@ export const ParticlesBg = () => {
             value: "transparent",
           },
         },
-        fpsLimit: 120,
+        fpsLimit: 60,
         interactivity: {
           events: {
             onClick: {
@@ -47,13 +48,13 @@ export const ParticlesBg = () => {
         },
         particles: {
           color: {
-            value: "#cb1dd1",
+            value: "#C8C8C8",
           },
           links: {
-            color: "#cb1dd1",
+            color: "#C8C8C8",
             distance: 150,
             enable: true,
-            opacity: 0.1,
+            opacity: 0.5,
             width: 1,
           },
           collisions: {
@@ -66,7 +67,7 @@ export const ParticlesBg = () => {
               default: "out",
             },
             random: false,
-            speed: 1,
+            speed: 0.6,
             straight: false,
           },
           number: {
@@ -74,16 +75,16 @@ export const ParticlesBg = () => {
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 70,
           },
           opacity: {
-            value: 0.1,
+            value: 0.5,
           },
           shape: {
             type: "circle",
           },
           size: {
-            value: { min: 1, max: 8 },
+            value: { min: 1, max: 6 },
           },
         },
         detectRetina: true,
