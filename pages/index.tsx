@@ -26,7 +26,7 @@ export default function Home() {
           <ParticlesBg />
         </div>
 
-        <div className="wrapper absolute top-0 left-0">
+        <div className="wrapper">
           <Navbar />
 
           {/* Title */}
