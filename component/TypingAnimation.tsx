@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const wordList = ["unique", "performant", "interactive", "insightful"];
 const SPEED = 40; // time between 2 letters
-const PAUSE = 2000;
+const PAUSE = 5000;
 
 export const TypingAnimation = () => {
   const ref = useRef(null);

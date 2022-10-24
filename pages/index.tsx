@@ -26,7 +26,8 @@ export default function Home() {
           <ParticlesBg />
         </div>
 
-        <div className="wrapper">
+        {/* Relative needed otherwise the particles above gets precedence in stacking order */}
+        <div className="wrapper relative">
           <Navbar />
 
           {/* Title */}
