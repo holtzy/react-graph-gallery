@@ -1,10 +1,6 @@
 import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import Contact from "../component/Contact";
-import SectionLogo from "../component/SectionLogo";
-import Link from "next/link";
 import { TypingAnimation } from "../component/TypingAnimation";
 import { ParticlesBg } from "../component/Particles";
 import { HeadSeo } from "../component/HeadSeo";
@@ -21,8 +17,8 @@ export default function Home() {
         }
       />
 
-      <div className="relative " style={{ height: 720 }}>
-        <div className="absolute top-0 bottom-0 left-0 right-0 ">
+      <div className="relative">
+        <div className="absolute top-0 bottom-0 left-0 right-0 h-full ">
           <ParticlesBg />
         </div>
 
@@ -39,7 +35,7 @@ export default function Home() {
           <HorizontalSeparator />
 
           {/* Description */}
-          <div className="max-w-xxl  py-2">
+          <div className="max-w-xxl pt-2 pb-14">
             <>
               <p>
                 Have you ever wanted to create your <b>own chart</b>?
