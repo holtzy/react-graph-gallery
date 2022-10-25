@@ -27,7 +27,7 @@ export default function Navbar() {
             </Link> */}
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
-              className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer"
+              className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer hover:text-reactGallery hiden"
             >
               Chart types
             </span>
@@ -37,13 +37,13 @@ export default function Navbar() {
               </span>
             </a> */}
             <Link href="about">
-              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
+              <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 About
               </span>
             </Link>
 
             <Link href="subscribe">
-              <span className="cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider">
+              <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 Subscribe
               </span>
             </Link>
