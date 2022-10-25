@@ -12,8 +12,8 @@ type SectionLogoProps = {
 };
 
 export default function SectionLogo({ chartLogo }: SectionLogoProps) {
-  const logoExtension =
-    chartLogo === "anim150" || chartLogo === "time150" ? ".gif" : ".png";
+  const isGif = chartLogo === "anim150" || chartLogo === "time150";
+  const logoExtension = isGif ? ".gif" : ".png";
 
   const logoDescription =
     "Dataviz logo representing a " + chartLogo.replace("150", "") + " chart.";
