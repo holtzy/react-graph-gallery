@@ -148,8 +148,6 @@ export default function Home() {
         subscribe to the <Link href="/subscribe">newsletter</Link> to know when
         new chart types are published!
       </p>
-
-      <Contact />
     </Layout>
   );
 }

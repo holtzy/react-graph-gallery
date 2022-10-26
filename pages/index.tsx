@@ -6,12 +6,13 @@ import { ParticlesBg } from "../component/Particles";
 import { HeadSeo } from "../component/HeadSeo";
 import { HorizontalSeparator } from "../component/UI/HorizontalSeparator";
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 export default function Home() {
   return (
     <div>
       <HeadSeo
-        title={"The React Graph Gallery"}
+        title={"Learn to build unique charts with React"}
         seoDescription={
           "The React Graph Gallery displays hundreds of charts made with React, always with explanation and reproduciible code"
         }
@@ -62,10 +63,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="wrapper">
+      <div className="wrapper ">
         <div className="mb-20">
-          <ChartFamilySection chartFamily="distribution" />
           <ChartFamilySection chartFamily="correlation" />
+          <ChartFamilySection chartFamily="distribution" />
           <ChartFamilySection chartFamily="ranking" />
           <ChartFamilySection chartFamily="partOfAWhole" />
           <ChartFamilySection chartFamily="evolution" />
@@ -74,7 +75,12 @@ export default function Home() {
           <ChartFamilySection chartFamily="general" />
         </div>
       </div>
+
       <Contact />
+
+      <div className="wrapper">
+        <Footer />
+      </div>
     </div>
   );
 }

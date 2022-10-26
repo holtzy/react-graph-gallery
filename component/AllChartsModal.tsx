@@ -2,8 +2,6 @@ import React from "react";
 
 import { chartTypesInfo } from "../util/sectionDescriptions";
 import SectionLogo from "./SectionLogo";
-import { fullUrlToInternalLink } from "../util/utils";
-import Link from "next/link";
 
 type AllChartsModalProps = {
   setIsOpen: (arg: boolean) => void;
@@ -44,7 +42,7 @@ export const AllChartsModal = (props: AllChartsModalProps) => {
   });
 
   return (
-    <div className="absolute inset-0 h-screen w-screen bg-black z-20">
+    <div className="fixed inset-0 h-screen w-screen bg-black z-20">
       {/* X to close the modal */}
       <span
         className="text-white cursor-pointer text-4xl absolute top-0 right-0 mr-10 mt-10 p-12 "

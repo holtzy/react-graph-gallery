@@ -26,11 +26,10 @@ export default function Home() {
 
       <SubscribeForm />
 
-      <p className="mb-8 mt-24">
+      <p className="mb-24 mt-24">
         You will receive my <b>dataviz related content only</b> and can
         unsubscribe at any time.
       </p>
-      <Contact />
     </Layout>
   );
 }

@@ -113,7 +113,7 @@ h1 {
 
 h2 {
     font-size: 32px;
-    line-height: 54px;
+    line-height: 44px;
     font-family: 'Bitter', sans-serif;
     font-weight: bold;
     letter-spacing: 0.03em;
@@ -127,7 +127,11 @@ h2 {
 }
 
 h3 {
-    font-size: 16px;
+    font-family: 'Bitter', sans-serif;
+    font-weight: bold;
+    line-height: 34px;
+    letter-spacing: 0.03em;
+    font-size: 22px;
     width: 100%;
     margin-top: 40px;
     padding-bottom: 10px;

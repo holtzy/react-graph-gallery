@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import TableOfContent from "./TableOfContent";
 import { HeadSeo } from "./HeadSeo";
+import Contact from "./Contact";
 
 // The Layout component
 // - adds the top navBar
@@ -21,8 +22,14 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
       <div className="wrapper">
         <Navbar />
         {children}
+      </div>
+
+      <Contact />
+
+      <div className="wrapper">
         <Footer />
       </div>
+
       <TableOfContent />
     </>
   );

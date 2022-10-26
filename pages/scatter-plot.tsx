@@ -2,7 +2,6 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
@@ -43,12 +42,15 @@ export default function Home() {
         title={
           <h1>
             Scatterplot{" "}
-            <span className="text-gray-100">with React and d3.js</span>
+            <span className="text-gray-100 hidden sm:inline">
+              with React and d3.js
+            </span>
           </h1>
         }
         description={graphDescription}
         chartType="scatter"
       />
+
       {/*
       //
       // Data
@@ -332,7 +334,6 @@ export default function Home() {
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }

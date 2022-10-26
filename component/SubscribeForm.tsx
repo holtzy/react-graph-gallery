@@ -9,7 +9,7 @@ export const SubscribeForm = () => {
         target="_blank"
         className="flex"
       >
-        <div className="relative w-60">
+        <div className="relative max-w-60">
           <input
             className="border-b-4 mr-8 py-2 px-4 w-full m-1"
             placeholder="email"
