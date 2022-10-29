@@ -37,7 +37,7 @@ export const ChartOrSandbox = ({
     >
       {showSandbox ? (
         <div className="flex flex-col items-center justify-center w-full">
-          <div style={{ maxWidth: 2000 }} className="w-full">
+          <div style={{ maxWidth: 2000 }} className="w-full z-50">
             <CodeSandbox vizName={vizName} />
           </div>
           <div className="flex justify-center mt-2">

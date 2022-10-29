@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { ChartId, chartTypesInfo } from "../util/sectionDescriptions";
 import { AccordionSection } from "./AccordionSection";
+import { Accordion } from "./UI/Accordion";
+import { CodeBlock } from "./UI/CodeBlock";
 
 type ResponsiveExplanationSectionProps = {
   chartId: ChartId;
@@ -22,22 +25,53 @@ export const ResponsiveExplanationSection = ({
       <p>
         Making the {label} responsive requires to add a <b>wrapper</b> component
         that gets the dimension of the parent <code>div</code>, and listen to a
-        potential dimension change.
+        potential dimension change. This is possible thanks to a hook called{" "}
+        <code>useDimensions</code> that will do the job for us.
       </p>
+      <Accordion
+        startOpen={false}
+        title="useDimensions: a hook to make your viz responsive"
+      >
+        <CodeBlock code={snippetResponsive} />
+      </Accordion>
       <p>
-        The process is extensively described in{" "}
-        <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-          this post
-        </a>{" "}
-        of the gallery. Basically most of the job is made by a hook called{" "}
-        <code>useDimensions</code> that targets a specific <code>ref</code>.
+        I'm in the process of writing a complete blog post on the topic.{" "}
+        <Link href="/subscribe">Subscribe to the project</Link> to know when
+        it's ready.
       </p>
-      <a href="https://www.react-graph-gallery.com/make-a-graph-responsive">
-        Read more about responsiveness
-      </a>
+
       <br />
       <br />
       <br />
     </>
   );
 };
+
+const snippetResponsive = `
+export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
+
+  const getDimensions = () => {
+    return {
+      width: targetRef.current ? targetRef.current.offsetWidth : 0,
+      height: targetRef.current ? targetRef.current.offsetHeight : 0
+    };
+  };
+
+  const [dimensions, setDimensions] = useState(getDimensions);
+
+  const handleResize = () => {
+    setDimensions(getDimensions());
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useLayoutEffect(() => {
+    handleResize();
+  }, []);
+
+  return dimensions;
+}
+`.trim();

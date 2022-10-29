@@ -69,7 +69,7 @@ p {
 
 /* This code rule applies only to inline code. Code formatted by prism has its style set in a custom sheet. */
 code {
-    padding: .2em .4em;
+    padding: .2em .2em;
     margin: 0;
     font-size: 85%;
     background-color: #afb8c133;

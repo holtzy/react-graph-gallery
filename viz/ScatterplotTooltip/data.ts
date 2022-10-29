@@ -952,7 +952,7 @@ export const data = [
       "x": 10611.46299
     },
     {
-      "subGroup": "Venesizeuela",
+      "subGroup": "Venezuela",
       "group": "Americas",
       "y": 73.747,
       "size": 26084662,

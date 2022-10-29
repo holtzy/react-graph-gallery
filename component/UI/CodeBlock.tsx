@@ -21,7 +21,7 @@ export const CodeBlock = ({ code }: CodeBlockProps) => {
   }, [codeRef, code]);
 
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       <pre className="rounded-md line-numbers">
         <code ref={codeRef} className="p-0 language-js">
           {code}

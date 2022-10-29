@@ -12,6 +12,8 @@ import { ResponsiveExplanationSection } from "../component/ResponsiveExplanation
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { Accordion } from "../component/UI/Accordion";
 import { ScatterplotTooltipDemo } from "../viz/ScatterplotTooltip/ScatterplotTooltipDemo";
+import Link from "next/link";
+import { SubscribeForm } from "../component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -59,10 +61,13 @@ export default function Home() {
       <h2 id="data">The Data</h2>
       <p>
         The dataset used to build a scatterplot is usually an{" "}
-        <b>array of objects</b>. For each object, at least 2 properties are
-        required: <code>x</code> and <code>y</code>. The value of <code>x</code>{" "}
-        will control the position of the datapoint on the horizontal axis,{" "}
-        <code>y</code> on the vertical one.
+        <b>array of objects</b>.
+      </p>
+      <p>
+        For each object, at least 2 properties are required: <code>x</code> and{" "}
+        <code>y</code>. The value of <code>x</code> will control the position of
+        the datapoint on the horizontal axis. The value of <code>y</code> will
+        be linked with the vertical axis.
       </p>
       <CodeBlock code={snippet1} />
       <p>
@@ -77,6 +82,37 @@ export default function Home() {
         <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
         dataset that provides the <b>life expectancy</b> and the{" "}
         <b>population size</b> for every country.
+      </p>
+
+      {/*
+      //
+      // Skeleton
+      //
+      */}
+      <h2 id="skeleton">Component skeleton</h2>
+      <p>
+        The goal here is to create a <code>Scatterplot</code> component that
+        will be stored in a <code>Scatterplot.tsx</code> file. This component
+        requires 3 props to render: a <code>width</code>, a <code>height</code>{" "}
+        and some <code>data</code>.
+      </p>
+      <p>
+        The shape of the <code>data</code> is described above. The{" "}
+        <code>width</code> and
+        <code>height</code> will be use to render a <code>svg</code> element in
+        the DOM, in which we will insert the scatterplot.
+      </p>
+      <p>
+        To put it in a nutshell, that's the skeleton of our{" "}
+        <code>Scatterplot</code> component:
+      </p>
+      <CodeBlock code={snippetSkeleton} />
+      <p>
+        It's fundamental to understand that with this code organization, d3.js
+        will be used to prepare the svg <code>circle</code>, but it's react that
+        will render them in the <code>return()</code> statement. We won't use d3
+        methods like <code>append</code> that you can find in usual{" "}
+        <a href="https://www.d3-graph-gallery/com">d3.js examples</a>.
       </p>
 
       {/*
@@ -98,12 +134,19 @@ export default function Home() {
         quick overview on how to build and use a scale:
       </p>
       <CodeBlock code={snippet5} />
+      <p>
+        To dig more into d3 scales, visit this{" "}
+        <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
+          dedicated page
+        </a>
+        . It's a crucial concept that will be used everywhere in this website.
+      </p>
 
       <h3>&rarr; Axes</h3>
       <p>
         Axes are rather complicated elements. They are composed of a main{" "}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
-        often are decorated with a <b>title</b>.
+        are often decorated with a <b>title</b>.
       </p>
       <p>
         D3.js offers some powerful{" "}
@@ -124,7 +167,7 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
-        vizName={"AxisBasicDemo"}
+        vizName={"AxisBasic"}
         maxWidth={500}
         height={300}
         caption={
@@ -188,8 +231,8 @@ export default function Home() {
         caption="Add a svg circle for each item of the dataset to get a first scatterplot"
       />
       <p>
-        That's not the best scatterplot in the world yet, but it's definitely a
-        first working version.
+        That's not the best scatterplot in the world yet, but it's definitely a{" "}
+        <b>first working version</b>.
       </p>
 
       {/*
@@ -224,19 +267,52 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotTooltipDemo}
-        vizName={"ScatterplotTooltipDemo"}
+        vizName={"ScatterplotTooltip"}
         maxWidth={500}
         height={500}
-        caption="Hover effect"
+        caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
       />
       <p>
-        There are <b>many different approaches</b> to build tooltips, and one
-        can even build it using{" "}
-        <a href="https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/">
-          css only
-        </a>
-        . But in my experience the best way to build it concists in the
-        following:
+        There are <b>many different approaches</b> to build tooltips, and I'm{" "}
+        <Link href="/subscribe">preparing a whole dedicated blog post</Link> on
+        the topic.
+      </p>
+      <p>
+        Here I'm suggesting to start with an internal state using the{" "}
+        <code>useState</code> hook. <code>interactionData</code> is an object
+        providing everything you need to draw a tooltip. It usually has 2{" "}
+        <code>xPos</code> and <code>yPos</code> properties that are the position
+        of the tooltip. It then has as many props as needed to fill the tooltip.
+        (I'm just adding the country name in my example)
+      </p>
+      <CodeBlock code={snippetTooltip1} />
+      <p>
+        <code>setInteractiondata</code> is a function allowing to update this
+        state. We can use it on each circle to update{" "}
+        <code>interactionData</code> each time it is hovered over:
+      </p>
+      <CodeBlock code={snippetTooltip2} />
+      <p>
+        We can now create a <code>Tooltip</code> component that will render only
+        when the <code>interactionData</code> is not <code>null</code>. It is
+        usually more convenient to render the tooltip using <code>html</code>,
+        not <code>svg</code> (it is easier to customize it).
+      </p>
+      <p>
+        To do so, the tooltip is rendered in a <code>absolute</code> positioned
+        div that is drawn exactly on top of the chart area, excluding axes. This
+        is how to <code>return</code> statement of our <code>Scatterplot</code>{" "}
+        component now looks like:
+      </p>
+      <CodeBlock code={snippetTooltip3} />
+      <p>
+        Now you can add whatever content in the <code>Tooltip</code> component.
+        Check the code below the example above to see an example.
+      </p>
+      <p className="text-gray-400">
+        This was a rather succint explanation on tooltips. A more{" "}
+        <Link href="/subscribe">in-depth explanation</Link> will be published
+        soon.
       </p>
 
       {/*
@@ -266,23 +342,57 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotHoverHighlightDemo}
-        vizName={"ScatterplotHoverHighlightDemo"}
+        vizName={"ScatterplotHoverHighlight"}
         maxWidth={500}
         height={500}
-        caption="Hover effect"
+        caption="Scatterplot with hover effect: hover over a circle to highlight it and its group"
       />
       <p>
-        Explains how it works: internal state. Dim other dots. Gray scale.
-        Animation in one direction only.
+        As for the tooltip example above, everything starts with an internal
+        state (called <code>hoveredGroup</code>) that stores which circle is
+        hovered hover.
       </p>
-      <p>So much more to say: deserves its own blogpost.</p>
-
+      <CodeBlock code={snippetHover1} />
+      <p>
+        Now, this state needs to be updated when the circle is hovered hover.{" "}
+        <code>setHoveredGroup</code> can be passed as a callback to the{" "}
+        <code>onMouseOver</code> attribute of each circle.
+      </p>
+      <p>
+        On top of this, some specific css classes can be attributed to circles
+        depending on the circle that is hovered hover. In the example above, a
+        class called <code>dimmed</code> is added to circles that must
+        disappear.
+      </p>
+      <p>To put it in a nutshell, the circles are created as follow:</p>
+      <CodeBlock code={snippetHover2} />
+      <p>
+        Last but not least, some css needs to be added to customize the circle
+        depending on if they are in default, <code>.dimmed</code> or{" "}
+        <code>:hover</code> mode.
+      </p>
+      <p>
+        Note that the <code>filter: saturate(0)</code> is a good way to dim
+        unwanted circles. Also, playing with <code>transition-delay</code> and{" "}
+        <code>transition-duration</code> adds to animate the transition is a
+        nice touch you should consider. Check the code below the example to see
+        the full css.
+      </p>
+      <p className="text-gray-400 mt-8">
+        Hover effect is another big topic in data visualization. A dedicated
+        post will be published soon on the topic, feel free to{" "}
+        <Link href="/subscribe">subscribe</Link> to know when.
+      </p>
+      <div className={"py-7"}>
+        <SubscribeForm />
+      </div>
       {/*
       //
       // Inspiration
       //
       */}
       <DatavizInspirationParallaxLink chartId="scatter" />
+
       {/*
       //
       // Real life
@@ -328,10 +438,40 @@ export default function Home() {
           </span>
         }
       />
-      <br />
-      <br />
-      <br />
-      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+
+      {/*
+      //
+      // Useful links
+      //
+      */}
+      <h2 id="Scales and axes">Useful links</h2>
+      <p>The following links have been useful to create this page:</p>
+      <ul>
+        <li>
+          <i>Building axes in d3.js</i> and the <i>scatterplot section</i> from
+          the{" "}
+          <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
+            d3 graph gallery
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/d3/d3-scale">Official doc</a> about
+          scales.{" "}
+        </li>
+        <li>
+          <i>Using React with D3.js</i> on Amelia Wattenberger's{" "}
+          <a href="https://wattenberger.com/blog/react-and-d3">blog</a>.
+        </li>
+        <li>
+          This{" "}
+          <a href="https://stackoverflow.com/questions/49058890/how-to-get-a-react-components-size-height-width-before-render">
+            stack overflow discussion
+          </a>{" "}
+          about react component's size.
+        </li>
+      </ul>
+
+      <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />
     </Layout>
@@ -442,7 +582,103 @@ const scale = d3.scaleLinear()
   .domain([0, 10]) // data goes from 0 to 10
   .range([0, 200]); // axis goes from 0 to 200
 
-console.log(scale(0)); // 0 -> item with a value of 0 will be at the extreme left of the axis
-console.log(scale(5)); // 100 -> middle of the axis
-console.log(scale(10)); // 200 -> extreme right
+scale(0); // 0 -> item with a value of 0 will be at the extreme left of the axis
+scale(5); // 100 -> middle of the axis
+scale(10); // 200 -> extreme right
+`.trim();
+
+const snippetSkeleton = `
+import * as d3 from "d3"; // we will need d3.js
+
+type ScatterplotProps = {
+  width: number;
+  height: number;
+  data: { x: number; y: number }[];
+};
+
+export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
+
+  // read the data
+  // do some stuff with d3
+  // compute all the <circle>
+
+  return (
+    <div>
+      <svg width={width} height={height}>
+        // render all the <circle>
+      </svg>
+    </div>
+  );
+};
+`.trim();
+
+const snippetTooltip1 = `
+const [interactionData, setInteractiondata] = useState<InteractionData | null>(null);
+`.trim();
+
+const snippetTooltip2 = `
+<circle
+  r={8}
+  cx={xScale(d.x)}
+  cy={yScale(d.y)}
+  onMouseEnter={() => // Each time the circle is hovered hover...
+    setInteractionData({ // ... update the interactionData state with the circle information
+      xPos: xScale(d.x),
+      yPos: yScale(d.y),
+      name: d.subGroup,
+    })
+  }
+  onMouseLeave={() => setInteractionData(null)} // When the user stops hovering, reset the interactionData to null
+/>
+`.trim();
+
+const snippetTooltip3 = `
+return (
+  <div style={{ position: "relative" }}>
+    <svg width={width} height={height}>
+      // axes and circles go here
+    </svg>
+
+    {/* Tooltip */}
+    <div
+      style={{
+        width: boundsWidth, // the width of the chart area excluding axes = width - left margin
+        height: boundsHeight,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        pointerEvents: "none",
+        marginLeft: MARGIN.left,
+        marginTop: MARGIN.top,
+      }}
+    >
+      <Tooltip interactionData={interactionData} />
+    </div>
+`.trim();
+
+const snippetHover1 = `
+const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
+`.trim();
+
+const snippetHover2 = `
+const allShapes = data.map((d, i) => {
+  const className = // class if the circle depends on the hover state
+    hoveredGroup && d.group !== hoveredGroup
+      ? styles.scatterplotCircle + " " + styles.dimmed
+      : styles.scatterplotCircle;
+
+  return (
+    <circle
+      key={i}
+      r={5}
+      cx={xScale(d.x)}
+      cy={yScale(d.y)}
+      className={className} // class is attributed here
+      stroke={colorScale(d.group)}
+      fill={colorScale(d.group)}
+      onMouseOver={() => setHoveredGroup(d.group)} // callback to update the state
+      onMouseLeave={() => setHoveredGroup(null)} // and to set it back to null
+    />
+  );
+});
 `.trim();
