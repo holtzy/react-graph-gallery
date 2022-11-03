@@ -12,7 +12,7 @@ type SectionLogoProps = {
 };
 
 export default function SectionLogo({ chartLogo }: SectionLogoProps) {
-  const isGif = chartLogo === "anim150" || chartLogo === "time150";
+  const isGif = chartLogo === "Anim150" || chartLogo === "Time150";
   const logoExtension = isGif ? ".gif" : ".png";
 
   const logoDescription =
