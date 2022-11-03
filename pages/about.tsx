@@ -31,7 +31,7 @@ export default function Home() {
         <a href="https://www.d3-graph-gallery.com">d3 graph gallery</a>, a
         website showcasing hundreds of simple charts made with{" "}
         <a href="https://d3js.org/">d3.js</a>. It worked well! Thousands of
-        people use it on a daily basis to learn d3. 🎉
+        people use it daily to learn d3. 🎉
       </p>
       <p>
         Since then, <a href="https://reactjs.org/">React</a> became the{" "}
@@ -39,7 +39,7 @@ export default function Home() {
           most popular
         </a>{" "}
         framework to build user interfaces. This rose a question:{" "}
-        <b>how to build charts in react</b>? That's a complicated question with
+        <b>how to build a chart in react</b>? That's a complicated question with
         many answers. Here are the 3 most common approaches.
       </p>
 
@@ -71,12 +71,12 @@ export default function Home() {
       </h3>
       <p>
         If you're familiar with d3.js already, it's possible to use any of its
-        examples (from a <a href="https://bl.ocks.org/">block</a> or from the{" "}
+        examples (from a <a href="https://bl.ocks.org/">block</a> or the{" "}
         <a href="https://www.d3-graph-gallery.com">gallery</a>) by using a{" "}
         <code>useEffect</code> hook.
       </p>
       <p>
-        Basically you can create a <code>div</code> in the DOM using react. You
+        Basically, you can create a <code>div</code> in the DOM using react. You
         can then use the drawing methods of the{" "}
         <a href="https://github.com/d3/d3-selection">d3-selection</a> module
         like <code>append</code> or <code>axisBottom</code> to target this{" "}
@@ -93,14 +93,14 @@ export default function Home() {
         }
       />
       <p>
-        This <b>works</b>, but comes with a number of <b>caveats</b>. To put it
-        in a nutshell you now have 2 tools trying to <b>control the DOM</b>:
-        react and d3. That's hard to maintain for large application.
+        This <b>works</b> but comes with some <b>caveats</b>. To put it in a
+        nutshell you now have 2 tools trying to <b>control the DOM</b>: react
+        and d3. That's hard to maintain for large applications.
       </p>
 
       <h3>&rarr; 3️⃣ D3 for maths, React for rendering</h3>
       <p>
-        This gallery suggests to use <b>d3.js only for the math</b> utils it
+        This gallery suggests using <b>d3.js only for the math</b> utils it
         provides. And to add entries to the DOM using react, like for any other
         UI element.
       </p>
@@ -108,7 +108,7 @@ export default function Home() {
         Let's say we want to build a <a href="scatter-plot">scatterplot</a>. The{" "}
         <code>scaleLinear</code> function of d3.js is used to build the scales.
         Now that we can easily know the position of a circle on the screen, we
-        can just loop trough all data items and render them as a{" "}
+        can just loop through all data items and render them as a{" "}
         <code>circle</code> svg element.
       </p>
       <ChartOrSandbox
@@ -127,23 +127,23 @@ export default function Home() {
       <p>
         The first goal is to <b>teach the concepts</b>. Many examples are
         provided for each chart type. Each one targets a specific theme like
-        color, axis, responsiveness, hover effect or tooltips.
+        color, axis, responsiveness, hover effect, or tooltips.
       </p>
       <p>
         The second goal is to <b>provide templates</b> for each viz type.
-        Building a viz from scatch is time-consuming, so better tweak an
+        Building a viz from scratch is time-consuming, so better tweak an
         existing example.
       </p>
       <p>
-        All graph examples come with explanation and a <b>code sandbox</b>{" "}
-        allowing to play with the code.
+        All graph examples come with an explanation and a <b>code sandbox</b>{" "}
+        allowing you to play with the code.
       </p>
 
       <p className="mt-8 mb-12">
         I built this website with ❤️. I hope it will help you create{" "}
         <a href="https://www.dataviz-inspiration.com">stunning vizs</a> in a
-        minimum amount of time. Reach me out on{" "}
-        <a href="https://twitter.com/R_Graph_Gallery">twitter</a>, contribute on
+        minimum amount of time. Reach me on{" "}
+        <a href="https://twitter.com/R_Graph_Gallery">Twitter</a>, contribute on{" "}
         <a href="https://github.com/holtzy/react-graph-gallery">github</a> and
         subscribe to the <Link href="/subscribe">newsletter</Link> to know when
         new chart types are published!
