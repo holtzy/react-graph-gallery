@@ -54,7 +54,7 @@ export const ParticlesBg = () => {
             color: "#C8C8C8",
             distance: 150,
             enable: true,
-            opacity: 0.5,
+            opacity: 0.4,
             width: 1,
           },
           collisions: {
@@ -67,7 +67,7 @@ export const ParticlesBg = () => {
               default: "out",
             },
             random: false,
-            speed: 0.6,
+            speed: 0.4,
             straight: false,
           },
           number: {
@@ -75,10 +75,10 @@ export const ParticlesBg = () => {
               enable: true,
               area: 800,
             },
-            value: 70,
+            value: 40,
           },
           opacity: {
-            value: 0.5,
+            value: 0.4,
           },
           shape: {
             type: "circle",

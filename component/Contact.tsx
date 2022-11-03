@@ -10,7 +10,7 @@ export default function Contact() {
         <h2 className="uppercase text-xl text-center">Contact</h2>
 
         <p className="text-center">
-          👋 Hey I'm <a href="https://www.yan-holtz.com">Yan</a> and I'm
+          👋 Hey, I'm <a href="https://www.yan-holtz.com">Yan</a> and I'm
           currently working on this project!
           <br />
           <br />
