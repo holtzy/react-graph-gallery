@@ -9,7 +9,8 @@ const graphDescription = (
     The <a href="https://www.react-graph-gallery.com">react graph gallery</a> is
     a project that just started! If you want to know when a new section gets
     released, follow me on{" "}
-    <a href="https://twitter.com/R_Graph_Gallery">twitter</a> or subscibe below!
+    <a href="https://twitter.com/R_Graph_Gallery">twitter</a> or subsrcibe
+    below!
   </p>
 );
 

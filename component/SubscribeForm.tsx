@@ -2,7 +2,7 @@ export const SubscribeForm = () => {
   return (
     <div id="revue-embed">
       <form
-        action="https://www.getrevue.co/profile/r_graph_gallery/add_subscriber"
+        action="https://www.getrevue.co/profile/dataviz_corner/add_subscriber"
         method="post"
         id="revue-form"
         name="revue-form"
