@@ -37,8 +37,8 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="Scatterplot with React"
-      seoDescription="How to build a violin plot with React and D3.js. A set of re-usable components"
+      title="How to build a scatter plot with React and D3."
+      seoDescription="A step-by-step guide to build your very own scatterplot from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
         title={
