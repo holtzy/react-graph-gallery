@@ -23,9 +23,9 @@ export const ResponsiveExplanationSection = ({
         those dimensions.
       </p>
       <p>
-        Making the {label} responsive requires to add a <b>wrapper</b> component
-        that gets the dimension of the parent <code>div</code>, and listen to a
-        potential dimension change. This is possible thanks to a hook called{" "}
+        Making the {label} responsive requires adding a <b>wrapper</b> component
+        that gets the dimension of the parent <code>div</code>, and listening to
+        a potential dimension change. This is possible thanks to a hook called{" "}
         <code>useDimensions</code> that will do the job for us.
       </p>
       <Accordion

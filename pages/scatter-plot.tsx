@@ -93,14 +93,14 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Scatterplot</code> component that
         will be stored in a <code>Scatterplot.tsx</code> file. This component
-        requires 3 props to render: a <code>width</code>, a <code>height</code>{" "}
+        requires 3 props to render: a <code>width</code>, a <code>height</code>,
         and some <code>data</code>.
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and
-        <code>height</code> will be use to render a <code>svg</code> element in
-        the DOM, in which we will insert the scatterplot.
+        <code>width</code> and <code>height</code> will be used to rendering a{" "}
+        <code>svg</code> element in the DOM, in which we will insert the
+        scatterplot.
       </p>
       <p>
         To put it in a nutshell, that's the skeleton of our{" "}
@@ -144,7 +144,7 @@ export default function Home() {
 
       <h3>&rarr; Axes</h3>
       <p>
-        Axes are rather complicated elements. They are composed of a main{" "}
+        Axes are rather complicated elements. They are composed of the main{" "}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
         are often decorated with a <b>title</b>.
       </p>
@@ -156,14 +156,14 @@ export default function Home() {
         to draw those axes for you, based on the scales discussed above. For
         instance, one could call <code>axisBottom()</code> in a{" "}
         <code>useEffect</code> hook to imperatively draw the X axis into a
-        specific DOM element. But this comes with a number of caveats and is
-        thus not the option used in this gallery.
+        specific DOM element. But this comes with some caveats and is thus not
+        the option used in this gallery.
       </p>
       <p>
-        Instead, I suggest to create the axes from scratch and store them in 2
+        Instead, I suggest creating the axes from scratch and storing them in 2
         react components called <code>AxisBottom</code> and{" "}
         <code>AxisLeft</code>. Those components expect a d3 scale as input and
-        does all the svg drawing for us.
+        do all the svg drawing for us.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
@@ -200,13 +200,13 @@ export default function Home() {
       // Add circles
       //
       */}
-      <h2 id="Add markers">Add circles</h2>
+      <h2 id="Circles">Add circles</h2>
       <p>
-        We are now pretty close from a first scatterplot. There is just one more
+        We are now pretty close to the first scatterplot. There is just one more
         critical part missing: <b>markers</b>.
       </p>
       <p>
-        To add them, we have to <code>map()</code> on the data input and add a
+        To add them, we have to <code>map()</code> on the data input and add an
         svg <code>circle</code> for each. That's the code snippet that needs to
         be added:
       </p>
@@ -250,12 +250,12 @@ export default function Home() {
       <h2 id="Tooltips">Tooltips</h2>
       <p>
         There is a very common <b>frustration</b> with scatterplots: you're
-        interested in a specific data points (let's say it's out of the general
+        interested in a specific data point (let's say it's out of the general
         trend for instance), but you <b>ignore everything</b> about this item.
       </p>
       <p>
         This is when tooltips come into play. You can add as much information as
-        you want in it, making the chart much more insightful.
+        you want to it, making the chart much more insightful.
       </p>
       <p>
         In the following chart based on the{" "}
@@ -273,12 +273,12 @@ export default function Home() {
         caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
       />
       <p>
-        There are <b>many different approaches</b> to build tooltips, and I'm{" "}
+        There are <b>many different approaches</b> to building tooltips, and I'm{" "}
         <Link href="/subscribe">preparing a whole dedicated blog post</Link> on
         the topic.
       </p>
       <p>
-        Here I'm suggesting to start with an internal state using the{" "}
+        Here I suggest starting with an internal state using the{" "}
         <code>useState</code> hook. <code>interactionData</code> is an object
         providing everything you need to draw a tooltip. It usually has 2{" "}
         <code>xPos</code> and <code>yPos</code> properties that are the position
@@ -299,7 +299,7 @@ export default function Home() {
         not <code>svg</code> (it is easier to customize it).
       </p>
       <p>
-        To do so, the tooltip is rendered in a <code>absolute</code> positioned
+        To do so, the tooltip is rendered in an <code>absolute</code> positioned
         div that is drawn exactly on top of the chart area, excluding axes. This
         is how to <code>return</code> statement of our <code>Scatterplot</code>{" "}
         component now looks like:
@@ -322,9 +322,9 @@ export default function Home() {
       */}
       <h2 id="Hover effect">Hover effect</h2>
       <p>
-        Showing a tooltip on hover is definitely helpful, but it's often a nice
-        touch to add a <b>hover effect</b>. Hover effects on scatterplots are
-        usually used for 2 main reasons:
+        Showing a tooltip on hover is helpful, but it's often a nice touch to
+        add a <b>hover effect</b>. Hover effects on scatterplots are usually
+        used for 2 main reasons:
       </p>
       <ul>
         <li>
@@ -354,7 +354,7 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetHover1} />
       <p>
-        Now, this state needs to be updated when the circle is hovered hover.{" "}
+        Now, this state needs to be updated when a user hovers over the circle.{" "}
         <code>setHoveredGroup</code> can be passed as a callback to the{" "}
         <code>onMouseOver</code> attribute of each circle.
       </p>
@@ -364,7 +364,7 @@ export default function Home() {
         class called <code>dimmed</code> is added to circles that must
         disappear.
       </p>
-      <p>To put it in a nutshell, the circles are created as follow:</p>
+      <p>To put it in a nutshell, the circles are created as follows:</p>
       <CodeBlock code={snippetHover2} />
       <p>
         Last but not least, some css needs to be added to customize the circle
@@ -379,7 +379,7 @@ export default function Home() {
         the full css.
       </p>
       <p className="text-gray-400 mt-8">
-        Hover effect is another big topic in data visualization. A dedicated
+        The hover effect is another big topic in data visualization. A dedicated
         post will be published soon on the topic, feel free to{" "}
         <Link href="/subscribe">subscribe</Link> to know when.
       </p>
@@ -398,16 +398,19 @@ export default function Home() {
       // Real life
       //
       */}
-      <h2 id="real life">Real life application</h2>
-      <p>Let's apply the concepts learnt above on a real life example.</p>
+      <h2 id="real life">Real-life application</h2>
+      <p>Let's apply the concepts learned above to a real-life example.</p>
       <p>
-        I really like this scatterplot originally published on the data wrapper
-        blog. It shows a strong correlation between vulnerability to climate
-        change and CO2 emissions.
+        I like this scatterplot originally published on the data wrapper{" "}
+        <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
+          blog
+        </a>
+        . It shows a strong correlation between vulnerability to climate change
+        and CO2 emissions.
       </p>
       <br />
       <p>
-        The chart has several features that are interesting to reproduce on a
+        The chart has several features that are interesting to reproduce fom a
         technical point of view:
       </p>
       <ul>
@@ -416,12 +419,12 @@ export default function Home() {
           written
         </li>
         <li>
-          Hover effect: hovered country is highlighted with a black stroke.
+          Hover effect: the hovered country is highlighted with a black stroke.
           After a short delay, countries of other groups are dimmed. Note that
           the effect is triggered once the mouse approaches the marker, no need
           to be perfectly on top.
         </li>
-        <li>Tooltip: highly customized and linked to mouse position</li>
+        <li>Tooltip: highly customized and linked to the mouse position</li>
       </ul>
       <ChartOrSandbox
         VizComponent={ScatterplotClimateCrisisDemo}
@@ -444,7 +447,7 @@ export default function Home() {
       // Useful links
       //
       */}
-      <h2 id="Scales and axes">Useful links</h2>
+      <h2>Useful links</h2>
       <p>The following links have been useful to create this page:</p>
       <ul>
         <li>
