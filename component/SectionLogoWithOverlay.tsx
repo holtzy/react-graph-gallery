@@ -48,7 +48,7 @@ export default function SectionLogoWithOverlay({
             </div>
           ) : (
             <div className="opacity-0 hover:opacity-60 flex items-center justify-center w-full h-full rounded-full bg-purple-800 z-30">
-              <p className="text-white text-4xl">+</p>
+              <span className="text-white text-4xl">+</span>
             </div>
           )}
         </div>
