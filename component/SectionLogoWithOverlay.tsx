@@ -47,7 +47,10 @@ export default function SectionLogoWithOverlay({
               <SvgHexagon size={size} />
             </div>
           ) : (
-            <div className="opacity-0 hover:opacity-60 flex items-center justify-center w-full h-full rounded-full bg-purple-800 z-30">
+            <div
+              style={{ backgroundColor: "var(--react-gallery)" }}
+              className="opacity-0 hover:opacity-60 flex items-center justify-center w-full h-full rounded-full  z-30"
+            >
               <span className="text-white text-4xl">+</span>
             </div>
           )}
