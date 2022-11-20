@@ -6,19 +6,17 @@ const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
 type HeatmapProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number | null }[];
+  data: { x: string; y: string; value: number }[];
 };
 
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
-  // The bounds (=area inside the axis) is calculated by substracting the margins
+  // bounds = area inside the axis
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
   const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
-
-  const [min, max] = d3.extent(data.map((d) => d.value));
 
   // x and y scales
   const xScale = useMemo(() => {
@@ -36,6 +34,11 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
       .domain(allYGroups)
       .padding(0.01);
   }, [data, height]);
+
+  const [min, max] = d3.extent(data.map((d) => d.value));
+  if (!min || !max) {
+    return;
+  }
 
   // Color scale
   const colorScale = d3

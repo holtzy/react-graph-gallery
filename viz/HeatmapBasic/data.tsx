@@ -30,7 +30,8 @@ const alphabet = [
   "Z",
 ];
 
-let data = [];
+type HeatmapData = { x: string; y: string; value: number }[];
+let data: HeatmapData = [];
 
 for (let x = 0; x < nCol; x++) {
   for (let y = 0; y < nRow; y++) {
