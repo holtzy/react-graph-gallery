@@ -93,6 +93,20 @@ export default function Home() {
           height={200}
           caption="A very basic animation using react and react-spring."
         />
+        <p>
+          The useSpring funtion can take 2 types of input: an object or a
+          function
+        </p>
+        <ul>
+          <li>
+            if object, it returns an object that has the values of our animation
+          </li>
+          <li>
+            if function, it returns an array of length 2. First item is the
+            object mentionned above. item 2 is the api that controls the spring.
+            api is used for imperative style
+          </li>
+        </ul>
       </AccordionSection>
 
       <AccordionSection title={"Animating axes"} startOpen={true}>

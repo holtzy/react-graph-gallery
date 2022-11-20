@@ -12,7 +12,9 @@ const colors = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"];
 export const Shapes = ({ width, height }: ShapesProps) => {
   return (
     <div style={{ width, height }} className={styles.container}>
-      <div className={styles.glowCircle} />
+      <div className={styles.glowCircleInner} />
+      <div className={styles.glowCircleOuter} />
+      <div className={styles.glowCircleBoth} />
     </div>
     // <svg width={width} height={height}>
     //   <rect width={width} height={height} fill="black" />
