@@ -112,7 +112,7 @@ export default function Home() {
         will be used to prepare the svg <code>circle</code>, but it's react that
         will render them in the <code>return()</code> statement. We won't use d3
         methods like <code>append</code> that you can find in usual{" "}
-        <a href="https://www.d3-graph-gallery/com">d3.js examples</a>.
+        <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
       {/*

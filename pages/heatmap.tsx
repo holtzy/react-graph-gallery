@@ -2,79 +2,41 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
-import { data } from "../viz/HeatmapBasic/data";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
 import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";
 import { HeatmapVaccinationDemo } from "../viz/HeatmapVaccination/HeatmapVaccinationDemo";
 import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipDemo";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 
 const graphDescription = (
-  <p>
-    This page explains how to build a{" "}
-    <a href="https://www.data-to-viz.com/graph/heatmap.html">heatmap</a> using
-    <code>react</code> and <code>d3.js</code>. It starts by describing how the
-    input data must be formatted and build a very basic heatmap from it. Then,
-    several examples with code explain how to add the usual customizations:
-    responsiveness, tooltip, hover interaction and more.
-  </p>
+  <>
+    <p>
+      A <a href="https://www.data-to-viz.com/graph/heatmap.html">heat map</a>{" "}
+      (or heatmap) is a chart type that shows the magnitude of a numeric
+      variable as a color in two dimensions. This page is a step-by-step guide
+      on how to build your own heatmap for the web, using{" "}
+      <a href="https://reactjs.org/">React</a> and{" "}
+      <a href="https://d3-graph-gallery.com/heatmap">D3.js</a>.
+    </p>
+    <p>
+      It starts by describing how the <b>data</b> should be organized and
+      potentially <b>normalized</b>. It then shows how to initialize the{" "}
+      <b>heatmap component</b>, build band <b>scales</b> and add rectangles to
+      get a first heatmap. Last but not least, <b>responsiveness</b> and{" "}
+      <b>tooltip</b> are described in depth and a real dataset is used to get a
+      heatmap application. 🙇‍♂️.
+    </p>
+  </>
 );
-
-const snippet1 = `
-const data = [
-  { x: 'A', y: 'A', value: 12 },
-  { x: 'B', y: 'A', value: 2 },
-  { x: 'C', y: 'A', value: 9 }
-];
-`.trim();
-
-const snippet2 = `
-const xScale = useMemo(() => {
-  return d3
-    .scaleBand()
-    .range([0, boundsWidth])
-    .domain(allXGroups)
-    .padding(0.01);
-}, [data, width]);
-`.trim();
-
-const snippet3 = `
-// create a ref for the div that wrapps the viz:
-const chartRef = useRef(null);
-
-// The hook will check the dimension of the targeted div:
-const chartSize = useDimensions(chartRef);
-
-// chartSize is an object with the dimensions we need to pass to our viz component:
-return(
-  <div ref={chartRef}>
-    <MyChartComponent
-      height={chartSize.height}
-      width={chartSize.width}
-  </div>
-)
-`.trim();
-
-const snippet4 = `
-<div style={{ position: "relative" }}>
-  <Renderer ..someProps />
-  <Tooltip ..someProps />
-</div>
-`.trim();
-
-const snippet5 = `
-const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
-`.trim();
 
 export default function Home() {
   return (
     <Layout
-      title="Heatmap with React"
-      seoDescription="How to build a heatmap with React and D3.js. A set of re-usable components"
+      title="How to build a heatmap with React and D3."
+      seoDescription="A step-by-step guide to build your very own heatmap from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
         title="Heatmap"
@@ -82,98 +44,174 @@ export default function Home() {
         chartType="heatmap"
       />
 
-      <AccordionSection title={"Dataset"} startOpen={true}>
-        <p>
-          The dataset is an array where each item provides information for a
-          cell of the heatmap.
-        </p>
-        <p>
-          Each item of the object requires at least a <code>value</code>{" "}
-          property that is a number. This number will be used to color the cell.
-        </p>
-        <p>
-          Each item also requires some <code>x</code> and <code>y</code>{" "}
-          properties, providing the position of the cell in the 2d space. Note
-          that those values are strings since anything can be used. We are
-          dealing with ordinal scales here.
-        </p>
-        <p>
-          Note that you can add any kind of information in those cell objects
-          that you can use to customize the cell later on. For instance, any
-          information that you would like to add in a tooltip.
-        </p>
-        <br />
-        <p>Here is a minimal example of the data structure:</p>
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">The Data</h2>
+      <p>
+        The dataset is usually an <b>array</b> where each item provides
+        information for a <b>cell</b> of the heatmap.
+      </p>
+      <p>
+        Each item is an <b>object</b> that requires at least a{" "}
+        <code>value</code> property that is a <b>number</b>. This number will be
+        used to color the cell.
+      </p>
+      <p>
+        Each item also requires a <code>x</code> and a <code>y</code> property,
+        providing the position of the cell in the 2-d space. Note that those
+        values are <b>strings</b> since anything can be used. We are dealing
+        with <b>ordinal scales</b> here.
+      </p>
+      <p>
+        Note that you can add any kind of information in those cell objects.
+        Such information can be included in tooltips later on.
+      </p>
+      <br />
+      <p>Here is a minimal example of the data structure:</p>
+      <CodeBlock code={snippet1} />
 
-        <CodeBlock code={snippet1} />
-      </AccordionSection>
+      {/*
+      //
+      // Skeleton
+      //
+      */}
+      <h2 id="skeleton">Component skeleton</h2>
+      <p>
+        The goal here is to create a <code>Heatmap</code> component that will be
+        stored in a <code>Heatmap.tsx</code> file. This component requires 3
+        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        <code>data</code>.
+      </p>
+      <p>
+        The shape of the <code>data</code> is described above. The{" "}
+        <code>width</code> and <code>height</code> will be used to rendering a{" "}
+        <code>svg</code> element in the DOM, in which we will insert the
+        heatmap.
+      </p>
+      <p>
+        To put it in a nutshell, that's the skeleton of our <code>Heatmap</code>{" "}
+        component:
+      </p>
+      <CodeBlock code={snippetSkeleton} />
+      <p>
+        It's fundamental to understand that with this code organization, d3.js
+        will be used to prepare the svg <code>rect</code>, but it's react that
+        will render them in the <code>return()</code> statement. We won't use d3
+        methods like <code>append</code> that you can find in usual{" "}
+        <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
+      </p>
 
-      <AccordionSection
-        title={"Most basic heatmap with React and D3.js"}
-        startOpen={true}
-      >
-        <p>
-          The process used to build a heatmap with react is very close from
-          building it with d3.js only. (See the pure d3 implementation{" "}
-          <a href="https://d3-graph-gallery.com/heatmap">here</a>).
-        </p>
+      {/*
+      //
+      // Scales
+      //
+      */}
+      <h2 id="Scales">Scales</h2>
+      <p>
+        We need a way to translate a group pair of the dataset (e.g. row of
+        group <code>A</code>, column of group <code>C</code>) in a 2d coordinate
+        (e.g. <i>x=103px</i>, <i>y=300px</i>). This is a concept called{" "}
+        <b>scaling</b>.
+      </p>
+      <h3>&rarr; Data wrangling</h3>
+      <p>
+        Before building scales we need an exhaustive list of all groups
+        displayed on the X and Y axes. We also need to compute the <b>min</b>{" "}
+        and <b>max</b> of the <b>value</b> property to compute the color scale.
+      </p>
+      <p>
+        As always, don't forget to wrap that kind of work in a{" "}
+        <code>useMemo</code>. You want to compute it only when the{" "}
+        <code>data</code> changes. This is how the computation looks like:
+      </p>
+      <CodeBlock code={snippetAllGroups} />
+      <h3>&rarr; X and Y Scales</h3>
+      <p>
+        The X and Y scale are{" "}
+        <a href="https://github.com/d3/d3-scale#scaleBand">band scales</a>,
+        computed with the <code>scaleBand()</code> function of d3.js. It means
+        that a band of pixels is attributed to each group.
+      </p>
+      <p>
+        For instance, calling a the x scale with <code>xScale("A")</code> will
+        return <code>0</code>, and <code>xScale.bandwidth()</code> will return
+        the width of the band (e.g. <code>11px</code>).
+      </p>
+      <CodeBlock code={snippetXScale} />
+      <p>
+        The <code>padding</code> is the space assigned between each band
+        (=between each cell).
+      </p>
+      <p>
+        You can learn more about scales{" "}
+        <a href="https://d3-graph-gallery.com/graph/custom_axis.html">here</a>.
+      </p>
+      <h3>&rarr; Color scale</h3>
+      <p>
+        The color scale of a heatmap is <b>tricky</b> to compute. We encode a{" "}
+        <b>numeric variable</b> that can have any kind of distribution to a{" "}
+        <b>color</b>, and that's not an easy step.
+      </p>
+      <p>
+        Fortunately{" "}
+        <a href="https://d3-graph-gallery.com/graph/custom_color.html">d3.js</a>{" "}
+        (as always) has some life-saving utils to help. For instance, a
+        sequential color scale can be applied with{" "}
+        <code>scaleSequential()</code> together with the <code>inferno</code>{" "}
+        color palette. Many other options could make sense, but that deserves
+        its own blogpost.
+      </p>
+      <CodeBlock code={snippetColorScale} />
 
-        <h3>&rarr; Data wrangling</h3>
-        <p>
-          Before building scales we need an exhaustive list of the X and Y axis
-          steps. We also need to compute the min and max of the `value` property
-          of the dataset to compute the color scale.
-        </p>
-        <p>
-          As always, don't forget to wrap that kind of work in a{" "}
-          <code>useMemo</code>. You want to compute it only when the{" "}
-          <code>data</code> changes.
-        </p>
-        <h3>&rarr; Scales</h3>
-        <p>
-          The X and Y scale are{" "}
-          <a href="https://github.com/d3/d3-scale#scaleBand">band scales</a>,
-          computed with the <code>scaleBand()</code> function of d3.js. In our
-          simple example below, calling a the x Scale with{" "}
-          <code>xScale("A")</code> will return <code>0</code>, and{" "}
-          <code>xScale.bandwidth()</code> will return the width of a cell.
-        </p>
-        <CodeBlock code={snippet2} />
-        <p>
-          The color scale is much more tricky to compute. We encode a numeric
-          variable that can have any kind of distribution with a color, and
-          that's not an easy step.
-        </p>
-        <p>
-          Below we're applying a sequential scale with{" "}
-          <code>scaleSequential()</code> together with the <code>inferno</code>{" "}
-          color palette. Many other options could make sense, but that deserves
-          its own blogpost.
-        </p>
-        <h3>&rarr; Rendering</h3>
-        <p>
-          With the scales available, rendering is just a matter of mapping
-          through the dataset and creating a set of svg <code>rect</code>.
-        </p>
-        <p>
-          Note that for the X and Y axis just adding a set of svg{" "}
-          <code>text</code> element does a pretty good job, so no need to go
-          through the{" "}
-          <a href="https://www.react-graph-gallery.com/build-axis-with-react">
-            usual axis hassle
-          </a>
-          .
-        </p>
-        <br />
-        <ChartOrSandbox
-          VizComponent={HeatmapBasicDemo}
-          vizName={"HeatmapBasic"}
-          maxWidth={600}
-          height={300}
-          caption={"Most basic heatmap made with react and d3.js"}
-        />
-      </AccordionSection>
+      {/*
+      //
+      // Rectangles
+      //
+      */}
+      <h2 id="rectangles">Add rectangles, get a basic react heatmap</h2>
+      <p>Finally! 🤪</p>
+      <p>
+        With the scales available, rendering is just a matter of mapping through
+        the dataset and creating a set of svg <code>rect</code> for each cell.
+      </p>
+      <p>Something like:</p>
+      <CodeBlock code={snippetRender} />
+      <p>
+        Note that for the X and Y axis labels, just adding a set of svg{" "}
+        <code>text</code> element does a pretty good job, so no need to build
+        complicated axis components as for a{" "}
+        <a href="https://www.react-graph-gallery.com/scatter-plot">
+          scatterplot
+        </a>
+        .
+      </p>
+      <br />
+      <ChartOrSandbox
+        VizComponent={HeatmapBasicDemo}
+        vizName={"HeatmapBasic"}
+        maxWidth={600}
+        height={300}
+        caption={
+          "Most basic heatmap made with react and d3.js. d3 is used to compute scales, react for the rendering."
+        }
+      />
+      <p>
+        That's it, we have a first good looking <b>heatmap</b>!
+      </p>
+      <p>
+        The process used to build a it with react is pretty close from building
+        it with <b>d3.js only</b>. (Check the pure d3 implementation{" "}
+        <a href="https://d3-graph-gallery.com/heatmap">here</a>).
+      </p>
 
+      {/*
+      //
+      // Responsiveness
+      //
+      */}
       <ResponsiveExplanationSection chartId="heatmap" />
 
       <AccordionSection title={"Adding a tooltip"} startOpen={true}>
@@ -280,3 +318,91 @@ export default function Home() {
     </Layout>
   );
 }
+
+const snippet1 = `
+const data = [
+  { x: 'A', y: 'A', value: 12 },
+  { x: 'B', y: 'A', value: 2 },
+  { x: 'C', y: 'A', value: 9 }
+];
+`.trim();
+
+const snippetSkeleton = `
+import * as d3 from "d3"; // we will need d3.js
+
+type HeatmapProps = {
+  width: number;
+  height: number;
+  data: { x: string; y: string, value: value: number | null }[];
+};
+
+export const Heatmap = ({ width, height, data }: HeatmapProps) => {
+
+  // read the data
+  // do some stuff with d3 like building scales
+  // compute all the <rect>
+
+  return (
+    <div>
+      <svg width={width} height={height}>
+        // render all the <rect>
+      </svg>
+    </div>
+  );
+};
+`.trim();
+
+const snippetAllGroups = `
+useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
+`.trim();
+
+const snippetXScale = `
+const xScale = useMemo(() => {
+  return d3
+    .scaleBand()
+    .range([0, boundsWidth])
+    .domain(allXGroups)
+    .padding(0.01);
+}, [data, width]);
+
+// xScale("A") -> 0
+// xScale.bandwidth() -> 11
+`.trim();
+
+const snippetColorScale = `
+const colorScale = d3
+  .scaleSequential()
+  .interpolator(d3.interpolateInferno)
+  .domain([min, max]);
+
+// colorScale(34) -> #d3a4e9
+`.trim();
+
+const snippetRender = `
+const allRects = data.map((d, i) => {
+  if (d.value === null) {
+    return;
+  }
+  return (
+    <rect
+      key={i}
+      x={xScale(d.x)}
+      y={yScale(d.y)}
+      width={xScale.bandwidth()}
+      height={yScale.bandwidth()}
+      fill={colorScale(d.value)}
+    />
+  );
+});
+`.trim();
+
+const snippet4 = `
+<div style={{ position: "relative" }}>
+  <Renderer ..someProps />
+  <Tooltip ..someProps />
+</div>
+`.trim();
+
+const snippet5 = `
+const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
+`.trim();

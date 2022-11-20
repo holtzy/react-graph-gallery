@@ -38,13 +38,13 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   }, [data, height]);
 
   // Color scale
-  var colorScale = d3
+  const colorScale = d3
     .scaleSequential()
     .interpolator(d3.interpolateInferno)
     .domain([min, max]);
 
   // Build the rectangles
-  const allShapes = data.map((d, i) => {
+  const allRects = data.map((d, i) => {
     if (d.value === null) {
       return;
     }
@@ -100,7 +100,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
-          {allShapes}
+          {allRects}
           {xLabels}
           {yLabels}
         </g>
