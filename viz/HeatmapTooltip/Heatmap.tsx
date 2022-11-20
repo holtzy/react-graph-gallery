@@ -5,10 +5,10 @@ import { Tooltip } from "./Tooltip";
 type HeatmapProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number | null }[];
+  data: { x: string; y: string; value: number }[];
 };
 
-export type HoveredCell = {
+export type InteractionData = {
   xLabel: string;
   yLabel: string;
   xPos: number;
@@ -17,7 +17,7 @@ export type HoveredCell = {
 };
 
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
-  const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
+  const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
 
   return (
     <div style={{ position: "relative" }}>
@@ -27,7 +27,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
         data={data}
         setHoveredCell={setHoveredCell}
       />
-      <Tooltip hoveredCell={hoveredCell} width={width} height={height} />
+      <Tooltip interactionData={hoveredCell} width={width} height={height} />
     </div>
   );
 };

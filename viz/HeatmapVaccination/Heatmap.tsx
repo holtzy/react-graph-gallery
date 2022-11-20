@@ -23,11 +23,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 
   // x and y scales
   const xScale = useMemo(() => {
-    return d3
-      .scaleBand()
-      .range([0, boundsWidth])
-      .domain(allXGroups)
-      .padding(0.01);
+    return d3.scaleBand().range([0, boundsWidth]).domain(allXGroups).padding(0);
   }, [data, width]);
 
   const yScale = useMemo(() => {
@@ -35,7 +31,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
       .scaleBand()
       .range([boundsHeight, 0])
       .domain(allYGroups)
-      .padding(0.01);
+      .padding(0);
   }, [data, height]);
 
   // Color scale
@@ -73,6 +69,8 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
           textAnchor="middle"
           dominantBaseline="middle"
           fontSize={10}
+          stroke="none"
+          fill="black"
         >
           {name}
         </text>

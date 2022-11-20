@@ -247,7 +247,7 @@ export default function Home() {
       // Tooltip
       //
       */}
-      <h2 id="Tooltips">Tooltips</h2>
+      <h2 id="tooltip">Tooltip</h2>
       <p>
         There is a very common <b>frustration</b> with scatterplots: you're
         interested in a specific data point (let's say it's out of the general
@@ -386,6 +386,7 @@ export default function Home() {
       <div className={"py-7"}>
         <SubscribeForm />
       </div>
+
       {/*
       //
       // Inspiration

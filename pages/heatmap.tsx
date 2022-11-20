@@ -10,6 +10,8 @@ import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";
 import { HeatmapVaccinationDemo } from "../viz/HeatmapVaccination/HeatmapVaccinationDemo";
 import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipDemo";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
+import Link from "next/link";
+import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <>
@@ -43,7 +45,6 @@ export default function Home() {
         description={graphDescription}
         chartType="heatmap"
       />
-
       {/*
       //
       // Data
@@ -72,7 +73,6 @@ export default function Home() {
       <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippet1} />
-
       {/*
       //
       // Skeleton
@@ -103,7 +103,6 @@ export default function Home() {
         methods like <code>append</code> that you can find in usual{" "}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
-
       {/*
       //
       // Scales
@@ -165,7 +164,6 @@ export default function Home() {
         its own blogpost.
       </p>
       <CodeBlock code={snippetColorScale} />
-
       {/*
       //
       // Rectangles
@@ -206,113 +204,129 @@ export default function Home() {
         it with <b>d3.js only</b>. (Check the pure d3 implementation{" "}
         <a href="https://d3-graph-gallery.com/heatmap">here</a>).
       </p>
-
       {/*
       //
       // Responsiveness
       //
       */}
       <ResponsiveExplanationSection chartId="heatmap" />
-
-      <AccordionSection title={"Adding a tooltip"} startOpen={true}>
-        <p>
-          The tooltip is a must have for a heatmap. It allows to get as much
-          detail as needed for each cell. It's not an easy task though. There
-          are several strategies described more in depth here, but here is what
-          I suggest in the following example:
-        </p>
-        <h3>&rarr; Two layers: renderer and tooltip</h3>
-        <p>
-          The first task is to split the <code>Heatmap</code> component in 2
-          layers. The first layer called <code>Renderer</code> will render the
-          cells as seen previously. The second is an <code>absolute</code> div
-          put on top of the first one, used only to show the tooltip{" "}
-          <code>div</code>.
-        </p>
-        <p>
-          This way, the x & y coordinates of cells in the first layer correspond
-          with the second layer.
-        </p>
-        <CodeBlock code={snippet4} />
-
-        <h3>&rarr; A common state</h3>
-        <p>
-          On top of the 2 layers we need a state that stores information about
-          the cell being hovered over. You can create it with a{" "}
-          <code>useState</code>
-          statement.
-        </p>
-        <p>
-          The state can now be passed to the <code>Tooltip</code> layer. The
-          function to update it can be passed to the <code>Renderer</code> layer
-          that will update it when a cell is hovered over.
-        </p>
-        <CodeBlock code={snippet5} />
-
-        <h3>&rarr; Hover, update state, render tooltips</h3>
-        <p>
-          The heatmap cells listen to <code>onMouseEnter</code> events and
-          update the tooltip state with accurate coordinates when it happens.
-        </p>
-        <p>
-          The tooltip renders a div at the right position thanks to those
-          informations.
-        </p>
-        <p>
-          There is much more to say about those parts, but it deserves its own
-          blog post since it's then used for all chart types.
-        </p>
-
-        <p></p>
-        <br />
-        <ChartOrSandbox
-          VizComponent={HeatmapTooltipDemo}
-          vizName={"HeatmapTooltip"}
-          maxWidth={600}
-          height={300}
-          caption={
-            "This heatmap has a tooltip! Hover over a cell to get its exact value."
-          }
-        />
-        <p>Read more on tooltips</p>
-      </AccordionSection>
-
-      <AccordionSection
-        title={"Application to a real dataset"}
-        startOpen={true}
-      >
-        <p>
-          This is an application of the heatmap component described above to a
-          real life dataset.
-        </p>
-        <p>
-          It's actually a recreation of{" "}
-          <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/">
-            this chart
-          </a>{" "}
-          by Tynan DeBold and Dov Friedman. Data was available{" "}
-          <a href="https://www.tycho.pitt.edu/data/">here</a>.
-        </p>
-        <p>
-          It was necessary to tweak the color scale, switching to a square
-          transformation with <code>scaleSequentialSqrt</code>. This allows to
-          give less importance the extreme values that would absorb the
-          variation otherwise.
-        </p>
-        <ChartOrSandbox
-          VizComponent={HeatmapVaccinationDemo}
-          vizName={"HeatmapVaccination"}
-          maxWidth={1300}
-          height={700}
-          caption={
-            "Number of Measles infected people over 70-some years and across all 50 states. Can you guess when a vaccine was introduced?"
-          }
-        />{" "}
-      </AccordionSection>
-
+      {/*
+      //
+      // Tooltip
+      //
+      */}
+      <h2 id="tooltip">Tooltip</h2>
+      <p>
+        Adding a tooltip is an important improvement for a heatmap. It allows to
+        get as much <b>detail</b> as needed for each cell.
+      </p>
+      <p>
+        There are <b>many different approaches</b> to building tooltips, and I'm
+        preparing a whole <Link href="/subscribe">dedicated blog post</Link> on
+        the topic.
+      </p>
+      <p>
+        In the example below I suggest to use the same strategy than for{" "}
+        <Link href="/scatter-plot#tooltip">scatterplots</Link>. So you probably
+        want to read it <Link href="/subscribe">there</Link> for in-depth
+        explanation.
+      </p>
+      <h3>&rarr; Two layers: renderer and tooltip</h3>
+      <p>
+        The first task is to split the <code>Heatmap</code> component in 2
+        layers. The first layer called <code>Renderer</code> will render the
+        cells as seen previously. The second is an <code>absolute</code> div put
+        on top of the first one, used only to show the tooltip <code>div</code>.
+      </p>
+      <p>
+        This way, the <code>x</code> and <code>y</code> coordinates of cells in
+        the first layer match with the coordinate of the second layer.
+      </p>
+      <CodeBlock code={snippet4} />
+      <h3>&rarr; A common state</h3>
+      <p>
+        On top of the 2 layers we need a state that stores information about the
+        cell being hovered over. You can create it with a <code>useState</code>{" "}
+        statement.
+      </p>
+      <p>
+        The state can now be passed to the <code>Tooltip</code> layer. The
+        function to update it can be passed to the <code>Renderer</code> layer
+        that will update it when a cell is hovered over.
+      </p>
+      <CodeBlock code={snippet5} />
+      <h3>&rarr; Hover, update state, render tooltips</h3>
+      <p>
+        The heatmap cells listen to <code>onMouseEnter</code> events and update
+        the tooltip state (<code>hoveredCell</code>) with accurate coordinates
+        when it happens.
+      </p>
+      <p>
+        This state is passed to the <code>Tooltip</code> component. It renders a{" "}
+        <code>div</code> at the right position thanks to the information. A bit
+        of smart css is used to make it pretty and include a <b>little arrow</b>
+        .
+      </p>
+      <ChartOrSandbox
+        VizComponent={HeatmapTooltipDemo}
+        vizName={"HeatmapTooltip"}
+        maxWidth={600}
+        height={300}
+        caption={
+          "This heatmap has a tooltip. Hover over a cell to get its exact value."
+        }
+      />
+      <p>
+        There is much more to say about tooltips but hopefully that should get
+        you started. <Link href="/subscribe">Subscribe</Link> to the gallery,
+        I'll post more on this topic soon.
+      </p>
+      {/*
+      //
+      // Inspiration
+      //
+      */}
+      <DatavizInspirationParallaxLink chartId="heatmap" />
+      {/*
+      //
+      // Real life
+      //
+      */}
+      <h2 id="real life">Application to a real dataset</h2>
+      <p>
+        This is an application of the heatmap component described above to a
+        real life dataset.
+      </p>
+      <p>
+        It's actually a recreation of{" "}
+        <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/">
+          this chart
+        </a>{" "}
+        by Tynan DeBold and Dov Friedman. Data was available{" "}
+        <a href="https://www.tycho.pitt.edu/data/">here</a>.
+      </p>
+      <p>
+        It was necessary to tweak the color scale, switching to a square
+        transformation with <code>scaleSequentialSqrt</code>. This allows to
+        give less importance the extreme values that would absorb the variation
+        otherwise.
+      </p>
+      <ChartOrSandbox
+        VizComponent={HeatmapVaccinationDemo}
+        vizName={"HeatmapVaccination"}
+        maxWidth={1100}
+        height={600}
+        caption={
+          "Number of Measles infected people over 70-some years and across all 50 states. Can you guess when a vaccine was introduced?"
+        }
+      />{" "}
+      {/*
+      //
+      // Tail
+      //
+      */}
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="correlation" />
-
       <div className="mt-20" />
       <Contact />
     </Layout>
@@ -404,5 +418,5 @@ const snippet4 = `
 `.trim();
 
 const snippet5 = `
-const [hoveredCell, setHoveredCell] = useState<HoveredCell | null>(null);
+const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
 `.trim();

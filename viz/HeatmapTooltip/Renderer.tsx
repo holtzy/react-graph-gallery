@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
-import { HoveredCell } from "./Heatmap";
+import { InteractionData } from "./Heatmap";
 
 const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
 
 type RendererProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number | null }[];
-  setHoveredCell: (hoveredCell: HoveredCell | null) => void;
+  data: { x: string; y: string; value: number }[];
+  setHoveredCell: (hoveredCell: InteractionData | null) => void;
 };
 
 export const Renderer = ({
@@ -77,6 +77,7 @@ export const Renderer = ({
           });
         }}
         onMouseLeave={() => setHoveredCell(null)}
+        cursor="pointer"
       />
     );
   });

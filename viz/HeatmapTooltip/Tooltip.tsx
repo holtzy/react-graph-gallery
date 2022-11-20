@@ -1,13 +1,14 @@
-import { HoveredCell } from "./Heatmap";
+import { InteractionData } from "./Heatmap";
+import styles from "./tooltip.module.css";
 
 type TooltipProps = {
-  hoveredCell: HoveredCell | null;
+  interactionData: InteractionData | null;
   width: number;
   height: number;
 };
 
-export const Tooltip = ({ hoveredCell, width, height }: TooltipProps) => {
-  if (!hoveredCell) {
+export const Tooltip = ({ interactionData, width, height }: TooltipProps) => {
+  if (!interactionData) {
     return null;
   }
 
@@ -25,23 +26,16 @@ export const Tooltip = ({ hoveredCell, width, height }: TooltipProps) => {
     >
       {/* The actual box with dark background */}
       <div
+        className={styles.tooltip}
         style={{
           position: "absolute",
-          left: hoveredCell.xPos,
-          top: hoveredCell.yPos,
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          border: "black",
-          borderRadius: "4px",
-          color: "white",
-          fontSize: 16,
-          padding: 4,
-          marginLeft: 4,
-          transform: "translateY(-50%)",
+          left: interactionData.xPos,
+          top: interactionData.yPos,
         }}
       >
-        <TooltipRow label={"x"} value={hoveredCell.xLabel} />
-        <TooltipRow label={"y"} value={hoveredCell.yLabel} />
-        <TooltipRow label={"value"} value={String(hoveredCell.value)} />
+        <TooltipRow label={"x"} value={interactionData.xLabel} />
+        <TooltipRow label={"y"} value={interactionData.yLabel} />
+        <TooltipRow label={"value"} value={String(interactionData.value)} />
       </div>
     </div>
   );
