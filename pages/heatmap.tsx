@@ -319,8 +319,8 @@ export default function Home() {
       <ChartOrSandbox
         VizComponent={HeatmapVaccinationDemo}
         vizName={"HeatmapVaccination"}
-        maxWidth={1100}
-        height={600}
+        maxWidth={900}
+        height={500}
         caption={
           "Number of Measles infected people over 70-some years and across all 50 states. Can you guess when a vaccine was introduced?"
         }

@@ -22,25 +22,27 @@ const THRESHOLDS = [0, 0.01, 0.02, 0.03, 0.09, 0.1, 0.15, 0.25, 0.4, 0.5, 1];
 type HeatmapProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number | null }[];
+  data: { x: number; y: string; value: number | null }[];
 };
 
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
-  // Layout. The div size is set by the given props.
-  // The bounds (=area inside the axis) is calculated by substracting the margins
+  // The bounds (=area inside the axis)
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
-  console.log(allYGroups);
   const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
 
   const [min, max] = d3.extent(data.map((d) => d.value));
 
   // x and y scales
   const xScale = useMemo(() => {
-    return d3.scaleBand().range([0, boundsWidth]).domain(allXGroups).padding(0);
+    return d3
+      .scaleBand()
+      .range([0, boundsWidth])
+      .domain(allXGroups)
+      .padding(0.1);
   }, [data, width]);
 
   const yScale = useMemo(() => {
@@ -48,7 +50,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
       .scaleBand<string>()
       .range([0, boundsHeight])
       .domain(allYGroups)
-      .padding(0);
+      .padding(0.1);
   }, [data, height]);
 
   // Color scale
@@ -58,7 +60,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
     .range(COLORS);
 
   // Build the shapes
-  const allShapes = data.map((d, i) => {
+  const allRects = data.map((d, i) => {
     if (d.value === null) {
       return;
     }
@@ -95,18 +97,22 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
     }
   });
 
-  const yLabels = allYGroups.map((name, i) => (
-    <text
-      key={i}
-      x={-5}
-      y={yScale(name) + yScale.bandwidth() / 2}
-      textAnchor="end"
-      dominantBaseline="middle"
-      fontSize={10}
-    >
-      {name}
-    </text>
-  ));
+  const yLabels = allYGroups.map((name, i) => {
+    if (i % 2 === 0) {
+      return (
+        <text
+          key={i}
+          x={-5}
+          y={yScale(name) + yScale.bandwidth() / 2}
+          textAnchor="end"
+          dominantBaseline="middle"
+          fontSize={10}
+        >
+          {name}
+        </text>
+      );
+    }
+  });
 
   return (
     <div>
@@ -116,7 +122,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
-          {allShapes}
+          {allRects}
           {xLabels}
           {yLabels}
         </g>
