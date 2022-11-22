@@ -1,23 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import * as d3 from "d3";
-
-const MARGIN = { top: 10, right: 10, bottom: 50, left: 50 };
-
-const COLORS = [
-  "#e7f0fa",
-  "#c9e2f6",
-  "#95cbee",
-  "#0099dc",
-  "#4ab04a",
-  "#ffd73e",
-  "#eec73a",
-  "#e29421",
-  "#e29421",
-  "#f05336",
-  "#ce472e",
-];
-
-const THRESHOLDS = [0, 0.01, 0.02, 0.03, 0.09, 0.1, 0.15, 0.25, 0.4, 0.5, 1];
+import { Renderer } from "./Renderer";
+import { Tooltip } from "./Tooltip";
 
 type HeatmapProps = {
   width: number;
@@ -25,108 +9,26 @@ type HeatmapProps = {
   data: { x: number; y: string; value: number | null }[];
 };
 
+export type InteractionData = {
+  xLabel: string;
+  yLabel: string;
+  xPos: number;
+  yPos: number;
+  value: number;
+};
+
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
-  // The bounds (=area inside the axis)
-  const boundsWidth = width - MARGIN.right - MARGIN.left;
-  const boundsHeight = height - MARGIN.top - MARGIN.bottom;
-
-  // groups
-  const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
-  const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
-
-  const [min, max] = d3.extent(data.map((d) => d.value));
-
-  // x and y scales
-  const xScale = useMemo(() => {
-    return d3
-      .scaleBand()
-      .range([0, boundsWidth])
-      .domain(allXGroups)
-      .padding(0.1);
-  }, [data, width]);
-
-  const yScale = useMemo(() => {
-    return d3
-      .scaleBand<string>()
-      .range([0, boundsHeight])
-      .domain(allYGroups)
-      .padding(0.1);
-  }, [data, height]);
-
-  // Color scale
-  var colorScale = d3
-    .scaleLinear<string>()
-    .domain(THRESHOLDS.map((t) => t * max))
-    .range(COLORS);
-
-  // Build the shapes
-  const allRects = data.map((d, i) => {
-    if (d.value === null) {
-      return;
-    }
-    return (
-      <rect
-        key={i}
-        r={4}
-        x={xScale(d.x)}
-        y={yScale(d.y)}
-        width={xScale.bandwidth()}
-        height={yScale.bandwidth()}
-        opacity={1}
-        fill={d.value ? colorScale(d.value) : "#F8F8F8"}
-      />
-    );
-  });
-
-  const xLabels = allXGroups.map((name, i) => {
-    if (name % 10 === 0) {
-      return (
-        <text
-          key={i}
-          x={xScale(name)}
-          y={boundsHeight + 10}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize={10}
-          stroke="none"
-          fill="black"
-        >
-          {name}
-        </text>
-      );
-    }
-  });
-
-  const yLabels = allYGroups.map((name, i) => {
-    if (i % 2 === 0) {
-      return (
-        <text
-          key={i}
-          x={-5}
-          y={yScale(name) + yScale.bandwidth() / 2}
-          textAnchor="end"
-          dominantBaseline="middle"
-          fontSize={10}
-        >
-          {name}
-        </text>
-      );
-    }
-  });
+  const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
 
   return (
-    <div>
-      <svg width={width} height={height}>
-        <g
-          width={boundsWidth}
-          height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-        >
-          {allRects}
-          {xLabels}
-          {yLabels}
-        </g>
-      </svg>
+    <div style={{ position: "relative" }}>
+      <Renderer
+        width={width}
+        height={height}
+        data={data}
+        setHoveredCell={setHoveredCell}
+      />
+      <Tooltip interactionData={hoveredCell} width={width} height={height} />
     </div>
   );
 };

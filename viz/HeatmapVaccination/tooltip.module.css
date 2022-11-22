@@ -1,0 +1,23 @@
+.tooltip {
+    position: absolute;
+    background-color: rgba(255,255,255,.8);
+    color: black;
+    box-shadow: 0px 0px 2px 1px grey;
+    font-size: 12px;
+    padding: 4px;
+    margin-left: 15px;
+    transform: translateY(-50%);
+    line-height: 18px;
+    min-width: 80px;
+}
+
+/* Add an arrow */
+.tooltip:after {
+    content: "";
+    position:absolute;
+    border-width: 5px;  /* Arrow width */
+    left: -10px;  /* Arrow width * 2 */
+    top:50%;
+    transform:translateY(-50%);
+    border-color: transparent black transparent transparent;
+}
