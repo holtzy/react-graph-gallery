@@ -3,6 +3,22 @@ import * as d3 from "d3";
 
 const MARGIN = { top: 10, right: 10, bottom: 50, left: 50 };
 
+const COLORS = [
+  "#e7f0fa",
+  "#c9e2f6",
+  "#95cbee",
+  "#0099dc",
+  "#4ab04a",
+  "#ffd73e",
+  "#eec73a",
+  "#e29421",
+  "#e29421",
+  "#f05336",
+  "#ce472e",
+];
+
+const THRESHOLDS = [0, 0.01, 0.02, 0.03, 0.09, 0.1, 0.15, 0.25, 0.4, 0.5, 1];
+
 type HeatmapProps = {
   width: number;
   height: number;
@@ -17,6 +33,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 
   // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
+  console.log(allYGroups);
   const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
 
   const [min, max] = d3.extent(data.map((d) => d.value));
@@ -28,17 +45,17 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 
   const yScale = useMemo(() => {
     return d3
-      .scaleBand()
-      .range([boundsHeight, 0])
+      .scaleBand<string>()
+      .range([0, boundsHeight])
       .domain(allYGroups)
       .padding(0);
   }, [data, height]);
 
   // Color scale
   var colorScale = d3
-    .scaleSequentialSqrt()
-    .interpolator(d3.interpolateReds)
-    .domain([0, max]);
+    .scaleLinear<string>()
+    .domain(THRESHOLDS.map((t) => t * max))
+    .range(COLORS);
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
@@ -54,7 +71,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
         width={xScale.bandwidth()}
         height={yScale.bandwidth()}
         opacity={1}
-        fill={d.value === 0 ? "white" : colorScale(d.value)}
+        fill={d.value ? colorScale(d.value) : "#F8F8F8"}
       />
     );
   });

@@ -303,7 +303,12 @@ export default function Home() {
           this chart
         </a>{" "}
         by Tynan DeBold and Dov Friedman. Data was available{" "}
-        <a href="https://www.tycho.pitt.edu/data/">here</a>.
+        <a href="https://www.tycho.pitt.edu/data/">here</a>. Chart war
+        originally made with highcharts, original code being{" "}
+        <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/js/script.min.js">
+          here
+        </a>
+        .
       </p>
       <p>
         It was necessary to tweak the color scale, switching to a square
@@ -328,7 +333,6 @@ export default function Home() {
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
