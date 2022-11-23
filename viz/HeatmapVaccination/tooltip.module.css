@@ -19,5 +19,5 @@
     left: -10px;  /* Arrow width * 2 */
     top:50%;
     transform:translateY(-50%);
-    border-color: transparent black transparent transparent;
+    border-color: transparent rgba(255,255,255,.8) transparent transparent;
 }

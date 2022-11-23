@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
-import * as d3 from "d3";
+import { useState } from "react";
 import { Renderer } from "./Renderer";
 import { Tooltip } from "./Tooltip";
+import { COLOR_LEGEND_HEIGHT } from "./constants";
+import { ColorLegend } from "./ColorLegend";
 
 type HeatmapProps = {
   width: number;
@@ -24,11 +25,23 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
     <div style={{ position: "relative" }}>
       <Renderer
         width={width}
-        height={height}
+        height={height - COLOR_LEGEND_HEIGHT}
         data={data}
         setHoveredCell={setHoveredCell}
       />
-      <Tooltip interactionData={hoveredCell} width={width} height={height} />
+      <Tooltip
+        interactionData={hoveredCell}
+        width={width}
+        height={height - COLOR_LEGEND_HEIGHT}
+      />
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <ColorLegend
+          height={COLOR_LEGEND_HEIGHT}
+          width={300}
+          interactionData={hoveredCell}
+          data={data}
+        />
+      </div>
     </div>
   );
 };
