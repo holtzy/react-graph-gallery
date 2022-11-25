@@ -71,7 +71,7 @@ type BarItemProps = {
   barHeight: number;
   barWidth: number;
   x: number;
-  y?: number;
+  y: number | undefined;
 };
 
 const BarItem = (props: BarItemProps) => {
@@ -81,11 +81,16 @@ const BarItem = (props: BarItemProps) => {
     to: {
       value,
       barWidth,
+      opacity: barWidth > 80 ? 1 : 0,
     },
     config: {
       friction: 50,
     },
   });
+
+  if (y === undefined) {
+    return null;
+  }
 
   return (
     <g>
@@ -107,6 +112,7 @@ const BarItem = (props: BarItemProps) => {
         textAnchor="end"
         alignmentBaseline="central"
         fontSize={12}
+        opacity={springProps.opacity}
       >
         {springProps.value.to((value) => value.toFixed(0))}
       </animated.text>

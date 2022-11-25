@@ -36,6 +36,11 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
+    const y = yScale(d.name);
+    if (y === undefined) {
+      return null;
+    }
+
     return (
       <g key={i}>
         <rect
@@ -52,16 +57,17 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
         />
         <text
           x={xScale(d.value) - 7}
-          y={yScale(d.name) + yScale.bandwidth() / 2}
+          y={y + yScale.bandwidth() / 2}
           textAnchor="end"
           alignmentBaseline="central"
           fontSize={12}
+          opacity={xScale(d.value) > 90 ? 1 : 0} // hide label if bar is not wide enough
         >
           {d.value}
         </text>
         <text
           x={xScale(0) + 7}
-          y={yScale(d.name) + yScale.bandwidth() / 2}
+          y={y + yScale.bandwidth() / 2}
           textAnchor="start"
           alignmentBaseline="central"
           fontSize={12}
