@@ -39,7 +39,7 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   const allShapes = data.map((d, i) => {
     return (
       <BarItem
-        key={i}
+        key={d.name}
         name={d.name}
         value={d.value}
         barHeight={yScale.bandwidth()}
@@ -78,14 +78,18 @@ const BarItem = (props: BarItemProps) => {
   const { name, value, barHeight, barWidth, x, y } = props;
 
   const springProps = useSpring({
-    to: {
-      value,
-      y,
-      barWidth,
-      opacity: barWidth > 80 ? 1 : 0,
-    },
+    to: [
+      {
+        value,
+        barWidth,
+        opacity: barWidth > 80 ? 1 : 0,
+      },
+      {
+        y,
+      },
+    ],
     config: {
-      friction: 50,
+      friction: 30,
     },
   });
 
@@ -97,7 +101,7 @@ const BarItem = (props: BarItemProps) => {
     <g>
       <animated.rect
         x={x}
-        y={y}
+        y={springProps.y}
         width={springProps.barWidth}
         height={barHeight}
         opacity={0.7}
@@ -109,7 +113,7 @@ const BarItem = (props: BarItemProps) => {
       />
       <animated.text
         x={springProps.barWidth.to((width) => width - 7)}
-        y={y + barHeight / 2}
+        y={springProps.y.to((y) => y + barHeight / 2)}
         textAnchor="end"
         alignmentBaseline="central"
         fontSize={12}
@@ -119,7 +123,7 @@ const BarItem = (props: BarItemProps) => {
       </animated.text>
       <animated.text
         x={x + 7}
-        y={y + barHeight / 2}
+        y={springProps.y.to((y) => y + barHeight / 2)}
         textAnchor="start"
         alignmentBaseline="central"
         fontSize={12}
