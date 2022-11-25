@@ -17,7 +17,7 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Y axis is for groups since the barplot is horizontal
-  const groups = data.map((d) => d.name);
+  const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name);
   const yScale = useMemo(() => {
     return d3
       .scaleBand()
@@ -80,6 +80,7 @@ const BarItem = (props: BarItemProps) => {
   const springProps = useSpring({
     to: {
       value,
+      y,
       barWidth,
       opacity: barWidth > 80 ? 1 : 0,
     },
