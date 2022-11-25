@@ -84,9 +84,7 @@ const BarItem = (props: BarItemProps) => {
         barWidth,
         opacity: barWidth > 80 ? 1 : 0,
       },
-      {
-        y,
-      },
+      { y },
     ],
     config: {
       friction: 30,
@@ -112,18 +110,18 @@ const BarItem = (props: BarItemProps) => {
         rx={1}
       />
       <animated.text
-        x={springProps.barWidth.to((width) => width - 7)}
-        y={springProps.y.to((y) => y + barHeight / 2)}
+        x={springProps.barWidth?.to((width) => width - 7)}
+        y={springProps.y?.to((y) => y + barHeight / 2)}
         textAnchor="end"
         alignmentBaseline="central"
         fontSize={12}
         opacity={springProps.opacity}
       >
-        {springProps.value.to((value) => value.toFixed(0))}
+        {springProps.value?.to((value) => value.toFixed(0))}
       </animated.text>
       <animated.text
         x={x + 7}
-        y={springProps.y.to((y) => y + barHeight / 2)}
+        y={springProps.y?.to((y) => y + barHeight / 2)}
         textAnchor="start"
         alignmentBaseline="central"
         fontSize={12}

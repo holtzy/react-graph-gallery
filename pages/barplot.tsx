@@ -12,6 +12,7 @@ import DatavizInspirationParallaxLink from "../component/DatavizInspirationParal
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
 import { BarplotStackedBasicDemo } from "../viz/BarplotStackedBasic/BarplotStackedBasicDemo";
+import { BarplotStackedHorizontalDemo } from "../viz/BarplotStackedHorizontal/BarplotStackedHorizontalDemo";
 
 const graphDescription = (
   <>
@@ -194,8 +195,11 @@ export default function Home() {
       // Stacking
       //
       */}
-      <h2 id="basic barplot">Stacking</h2>
-      <p>description</p>
+      <h2 id="stacking">Stacking</h2>
+      <p>
+        Let's start with a vertical barplot. Describe the dataset that is a bit
+        weird imo.
+      </p>
       <ChartOrSandbox
         vizName={"BarplotStackedBasic"}
         VizComponent={BarplotStackedBasicDemo}
@@ -203,6 +207,19 @@ export default function Home() {
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
+      <p>Now let's do it horizontal with a normal dataset</p>
+      <ChartOrSandbox
+        vizName={"BarplotStackedHorizontal"}
+        VizComponent={BarplotStackedHorizontalDemo}
+        height={400}
+        maxWidth={600}
+        caption="Most basic barplot built with d3.js for scales, and react for rendering"
+      />
+      {/*
+      //
+      // Inspiration
+      //
+      */}
       <DatavizInspirationParallaxLink chartId="barplot" />
       {/*
       //
