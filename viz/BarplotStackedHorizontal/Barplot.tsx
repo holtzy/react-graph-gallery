@@ -7,7 +7,7 @@ const BAR_PADDING = 0.3;
 type BarplotProps = {
   width: number;
   height: number;
-  data: { name: string; value: number }[];
+  data: { group: string; subgroup: string; value: number }[];
 };
 
 export const Barplot = ({ width, height, data }: BarplotProps) => {
@@ -15,8 +15,19 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
+  const groups = [...new Set(data.map((d) => d.group))];
+  const subGroups = [...new Set(data.map((d) => d.subgroup))];
+
+  // Reformat the dataset
+  const stack = d3
+    .stack()
+    .keys(subGroups)
+    .order(d3.stackOrderNone)
+    .offset(d3.stackOffsetNone)
+    .value((d, key) => data.filter((item) => item.group === d)[0].value);
+  const series = stack(groups);
+
   // Y axis is for groups since the barplot is horizontal
-  const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name);
   const yScale = useMemo(() => {
     return d3
       .scaleBand()
@@ -27,53 +38,36 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
 
   // X axis
   const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.value));
     return d3
       .scaleLinear()
-      .domain([0, max || 10])
+      .domain([0, 400]) // todo
       .range([0, boundsWidth]);
   }, [data, width]);
 
-  // Build the shapes
-  const allShapes = data.map((d, i) => {
-    const y = yScale(d.name);
-    if (y === undefined) {
-      return null;
-    }
+  // Color Scale
+  var colorScale = d3
+    .scaleOrdinal<string>()
+    .domain(subGroups)
+    .range(["#e85252", "#6689c6", "#9a6fb0"]);
 
+  const rectangles = series.map((subgroup, i) => {
     return (
       <g key={i}>
-        <rect
-          x={xScale(0)}
-          y={yScale(d.name)}
-          width={xScale(d.value)}
-          height={yScale.bandwidth()}
-          opacity={0.7}
-          stroke="#9d174d"
-          fill="#9d174d"
-          fillOpacity={0.3}
-          strokeWidth={1}
-          rx={1}
-        />
-        <text
-          x={xScale(d.value) - 7}
-          y={y + yScale.bandwidth() / 2}
-          textAnchor="end"
-          alignmentBaseline="central"
-          fontSize={12}
-          opacity={xScale(d.value) > 90 ? 1 : 0} // hide label if bar is not wide enough
-        >
-          {d.value}
-        </text>
-        <text
-          x={xScale(0) + 7}
-          y={y + yScale.bandwidth() / 2}
-          textAnchor="start"
-          alignmentBaseline="central"
-          fontSize={12}
-        >
-          {d.name}
-        </text>
+        {subgroup.map((group, j) => {
+          return (
+            <>
+              <rect
+                key={j}
+                y={yScale(group.data)}
+                height={yScale.bandwidth()}
+                x={xScale(group[0])}
+                width={xScale(group[1]) - xScale(group[0])}
+                fill={colorScale(subgroup.key)}
+                opacity={0.9}
+              ></rect>
+            </>
+          );
+        })}
       </g>
     );
   });
@@ -114,7 +108,7 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
           {grid}
-          {allShapes}
+          {rectangles}
         </g>
       </svg>
     </div>
