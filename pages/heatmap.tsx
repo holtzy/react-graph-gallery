@@ -12,6 +12,7 @@ import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipD
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import Link from "next/link";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
+import { ContinuousColorLegendDemo } from "../viz/ContinuousColorLegend/ContinuousColorLegendDemo";
 
 const graphDescription = (
   <>
@@ -287,6 +288,36 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="heatmap" />
+      {/*
+      //
+      // Legend
+      //
+      */}
+      <h2 id="legend">Heatmap legend</h2>
+      <p>
+        A heatmap uses a <b>color scale</b> to encode a numeric value into a
+        color. As a result, it is very much advised to add a color <b>legend</b>{" "}
+        to explicit how this color scale works.
+      </p>
+      <p>
+        Let's consider a variable that goes from <code>0</code> to{" "}
+        <code>100</code>. We want to encode <code>0</code> in{" "}
+        <b>
+          <span style={{ color: "#69b3a2" }}>blue</span>
+        </b>{" "}
+        and <code>100</code> in{" "}
+        <b>
+          <span style={{ color: "purple" }}>purple</span>
+        </b>
+        .
+      </p>
+      <ChartOrSandbox
+        VizComponent={ContinuousColorLegendDemo}
+        vizName={"ContinuousColorLegend"}
+        maxWidth={300}
+        height={100}
+        caption={"A color legend built with react, canvas and d3."}
+      />
       {/*
       //
       // Real life
