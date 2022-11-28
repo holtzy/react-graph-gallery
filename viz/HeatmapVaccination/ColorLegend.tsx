@@ -44,8 +44,17 @@ export const ColorLegend = ({
     );
   });
 
-  const triangle = <circle cx={xScale(interactionData?.value)} cy={0} r={3} />;
-
+  const x = xScale(interactionData?.value);
+  const triangleWidth = 9;
+  const triangleHeight = 6;
+  const triangle = (
+    <polygon
+      points={`${x},0 ${x - triangleWidth / 2},${-triangleHeight} ${
+        x + triangleWidth / 2
+      },${-triangleHeight}`}
+      fill="grey"
+    />
+  );
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
