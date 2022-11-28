@@ -1,23 +1,21 @@
 import { InteractionData } from "./Heatmap";
-import styles from "./color-legend.module.css";
 import * as d3 from "d3";
-import { COLORS, THRESHOLDS } from "./constants";
 import { useEffect, useRef } from "react";
 
 type ColorLegendProps = {
-  interactionData: InteractionData | null;
   height: number;
   width: number;
-  data: { x: number; y: string; value: number | null }[];
+  colorScale: d3.ScaleLinear<string, string, never>;
+  interactionData: InteractionData | null;
 };
 
-const COLOR_LEGEND_MARGIN = { top: 10, right: 10, bottom: 50, left: 50 };
+const COLOR_LEGEND_MARGIN = { top: 0, right: 0, bottom: 50, left: 0 };
 
 export const ColorLegend = ({
-  interactionData,
   height,
-  data,
+  colorScale,
   width,
+  interactionData,
 }: ColorLegendProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -26,16 +24,10 @@ export const ColorLegend = ({
   const boundsHeight =
     height - COLOR_LEGEND_MARGIN.top - COLOR_LEGEND_MARGIN.bottom;
 
-  // Color scale
-  const [min, max] = d3.extent(data.map((d) => d.value));
-  const colorScale = d3
-    .scaleLinear<string>()
-    .domain(THRESHOLDS.map((t) => t * max))
-    .range(COLORS);
-
+  const max = colorScale.domain().at(-1);
   const xScale = d3.scaleLinear().range([0, boundsWidth]).domain([0, max]);
 
-  const allTicks = xScale.ticks(6).map((tick) => {
+  const allTicks = xScale.ticks(7).map((tick) => {
     return (
       <>
         <line
@@ -69,25 +61,24 @@ export const ColorLegend = ({
   }, [width, height]);
 
   return (
-    <>
-      <div style={{ position: "absolute" }}>
+    <div style={{ width, height }}>
+      <div
+        style={{
+          position: "relative",
+          transform: `translate(${COLOR_LEGEND_MARGIN.left}px,
+            ${COLOR_LEGEND_MARGIN.top}px`,
+        }}
+      >
         <canvas ref={canvasRef} width={boundsWidth} height={boundsHeight} />
-      </div>
-      <div style={{ position: "absolute" }}>
-        <svg width={width} height={height}>
-          <g
-            width={boundsWidth}
-            height={boundsHeight}
-            transform={`translate(${[
-              COLOR_LEGEND_MARGIN.left,
-              COLOR_LEGEND_MARGIN.top,
-            ].join(",")})`}
-          >
-            {allTicks}
-            {triangle}
-          </g>
+        <svg
+          width={boundsWidth}
+          height={boundsHeight}
+          style={{ position: "absolute", top: 0, overflow: "visible" }}
+        >
+          {allTicks}
+          {triangle}
         </svg>
       </div>
-    </>
+    </div>
   );
 };

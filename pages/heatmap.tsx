@@ -371,7 +371,8 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 `.trim();
 
 const snippetAllGroups = `
-useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
+// List of unique items that will appear on the heatmap Y axis
+const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
 `.trim();
 
 const snippetXScale = `

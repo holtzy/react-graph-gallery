@@ -6,7 +6,7 @@ import { COLORS, MARGIN, THRESHOLDS } from "./constants";
 type RendererProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number }[];
+  data: { x: string; y: string; value: number | null }[];
   setHoveredCell: (hoveredCell: InteractionData | null) => void;
 };
 
