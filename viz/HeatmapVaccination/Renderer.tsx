@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import * as d3 from "d3";
 import { InteractionData } from "./Heatmap";
 import { COLORS, MARGIN, THRESHOLDS } from "./constants";
+import styles from "./renderer.module.css";
 
 type RendererProps = {
   width: number;
@@ -57,14 +58,12 @@ export const Renderer = ({
     return (
       <rect
         key={i}
-        r={4}
         x={xScale(d.x)}
         y={yScale(d.y)}
+        className={styles.rectangle}
         width={xScale.bandwidth()}
         height={yScale.bandwidth()}
-        opacity={1}
         fill={d.value ? colorScale(d.value) : "#F8F8F8"}
-        cursor={"pointer"}
         onMouseEnter={(e) => {
           setHoveredCell({
             xLabel: d.x,
