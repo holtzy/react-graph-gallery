@@ -109,7 +109,7 @@ export default function Home() {
       // Scales
       //
       */}
-      <h2 id="Scales">Scales</h2>
+      <h2 id="scales">Scales</h2>
       <p>
         We need a way to translate a group pair of the dataset (e.g. row of
         group <code>A</code>, column of group <code>C</code>) in a 2d coordinate
@@ -293,7 +293,7 @@ export default function Home() {
       // Legend
       //
       */}
-      <h2 id="legend">Heatmap legend</h2>
+      <h2 id="legend">Color legend</h2>
       <p>
         A heatmap uses a <b>color scale</b> to encode a numeric value into a
         color. As a result, it is very much advised to add a color <b>legend</b>{" "}
@@ -309,7 +309,8 @@ export default function Home() {
         <b>
           <span style={{ color: "purple" }}>purple</span>
         </b>
-        .
+        . The color scale is built thanks to the <code>scaleLinear()</code>{" "}
+        function of d3 as described <a href="#scales">above</a>.
       </p>
       <ChartOrSandbox
         VizComponent={ContinuousColorLegendDemo}
@@ -317,13 +318,44 @@ export default function Home() {
         maxWidth={300}
         height={100}
         caption={"A color legend built with react, canvas and d3."}
-      />
+      />{" "}
+      <p>
+        The trick here is to create a <code>canvas</code> element of the desired{" "}
+        <code>width</code> and <code>height</code>. Then, loop from left to
+        right and add one rectangle for each pixel with the corresponding color
+        using the same color scale as the one used on the chart. It's important
+        to do it in <code>canvas</code>: you don't want to add 300 elements in
+        your DOM if your legend is 300px wide.
+      </p>
+      <p>
+        Once the <code>canvas</code> element is instanciated with a{" "}
+        <a href="https://reactjs.org/docs/hooks-reference.html#useref">ref</a>,
+        you can draw the color scale thanks to a{" "}
+        <a href="https://reactjs.org/docs/hooks-reference.html#useeffect">
+          useEffect
+        </a>{" "}
+        like this:
+      </p>
+      <CodeBlock code={snippetLegend} />
+      <p>
+        Then you probably want to add some <b>ticks</b> on top of the color
+        graduation to make it insightful. Fortunately, the d3{" "}
+        <code>linearScale</code> comes with a handy <code>tick()</code>{" "}
+        function. Basically, calling <code>xScale.ticks(4)</code> will create an
+        array with approximatively 4 items, each providing everything you need
+        to draw a <b>smartly located tick</b>.
+      </p>
+      <p>
+        Color Legend is a big topic. There is much more to say about it and I'll
+        post a complete blogpost on the topic soon.{" "}
+        <Link href="/subscribe">Subscribe</Link> to the gallery if interested!
+      </p>
       {/*
       //
       // Real life
       //
       */}
-      <h2 id="real life">Application to a real dataset</h2>
+      <h2 id="application">Application to a real dataset</h2>
       <p>
         This is an application of the heatmap component described above to a
         real life dataset.
@@ -444,6 +476,23 @@ const allRects = data.map((d, i) => {
     />
   );
 });
+`.trim();
+
+const snippetLegend = `
+useEffect(() => {
+  const canvas = canvasRef.current;
+  const context = canvas?.getContext("2d");
+
+  if (!context) {
+    return;
+  }
+
+  // Loop on every pixels
+  for (let i = 0; i < width; ++i) {
+    context.fillStyle = colorScale((max * i) / width); // max is the last value of the domain of the color scale
+    context.fillRect(i, 0, 1, height);
+  }
+}, [width, height, colorScale]);
 `.trim();
 
 const snippet4 = `

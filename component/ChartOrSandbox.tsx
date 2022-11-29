@@ -48,7 +48,7 @@ export const ChartOrSandbox = ({
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <div className="bg-gray-50 w-screen flex justify-center z-50">
+          <div className="bg-gray-100 bg-opacity-50 w-screen flex justify-center z-50 pointer-events-none">
             <div style={{ height, width: "100%", maxWidth }} ref={chartRef}>
               <VizComponent height={height} width={chartSize.width} />
             </div>

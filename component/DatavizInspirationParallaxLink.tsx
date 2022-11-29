@@ -15,7 +15,7 @@ export default function DatavizInspirationParallaxLink({
 
   return (
     <>
-      <h2 id="inspiration">More inspiration</h2>
+      <h2 id="inspiration">{chartName + " inspiration"}</h2>
       <p>
         If you're looking for inspiration to create your next{" "}
         <span>{chartName}</span>, note that{" "}

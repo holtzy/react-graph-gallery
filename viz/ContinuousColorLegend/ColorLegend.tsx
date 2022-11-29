@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { color } from "d3";
 import { useEffect, useRef } from "react";
 
 type ColorLegendProps = {
@@ -58,7 +59,7 @@ export const ColorLegend = ({
       context.fillStyle = colorScale((max * i) / boundsWidth);
       context.fillRect(i, 0, 1, boundsHeight);
     }
-  }, [width, height]);
+  }, [width, height, colorScale]);
 
   return (
     <div style={{ width, height }}>
