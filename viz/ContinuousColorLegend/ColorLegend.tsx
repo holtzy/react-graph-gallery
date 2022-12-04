@@ -75,7 +75,7 @@ export const ColorLegend = ({
         <svg
           width={boundsWidth}
           height={boundsHeight}
-          style={{ position: "absolute", top: 0, overflow: "visible" }}
+          style={{ position: "absolute", top: 0, left: 0, overflow: "visible" }}
         >
           {allTicks}
         </svg>
