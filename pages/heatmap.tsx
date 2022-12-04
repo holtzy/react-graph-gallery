@@ -28,7 +28,7 @@ const graphDescription = (
       It starts by describing how the <b>data</b> should be organized and
       potentially <b>normalized</b>. It then shows how to initialize the{" "}
       <b>heatmap component</b>, build band <b>scales</b> and add rectangles to
-      get a first heatmap. Last but not least, <b>responsiveness</b> and{" "}
+      get a first heatmap. Last but not least, <b>responsiveness</b> and the{" "}
       <b>tooltip</b> are described in depth and a real dataset is used to get a
       heatmap application. 🙇‍♂️.
     </p>
@@ -62,13 +62,13 @@ export default function Home() {
         used to color the cell.
       </p>
       <p>
-        Each item also requires a <code>x</code> and a <code>y</code> property,
+        Each item also requires an <code>x</code> and a <code>y</code> property,
         providing the position of the cell in the 2-d space. Note that those
         values are <b>strings</b> since anything can be used. We are dealing
         with <b>ordinal scales</b> here.
       </p>
       <p>
-        Note that you can add any kind of information in those cell objects.
+        Note that you can add any kind of information to those cell objects.
         Such information can be included in tooltips later on.
       </p>
       <br />
@@ -88,7 +88,7 @@ export default function Home() {
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to rendering a{" "}
+        <code>width</code> and <code>height</code> will be used to render an{" "}
         <code>svg</code> element in the DOM, in which we will insert the
         heatmap.
       </p>
@@ -111,14 +111,14 @@ export default function Home() {
       */}
       <h2 id="scales">Scales</h2>
       <p>
-        We need a way to translate a group pair of the dataset (e.g. row of
-        group <code>A</code>, column of group <code>C</code>) in a 2d coordinate
-        (e.g. <i>x=103px</i>, <i>y=300px</i>). This is a concept called{" "}
-        <b>scaling</b>.
+        We need a way to translate a group name (e.g. group <code>A</code>) in a
+        coordinate on the X axis (e.g. <i>x=103px</i>). Same for the Y axis. We
+        also need to transform a numeric value in a color. This is a concept
+        called <b>scaling</b>.
       </p>
       <h3>&rarr; Data wrangling</h3>
       <p>
-        Before building scales we need an exhaustive list of all groups
+        Building those scales requires an exhaustive list of all groups
         displayed on the X and Y axes. We also need to compute the <b>min</b>{" "}
         and <b>max</b> of the <b>value</b> property to compute the color scale.
       </p>
@@ -136,7 +136,7 @@ export default function Home() {
         that a band of pixels is attributed to each group.
       </p>
       <p>
-        For instance, calling a the x scale with <code>xScale("A")</code> will
+        For instance, calling the x scale with <code>xScale("A")</code> will
         return <code>0</code>, and <code>xScale.bandwidth()</code> will return
         the width of the band (e.g. <code>11px</code>).
       </p>
@@ -152,17 +152,17 @@ export default function Home() {
       <h3>&rarr; Color scale</h3>
       <p>
         The color scale of a heatmap is <b>tricky</b> to compute. We encode a{" "}
-        <b>numeric variable</b> that can have any kind of distribution to a{" "}
+        <b>numeric variable</b> that can have any kind of distribution into a{" "}
         <b>color</b>, and that's not an easy step.
       </p>
       <p>
-        Fortunately{" "}
+        Fortunately,{" "}
         <a href="https://d3-graph-gallery.com/graph/custom_color.html">d3.js</a>{" "}
         (as always) has some life-saving utils to help. For instance, a
         sequential color scale can be applied with{" "}
         <code>scaleSequential()</code> together with the <code>inferno</code>{" "}
         color palette. Many other options could make sense, but that deserves
-        its own blogpost.
+        its own blog post.
       </p>
       <CodeBlock code={snippetColorScale} />
       {/*
@@ -201,8 +201,8 @@ export default function Home() {
         That's it, we have a first good looking <b>heatmap</b>!
       </p>
       <p>
-        The process used to build a it with react is pretty close from building
-        it with <b>d3.js only</b>. (Check the pure d3 implementation{" "}
+        The process used to build it with react is pretty close from building it
+        with <b>d3.js only</b>. (Check the pure d3 implementation{" "}
         <a href="https://d3-graph-gallery.com/heatmap">here</a>).
       </p>
       {/*
@@ -218,8 +218,8 @@ export default function Home() {
       */}
       <h2 id="tooltip">Tooltip</h2>
       <p>
-        Adding a tooltip is an important improvement for a heatmap. It allows to
-        get as much <b>detail</b> as needed for each cell.
+        Adding a tooltip is an important improvement for a heatmap. It allows us
+        to get as much <b>detail</b> as needed for each cell.
       </p>
       <p>
         There are <b>many different approaches</b> to building tooltips, and I'm
@@ -227,9 +227,9 @@ export default function Home() {
         the topic.
       </p>
       <p>
-        In the example below I suggest to use the same strategy than for{" "}
+        In the example below I suggest using the same strategy as for{" "}
         <Link href="/scatter-plot#tooltip">scatterplots</Link>. So you probably
-        want to read it <Link href="/subscribe">there</Link> for in-depth
+        want to read it <Link href="/subscribe">there</Link> for an in-depth
         explanation.
       </p>
       <h3>&rarr; Two layers: renderer and tooltip</h3>

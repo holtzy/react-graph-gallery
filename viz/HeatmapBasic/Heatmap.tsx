@@ -36,8 +36,9 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   }, [data, height]);
 
   const [min, max] = d3.extent(data.map((d) => d.value));
+
   if (!min || !max) {
-    return;
+    return null;
   }
 
   // Color scale
@@ -48,9 +49,6 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
 
   // Build the rectangles
   const allRects = data.map((d, i) => {
-    if (d.value === null) {
-      return;
-    }
     return (
       <rect
         key={i}
@@ -68,10 +66,11 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   });
 
   const xLabels = allXGroups.map((name, i) => {
+    const xPos = xScale(name) ?? 0;
     return (
       <text
         key={i}
-        x={xScale(name) + xScale.bandwidth() / 2}
+        x={xPos + xScale.bandwidth() / 2}
         y={boundsHeight + 10}
         textAnchor="middle"
         dominantBaseline="middle"
@@ -82,18 +81,21 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
     );
   });
 
-  const yLabels = allYGroups.map((name, i) => (
-    <text
-      key={i}
-      x={-5}
-      y={yScale(name) + yScale.bandwidth() / 2}
-      textAnchor="end"
-      dominantBaseline="middle"
-      fontSize={10}
-    >
-      {name}
-    </text>
-  ));
+  const yLabels = allYGroups.map((name, i) => {
+    const yPos = yScale(name) ?? 0;
+    return (
+      <text
+        key={i}
+        x={-5}
+        y={yPos + yScale.bandwidth() / 2}
+        textAnchor="end"
+        dominantBaseline="middle"
+        fontSize={10}
+      >
+        {name}
+      </text>
+    );
+  });
 
   return (
     <div>

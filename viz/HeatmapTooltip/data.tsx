@@ -31,6 +31,7 @@ const alphabet = [
 ];
 
 type HeatmapData = { x: string; y: string; value: number }[];
+
 let data: HeatmapData = [];
 
 for (let x = 0; x < nCol; x++) {

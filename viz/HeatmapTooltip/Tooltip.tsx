@@ -45,6 +45,7 @@ type TooltipRowProps = {
   label: string;
   value: string;
 };
+
 const TooltipRow = ({ label, value }: TooltipRowProps) => (
   <div>
     <b>{label}</b>

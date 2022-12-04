@@ -30,7 +30,11 @@ export const ResponsiveExplanationSection = ({
       </p>
       <Accordion
         startOpen={false}
-        title="useDimensions: a hook to make your viz responsive"
+        title={
+          <span>
+            <code>useDimensions</code>: a hook to make your viz responsive
+          </span>
+        }
       >
         <CodeBlock code={snippetResponsive} />
       </Accordion>
