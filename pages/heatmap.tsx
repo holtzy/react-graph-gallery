@@ -330,7 +330,7 @@ export default function Home() {
         your DOM if your legend is 300px wide.
       </p>
       <p>
-        Once the <code>canvas</code> element is instanciated with a{" "}
+        Once the <code>canvas</code> element is instantiated with a{" "}
         <a href="https://reactjs.org/docs/hooks-reference.html#useref">ref</a>,
         you can draw the color scale thanks to a{" "}
         <a href="https://reactjs.org/docs/hooks-reference.html#useeffect">
@@ -341,15 +341,19 @@ export default function Home() {
       <CodeBlock code={snippetLegend} />
       <p>
         Then you probably want to add some <b>ticks</b> on top of the color
-        graduation to make it insightful. Fortunately, the d3{" "}
-        <code>linearScale</code> comes with a handy <code>tick()</code>{" "}
-        function. Basically, calling <code>xScale.ticks(4)</code> will create an
-        array with approximatively 4 items, each providing everything you need
-        to draw a <b>smartly located tick</b>.
+        graduation to make it insightful.
+      </p>
+      <p>
+        {" "}
+        Fortunately, the d3 <code>linearScale</code> comes with a handy{" "}
+        <code>tick()</code> function. Basically, calling{" "}
+        <code>xScale.ticks(4)</code> will create an array with approximately 4
+        items, each providing everything you need to draw a{" "}
+        <b>smartly located tick</b>.
       </p>
       <p>
         Color Legend is a big topic. There is much more to say about it and I'll
-        post a complete blogpost on the topic soon.{" "}
+        post a complete blog post on the topic soon.{" "}
         <Link href="/subscribe">Subscribe</Link> to the gallery if interested!
       </p>
       {/*
@@ -368,7 +372,7 @@ export default function Home() {
           this chart
         </a>{" "}
         by Tynan DeBold and Dov Friedman. Data was available{" "}
-        <a href="https://www.tycho.pitt.edu/data/">here</a>. Chart war
+        <a href="https://www.tycho.pitt.edu/data/">here</a>. Chart was
         originally made with highcharts, original code being{" "}
         <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/js/script.min.js">
           here

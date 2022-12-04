@@ -17,14 +17,18 @@ export type InteractionData = {
   yLabel: string;
   xPos: number;
   yPos: number;
-  value: number;
+  value: number | null;
 };
 
 export const Heatmap = ({ width, height, data }: HeatmapProps) => {
   const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
 
   // Color scale is computed here bc it must be passed to both the renderer and the legend
-  const [min, max] = d3.extent(data.map((d) => d.value));
+  const values = data
+    .map((d) => d.value)
+    .filter((d): d is number => d !== null);
+  const max = d3.max(values) || 0;
+
   const colorScale = d3
     .scaleLinear<string>()
     .domain(THRESHOLDS.map((t) => t * max))
@@ -37,6 +41,7 @@ export const Heatmap = ({ width, height, data }: HeatmapProps) => {
         height={height - COLOR_LEGEND_HEIGHT}
         data={data}
         setHoveredCell={setHoveredCell}
+        colorScale={colorScale}
       />
       <Tooltip
         interactionData={hoveredCell}

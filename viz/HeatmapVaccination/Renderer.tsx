@@ -1,14 +1,16 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
 import { InteractionData } from "./Heatmap";
-import { COLORS, MARGIN, THRESHOLDS } from "./constants";
+import { MARGIN } from "./constants";
 import styles from "./renderer.module.css";
+import { Dataset } from "./data";
 
 type RendererProps = {
   width: number;
   height: number;
-  data: { x: string; y: string; value: number | null }[];
+  data: Dataset;
   setHoveredCell: (hoveredCell: InteractionData | null) => void;
+  colorScale: d3.ScaleLinear<string, string, never>;
 };
 
 export const Renderer = ({
@@ -16,18 +18,18 @@ export const Renderer = ({
   height,
   data,
   setHoveredCell,
+  colorScale,
 }: RendererProps) => {
-  // The bounds (=area inside the axis)
+  // bounds = area inside the axis
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  // groups
   const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data]);
-  const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data]);
+  const allXGroups = useMemo(
+    () => [...new Set(data.map((d) => String(d.x)))],
+    [data]
+  );
 
-  const [min, max] = d3.extent(data.map((d) => d.value));
-
-  // x and y scales
   const xScale = useMemo(() => {
     return d3
       .scaleBand()
@@ -44,33 +46,30 @@ export const Renderer = ({
       .padding(0.1);
   }, [data, height]);
 
-  // Color scale
-  const colorScale = d3
-    .scaleLinear<string>()
-    .domain(THRESHOLDS.map((t) => t * max))
-    .range(COLORS);
-
-  // Build the shapes
   const allRects = data.map((d, i) => {
-    if (d.value === null) {
+    const xPos = xScale(String(d.x));
+    const yPos = yScale(d.y);
+
+    if (d.value === null || !xPos || !yPos) {
       return;
     }
+
     return (
       <rect
         key={i}
-        x={xScale(d.x)}
-        y={yScale(d.y)}
+        x={xPos}
+        y={yPos}
         className={styles.rectangle}
         width={xScale.bandwidth()}
         height={yScale.bandwidth()}
         fill={d.value ? colorScale(d.value) : "#F8F8F8"}
         onMouseEnter={(e) => {
           setHoveredCell({
-            xLabel: d.x,
+            xLabel: String(d.x),
             yLabel: d.y,
-            xPos: xScale(d.x) + xScale.bandwidth() + MARGIN.left, // todo, is it the best way?
-            yPos: yScale(d.y) + xScale.bandwidth() / 2 + MARGIN.top,
-            value: Math.round(d.value * 100) / 100,
+            xPos: xPos + xScale.bandwidth() + MARGIN.left,
+            yPos: yPos + xScale.bandwidth() / 2 + MARGIN.top,
+            value: d.value ? Math.round(d.value * 100) / 100 : null,
           });
         }}
       />
@@ -78,7 +77,7 @@ export const Renderer = ({
   });
 
   const xLabels = allXGroups.map((name, i) => {
-    if (name % 10 === 0) {
+    if (name && Number(name) % 10 === 0) {
       return (
         <text
           key={i}
@@ -97,12 +96,13 @@ export const Renderer = ({
   });
 
   const yLabels = allYGroups.map((name, i) => {
-    if (i % 2 === 0) {
+    const yPos = yScale(name);
+    if (yPos && i % 2 === 0) {
       return (
         <text
           key={i}
           x={-5}
-          y={yScale(name) + yScale.bandwidth() / 2}
+          y={yPos + yScale.bandwidth() / 2}
           textAnchor="end"
           dominantBaseline="middle"
           fontSize={10}

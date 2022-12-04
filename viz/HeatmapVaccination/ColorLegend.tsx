@@ -50,17 +50,19 @@ export const ColorLegend = ({
     );
   });
 
-  const x = xScale(interactionData?.value);
+  const hoveredValue = interactionData?.value;
+  const x = hoveredValue ? xScale(hoveredValue) : null;
   const triangleWidth = 9;
   const triangleHeight = 6;
-  const triangle = (
+  const triangle = x ? (
     <polygon
       points={`${x},0 ${x - triangleWidth / 2},${-triangleHeight} ${
         x + triangleWidth / 2
       },${-triangleHeight}`}
       fill="grey"
     />
-  );
+  ) : null;
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
