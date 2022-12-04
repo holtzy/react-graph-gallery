@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import * as d3 from "d3";
 import { InteractionData } from "./Heatmap";
 
-const MARGIN = { top: 10, right: 10, bottom: 30, left: 30 };
+const MARGIN = { top: 10, right: 50, bottom: 30, left: 50 };
 
 type RendererProps = {
   width: number;

@@ -1,6 +1,15 @@
 import ReactDOM from "react-dom";
-import { data } from "./data";
-import { Heatmap } from "./Heatmap";
+import * as d3 from "d3";
+import { ColorLegend } from "./ColorLegend";
+
+const colorScale = d3
+  .scaleLinear()
+  .domain([0, 100])
+  .range(["#69b3a2", "purple"]);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Heatmap data={data} width={700} height={400} />, rootElement);
+
+ReactDOM.render(
+  <ColorLegend width={400} height={400} colorScale={colorScale} />,
+  rootElement
+);

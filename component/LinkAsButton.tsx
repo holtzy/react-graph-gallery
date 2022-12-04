@@ -41,7 +41,11 @@ export const LinkAsButton = ({
   const link = <span className={appearance}>{children}</span>;
 
   if (isOutsideLink) {
-    return <a href={href}>{link}</a>;
+    return (
+      <a href={href} target="_blank">
+        {link}
+      </a>
+    );
   } else {
     return (
       <Link href={href} passHref>

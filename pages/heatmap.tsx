@@ -234,7 +234,7 @@ export default function Home() {
       </p>
       <h3>&rarr; Two layers: renderer and tooltip</h3>
       <p>
-        The first task is to split the <code>Heatmap</code> component in 2
+        The first task is to split the <code>Heatmap</code> component into 2
         layers. The first layer called <code>Renderer</code> will render the
         cells as seen previously. The second is an <code>absolute</code> div put
         on top of the first one, used only to show the tooltip <code>div</code>.
@@ -246,14 +246,16 @@ export default function Home() {
       <CodeBlock code={snippet4} />
       <h3>&rarr; A common state</h3>
       <p>
-        On top of the 2 layers we need a state that stores information about the
-        cell being hovered over. You can create it with a <code>useState</code>{" "}
-        statement.
+        On top of the 2 layers, we need a state that stores information about
+        the cell being hovered over. You can create it with a{" "}
+        <code>useState</code> statement. I usually call it{" "}
+        <code>interactionData</code> in this website.
       </p>
       <p>
-        The state can now be passed to the <code>Tooltip</code> layer. The
-        function to update it can be passed to the <code>Renderer</code> layer
-        that will update it when a cell is hovered over.
+        This state is passed to the <code>Tooltip</code> layer. The function to
+        update it (the "setter") is passed to the <code>Renderer</code> layer.
+        When the user hovers over a cell, this setter is triggered to update the
+        state and thus the tooltip.
       </p>
       <CodeBlock code={snippet5} />
       <h3>&rarr; Hover, update state, render tooltips</h3>
@@ -271,7 +273,7 @@ export default function Home() {
       <ChartOrSandbox
         VizComponent={HeatmapTooltipDemo}
         vizName={"HeatmapTooltip"}
-        maxWidth={600}
+        maxWidth={650}
         height={300}
         caption={
           "This heatmap has a tooltip. Hover over a cell to get its exact value."
