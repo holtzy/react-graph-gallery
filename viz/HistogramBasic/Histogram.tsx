@@ -32,6 +32,9 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   }, [data, height]);
 
   const allRects = buckets.map((bucket, i) => {
+    if (bucket.x0 == undefined || bucket.x1 == undefined) {
+      return null;
+    }
     return (
       <rect
         key={i}

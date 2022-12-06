@@ -42,7 +42,14 @@ export default function Home() {
       seoDescription="A step-by-step guide to build your very own heatmap from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title="Heatmap"
+        title={
+          <h1>
+            Heatmap{" "}
+            <span className="text-gray-600 font-light hidden sm:inline">
+              with React and d3.js
+            </span>
+          </h1>
+        }
         description={graphDescription}
         chartType="heatmap"
       />
