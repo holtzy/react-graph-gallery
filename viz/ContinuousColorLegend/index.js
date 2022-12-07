@@ -10,6 +10,6 @@ const colorScale = d3
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-  <ColorLegend width={400} height={400} colorScale={colorScale} />,
+  <ColorLegend width={400} height={100} colorScale={colorScale} />,
   rootElement
 );
