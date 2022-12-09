@@ -12,6 +12,7 @@ import DatavizInspirationParallaxLink from "../component/DatavizInspirationParal
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import { Caption } from "../component/UI/Caption";
 import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
+import { GraphLinkImage } from "../component/UI/GraphLinkImage";
 
 const graphDescription = (
   <>
@@ -290,44 +291,17 @@ export default function Home() {
       </p>
       <p>Click on the overview to see details and code.</p>
       <br />
-      <div className="flex gap-4">
-        <div className="cursor-pointer shadow-md">
-          <img
-            src="/chartView/histMultiGroup.png"
-            style={{ height: 70 }}
-            // onClick={() => setChart(0)}
-          />
-        </div>
-        <div className="cursor-pointer shadow-md">
-          <img
-            src="/chartView/histMultiGroupSplit.png"
-            style={{ height: 70 }}
-            // onClick={() => setChart(1)}
-          />
-        </div>
-      </div>
-      {/*
-        {chart === 0 && (
-          <ChartOrSandbox
-            VizComponent={HistogramSeveralGroupsDemo}
-            vizName={"HistogramSeveralGroups"}
-            maxWidth={900}
-            height={300}
-            caption={
-              "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
-            }
-          />
-        )} */}
-      {/* {chart === 1 && (
-          <ChartOrSandbox
-            VizComponent={HistogramSeveralGroupsSplitPanelDemo}
-            vizName={"HistogramSeveralGroupsSplitPanel"}
-            maxWidth={900}
-            height={300}
-            caption={
-              "Using small multiples to compare the distribution of several groups in a dataset."
-            }
-          /> )} */}
+      <GraphLinkImage
+        link={"histogram-with-several-groups"}
+        title={"Multiple groups"}
+        description={
+          <p>
+            A histogram with <b>multiple</b> groups displayed on the same axis.
+          </p>
+        }
+        img={"test.png"}
+      />
+
       <br />
       {/*
       //
