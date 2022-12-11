@@ -13,6 +13,7 @@ import { ResponsiveExplanationSection } from "../component/ResponsiveExplanation
 import { Caption } from "../component/UI/Caption";
 import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
 import { GraphLinkImage } from "../component/UI/GraphLinkImage";
+import { ImageGrid } from "../component/UI/ImageGrid";
 
 const graphDescription = (
   <>
@@ -291,16 +292,19 @@ export default function Home() {
       </p>
       <p>Click on the overview to see details and code.</p>
       <br />
-      <GraphLinkImage
-        link={"histogram-with-several-groups"}
-        title={"Multiple groups"}
-        description={
-          <p>
-            A histogram with <b>multiple</b> groups displayed on the same axis.
-          </p>
-        }
-        img={"test.png"}
-      />
+      <ImageGrid>
+        <GraphLinkImage
+          link={"histogram-with-several-groups"}
+          title={"Multiple groups"}
+          description={
+            <p>
+              A histogram with <b>multiple</b> groups displayed on the same
+              axis.
+            </p>
+          }
+          img={"test.png"}
+        />
+      </ImageGrid>
 
       <br />
       {/*

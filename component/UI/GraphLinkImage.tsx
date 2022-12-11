@@ -1,6 +1,9 @@
 import { ReactElement } from "react";
 import styles from "./graphLinkImage.module.css";
 
+// All images passed to this component are first formatted with image magick
+// Their dimension is 480 x 480 px
+
 type GraphLinkImageProps = {
   img: string;
   title: string;
