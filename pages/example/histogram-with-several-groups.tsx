@@ -5,21 +5,24 @@ import ChartFamilySection from "component/ChartFamilySection";
 import { CodeBlock } from "component/UI/CodeBlock";
 import { ChartOrSandbox } from "component/ChartOrSandbox";
 import { HistogramSeveralGroupsDemo } from "viz/HistogramSeveralGroups/HistogramSeveralGroupsDemo";
+import Link from "next/link";
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/histogram.html">histogram</a>{" "}
-      is a chart type that shows the distribution of a numeric variable. This
-      page is a step-by-step guide on how to build your own histogram for the
-      web, using <a href="https://reactjs.org/">React</a> and{" "}
-      <a href="https://d3-graph-gallery.com/histogram">D3.js</a>.
+      This tutorial is a variation around the general{" "}
+      <Link href="histogram">introduction to histogram with react</Link> and
+      d3.js. You should probably understand the concepts described there before
+      reading here.
     </p>
     <p>
-      It starts by describing how the <b>data</b> should be organized and how to
-      initialize the <b>histogram component</b>. It then explains how to compute
-      the buckets composing the histogram. Once this is done, it shows how to
-      render the bars and suggests a few variations. 🙇‍♂️.
+      This example explains how to plot several groups on the <b>same</b>{" "}
+      histogram, by <b>overlapping</b> them on the same X axis. It can be useful
+      to <b>compare the distribution</b> of several items in a dataset.
+    </p>
+    <p>
+      A code sandbox is provided for the final result, but explanations target
+      what's different compared to an usual histogram.
     </p>
   </>
 );
@@ -48,8 +51,16 @@ export default function Home() {
       //
       */}
       <h2 id="plot">Plot and code</h2>
+      <p>If you are in a hurry, this is what we're trying to achieve here.🙇‍♂️</p>
       <p>
-        Building a histogram only requires a set of <b>numeric values</b>.
+        The distribution of <b>several groups</b> are displayed on the same
+        figure, allowing to easily compare them. Please note that this kind of
+        visual works well when there is a clear distinction between groups.
+        Otherwise, bars will overlap each other resulting in an{" "}
+        <a href="https://www.data-to-viz.com/graph/histogram.html">
+          unreadable chart
+        </a>
+        .
       </p>
       <ChartOrSandbox
         VizComponent={HistogramSeveralGroupsDemo}
@@ -57,7 +68,7 @@ export default function Home() {
         maxWidth={700}
         height={300}
         caption={
-          "Adding a X axis with d3 makes the chart much more insightful."
+          "Histogram representing the distribution of 3 groups in a dataset. Made with react (rendering) and d3.js (scales)"
         }
       />
       {/*
@@ -67,37 +78,33 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        Building a histogram only requires a set of <b>numeric values</b>.
+        The dataset used here is slightly different as{" "}
+        <Link href="/histogram#data">the one</Link> used for the simple 1 group
+        histogram.
       </p>
       <p>
-        As a result, the dataset is pretty simple: it is simply an{" "}
-        <code>array</code> of <code>number</code>.
+        An <b>array</b> is used, with each object in it providing the name (
+        <code>group</code> property here) and the <code>values</code> of a
+        group.
       </p>
-      <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
       {/*
       //
-      // Skeleton
+      // Color scale
       //
       */}
-      <h2 id="skeleton">Component skeleton</h2>
+      <h2 id="color scale">Color scale</h2>
       <p>
-        The goal here is to create a <code>Histogram</code> component that will
-        be stored in a <code>Histogram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
-        <code>data</code>.
+        There is a finite number of groups here. We need to assign a specific
+        color to each group. This is called an <b>ordinal</b> scale and is
+        implemented in the d3 <code>scaleOrdinal</code> function.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to rendering a{" "}
-        <code>svg</code> element in the DOM, in which we will insert the
-        histogram.
+        What's needed here is thus a list of colors to use (the{" "}
+        <code>range</code>) and a list of group names: the <code>domain</code>.
       </p>
-      <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
-        <code>Histogram</code> component:
-      </p>
+      <p>To put it in a nutshell, that's how the color scale is implemented:</p>
       <CodeBlock code={snippetSkeleton} />
       <p>
         It's fundamental to understand that with this code organization, d3.js
@@ -106,6 +113,24 @@ export default function Home() {
         methods like <code>append</code> that you can find in usual{" "}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
+      {/*
+      //
+      // Buckets
+      //
+      */}
+      <h2 id="buckets">Building the histogram buckets</h2>
+      <p>
+        The exact same logic as the one{" "}
+        <Link href="/histogram#binning">used on the 1 group histogram</Link>{" "}
+        must be used here. But the <code>bucketGenerator</code> must be run on
+        each group of the dataset.
+      </p>
+      <p>
+        Once it is done we'll have to <code>map</code> twice to render the
+        rectangles. Once for each group, and a second time for each bar in the
+        group.
+      </p>
+      <CodeBlock code={snippetBucket} />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
@@ -115,92 +140,62 @@ export default function Home() {
 }
 
 const snippetData = `
-const data = [1, 2, 2, 2, 3, 4, 5, 6, 6, 6, 9]
-`.trim();
+const data = [
+  {
+    group: "A",
+    values: [0, 0, 2, 2, 2, 0]
+  },
+  {
+    group: "B",
+    values: [0, 0, 2, 2, 2, 0]
+  },
+  ...
+];`.trim();
 
 const snippetSkeleton = `
-import * as d3 from "d3"; // we will need d3.js
+// List of arbitrary colors
+const COLORS = ["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"];
 
-type HistogramProps = {
-  width: number;
-  height: number;
-  data: number[];
-};
+// List of all group names
+const allGroups = data.map((group) => group.group);
 
-export const Histogram = ({ width, height, data }: HistogramProps) => {
-
-  // read the data
-  // build buckets from the dataset
-  // build the scales
-  // build the rectangles
-
-  return (
-    <div>
-      <svg width={width} height={height}>
-        // render all the <rect>
-      </svg>
-    </div>
-  );
-};
+// Color scale
+const colorScale = d3.scaleOrdinal<string>()
+  .domain(allGroups)
+  .range(COLORS);
 `.trim();
 
-const snippet2 = `
-const bucketGenerator = d3
-  .bin()
-  .value((d) => d)
-  .domain([0, 10])
-  .thresholds([0, 2, 4, 6, 8, 10]);
-`.trim();
+const snippetBucket = `
+// Create a function that creates buckets from a blob of data
+const bucketGenerator = useMemo(() => {
+  return d3
+    .bin()
+    .value((d) => d)
+    .domain(xScale.domain())
+    .thresholds(xScale.ticks(BUCKET_NUMBER));
+}, [xScale]);
 
-const snippet3 = `
-bucketGenerator(data)
-`.trim();
+// Use the function for all groups of the dataset, one by one
+// The result is an array with bucket details of each group
+const groupBuckets = useMemo(() => {
+  return data.map((group) => {
+    return { group, buckets: bucketGenerator(group.values) };
+  });
+}, [data]);
 
-const snippet4 = `
-[
-  [x0: 0, x1: 2],
-  [2, 2, 2, 3, x0: 2, x1: 4],
-  [4, 5, x0: 4, x1: 6],
-  [6, 6, 6, x0: 6, x1: 8],
-  [x0: 8, x1: 10],
-  [x0: 10, x1: 10],
-]
-`.trim();
-
-const snippetXScale = `
-const xScale = d3
-  .scaleLinear()
-  .domain([0, 10])
-  .range([0, width]);
-
-// xScale(0) -> 0 (the left hand side position of the first bin)
-// xScale(10) -> width (the right hand side position of the last bin)
-`.trim();
-
-const snippetYScale = `
-const yScale = useMemo(() => {
-
-  const max = Math.max(...buckets.map((bucket) => bucket?.length));
-
-  return d3.scaleLinear()
-    .range([height, 0])
-    .domain([0, max]);
-
-  }, [data, height]);
-`.trim();
-
-const snippetRects = `
-const allRects = buckets.map((bucket, i) => {
-  return (
+// render the rects: group by group, bar by bar
+const allRects = groupBuckets.map((group, i) =>
+  group.buckets.map((bucket, j) => (
     <rect
-      key={i}
-      fill="#69b3a2"
-      stroke="black"
-      x={xScale(bucket.x0)}
-      width={xScale(bucket.x1) - xScale(bucket.x0)}
+      key={i + "_" + j}
+      fill={colorScale(group.group)}
+      opacity={0.7}
+      x={xScale(bucket.x0) + BUCKET_PADDING / 2}
+      width={xScale(bucket.x1) - xScale(bucket.x0) - BUCKET_PADDING}
       y={yScale(bucket.length)}
-      height={height - yScale(bucket.length)}
+      height={boundsHeight - yScale(bucket.length)}
     />
-  );
-});
+  ))
+);
+
 `.trim();
