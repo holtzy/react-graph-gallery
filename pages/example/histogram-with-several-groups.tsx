@@ -1,10 +1,10 @@
 import React from "react";
-import { Layout } from "../../component/Layout";
-import TitleAndDescription from "../../component/TitleAndDescription";
-import ChartFamilySection from "../../component/ChartFamilySection";
-import { CodeBlock } from "../../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../../component/ChartOrSandbox";
-import { HistogramSeveralGroupsDemo } from "../../viz/HistogramSeveralGroups/HistogramSeveralGroupsDemo";
+import { Layout } from "component/Layout";
+import TitleAndDescription from "component/TitleAndDescription";
+import ChartFamilySection from "component/ChartFamilySection";
+import { CodeBlock } from "component/UI/CodeBlock";
+import { ChartOrSandbox } from "component/ChartOrSandbox";
+import { HistogramSeveralGroupsDemo } from "viz/HistogramSeveralGroups/HistogramSeveralGroupsDemo";
 
 const graphDescription = (
   <>
@@ -41,6 +41,24 @@ export default function Home() {
         }
         description={graphDescription}
         chartType="histogram"
+      />
+      {/*
+      //
+      // Plot and code
+      //
+      */}
+      <h2 id="plot">Plot and code</h2>
+      <p>
+        Building a histogram only requires a set of <b>numeric values</b>.
+      </p>
+      <ChartOrSandbox
+        VizComponent={HistogramSeveralGroupsDemo}
+        vizName={"HistogramSeveralGroups"}
+        maxWidth={700}
+        height={300}
+        caption={
+          "Adding a X axis with d3 makes the chart much more insightful."
+        }
       />
       {/*
       //
@@ -88,31 +106,6 @@ export default function Home() {
         methods like <code>append</code> that you can find in usual{" "}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
-
-      {/*
-      //
-      // Variations
-      //
-      */}
-      <h2 id="variations">Variations</h2>
-      <p>
-        Once you've understood how to build a basic histogram with d3 and react,
-        it opens an infinite world of customization. Here are a few examples:
-        adding several groups, splitting the window to show groups separately
-        and more.
-      </p>
-      <p>Click on the overview to see details and code.</p>
-      <ChartOrSandbox
-        VizComponent={HistogramSeveralGroupsDemo}
-        vizName={"HistogramSeveralGroups"}
-        maxWidth={500}
-        height={400}
-        caption={
-          "Histogram with several groups represented. A slight transparency is used to show places where bars overlap."
-        }
-      />
-
-      <br />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />

@@ -13,8 +13,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "." // to allow absolute import
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/viz/CircularPackingBasic/index.js", "viz/ContinuousColorLegend/index.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

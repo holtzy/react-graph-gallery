@@ -294,7 +294,7 @@ export default function Home() {
       <br />
       <ImageGrid>
         <GraphLinkImage
-          link={"histogram-with-several-groups"}
+          link={"example/histogram-with-several-groups"}
           title={"Multiple groups"}
           description={
             <p>
@@ -302,11 +302,9 @@ export default function Home() {
               axis.
             </p>
           }
-          img={"test.png"}
+          img={"histogram-with-several-groups.png"}
         />
       </ImageGrid>
-
-      <br />
       {/*
       //
       // Dataset transition

@@ -1,5 +1,5 @@
 import React from "react";
-import type { ChartLogo } from "../util/sectionDescriptions";
+import type { ChartLogo } from "util/sectionDescriptions";
 
 // This component displays a logo representing a chart type of the gallery.
 // Example: bar chart
@@ -21,7 +21,7 @@ export default function SectionLogo({ chartLogo }: SectionLogoProps) {
   return (
     <img
       alt={logoDescription}
-      src={"./section/" + chartLogo.replace("150", "Big") + logoExtension}
+      src={"/section/" + chartLogo.replace("150", "Big") + logoExtension}
       width="100%"
       height="100%"
     />

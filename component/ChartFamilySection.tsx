@@ -1,8 +1,8 @@
 import React from "react";
 
-import SectionLogoWithOverlay from "./SectionLogoWithOverlay";
-import { ChartFamily, chartTypesInfo } from "../util/sectionDescriptions";
-import { fullUrlToInternalLink } from "../util/utils";
+import SectionLogoWithOverlay from "component/SectionLogoWithOverlay";
+import { ChartFamily, chartTypesInfo } from "util/sectionDescriptions";
+import { fullUrlToInternalLink } from "util/utils";
 
 const TITLES = {
   distribution: "Distribution",

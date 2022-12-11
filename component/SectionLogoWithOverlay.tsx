@@ -1,6 +1,6 @@
 import React from "react";
-import SectionLogo from "./SectionLogo";
-import { ChartLogo, chartTypesInfo } from "../util/sectionDescriptions";
+import SectionLogo from "component/SectionLogo";
+import { ChartLogo, chartTypesInfo } from "util/sectionDescriptions";
 import Link from "next/link";
 
 const generalList = chartTypesInfo
