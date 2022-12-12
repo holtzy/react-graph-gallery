@@ -5,6 +5,7 @@ figure.container {
     width: 100%;
     background: black;
     border-radius: 5px;
+    border: solid var(--medium-grey) 1px;
   }
   figure.container * {
     -webkit-box-sizing: border-box;

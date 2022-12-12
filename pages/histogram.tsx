@@ -1,9 +1,7 @@
 import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
 import ChartFamilySection from "../component/ChartFamilySection";
-import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
@@ -303,6 +301,16 @@ export default function Home() {
             </p>
           }
           img={"histogram-with-several-groups.png"}
+        />
+        <GraphLinkImage
+          link={"example/histogram-small-multiple"}
+          title={"Small multiple"}
+          description={
+            <p>
+              Create one panel per group to show its distribution separately
+            </p>
+          }
+          img={"histogram-small-multiple.png"}
         />
       </ImageGrid>
       {/*

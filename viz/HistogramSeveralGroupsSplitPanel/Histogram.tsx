@@ -103,13 +103,23 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   const maxPerGroup = data.map((group) => Math.max(...group.values));
   const max = Math.max(...maxPerGroup);
 
+  const numberOfColumn = 2;
+  const numberOfRow = Math.ceil(allGroups.length / numberOfColumn);
+
   return (
-    <div style={{ width, height, display: "flex" }}>
+    <div
+      style={{
+        width,
+        height,
+        display: "grid",
+        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+      }}
+    >
       {data.map((group, i) => (
         <SingleHistogram
           key={i}
-          width={width / allGroups.length}
-          height={height}
+          width={width / numberOfColumn}
+          height={height / numberOfRow}
           color={colorScale(group.group)}
           xRange={[0, max]}
           data={group.values}
