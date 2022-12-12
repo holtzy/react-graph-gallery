@@ -10,7 +10,7 @@ const COLORS = ["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"];
 type HistogramProps = {
   width: number;
   height: number;
-  data: { group: string; values: number[] }[];
+  data: { name: string; values: number[] }[];
 };
 
 export const Histogram = ({ width, height, data }: HistogramProps) => {
@@ -18,8 +18,11 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const allGroups = data.map((group) => group.group);
-  const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(COLORS);
+  const allGroupNames = data.map((group) => group.name);
+  const colorScale = d3
+    .scaleOrdinal<string>()
+    .domain(allGroupNames)
+    .range(COLORS);
 
   const xScale = useMemo(() => {
     const maxPerGroup = data.map((group) => Math.max(...group.values));
@@ -31,13 +34,13 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     return d3
       .bin()
       .value((d) => d)
-      .domain(xScale.domain())
+      .domain(xScale.domain() as [number, number])
       .thresholds(xScale.ticks(BUCKET_NUMBER));
   }, [xScale]);
 
   const groupBuckets = useMemo(() => {
     return data.map((group) => {
-      return { group, buckets: bucketGenerator(group.values) };
+      return { name: group.name, buckets: bucketGenerator(group.values) };
     });
   }, [data]);
 
@@ -66,17 +69,23 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   }, [xScale, yScale, boundsHeight]);
 
   const allRects = groupBuckets.map((group, i) =>
-    group.buckets.map((bucket, j) => (
-      <rect
-        key={i + "_" + j}
-        fill={colorScale(group.group)}
-        opacity={0.7}
-        x={xScale(bucket.x0) + BUCKET_PADDING / 2}
-        width={xScale(bucket.x1) - xScale(bucket.x0) - BUCKET_PADDING}
-        y={yScale(bucket.length)}
-        height={boundsHeight - yScale(bucket.length)}
-      />
-    ))
+    group.buckets.map((bucket, j) => {
+      const { x0, x1 } = bucket;
+      if (x0 == undefined || x1 == undefined) {
+        return null;
+      }
+      return (
+        <rect
+          key={i + "_" + j}
+          fill={colorScale(group.name)}
+          opacity={0.7}
+          x={xScale(x0) + BUCKET_PADDING / 2}
+          width={xScale(x1) - xScale(x0) - BUCKET_PADDING}
+          y={yScale(bucket.length)}
+          height={boundsHeight - yScale(bucket.length)}
+        />
+      );
+    })
   );
 
   return (
