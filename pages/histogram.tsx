@@ -301,6 +301,7 @@ export default function Home() {
             </p>
           }
           img={"histogram-with-several-groups.png"}
+          alt="Picture of a histogram with multiple groups built with react and d3.js"
         />
         <GraphLinkImage
           link={"example/histogram-small-multiple"}
@@ -311,6 +312,7 @@ export default function Home() {
             </p>
           }
           img={"histogram-small-multiple.png"}
+          alt="Picture of a histogram with small multiple built with react and d3.js"
         />
       </ImageGrid>
       {/*

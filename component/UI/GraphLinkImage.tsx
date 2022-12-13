@@ -10,6 +10,7 @@ type GraphLinkImageProps = {
   title: string;
   description: ReactElement;
   link: string;
+  alt: string;
 };
 
 export const GraphLinkImage = ({
@@ -17,10 +18,11 @@ export const GraphLinkImage = ({
   title,
   description,
   link,
+  alt,
 }: GraphLinkImageProps) => {
   return (
     <figure className={styles.container}>
-      <img src={"/chart/" + img} className={styles.image} />
+      <img src={"/chart/" + img} className={styles.image} alt={alt} />
       <figcaption>
         <p className={styles.title}>
           <b>{title}</b>
