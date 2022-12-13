@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "." // to allow absolute import
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/viz/CircularPackingBasic/index.js", "viz/ContinuousColorLegend/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
 }

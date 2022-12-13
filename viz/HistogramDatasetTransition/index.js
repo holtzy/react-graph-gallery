@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
-import { data } from "./data";
-import { Histogram } from "./Histogram";
+import { HistogramDatasetTransition } from "./HistogramDatasetTransition";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Histogram data={data} width={400} height={400} />, rootElement);
+ReactDOM.render(<HistogramDatasetTransition width={width} height={height} />, rootElement);

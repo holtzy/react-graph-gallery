@@ -120,7 +120,7 @@ export default function Home() {
       // Axes
       //
       */}
-      <h2 id="Scales and axes">Scales and axes</h2>
+      <h2 id="scales and axes">Scales and axes</h2>
       <h3>&rarr; Scales</h3>
       <p>
         Building a scatterplot requires to transform a <b>dimension</b> (a
@@ -200,7 +200,7 @@ export default function Home() {
       // Add circles
       //
       */}
-      <h2 id="Circles">Add circles</h2>
+      <h2 id="circles">Add circles</h2>
       <p>
         We are now pretty close to the first scatterplot. There is just one more
         critical part missing: <b>markers</b>.

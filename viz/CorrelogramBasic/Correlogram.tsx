@@ -6,11 +6,11 @@ type CorrelogramProps = {
   width: number;
   height: number;
   data: {
-    sepalLength: number;
-    sepalWidth: number;
-    petalLength: number;
-    petalWidth: number;
-    species: "setosa" | "virginica";
+    var1: number;
+    var2: number;
+    var3: number;
+    var4: number;
+    group: "setosa" | "virginica";
   }[];
 };
 
@@ -18,14 +18,9 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const allVariables = [
-    "sepalLength",
-    "sepalWidth",
-    "petalLength",
-    "petalWidth",
-  ] as const;
+  const allVariables = ["var1", "var2", "var3", "var4"] as const;
 
-  const allGroups = [...new Set(data.map((d) => d.species))];
+  const allGroups = [...new Set(data.map((d) => d.group))];
 
   const graphWidth = boundsWidth / allVariables.length;
   const graphHeight = boundsHeight / allVariables.length;
@@ -37,7 +32,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
         const distributionData = allGroups.map((group) => {
           return {
             group,
-            values: data.filter((d) => d.species === group).map((d) => d[xVar]),
+            values: data.filter((d) => d.group === group).map((d) => d[xVar]),
           };
         });
 
@@ -53,7 +48,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
 
       // Scatterplot dataset
       const graphData = data.map((d) => {
-        return { x: d[xVar], y: d[yVar], group: d.species };
+        return { x: d[xVar], y: d[yVar], group: d.group };
       });
 
       return (

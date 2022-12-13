@@ -106,7 +106,6 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
   return (
     <div>
       <svg width={width} height={height}>
-        {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}
           height={boundsHeight}
@@ -114,7 +113,6 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
         >
           {allShapes}
         </g>
-        {/* Second is for the axes */}
         <g
           width={boundsWidth}
           height={boundsHeight}
