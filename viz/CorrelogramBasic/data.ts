@@ -1,4 +1,12 @@
-export const data = [
+type Data = {
+  var1: number;
+  var2: number;
+  var3: number;
+  var4: number;
+  group: "setosa" | "virginica" | "versicolor";
+}[];
+
+export const data: Data = [
   {"var1": 5.1, "var2": 3.5, "var3": 1.4, "var4": 0.2, "group": "setosa"},
   {"var1": 4.9, "var2": 3.0, "var3": 1.4, "var4": 0.2, "group": "setosa"},
   {"var1": 4.7, "var2": 3.2, "var3": 1.3, "var4": 0.2, "group": "setosa"},

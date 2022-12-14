@@ -355,7 +355,7 @@ export default function Home() {
         VizComponent={HistogramDatasetTransitionDemo}
         vizName={"HistogramDatasetTransition"}
         maxWidth={900}
-        height={300}
+        height={400}
         caption={
           "Adding a X axis with d3 makes the chart much more insightful."
         }

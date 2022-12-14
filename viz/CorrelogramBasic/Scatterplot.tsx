@@ -39,7 +39,6 @@ export const Scatterplot = ({
   // Color Scale
   const allGroups = [...new Set(data.map((d) => d.group))].sort();
   const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(colors);
-  console.log("scatter", colorScale("setosa"));
 
   // Build the shapes
   const allShapes = data.map((d, i) => {

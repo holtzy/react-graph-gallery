@@ -10,7 +10,7 @@ type CorrelogramProps = {
     var2: number;
     var3: number;
     var4: number;
-    group: "setosa" | "virginica";
+    group: "setosa" | "virginica" | "versicolor";
   }[];
 };
 
@@ -18,7 +18,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const allVariables = ["var1", "var2", "var3", "var4"] as const;
+  const allVariables = ["var1", "var2", "var3", "var4"] as const; // TODO: should not be hard-coded
 
   const allGroups = [...new Set(data.map((d) => d.group))];
 
@@ -47,7 +47,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
       }
 
       // Scatterplot dataset
-      const graphData = data.map((d) => {
+      const scatterData = data.map((d) => {
         return { x: d[xVar], y: d[yVar], group: d.group };
       });
 
@@ -56,7 +56,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
           <Scatterplot
             width={graphWidth}
             height={graphHeight}
-            data={graphData}
+            data={scatterData}
             yLabel={j === 0 ? allVariables[i] : undefined}
             xLabel={i === allVariables.length - 1 ? allVariables[j] : undefined}
           />
@@ -77,7 +77,7 @@ export const Correlogram = ({ width, height, data }: CorrelogramProps) => {
           width: boundsWidth,
           height: boundsHeight,
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr", // TODO
+          gridTemplateColumns: "1fr ".repeat(allVariables.length),
           transform: `translate(${MARGIN.left}px, ${MARGIN.top}px)`,
         }}
       >
