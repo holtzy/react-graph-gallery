@@ -23,14 +23,20 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  //Scales
+  // Scales
   const yScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.lifeExp));
+    const [min, max] = d3.extent(data.map((d) => d.lifeExp)) as [
+      number,
+      number
+    ];
     return d3.scaleLinear().domain([min, max]).range([boundsHeight, 0]).nice();
   }, [data, height]);
 
   const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.gdpPercap));
+    const [min, max] = d3.extent(data.map((d) => d.gdpPercap)) as [
+      number,
+      number
+    ];
     return d3.scaleLinear().domain([0, max]).range([0, boundsWidth]).nice();
   }, [data, width]);
 
@@ -44,10 +50,10 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
     .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
 
   const sizeScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.pop));
+    const [min, max] = d3.extent(data.map((d) => d.pop)) as [number, number];
     return d3
-      .scaleLinear()
-      .domain([0, max])
+      .scaleSqrt()
+      .domain([min, max])
       .range([BUBBLE_MIN_SIZE, BUBBLE_MAX_SIZE]);
   }, [data, width]);
 

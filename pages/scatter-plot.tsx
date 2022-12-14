@@ -320,7 +320,7 @@ export default function Home() {
       // Hover effects
       //
       */}
-      <h2 id="Hover effect">Hover effect</h2>
+      <h2 id="hover effect">Hover effect</h2>
       <p>
         Showing a tooltip on hover is helpful, but it's often a nice touch to
         add a <b>hover effect</b>. Hover effects on scatterplots are usually

@@ -65,13 +65,13 @@ export default function Home() {
         one is used for the circle <b>size</b>.
       </p>
       <p>
-        Note that you can add even more properties to the object, that can be
-        used to color the bubbles like the <code>continent</code> on the example
-        below.
+        Note that you can add more properties to the object. For instance, a{" "}
+        <code>name</code> can be displayed in the tooltip, and a{" "}
+        <code>group</code> can be used to color the bubbles.
       </p>
       <CodeBlock code={snippetData} />
       <p>
-        <u>Note</u>: this section is based on the{" "}
+        <u>Note</u>: this post is mainly based on the{" "}
         <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
         dataset that provides some info like the life expectancy and the
         population for every country.
@@ -81,10 +81,21 @@ export default function Home() {
       // Scatterplot
       //
       */}
-      <h2 id="scatter plot">Scatter plot</h2>
+      <h2 id="scatter plot">Extending the scatter plot</h2>
       <p>
-        The dataset used to build a scatterplot is usually an{" "}
-        <b>array of objects</b>.
+        A bubble chart is just an extension of a{" "}
+        <Link href="/scatter-plot">scatter plot</Link>. The only difference is
+        that a third numeric variable is represented, mapped to the{" "}
+        <b>circle size</b>.
+      </p>
+      <p>
+        As a result, please start by visiting the dedicated scatter plot{" "}
+        <Link href="/scatter-plot">page</Link> that explains how to draw{" "}
+        <Link href="/scatter-plot#scales%20and%20axes">axes</Link>,{" "}
+        <Link href="/scatter-plot#circles">circles</Link>, and show how to add
+        basic interactions like{" "}
+        <Link href="/scatter-plot#hover%20effect">hover effects</Link> and{" "}
+        <Link href="/scatter-plot#tooltip">tooltips</Link>.
       </p>
       <ImageGrid>
         <GraphLinkImage
@@ -114,41 +125,55 @@ export default function Home() {
           img={"scatterplot-tooltip.png"}
           alt="Scatterplot with tooltip made with react and d3"
         />
+        <GraphLinkImage
+          link={"scatter-plot#hover%20effect"}
+          title={"Add a hover effect"}
+          description={<p>Highlight a specific group on hover</p>}
+          img={"scatterplot-hover-effect.png"}
+          alt="Scatterplot with hover effect made with react and d3"
+        />
+        <GraphLinkImage
+          link={"scatter-plot#hover%20effect"}
+          title={"Real life use-case"}
+          description={
+            <p>
+              Reproduction of a data wrapper chart representing countries CO2
+              data
+            </p>
+          }
+          img={"scatterplot-co2.png"}
+          alt="Real life example of a scatterplot made with react and d3"
+        />
       </ImageGrid>
-      <div className="mt-20">
-        <blockquote>
-          <b>Note</b>: This page considers you're already familiar with the
-          process to build a <Link href="scatter-plot">scatterplot</Link>. Start
-          there for some basic examples!
-        </blockquote>
-      </div>
+      <p className="mt-4">
+        Once you understood those fundamental concepts, you're ready to browse
+        the following examples to build a bubble chart.
+      </p>
       {/*
       //
       // Basic bubble chart
       //
       */}
-      <h2 id="bubble">Bubble chart: control the circle sizes</h2>
+      <h2 id="bubble">Control the circle sizes to make bubbles</h2>
       <p>
-        A few additional steps are required to move from a{" "}
-        <Link href="scatter-plot">scatterplot</Link> to a bubble chart.
+        We need to make the circle size <b>proportional</b> to a numeric value.
+        Note that it is the area that must be proportional,{" "}
+        <a href="https://www.data-to-viz.com/caveat/radius_or_area.html">
+          not the radius
+        </a>
+        .
       </p>
-      <ul>
-        <li>
-          One more <code>linearScale</code> is needed to control the circle
-          size. The <code>range</code> is an arbitrary array where you define
-          the min and max sizes you want to display. Don't forget you can use a
-          log scale if you have extreme values in the dataset.
-        </li>
-        <li>
-          Optionally, a fourth scale can be added for the color using a{" "}
-          <code>scaleOrdinal</code>.
-        </li>
-        <li>
-          A bubble chart often have circle overlaps. It's strongly advised to
-          use transparency and to sort the data: draw the big bubbles below, the
-          small ones on top.
-        </li>
-      </ul>
+      <p>
+        To do so, d3.js offers a <code>scaleSqrt()</code> function that
+        constructs a new continuous <b>power scale</b>. That's the
+        transformation we need. Building the scale looks like this:
+      </p>
+      <CodeBlock code={snippetSizeScale} />
+      <p>
+        Note that a bubble chart often has circle overlaps. It's strongly
+        advised to use transparency and to sort the data: draw the big bubbles
+        below, the small ones on top.
+      </p>
       <ChartOrSandbox
         VizComponent={BubblePlotBasicDemo}
         vizName={"BubblePlotBasic"}
@@ -156,6 +181,15 @@ export default function Home() {
         height={500}
         caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
       />
+      <div className="my-10">
+        <blockquote>
+          <b>Note</b>: The above example uses the <b>d3.js imperative style</b>{" "}
+          to build the axes. This can also be done building your own axis
+          component like{" "}
+          <Link href="scatter-plot#scales%20and%20axes">here</Link>. I'll write
+          more about this in the near <Link href="/subscribe">future</Link>.
+        </blockquote>
+      </div>
       <p>
         This is starting to look not too bad, but we definitely need a{" "}
         <b>legend</b> here, to understand what the size and color of each circle
@@ -293,18 +327,18 @@ export default function Home() {
 const snippetData = `
 const data = [
   {
-    "country": "Afghanistan",
-    "continent": "Asia",
-    "lifeExp": 43.828,
-    "pop": 31889923,
-    "gdpPercap": 974.5803384
+    "x": 43.828,
+    "y": 31889923,
+    "size": 974.5803384
+    "name": "Afghanistan",
+    "group": "Asia",
   },
   {
-    "country": "Albania",
-    "continent": "Europe",
-    "lifeExp": 76.423,
-    "pop": 3600523,
-    "gdpPercap": 5937.029526
+    "x": 76.423,
+    "y": 3600523,
+    "size": 5937.029526
+    "name": "Albania",
+    "group": "Europe",
   },
   ...
 ]
@@ -364,4 +398,11 @@ export const BubbleLegend = ({ scale, tickNumber }: BubbleLegendProps) => {
     </svg>
   );
 };
+`.trim();
+
+const snippetSizeScale = `
+return d3
+  .scaleSqrt()
+  .domain([min, max])
+  .range([BUBBLE_MIN_SIZE, BUBBLE_MAX_SIZE]);
 `.trim();
