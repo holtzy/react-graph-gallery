@@ -157,7 +157,7 @@ export default function Home() {
       <h2 id="bubble">Control the circle sizes to make bubbles</h2>
       <p>
         We need to make the circle size <b>proportional</b> to a numeric value.
-        Note that it is the area that must be proportional,{" "}
+        Note that it is the <b>area</b> that must be proportional,{" "}
         <a href="https://www.data-to-viz.com/caveat/radius_or_area.html">
           not the radius
         </a>
@@ -170,9 +170,16 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetSizeScale} />
       <p>
-        Note that a bubble chart often has circle overlaps. It's strongly
-        advised to use transparency and to sort the data: draw the big bubbles
-        below, the small ones on top.
+        This scale provides the radius that we must used for each circle based
+        on its numeric value. We can use it in the <code>r</code> attribute of
+        each <code>circle</code>
+        like this:
+      </p>
+      <CodeBlock code={snippetSizeScaleUse} />
+      <p>
+        Note that a bubble chart often has <b>circle overlaps</b>. It's strongly
+        advised to use <b>transparency</b> and to <b>sort</b> the data: draw the
+        big bubbles below, the small ones on top.
       </p>
       <ChartOrSandbox
         VizComponent={BubblePlotBasicDemo}
@@ -405,4 +412,13 @@ return d3
   .scaleSqrt()
   .domain([min, max])
   .range([BUBBLE_MIN_SIZE, BUBBLE_MAX_SIZE]);
+`.trim();
+
+const snippetSizeScaleUse = `
+<circle
+  cx={xScale(d.gdpPercap)}
+  cy={yScale(d.lifeExp)}
+  r={sizeScale(d.pop)}
+  ...
+  />
 `.trim();
