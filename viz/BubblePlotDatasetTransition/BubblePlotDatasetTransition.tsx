@@ -2,7 +2,7 @@ import { useState } from "react";
 import { data } from "./data";
 import { BubblePlot } from "./BubblePlot";
 
-const BUTTONS_HEIGHT = 50;
+const BUTTONS_HEIGHT = 60;
 
 type BubblePlotDatasetTransitionProps = {
   width: number;
@@ -23,7 +23,7 @@ export const BubblePlotDatasetTransition = ({
   width,
   height,
 }: BubblePlotDatasetTransitionProps) => {
-  const [year, setYear] = useState<number>(1952);
+  const [year, setYear] = useState<number>(1997);
 
   const selectedData = data.filter((item) => item.year === year);
 
@@ -31,14 +31,25 @@ export const BubblePlotDatasetTransition = ({
 
   return (
     <div>
-      {/* Select button */}
-      <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
-        {allYears.map((year) => (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        ))}
-      </select>
+      <div
+        style={{
+          height: BUTTONS_HEIGHT,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <select
+          value={year}
+          onChange={(e) => setYear(Number(e.target.value))}
+          style={buttonStyle}
+        >
+          {allYears.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <BubblePlot
         width={width}

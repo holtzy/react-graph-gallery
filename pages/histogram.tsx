@@ -115,7 +115,11 @@ export default function Home() {
         into a smaller number of consecutive, non-overlapping intervals.
       </p>
       <div className="flex flex-col items-center mt-8 mb-12">
-        <img src="/img/binning-process.png" style={{ maxWidth: 700 }} />
+        <img
+          src="/img/binning-process.png"
+          style={{ maxWidth: 700 }}
+          alt="schema explaining how histogram buckets are created from the original dataset"
+        />
         <Caption>
           Binning is the process of dividing the range of values in a dataset
           into intervals, and then counting the number of values that fall into
@@ -248,9 +252,9 @@ export default function Home() {
       </p>
       <p>
         There are 2 main strategies to add axes to a react chart made with
-        d3.js. This process is extensively described{" "}
+        d3.js. This process is extensively described in the{" "}
         <a href="https://www.react-graph-gallery.com/build-axis-with-react">
-          here
+          axis section
         </a>
         .
       </p>

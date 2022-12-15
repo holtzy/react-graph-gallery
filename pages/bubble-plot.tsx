@@ -13,6 +13,7 @@ import { ScatterplotClimateCrisisDemo } from "viz/ScatterplotClimateCrisis/Scatt
 import { BubbleLegendDemo } from "viz/BubbleLegend/BubbleLegendDemo";
 import { Accordion } from "component/UI/Accordion";
 import { BubblePlotDatasetTransitionDemo } from "viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo";
+import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -279,17 +280,35 @@ export default function Home() {
       // Data transition
       //
       */}
-      <h2 id="transition">Data transition</h2>
+      <h2 id="transition">Smooth dataset transition</h2>
       <p>
-        There are{" "}
-        <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
-          many different ways
-        </a>{" "}
-        to add a legend to a d3.js graph. What we mainly need here is to make
-        sense of the <b>bubble size</b>. I suggest to use a set of <b>nested</b>{" "}
-        bubbles, showing a few of the bubble sizes used on the chart with their
-        respective values.
+        How can we <b>smoothly animate</b> the transition between 2 datasets on
+        a bubble chart? The chart used in this blog post can be drawn for
+        several different years. You can use the select button on top to select
+        the year, and the bubbles will <b>animate</b> to their new position.
       </p>
+      <p>
+        This is possible thanks to the{" "}
+        <a href="https://react-spring.dev/">react spring</a> library. Basically,
+        instead of rendering usual <code>circle</code> elements, the library
+        provides a <code>animated.circle</code> element, that is linked to a{" "}
+        <code>useSpring</code>
+        hook.
+      </p>
+      <p>
+        This is how the <code>Circle</code> component I use looks like:
+      </p>
+      <Accordion
+        startOpen={false}
+        title={
+          <span>
+            <code>Rectangle</code>: a component that animates the transition of
+            a <code>rect</code>
+          </span>
+        }
+      >
+        <CodeBlock code={snippetCircle} />
+      </Accordion>
       <ChartOrSandbox
         VizComponent={BubblePlotDatasetTransitionDemo}
         vizName={"BubblePlotDatasetTransition"}
@@ -297,6 +316,14 @@ export default function Home() {
         height={500}
         caption="A bubble chart component that smoothly animate change between dataset."
       />
+      <p>
+        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
+        impossible to go in depth here! I will publish a dedicated blog post on
+        the topic soon. Please subscribe below if you want to be notified.
+      </p>
+      <div className={"py-7"}>
+        <SubscribeForm />
+      </div>{" "}
       {/*
       //
       // Real life
@@ -442,4 +469,40 @@ const snippetSizeScaleUse = `
   r={sizeScale(d.pop)}
   ...
   />
+`.trim();
+
+const snippetCircle = `
+import { useSpring, animated } from "@react-spring/web";
+
+type CircleProps = {
+  color: string;
+  r: number;
+  cx: number;
+  cy: number;
+};
+
+export const Circle = (props: CircleProps) => {
+  const { cx, cy, r, color } = props;
+
+  const springProps = useSpring({
+    to: { cx, cy, r },
+    config: {
+      friction: 30,
+    },
+    delay: 0,
+  });
+
+  return (
+    <animated.circle
+      cx={springProps.cx}
+      cy={springProps.cy}
+      r={springProps.r}
+      opacity={0.7}
+      stroke={color}
+      fill={color}
+      fillOpacity={0.3}
+      strokeWidth={1}
+    />
+  );
+};
 `.trim();
