@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as d3 from "d3";
-import { BubbleLegend } from "./BubbleLegend";
 import { AxisLeft } from "./AxisLeft";
 import { AxisBottom } from "./AxisBottom";
+import { Circle } from "./Circle";
 
 const MARGIN = { top: 30, right: 30, bottom: 80, left: 100 };
 const BUBBLE_MIN_SIZE = 4;
@@ -16,6 +16,7 @@ type BubblePlotProps = {
     gdpPercap: number;
     continent: string;
     pop: number;
+    country: string;
   }[];
 };
 
@@ -40,9 +41,7 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
     return d3.scaleLinear().domain([min, max]).range([0, boundsWidth]).nice();
   }, [data, width]);
 
-  const groups = data
-    .map((d) => d.continent)
-    .filter((x, i, a) => a.indexOf(x) == i);
+  const groups = [...new Set(data.map((d) => d.continent).sort())];
 
   const colorScale = d3
     .scaleOrdinal<string>()
@@ -62,16 +61,12 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
     .sort((a, b) => b.pop - a.pop)
     .map((d, i) => {
       return (
-        <circle
-          key={i}
+        <Circle
+          key={d.country}
           r={sizeScale(d.pop)}
           cx={xScale(d.gdpPercap)}
           cy={yScale(d.lifeExp)}
-          opacity={1}
-          stroke={colorScale(d.continent)}
-          fill={colorScale(d.continent)}
-          fillOpacity={0.4}
-          strokeWidth={1}
+          color={colorScale(d.continent)}
         />
       );
     });
@@ -95,13 +90,11 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
               height={boundsHeight}
             />
           </g>
+
+          {/* Circles */}
           {allShapes}
         </g>
       </svg>
-      {/* Legend */}
-      <div style={{ position: "absolute", right: 0, bottom: 100 }}>
-        <BubbleLegend scale={sizeScale} tickNumber={4} />
-      </div>
     </div>
   );
 };

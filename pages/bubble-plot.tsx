@@ -12,6 +12,7 @@ import { GraphLinkImage } from "component/UI/GraphLinkImage";
 import { ScatterplotClimateCrisisDemo } from "viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
 import { BubbleLegendDemo } from "viz/BubbleLegend/BubbleLegendDemo";
 import { Accordion } from "component/UI/Accordion";
+import { BubblePlotDatasetTransitionDemo } from "viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo";
 
 const graphDescription = (
   <>
@@ -272,6 +273,29 @@ export default function Home() {
         maxWidth={600}
         height={500}
         caption="Adding a legend to make sense of the bubble size. Legend is hand made, adding svg shapes with React."
+      />
+      {/*
+      //
+      // Data transition
+      //
+      */}
+      <h2 id="transition">Data transition</h2>
+      <p>
+        There are{" "}
+        <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
+          many different ways
+        </a>{" "}
+        to add a legend to a d3.js graph. What we mainly need here is to make
+        sense of the <b>bubble size</b>. I suggest to use a set of <b>nested</b>{" "}
+        bubbles, showing a few of the bubble sizes used on the chart with their
+        respective values.
+      </p>
+      <ChartOrSandbox
+        VizComponent={BubblePlotDatasetTransitionDemo}
+        vizName={"BubblePlotDatasetTransition"}
+        maxWidth={600}
+        height={500}
+        caption="A bubble chart component that smoothly animate change between dataset."
       />
       {/*
       //
