@@ -27,7 +27,7 @@ export const GraphLinkImage = ({
         <p className={styles.title}>
           <b>{title}</b>
         </p>
-        <p className="font-light">{description}</p>
+        <div className="font-light">{description}</div>
         <a href={link}></a>
       </figcaption>
     </figure>

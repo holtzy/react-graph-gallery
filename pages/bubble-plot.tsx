@@ -19,7 +19,7 @@ const graphDescription = (
   <>
     <p>
       A <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a>{" "}
-      is an extension of a <Link href="scatter-plot">scatterplot</Link>, where
+      is an extension of a <Link href="/scatter-plot">scatterplot</Link>, where
       each circle has its size proportional to a numeric value. This page is a
       step-by-step guide on how to build your own bubble chart for the web,
       using <a href="https://reactjs.org/">React</a> and{" "}
@@ -28,7 +28,7 @@ const graphDescription = (
     <p>
       This page focuses on the implentation of features that are{" "}
       <b>different of the scatterplot</b> that has its{" "}
-      <Link href="scatter-plot">own dedicated section</Link>. It describes how
+      <Link href="/scatter-plot">own dedicated section</Link>. It describes how
       the <b>dataset</b> differs, how the <b>circle size</b> can be mapped to a
       numeric value and how to explicit it using a <b>legend</b>. Last but not
       least it explains how to add <b>interactivity</b>: hover effect, tooltip
@@ -192,7 +192,7 @@ export default function Home() {
           <b>Note</b>: The above example uses the <b>d3.js imperative style</b>{" "}
           to build the axes. This can also be done building your own axis
           component like{" "}
-          <Link href="scatter-plot#scales%20and%20axes">here</Link>. I'll write
+          <Link href="/scatter-plot#scales%20and%20axes">here</Link>. I'll write
           more about this in the near <Link href="/subscribe">future</Link>.
         </blockquote>
       </div>
@@ -226,37 +226,36 @@ export default function Home() {
       />
       <p>
         This legend is implemented in a <code>BubbleLegend</code> component that
-        expects 2 props:
-        <ul>
-          <li>
-            <code>scale</code>: the size scale that we described{" "}
-            <a href="#bubble">above</a>, built with the <code>scaleSqrt</code>{" "}
-            function.
-          </li>
-          <li>
-            <code>tickNumber</code>: the number of circles to show on the
-            legend.
-          </li>
-        </ul>
-        <p>
-          Note that <code>tickNumber</code> is a target. The legend component
-          uses the <code>tick()</code> function with this value, which returns a
-          smart number of circle to approximate the goal while keeping some
-          nice, smart values.
-        </p>
-        <p>You can check the complete implementation of the legend here:</p>
-        <Accordion
-          startOpen={false}
-          title={
-            <span>
-              <code>BubbleLegend</code>: a component to build a legend for
-              circle sizes
-            </span>
-          }
-        >
-          <CodeBlock code={snippetLegend} />
-        </Accordion>
+        expects 2 props:{" "}
       </p>
+      <ul>
+        <li>
+          <code>scale</code>: the size scale that we described{" "}
+          <a href="#bubble">above</a>, built with the <code>scaleSqrt</code>{" "}
+          function.
+        </li>
+        <li>
+          <code>tickNumber</code>: the number of circles to show on the legend.
+        </li>
+      </ul>
+      <p>
+        Note that <code>tickNumber</code> is a target. The legend component uses
+        the <code>tick()</code> function with this value, which returns a smart
+        number of circle to approximate the goal while keeping some nice, smart
+        values.
+      </p>
+      <p>You can check the complete implementation of the legend here:</p>
+      <Accordion
+        startOpen={false}
+        title={
+          <span>
+            <code>BubbleLegend</code>: a component to build a legend for circle
+            sizes
+          </span>
+        }
+      >
+        <CodeBlock code={snippetLegend} />
+      </Accordion>
       <p>
         It's important to note that the component does <b>not</b> expect any
         dimension as prop. The <code>width</code> and <code>height</code> of the
