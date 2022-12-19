@@ -9,8 +9,8 @@ const sizeScale = d3.scaleSqrt().domain([0, 100]).range([0, 80]).nice();
 ReactDOM.render(
   <div
     style={{
-      width,
-      height,
+      width: 500,
+      height: 400,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",

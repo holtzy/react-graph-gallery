@@ -26,12 +26,12 @@ const graphDescription = (
       <a href="https://d3-graph-gallery.com/histogram">D3.js</a>.
     </p>
     <p>
-      This page focuses on the implentation of features that are{" "}
-      <b>different of the scatterplot</b> that has its{" "}
-      <Link href="/scatter-plot">own dedicated section</Link>. It describes how
-      the <b>dataset</b> differs, how the <b>circle size</b> can be mapped to a
-      numeric value and how to explicit it using a <b>legend</b>. Last but not
-      least it explains how to add <b>interactivity</b>: hover effect, tooltip
+      This page focuses on the implementation of features that are{" "}
+      <b>different from the scatterplot</b> that has its{" "}
+      <Link href="/scatter-plot">dedicated section</Link>. It describes how the{" "}
+      <b>dataset</b> differs, how the <b>circle size</b> can be mapped to a
+      numeric value, and how to explicit it using a <b>legend</b>. Last but not
+      least it explains how to add <b>interactivity</b>: hover effect, tooltip,
       and dataset transition. 🙇‍♂️.
     </p>
   </>
@@ -55,7 +55,7 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>{" "}
       <p>
-        The dataset used to build a bubble plot is usually an array of object
+        The dataset used to build a bubble plot is usually an array of objects
         where each object is a data point. For each object, at least{" "}
         <b>3 properties</b> are required.
       </p>
@@ -90,8 +90,8 @@ export default function Home() {
       <p>
         As a result, please start by visiting the dedicated scatter plot{" "}
         <Link href="/scatter-plot">page</Link> that explains how to draw{" "}
-        <Link href="/scatter-plot#scales%20and%20axes">axes</Link>,{" "}
-        <Link href="/scatter-plot#circles">circles</Link>, and show how to add
+        <Link href="/scatter-plot#scales%20and%20axes">axes</Link> and{" "}
+        <Link href="/scatter-plot#circles">circles</Link>, and shows how to add
         basic interactions like{" "}
         <Link href="/scatter-plot#hover%20effect">hover effects</Link> and{" "}
         <Link href="/scatter-plot#tooltip">tooltips</Link>.
@@ -132,7 +132,7 @@ export default function Home() {
           alt="Scatterplot with hover effect made with react and d3"
         />
         <GraphLinkImage
-          link={"scatter-plot#hover%20effect"}
+          link={"scatter-plot#real%20life"}
           title={"Real life use-case"}
           description={
             <p>
@@ -145,7 +145,7 @@ export default function Home() {
         />
       </ImageGrid>
       <p className="mt-4">
-        Once you understood those fundamental concepts, you're ready to browse
+        Once you understand those fundamental concepts, you're ready to browse
         the following examples to build a bubble chart.
       </p>
       {/*
@@ -169,16 +169,16 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetSizeScale} />
       <p>
-        This scale provides the radius that we must used for each circle based
-        on its numeric value. We can use it in the <code>r</code> attribute of
-        each <code>circle</code>
+        This scale provides the radius that we must use for each circle based on
+        its numeric value. We can use it in the <code>r</code> attribute of each{" "}
+        <code>circle</code>
         like this:
       </p>
       <CodeBlock code={snippetSizeScaleUse} />
       <p>
         Note that a bubble chart often has <b>circle overlaps</b>. It's strongly
         advised to use <b>transparency</b> and to <b>sort</b> the data: draw the
-        big bubbles below, the small ones on top.
+        big bubbles below and the small ones on top.
       </p>
       <ChartOrSandbox
         VizComponent={BubblePlotBasicDemo}
@@ -197,9 +197,8 @@ export default function Home() {
         </blockquote>
       </div>
       <p>
-        This is starting to look not too bad, but we definitely need a{" "}
-        <b>legend</b> here, to understand what the size and color of each circle
-        mean.
+        This is starting to look not too bad, but we need a <b>legend</b> here,
+        to understand what the size and color of each circle mean.
       </p>
       {/*
       //
@@ -213,7 +212,7 @@ export default function Home() {
           many different ways
         </a>{" "}
         to add a legend to a d3.js graph. What we mainly need here is to make
-        sense of the <b>bubble size</b>. I suggest to use a set of <b>nested</b>{" "}
+        sense of the <b>bubble size</b>. I suggest using a set of <b>nested</b>{" "}
         bubbles, showing a few of the bubble sizes used on the chart with their
         respective values.
       </p>

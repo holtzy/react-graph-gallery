@@ -13,101 +13,23 @@ import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/
 import { BoxplotJitterDemo } from "../viz/BoxplotJitter/BoxplotJitterDemo";
 
 const graphDescription = (
-  <p>
-    A <a href="https://www.data-to-viz.com/graph/boxplot.html">boxplot</a>{" "}
-    summarizes the distribution of a numeric variable, often for several groups
-    of a dataset. This page describes how to build it with react, with a bit of
-    help from d3.js.
-  </p>
+  <>
+    <p>
+      A <a href="https://www.data-to-viz.com/graph/boxplot.html">boxplot</a>{" "}
+      summarizes the distribution of a numeric variable, often for several
+      groups of a dataset. This page is a step-by-step guide on how to build
+      your own boxplot component for the web, using{" "}
+      <a href="https://reactjs.org/">React</a> and{" "}
+      <a href="https://d3-graph-gallery.com/boxplot">D3.js</a>.
+    </p>
+    <p>
+      It starts by describing how the <b>data</b> should be organized and how to
+      initialize the <b>boxplot component</b>. It then explains how to create a
+      Box component that displays a single box. Finally, it shows how to render
+      the boxplot and suggests a few variations. 🙇‍♂️.
+    </p>
+  </>
 );
-
-const snippet1 = `
-const data = [
-  { name: "A", value: 10.7577 },
-  { name: "A", value: 19.9273 },
-  { name: "B", value: 13.8917 },
-  { name: "B", value: 0.5102 },
-  { name: "C", value: 10.5524 },
-  ...
-]
-`.trim();
-
-const snippet2 = `
-const VerticalBox = ({
-  min,
-  q1,
-  median,
-  q3,
-  max,
-  width,
-  stroke,
-  fill,
-}) => {
-  return (
-    <>
-      <line
-        x1={width / 2}
-        x2={width / 2}
-        y1={min}
-        y2={max}
-        stroke={stroke}
-        width={STROKE_WIDTH}
-      />
-      <rect
-        x={0}
-        y={q3}
-        width={width}
-        height={q1 - q3}
-        stroke={stroke}
-        fill={fill}
-      />
-      <line
-        x1={0}
-        x2={width}
-        y1={median}
-        y2={median}
-        stroke={stroke}
-        width={STROKE_WIDTH}
-      />
-    </>
-  );
-};
-`.trim();
-
-const snippet3 = `
-<svg width={200} height={300}>
-  <VerticalBox
-    width={100}
-    min={280}
-    q1={200}
-    median={100}
-    q3={80}
-    max={10}
-    stroke="black"
-    fill={"#ead4f5"}
-  />
-</svg>
-`.trim();
-
-const snippet4 = `
-export const getSummaryStats = (data: number[]) => {
-  const sortedData = data.sort(function(a, b){return a - b});
-
-  const q1 = d3.quantile(sortedData, .25)
-  const median = d3.quantile(sortedData, .5)
-  const q3 = d3.quantile(sortedData, .75)
-
-  if(!q3 || !q1 || !median){
-      return
-  }
-
-  const interQuantileRange = q3 - q1
-  const min = q1 - 1.5 * interQuantileRange
-  const max = q3 + 1.5 * interQuantileRange
-
-  return {min, q1, median, q3, max}
-}
-`.trim();
 
 export default function Home() {
   return (
@@ -116,7 +38,14 @@ export default function Home() {
       seoDescription="How to build a boxplot with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
-        title="Boxplot"
+        title={
+          <h1>
+            Boxplot{" "}
+            <span className="text-gray-600 font-light hidden sm:inline">
+              with React and d3.js
+            </span>
+          </h1>
+        }
         description={graphDescription}
         chartType="boxplot"
       />
@@ -267,3 +196,91 @@ export default function Home() {
     </Layout>
   );
 }
+
+const snippet1 = `
+const data = [
+  { name: "A", value: 10.7577 },
+  { name: "A", value: 19.9273 },
+  { name: "B", value: 13.8917 },
+  { name: "B", value: 0.5102 },
+  { name: "C", value: 10.5524 },
+  ...
+]
+`.trim();
+
+const snippet2 = `
+const VerticalBox = ({
+  min,
+  q1,
+  median,
+  q3,
+  max,
+  width,
+  stroke,
+  fill,
+}) => {
+  return (
+    <>
+      <line
+        x1={width / 2}
+        x2={width / 2}
+        y1={min}
+        y2={max}
+        stroke={stroke}
+        width={STROKE_WIDTH}
+      />
+      <rect
+        x={0}
+        y={q3}
+        width={width}
+        height={q1 - q3}
+        stroke={stroke}
+        fill={fill}
+      />
+      <line
+        x1={0}
+        x2={width}
+        y1={median}
+        y2={median}
+        stroke={stroke}
+        width={STROKE_WIDTH}
+      />
+    </>
+  );
+};
+`.trim();
+
+const snippet3 = `
+<svg width={200} height={300}>
+  <VerticalBox
+    width={100}
+    min={280}
+    q1={200}
+    median={100}
+    q3={80}
+    max={10}
+    stroke="black"
+    fill={"#ead4f5"}
+  />
+</svg>
+`.trim();
+
+const snippet4 = `
+export const getSummaryStats = (data: number[]) => {
+  const sortedData = data.sort(function(a, b){return a - b});
+
+  const q1 = d3.quantile(sortedData, .25)
+  const median = d3.quantile(sortedData, .5)
+  const q3 = d3.quantile(sortedData, .75)
+
+  if(!q3 || !q1 || !median){
+      return
+  }
+
+  const interQuantileRange = q3 - q1
+  const min = q1 - 1.5 * interQuantileRange
+  const max = q3 + 1.5 * interQuantileRange
+
+  return {min, q1, median, q3, max}
+}
+`.trim();

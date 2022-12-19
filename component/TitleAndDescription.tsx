@@ -6,6 +6,7 @@ import { fullUrlToInternalLink } from "../util/utils";
 import { HorizontalSeparator } from "./UI/HorizontalSeparator";
 import { LinkAsButton } from "./LinkAsButton";
 import { Tooltip } from "./UI/Tooltip";
+import SectionLogo from "./SectionLogo";
 
 type TitleAndDescription = {
   title: string | JSX.Element;
@@ -24,13 +25,21 @@ export default function TitleAndDescription({
   showInspirationLink = true,
   showD3GalleryLink = true,
 }: TitleAndDescription) {
-  const chartInfo = chartTypesInfo.filter((chart) => chart.id === chartType)[0];
+  const chartInfo = chartTypesInfo.find((chart) => chart.id === chartType);
+
+  if (!chartInfo) {
+    return null;
+  }
 
   return (
     <div className="w-full pt-1 sm:pt-28 pb-20 ">
       {/* Title */}
-      <h1>{title}</h1>
-
+      <div className="flex justify-start items-center">
+        <h1>{title}</h1>
+        <div className="w-20 ml-4">
+          <SectionLogo chartLogo={chartInfo?.logo} />
+        </div>
+      </div>
       {/* Horizontal Separator */}
       <HorizontalSeparator />
 
