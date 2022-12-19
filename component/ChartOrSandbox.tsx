@@ -12,7 +12,7 @@ type ChartOrSandboxProps = {
   vizName: string;
   height?: number;
   maxWidth?: number;
-  caption?: string | HTMLElement | Element;
+  caption?: string | ReactNode;
 };
 
 export const ChartOrSandbox = ({

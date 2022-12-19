@@ -11,6 +11,10 @@ import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo"
 import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
 import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
 import { BoxplotJitterDemo } from "../viz/BoxplotJitter/BoxplotJitterDemo";
+import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
+import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
+import { Accordion } from "component/UI/Accordion";
+import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 
 const graphDescription = (
   <>
@@ -50,71 +54,217 @@ export default function Home() {
         chartType="boxplot"
       />
 
-      <AccordionSection title={"The data 💾"} startOpen={true}>
-        <p>
-          The dataset used to build a boxplot is usually an array of object. For
-          each object, a <code>name</code> property provides the group name, and
-          a <code>value</code> property provides the numeric value. It basically
-          looks like this:
-        </p>
-        <CodeBlock code={snippet1} />
-      </AccordionSection>
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">The Data 💾</h2>
+      <p>
+        The dataset used to build a boxplot is usually an array of object. For
+        each object, a <code>name</code> property provides the group name, and a{" "}
+        <code>value</code> property provides the numeric value. It basically
+        looks like this:
+      </p>
+      <CodeBlock code={snippet1} />
 
-      <AccordionSection title={"Summary statistics 🔨"} startOpen={true}>
-        <p>
-          A boxplot is based on summary statistics. For a set of values, it's
-          going to display the median, first and third quartiles, min and max
-          values excluding outliers.
-        </p>
-        <p>
-          Let's build a util function that computes this from an array of
-          numeric values:
-        </p>
-        <CodeBlock code={snippet4} />
-      </AccordionSection>
+      {/*
+      //
+      // Summary statistics
+      //
+      */}
+      <h2 id="Summary stats">Summary statistics 🔨</h2>
+      <p>
+        A boxplot is based on <b>summary statistics</b>. For a set of values it
+        displays:
+      </p>
+      <ul>
+        <li>
+          the <b>median</b>: central line of the box
+        </li>
+        <li>
+          the first and third <b>quartiles</b>: upper and lower lines of the box
+        </li>
+        <li>
+          the <b>min</b> and <b>max</b> values excluding outliers
+        </li>
+      </ul>
+      <p>
+        Let's build a util function called <code>getSummaryStats</code> that
+        computes this from an array of numeric values:
+      </p>
+      <CodeBlock code={snippet4} />
+      <p>
+        This function is going to be handy. Now we want to draw a box with those
+        values.
+      </p>
 
-      <AccordionSection title={"A reusable box component 📦"} startOpen={true}>
-        <p>
-          With the output of the <code>getSummaryStats()</code> function above
-          we need to build a box with svg and react.
-        </p>
-        <p>
-          Here is a component that builds the svg shape based on the summary
-          statistics.
-        </p>
-        <CodeBlock code={snippet2} />
-        <p>
-          There is nothing really fancy here! We're just drawing a box using a{" "}
-          <code>rect</code> and a 2 <code>line</code>. We can call this
-          component with the following statement:
-        </p>
+      {/*
+      //
+      // Summary statistics
+      //
+      */}
+      <h2 id="box component">A reusable box component 📦</h2>
+      <p>
+        With the output of the <code>getSummaryStats()</code> function above we
+        need to draw a box in SVG. Let's create a <code>VerticalBox</code>{" "}
+        component that does this for us.
+      </p>
+      <p>
+        There is nothing fancy here. A <code>rect</code> is used for the main
+        box. Some <code>line</code> are used for the rest.
+      </p>
+      <CodeBlock code={snippet2} />
+      <p>This component can be called using the following statement:</p>
+      <CodeBlock code={snippet3} />
+      <p>Bringing this result:</p>
+      <ChartOrSandbox
+        vizName={"BoxDemoVertical"}
+        VizComponent={BoxDemoVerticalDemo}
+        maxWidth={110}
+        height={300}
+        caption={
+          <p>
+            The <code>VerticalBox</code> component allows to draw a vertical box
+            displaying the summary statistics of a set of numeric values
+          </p>
+        }
+      />
+
+      {/*
+      //
+      // Skeleton
+      //
+      */}
+      <h2 id="skeleton">Component skeleton</h2>
+      <p>
+        The goal here is to create a <code>Boxplot</code> component that will be
+        stored in a <code>Boxplot.tsx</code> file. This component requires 3
+        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        <code>data</code>.
+      </p>
+      <p>
+        The shape of the <code>data</code> is described above. The{" "}
+        <code>width</code> and <code>height</code> will be used to render an{" "}
+        <code>svg</code> element in the DOM, in which we will insert the
+        histogram.
+      </p>
+      <p>
+        To put it in a nutshell, that's the skeleton of our{" "}
+        <code>Histogram</code> component:
+      </p>
+      <CodeBlock code={snippetSkeleton} />
+      <p>
+        It's fundamental to understand that with this code organization, d3.js
+        will be used to prepare the SVG <code>circle</code>, but it's React that
+        will render them in the <code>return()</code> statement. We won't use d3
+        methods like <code>append</code> that you can find in usual{" "}
+        <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
+      </p>
+
+      {/*
+      //
+      // Axes
+      //
+      */}
+      <h2 id="scales and axes">Scales and axes</h2>
+      <h3>&rarr; Scales</h3>
+      <p>
+        Building a boxplot requires to transform a <b>dimension</b> (e.g. a
+        numeric variable or a group name) in a <b>position in pixels</b>. This
+        is done using a fundamental dataviz concept called <b>scale</b>.
+      </p>
+      <p>
+        D3.js comes with a handful set of{" "}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.
+      </p>
+      <ul>
+        <li>
+          <code>scaleLinear</code> is what we need for the Y axis. It transforms
+          a numeric value in a position
+        </li>
+        <CodeBlock code={snippet5} />
+        <li>
+          <code>scaleBand</code> is what we need for the X axis. It transforms a
+          categoric variable (the group <code>name</code> here) in a position
+        </li>
+        <CodeBlock code={snippetXScale} />
+      </ul>
+      <p>
+        To dig more into d3 scales, visit this{" "}
+        <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
+          dedicated page
+        </a>
+        . It's a crucial concept that will be used everywhere in this website.
+      </p>
+
+      <h3>&rarr; Axes</h3>
+      <p>
+        Axes are rather complicated elements. They are composed of the main{" "}
+        <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
+        are often decorated with a <b>title</b>.
+      </p>
+      <p>
+        Here I suggest creating the axes from scratch and storing them in 2
+        react components called <code>AxisBottom</code> and{" "}
+        <code>AxisLeft</code>. Those components expect a d3 scale as input and
+        do all the svg drawing for us.
+      </p>
+      <ChartOrSandbox
+        VizComponent={AxisBasicDemo}
+        vizName={"AxisBasic"}
+        maxWidth={500}
+        height={300}
+        caption={
+          <p>
+            Compute scales to map numeric values to a 2d canvas. Use custom
+            react components to render axes with react from this scales.
+          </p>
+        }
+      />
+      <p>
+        The code for those Y axis components is provided below. The following
+        examples will show how straightforward it is to tweak them to reach
+        other <b>chart styles</b>.
+      </p>
+      <Accordion startOpen={false} title="code for the Y axis react component">
         <CodeBlock code={snippet3} />
-        <p>Bringing this result:</p>
-        <ChartOrSandbox
-          vizName={"BoxDemoVertical"}
-          VizComponent={BoxDemoVerticalDemo}
-          maxWidth={110}
-          height={300}
-          caption="A box rendered in svg thanks to react"
-        />
-      </AccordionSection>
+      </Accordion>
+      <p>See the code of the graph below for the X axis implementation.</p>
 
-      <AccordionSection title={"Basic boxplot with React 🏁"} startOpen={true}>
-        <p>
-          Now we just have to apply the same idea for each group of the dataset.
-          We also need to add some axes to the chart as described in this{" "}
-          <Link href="/build-axis-with-react">dedicated post</Link>.
-        </p>
-        <p>
-          It leads us to this most basic boxplot built with react and d3.js 🎉:
-        </p>
-        <ChartOrSandbox
-          vizName={"BoxplotBasic"}
-          VizComponent={BoxplotBasicDemo}
-          maxWidth={600}
-          caption="Most basic boxplot made with d3.js and react"
-        />
-      </AccordionSection>
+      {/*
+      //
+      // First boxplot
+      //
+      */}
+      <h2 id="first boxplot">Basic boxplot with React</h2>
+      <p>
+        We now have all the ingredients to cook the final receipe. We have
+        everything to compute the summary statistics for each group of the
+        dataset, and <b>plot</b> the result with several boxes. We also know how
+        to compute <b>scales</b> and add some <b>axes</b> to the chart.
+      </p>
+      <p>Here is the final result:</p>
+      <ChartOrSandbox
+        vizName={"BoxplotBasic"}
+        VizComponent={BoxplotBasicDemo}
+        maxWidth={600}
+        caption={<p>A basic boxplot built with d3.js and React</p>}
+      />
+
+      {/*
+      //
+      // Responsiveness
+      //
+      */}
+      <ResponsiveExplanationSection chartId="boxplot" />
+
+      {/*
+      //
+      // Inspiration
+      //
+      */}
+      <DatavizInspirationParallaxLink chartId="boxplot" />
 
       <AccordionSection
         title={"Variation: violin to boxplot transition"}
@@ -283,4 +433,54 @@ export const getSummaryStats = (data: number[]) => {
 
   return {min, q1, median, q3, max}
 }
+`.trim();
+
+const snippetSkeleton = `
+import * as d3 from "d3"; // we will need d3.js
+
+type BoxplotProps = {
+  width: number;
+  height: number;
+  data: { name: string, value: number }[];
+};
+
+export const Boxplot = ({ width, height, data }: BoxplotProps) => {
+
+  // read the data
+  // compute summary statistics for each group
+  // compute scales
+  // build the boxes
+
+  return (
+    <div>
+      <svg width={width} height={height}>
+        // render all the boxes
+        // draw the axes
+      </svg>
+    </div>
+  );
+};
+`.trim();
+
+const snippet5 = `
+const scale = d3.scaleLinear()
+  .domain([0, 10]) // data goes from 0 to 10
+  .range([0, 200]); // axis goes from 0 to 200
+
+scale(0); // 0 -> item with a value of 0 will be at the extreme left of the axis
+scale(5); // 100 -> middle of the axis
+scale(10); // 200 -> extreme right
+`.trim();
+
+const snippetXScale = `
+const xScale = useMemo(() => {
+  return d3
+    .scaleBand()
+    .range([0, boundsWidth])
+    .domain(allXGroups)
+    .padding(0.01);
+}, [data, width]);
+
+// xScale("A") -> 0
+// xScale.bandwidth() -> 11
 `.trim();

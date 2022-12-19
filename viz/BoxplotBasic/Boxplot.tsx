@@ -24,9 +24,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
       number,
       number
     ];
-    const groups = data
-      .map((d) => d.name)
-      .filter((x, i, a) => a.indexOf(x) == i);
+    const groups = [...new Set(data.map((d) => d.name))];
     return { chartMin, chartMax, groups };
   }, [data]);
 
