@@ -10,6 +10,7 @@ import { DonutChartBasicDemo } from "../viz/DonutChartBasic/DonutChartBasicDemo"
 import Link from "next/link";
 import { DonutChartLegendDemo } from "../viz/DonutChartLegend/DonutChartLegendDemo";
 import { DonutChartHoverDemo } from "../viz/DonutChartHover/DonutChartHoverDemo";
+import { DonutDatasetTransitionDemo } from "viz/DonutDatasetTransition/DonutDatasetTransitionDemo";
 
 const graphDescription = (
   <p>
@@ -235,6 +236,14 @@ export default function Home() {
           caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
         />
       </AccordionSection>
+
+      <ChartOrSandbox
+        vizName={"DonutDatasetTransition"}
+        VizComponent={DonutDatasetTransitionDemo}
+        maxWidth={800}
+        height={400}
+        caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
+      />
 
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />

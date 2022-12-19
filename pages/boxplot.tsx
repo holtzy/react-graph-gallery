@@ -2,19 +2,17 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
-import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
 import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo";
 import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
-import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
-import { BoxplotJitterDemo } from "../viz/BoxplotJitter/BoxplotJitterDemo";
 import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { Accordion } from "component/UI/Accordion";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
+import { GraphLinkImage } from "component/UI/GraphLinkImage";
+import { ImageGrid } from "component/UI/ImageGrid";
 
 const graphDescription = (
   <>
@@ -266,6 +264,46 @@ export default function Home() {
       */}
       <DatavizInspirationParallaxLink chartId="boxplot" />
 
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variation">Boxplot variations</h2>
+      <p>
+        Even if powerful to summarize the distribution of a numeric variable,
+        the boxplot{" "}
+        <a href="https://www.data-to-viz.com/caveat/boxplot.html">has flaws</a>.
+      </p>
+      <p>
+        It basically <b>hides the underlying distribution</b>. For instance, a
+        low sample size or a bi-modal distribution are impossible to detect
+        reading the boxes only.
+      </p>
+      <p>
+        <b>Jittering</b> is a good workaround. Add all individual data points
+        with low size, low opacity, and some random shift to the right or to the
+        left (jitter). The underlying distribution becomes instantly available.
+      </p>
+      <p>
+        Note that another good alternative is the{" "}
+        <Link href="/violin-plot">violin plot</Link>, especially for high sample
+        size.
+      </p>
+
+      <ImageGrid>
+        <GraphLinkImage
+          link={"/example/boxplot-jitter"}
+          title={"Boxplot with jitter"}
+          description={
+            <p>Add individual data points using jitter on top of the boxplot</p>
+          }
+          img={"boxplot-jitter.png"}
+          alt="Picture of a boxplot with jitter built using react and d3.js"
+        />
+      </ImageGrid>
+
+      {/*
       <AccordionSection
         title={"Variation: violin to boxplot transition"}
         startOpen={false}
@@ -287,62 +325,11 @@ export default function Home() {
           height={300}
           caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
         />
-      </AccordionSection>
+      </AccordionSection> */}
 
-      <AccordionSection
-        title={"Variation: boxplot with jitter"}
-        startOpen={true}
-      >
-        <p>
-          Even if powerful to summarize the distribution of a numeric variable,
-          the boxplot{" "}
-          <a href="https://www.data-to-viz.com/caveat/boxplot.html">
-            has flaws
-          </a>
-          .
-        </p>
-        <p>
-          It basically <b>hides the underlying distribution</b>. For instance, a
-          low sample size or a bi-modal distribution are impossible to detect
-          reading the boxes only.
-        </p>
-        <p>
-          <b>Jittering</b> is a good workaround. Add all individual data points
-          with low size, low opacity, and some random shift to the right or to
-          the left (jitter). The underlying distribution becomes instantly
-          available.
-        </p>
-        <p>
-          Note that another good alternative is the{" "}
-          <Link href="/violin-plot">violin plot</Link>, especially for high
-          sample size.
-        </p>
-        <ChartOrSandbox
-          vizName={"BoxplotJitter"}
-          VizComponent={BoxplotJitterDemo}
-          maxWidth={600}
-          height={450}
-          caption={
-            <span>
-              Showing individual data points using jittering on top of your
-              boxplot adds trust. Reader now knows you're not{" "}
-              <a href="https://www.data-to-viz.com/caveat/boxplot.html">
-                hiding
-              </a>{" "}
-              anything.
-            </span>
-          }
-        />
-      </AccordionSection>
-
-      <br />
-      <br />
-      <br />
-      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
-
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
