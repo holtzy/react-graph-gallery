@@ -1,37 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
-
-export const buildViolinPath = (
-  data: number[],
-  yScale: d3.ScaleLinear<number, number, never>,
-  width: number
-) => {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-
-  const binBuilder = d3
-    .bin()
-    .domain([min, max])
-    .thresholds(yScale.ticks(14))
-    .value((d) => d);
-  const bins = binBuilder(data);
-
-  const biggestBin = Math.max(...bins.map((b) => b.length));
-
-  const wScale = d3
-    .scaleLinear()
-    .domain([-biggestBin, biggestBin])
-    .range([0, width]);
-
-  const areaBuilder = d3
-    .area()
-    .x0((d) => wScale(-d.length))
-    .x1((d) => wScale(d.length))
-    .y((d) => yScale(d.x0))
-    .curve(d3.curveBumpY);
-
-  return areaBuilder(bins);
-};
+import { VerticalViolinShape } from "./VerticalViolinShape";
 
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 
@@ -82,18 +51,15 @@ export const Violin = ({ width, height, data }: ViolinProps) => {
   // Build the shapes
   const allShapes = groups.map((group, i) => {
     const groupData = data.filter((d) => d.name === group).map((d) => d.value);
-    const path = buildViolinPath(groupData, yScale, xScale.bandwidth());
     return (
-      <path
-        key={i}
-        d={path}
-        transform={`translate(${xScale(group)},0)`}
-        opacity={1}
-        stroke="#9a6fb0"
-        fill="#9a6fb0"
-        fillOpacity={0.1}
-        strokeWidth={2}
-      />
+      <g key={i} transform={`translate(${xScale(group)},0)`}>
+        <VerticalViolinShape
+          data={groupData}
+          yScale={yScale}
+          width={xScale.bandwidth()}
+          binNumber={14}
+        />
+      </g>
     );
   });
 

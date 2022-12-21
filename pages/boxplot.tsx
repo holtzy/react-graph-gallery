@@ -99,7 +99,7 @@ export default function Home() {
 
       {/*
       //
-      // Summary statistics
+      // Box component
       //
       */}
       <h2 id="box component">A reusable box component 📦</h2>
