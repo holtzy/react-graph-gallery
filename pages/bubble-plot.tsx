@@ -258,12 +258,12 @@ export default function Home() {
       <p>
         It's important to note that the component does <b>not</b> expect any
         dimension as prop. The <code>width</code> and <code>height</code> of the
-        SVG element that is created will be computed fron the <code>scale</code>{" "}
+        SVG element that is created will be computed from the <code>scale</code>{" "}
         that is provided.
       </p>
       <p>
         As a result, you only need to think about the position of the legend on
-        your chart. Here is an example adding it at the bottom right of the
+        your chart. Here is an example of adding it at the bottom right of the
         chart.
       </p>
       <ChartOrSandbox
@@ -289,12 +289,12 @@ export default function Home() {
         This is possible thanks to the{" "}
         <a href="https://react-spring.dev/">react spring</a> library. Basically,
         instead of rendering usual <code>circle</code> elements, the library
-        provides a <code>animated.circle</code> element, that is linked to a{" "}
+        provides an <code>animated.circle</code> element, that is linked to a{" "}
         <code>useSpring</code>
         hook.
       </p>
       <p>
-        This is how the <code>Circle</code> component I use looks like:
+        This is what the <code>Circle</code> component I use looks like:
       </p>
       <Accordion
         startOpen={false}
@@ -312,11 +312,11 @@ export default function Home() {
         vizName={"BubblePlotDatasetTransition"}
         maxWidth={600}
         height={500}
-        caption="A bubble chart component that smoothly animate change between dataset."
+        caption="A bubble chart component that smoothly animates changes between datasets."
       />
       <p>
         <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
-        impossible to go in depth here! I will publish a dedicated blog post on
+        impossible to go in-depth here! I will publish a dedicated blog post on
         the topic soon. Please subscribe below if you want to be notified.
       </p>
       <div className={"py-7"}>
@@ -339,7 +339,7 @@ export default function Home() {
       </p>
       <br />
       <p>
-        The chart has several features that are interesting to reproduce fom a
+        The chart has several features that are interesting to reproduce from a
         technical point of view:
       </p>
       <ul>

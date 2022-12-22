@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
-import { data } from "./data";
-import { BubblePlot } from "./BubblePlot";
+import { BubblePlotDatasetTransition } from "./BubblePlotDatasetTransition";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<BubblePlot data={data} width={400} height={400} />, rootElement);
+ReactDOM.render(<BubblePlotDatasetTransition width={width} height={height} />, rootElement);

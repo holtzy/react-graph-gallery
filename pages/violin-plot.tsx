@@ -16,6 +16,7 @@ import { ViolinShapeVerticalDemo } from "viz/ViolinShapeVertical/ViolinShapeVert
 import { Accordion } from "component/UI/Accordion";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
+import { BoxplotViolinMirrorDemo } from "viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo";
 
 const graphDescription = (
   <>
@@ -334,6 +335,19 @@ export default function Home() {
         VizComponent={BoxplotToViolinTransitionDemo}
         maxWidth={600}
         height={300}
+        caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
+      />
+
+      <p>
+        To <b>boxplot</b> or to <b>violin plot</b>, this is the question 🤔.
+        <br />
+        Compare both chart types using the slider below.
+      </p>
+      <ChartOrSandbox
+        vizName={"BoxplotViolinMirror"}
+        VizComponent={BoxplotViolinMirrorDemo}
+        maxWidth={600}
+        height={600}
         caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
       />
 
