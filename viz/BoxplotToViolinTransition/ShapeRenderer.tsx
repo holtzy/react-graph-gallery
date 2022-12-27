@@ -6,9 +6,14 @@ import { useMemo, useRef } from "react";
 type ShapeRendererProps = {
   path: string;
   xTranslate?: number;
+  color: string;
 };
 
-export const ShapeRenderer = ({ path, xTranslate }: ShapeRendererProps) => {
+export const ShapeRenderer = ({
+  path,
+  xTranslate,
+  color,
+}: ShapeRendererProps) => {
   // keep track of last used pathD to interpolate from
   const currD = useRef(path);
 
@@ -36,9 +41,9 @@ export const ShapeRenderer = ({ path, xTranslate }: ShapeRendererProps) => {
       d={to(springProps.t, pathInterpolator)}
       transform={`translate(${xTranslate},0)`}
       opacity={springProps.opacity}
-      stroke="#9a6fb0"
-      fill="#9a6fb0"
-      fillOpacity={0.3}
+      stroke="black"
+      fill={color}
+      fillOpacity={0.8}
       strokeWidth={2}
     />
   );

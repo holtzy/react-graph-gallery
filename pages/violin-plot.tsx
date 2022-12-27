@@ -18,6 +18,7 @@ import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { BoxplotViolinMirrorDemo } from "viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo";
 import { ViolinBucketSizeEffectDemo } from "viz/ViolinBucketSizeEffect/ViolinBucketSizeEffectDemo";
+import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -146,7 +147,6 @@ export default function Home() {
         <a href="https://www.d3-graph-gallery.com/violin">d3 graph gallery</a>.
         Here is a summary and a reusable component:
       </p>
-
       <h3>
         &rarr; build the svg path with <code>d3.area()</code> and{" "}
         <code>curve()</code>
@@ -160,14 +160,12 @@ export default function Home() {
         transforming the histogram in a smooth density:
       </p>
       <CodeBlock code={snippet3} />
-
       <h3>&rarr; render the path with react</h3>
       <p>
         The code above provide a <code>string</code> that is a SVG{" "}
         <code>path</code>. We can thus render it with react:
       </p>
       <CodeBlock code={snippetDraw} />
-
       <h3>&rarr; reusable component</h3>
       <p>
         You can wrap this logic in a component to get something reusable, that
@@ -208,7 +206,6 @@ export default function Home() {
         component:
       </p>
       <CodeBlock code={snippetSkeleton} />
-
       {/*
       //
       // Axes
@@ -244,7 +241,6 @@ export default function Home() {
         </a>
         . It's a crucial concept that will be used everywhere in this website.
       </p>
-
       <h3>&rarr; Axes</h3>
       <p>
         Axes are rather complicated elements. They are composed of the main{" "}
@@ -278,7 +274,6 @@ export default function Home() {
         <CodeBlock code={snippet3} />
       </Accordion>
       <p>See the code of the graph below for the X axis implementation.</p>
-
       {/*
       //
       // First Violin plot
@@ -300,21 +295,18 @@ export default function Home() {
         maxWidth={600}
         height={400}
       />
-
       {/*
       //
       // Responsiveness
       //
       */}
       <ResponsiveExplanationSection chartId="violin" />
-
       {/*
       //
       // Inspiration
       //
       */}
       <DatavizInspirationParallaxLink chartId="violin" />
-
       {/*
       //
       // Bucket Size
@@ -348,40 +340,74 @@ export default function Home() {
       </p>
       {/*
       //
-      // Variations
+      // Boxplot comparison
       //
       */}
-      <h2 id="variation">Boxplot variations</h2>
+      <h2 id="variation">Comparison with a boxplot</h2>
       <p>
-        The react graph gallery has a{" "}
-        <Link href="/shape-morphism-for-dataviz-with-react">
-          dedicated blog post
-        </Link>{" "}
-        on shape morphism that showcases a boxplot to violin plot transition.
-        Here is the final result, but you should probably read it to understand
-        how it works!
+        The <b>boxplot</b> is an alternative to represent the exact same kind of
+        dataset. You can visit the <Link href="/boxplot">boxplot section</Link>{" "}
+        of the gallery or play with the interactive example below to understand
+        how those 2 options behave on the same dataset.
       </p>
-      <br />
-      <ChartOrSandbox
-        vizName={"BoxplotToViolinTransition"}
-        VizComponent={BoxplotToViolinTransitionDemo}
-        maxWidth={600}
-        height={300}
-        caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
-      />
 
       <p>
-        To <b>boxplot</b> or to <b>violin plot</b>, this is the question 🤔.
-        <br />
-        Compare both chart types using the slider below.
+        Use the slider to <b>switch</b> from the violin to the box. Play with
+        the sentence below the chart to toggle smoothing on the violin.
       </p>
       <ChartOrSandbox
         vizName={"BoxplotViolinMirror"}
         VizComponent={BoxplotViolinMirrorDemo}
         maxWidth={600}
         height={600}
+        caption="Compare how violins and boxplots look like for the same dataset."
+      />
+      {/*
+      //
+      // Animation
+      //
+      */}
+      <h2 id="animation">Animation</h2>
+      <p>
+        <b>Animating</b> the transition between 2 datasets, or from/to another
+        chart type is hard, because the violin plot is based on <b>SVG path</b>.
+        It is doable though and I'm working on a specific post that will be
+        released soon.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <img
+          src="/chart/violinBoxplotTransition.gif"
+          style={{ maxWidth: 500 }}
+          alt="schema explaining how histogram buckets are created from the original dataset"
+        />
+        <Caption>
+          Using shape morphism to transition between a boxplot and a violin
+          plot. Blog post coming soon!
+        </Caption>
+      </div>
+      <p className={"py-7"}>
+        If you're interested in this topic, feel free to subscribe below to be
+        informed when this post is available!
+      </p>
+      <div>
+        <SubscribeForm />
+      </div>
+
+      {/* <ChartOrSandbox
+        vizName={"BoxplotToViolinTransition"}
+        VizComponent={BoxplotToViolinTransitionDemo}
+        maxWidth={600}
+        height={500}
         caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
       />
+       */}
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />

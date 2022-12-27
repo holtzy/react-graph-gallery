@@ -3,6 +3,8 @@ import * as d3 from "d3";
 import { buildBoxplotPath, buildViolinPath } from "./util";
 import { ShapeRenderer } from "./ShapeRenderer";
 
+const COLORS = ["#e85252", "#6689c6", "#9a6fb0", "#a53253"];
+
 const buttonStyle = {
   border: "1px solid #9a6fb0",
   borderRadius: "3px",
@@ -12,7 +14,7 @@ const buttonStyle = {
   color: "#9a6fb0",
 };
 
-const MARGIN = { top: 10, right: 10, bottom: 75, left: 25 };
+const MARGIN = { top: 10, right: 10, bottom: 95, left: 25 };
 
 type BoxplotToViolinTransitionProps = {
   width: number;
@@ -42,12 +44,21 @@ export const BoxplotToViolinTransition = (
   }, [data]);
 
   // Compute scales
-  const yScale = d3.scaleLinear().domain([min, max]).range([boundsHeight, 0]);
+  const yScale = d3
+    .scaleLinear()
+    .domain([min, max])
+    .range([boundsHeight, 0])
+    .nice();
+
   const xScale = d3
     .scaleBand()
     .range([0, boundsWidth])
     .domain(groups)
     .padding(0.25);
+
+  const colorScale = useMemo(() => {
+    return d3.scaleOrdinal<string>().domain(groups).range(COLORS);
+  }, [data]);
 
   // Render the X and Y axis using d3.js, not react
   useEffect(() => {
@@ -76,6 +87,7 @@ export const BoxplotToViolinTransition = (
         xTranslate={xScale(group)}
         type={type}
         opacity={type === "boxplot" ? 1 : 0.1}
+        color={colorScale(group)}
       />
     );
   });

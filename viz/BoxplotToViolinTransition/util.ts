@@ -7,7 +7,7 @@ export const buildViolinPath = (data: number[], yScale: d3.ScaleLinear<number, n
 
   const binBuilder = d3.bin()
       .domain([min, max])
-      .thresholds(yScale.ticks(14))
+      .thresholds(yScale.ticks(20))
       .value((d) => d);
     const bins = binBuilder(data);
 

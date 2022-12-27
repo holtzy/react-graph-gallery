@@ -27,7 +27,12 @@ export const Violin = ({ width, height, data }: ViolinProps) => {
   }, [data]);
 
   // Compute scales
-  const yScale = d3.scaleLinear().domain([min, max]).range([boundsHeight, 0]);
+  const yScale = d3
+    .scaleLinear()
+    .domain([min, max])
+    .range([boundsHeight, 0])
+    .nice();
+
   const xScale = d3
     .scaleBand()
     .range([0, boundsWidth])
@@ -57,7 +62,7 @@ export const Violin = ({ width, height, data }: ViolinProps) => {
           data={groupData}
           yScale={yScale}
           width={xScale.bandwidth()}
-          binNumber={14}
+          binNumber={20}
         />
       </g>
     );
