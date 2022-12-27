@@ -17,6 +17,7 @@ import { Accordion } from "component/UI/Accordion";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { BoxplotViolinMirrorDemo } from "viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo";
+import { ViolinBucketSizeEffectDemo } from "viz/ViolinBucketSizeEffect/ViolinBucketSizeEffectDemo";
 
 const graphDescription = (
   <>
@@ -314,6 +315,37 @@ export default function Home() {
       */}
       <DatavizInspirationParallaxLink chartId="violin" />
 
+      {/*
+      //
+      // Bucket Size
+      //
+      */}
+      <h2 id="bucket size">Effect of the bucket size</h2>
+      <p>
+        It's important to understand that under the hood, a violin shape is
+        nothing else than a smoothed <Link href="/histogram">histogram</Link>.
+        You can use the sentence below the following chart to switch from one to
+        the other and understand the tight connection.
+      </p>
+      <p>
+        As a result the violin plot suffers the same{" "}
+        <a href="https://www.data-to-viz.com/graph/histogram.html">flaw</a> as
+        the histogram: its shape highly depends on the <b>number of buckets</b>{" "}
+        used for the computation. Use the slider to see the impact of the target
+        bucket number on the violin shape.
+      </p>
+      <ChartOrSandbox
+        vizName={"ViolinBucketSizeEffect"}
+        VizComponent={ViolinBucketSizeEffectDemo}
+        maxWidth={600}
+        height={600}
+        caption="Interactive violin plot: try to toggle smoothing and change the number of buckets in use."
+      />
+      <p>
+        <u>Note</u>: the requested number of buckets is a <b>target</b>. The{" "}
+        <code>bin()</code> function of d3 will create smart buckets{" "}
+        <b>around</b> this value.
+      </p>
       {/*
       //
       // Variations
