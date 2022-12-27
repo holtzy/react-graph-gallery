@@ -17,6 +17,7 @@ import { Accordion } from "component/UI/Accordion";
 import { SubscribeForm } from "component/SubscribeForm";
 import { Density2dHexbinDemo } from "viz/Density2dHexbin/Density2dHexbinDemo";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
+import { Density2dContourDemo } from "viz/Density2dContour/Density2dContourDemo";
 
 const graphDescription = (
   <>
@@ -258,6 +259,16 @@ export default function Home() {
       </p>
       <p>Click on the overview below to get details and code.</p>
       <br />
+      <ChartOrSandbox
+        VizComponent={Density2dContourDemo}
+        vizName={"Density2dContour"}
+        maxWidth={700}
+        height={700}
+        caption={
+          "How to build a bottom axis and a left axis component using React, used to render a d3 scale."
+        }
+      />
+
       <ImageGrid>
         <GraphLinkImage
           link={"example/histogram-with-several-groups"}

@@ -54,7 +54,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.comt/boxplot",
     reactURL: "https://react-graph-gallery.com/boxplot",
     label: "Boxplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "ridgeline",

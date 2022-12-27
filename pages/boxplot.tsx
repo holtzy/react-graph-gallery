@@ -19,16 +19,16 @@ const graphDescription = (
     <p>
       A <a href="https://www.data-to-viz.com/graph/boxplot.html">boxplot</a>{" "}
       summarizes the distribution of a numeric variable, often for several
-      groups of a dataset. This page is a step-by-step guide on how to build
-      your own boxplot component for the web, using{" "}
+      groups of a dataset. This page is a step-by-step guide on how to build a
+      reusable boxplot component for the web using{" "}
       <a href="https://reactjs.org/">React</a> and{" "}
       <a href="https://d3-graph-gallery.com/boxplot">D3.js</a>.
     </p>
     <p>
-      It starts by describing how the <b>data</b> should be organized and how to
-      initialize the <b>boxplot component</b>. It then explains how to create a
-      Box component that displays a single box. Finally, it shows how to render
-      the boxplot and suggests a few variations. 🙇‍♂️.
+      It starts by describing how to format the <b>dataset</b> and how to
+      initialize the <b>boxplot component</b>. It then explains how to create a{" "}
+      <code>Box</code> component that displays a single box. Finally, it shows
+      how to render the boxplot and suggests a few variations. 🙇‍♂️.
     </p>
   </>
 );
@@ -59,10 +59,10 @@ export default function Home() {
       */}
       <h2 id="data">The Data 💾</h2>
       <p>
-        The dataset used to build a boxplot is usually an array of object. For
+        The dataset used to build a boxplot is usually an array of objects. For
         each object, a <code>name</code> property provides the group name, and a{" "}
-        <code>value</code> property provides the numeric value. It basically
-        looks like this:
+        <code>value</code> property provides the numeric value. It looks like
+        this:
       </p>
       <CodeBlock code={snippet1} />
 
@@ -73,8 +73,11 @@ export default function Home() {
       */}
       <h2 id="Summary stats">Summary statistics 🔨</h2>
       <p>
-        A boxplot is based on <b>summary statistics</b>. For a set of values it
-        displays:
+        A boxplot is based on{" "}
+        <a href="https://www.data-to-viz.com/caveat/boxplot.html">
+          summary statistics
+        </a>
+        . For a set of values it displays:
       </p>
       <ul>
         <li>
@@ -93,8 +96,8 @@ export default function Home() {
       </p>
       <CodeBlock code={snippet4} />
       <p>
-        This function is going to be handy. Now we want to draw a box with those
-        values.
+        This function is going to be handy. Now we want to draw a box
+        representing those values.
       </p>
 
       {/*
@@ -168,7 +171,7 @@ export default function Home() {
       <h2 id="scales and axes">Scales and axes</h2>
       <h3>&rarr; Scales</h3>
       <p>
-        Building a boxplot requires to transform a <b>dimension</b> (e.g. a
+        Building a boxplot requires transforming a <b>dimension</b> (e.g. a
         numeric variable or a group name) in a <b>position in pixels</b>. This
         is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
@@ -206,7 +209,7 @@ export default function Home() {
         Here I suggest creating the axes from scratch and storing them in 2
         react components called <code>AxisBottom</code> and{" "}
         <code>AxisLeft</code>. Those components expect a d3 scale as input and
-        do all the svg drawing for us.
+        do all the SVG drawings for us.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
@@ -221,14 +224,17 @@ export default function Home() {
         }
       />
       <p>
-        The code for those Y axis components is provided below. The following
+        The code for the Y axis component is provided below. The following
         examples will show how straightforward it is to tweak them to reach
         other <b>chart styles</b>.
       </p>
       <Accordion startOpen={false} title="code for the Y axis react component">
         <CodeBlock code={snippet3} />
       </Accordion>
-      <p>See the code of the graph below for the X axis implementation.</p>
+      <p>
+        The X axis implementation is very similar. Check the code of the chart
+        below to read it.
+      </p>
 
       {/*
       //
@@ -237,17 +243,26 @@ export default function Home() {
       */}
       <h2 id="first boxplot">Basic boxplot with React</h2>
       <p>
-        We now have all the ingredients to cook the final receipe. We have
+        We now have all the ingredients to cook the final recipe. We have
         everything to compute the summary statistics for each group of the
         dataset, and <b>plot</b> the result with several boxes. We also know how
         to compute <b>scales</b> and add some <b>axes</b> to the chart.
+      </p>
+      <p>
+        So it is just a matter of <b>looping</b> through all the groups of the
+        dataset and drawing a box for each.
       </p>
       <p>Here is the final result:</p>
       <ChartOrSandbox
         vizName={"BoxplotBasic"}
         VizComponent={BoxplotBasicDemo}
         maxWidth={600}
-        caption={<p>A basic boxplot built with d3.js and React</p>}
+        caption={
+          <p>
+            Most basic boxplot built with d3.js and React. D3 is used to compute
+            summary statistics and scales. React is used for rendering.
+          </p>
+        }
       />
 
       {/*
@@ -276,19 +291,19 @@ export default function Home() {
         <a href="https://www.data-to-viz.com/caveat/boxplot.html">has flaws</a>.
       </p>
       <p>
-        It basically <b>hides the underlying distribution</b>. For instance, a
-        low sample size or a bi-modal distribution are impossible to detect
+        It indeed <b>hides the underlying distribution</b>. For instance, a low
+        sample size or a bi-modal distribution is impossible to detect by
         reading the boxes only.
       </p>
       <p>
         <b>Jittering</b> is a good workaround. Add all individual data points
-        with low size, low opacity, and some random shift to the right or to the
+        with low size, low opacity, and some random shift to the right or the
         left (jitter). The underlying distribution becomes instantly available.
       </p>
       <p>
         Note that another good alternative is the{" "}
-        <Link href="/violin-plot">violin plot</Link>, especially for high sample
-        size.
+        <Link href="/violin-plot">violin plot</Link>, especially for a high
+        sample size.
       </p>
 
       <ImageGrid>
@@ -452,7 +467,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
 const snippet5 = `
 const scale = d3.scaleLinear()
   .domain([0, 10]) // data goes from 0 to 10
-  .range([0, 200]); // axis goes from 0 to 200
+  .range([0, 200]); // axis goes from 0 to 200 pixels
 
 scale(0); // 0 -> item with a value of 0 will be at the extreme left of the axis
 scale(5); // 100 -> middle of the axis
