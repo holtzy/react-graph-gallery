@@ -69,7 +69,7 @@ export default function Home() {
         the datapoint on the horizontal axis. The value of <code>y</code> will
         be linked with the vertical axis.
       </p>
-      <CodeBlock code={snippet1} />
+      <CodeBlock code={snippetData} />
       <p>
         We will see later in this guide that some additional properties can
         become useful. For instance, a third numeric value could be added as a{" "}
@@ -183,10 +183,10 @@ export default function Home() {
         reach other <b>chart styles</b>.
       </p>
       <Accordion startOpen={false} title="code for the X axis react component">
-        <CodeBlock code={snippet2} />
+        <CodeBlock code={snippetXAxis} />
       </Accordion>
       <Accordion startOpen={false} title="code for the Y axis react component">
-        <CodeBlock code={snippet3} />
+        <CodeBlock code={snippetYAxis} />
       </Accordion>
       <p>
         <br />
@@ -482,7 +482,7 @@ export default function Home() {
   );
 }
 
-const snippet1 = `
+const snippetData = `
 const data = [
   {
     x: 2,
@@ -495,7 +495,7 @@ const data = [
 ]
 `.trim();
 
-const snippet2 = `
+const snippetXAxis = `
 import { useMemo } from "react";
 import { ScaleLinear } from "d3";
 
@@ -550,17 +550,62 @@ export const AxisBottom = ({ xScale, pixelsPerTick }: AxisBottomProps) => {
 };
 `.trim();
 
-const snippet3 = `
-const data = [
-  {
-    x: 2,
-    y: 4
-  },
-  {
-    x: 8,
-    y: 5
-  }
-]
+const snippetYAxis = `
+import { useMemo } from "react";
+import { ScaleLinear } from "d3";
+
+type AxisLeftProps = {
+  yScale: ScaleLinear<number, number>;
+  pixelsPerTick: number;
+  width: number;
+};
+
+const TICK_LENGTH = 10;
+
+export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
+  const range = yScale.range();
+
+  const ticks = useMemo(() => {
+    const height = range[0] - range[1];
+    const numberOfTicksTarget = Math.floor(height / pixelsPerTick);
+
+    return yScale.ticks(numberOfTicksTarget).map((value) => ({
+      value,
+      yOffset: yScale(value),
+    }));
+  }, [yScale]);
+
+  return (
+    <>
+      {/* Ticks and labels */}
+      {ticks.map(({ value, yOffset }) => (
+        <g
+          key={value}
+          transform={"translate(0, {yOffset})"} // TODO struggling with back ticks
+          shapeRendering={"crispEdges"}
+        >
+          <line
+            x1={-TICK_LENGTH}
+            x2={width + TICK_LENGTH}
+            stroke="#D2D7D3"
+            strokeWidth={0.5}
+          />
+          <text
+            key={value}
+            style={{
+              fontSize: "10px",
+              textAnchor: "middle",
+              transform: "translateX(-20px)",
+              fill: "#D2D7D3",
+            }}
+          >
+            {value}
+          </text>
+        </g>
+      ))}
+    </>
+  );
+};
 `.trim();
 
 const snippet4 = `
