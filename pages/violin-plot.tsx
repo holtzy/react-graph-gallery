@@ -78,7 +78,7 @@ export default function Home() {
         The dataset used to build a violin chart is usually an{" "}
         <b>array of object</b>. For each object, a <code>name</code> property
         provides the group name, and a <code>value</code> property provides the
-        numeric value. It basically looks like this:
+        numeric value. It looks like this:
       </p>
       <CodeBlock code={snippet1} />
       <p>
@@ -95,9 +95,9 @@ export default function Home() {
       <h2 id="binning">Computing the distribution buckets</h2>
       <p>
         Each violin shape is actually almost the same thing as a{" "}
-        <Link href="/histogram">histogram</Link>. To build it we first have to
+        <Link href="/histogram">histogram</Link>. To build it we first have to{" "}
         <b>bin</b> the numeric values of a group, which means creating{" "}
-        <b>buckets</b>,<b>assigning</b> values to them and <b>counting</b> the
+        <b>buckets</b>, <b>assigning</b> values to them and <b>counting</b> the
         number of elements per bin:
       </p>
       <div className="flex flex-col items-center mt-8 mb-12">
@@ -113,7 +113,7 @@ export default function Home() {
         </Caption>
       </div>
       <p>
-        I've summarized the process to get those bins in the{" "}
+        I summarized the process to get those bins in the{" "}
         <Link href="/histogram/#binning">histogram binning section</Link>. I
         strongly advise to take a look before reading the rest of this blog
         post.
@@ -150,15 +150,17 @@ export default function Home() {
       <p>
         The bins object computed above is all we need to draw an histogram since
         the <code>length</code>
-        of each bin is the actual size of the bar. This is possible thanks to
-        the <code>area()</code> function that can be called as follow. Last but
-        not leas the <code>curve()</code> call adds some smoothing to the shape,
-        transforming the histogram in a smooth density:
+        of each bin is the actual size of the bar. Drawing is possible thanks to
+        the <code>area()</code> function that can be called as follow.
       </p>
       <CodeBlock code={snippet3} />
+      <p>
+        Note that the <code>curve()</code> function adds some smoothing to the
+        shape, transforming the histogram in a smooth density.
+      </p>
       <h3>&rarr; render the path with react</h3>
       <p>
-        The code above provide a <code>string</code> that is a SVG{" "}
+        The code above provides a <code>string</code> that is a SVG{" "}
         <code>path</code>. We can thus render it with react:
       </p>
       <CodeBlock code={snippetDraw} />
@@ -210,7 +212,7 @@ export default function Home() {
       <h2 id="scales and axes">Scales and axes</h2>
       <h3>&rarr; Scales</h3>
       <p>
-        Building a boxplot requires to transform a <b>dimension</b> (e.g. a
+        Building a violin plot requires to transform a <b>dimension</b> (e.g. a
         numeric variable or a group name) in a <b>position in pixels</b>. This
         is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
@@ -261,15 +263,15 @@ export default function Home() {
           </p>
         }
       />
-      <p>
-        The code for those Y axis components is provided below. The following
-        examples will show how straightforward it is to tweak them to reach
-        other <b>chart styles</b>.
-      </p>
+      <p>The code for the Y axis components is provided below:</p>
       <Accordion startOpen={false} title="code for the Y axis react component">
         <CodeBlock code={snippetYAxis} />
       </Accordion>
-      <p>See the code of the graph below for the X axis implementation.</p>
+      <p>
+        See the code of the graph below for the X axis implementation. I'll post
+        an article dedicated to scales and axes in the{" "}
+        <Link href="/subscribe">near future</Link>.
+      </p>
       {/*
       //
       // First Violin plot
@@ -277,8 +279,8 @@ export default function Home() {
       */}
       <h2 id="first violin plot">First violin plot</h2>
       <p>
-        There is nothing special to notice concerning the rendering. Each violin
-        svg path built is passed to a svg <code>path</code> element in its{" "}
+        Rendering is made thanks to the react <code>jsx</code> syntax. Each
+        violin path is passed to a SVG <code>path</code> element in its{" "}
         <code>d</code> attribute.
       </p>
       <p>

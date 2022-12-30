@@ -24,7 +24,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/violin",
     reactURL: "https://react-graph-gallery.com/violin-plot",
     label: "Violin",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "density",

@@ -41,7 +41,7 @@ export const VerticalViolinShape = ({
 
   return (
     <path
-      d={areaPath}
+      d={areaPath || undefined}
       opacity={1}
       stroke="#9a6fb0"
       fill="#9a6fb0"
