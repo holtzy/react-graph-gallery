@@ -13,11 +13,13 @@ const yScale = d3.scaleLinear().domain([-2, 12]).range([400, 0]);
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-  <VerticalViolinShape
-    width={400}
-    yScale={yScale}
-    data={data}
-    binNumber={10}
-  />,
+  <svg style={{ width: 400, height: 400 }}>
+    <VerticalViolinShape
+      width={400}
+      yScale={yScale}
+      data={data}
+      binNumber={10}
+    />
+  </svg>,
   rootElement
 );
