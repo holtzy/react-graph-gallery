@@ -28,7 +28,6 @@ type DensityChartProps = {
 
 export const DensityChart = ({ width, height, data }: DensityChartProps) => {
   const xScale = useMemo(() => {
-    const max = Math.max(...data);
     return d3
       .scaleLinear()
       .domain([0, 1000]) // note: limiting to 1000 instead of max here because of extreme values in the dataset
@@ -37,7 +36,10 @@ export const DensityChart = ({ width, height, data }: DensityChartProps) => {
 
   // Compute kernel density estimation
   const density = useMemo(() => {
-    const kde = kernelDensityEstimator(kernelEpanechnikov(7), xScale.ticks(40));
+    const kde = kernelDensityEstimator(
+      kernelEpanechnikov(10),
+      xScale.ticks(40)
+    );
     return kde(data);
   }, [xScale]);
 

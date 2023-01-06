@@ -2,32 +2,246 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import Contact from "../component/Contact";
-import { data } from "../viz/HeatmapBasic/data";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { Heatmap as HeatmapBasic } from "../viz/HeatmapBasic/Heatmap";
-import { HeatmapBasicDemo } from "../viz/HeatmapBasic/HeatmapBasicDemo";
-import { HeatmapVaccinationDemo } from "../viz/HeatmapVaccination/HeatmapVaccinationDemo";
-import { HeatmapTooltipDemo } from "../viz/HeatmapTooltip/HeatmapHeatmapTooltipDemo";
 import { DensityChartBasicDemo } from "../viz/DensityChartBasic/DensityChartBasicDemo";
 import { DensityChartWithAxisDemo } from "../viz/DensityChartWithAxis/DensityChartWithAxisDemo";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
+import Link from "next/link";
+import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
-  <p>
-    This page explains how to build a{" "}
-    <a href="https://www.data-to-viz.com/graph/density.html">density plot</a>{" "}
-    using
-    <code>react</code> and <code>d3.js</code>. It starts by describing how the
-    input data must be formatted, and then explains how to compute a density
-    from it. Last but not least, it shows how to plot the result and suggests
-    some variations.
-  </p>
+  <>
+    <p>
+      A{" "}
+      <a href="https://www.data-to-viz.com/graph/density.html">density plot</a>{" "}
+      is a chart type that shows the distribution of a numeric variable. This
+      page is a step-by-step guide on how to build your own density plot for the
+      web, using <a href="https://reactjs.org/">React</a> and{" "}
+      <a href="https://d3-graph-gallery.com/density.html">D3.js</a>.
+    </p>
+    <p>
+      It starts by describing how the <b>data</b> should be organized and how to
+      initialize the <b>density component</b>. It then explains how to compute a{" "}
+      <b>kernel density</b>. Once this is done, it shows how to render the
+      density shape and suggests a few variations. 🙇‍♂️.
+    </p>
+  </>
 );
 
-const snippet1 = `
+export default function Home() {
+  return (
+    <Layout
+      title="Density chart with React"
+      seoDescription="How to build a density plot with React and D3.js. A set of re-usable components"
+    >
+      <TitleAndDescription
+        title={
+          <h1>
+            Density chart{" "}
+            <span className="text-gray-600 font-light hidden sm:inline">
+              with React and d3.js
+            </span>
+          </h1>
+        }
+        description={graphDescription}
+        chartType="density"
+      />
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">The Data</h2>{" "}
+      <p>Building a density chart only requires a set of numeric values.</p>
+      <p>
+        As a result, the dataset is pretty simple: just an <code>array</code> of{" "}
+        <code>number</code>.
+      </p>
+      <br />
+      <p>Here is a minimal example of the data structure:</p>
+      <CodeBlock code={snippetData} />
+      {/*
+      //
+      // Skeleton
+      //
+      */}
+      <h2 id="skeleton">Component skeleton</h2>
+      <p>
+        The goal here is to create a <code>Density</code> component that will be
+        stored in a <code>Density.tsx</code> file. This component requires 3
+        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        <code>data</code>.
+      </p>
+      <p>
+        The shape of the <code>data</code> is described above. The{" "}
+        <code>width</code> and <code>height</code> will be used to render an{" "}
+        <code>svg</code> element in the DOM, in which we will insert the
+        histogram.
+      </p>
+      <p>
+        To put it in a nutshell, that's the skeleton of our <code>Density</code>{" "}
+        component:
+      </p>
+      <CodeBlock code={snippetSkeleton} />
+      <p>
+        It's fundamental to understand that with this code organization, d3.js
+        will be used to prepare the SVG <code>circle</code>, but it's React that
+        will render them in the <code>return()</code> statement. We won't use d3
+        methods like <code>append</code> that you can find in usual{" "}
+        <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
+      </p>
+      {/*
+      //
+      // Kernel density
+      //
+      */}
+      <h2 id="kernel density">Kernel density</h2>
+      <h3>&rarr; Definition</h3>
+      <p>
+        <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">
+          Kernel density estimation
+        </a>{" "}
+        is a method of estimating the <b>probability distribution</b> of a
+        random variable based on a random sample.
+      </p>
+      <p>
+        Density is a bit like constructing a{" "}
+        <Link href="/histogram">histogram</Link>, but with a smoothing step.
+      </p>
+      <p>
+        With the correct choice of <b>bandwidth</b>, important features of the
+        distribution can be seen, while an incorrect choice results in
+        undersmoothing or oversmoothing and obscured features.
+      </p>
+      <h3>&rarr; Implementation</h3>
+      <p>
+        The implementation I'm using here comes from{" "}
+        <a href="https://bl.ocks.org/mbostock/4341954">this block</a> by Mike
+        Bostock.
+      </p>
+      <p>Here is how the formulas look like:</p>
+      <p>
+        <CodeBlock code={snippet2} />
+      </p>
+      <h3>&rarr; Computing the density</h3>
+      <p>
+        You don't have to understand each row of this code, but you have to
+        understand how to use it.
+      </p>
+      <p>
+        Everything starts with a set of numeric values (the data we want to
+        study) and a set of buckets. The more buckets you create, the smoother
+        the density will be.
+      </p>
+      <CodeBlock code={snippet3} />
+      <p>
+        We can now create a function that computes a density from a dataset,
+        given some buckets:
+      </p>
+      <CodeBlock code={snippet4} />
+      <p>And finally compute the density for our dataset:</p>
+      <CodeBlock code={snippet5} />
+      <h3>&rarr; Density object format</h3>
+      <p>
+        The result is an array of arrays. Its length with the same length as the
+        number of bucket + 1. In our example it looks like:
+      </p>
+      <CodeBlock code={snippet6} />
+      <p>
+        The first item of each array is the lower bound of the bucket. We will
+        use it for the X axis. The second item is the value of the density in
+        this bucket. It will be used for the Y axis.
+      </p>
+      {/*
+      //
+      // First density
+      //
+      */}
+      <h2 id="first density">First density plot</h2>{" "}
+      <p>
+        Now that the density coordinates are available, it's just a matter of
+        creating the <code>path</code> of a <code>svg</code> shape.
+      </p>
+      <p>
+        Fortunately, d3 comes with the handy <code>d3.line()</code> function
+        that allows to go from a set of coordinates to a path easily. In order
+        to keep the smoothing, you can use the <code>.curve()</code> attribute
+        as described in the code below:
+      </p>
+      <CodeBlock code={snippetPath} />
+      <p>
+        This <code>path</code> is a string that can be passed to the{" "}
+        <code>d</code> attribute of a svg element:
+      </p>
+      <CodeBlock code={snippetDrawing} />
+      <p>And that's it, a first density chart is now available:</p>
+      <ChartOrSandbox
+        VizComponent={DensityChartBasicDemo}
+        vizName={"DensityChartBasic"}
+        maxWidth={600}
+        height={300}
+        caption={
+          "Most basic density chart made with react and d3.js. Almost there, we we miss the axes here."
+        }
+      />
+      {/*
+      //
+      // Axis
+      //
+      */}
+      <h2 id="Axis">Axis</h2>{" "}
+      <p>
+        The density chart above is pretty useless since we have no clue on what
+        the X and Y axes represent. We need to display the <b>bucket values</b>{" "}
+        of the X axis to make the chart insightful. The Y axis does not matter
+        that much, since it just provides the kernel density value of the bucket
+        which goes from 0 to 1.
+      </p>
+      <p>
+        There are several ways to add axes to charts in React. The process is
+        extensively described in this{" "}
+        <Link href="/build-axis-with-react">axes dedicated post</Link>. To put
+        it in a nutshell, some <b>margins</b> need to be added around the plot
+        area, a<code>scaleLinear</code> is built with d3 and a custom{" "}
+        <code>AxisBottom</code> component is used to draw the axis from the
+        scale.
+      </p>
+      <p>
+        That's the result, a first <b>reusable density plot</b> component:
+      </p>
+      <ChartOrSandbox
+        VizComponent={DensityChartWithAxisDemo}
+        vizName={"DensityChartWithAxis"}
+        maxWidth={600}
+        height={300}
+        caption={
+          "Adding a X axis with d3 makes the chart much more insightful."
+        }
+      />
+      {/*
+      //
+      // Responsiveness
+      //
+      */}
+      <ResponsiveExplanationSection chartId="density" />
+      {/*
+      //
+      // Inspiration
+      //
+      */}
+      <DatavizInspirationParallaxLink chartId="density" />
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      <ChartFamilySection chartFamily="distribution" />
+      <div className="mt-20" />
+      <Contact />
+    </Layout>
+  );
+}
+
+const snippetData = `
 export const data = [
   75.0,
   104.0,
@@ -77,160 +291,48 @@ const snippet6 = `
 ]
 `.trim();
 
-export default function Home() {
+const snippetSkeleton = `
+import * as d3 from "d3"; // we will need d3.js
+
+type DensityProps = {
+  width: number;
+  height: number;
+  data: number[];
+};
+
+export const Density = ({ width, height, data }: DensityProps) => {
+
+  // read the data
+  // Compute kernel density
+  // build the scales
+  // draw the shape
+
   return (
-    <Layout
-      title="Density chart with React"
-      seoDescription="How to build a density plot with React and D3.js. A set of re-usable components"
-    >
-      <TitleAndDescription
-        title="Density chart"
-        description={graphDescription}
-        chartType="density"
-      />
-
-      <AccordionSection title={"Dataset"} startOpen={true}>
-        <p>Building a density chart only requires a set of numeric values.</p>
-        <p>
-          As a result, the dataset is pretty simple: it is simply an{" "}
-          <code>array</code> of <code>number</code>.
-        </p>
-        <br />
-        <p>Here is a minimal example of the data structure:</p>
-
-        <CodeBlock code={snippet1} />
-      </AccordionSection>
-
-      <AccordionSection title={"Kernel density estimation"} startOpen={true}>
-        <h3>&rarr; Definition</h3>
-        <p>
-          <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">
-            Kernel density estimation
-          </a>{" "}
-          is a method of estimating the probability distribution of a random
-          variable based on a random sample.
-        </p>
-        <p>
-          Density is a bit like constructing a histogram, but with a smoothing
-          step.
-        </p>
-        <p>
-          With the correct choice of bandwidth, important features of the
-          distribution can be seen, while an incorrect choice results in
-          undersmoothing or oversmoothing and obscured features
-        </p>
-
-        <h3>&rarr; Implementation</h3>
-        <p>
-          The implementation I'm using here comes from{" "}
-          <a href="https://bl.ocks.org/mbostock/4341954">this block</a> by Mike
-          Bostock.
-        </p>
-        <p>Here is how the formulas look like:</p>
-        <p>
-          <CodeBlock code={snippet2} />
-        </p>
-
-        <h3>&rarr; Computing the density</h3>
-        <p>
-          You don't have to understand each row of this code, but you have to
-          understand how to use it.
-        </p>
-        <p>
-          Everything starts with a set of numeric values (the data we want to
-          study) and a set of buckets. The more buckets you create, the smoother
-          the density will be.
-        </p>
-        <CodeBlock code={snippet3} />
-        <p>
-          We can now create a function that computes a density from a dataset,
-          given some buckets:
-        </p>
-        <CodeBlock code={snippet4} />
-        <p>And finally compute the density for our dataset:</p>
-        <CodeBlock code={snippet5} />
-
-        <h3>&rarr; Density object format</h3>
-        <p>
-          The result is an array of arrays. Its length with the same length as
-          the number of bucket + 1. In our example it looks like:
-        </p>
-        <CodeBlock code={snippet6} />
-        <p>
-          The first item of each array is the lower bound of the bucket. We will
-          use it for the X axis. The second item is the value of the density in
-          this bucket. It will be used for the Y axis.
-        </p>
-      </AccordionSection>
-
-      <AccordionSection title={"Plotting this density"} startOpen={true}>
-        <p>
-          Now that the density coordinates are available, it's just a matter of
-          creating the <code>path</code> of a <code>svg</code> shape.
-        </p>
-        <p>
-          Fortunately, d3 comes with the handy <code>d3.line()</code> function
-          that allows to go from a set of coordinates to a path easily. In order
-          to keep the smoothing, you can use the <code>.curve()</code> attribute
-          as described in the code below.
-        </p>
-        <br />
-        <ChartOrSandbox
-          VizComponent={DensityChartBasicDemo}
-          vizName={"DensityChartBasic"}
-          maxWidth={600}
-          height={300}
-          caption={
-            "Most basic density chart made with react and d3.js. Almost there, we we miss the axes here."
-          }
-        />
-      </AccordionSection>
-
-      <AccordionSection title={"Adding axis"} startOpen={true}>
-        <p>
-          The density chart above is pretty useless since we have no clue on
-          what the X axis represents. We need to display the bucket values to
-          make the chart insightful.
-        </p>
-        <p>
-          There are 2 main strategies to add axis to a react chart made with
-          d3.js. This process is extensively described{" "}
-          <a href="https://www.react-graph-gallery.com/build-axis-with-react">
-            here
-          </a>
-          .
-        </p>
-        <p>
-          In the example below, I chosed to use the d3 way to render the X axis
-          only:
-        </p>
-        <br />
-        <ChartOrSandbox
-          VizComponent={DensityChartWithAxisDemo}
-          vizName={"DensityChartWithAxis"}
-          maxWidth={600}
-          height={300}
-          caption={
-            "Adding a X axis with d3 makes the chart much more insightful."
-          }
-        />
-      </AccordionSection>
-
-      <ResponsiveExplanationSection chartId="density" />
-
-      <AccordionSection
-        title={"Density chart with multiple groups"}
-        startOpen={true}
-      >
-        <p>Coming soon!</p>
-        <br />
-      </AccordionSection>
-
-      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
-      <ChartFamilySection chartFamily="distribution" />
-
-      <div className="mt-20" />
-      <Contact />
-    </Layout>
+    <div>
+      <svg width={width} height={height}>
+        // render the shape
+      </svg>
+    </div>
   );
-}
+};
+`.trim();
+
+const snippetPath = `
+const lineGenerator = d3
+    .line()
+    .x((d) => xScale(d[0]))
+    .y((d) => yScale(d[1]))
+    .curve(d3.curveBasis);
+
+const path = lineGenerator(density);
+`.trim();
+
+const snippetDrawing = `
+<svg width={width} height={height}>
+  <path
+    d={path}
+    fill="#9a6fb0"
+    ...
+  />
+</svg>
+`.trim();
