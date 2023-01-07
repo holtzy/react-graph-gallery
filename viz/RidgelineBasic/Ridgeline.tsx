@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 90, right: 30, bottom: 40, left: 120 };
+const MARGIN = { top: 90, right: 30, bottom: 60, left: 120 };
 const X_LIMITS = [-20, 120];
 const X_SCALE_PADDING = 20;
 const DENSITY_BAND_HEIGHT = 100;

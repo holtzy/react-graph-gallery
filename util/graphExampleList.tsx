@@ -178,13 +178,13 @@ export const graphExampleList: GraphExample[] = [
     img: "densityMultipleGroups.png",
     alt: "Picture of a density plot with multiple groups",
   },
-  //   {
-  //     link: "",
-  //     title: "",
-  //     description: "",
-  //     img: "",
-  //     alt: "",
-  //   },
+  {
+    link: "ridgeline",
+    title: "Basic ridgeline chart",
+    description: "Most basic version of a ridgeline plot",
+    img: "ridgelineBasic.png",
+    alt: "Picture of a basic ridgeline chart built with react and d3",
+  },
   //   {
   //     link: "",
   //     title: "",

@@ -74,7 +74,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/ridgeline",
     reactURL: "https://react-graph-gallery.com/ridgeline",
     label: "Ridgeline",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "scatter",
