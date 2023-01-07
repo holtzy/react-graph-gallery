@@ -11,7 +11,7 @@ import SectionLogo from "./SectionLogo";
 type TitleAndDescription = {
   title: string | JSX.Element;
   description: JSX.Element;
-  chartType?: ChartId;
+  chartType?: ChartId | "all";
   showSectionLink?: boolean;
   showInspirationLink?: boolean;
   showD3GalleryLink?: boolean;

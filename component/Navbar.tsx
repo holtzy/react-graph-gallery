@@ -25,6 +25,11 @@ export default function Navbar() {
                 How to...
               </span>
             </Link> */}
+            <Link href="all">
+              <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
+                All
+              </span>
+            </Link>
             <span
               onClick={() => setIsAllSectionModalOpen(true)}
               className="hidden sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer hover:text-reactGallery hiden"
