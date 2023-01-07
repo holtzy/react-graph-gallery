@@ -145,16 +145,21 @@ export default function Home() {
       <CodeBlock code={snippet4} />
       <p>And finally compute the density for our dataset:</p>
       <CodeBlock code={snippet5} />
+      <blockquote className="mt-2">
+        Note that 2 parameters have an impact on the estimate’s smoothness.{" "}
+        <code>buckets</code> is the array of tresholds. <code>7</code> is an
+        arbitrary bandwidth. I'm not sure how to optimize those values yet.{" "}
+      </blockquote>
       <h3>&rarr; Density object format</h3>
       <p>
-        The result is an array of arrays. Its length with the same length as the
-        number of bucket + 1. In our example it looks like:
+        The result is an <b>array of arrays</b>. Its length is the same length
+        as the number of bucket + 1. In our example it looks like:
       </p>
       <CodeBlock code={snippet6} />
       <p>
-        The first item of each array is the lower bound of the bucket. We will
-        use it for the X axis. The second item is the value of the density in
-        this bucket. It will be used for the Y axis.
+        The first item of each array is the <b>lower bound</b> of the bucket. We
+        will use it for the X axis. The second item is the <b>value</b> of the
+        density in this bucket. It will be used for the Y axis.
       </p>
       {/*
       //
@@ -167,10 +172,11 @@ export default function Home() {
         creating the <code>path</code> of a <code>svg</code> shape.
       </p>
       <p>
-        Fortunately, d3 comes with the handy <code>d3.line()</code> function
-        that allows to go from a set of coordinates to a path easily. In order
-        to keep the smoothing, you can use the <code>.curve()</code> attribute
-        as described in the code below:
+        Fortunately, <a href="https://github.com/d3/d3-shape#lines">d3</a> comes
+        with the handy <code>d3.line()</code> function that allows to go from a
+        set of coordinates to a path easily. In order to keep the smoothing, you
+        can use the <code>.curve()</code> attribute as described in the code
+        below:
       </p>
       <CodeBlock code={snippetPath} />
       <p>
@@ -185,7 +191,7 @@ export default function Home() {
         maxWidth={600}
         height={300}
         caption={
-          "Most basic density chart made with react and d3.js. Almost there, we we miss the axes here."
+          "Most basic density chart made with react and d3.js. Almost there, we just miss the axes here."
         }
       />
       {/*
@@ -199,14 +205,14 @@ export default function Home() {
         the X and Y axes represent. We need to display the <b>bucket values</b>{" "}
         of the X axis to make the chart insightful. The Y axis does not matter
         that much, since it just provides the kernel density value of the bucket
-        which goes from 0 to 1.
+        which is not insightful.
       </p>
       <p>
         There are several ways to add axes to charts in React. The process is
         extensively described in this{" "}
         <Link href="/build-axis-with-react">axes dedicated post</Link>. To put
         it in a nutshell, some <b>margins</b> need to be added around the plot
-        area, a<code>scaleLinear</code> is built with d3 and a custom{" "}
+        area, a <code>scaleLinear</code> is built with d3 and a custom{" "}
         <code>AxisBottom</code> component is used to draw the axis from the
         scale.
       </p>
@@ -250,9 +256,9 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={DensitySeveralGroupsDemo}
-        vizName={"DensitySeveralGroupsDemo"}
+        vizName={"DensitySeveralGroups"}
         maxWidth={600}
-        height={300}
+        height={400}
         caption={
           "Using small multiple to visualize the distribution of several groups in 1 figure, avoiding overlapping."
         }

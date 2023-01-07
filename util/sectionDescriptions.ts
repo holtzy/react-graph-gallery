@@ -44,7 +44,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/density",
     reactURL: "https://react-graph-gallery.com/density-plot",
     label: "Density",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "histogram",
