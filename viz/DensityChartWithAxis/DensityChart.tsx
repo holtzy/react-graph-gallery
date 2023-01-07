@@ -1,26 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as d3 from "d3";
+import { AxisBottom } from "./AxisBottom";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
-
-// Function to compute density
-function kernelDensityEstimator(kernel, X) {
-  return function (V) {
-    return X.map(function (x) {
-      return [
-        x,
-        d3.mean(V, function (v) {
-          return kernel(x - v);
-        }),
-      ];
-    });
-  };
-}
-function kernelEpanechnikov(k) {
-  return function (v) {
-    return Math.abs((v /= k)) <= 1 ? (0.75 * (1 - v * v)) / k : 0;
-  };
-}
 
 type DensityChartProps = {
   width: number;
@@ -29,12 +11,11 @@ type DensityChartProps = {
 };
 
 export const DensityChart = ({ width, height, data }: DensityChartProps) => {
-  const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const xScale = useMemo(() => {
-    const max = Math.max(...data);
+    // const max = Math.max(...data);
     return d3
       .scaleLinear()
       .domain([0, 1000]) // note: limiting to 1000 instead of max here because of extreme values in the dataset
@@ -61,17 +42,6 @@ export const DensityChart = ({ width, height, data }: DensityChartProps) => {
     return lineGenerator(density);
   }, [density]);
 
-  // Render the X axis using d3.js, not react
-  useEffect(() => {
-    const svgElement = d3.select(axesRef.current);
-    svgElement.selectAll("*").remove();
-    const xAxisGenerator = d3.axisBottom(xScale);
-    svgElement
-      .append("g")
-      .attr("transform", "translate(0," + boundsHeight + ")")
-      .call(xAxisGenerator);
-  }, [xScale, yScale, boundsHeight]);
-
   return (
     <svg width={width} height={height}>
       <g
@@ -87,13 +57,26 @@ export const DensityChart = ({ width, height, data }: DensityChartProps) => {
           strokeWidth={1}
           strokeLinejoin="round"
         />
+
+        {/* X axis, use an additional translation to appear at the bottom */}
+        <g transform={`translate(0, ${boundsHeight})`}>
+          <AxisBottom xScale={xScale} pixelsPerTick={40} />
+        </g>
       </g>
-      <g
-        width={boundsWidth}
-        height={boundsHeight}
-        ref={axesRef}
-        transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-      />
     </svg>
   );
 };
+
+// TODO: improve types
+// Function to compute density
+function kernelDensityEstimator(kernel: (v: number) => number, X: number[]) {
+  return function (V: number[]) {
+    return X.map((x) => [x, d3.mean(V, (v) => kernel(x - v))]);
+  };
+}
+
+function kernelEpanechnikov(k: number) {
+  return function (v: number) {
+    return Math.abs((v /= k)) <= 1 ? (0.75 * (1 - v * v)) / k : 0;
+  };
+}

@@ -11,6 +11,7 @@ import { DensityChartWithAxisDemo } from "../viz/DensityChartWithAxis/DensityCha
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import Link from "next/link";
 import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
+import { DensitySeveralGroupsDemo } from "viz/DensitySeveralGroups/DensitySeveralGroupsDemo";
 
 const graphDescription = (
   <>
@@ -233,10 +234,37 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="density" />
-      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      {/*
+      //
+      // Variations: several density on top / small multiples / cursor to change density estimator / data updates / mirror density
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        Once you've understood how to build a basic density chart with d3 and
+        React, it opens an infinite world of <b>customization</b>.
+      </p>
+      <p>
+        Here is an example showing how to plot several distributions on the same
+        figure, allowing to compare several groups.
+      </p>
+      <ChartOrSandbox
+        VizComponent={DensitySeveralGroupsDemo}
+        vizName={"DensitySeveralGroupsDemo"}
+        maxWidth={600}
+        height={300}
+        caption={
+          "Using small multiple to visualize the distribution of several groups in 1 figure, avoiding overlapping."
+        }
+      />
+      <p>
+        Note that an alternative could be to use <b>small multiple</b>. See this{" "}
+        <Link href="/example/histogram-small-multiple">histogram example</Link>{" "}
+        that you should be able to adapt quickly.
+      </p>
+      <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
