@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
-import { useSpring, animated } from "@react-spring/web";
+import { BarItem } from "./BarItem";
 
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 const BAR_PADDING = 0.3;
@@ -15,7 +15,7 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
-  console.log("boundsWidth", boundsWidth);
+
   // Y axis is for groups since the barplot is horizontal
   const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name);
   const yScale = useMemo(() => {
@@ -28,15 +28,10 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
 
   // X axis
   const max = d3.max(data.map((d) => d.value));
-  console.log(max);
   const xScale = d3.scaleLinear().domain([0, max]).range([0, boundsWidth]);
 
   // Build the shapes
   const allShapes = data.map((d) => {
-    console.log(d.name);
-    console.log(yScale(d.name));
-    console.log(d.value);
-    console.log(xScale(d.value));
     return (
       <BarItem
         key={d.name}
@@ -62,73 +57,5 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
         </g>
       </svg>
     </div>
-  );
-};
-
-type BarItemProps = {
-  name: string;
-  value: number;
-  barHeight: number;
-  barWidth: number;
-  x: number;
-  y: number | undefined;
-};
-
-const BarItem = (props: BarItemProps) => {
-  const { name, value, barHeight, barWidth, x, y } = props;
-  console.log("--- props", props);
-
-  const springProps = useSpring({
-    to: [
-      {
-        value,
-        barWidth,
-        opacity: barWidth > 80 ? 1 : 0,
-      },
-      { y },
-    ],
-    config: {
-      friction: 30,
-    },
-  });
-
-  if (y === undefined) {
-    return null;
-  }
-
-  return (
-    <g>
-      <animated.rect
-        x={x}
-        y={springProps.y}
-        width={springProps.barWidth}
-        height={barHeight}
-        opacity={0.7}
-        stroke="#9d174d"
-        fill="#9d174d"
-        fillOpacity={0.3}
-        strokeWidth={1}
-        rx={1}
-      />
-      <animated.text
-        x={springProps.barWidth?.to((width) => width - 7)}
-        y={springProps.y?.to((y) => y + barHeight / 2)}
-        textAnchor="end"
-        alignmentBaseline="central"
-        fontSize={12}
-        opacity={springProps.opacity}
-      >
-        {springProps.value?.to((value) => value.toFixed(0))}
-      </animated.text>
-      <animated.text
-        x={x + 7}
-        y={springProps.y?.to((y) => y + barHeight / 2)}
-        textAnchor="start"
-        alignmentBaseline="central"
-        fontSize={12}
-      >
-        {name}
-      </animated.text>
-    </g>
   );
 };

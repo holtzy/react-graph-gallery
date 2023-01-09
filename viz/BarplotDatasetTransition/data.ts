@@ -19,5 +19,5 @@ export const data2 = [
     {name:"Mélanie", value: 123},
     {name:"Gabriel", value: 4},
     {name:"Jean", value: 23},
-    {name:"Paul", value: 22},
+    {name:"Christophe", value: 22},
 ]
