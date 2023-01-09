@@ -15,7 +15,7 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
-
+  console.log("boundsWidth", boundsWidth);
   // Y axis is for groups since the barplot is horizontal
   const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name);
   const yScale = useMemo(() => {
@@ -27,16 +27,16 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   }, [data, height]);
 
   // X axis
-  const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.value));
-    return d3
-      .scaleLinear()
-      .domain([0, max || 10])
-      .range([0, boundsWidth]);
-  }, [data, width]);
+  const max = d3.max(data.map((d) => d.value));
+  console.log(max);
+  const xScale = d3.scaleLinear().domain([0, max]).range([0, boundsWidth]);
 
   // Build the shapes
-  const allShapes = data.map((d, i) => {
+  const allShapes = data.map((d) => {
+    console.log(d.name);
+    console.log(yScale(d.name));
+    console.log(d.value);
+    console.log(xScale(d.value));
     return (
       <BarItem
         key={d.name}
@@ -76,6 +76,7 @@ type BarItemProps = {
 
 const BarItem = (props: BarItemProps) => {
   const { name, value, barHeight, barWidth, x, y } = props;
+  console.log("--- props", props);
 
   const springProps = useSpring({
     to: [

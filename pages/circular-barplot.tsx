@@ -72,7 +72,7 @@ export default function Home() {
         <p>Here is a minimal example</p>
         <CodeBlock code={snippet1} />
         <p>
-          Note: if your data is in <code>.csv</code> formart, you can translate
+          Note: if your data is in <code>.csv</code> format, you can translate
           it thanks to the <code>d3.csv()</code> function as suggested{" "}
           <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">
             here

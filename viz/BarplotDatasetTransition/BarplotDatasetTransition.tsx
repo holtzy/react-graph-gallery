@@ -23,6 +23,7 @@ export const BarplotDatasetTransition = ({
   width,
   height,
 }: BarplotDatasetTransitionProps) => {
+  console.log(width, height);
   const [selectedData, setSelectedData] = useState(data);
 
   return (
@@ -35,6 +36,7 @@ export const BarplotDatasetTransition = ({
           Data 2
         </button>
       </div>
+
       <Barplot
         width={width}
         height={height - BUTTONS_HEIGHT}

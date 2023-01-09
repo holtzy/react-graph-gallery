@@ -58,7 +58,7 @@ export default function Home() {
       <p>Here is a minimal example</p>
       <CodeBlock code={snippet1} />
       <p>
-        Note: if your data is in <code>.csv</code> formart, you can translate it
+        Note: if your data is in <code>.csv</code> format, you can translate it
         thanks to the <code>d3.csv()</code> function as suggested{" "}
         <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">
           here
@@ -121,7 +121,7 @@ export default function Home() {
       <CodeBlock code={snippetLinearScale} />
       <p>
         Since we are building a <b>horizontal</b> barplot here, this scale will
-        be used the the <b>X</b> axis.
+        be used by the <b>X</b> axis.
       </p>
       <p>
         To dig more into d3 scales, visit this{" "}
@@ -131,7 +131,21 @@ export default function Home() {
         . It's a crucial concept that will be used everywhere in this website.
       </p>
       <h3>&rarr; Band scale for the group position</h3>
-      <p>to do</p>
+      <p>
+        A <a href="https://github.com/d3/d3-scale#scaleBand">band scale</a> will
+        be used to control the position of each rectangle on the Y axis. It is
+        computed with the <code>scaleBand()</code> function of d3.js. It
+        attributes a band of pixels to each group.
+      </p>
+      <p>
+        For instance, calling the band scale with <code>yScale("A")</code> will
+        return <code>0</code>, and <code>yScale.bandwidth()</code> will return
+        the width of the band (e.g. <code>11px</code>).
+      </p>
+      <p>
+        Note: the <code>padding</code> argument controls the space between bars.
+      </p>
+      <CodeBlock code={snippetBandScale} />
       {/*
       //
       // Rectangles
@@ -139,28 +153,24 @@ export default function Home() {
       */}
       <h2 id="basic barplot">Basic barplot</h2>
       <p>
-        There is nothing really tricky when it comes to build a basic barplot
-        with react, all is pretty close to the{" "}
+        We now have all the ingredients to build a basic barplot with react, all
+        being pretty close to the{" "}
         <a href="https://d3-graph-gallery.com/barplot">d3-only examples</a>.
       </p>
       <p>
-        First of all you probably want to add some margins around the dimensions
-        provided in the component properties as described{" "}
-        <Link href="/build-axis-with-react">here</Link>.
+        For each item in the dataset, create a SVG <code>rect</code> element.
+        Its vertical position can be retrieved from the group <code>name</code>{" "}
+        thanks to the band scale. It's size is retrieved using the{" "}
+        <code>xScale</code> and its <code>value</code>.
       </p>
       <p>
-        Then, since we're building a horizontal barchart here the Y axis is
-        showing groups. It means we can build it using the handy{" "}
-        <code>d3.scaleBand()</code> function. Don't forget to pass a{" "}
-        <code>padding</code> to it to have some space between bars. Note that it
-        makes sense to wrap the axis creation in a <code>useMemo</code> hook.
-        You don't want to recompute this axis if only the <code>width</code>{" "}
-        changes (like if the window is resized for instance)
+        Note that using the same amount of information it is straightforward to
+        add a label for the name and one for the value.
       </p>
       <ChartOrSandbox
         vizName={"BarplotBasic"}
         VizComponent={BarplotBasicDemo}
-        height={400}
+        height={500}
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
@@ -282,4 +292,15 @@ const scale = d3.scaleLinear()
 scale(0); // 0 -> item with a value of 0 will have a bar of length 0
 scale(5); // 100 -> bar of length 100
 scale(10); // 200 -> bar of length 200
+`.trim();
+
+const snippetBandScale = `
+const yScale = d3
+    .scaleBand()
+    .range([0, boundsHeight])
+    .domain(allGroups)
+    .padding(0.01);
+
+// yScale("A") -> 0
+// yScale.bandwidth() -> 11
 `.trim();
