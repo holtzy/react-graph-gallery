@@ -187,6 +187,13 @@ export default function Home() {
       */}
       <h2 id="transition">Transition</h2>
       <p>How to animation the transition between dataset</p>
+      <p>
+        You can read the{" "}
+        <Link href="example/barplot-data-transition-animation">
+          full tutorial here
+        </Link>
+        .
+      </p>
       <ChartOrSandbox
         vizName={"BarplotDatasetTransition"}
         VizComponent={BarplotDatasetTransitionDemo}
@@ -194,12 +201,6 @@ export default function Home() {
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
-      {/*
-      //
-      // Responsiveness
-      //
-      */}
-      <DatavizInspirationParallaxLink chartId="barplot" />
       {/*
       //
       // Stacking
@@ -225,12 +226,6 @@ export default function Home() {
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
-      {/*
-      //
-      // Inspiration
-      //
-      */}
-      <DatavizInspirationParallaxLink chartId="barplot" />
       {/*
       //
       // Stacking
