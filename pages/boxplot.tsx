@@ -13,6 +13,7 @@ import { Accordion } from "component/UI/Accordion";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { GraphLinkImage } from "component/UI/GraphLinkImage";
 import { ImageGrid } from "component/UI/ImageGrid";
+import GraphGallery from "component/GraphGallery";
 
 const graphDescription = (
   <>
@@ -306,41 +307,13 @@ export default function Home() {
         sample size.
       </p>
 
-      <ImageGrid>
-        <GraphLinkImage
-          link={"/example/boxplot-jitter"}
-          title={"Boxplot with jitter"}
-          description={
-            <p>Add individual data points using jitter on top of the boxplot</p>
-          }
-          img={"boxplot-jitter.png"}
-          alt="Picture of a boxplot with jitter built using react and d3.js"
-        />
-      </ImageGrid>
-
-      {/*
-      <AccordionSection
-        title={"Variation: violin to boxplot transition"}
-        startOpen={false}
-      >
-        <p>
-          The react graph gallery has a{" "}
-          <Link href="/shape-morphism-for-dataviz-with-react">
-            dedicated blog post
-          </Link>{" "}
-          on shape morphism that showcases a boxplot to violin plot transition.
-          Here is the final result, but you should probably read it to
-          understand how it works!
-        </p>
-        <br />
-        <ChartOrSandbox
-          vizName={"BoxplotToViolinTransition"}
-          VizComponent={BoxplotToViolinTransitionDemo}
-          maxWidth={600}
-          height={300}
-          caption="How to smoothly transition between a boxplot and a violin plot. Math by d3.js, rendering using react, animation using react-spring and interpolation using flubber."
-        />
-      </AccordionSection> */}
+      <GraphGallery
+        images={[
+          "boxplot-jitter.png",
+          "violinBoxplotTransition.png",
+          "violinBucketSize.png",
+        ]}
+      />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
