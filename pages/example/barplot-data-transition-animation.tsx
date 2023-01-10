@@ -119,7 +119,7 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetBar} />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />
     </Layout>
   );

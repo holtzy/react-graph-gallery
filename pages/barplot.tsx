@@ -186,18 +186,30 @@ export default function Home() {
       //
       */}
       <h2 id="transition">Transition</h2>
-      <p>How to animation the transition between dataset</p>
       <p>
-        You can read the{" "}
+        When the dataset updates, it adds a nice touch to{" "}
+        <b>smoothly animate</b> the transition. In the example below, changing
+        the dataset will update the <b>bar sizes</b> and their <b>positions</b>{" "}
+        on the Y axis to keep the ranking accurate.
+      </p>
+      <p>
+        Animation is a complicated topic in dataviz. We have to deal with{" "}
+        <b>updates</b> (an element changes its features), <b>enter</b> (a new
+        element appears) and <b>exit</b> (an element is not present anymore)
+        patterns.
+      </p>
+      <p>
+        I suggest to rely on the <code>react-spring</code> library to help here.
+        Please check this{" "}
         <Link href="example/barplot-data-transition-animation">
-          full tutorial here
-        </Link>
-        .
+          dedicated blogpost
+        </Link>{" "}
+        to get explanations about the code of this example.
       </p>
       <ChartOrSandbox
         vizName={"BarplotDatasetTransition"}
         VizComponent={BarplotDatasetTransitionDemo}
-        height={400}
+        height={600}
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
