@@ -13,6 +13,8 @@ import { ResponsiveExplanationSection } from "../component/ResponsiveExplanation
 import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
 import { BarplotStackedBasicDemo } from "../viz/BarplotStackedBasic/BarplotStackedBasicDemo";
 import { BarplotStackedHorizontalDemo } from "../viz/BarplotStackedHorizontal/BarplotStackedHorizontalDemo";
+import GraphGallery from "component/GraphGallery";
+import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -171,7 +173,7 @@ export default function Home() {
         vizName={"BarplotBasic"}
         VizComponent={BarplotBasicDemo}
         height={500}
-        maxWidth={600}
+        maxWidth={500}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
       {/*
@@ -209,7 +211,7 @@ export default function Home() {
       <ChartOrSandbox
         vizName={"BarplotDatasetTransition"}
         VizComponent={BarplotDatasetTransitionDemo}
-        height={600}
+        height={400}
         maxWidth={600}
         caption="Most basic barplot built with d3.js for scales, and react for rendering"
       />
@@ -220,35 +222,53 @@ export default function Home() {
       */}
       <h2 id="stacking">Stacking</h2>
       <p>
-        Let's start with a vertical barplot. Describe the dataset that is a bit
-        weird imo.
+        A <b>stacked barplot</b> is a variation of a barplot where an{" "}
+        <b>additional level of grouping</b> is represented. Each bar represent
+        the value of a <code>group</code>, for instance how much each my friend
+        spent in the last month. Each bar is then subdivided, each part
+        representing the value of a <code>subgroup</code>, for instance the
+        category of expense.
       </p>
-      <ChartOrSandbox
-        vizName={"BarplotStackedBasic"}
-        VizComponent={BarplotStackedBasicDemo}
-        height={400}
-        maxWidth={600}
-        caption="Most basic barplot built with d3.js for scales, and react for rendering"
-      />
-      <p>Now let's do it horizontal with a normal dataset</p>
-      <ChartOrSandbox
-        vizName={"BarplotStackedHorizontal"}
-        VizComponent={BarplotStackedHorizontalDemo}
-        height={400}
-        maxWidth={600}
-        caption="Most basic barplot built with d3.js for scales, and react for rendering"
+      <p>
+        D3 comes with a very handy <code>stack()</code> function. The 2
+        tutorials below explain how this function works, and how to use it to
+        render a clean stacked barplot.
+      </p>
+      <GraphGallery
+        images={[
+          "barplot-stacked-horizontal.png",
+          "barplot-stacked-vertical.png",
+        ]}
       />
       {/*
       //
-      // Stacking
+      // Vertical
       //
       */}
       <h2 id="vertical">Vertical barplot</h2>{" "}
       <p>
-        The vertical option is less common since it makes is much harder to read
-        the labels. But if you really need it, it is just a matter of swaping
-        the X and Y axes of the previous example. Here is a working version.
+        The vertical option is less common since it makes is much{" "}
+        <b>harder to read the labels</b>. But if you really need it, it is just
+        a matter of swaping the X and Y axes of the previous example.
       </p>
+      <p>
+        This example will be publish soon, please{" "}
+        <Link href="/subscribe">subscribe</Link> below if you want to be
+        notified.
+      </p>
+      {/*
+      //
+      // Hover effect
+      //
+      */}
+      <h2 id="hover effect">Hover effect</h2>{" "}
+      <p>
+        This example will be publish soon, please subscribe below if you want to
+        be notified.
+      </p>
+      <div className={"py-7"}>
+        <SubscribeForm />
+      </div>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />

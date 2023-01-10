@@ -144,6 +144,13 @@ export const graphExampleList: GraphExample[] = [
     alt: "GIF showing a mirror transition between a boxplot and a violin plot",
   },
   {
+    link: "/barplot",
+    title: "Basic barplot",
+    description: "Most basic barplot built with React and d3",
+    img: "barplot-basic.png",
+    alt: "Picture of a horizontal barplot made with React and d3",
+  },
+  {
     link: "/violin-plot",
     title: "Basic violin plot",
     description: "Learn how to build a basic violin chart with d3 and react",
@@ -223,6 +230,7 @@ export const graphExampleList: GraphExample[] = [
     img: "scatterplotHoverEffect.gif",
     alt: "GIF of a scatterplot with hover effect",
   },
+
   {
     link: "/bubble-plot#transition",
     title: "Bubble plot data set transition",
@@ -230,21 +238,20 @@ export const graphExampleList: GraphExample[] = [
     img: "bubble-plot-dataset-transition.gif",
     alt: "GIF of a bubble plot smoothly transitioning data",
   },
-
-  //   {
-  //     link: "",
-  //     title: "",
-  //     description: "",
-  //     img: "",
-  //     alt: "",
-  //   },
-  //   {
-  //     link: "",
-  //     title: "",
-  //     description: "",
-  //     img: "",
-  //     alt: "",
-  //   },
+  {
+    link: "/example/barplot-stacked-horizontal",
+    title: "Horizontal Stacked Barplot",
+    description: "Represent group and subgroup values by stacking the data",
+    img: "barplot-stacked-horizontal.png",
+    alt: "Picture of a stacked barchart made with react and d3",
+  },
+  {
+    link: "/example/barplot-stacked-vertical",
+    title: "Vertical Stacked Barplot",
+    description: "Represent group and subgroup values by stacking the data",
+    img: "barplot-stacked-vertical.png",
+    alt: "Picture of a vertical stacked barchart made with react and d3",
+  },
   //   {
   //     link: "",
   //     title: "",

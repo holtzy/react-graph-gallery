@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
-const BAR_PADDING = 0.3;
+const MARGIN = { top: 0, right: 30, bottom: 30, left: 30 };
+const BAR_PADDING = 0.2;
+export const COLORS = ["#e85252", "#6689c6", "#9a6fb0"];
 
 type BarplotProps = {
   width: number;
@@ -19,55 +20,89 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   const subGroups = [...new Set(data.map((d) => d.subgroup))];
 
   // Reformat the dataset
-  const stack = d3
-    .stack()
+  const stackGenerator = d3
+    .stack<string>()
     .keys(subGroups)
-    .order(d3.stackOrderNone)
-    .offset(d3.stackOffsetNone)
-    .value((d, key) => data.filter((item) => item.group === d)[0].value);
-  const series = stack(groups);
+    .value((d) => data.filter((item) => item.group === d)[0].value);
+  const series = stackGenerator(groups);
+
+  // Find size of the longest bar and group rank.
+  // Values are available in the last group of the stack
+  const lastStackGroup = series.at(-1) || [];
+  const groupTotalValues = lastStackGroup.map((group) => {
+    const biggest = group.at(-1) || 0;
+    return { name: group.data, value: biggest };
+  });
+  const sortedGroupTotalValues = groupTotalValues.sort(
+    (a, b) => b.value - a.value
+  );
+  const maxValue = sortedGroupTotalValues[0].value;
 
   // Y axis is for groups since the barplot is horizontal
   const yScale = useMemo(() => {
     return d3
       .scaleBand()
-      .domain(groups)
+      .domain(groupTotalValues.map((g) => g.name))
       .range([0, boundsHeight])
       .padding(BAR_PADDING);
   }, [data, height]);
 
   // X axis
   const xScale = useMemo(() => {
-    return d3
-      .scaleLinear()
-      .domain([0, 400]) // todo
-      .range([0, boundsWidth]);
+    return d3.scaleLinear().domain([0, maxValue]).range([0, boundsWidth]);
   }, [data, width]);
 
   // Color Scale
-  var colorScale = d3
-    .scaleOrdinal<string>()
-    .domain(subGroups)
-    .range(["#e85252", "#6689c6", "#9a6fb0"]);
+  var colorScale = d3.scaleOrdinal<string>().domain(subGroups).range(COLORS);
 
   const rectangles = series.map((subgroup, i) => {
     return (
       <g key={i}>
         {subgroup.map((group, j) => {
           return (
-            <>
-              <rect
-                key={j}
-                y={yScale(group.data)}
-                height={yScale.bandwidth()}
-                x={xScale(group[0])}
-                width={xScale(group[1]) - xScale(group[0])}
-                fill={colorScale(subgroup.key)}
-                opacity={0.9}
-              ></rect>
-            </>
+            <rect
+              key={j}
+              y={yScale(group.data)}
+              height={yScale.bandwidth()}
+              x={xScale(group[0])}
+              width={xScale(group[1]) - xScale(group[0])}
+              fill={colorScale(subgroup.key)}
+              opacity={0.6}
+            />
           );
         })}
+      </g>
+    );
+  });
+
+  const labels = sortedGroupTotalValues.map((group, i) => {
+    const y = yScale(group.name);
+
+    if (!y) {
+      return null;
+    }
+
+    return (
+      <g key={i}>
+        <text
+          x={xScale(group.value) - 7}
+          y={y + yScale.bandwidth() / 2}
+          textAnchor="end"
+          alignmentBaseline="central"
+          fontSize={12}
+          opacity={xScale(group.value) > 90 ? 1 : 0} // hide label if bar is not wide enough
+        >
+          {group.value}
+        </text>
+        <text
+          x={xScale(0) + 7}
+          y={y + yScale.bandwidth() / 2}
+          textAnchor="start"
+          alignmentBaseline="central"
+          fontSize={12}
+        >
+          {group.name}
+        </text>
       </g>
     );
   });
@@ -91,7 +126,6 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
           textAnchor="middle"
           alignmentBaseline="central"
           fontSize={9}
-          stroke="#808080"
           opacity={0.8}
         >
           {value}
@@ -107,8 +141,9 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
-          {grid}
-          {rectangles}
+          <g>{grid}</g>
+          <g>{rectangles}</g>
+          <g>{labels}</g>
         </g>
       </svg>
     </div>
