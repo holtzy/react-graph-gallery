@@ -144,7 +144,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/barplot",
     reactURL: "https://react-graph-gallery.com/barplot",
     label: "Barplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "radar",
