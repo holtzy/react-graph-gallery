@@ -381,11 +381,9 @@ export default function Home() {
       <p>
         <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
         impossible to go in depth here! I will publish a dedicated blog post on
-        the topic soon. Please subscribe below if you want to be notified.
+        the topic soon. Please <Link href='subscribe'>subscribe</Link> to the newsletter if you want to be notified.
       </p>
-      <div className={"py-7"}>
-        <SubscribeForm />
-      </div>
+
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />

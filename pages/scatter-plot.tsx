@@ -383,9 +383,7 @@ export default function Home() {
         post will be published soon on the topic, feel free to{" "}
         <Link href="/subscribe">subscribe</Link> to know when.
       </p>
-      <div className={"py-7"}>
-        <SubscribeForm />
-      </div>
+
 
       {/*
       //

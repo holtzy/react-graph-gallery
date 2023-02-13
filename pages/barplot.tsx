@@ -263,12 +263,9 @@ export default function Home() {
       */}
       <h2 id="hover effect">Hover effect</h2>{" "}
       <p>
-        This example will be publish soon, please subscribe below if you want to
+        This example will be publish soon, please <Link href='subscribe'>subscribe</Link> to the newsletter if you want to
         be notified.
       </p>
-      <div className={"py-7"}>
-        <SubscribeForm />
-      </div>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />

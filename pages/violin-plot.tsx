@@ -391,12 +391,9 @@ export default function Home() {
         </Caption>
       </div>
       <p className={"py-7"}>
-        If you're interested in this topic, feel free to subscribe below to be
+        If you're interested in this topic, feel free to <Link href='subscribe'>subscribe</Link> to the newsletter to be
         informed when this post is available!
       </p>
-      <div>
-        <SubscribeForm />
-      </div>
 
       {/* <ChartOrSandbox
         vizName={"BoxplotToViolinTransition"}
