@@ -28,9 +28,9 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
 
   // Find size of the longest bar and group rank.
   // Values are available in the last group of the stack
-  const lastStackGroup = series.at(-1) || [];
+  const lastStackGroup = series[series.length - 1] || [];
   const groupTotalValues = lastStackGroup.map((group) => {
-    const biggest = group.at(-1) || 0;
+    const biggest = group[group.length - 1] || 0;
     return { name: group.data, value: biggest };
   });
   const sortedGroupTotalValues = groupTotalValues.sort(
