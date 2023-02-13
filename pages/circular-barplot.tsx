@@ -10,6 +10,7 @@ import Link from "next/link";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { CircularBarplotBasicDemo } from "../viz/CircularBarplotBasic/CircularBarplotBasicDemo";
 import { CircularBarplotLabelDemo } from "../viz/CircularBarplotLabel/CircularBarplotLabelDemo";
+import { CircularBarplotStackingDemo } from "viz/CircularBarplotStacking/CircularBarplotStackingDemo";
 
 const graphDescription = (
   <p>
@@ -198,14 +199,23 @@ export default function Home() {
 
       <DatavizInspirationParallaxLink chartId="circularBarplot" />
 
-      <AccordionSection title={"Vertical barplot"} startOpen={true}>
-        <p>
-          The vertical option is less common since it makes is much harder to
-          read the labels. But if you really need it, it is just a matter of
-          swaping the X and Y axes of the previous example. Here is a working
-          version.
-        </p>
-      </AccordionSection>
+      {/*
+      //
+      // Stacking
+      //
+      */}
+      <h2 id="stacking">Stacking</h2>
+      <p>blablah</p>
+
+      <ChartOrSandbox
+        vizName={"CircularBarplotStacking"}
+        VizComponent={CircularBarplotStackingDemo}
+        height={800}
+        maxWidth={800}
+        caption={
+          "Add some labels to each bar of the circular barchart to make it insightful"
+        }
+      />
 
       <br />
       <br />

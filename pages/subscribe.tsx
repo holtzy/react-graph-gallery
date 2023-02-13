@@ -18,19 +18,17 @@ export default function Home() {
   return (
     <Layout
       title="Subscribe"
-      seoDescription="How to build an area chart with React and D3.js. A set of re-usable components"
+      seoDescription="Subscribe to the react graph gallery's newsletter to be posted when a new article is posted."
     >
       <TitleAndDescription
         title="Want more graph examples?"
         description={graphDescription}
       />
 
-      <SubscribeForm />
+      <div style={{height: 'calc(100vh - 6rem)'}} className="flex justify-center items-center">
+        <SubscribeForm />
+      </div>
 
-      <p className="mb-24 mt-24">
-        You will receive my <b>dataviz related content only</b> and can
-        unsubscribe at any time.
-      </p>
     </Layout>
   );
 }
