@@ -47,11 +47,11 @@ export default function Navbar() {
               </span>
             </Link>
 
-            <Link href="subscribe">
-              <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
+            <a href="https://datavizuniverse.substack.com" style={{ textDecoration: 'none' }}>
+              <span className="hidden cursor-pointer sm:inline ml-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery border border-gray-300 rounded-md p-2">
                 Subscribe
               </span>
-            </Link>
+            </a>
           </div>
         </div>
         <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
