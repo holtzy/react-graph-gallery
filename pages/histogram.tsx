@@ -14,7 +14,6 @@ import { GraphLinkImage } from "../component/UI/GraphLinkImage";
 import { ImageGrid } from "../component/UI/ImageGrid";
 import Link from "next/link";
 import { Accordion } from "component/UI/Accordion";
-import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -68,6 +67,7 @@ export default function Home() {
       <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
+
       {/*
       //
       // Skeleton
@@ -98,6 +98,7 @@ export default function Home() {
         methods like <code>append</code> that you can find in usual{" "}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
+
       {/*
       //
       // Binning
@@ -381,9 +382,9 @@ export default function Home() {
       <p>
         <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
         impossible to go in depth here! I will publish a dedicated blog post on
-        the topic soon. Please <Link href='subscribe'>subscribe</Link> to the newsletter if you want to be notified.
+        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
+        newsletter if you want to be notified.
       </p>
-
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
