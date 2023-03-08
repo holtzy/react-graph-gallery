@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
 import { SubscribeForm } from "../component/SubscribeForm";
 
 const graphDescription = (
@@ -25,7 +24,7 @@ export default function Home() {
         description={graphDescription}
       />
 
-      <div style={{height: 'calc(100vh - 6rem)'}} className="flex justify-center items-center">
+      <div style={{ height: 'calc(100vh - 6rem)' }} className="flex justify-center items-center">
         <SubscribeForm />
       </div>
 

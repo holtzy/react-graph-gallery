@@ -14,7 +14,6 @@ import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { BoxplotViolinMirrorDemo } from "viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo";
 import { ViolinBucketSizeEffectDemo } from "viz/ViolinBucketSizeEffect/ViolinBucketSizeEffectDemo";
-import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
