@@ -8,6 +8,7 @@ import Link from "next/link";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { LollipopBasicDemo } from "../viz/LollipopBasic/LollipopBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
+import { LollipopDumbbellDemo } from "viz/LollipopDumbbell/LollipopDumbbellDemo";
 
 const graphDescription = (
   <>
@@ -100,7 +101,7 @@ export default function Home() {
       // Basic
       //
       */}
-      <h2 id="Basic lollipop">Most basic lollipop</h2>
+      <h2 id="basic">Most basic lollipop</h2>
       <p>
         There is nothing really tricky when it comes to build a basic barplot
         with react, all is pretty close to the{" "}
@@ -127,6 +128,46 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="lollipop" />
+
+      {/*
+      //
+      // Dumbbell version
+      //
+      */}
+      <h2 id="dumbbell">Dumbbel plot</h2>
+      <p>
+        A{" "}
+        <a href="https://www.data-to-viz.com/graph/lollipop.html">
+          dumbbell plot
+        </a>
+        , also known as a cleveland plot or a connected dot plot, is a visual
+        representation of the <b>difference</b> or <b>change</b> between two
+        related variables. It consists of two endpoints, represented by circles
+        or dots, connected by a horizontal line, which represents the magnitude
+        of the difference or change.{" "}
+      </p>
+      <p>
+        This type of plot is commonly used in scientific research to display the
+        effect of an intervention or treatment on a particular outcome, or to
+        compare two different groups or time periods. The plot allows for{" "}
+        <b>easy comparison</b> of the magnitude and direction of change between
+        the two variables.
+      </p>
+      <p>
+        The implementation is very close to the{" "}
+        <a href="#basic">basic lollipop</a> chart described above. The dataset
+        provides 2 data points for each item in the dataset: <code>value1</code>{" "}
+        and <code>value2</code>. The scales and axes are exactly the same.
+        Instead of drawing 1 line and 1 circle, 2 circles are joined by the
+        line.
+      </p>
+      <ChartOrSandbox
+        vizName={"LollipopDumbbell"}
+        VizComponent={LollipopDumbbellDemo}
+        height={400}
+        maxWidth={600}
+        caption="A basic yet clean dumbbell plot built with d3.js and React"
+      />
 
       {/*
       //

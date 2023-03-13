@@ -21,6 +21,13 @@ export const AxisBasic = ({ width, height }: AxisBasicProps) => {
   const xScale = d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
   const yScale = d3.scaleLinear().domain([0, 11]).range([boundsHeight, 0]);
 
+  const logScale = d3
+    .scaleLog<string>()
+    .domain([0.000000000000000000000001, 10])
+    .range(["red", "blue"])
+    .clamp(true);
+  console.log(logScale(4));
+
   return (
     <div>
       <svg width={width} height={height} shapeRendering={"crispEdges"}>
