@@ -1,7 +1,6 @@
 import { useMemo, useRef } from "react";
 import * as d3 from "d3";
 import styles from "./donut-chart.module.css";
-import { style } from "d3";
 
 type DataItem = {
   name: string;

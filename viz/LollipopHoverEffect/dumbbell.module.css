@@ -1,0 +1,19 @@
+.row {
+  opacity: 1;
+  cursor: pointer;
+}
+.rowsContainer:hover .row {
+  opacity: 0.3;
+}
+.rowsContainer .row:hover {
+  opacity: 1;
+}
+
+/* The grey rectangle that appears on hover is a svg rect element that is hidden by default (opacity of 0) */
+.highlightRect {
+  opacity: 0;
+}
+/* When the row is hovered, its opacity is increased to reveal it */
+.rowsContainer .row:hover .highlightRect {
+  opacity: 0.2;
+}

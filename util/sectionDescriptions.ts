@@ -184,7 +184,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/lollipop",
     reactURL: "https://react-graph-gallery.com/lollipop-plot",
     label: "Lollipop",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "circularBarplot",

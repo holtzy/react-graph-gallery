@@ -9,6 +9,8 @@ import DatavizInspirationParallaxLink from "../component/DatavizInspirationParal
 import { LollipopBasicDemo } from "../viz/LollipopBasic/LollipopBasicDemo";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { LollipopDumbbellDemo } from "viz/LollipopDumbbell/LollipopDumbbellDemo";
+import { LollipopDatasetTransitionDemo } from "viz/LollipopDatasetTransition/LollipopDatasetTransitionDemo";
+import { LollipopHoverEffectDemo } from "viz/LollipopHoverEffect/LollipopHoverEffectDemo";
 
 const graphDescription = (
   <>
@@ -103,9 +105,24 @@ export default function Home() {
       */}
       <h2 id="basic">Most basic lollipop</h2>
       <p>
-        There is nothing really tricky when it comes to build a basic barplot
-        with react, all is pretty close to the{" "}
-        <a href="https://d3-graph-gallery.com/barplot">d3-only examples</a>.
+        A lollipop chart is a variation of the better known{" "}
+        <Link href="barplot">barplot</Link>. The implementation of a barplot
+        with react is extensively described in the{" "}
+        <Link href="barplot">barplot section</Link> of the gallery. So I will
+        just provide a quick recap here.
+      </p>
+      <p>
+        To put it in a nutshell, <b>2 scales</b> must be created. The x axis
+        transforms a numeric value in a position in pixel: it is a linear scale
+        built with the <code>scaleLinear()</code> function of d3. The y axis
+        transforms a group name in a position in pixel: it is a band scale built
+        with <code>scaleBand()</code>.
+      </p>
+      <p>
+        Once the scales are available, <b>loop</b> through each item of the
+        dataset. Instead of drawing a rectangle for each item, draw a line and a
+        circle. Instead of adding a proper X and Y axes, I suggest to create a
+        grid manually and to draw labels at an arbitrary position.
       </p>
       <ChartOrSandbox
         vizName={"LollipopBasic"}
@@ -171,15 +188,93 @@ export default function Home() {
 
       {/*
       //
-      // Vertical version
+      // Hover Effect version
       //
       */}
-      <h2 id="vertical">Vertical lollipop</h2>
+      <h2 id="hover effect">Hover effect</h2>
       <p>
-        The vertical option is less common since it makes is much harder to read
-        the labels. But if you really need it, it is just a matter of swaping
-        the X and Y axes of the previous example. Here is a working version.
+        The circles can be quite <b>far from their label</b> for the biggest
+        values on the chart (see Mark below). Adding an <b>hover interaction</b>{" "}
+        on the lollipop charts allows to <b>highlight a specific row</b>. As a
+        result, the label/data point connection becomes more obvious.
       </p>
+      <p>
+        There are various strategies to implement such an hover effect. Here, I
+        suggest to do everything in <b>css</b> using{" "}
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">
+          pseudo classes
+        </a>
+        , and targetting svg elements only.
+      </p>
+      <p>Two different things happen when a row is hovered:</p>
+      <ul>
+        <li>
+          All other rows are <b>faded out</b>. Their <code>opacity</code> is
+          lowered to <code>.3</code>
+        </li>
+        <li>
+          A <b>grey rectangle</b> that wraps the row is drawn.
+        </li>
+      </ul>
+      <p>
+        &rarr; For the first effect, a <code>rowsContainer</code> class is added
+        to the element that wraps all rows. When it is hovered hover (
+        <code>rowsContainer:hover</code>), everything that's inside it has a
+        lower opacity. But a specific rule is added at the hovered row level to
+        keep it with a strong opacity. To put it in a nutshell, css looks like:
+      </p>
+      <CodeBlock code={snippetCssDim} />
+      <p>
+        &rarr; For the second effect, <b>2 svg rectangles</b> must be drawn. The
+        first one fills the <b>full</b> width and height of the row. It is the
+        one that triggers the mouse event. (It is important to remember that a
+        svg <code>g</code> element does <b>not</b> trigger mouse events. Only
+        what is drawn inside it does). The second rectangle is the one that we
+        see. We can add some <b>vertical padding</b> to it since it is not use
+        for mouse detection.
+      </p>
+      <ChartOrSandbox
+        vizName={"LollipopHoverEffect"}
+        VizComponent={LollipopHoverEffectDemo}
+        height={400}
+        maxWidth={600}
+        caption="Try to hover a row in the lollipop above to reveal the hover interaction."
+      />
+
+      {/*
+      //
+      // Data transition
+      //
+      */}
+      <h2 id="data transition">Data transition</h2>
+      <p>
+        It is very common to deal with <b>various variables</b> and compare the
+        behaviour of some data items for them. It adds a nice touch to the graph
+        to smoothly transition between 2 states using a quick <b>animation</b>.
+      </p>
+      <p>
+        For the example below I rely on the{" "}
+        <a href="https://react-spring.dev/">react-spring</a> library. This lib
+        allows to quickly create spring animations using javascript. It results
+        in a very a <b>natural transition</b> that can be <b>interrupted</b>{" "}
+        without restarting from 0. (try to toggle between datasets quickly).
+      </p>
+      <p>
+        It would be too long to explain the code here. Instead, I'm currently
+        writing a set of dedicated tutorials. Please{" "}
+        <a href="https://datavizuniverse.substack.com/">
+          subscribe to the newsletter
+        </a>{" "}
+        to know when this will be released.
+      </p>
+      <ChartOrSandbox
+        vizName={"LollipopDatasetTransition"}
+        VizComponent={LollipopDatasetTransitionDemo}
+        height={400}
+        maxWidth={600}
+        caption="A lollipop chart with smooth transition between dataset."
+      />
+
       <br />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
@@ -222,4 +317,22 @@ export const Lollipop = ({ width, height, data }: LollipopProps) => {
     </div>
   );
 };
+`.trim();
+
+const snippetCssDim = `
+/* Row has an opacity of 1 by default */
+.row {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* But if the container is hovered somewhere, opacity is decreased to .3 */
+.rowsContainer:hover .row {
+  opacity: 0.3;
+}
+
+/* Except for the specific row that is hovered hover that keeps its opacity to 1 */
+.rowsContainer .row:hover {
+  opacity: 1;
+}
 `.trim();
