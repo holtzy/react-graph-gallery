@@ -45,11 +45,9 @@ export const CircularBarplot = ({
       endAngle: xScale(group.name) + xScale.bandwidth(),
     });
 
-    const turnLabelUpsideDown =
-      (xScale(group.name) + xScale.bandwidth() / 2 + Math.PI) % (2 * Math.PI) <
-      Math.PI;
-    const labelRotation =
-      ((xScale(group.name) + xScale.bandwidth() / 2) * 180) / Math.PI - 90;
+    const barAngle = xScale(group.name) + xScale.bandwidth() / 2; // (in Radian)
+    const turnLabelUpsideDown = (barAngle + Math.PI) % (2 * Math.PI) < Math.PI;
+    const labelRotation = (barAngle * 180) / Math.PI - 90; // (convert radian to degree)
     const labelXTranslation = yScale(group.value) + 10;
     const labelTransform =
       "rotate(" +

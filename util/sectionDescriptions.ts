@@ -194,7 +194,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/circularbarplot",
     reactURL: "https://react-graph-gallery.com/circular-barplot",
     label: "Circular Barplot",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "treemap",
