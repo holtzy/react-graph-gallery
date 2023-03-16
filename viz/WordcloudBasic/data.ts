@@ -9,5 +9,5 @@ export const data = [
   "than",
   "this",
 ].map(function (d) {
-  return { text: d, size: 10 + Math.random() * 90 };
+  return { text: d, value: 10 + Math.random() * 90 };
 });

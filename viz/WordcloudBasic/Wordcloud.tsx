@@ -22,8 +22,6 @@ export const Wordcloud = ({ width, height, data }: WordcloudProps) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log("wtf");
-
     if (!ref.current) {
       return;
     }
@@ -32,14 +30,12 @@ export const Wordcloud = ({ width, height, data }: WordcloudProps) => {
 
     // clear old words
     select(el).selectAll("*").remove();
-    console.log(data);
 
     const layout = d3Cloud<Word>()
       .words(data)
       .size([width, height])
       .on("end", (words) => {
         const [w, h] = layout.size();
-        console.log("end", w);
         select(el)
           .append("svg")
           .attr("viewBox", `0 0 ${w} ${h}`)
@@ -59,14 +55,7 @@ export const Wordcloud = ({ width, height, data }: WordcloudProps) => {
       });
 
     layout.start();
-  }, [width, height, data, ref]);
+  }, [width, height, data]);
 
-  return (
-    <>
-      <p>Hello</p>
-      <div style={{ width, height }} ref={ref}>
-        {/* {allRects} */}
-      </div>
-    </>
-  );
+  return <div style={{ width, height }} ref={ref} />;
 };
