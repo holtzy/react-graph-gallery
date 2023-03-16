@@ -25,9 +25,8 @@ const graphDescription = (
 
 const snippet1 = `
 const data = [
-  { x: 'A', y: 'A', value: 12 },
-  { x: 'B', y: 'A', value: 2 },
-  { x: 'C', y: 'A', value: 9 }
+  { text: "hello", value: 12 },
+  { text: "world", value: 2 },
 ];
 `.trim();
 
