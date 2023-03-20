@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { data, data2 } from "./data";
-import { DonutChart } from "./DonutChart";
+import { data } from "./data";
+import { DonutBarplotChart } from "./DonutBarplotChart";
 
 const BUTTONS_HEIGHT = 50;
 
-type DonutDatasetTransitionProps = {
+type DonutBarplotTransitionProps = {
   width: number;
   height: number;
 };
@@ -19,26 +19,27 @@ const buttonStyle = {
   opacity: 0.7,
 };
 
-export const DonutDatasetTransition = ({
+export const DonutBarplotTransition = ({
   width,
   height,
-}: DonutDatasetTransitionProps) => {
-  const [selectedData, setSelectedData] = useState(data);
+}: DonutBarplotTransitionProps) => {
+  const [type, setType] = useState<"pie" | "bar">("pie");
 
   return (
     <div>
       <div style={{ height: BUTTONS_HEIGHT }}>
-        <button style={buttonStyle} onClick={() => setSelectedData(data)}>
-          Data 1
+        <button style={buttonStyle} onClick={() => setType("pie")}>
+          Pie chart
         </button>
-        <button style={buttonStyle} onClick={() => setSelectedData(data2)}>
-          Data 2
+        <button style={buttonStyle} onClick={() => setType("bar")}>
+          Barplot
         </button>
       </div>
-      <DonutChart
+      <DonutBarplotChart
         width={width}
         height={height - BUTTONS_HEIGHT}
-        data={selectedData}
+        data={data}
+        type={type}
       />
     </div>
   );

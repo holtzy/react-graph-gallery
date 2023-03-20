@@ -4,7 +4,7 @@ import { animated, useSpring, config } from "react-spring";
 
 type DataItem = {
   name: string;
-  value: number;
+  value?: number;
 };
 
 type DonutChartProps = {
@@ -25,18 +25,28 @@ const colors = [
 ];
 
 export const DonutChart = ({ width, height, data }: DonutChartProps) => {
+  // Sort by alphabetical to maximise consistency between dataset
+  const sortedData = data.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
   const radius = Math.min(width, height) / 2 - MARGIN;
 
   const pie = useMemo(() => {
     const pieGenerator = d3
       .pie<any, DataItem>()
-      .value((d) => d.value)
-      .sort(null);
-    return pieGenerator(data);
+      .value((d) => d.value || 0)
+      .sort(null); // Do not apply any sorting, respect the order of the provided dataset
+    return pieGenerator(sortedData);
   }, [data]);
 
   const allPaths = pie.map((slice, i) => {
-    return <Slice key={i} radius={radius} slice={slice} color={colors[i]} />;
+    return (
+      <Slice
+        key={slice.data.name}
+        radius={radius}
+        slice={slice}
+        color={colors[i]}
+      />
+    );
   });
 
   return (
@@ -61,7 +71,7 @@ const Slice = ({ slice, radius, color }: SliceProps) => {
     },
     to: {
       pos: [slice.startAngle, slice.endAngle],
-      opacity: slice.startAngle ? 1 : 0,
+      opacity: typeof slice.startAngle === "number" ? 1 : 0,
     },
   });
 
