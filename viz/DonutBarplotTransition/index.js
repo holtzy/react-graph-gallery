@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom";
-import { DonutDatasetTransition } from "./DonutDatasetTransition";
+import { DonutBarplotTransition } from "./DonutBarplotTransition";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<DonutDatasetTransition width={800} height={300} />, rootElement);
+ReactDOM.render(
+  <DonutBarplotTransition width={800} height={300} />,
+  rootElement
+);

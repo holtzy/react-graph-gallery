@@ -24,10 +24,10 @@ const graphDescription = (
     <p>
       This post explains how to build a pie chart with{" "}
       <a href="https://react.dev/">react</a>, using the <code>pie()</code>{" "}
-      function of d3.js. It describes the expected <b>data format</b>, how the
+      function of d3.js. It describes the expected <b>data format</b>, how the{" "}
       <code>Pie</code> component must be structured, how to compute the slice
       positions and how to render those slices. Last but not least, it provides
-      the implementation for common use-case like <b>hover effect</b> and{" "}
+      the implementation for common use-cases like <b>hover effect</b> and{" "}
       <b>data transition</b>.
     </p>
   </>
@@ -111,7 +111,7 @@ export default function Home() {
         <li>
           Inner and outer <b>radius</b>. For a pie chart, the inner radius will
           be set to 0. This is what makes it different from a{" "}
-          <Link href="donut-chart">donut chart</Link>.
+          <Link href="donut">donut chart</Link>.
         </li>
       </ul>
       <div className="col-span-w flex flex-col items-center justify-center">
@@ -126,13 +126,13 @@ export default function Home() {
       </h3>
       <p>
         The <code>pie()</code> function of d3 is here to transform the dataset
-        in a set of arcs with their coordinates. This function{" "}
-        <code>d3.pie()</code> returns a function ( called{" "}
+        in a set of arcs with their coordinates. It returns a function (called{" "}
         <code>pieGenerator</code> here) that is an <b>arc generator</b>.
       </p>
       <p>
-        You can pass the dataset described at the beginning of this tutorial, it
-        will return an array where each item provides the coordinates of an arc:
+        You can pass the dataset described at the beginning of this tutorial to
+        this generator, it will return an array where each item provides the
+        coordinates of an arc:
       </p>
       <CodeBlock code={snippetPieGenerator} />
       <h3>
