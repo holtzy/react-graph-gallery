@@ -24,7 +24,6 @@ export const DonutDatasetTransition = ({
   height,
 }: DonutDatasetTransitionProps) => {
   const [selectedData, setSelectedData] = useState(data);
-  console.log("selectedData", selectedData);
 
   return (
     <div>
