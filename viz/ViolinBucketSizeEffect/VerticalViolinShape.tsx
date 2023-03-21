@@ -22,7 +22,6 @@ export const VerticalViolinShape = ({
   const min = Math.min(...data);
   const max = Math.max(...data);
 
-  console.log("yScale.ticks(binNumber)", yScale.ticks(binNumber));
   const binBuilder = d3
     .bin()
     .thresholds(bucketNumber)

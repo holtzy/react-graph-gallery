@@ -26,7 +26,6 @@ export const AxisBasic = ({ width, height }: AxisBasicProps) => {
     .domain([0.000000000000000000000001, 10])
     .range(["red", "blue"])
     .clamp(true);
-  console.log(logScale(4));
 
   return (
     <div>

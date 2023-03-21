@@ -16,7 +16,6 @@ export const Contour = ({ width, height, data }: ContourProps) => {
   // The bounds (=area inside the axis) is calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
-  console.log(" @@@", boundsWidth);
 
   // Scales
   const yScale = d3.scaleLinear().domain([4, 22]).range([boundsHeight, 0]);
@@ -29,12 +28,10 @@ export const Contour = ({ width, height, data }: ContourProps) => {
     .bandwidth(2);
 
   const contourData = contourGenerator(data);
-  console.log(contourData);
 
   const maxContourValue = Math.max(
     ...contourData.map((contour) => contour.value)
   );
-  console.log(maxContourValue);
 
   const colorScale = d3
     .scaleSqrt<string>()

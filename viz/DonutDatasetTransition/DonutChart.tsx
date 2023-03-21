@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
-import { animated, useSpring } from "react-spring";
+import { animated, SpringValue, useSpring } from "react-spring";
 
 type DataItem = {
   name: string;
@@ -70,11 +70,8 @@ const Slice = ({ slice, radius, color }: SliceProps) => {
   console.log("slice", slice);
 
   const springProps = useSpring({
-    from: {
-      pos: [slice.endAngle, slice.endAngle],
-    },
     to: {
-      pos: [slice.startAngle, slice.endAngle],
+      pos: [slice.startAngle, slice.endAngle] as [number, number],
     },
   });
 

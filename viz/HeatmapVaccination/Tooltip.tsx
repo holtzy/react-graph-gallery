@@ -12,7 +12,6 @@ export const Tooltip = ({ interactionData, width, height }: TooltipProps) => {
     return null;
   }
 
-  console.log(interactionData);
   return (
     // Wrapper div: a rect on top of the viz area
     <div

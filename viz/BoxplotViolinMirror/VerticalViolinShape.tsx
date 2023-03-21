@@ -20,7 +20,6 @@ export const VerticalViolinShape = ({
   const min = Math.min(...data);
   const max = Math.max(...data);
 
-  console.log("yScale.ticks(binNumber)", yScale.ticks(binNumber));
   const binBuilder = d3
     .bin()
     .domain([min, max])
@@ -39,7 +38,6 @@ export const VerticalViolinShape = ({
     .x0((d) => wScale(-d.length))
     .x1((d) => wScale(d.length))
     .y((d) => {
-      console.log("$$$", d.x0);
       return yScale(d.x0 || 0);
     })
     .curve(smoothing ? d3.curveBumpY : d3.curveStep);
