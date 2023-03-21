@@ -285,7 +285,28 @@ export default function Home() {
       //
       */}
       <h2 id="data transition">Data transition</h2>
-      <p>The hardest part!</p>
+      <p>
+        The <code>Pie</code> component expects a <code>data</code> prop. What
+        should we do when this data changes?
+      </p>
+      <p>
+        By default, the chart will update <b>instantly</b>, with no transition.
+        Adding a <b>smooth transition</b> gives a nice polish touch to the
+        graph. Try to switch between the 2 datasets below to see the animation
+        in action.
+      </p>
+      <p>
+        The code below relies on the <code>react-spring</code> library. Instead
+        of rendering a <code>path</code> for each slice, it uses a{" "}
+        <code>animated.path</code> component that handles the spring animation
+        for us.
+      </p>
+      <p>
+        The implementation is <b>not trivial</b>. I plan to publish a full
+        tutorial on react-spring for data visualization soon. You can{" "}
+        <Link href="/subscribe">subscribe here</Link> to be notified when it is
+        ready.
+      </p>
       <ChartOrSandbox
         vizName={"DonutDatasetTransition"}
         VizComponent={DonutDatasetTransitionDemo}
@@ -293,19 +314,44 @@ export default function Home() {
         height={400}
         caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
       />
+      <p>
+        <u>Note</u>: check the blue group that appears / disappears between
+        dataset. This kind of <b>enter/exit pattern</b> is something to keep in
+        mind when building animations.
+      </p>
       {/*
       //
       // Pie chart to Barplot
       //
       */}
       <h2 id="barplot transition">Pie chart to barplot</h2>
-      <p>yeah!</p>
+      <p>
+        Pie charts are often{" "}
+        <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a>{" "}
+        since angles are <b>hard to read</b>. Let's represent the same data
+        using a pie chart or a <Link href="/barplot">barplot</Link>, to see
+        what's the most insightful 🤷‍♂️.
+      </p>
+      <p>
+        Note that here we animate the transition between{" "}
+        <b>different shape types</b>: each arc becomes a rectangle and
+        reciprocally. This is made possible thanks to the{" "}
+        <a href="https://github.com/veltman/flubber">flubber</a> library, used
+        in coordination with{" "}
+        <a href="https://react-spring.dev/">react-spring</a>.
+      </p>
+      <p>
+        Once more, a full tutorial is needed here. You can{" "}
+        <Link href="/subscribe">subscribe here</Link> to be notified when it is
+        ready. In the meanwhile, the code of this specific example is provided
+        below.
+      </p>
       <ChartOrSandbox
         vizName={"DonutBarplotTransition"}
         VizComponent={DonutBarplotTransitionDemo}
         maxWidth={500}
         height={400}
-        caption="A donut chart with clean inline legends, built thanks to the centroid function of d3.js."
+        caption="Transition from a pie chart to a barplot with a smooth animation using the buttons on top."
       />
       {/*
       //
