@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import * as d3 from "d3";
-import { animated, useSpring, config } from "react-spring";
+import { animated, useSpring } from "react-spring";
 
 type DataItem = {
   name: string;
@@ -25,6 +25,8 @@ const colors = [
 ];
 
 export const DonutChart = ({ width, height, data }: DonutChartProps) => {
+  console.log("dimension", height, width);
+
   // Sort by alphabetical to maximise consistency between dataset
   const sortedData = data.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
 
@@ -48,6 +50,7 @@ export const DonutChart = ({ width, height, data }: DonutChartProps) => {
       />
     );
   });
+  console.log("allPaths", allPaths);
 
   return (
     <svg width={width} height={height} style={{ display: "inline-block" }}>
@@ -63,6 +66,8 @@ type SliceProps = {
 };
 const Slice = ({ slice, radius, color }: SliceProps) => {
   const arcPathGenerator = d3.arc();
+
+  console.log("slice", slice);
 
   const springProps = useSpring({
     from: {

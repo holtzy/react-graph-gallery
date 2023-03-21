@@ -115,7 +115,11 @@ export default function Home() {
         </li>
       </ul>
       <div className="col-span-w flex flex-col items-center justify-center">
-        <img src="/img/arcDefinition.png" style={{ maxWidth: 600 }} />
+        <img
+          src="/img/arcDefinition.png"
+          style={{ maxWidth: 600 }}
+          alt={"schema of an arc built with d3.js to make a pie chart"}
+        />
         <Caption>
           A pie chart is built from a set of arcs. An arc is a slice defined by
           its inner radius, outer radius, start angle and end angle.
@@ -188,7 +192,11 @@ export default function Home() {
       </p>
       <p>In the figure below, what trend can you spot in the dataset?</p>
       <div className="col-span-w flex flex-col items-center justify-center">
-        <img src="/img/pie-caveat.png" style={{ maxWidth: 800 }} />
+        <img
+          src="/img/pie-caveat.png"
+          style={{ maxWidth: 800 }}
+          alt="Three pie charts one beside each other. Finding the pattern is hard and a barplot should be used instead."
+        />
         <Caption>
           Three datasets visualized with pie charts. Can you spot the trend?
         </Caption>
