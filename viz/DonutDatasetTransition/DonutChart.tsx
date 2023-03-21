@@ -67,11 +67,9 @@ const Slice = ({ slice, radius, color }: SliceProps) => {
   const springProps = useSpring({
     from: {
       pos: [slice.endAngle, slice.endAngle],
-      opacity: 0,
     },
     to: {
       pos: [slice.startAngle, slice.endAngle],
-      opacity: typeof slice.startAngle === "number" ? 1 : 0,
     },
   });
 
@@ -86,7 +84,6 @@ const Slice = ({ slice, radius, color }: SliceProps) => {
         });
       })}
       fill={color}
-      opacity={springProps.opacity}
     />
   );
 };
