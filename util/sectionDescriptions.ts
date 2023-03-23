@@ -224,7 +224,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://d3-graph-gallery.com/donut.html",
     reactURL: "https://react-graph-gallery.com/donut",
     label: "Donut",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "pie",

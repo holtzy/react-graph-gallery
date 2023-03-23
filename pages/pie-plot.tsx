@@ -11,6 +11,8 @@ import Link from "next/link";
 import { PieChartHoverDemo } from "viz/PieChartHover/PieChartHoverDemo";
 import { DonutDatasetTransitionDemo } from "viz/DonutDatasetTransition/DonutDatasetTransitionDemo";
 import { DonutBarplotTransitionDemo } from "viz/DonutBarplotTransition/DonutBarplotTransitionDemo";
+import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
+import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
 
 const graphDescription = (
   <>
@@ -287,6 +289,18 @@ export default function Home() {
         height={600}
         caption="A pie chart with hover effect. Hover over a slice to highlight it and fade other groups."
       />
+      {/*
+      //
+      // Responsiveness
+      //
+      */}
+      <ResponsiveExplanationSection chartId="pie" />
+      {/*
+      //
+      // Inspiration
+      //
+      */}
+      <DatavizInspirationParallaxLink chartId="pie" />
       {/*
       //
       // Data transition

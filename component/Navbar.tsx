@@ -25,7 +25,7 @@ export default function Navbar() {
                 How to...
               </span>
             </Link> */}
-            <Link href="/all">
+            <Link href="/all" className="no-underline">
               <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 All
               </span>
@@ -41,13 +41,16 @@ export default function Navbar() {
                 Related
               </span>
             </a> */}
-            <Link href="about">
+            <Link href="about" className="no-underline">
               <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 About
               </span>
             </Link>
 
-            <a href="https://datavizuniverse.substack.com" style={{ textDecoration: 'none' }}>
+            <a
+              href="https://datavizuniverse.substack.com"
+              style={{ textDecoration: "none" }}
+            >
               <span className="hidden cursor-pointer sm:inline ml-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery border border-gray-300 rounded-md p-2">
                 Subscribe
               </span>
