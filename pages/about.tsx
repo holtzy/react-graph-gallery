@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
 import { AxisBasicD3Demo } from "../viz/AxisBasicD3/AxisBasicD3Demo";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";

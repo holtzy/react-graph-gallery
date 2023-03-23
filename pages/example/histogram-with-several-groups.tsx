@@ -44,6 +44,7 @@ export default function Home() {
         }
         description={graphDescription}
         chartType="histogram"
+        showSectionLink
       />
       {/*
       //

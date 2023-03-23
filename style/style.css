@@ -1,250 +1,245 @@
 :root {
-    --light-grey:  #f8f9fa;
-    --medium-grey: #e5e5e5;
-    --dark-grey: #C8C8C8;
-    --react-gallery: #cb1dd1;
-    --light-black: #484848;
+  --light-grey: #f8f9fa;
+  --medium-grey: #e5e5e5;
+  --dark-grey: #c8c8c8;
+  --react-gallery: #cb1dd1;
+  --light-black: #484848;
 }
 
 /* Each section has a specific color */
-.distribution{
-    color: #e0ac2b
+.distribution {
+  color: #e0ac2b;
 }
-.correlation{
-    color: #7f7f7f;
+.correlation {
+  color: #7f7f7f;
 }
-.ranking{
-    color: #a4c969;
+.ranking {
+  color: #a4c969;
 }
-.partOfAWhole{
-    color: #e85252;
+.partOfAWhole {
+  color: #e85252;
 }
-.evolution{
-    color: #6689c6;
+.evolution {
+  color: #6689c6;
 }
-.map{
-    color: #9a6fb0;
+.map {
+  color: #9a6fb0;
 }
-.flow{
-    color: #a53253;
+.flow {
+  color: #a53253;
 }
 
 /* ---------- PAGE LAYOUT ----------------- */
 /* Inspired from https://www.joshwcomeau.com/css/full-bleed/ */
 .wrapper {
-    padding-left: 15px;
-    padding-right: 15px;
-    display: grid;
-    grid-template-columns:
-      1fr
-      min(822px, 100%)
-      1fr;
-  }
+  padding-left: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(822px, 100%)
+    1fr;
+}
 .wrapper > * {
-    grid-column: 2;
+  grid-column: 2;
 }
 .full-bleed {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 100%;
-    grid-column: 1 / 4;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  grid-column: 1 / 4;
 }
 .grey-section {
-    background-color: var(--light-grey);
+  background-color: var(--light-grey);
 }
 
 /* ---------- Global CSS ----------------- */
 body {
-    overflow-x: hidden;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
-    font-size: 19px;
-    line-height: 30px;
-    color: #333;
+  overflow-x: hidden;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  font-size: 19px;
+  line-height: 30px;
+  color: #333;
 }
 
 p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /* This code rule applies only to inline code. Code formatted by prism has its style set in a custom sheet. */
 code {
-    padding: .2em .2em;
-    margin-top: -.2em;
-    font-size: 85%;
-    background-color: #afb8c133;
-    border-radius: 6px;
-    font-family: 'Fira Mono', monospace;
+  padding: 0.2em 0.2em;
+  margin-top: -0.2em;
+  font-size: 85%;
+  background-color: #afb8c133;
+  border-radius: 6px;
+  font-family: "Fira Mono", monospace;
 }
 a {
-    color: var(--react-gallery);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: .1px;
-  }
+  color: var(--react-gallery);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 0.1px;
+}
 a:hover {
-    color: #251667
+  color: #251667;
 }
 /* If a span is inserted in a link, don't underline it (used for link as button) */
 a > span {
-    text-decoration:none;
-    display: inline-block
+  text-decoration: none;
+  display: inline-block;
 }
 
 blockquote {
-    background: var(--light-grey);
-    border-left: 2px solid var(--react-gallery);
-    padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
-  }
+  background: var(--light-grey);
+  border-left: 2px solid var(--react-gallery);
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
 blockquote p {
-    display: inline;
+  display: inline;
 }
 
 /* ---------- Titles ----------------- */
 
 h1 {
-    font-size: 42px;
-    line-height: 54px;
-    font-family: 'Bitter', sans-serif;
-    font-weight: bold;
-    letter-spacing: 0.03em;
+  font-size: 42px;
+  line-height: 54px;
+  font-family: "Bitter", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.03em;
 }
 
 h2 {
-    font-size: 32px;
-    line-height: 44px;
-    font-family: 'Bitter', sans-serif;
-    font-weight: bold;
-    letter-spacing: 0.03em;
-    width: 100%;
-    border-bottom: 1px solid var(--medium-grey);
-    margin-top: 100px !important;
-    margin-bottom: 10px !important;
-    padding-bottom: 10px !important;
-    /* scroll margin allows to add a bit of space around the title we're targeting with the table of content */
-    scroll-margin: 100px;
+  font-size: 32px;
+  line-height: 44px;
+  font-family: "Bitter", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  width: 100%;
+  border-bottom: 1px solid var(--medium-grey);
+  margin-top: 100px !important;
+  margin-bottom: 10px !important;
+  padding-bottom: 10px !important;
+  /* scroll margin allows to add a bit of space around the title we're targeting with the table of content */
+  scroll-margin: 100px;
 }
 
 h3 {
-    font-family: 'Bitter', sans-serif;
-    font-weight: bold;
-    line-height: 34px;
-    letter-spacing: 0.03em;
-    font-size: 22px;
-    width: 100%;
-    margin-top: 40px;
-    padding-bottom: 10px;
+  font-family: "Bitter", sans-serif;
+  font-weight: bold;
+  line-height: 34px;
+  letter-spacing: 0.03em;
+  font-size: 22px;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 10px;
 }
-
 
 /* ---------- Horizontal separator ----------------- */
 .smallHr {
-    margin-top: 23px;
-    margin-bottom: 23px;
-    border: 0;
-    border-top: 1px solid black;
+  margin-top: 23px;
+  margin-bottom: 23px;
+  border: 0;
+  border-top: 1px solid black;
+  width: 0;
+  animation: separator-width 2s ease-in-out forwards;
+}
+@keyframes separator-width {
+  0% {
     width: 0;
-    animation: separator-width 2s ease-in-out forwards;
   }
-  @keyframes separator-width {
-    0% {
-      width: 0;
-    }
-    100% {
-        width: 200px;
-    }
+  100% {
+    width: 200px;
   }
+}
 
 /* ---------- Button ----------------- */
 .btn {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 500 !important;
-    border-color: var(--react-gallery) !important;
-    color: var(--react-gallery) !important;
-    border-width: 2px !important;
-    background-color: transparent !important;
-    margin: 3px !important;
-  }
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 500 !important;
+  border-color: var(--react-gallery) !important;
+  color: var(--react-gallery) !important;
+  border-width: 2px !important;
+  background-color: transparent !important;
+  margin: 3px !important;
+}
 
-  .btn-xl {
-    font-size: 18px !important;
-    padding: 20px 40px !important;
-  }
+.btn-xl {
+  font-size: 18px !important;
+  padding: 20px 40px !important;
+}
 
-  .btn:active, .btn:focus, .btn:hover {
-    background-color: var(--react-gallery) !important;
-    border-color: var(--react-gallery) !important;
-    color: white !important;
-  }
+.btn:active,
+.btn:focus,
+.btn:hover {
+  background-color: var(--react-gallery) !important;
+  border-color: var(--react-gallery) !important;
+  color: white !important;
+}
 
 /* ---------- By default tailwind unstyle list. Let's fix this ----------------- */
 ul {
-    list-style-type: disc;
-    list-style-position: inside;
-    padding-left: 20px;
-    margin-bottom: 12px;
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 20px;
+  margin-bottom: 12px;
 }
 li {
-    padding-bottom: 6px;
+  padding-bottom: 6px;
 }
 
 /* ----------Create a word with gradient in it ----------------- */
 .gradient {
-    background-image: linear-gradient(
-        4deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(260deg 100% 23%) 11%,
-        hsl(279deg 100% 27%) 22%,
-        hsl(298deg 100% 30%) 33%,
-        hsl(318deg 100% 33%) 44%,
-        hsl(337deg 100% 37%) 56%,
-        hsl(357deg 100% 40%) 67%,
-        hsl(16deg 100% 43%) 78%,
-        hsl(36deg 100% 47%) 89%,
-        hsl(55deg 100% 50%) 100%
-      );
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+  background-image: linear-gradient(
+    4deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(260deg 100% 23%) 11%,
+    hsl(279deg 100% 27%) 22%,
+    hsl(298deg 100% 30%) 33%,
+    hsl(318deg 100% 33%) 44%,
+    hsl(337deg 100% 37%) 56%,
+    hsl(357deg 100% 40%) 67%,
+    hsl(16deg 100% 43%) 78%,
+    hsl(36deg 100% 47%) 89%,
+    hsl(55deg 100% 50%) 100%
+  );
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 .backgroundGradient {
-    background-image: linear-gradient(
-        4deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(260deg 100% 23%) 11%,
-        hsl(279deg 100% 27%) 22%,
-        hsl(298deg 100% 30%) 33%,
-        hsl(318deg 100% 33%) 44%,
-        hsl(337deg 100% 37%) 56%,
-        hsl(357deg 100% 40%) 67%,
-        hsl(16deg 100% 43%) 78%,
-        hsl(36deg 100% 47%) 89%,
-        hsl(55deg 100% 50%) 100%
-      );
-    background-size: 100%;
+  background-image: linear-gradient(
+    4deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(260deg 100% 23%) 11%,
+    hsl(279deg 100% 27%) 22%,
+    hsl(298deg 100% 30%) 33%,
+    hsl(318deg 100% 33%) 44%,
+    hsl(337deg 100% 37%) 56%,
+    hsl(357deg 100% 40%) 67%,
+    hsl(16deg 100% 43%) 78%,
+    hsl(36deg 100% 47%) 89%,
+    hsl(55deg 100% 50%) 100%
+  );
+  background-size: 100%;
 }
-
 
 /* ---------- Blinking cursor at the end of a word ----------------- */
 .with-blinking-cursor {
-    border-right: .05em solid black;
-    animation:
-      blink-caret 1s step-end infinite;
+  border-right: 0.05em solid black;
+  animation: blink-caret 1s step-end infinite;
 }
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: black; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,6 @@ import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
-import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { StreamGraphBasicDemo } from "../viz/StreamGraphBasic/StreamGraphBasicDemo";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
@@ -47,10 +46,6 @@ const stackSeries = d3
   .keys(groups)
   .order(d3.stackOrderNone)
   .offset(d3.stackOffsetSilhouette);
-const series = stackSeries(data);
-`.trim();
-
-const snippet3 = `
 const series = stackSeries(data);
 `.trim();
 

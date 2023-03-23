@@ -49,7 +49,7 @@ export const LinkAsButton = ({
   } else {
     return (
       <Link href={href} passHref>
-        <a>{link}</a>
+        {link}
       </Link>
     );
   }

@@ -55,7 +55,10 @@ export default function TitleAndDescription({
       {chartType && (
         <div className="flex flex-row flex-wrap">
           {showSectionLink && (
-            <Tooltip text="kkkk" direction="bottom">
+            <Tooltip
+              text="visit related section in the gallery"
+              direction="bottom"
+            >
               <LinkAsButton
                 href={fullUrlToInternalLink(chartInfo.reactURL)}
                 size="sm"

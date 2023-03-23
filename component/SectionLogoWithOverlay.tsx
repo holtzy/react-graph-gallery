@@ -28,7 +28,7 @@ export default function SectionLogoWithOverlay({
   const cursor = isAvailable ? "cursor-pointer" : "cursor-not-allowed";
 
   return (
-    <Link href={isAvailable ? link : "subscribe"}>
+    <Link href={isAvailable ? link : "subscribe"} className="no-underline">
       <div className="flex flex-col items-center">
         <div
           style={{ width: size, height: size }}
