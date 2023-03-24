@@ -19,10 +19,12 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
   return (
     <>
       <HeadSeo title={title} seoDescription={seoDescription} />
+
       <div className="wrapper">
         <Navbar />
-        {children}
       </div>
+
+      <div className="wrapper">{children}</div>
 
       <Contact />
 
