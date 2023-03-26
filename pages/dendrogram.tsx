@@ -8,6 +8,7 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { DendrogramBasicDemo } from "viz/DendrogramBasic/DendrogramBasicDemo";
 import { DendrogramHorizontalDemo } from "viz/DendrogramHorizontal/DendrogramHorizontalDemo";
 import { DendrogramRadialDemo } from "viz/DendrogramRadial/DendrogramRadialDemo";
+import { Accordion } from "component/UI/Accordion";
 
 const graphDescription = (
   <>
@@ -58,6 +59,10 @@ export default function Home() {
       </p>
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
+      <p>
+        <u>Note</u>: if your data is not formatted this way at all, don't fret!
+        In the next section I explain how to deal with <b>other formats</b>.
+      </p>
       {/*
       //
       // The hierarchy function
@@ -65,30 +70,98 @@ export default function Home() {
       */}
       <h2 id="hierarchy">The hierarchy format or "root node"</h2>
       <p>
-        All d3 tools dealing with hierarchical dataset are based on a "root
-        node" or "hierarchy" dataset. To get it the simplest way is to call the{" "}
-        <a href="https://github.com/d3/d3-hierarchy/blob/main/README.md#hierarchy">
-          hierarchy()
-        </a>{" "}
-        function. So if you're trying to build a treemap, a circle pack, a
-        hierarchical edge bundling, you will have to understand this.
+        A dendrogram is a <b>hierarchical layout</b>. D3.js has a lot of{" "}
+        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{" "}
+        allowing to deal with this kind of hierarchical data. To use those
+        functions we first need to create a <b>"Root node"</b> or{" "}
+        <b>"Hierarchy"</b>.
       </p>
       <p>
-        Three main input data formats are usually encountered when it comes to
-        store hierarchical information. It's always a struggle to deal with
-        those formats so I've tried to describe the most common use-cases here.
-      </p>
-      <p>&rarr; list of connection (csv)</p>
-      <p>&rarr; list of connection (js object)</p>
-      <p>&rarr; json with hierarchy</p>
-      <p>
-        ToDo: write some explanation on how to do the work with the
-        <code>d3.hierarchy</code> and <code>d3.stratify</code> functions.
+        But <i>what the heck is this</i>? 🤔
       </p>
       <p>
-        Describe how the result looks like! It is all in the{" "}
-        <code>HierarchyNode</code> type.
+        A "root node" or "hierarchy" is a <b>javascript object</b>. It has
+        almost the same shape as the input data described above. But with some
+        additional properties and methods that will make our life easier. This
+        data structure is typed as a{" "}
+        <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/d3-hierarchy/index.d.ts#L29">
+          HierarchyNode
+        </a>
+        .
       </p>
+      <h3>&rarr; properties of a root node</h3>
+      <p>
+        This "root node" is a recursive structure of nodes as described in the
+        data section above. But it has those new properties:
+      </p>
+      <ul>
+        <li>
+          <code>data</code>: associated data
+        </li>
+        <li>
+          <code>depth</code>: 0 for the root node, and increasing by one for
+          each descendant.
+        </li>
+        <li>
+          <code>height</code>: 0 for leaf nodes, and the greatest distance from
+          any descendant leaf otherwise.
+        </li>
+        <li>
+          <code>children</code>: an array of child nodes, if any; undefined for
+          leaf nodes.
+        </li>
+        <li>
+          <code>value</code>: the summed value of the node and its descendants.
+        </li>
+      </ul>
+      <p>
+        On top of that, each node also has associated methods like{" "}
+        <code>node.descendants()</code> or <code>node.links()</code> that we
+        will describe later. See the complete list in the{" "}
+        <a href="https://github.com/d3/d3-hierarchy">d3-hierarchy doc</a>.{" "}
+      </p>
+      <h3>&rarr; how to build a root node</h3>
+      <p>
+        If your dealing with the format describe in the previous section, you
+        just have to pass it to the d3 <code>hierarchy</code> function:
+      </p>
+      <CodeBlock code={snippetHierarchy} />
+      <p>Very convenient. If you have a different input, here is how to do:</p>
+      <Accordion
+        startOpen={false}
+        title="My input is a list of connection in .json format"
+      >
+        <br />
+        <p>
+          Let's say you have a <b>tabular</b> format in json format. It's an
+          array where each item represents a <b>node</b>. For each node, you
+          have a <code>name</code> property and a <code>parent</code> property
+          that provides the parent name:
+        </p>
+        <CodeBlock code={snippetDataTabular} />
+        <p>
+          In this case, you have to use the stratify function to create the
+          hierarchy. This is how the syntax looks like:
+        </p>
+        <CodeBlock code={snippetStratify} />
+        <p>
+          And that's it. You have a hierarchy object and can follow the rest of
+          this tutorial.
+        </p>
+      </Accordion>
+      <Accordion
+        startOpen={false}
+        title="My input is a list of connection in .csv format"
+      >
+        <br />
+        <p>
+          In this case, you can use the{" "}
+          <a href="https://github.com/d3/d3-dsv#csvParse">csvParse()</a>{" "}
+          function of d3 to get a javascript array and use the{" "}
+          <code>stratify</code> function as shown in the accordion above.{" "}
+        </p>
+        <CodeBlock code={snippetCsv} />
+      </Accordion>
       {/*
       //
       // The cluster function
@@ -173,4 +246,32 @@ const data = {
     {type: 'leaf', name:"Emily", value: 34},
     ...
 }
+`.trim();
+
+const snippetHierarchy = `
+const hierarchy = useMemo(() => {
+  return d3.hierarchy(data);
+}, [data]);
+`.trim();
+
+const snippetDataTabular = `
+export const dataTabular =
+  [
+    { "name": "Eve", "parent": "" },
+    { "name": "Cain", "parent": "Eve" },
+    { "name": "Seth", "parent": "Eve" },
+    ...
+  ]
+`.trim();
+
+const snippetStratify = `
+const hierarchyGenerator = stratify()
+  .id((node) => node.name)
+  .parentId((node) => node.parent);
+
+const hierarchy = hierarchyGenerator(dataTabular);
+`.trim();
+
+const snippetCsv = `
+const dataTabular = d3.csvParse(text);
 `.trim();

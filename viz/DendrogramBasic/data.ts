@@ -50,3 +50,14 @@ export const data: Tree = {
     },
   ],
 };
+
+export const data2 =
+  [
+    { "name": "Eve", "parent": "" },
+    { "name": "Cain", "parent": "Eve" },
+    { "name": "Seth", "parent": "Eve" },
+    { "name": "Enos", "parent": "Seth" },
+    { "name": "Noam", "parent": "Seth" },
+    { "name": "Azura", "parent": "Eve" }
+  ]
+

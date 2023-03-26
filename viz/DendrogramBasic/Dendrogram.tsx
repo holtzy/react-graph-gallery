@@ -15,7 +15,7 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const hierarchy = useMemo(() => {
-    return d3.hierarchy(data).sum((d) => d.value);
+    return d3.hierarchy(data);
   }, [data]);
 
   const dendrogram = useMemo(() => {
