@@ -2,19 +2,13 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
-import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
 import { BarplotBasicDemo } from "../viz/BarplotBasic/BarplotBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
 import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
-import { BarplotStackedBasicDemo } from "../viz/BarplotStackedBasic/BarplotStackedBasicDemo";
-import { BarplotStackedHorizontalDemo } from "../viz/BarplotStackedHorizontal/BarplotStackedHorizontalDemo";
 import GraphGallery from "component/GraphGallery";
-import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -263,7 +257,8 @@ export default function Home() {
       */}
       <h2 id="hover effect">Hover effect</h2>{" "}
       <p>
-        This example will be publish soon, please <Link href='subscribe'>subscribe</Link> to the newsletter if you want to
+        This example will be publish soon, please{" "}
+        <Link href="subscribe">subscribe</Link> to the newsletter if you want to
         be notified.
       </p>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />

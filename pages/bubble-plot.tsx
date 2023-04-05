@@ -13,7 +13,6 @@ import { ScatterplotClimateCrisisDemo } from "viz/ScatterplotClimateCrisis/Scatt
 import { BubbleLegendDemo } from "viz/BubbleLegend/BubbleLegendDemo";
 import { Accordion } from "component/UI/Accordion";
 import { BubblePlotDatasetTransitionDemo } from "viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo";
-import { SubscribeForm } from "component/SubscribeForm";
 
 const graphDescription = (
   <>
@@ -317,7 +316,8 @@ export default function Home() {
       <p>
         <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
         impossible to go in-depth here! I will publish a dedicated blog post on
-        the topic soon. Please <Link href='subscribe'>subscribe</Link> to the newsletter if you want to be notified.
+        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
+        newsletter if you want to be notified.
       </p>
       {/*
       //

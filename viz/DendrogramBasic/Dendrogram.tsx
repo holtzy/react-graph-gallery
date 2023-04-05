@@ -14,6 +14,8 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
+  console.log(width);
+
   const hierarchy = useMemo(() => {
     return d3.hierarchy(data);
   }, [data]);
@@ -27,7 +29,7 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
 
   const allNodes = dendrogram.descendants().map((node) => {
     return (
-      <g key={node.id}>
+      <g key={"node" + node.id}>
         <circle
           cx={node.x}
           cy={node.y}
@@ -44,11 +46,11 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
 
   const allEdges = dendrogram.descendants().map((node) => {
     if (!node.parent) {
-      return;
+      return null;
     }
     return (
       <line
-        key={node.id}
+        key={"line" + node.id}
         fill="none"
         stroke="grey"
         x1={node.x}

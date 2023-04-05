@@ -244,7 +244,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/dendrogram",
     reactURL: "https://react-graph-gallery.com/dendrogram",
     label: "Dendrogram",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "circularPacking",

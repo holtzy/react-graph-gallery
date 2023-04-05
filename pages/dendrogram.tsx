@@ -9,6 +9,8 @@ import { DendrogramBasicDemo } from "viz/DendrogramBasic/DendrogramBasicDemo";
 import { DendrogramHorizontalDemo } from "viz/DendrogramHorizontal/DendrogramHorizontalDemo";
 import { DendrogramRadialDemo } from "viz/DendrogramRadial/DendrogramRadialDemo";
 import { Accordion } from "component/UI/Accordion";
+import Link from "next/link";
+import { LinkAsButton } from "component/LinkAsButton";
 
 const graphDescription = (
   <>
@@ -171,10 +173,41 @@ export default function Home() {
         The <code>cluster()</code> function
       </h2>
       <p>
-        From this hierarchy object, we need to compute node position. This is
-        possible thanks to the cluster function(). Explain how the output looks
-        like = exactly the same as the hierarchy object, but now each node has a
-        x and a y prop.
+        We now have a <code>hierarchy</code> object that is a convenient data
+        structure. From this, we need to compute the position of each node in
+        our <b>2d space</b>.
+      </p>
+      <p>
+        This is made possible thanks to the <code>cluster()</code> function of
+        d3.js. You can check its{" "}
+        <a href="https://github.com/d3/d3-hierarchy#cluster">
+          offical documentation
+        </a>
+        .
+      </p>
+      <h3>
+        &rarr; calling <code>d3.cluster()</code>
+      </h3>
+      <p>
+        <code>d3.cluster()</code> is a function that returns a layout generator.
+        It is thus a function that returns a function. There is not much to
+        provide to it, except the <code>width</code> and <code>height</code> of
+        the figure.
+      </p>
+      <CodeBlock code={snippetLayout1} />
+      <p>
+        The generator we have now (<code>dendrogramGenerator</code>) expect 1
+        input: a <code>hierarchy</code> object that we described in the previous
+        chapter.
+      </p>
+      <CodeBlock code={snippetLayout2} />
+      <h3>
+        &rarr; <code>d3.cluster()</code> output
+      </h3>
+      <p>
+        The output is almost the same as the initial <b>hierarchy</b> object.
+        But for each node we have 2 additional properties: <code>x</code> and{" "}
+        <code>y</code> that are the coordinates we need to build the dendrogram!
       </p>
       {/*
       //
@@ -183,8 +216,23 @@ export default function Home() {
       */}
       <h2 id="basic dendrogram">Most Basic dendrogram</h2>
       <p>
-        We have a list of node in the object. We just need to map through it,
-        putting a circle for each node and connecting them with segments.
+        We have a list of <code>node</code> in the <code>dendrogram</code>{" "}
+        object. For each, we now its position.
+      </p>
+      <p>
+        We just need to loop through all those nodes to build circles and lines
+        to make the dendrogram
+      </p>
+      <p>
+        Fortunately, the dendrogram object has a <code>descendants()</code>{" "}
+        method that list all nodes in a flat array. It is then possible to use a{" "}
+        <code>map()</code> to loop through nodes. So for instance drawing edges
+        looks like:
+      </p>
+      <CodeBlock code={snippetEdges} />
+      <p>
+        And the same idea goes for nodes and circles. That makes our first
+        dendrogram!
       </p>
       <ChartOrSandbox
         vizName={"DendrogramBasic"}
@@ -199,17 +247,29 @@ export default function Home() {
       //
       */}
       <h2 id="horizontal dendrogram">Horizontal dendrogram</h2>
-      <p>How to make it horizontal</p>
-      <p>Explain how to swap coordinates</p>
       <p>
-        Explain how to make smooth edges with <code>d3.linkHorizontal()</code>
+        You can <b>swap</b> the <code>x</code> and <code>y</code> coordinates to
+        make the dendrogram <b>horizontal</b> instead of vertical.
       </p>
+      <p>
+        You can also create smooth edges thanks to the{" "}
+        <code>d3.linkHorizontal()</code> function. The function is described in
+        its{" "}
+        <a href="https://github.com/d3/d3-shape#linkHorizontal">
+          official documentation
+        </a>
+        . Basically, you need to provide an object with a <code>source</code>{" "}
+        and a <code>target</code> property. The coordinates of those properties
+        will be used to create the <code>d</code> attribute of an svg{" "}
+        <code>path</code> element.
+      </p>
+      <CodeBlock code={snippetHorizontalLink} />
       <ChartOrSandbox
         vizName={"DendrogramHorizontal"}
         VizComponent={DendrogramHorizontalDemo}
         maxWidth={600}
         height={400}
-        caption="The most basic treemap made with react and d3.js."
+        caption="Horizontal dendrogram with smooth edges made with react and d3.js."
       />
       {/*
       //
@@ -217,18 +277,82 @@ export default function Home() {
       //
       */}
       <h2 id="Radial dendrogram">Radial dendrogram</h2>
-      <p>Talk about first level links</p>
+      <p>The radial dendrogram is a bit trickier to achieve.</p>
+      <h3>&rarr; polar coordinates</h3>
       <p>
-        Talk about labels that need to be flipped like for the circular barplot
+        We are dealing with polar coordinates here. As a result, the{" "}
+        <code>size</code> attribute of the
+        <code>layout()</code>
+        function must be updated.
+      </p>
+      <ul>
+        <li>
+          The <b>first</b> item is <code>360</code>. It will define the angle
+          (in degree) to follow to reach a node. 0 is on top.
+        </li>
+        <li>
+          The second item is the <code>radius</code> of the figure. It will
+          provide the distance to the center of a node in pixel.
+        </li>
+      </ul>
+      <CodeBlock code={snippetRadialLayout} />
+      <p>
+        Since <code>x</code> and <code>y</code> are now describing an angle and
+        a distance to the center, we can position a node using the following{" "}
+        <code>transform</code> property:
+      </p>
+      <CodeBlock code={snippetTransform} />
+      <h3>
+        &rarr; Smooth edges with <code>linkRadial</code>
+      </h3>
+      <p>
+        Edges are not horizontal anymore, so the <code>linkHorizontal</code>{" "}
+        won't be helpful this time. But instead, the{" "}
+        <a href="https://github.com/d3/d3-shape#linkRadial">d3.linkRadial</a>{" "}
+        function does the job based on an angle and a distance.
+      </p>
+      <h3>&rarr; Smart labels</h3>
+      <p>
+        Please make sure your labels are properly oriented. It always give a bit
+        of a headhache to pivot them correctly, and to control the anchoring
+        appropriately. I talked about it extensively in the{" "}
+        <Link href="circular-barplot">circular barplot</Link> section so please
+        take a look for this matter.
       </p>
       <ChartOrSandbox
         vizName={"DendrogramRadial"}
         VizComponent={DendrogramRadialDemo}
         maxWidth={600}
         height={600}
-        caption="The most basic treemap made with react and d3.js."
+        caption="A minimalist radial dendrogram built using d3 and react."
       />
-      <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
+      <p>
+        <i>Note</i>: please check of the first level edges are{" "}
+        <b>straight lines</b>. IMO it does not make sense to use{" "}
+        <code>linkRadial</code> for the first level.
+      </p>
+      {/*
+      //
+      // Next
+      //
+      */}
+      <h2 id="next">Coming next</h2>
+      <p>There is much more that needs to be added to this tutorial.</p>
+      <p>
+        Using <code>canvas</code> for rendering is often a requirement when the
+        number of nodes gets big. <b>Interactivity</b> is often necessary, for{" "}
+        <b>hover effect</b> or to <b>collapse</b> a part of the tree. It also
+        possible to <b>map</b> the node circle size to a numeric variable.
+      </p>
+      <p>
+        This will come soon! I have a newsletter called the{" "}
+        <a href="https://datavizuniverse.substack.com/">dataviz universe</a>{" "}
+        where I share my latest updates.
+      </p>
+      <LinkAsButton href={"https://datavizuniverse.substack.com/"}>
+        Subscribe
+      </LinkAsButton>
+      <div className="full-bleed border-t h-0 bg-gray-100 my-3 mt-20" />
       <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />
     </Layout>
@@ -274,4 +398,59 @@ const hierarchy = hierarchyGenerator(dataTabular);
 
 const snippetCsv = `
 const dataTabular = d3.csvParse(text);
+`.trim();
+
+const snippetLayout1 = `
+// Create a dendogram generator = a function that compute the position of the nodes in a hierarchy
+const dendrogramGenerator = d3
+  .cluster()
+  .size([width, height]);
+`.trim();
+
+const snippetLayout2 = `
+// use the generator on our hierarchy
+const dendrogramLayout = dendrogramGenerator(hierarchy);
+`.trim();
+
+const snippetEdges = `
+const allEdges = dendrogram.descendants().map((node) => {
+  if (!node.parent) {
+    return null;
+  }
+  return (
+    <line
+      key={"line" + node.id}
+      fill="none"
+      stroke="grey"
+      x1={node.x}
+      x2={node.parent.x}
+      y1={node.y}
+      y2={node.parent.y}
+    />
+  );
+});
+`.trim();
+
+const snippetHorizontalLink = `
+<path
+  key={node.id}
+  fill="none"
+  stroke="grey"
+  d={horizontalLinkGenerator({
+    source: [node.parent.y, node.parent.x],
+    target: [node.y, node.x],
+  })}
+/>
+`.trim();
+
+const snippetRadialLayout = `
+const dendrogramGenerator = d3
+  .cluster()
+  .size([360, radius]);\
+
+const dendrogram = dendrogramGenerator(hierarchy);
+`.trim();
+
+const snippetTransform = `
+transform={"rotate(" + (node.x - 90) + ")translate(" + node.y + ")"}
 `.trim();
