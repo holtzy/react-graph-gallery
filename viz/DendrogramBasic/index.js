@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
-import { data } from "./hierarchy-1-level-random";
-import { Treemap } from "./Treemap"
+import { data } from "./data";
+import { Treemap } from "./Treemap";
 
 const rootElement = document.getElementById("root");
 
