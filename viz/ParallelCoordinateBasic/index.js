@@ -1,6 +1,14 @@
 import ReactDOM from "react-dom";
 import { data } from "./data";
-import { PieChart } from "./ParallelCoordinate";
+import { ParallelCoordinate } from "./ParallelCoordinate";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<PieChart data={data} width={400} height={400} />, rootElement);
+ReactDOM.render(
+  <ParallelCoordinate
+    data={data}
+    width={width}
+    height={height}
+    variables={["petalLength", "petalWidth", "sepalLength", "sepalWidth"]}
+  />,
+  rootElement
+);

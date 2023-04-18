@@ -117,24 +117,24 @@ export default function Home() {
       // Scales
       //
       */}
-      <h2 id="Scales">Scales</h2>
+      <h2 id="Scales">Scales and Axes</h2>
       <p>
-        The data wrangling part is done, but we're not ready to draw our bars
-        yet 😢.
-      </p>
-      <p>
-        Building a histogram requires transforming <b>dimensions</b> (the number
-        of items per bucket and the bucket limits) in <b>positions in pixels</b>
-        . This is done using a fundamental dataviz concept called <b>scale</b>.
+        Building a parallel coordinate charts requires several <b>scales</b> and{" "}
+        <b>axes</b>.
       </p>
       <p>
         D3.js comes with a handful set of{" "}
         <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
-        <code>scaleLinear</code> is what we need for the X and Y axis.
+        <code>scalePoint</code> and <code>scaleLinear</code> are the ones we are
+        goint to use here.
       </p>
+
       <h3>&rarr; X Scale</h3>
       <p>
-        The X scale is displayed <b>horizontally</b>. It covers the{" "}
+        We need only 1 X scale. This scale is gonna provide a position in pixels
+        for each variable name of the dataset. Remember that a parallel
+        coordinate chart displays several vertical lines, one per variable. The
+        X scale is displayed <b>horizontally</b>. It covers the{" "}
         <code>width</code> of the <code>svg</code> container, and its domain
         goes from the <code>min</code> to the <code>max</code> of the dataset.
       </p>
@@ -278,12 +278,10 @@ const snippet4 = `
 
 const snippetXScale = `
 const xScale = d3
-  .scaleLinear()
-  .domain([0, 10])
-  .range([0, width]);
-
-// xScale(0) -> 0 (the left hand side position of the first bin)
-// xScale(10) -> width (the right hand side position of the last bin)
+  .scalePoint<Variable>()
+  .range([0, boundsWidth])
+  .domain(variables)
+  .padding(0);
 `.trim();
 
 const snippetYScale = `
