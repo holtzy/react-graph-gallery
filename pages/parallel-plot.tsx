@@ -15,6 +15,7 @@ import { ImageGrid } from "../component/UI/ImageGrid";
 import Link from "next/link";
 import { Accordion } from "component/UI/Accordion";
 import { ParallelCoordinateBasicDemo } from "viz/ParallelCoordinateBasic/ParallelCoordinateDemo";
+import { ParallelCoordinateAxesOnlyDemo } from "viz/ParallelCoordinateAxesOnly/ParallelCoordinateAxesOnlyDemo";
 
 const graphDescription = (
   <>
@@ -63,16 +64,22 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        Building a histogram only requires a set of <b>numeric values</b>.
+        The dataset provides several <b>numeric</b> values for a set of data
+        points. It can also add some <b>categorical</b> variables that can be
+        added to customize the marker colors.
       </p>
       <p>
-        As a result, the dataset is pretty simple: an <code>array</code> of{" "}
-        numbers.
+        The suggested data structure is an array of <code>object</code>, where
+        each object is a data point. It can have as many numeric properties as
+        needed.
       </p>
       <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
-
+      <p>
+        Note: this is the same data format as for a{" "}
+        <Link href="/correlogram">correlogram</Link>
+      </p>
       {/*
       //
       // Skeleton
@@ -80,10 +87,11 @@ export default function Home() {
       */}
       <h2 id="skeleton">Component skeleton</h2>
       <p>
-        The goal here is to create a <code>Histogram</code> component that will
-        be stored in a <code>Histogram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
-        <code>data</code>.
+        The goal here is to create a <code>ParallelCoordinate</code> component
+        that will be stored in a <code>ParallelCoordinate.tsx</code> file. This
+        component requires 4 props to render: a <code>width</code>, a{" "}
+        <code>height</code>, some <code>data</code> and an array providing the
+        name of the variables to display.
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{" "}
@@ -93,7 +101,7 @@ export default function Home() {
       </p>
       <p>
         To put it in a nutshell, that's the skeleton of our{" "}
-        <code>Histogram</code> component:
+        <code>ParallelCoordinate</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
@@ -138,12 +146,22 @@ export default function Home() {
         the highest number of items. Something like:
       </p>
       <CodeBlock code={snippetYScale} />
+      <ChartOrSandbox
+        VizComponent={ParallelCoordinateAxesOnlyDemo}
+        vizName={"ParallelCoordinateAxesOnly"}
+        maxWidth={600}
+        height={400}
+        caption={
+          "Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react."
+        }
+      />
+
       {/*
       //
-      // Bars
+      // Lines
       //
       */}
-      <h2 id="bars">Drawing the bars</h2>
+      <h2 id="bars">Drawing the lines</h2>
       <p>Finally! ✨</p>
       <p>
         We can now <code>map</code> through the bucket object and draw a{" "}
@@ -167,156 +185,24 @@ export default function Home() {
         VizComponent={ParallelCoordinateBasicDemo}
         vizName={"ParallelCoordinateBasic"}
         maxWidth={600}
-        height={300}
+        height={400}
         caption={
           "Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react."
         }
       />
-      {/*
-      //
-      // Axes
-      //
-      */}
-      <h2 id="axes">Axes</h2>
-      <p>
-        The last step to get a decent chart is to add 2 <b>axes</b>. Otherwise,
-        the bucket bounds are not available, removing all potential insight into
-        the chart.
-      </p>
-      <p>
-        There are 2 main strategies to add axes to a react chart made with
-        d3.js. This process is extensively described in the{" "}
-        <a href="https://www.react-graph-gallery.com/build-axis-with-react">
-          axis section
-        </a>
-        .
-      </p>
-      <p>
-        In the example below, I chose to use the d3 way to render both axes.
-        Note also that a real dataset is used this time, showing the
-        distribution of AirBnB prices on the french riviera.
-      </p>
-      <br />
-      <ChartOrSandbox
-        VizComponent={HistogramWithAxisDemo}
-        vizName={"HistogramWithAxis"}
-        maxWidth={900}
-        height={300}
-        caption={
-          "Adding a X axis with d3 makes the chart much more insightful."
-        }
-      />
+
       {/*
       //
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="histogram" />
+      <ResponsiveExplanationSection chartId="parallel" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="histogram" />
-      {/*
-      //
-      // Variations
-      //
-      */}
-      <h2 id="variations">Variations</h2>
-      <p>
-        Once you've understood how to build a basic histogram with d3 and react,
-        it opens an infinite world of <b>customization</b>. Here are a few
-        examples showing how to add{" "}
-        <Link href="example/histogram-with-several-groups">several groups</Link>{" "}
-        on the same axis or how to use{" "}
-        <Link href="example/histogram-small-multiple">small multiple</Link> with
-        histograms to compare distributions.
-      </p>
-      <p>Click on the overview below to get details and code.</p>
-      <br />
-      <ImageGrid>
-        <GraphLinkImage
-          link={"example/histogram-with-several-groups"}
-          title={"Multiple groups"}
-          description={
-            <p>
-              A histogram with <b>multiple</b> groups displayed on the same
-              axis.
-            </p>
-          }
-          img={"histogram-with-several-groups.png"}
-          alt="Picture of a histogram with multiple groups built with react and d3.js"
-        />
-        <GraphLinkImage
-          link={"example/histogram-small-multiple"}
-          title={"Small multiple"}
-          description={
-            <p>
-              Create one panel per group to show its distribution separately
-            </p>
-          }
-          img={"histogram-small-multiple.png"}
-          alt="Picture of a histogram with small multiple built with react and d3.js"
-        />
-      </ImageGrid>
-      {/*
-      //
-      // Dataset transition
-      //
-      */}
-      <h2 id="transition">Dataset transition</h2>
-      <p>
-        The last step needed for a powerful histogram React component is a
-        proper way to transition between various datasets. When the{" "}
-        <code>data</code> prop updates, we need a stunning way to transition to
-        the new values.
-      </p>
-      <p>
-        There are many different strategies to approach this problem. I suggest
-        to rely on the <a href="https://react-spring.dev/">react-spring</a>{" "}
-        library that has everything we need to compute{" "}
-        <a href="https://www.joshwcomeau.com/animation/a-friendly-introduction-to-spring-physics/">
-          spring animations
-        </a>
-        .
-      </p>
-      <p>
-        Instead of rendering usual <code>rect</code> elements, the library
-        provides a <code>animated.rect</code> element, that is linked to a{" "}
-        <code>useSpring</code>
-        hook.
-      </p>
-
-      <ChartOrSandbox
-        VizComponent={HistogramDatasetTransitionDemo}
-        vizName={"HistogramDatasetTransition"}
-        maxWidth={900}
-        height={400}
-        caption={
-          "Adding a X axis with d3 makes the chart much more insightful."
-        }
-      />
-      <p>
-        This is how the <code>Rectangle</code> component I use looks like:
-      </p>
-      <Accordion
-        startOpen={false}
-        title={
-          <span>
-            <code>Rectangle</code>: a component that animates the transition of
-            a <code>rect</code>
-          </span>
-        }
-      >
-        <CodeBlock code={snippetRectangle} />
-      </Accordion>
-      <p>
-        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
-        impossible to go in depth here! I will publish a dedicated blog post on
-        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
-        newsletter if you want to be notified.
-      </p>
+      <DatavizInspirationParallaxLink chartId="parallel" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
@@ -326,29 +212,41 @@ export default function Home() {
 }
 
 const snippetData = `
-const data = [1, 2, 2, 2, 3, 4, 5, 6, 6, 6, 9]
+const data = [
+  {var1: 5.1, var2: 3.5, ..., group: 'setosa'},
+  {var1: 4.9, var2: 3.0, ..., group: 'setosa'},
+  ...
+]
 `.trim();
 
 const snippetSkeleton = `
 import * as d3 from "d3"; // we will need d3.js
 
-type HistogramProps = {
+type DataItem = {
+  [variable: string]: number;
+} & { group: string };
+
+
+type ParallelCoordinateProps = {
   width: number;
   height: number;
-  data: number[];
+  data: DataItem[];
+  variables: string[]
 };
 
-export const Histogram = ({ width, height, data }: HistogramProps) => {
+export const ParallelCoordinate = ({ width, height, data, variables }: ParallelCoordinateProps) => {
 
-  // read the data
-  // build buckets from the dataset
-  // build the scales
-  // build the rectangles
+  // read the data & get a list of groups
+  // build X scale
+  // build Y scales: 1 per variable
+  // build color scales
+  // loop through variables to add axes
+  // loop through data items and through variables to draw lines
 
   return (
     <div>
       <svg width={width} height={height}>
-        // render all the <rect>
+        // render all the <lines>
       </svg>
     </div>
   );

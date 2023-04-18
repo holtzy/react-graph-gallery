@@ -49,30 +49,6 @@ export const ParallelCoordinate = ({
       .domain([0, 8]);
   });
 
-  // Color Scale
-  const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(COLORS);
-
-  // Compute lines
-  const lineGenerator = d3.line();
-
-  const allLines = data.map((series, i) => {
-    const allCoordinates = variables.map((variable) => {
-      const yScale = yScales[variable];
-      const x = xScale(variable) ?? 0; // I don't understand the type of scalePoint. IMO x cannot be undefined since I'm passing it something of type Variable.
-      const y = yScale(series[variable]);
-      const coordinate: [number, number] = [x, y];
-      return coordinate;
-    });
-
-    const d = lineGenerator(allCoordinates);
-
-    if (!d) {
-      return;
-    }
-
-    return <path key={i} d={d} stroke={colorScale(series.group)} fill="none" />;
-  });
-
   // Compute Axes
   const allAxes = variables.map((variable, i) => {
     const yScale = yScales[variable];
@@ -90,7 +66,6 @@ export const ParallelCoordinate = ({
         height={boundsHeight}
         transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
       >
-        {allLines}
         {allAxes}
       </g>
     </svg>
