@@ -1,6 +1,6 @@
-export type ChartLogo = "DataArt2150" | "Violin150" | "Density150" | "Histogram150" | "Box1150" | "Joyplot150" | "ScatterPlot150" | "Heatmap150" | "Correlogram150" | "BubblePlot150" | "ScatterConnected150" | "Bar150" | "Spider150" | "Wordcloud150" | "Parallel1150" | "Lollipop150" | "CircularBarplot150" | "Tree150" | "Venn150" | "Doughnut150" | "Pie150" | "Dendrogram150" | "CircularPacking150" | "Line150" | "Area150" | "StackedArea150" | "Stream150" | "Time150" | "Map150" | "Choropleth150" | "MapHexbin150" | "Cartogram150" | "ConnectedMap150" | "BubbleMap150" | "Chord150" | "Network150" | "Sankey150" | "Arc150" | "Bundle150" | "Colours150" | "Interactive150" | "Anim150" | "Cheat150" | "Bad150" | "3d150" | "2dDensity150"
+export type ChartLogo = "DataArt2150" | "Violin150" | "Density150" | "Histogram150" | "Box1150" | "Joyplot150" | "ScatterPlot150" | "Heatmap150" | "Correlogram150" | "BubblePlot150" | "ScatterConnected150" | "Bar150" | "Spider150" | "Wordcloud150" | "Parallel1150" | "Lollipop150" | "CircularBarplot150" | "Tree150" | "Venn150" | "Doughnut150" | "Pie150" | "Dendrogram150" | "Voronoi150" | "CircularPacking150" | "Line150" | "Area150" | "StackedArea150" | "Stream150" | "Time150" | "Map150" | "Choropleth150" | "MapHexbin150" | "Cartogram150" | "ConnectedMap150" | "BubbleMap150" | "Chord150" | "Network150" | "Sankey150" | "Arc150" | "Bundle150" | "Colours150" | "Interactive150" | "Anim150" | "Cheat150" | "Bad150" | "3d150" | "2dDensity150"
 
-export type ChartId = 'all' | "violin" | "density" | "histogram" | "boxplot" | "ridgeline" | "scatter" | "heatmap" | "correlogram" | "bubble" | "connectedScatter" | "density2d" | "barplot" | "radar" | "wordcloud" | "parallel" | "lollipop" | "circularBarplot" | "treemap" | "venn" | "donut" | "pie" | "dendrogram" | "circularPacking" | "line" | "area" | "stackedArea" | "stream" | "timeseries" | "map" | "choropleth" | "hexbin" | "cartogram" | "connection" | "bubbleMap" | "chordDiagram" | "network" | "sankey" | "arc" | "edgeBundling" | "colors" | "plotly" | "animation" | "cheatSheets" | "caveats" | "3d"
+export type ChartId = 'all' | "violin" | "density" | "histogram" | "boxplot" | "ridgeline" | "scatter" | "heatmap" | "correlogram" | "bubble" | "connectedScatter" | "density2d" | "barplot" | "radar" | "wordcloud" | "parallel" | "lollipop" | "circularBarplot" | "treemap" | "venn" | "donut" | "pie" | "dendrogram" | "voronoi" | "circularPacking" | "line" | "area" | "stackedArea" | "stream" | "timeseries" | "map" | "choropleth" | "hexbin" | "cartogram" | "connection" | "bubbleMap" | "chordDiagram" | "network" | "sankey" | "arc" | "edgeBundling" | "colors" | "plotly" | "animation" | "cheatSheets" | "caveats" | "3d"
 
 export type ChartFamily = "distribution" | "correlation" | "evolution" | "ranking" | "partOfAWhole" | "general" | "flow" | "map"
 
@@ -206,16 +206,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     label: "Treemap",
     isAvailable: false
   },
-  {
-    id: "venn",
-    family: "partOfAWhole",
-    logo: "Venn150",
-    dataToVizURL: "https://www.data-to-viz.com/graph/venn.html",
-    d3URL: "https://www.d3-graph-gallery.com/venn",
-    reactURL: "https://react-graph-gallery.com/venn-diagram",
-    label: "Venn Diagram",
-    isAvailable: false
-  },
+  // {
+  //   id: "venn",
+  //   family: "partOfAWhole",
+  //   logo: "Venn150",
+  //   dataToVizURL: "https://www.data-to-viz.com/graph/venn.html",
+  //   d3URL: "https://www.d3-graph-gallery.com/venn",
+  //   reactURL: "https://react-graph-gallery.com/venn-diagram",
+  //   label: "Venn Diagram",
+  //   isAvailable: false
+  // },
   {
     id: "donut",
     family: "partOfAWhole",
@@ -245,6 +245,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     reactURL: "https://react-graph-gallery.com/dendrogram",
     label: "Dendrogram",
     isAvailable: true
+  },
+  {
+    id: "voronoi",
+    family: "partOfAWhole",
+    logo: "Voronoi150",
+    dataToVizURL: "https://www.data-to-viz.com",
+    d3URL: "https://www.d3-graph-gallery.com",
+    reactURL: "https://react-graph-gallery.com/voronoi",
+    label: "Voronoi",
+    isAvailable: false
   },
   {
     id: "circularPacking",

@@ -16,9 +16,6 @@ export const Voronoi = ({ width, height, data }: VoronoiProps) => {
     return <circle key={i} cx={xScale(d.x)} cy={yScale(d.y)} r={4} />;
   });
 
-  //
-  // Delaunay triangulation
-  //
   const delaunay = useMemo(() => {
     const formattedData = data.map((d) => [xScale(d.x), yScale(d.y)]);
     return Delaunay.from(formattedData);
@@ -26,26 +23,14 @@ export const Voronoi = ({ width, height, data }: VoronoiProps) => {
 
   const delaunayPath = delaunay.render();
 
-  const allDelaunayPath = (
-    <path d={delaunayPath} stroke="grey" fill="transparent" opacity={0.2} />
+  const allDelaunayShapes = (
+    <path d={delaunayPath} stroke="grey" fill="transparent" opacity={0.8} />
   );
-
-  //
-  // Voronoi Diagram
-  //
-  const voronoi = useMemo(() => {
-    return delaunay.voronoi([0, 0, width, height]);
-  }, [data]);
-
-  const voronoiPath = voronoi.render();
-
-  const allVoronoiPath = <path d={voronoiPath} stroke="black" fill="red" />;
 
   return (
     <svg width={width} height={height}>
       {allCircles}
-      {allDelaunayPath}
-      {allVoronoiPath}
+      {allDelaunayShapes}
     </svg>
   );
 };
