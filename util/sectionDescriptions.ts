@@ -312,7 +312,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     logo: "Time150",
     dataToVizURL: "https://www.data-to-viz.com",
     d3URL: "https://www.d3-graph-gallery.com",
-    reactURL: "https://react-graph-gallery.com/times",
+    reactURL: "https://react-graph-gallery.com/timeseries",
     label: "Timeseries",
     isAvailable: false
   },
