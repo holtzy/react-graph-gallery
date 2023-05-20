@@ -11,6 +11,10 @@ import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { LineChartDatasetTransitionDemo } from "viz/LineChartDatasetTransition/LineChartDatasetTransitionDemo";
+import { CodeSandbox } from "component/CodeSandbox";
+import { Accordion } from "component/UI/Accordion";
+import { LineChartPageViewsDemo } from "viz/LineChartPageViews/LineChartPageViewsDemo";
+import { LineChartSyncCursorDemo } from "viz/LineChartSyncCursor/LineChartSyncCursorDemo";
 
 const graphDescription = (
   <>
@@ -67,8 +71,8 @@ export default function Home() {
       */}
       <h2 id="skeleton">Component skeleton</h2>
       <p>
-        The goal here is to create a <code>Histogram</code> component that will
-        be stored in a <code>Histogram.tsx</code> file. This component requires
+        The goal here is to create a <code>LineChart</code> component that will
+        be stored in a <code>LineChart.tsx</code> file. This component requires
         3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
         <code>data</code>.
       </p>
@@ -76,11 +80,11 @@ export default function Home() {
         The shape of the <code>data</code> is described above. The{" "}
         <code>width</code> and <code>height</code> will be used to render an{" "}
         <code>svg</code> element in the DOM, in which we will insert the
-        histogram.
+        LineChart.
       </p>
       <p>
         To put it in a nutshell, that's the skeleton of our{" "}
-        <code>Histogram</code> component:
+        <code>LineChart</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
@@ -92,11 +96,57 @@ export default function Home() {
       </p>
       {/*
       //
+      // Scales and Axes
+      //
+      */}
+      <h2 id="scales & axes">Scales and Axes</h2>
+      <p>
+        Like for many charts, everything starts with <b>scales</b>. A scale is a{" "}
+        <b>function</b> that transform the value of a data point in a position
+        in <b>pixel</b>.
+      </p>
+      <p>
+        Two scales are required here. One for the X axis, and one for the Y
+        axis. They are both <b>linear</b> scales.
+      </p>
+      <p>
+        This concept of scale is thoroughly described in other chart type pages
+        like for the <Link href="/scatter-plot">scatterplot</Link> so I won't
+        repeat it here.
+      </p>
+      {/*
+      //
       // The d3.line() function
       //
       */}
-      <h2 id="d3.line()">The d3.line() function</h2>
-      <p>Explain how the d3.line() function works</p>
+      <h2 id="d3.line()">
+        The <code>d3.line()</code> function
+      </h2>
+      <p>
+        From the dataset described above, we want to draw a line in SVG. This is
+        done using a <code>path</code> element that has a <code>d</code>{" "}
+        attribute.
+      </p>
+      <p>
+        Fortunately, d3.js offers the <code>d3.line()</code> function that helps
+        us doing this. <code>d3.line()</code> is a function that returns a
+        function. It can be invoked this way:
+      </p>
+      <CodeBlock code={snippetLineBuilder} />
+      <p>
+        Here 2 <b>accessor functions</b> are provided. An accessor function
+        tells to d3 how to find the position in pixel of a datapoint based on an
+        item of the initial dataset.
+      </p>
+      <p>
+        <code>lineBuilder</code> is now a function that expects a dataset as
+        input and returns a SVG <code>path</code> from it.{" "}
+      </p>{" "}
+      <CodeBlock code={snippetLinePath} />
+      <p>
+        {" "}
+        This path can easily be plotted as shown in the following section. 🎉
+      </p>
       {/*
       //
       // Basic line chart
@@ -104,31 +154,25 @@ export default function Home() {
       */}
       <h2 id="basic">Most basic line chart</h2>
       <p>
-        There is nothing really tricky when it comes to build a basic barplot
-        with react, all is pretty close to the{" "}
-        <a href="https://d3-graph-gallery.com/graph/line_basic.html">
-          d3-only examples
-        </a>
-        .
+        Most of the job is done already. It is just a matter of passing the{" "}
+        <code>path</code> computed above to the SVG element. Something like
+        this:
       </p>
-      <p>
-        First of all you probably want to add some margins around the dimensions
-        provided in the component properties as described{" "}
-        <Link href="/build-axis-with-react">here</Link>.
-      </p>
-      <p>
-        Both the X and Y axis are using a numeric scale thanks to the{" "}
-        <code>scaleLinear()</code> function here. Note that a usual struggle is
-        to deal with the date format but this is described in the timeseries
-        section.
-      </p>
+      <CodeBlock code={snippetRendering} />
+      <p>Leading to our first line chart! 🔥</p>
       <ChartOrSandbox
         vizName={"LineChartBasic"}
         VizComponent={LineChartBasicDemo}
         height={400}
         maxWidth={600}
-        caption="most basic line chart with react and d3.js"
+        caption="Most basic line chart made with react (rendering) and d3.js (path computation)"
       />
+      <p>
+        Note: you can compare this with a{" "}
+        <a href="https://d3-graph-gallery.com/graph/line_basic.html">
+          d3.js only approach
+        </a>
+      </p>
       {/*
       //
       // Responsiveness
@@ -147,7 +191,33 @@ export default function Home() {
       //
       */}
       <h2 id="transition">Transition</h2>
-      <p>How to switch between dataset</p>
+      <p>
+        How can we <b>smoothly animate</b> the transition between 2 datasets on
+        a line chart? Click on the buttons on top of the chart below to trigger
+        an animation between 2 groups of a dataset.
+      </p>
+      <p>
+        This is possible thanks to the{" "}
+        <a href="https://react-spring.dev/">react spring</a> library. Basically,
+        instead of rendering usual a <code>path</code> element, the library
+        provides an <code>animated.path</code> element, that is linked to a{" "}
+        <code>useSpring</code>
+        hook.
+      </p>
+      <p>
+        This is what the <code>LineItem</code> component I use looks like:
+      </p>
+      <Accordion
+        startOpen={false}
+        title={
+          <span>
+            <code>LineItem</code>: a component that animates the transition of a{" "}
+            <code>path</code>
+          </span>
+        }
+      >
+        <CodeBlock code={snippetLine} />
+      </Accordion>
       <ChartOrSandbox
         vizName={"LineChartDatasetTransition"}
         VizComponent={LineChartDatasetTransitionDemo}
@@ -155,18 +225,36 @@ export default function Home() {
         maxWidth={600}
         caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
       />
+      <p>
+        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
+        impossible to go in-depth here! I will publish a dedicated blog post on
+        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
+        newsletter if you want to be notified.
+      </p>
       {/*
       //
-      // Application
+      // Going further
       //
       */}
-      <h2 id="application">Application</h2>
-      <p>Application on a real dataset</p>
-      <ChartOrSandbox
-        vizName={"LineChartBasic"}
-        VizComponent={LineChartBasicDemo}
+      <h2 id="variation">Variations</h2>
+      <p>
+        You know have the basic understanding on how to build a <b>basic</b>{" "}
+        line chart component with React and d3.js. Below are a few examples
+        showing how to build more <b>complex</b> graphs based on those
+        principles.
+      </p>
+      {/* <ChartOrSandbox
+        vizName={"LineChartPageViews"}
+        VizComponent={LineChartPageViewsDemo}
         height={400}
         maxWidth={600}
+        caption="most basic line chart with react and d3.js"
+      /> */}
+      <ChartOrSandbox
+        vizName={"LineChartSyncCursor"}
+        VizComponent={LineChartSyncCursorDemo}
+        height={400}
+        maxWidth={900}
         caption="most basic line chart with react and d3.js"
       />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
@@ -211,3 +299,57 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
   );
 };
 `.trim();
+
+const snippetLineBuilder = `
+const lineBuilder = d3
+  .line()
+  .x((d) => xScale(d.x))
+  .y((d) => yScale(d.y));
+`.trim();
+
+const snippetLinePath = `
+const linePath = lineBuilder(data);
+
+// console.log(linePath)
+// 'M31.02,26.99 L63.02,59.9 L287.1,194.4 L319,178.2'
+`.trim();
+
+const snippetRendering = `
+<svg width={width} height={height}>
+  <g ...some translation >
+    <path
+      d={linePath}
+      stroke="#9a6fb0"
+      fill="none"
+      strokeWidth={2}
+    />
+  </g>
+</svg>
+`.trim();
+
+const snippetLine = `
+type LineItemProps = {
+  path: string;
+  color: string;
+};
+
+const LineItem = ({ path, color }: LineItemProps) => {
+  const springProps = useSpring({
+    to: {
+      path,
+      color,
+    },
+    config: {
+      friction: 100,
+    },
+  });
+
+  return (
+    <animated.path
+      d={springProps.path}
+      fill={"none"}
+      stroke={color}
+      strokeWidth={2}
+    />
+  );
+};`.trim();
