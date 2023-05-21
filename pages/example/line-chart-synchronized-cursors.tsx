@@ -12,7 +12,7 @@ const graphDescription = (
   <>
     <p>
       This tutorial is a variation around the general{" "}
-      <Link href="line-chart">introduction to line chart with react</Link> and
+      <Link href="/line-chart">introduction to line chart with react</Link> and
       d3.js. You should probably understand the concepts described there before
       reading here.
     </p>

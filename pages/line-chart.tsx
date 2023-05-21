@@ -15,6 +15,8 @@ import { CodeSandbox } from "component/CodeSandbox";
 import { Accordion } from "component/UI/Accordion";
 import { LineChartPageViewsDemo } from "viz/LineChartPageViews/LineChartPageViewsDemo";
 import { LineChartSyncCursorDemo } from "viz/LineChartSyncCursor/LineChartSyncCursorDemo";
+import { ImageGrid } from "component/UI/ImageGrid";
+import { GraphLinkImage } from "component/UI/GraphLinkImage";
 
 const graphDescription = (
   <>
@@ -243,20 +245,15 @@ export default function Home() {
         showing how to build more <b>complex</b> graphs based on those
         principles.
       </p>
-      {/* <ChartOrSandbox
-        vizName={"LineChartPageViews"}
-        VizComponent={LineChartPageViewsDemo}
-        height={400}
-        maxWidth={600}
-        caption="most basic line chart with react and d3.js"
-      /> */}
-      <ChartOrSandbox
-        vizName={"LineChartSyncCursor"}
-        VizComponent={LineChartSyncCursorDemo}
-        height={400}
-        maxWidth={900}
-        caption="most basic line chart with react and d3.js"
-      />
+      <ImageGrid>
+        <GraphLinkImage
+          link={"/example/line-chart-synchronized-cursors"}
+          title={"Synchronized cursors"}
+          description={<p>Add a cursor synchronized on all your charts</p>}
+          img={"line-chart-synced-cursor.gif"}
+          alt={"line charts with synchronized cursors"}
+        />
+      </ImageGrid>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
