@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { data } from "./data";
+import { useEffect, useState } from "react";
 import { LineChart } from "./LineChart";
-import { csv } from "d3";
+import { csv, csvParse } from "d3";
 
 const BUTTONS_HEIGHT = 50;
 
@@ -28,7 +27,24 @@ export const LineChartPageViews = ({
     "melanie"
   );
 
-  const jsonData = csv("./data.csv").then((d) => console.log(d));
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv"
+      );
+      const csvData = await response.text();
+      console.log({ csvData });
+      const parsedData = csvParse(csvData);
+      console.log({ parsedData });
+      setData(parsedData);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
 
   return (
     <div>

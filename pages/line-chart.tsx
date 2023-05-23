@@ -254,6 +254,13 @@ export default function Home() {
           alt={"line charts with synchronized cursors"}
         />
       </ImageGrid>
+      <ChartOrSandbox
+        vizName={"LineChartDatasetTransition"}
+        VizComponent={LineChartPageViewsDemo}
+        height={400}
+        maxWidth={600}
+        caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
