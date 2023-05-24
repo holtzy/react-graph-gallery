@@ -1,60 +1,73 @@
 import { useEffect, useMemo, useRef } from "react";
-import * as d3 from "d3";
 import { useSpring, animated } from "@react-spring/web";
+import {
+  axisBottom,
+  axisLeft,
+  extent,
+  line,
+  max,
+  scaleLinear,
+  scaleTime,
+  select,
+  timeParse,
+} from "d3";
 
-const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
+const MARGIN = { top: 30, right: 30, bottom: 50, left: 100 };
 
-type Datapoint = { x: number; melanie: number; yan: number };
+type DataItem = {
+  value: number;
+  group: string;
+  date: string;
+};
 
 type LineChartProps = {
   width: number;
   height: number;
-  data: Datapoint[];
-  selectedGroup: "melanie" | "yan";
+  data: DataItem[];
 };
 
-export const LineChart = ({
-  width,
-  height,
-  data,
-  selectedGroup,
-}: LineChartProps) => {
+export const LineChart = ({ width, height, data }: LineChartProps) => {
+  console.log({ data });
+
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const yScale = useMemo(() => {
-    return d3.scaleLinear().domain([0, 100]).range([boundsHeight, 0]);
-  }, [data, height]);
+  const allGroups = [...new Set(data.map((d) => d.group))];
 
-  const xScale = useMemo(() => {
-    return d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
-  }, [data, width]);
+  const parseTime = timeParse("%Y-%m-%d");
+  const dateDomain = extent(data.map((d) => parseTime(d.date)));
+  console.log({ dateDomain });
+
+  const maxValue = max(data.map((d) => d.value)) || 0;
+
+  const yScale = scaleLinear().domain([0, maxValue]).range([boundsHeight, 0]);
+
+  const xScale = scaleTime().domain(dateDomain).range([0, boundsWidth]);
 
   // Render the X and Y axis using d3.js, not react
   useEffect(() => {
-    const svgElement = d3.select(axesRef.current);
+    const svgElement = select(axesRef.current);
     svgElement.selectAll("*").remove();
 
-    const xAxisGenerator = d3.axisBottom(xScale);
+    const xAxisGenerator = axisBottom(xScale);
     svgElement
       .append("g")
       .attr("transform", "translate(0," + boundsHeight + ")")
       .call(xAxisGenerator);
 
-    const yAxisGenerator = d3.axisLeft(yScale);
+    const yAxisGenerator = axisLeft(yScale);
     svgElement.append("g").call(yAxisGenerator);
   }, [xScale, yScale, boundsHeight]);
 
-  const lineBuilder = d3
-    .line<Datapoint>()
-    .x((d) => xScale(d.x))
-    .y((d) => yScale(d[selectedGroup]));
-  const linePath = lineBuilder(data);
+  const lineBuilder = line<DataItem>()
+    .x((d) => xScale(parseTime(d.date)))
+    .y((d) => yScale(d.value));
 
-  if (!linePath) {
-    return null;
-  }
+  const allLines = allGroups.map((selectedGroup, i) => {
+    const path = lineBuilder(data.filter((d) => d.group === selectedGroup));
+    return <LineItem key={i} path={path} color={"#9a6fb0"} />;
+  });
 
   return (
     <div>
@@ -65,10 +78,7 @@ export const LineChart = ({
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
-          <LineItem
-            path={linePath}
-            color={selectedGroup === "yan" ? "#69b3a2" : "#9a6fb0"}
-          />
+          {allLines}
         </g>
         {/* Second is for the axes */}
         <g

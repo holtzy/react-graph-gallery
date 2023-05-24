@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LineChart } from "./LineChart";
-import { csv, csvParse } from "d3";
+import { csvParse } from "d3";
 
 const BUTTONS_HEIGHT = 50;
 
@@ -27,16 +27,15 @@ export const LineChartPageViews = ({
     "melanie"
   );
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DataItem[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv"
+        "https://raw.githubusercontent.com/holtzy/react-graph-gallery/main/data/data_page_views.csv"
       );
       const csvData = await response.text();
-      console.log({ csvData });
-      const parsedData = csvParse(csvData);
+      const parsedData: DataItem[] = csvParse(csvData);
       console.log({ parsedData });
       setData(parsedData);
     };
@@ -44,24 +43,22 @@ export const LineChartPageViews = ({
     fetchData();
   }, []);
 
-  console.log(data);
-
   return (
     <div>
-      <div style={{ height: BUTTONS_HEIGHT }}>
+      {/* <div style={{ height: BUTTONS_HEIGHT }}>
         <button style={buttonStyle} onClick={() => setSelectedGroup("melanie")}>
           Melanie
         </button>
         <button style={buttonStyle} onClick={() => setSelectedGroup("yan")}>
           Yan
         </button>
-      </div>
-      {/* <LineChart
+      </div> */}
+      <LineChart
         width={width}
         height={height - BUTTONS_HEIGHT}
         data={data}
         selectedGroup={selectedGroup}
-      /> */}
+      />
     </div>
   );
 };
