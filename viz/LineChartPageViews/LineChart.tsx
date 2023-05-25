@@ -37,7 +37,6 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
 
   const parseTime = timeParse("%Y-%m-%d");
   const dateDomain = extent(data.map((d) => parseTime(d.date)));
-  console.log({ dateDomain });
 
   const maxValue = max(data.map((d) => d.value)) || 0;
 
