@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import * as d3 from "d3";
+import { XAxis } from "./XAxis";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
@@ -34,32 +35,12 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
 
   const xScale = d3.scaleTime().domain(dateDomain).range([0, boundsWidth]);
 
-  // Render the X and Y axis using d3.js, not react
-  useLayoutEffect(() => {
-    const svgElement = d3.select(axesRef.current);
-    svgElement.selectAll("*").remove();
-    const xAxisGenerator = d3.axisBottom(xScale);
-    svgElement
-      .append("g")
-      .attr("transform", "translate(0," + boundsHeight + ")")
-      .call(xAxisGenerator);
-
-    const yAxisGenerator = d3.axisLeft(yScale);
-    svgElement.append("g").call(yAxisGenerator);
-  }, [xScale, yScale, boundsHeight]);
-
   // Build the line
   const lineBuilder = d3
     .line<DataPoint>()
     .x((d) => xScale(customTimeParser(d.x)))
     .y((d) => yScale(d.y));
   const linePath = lineBuilder(data);
-
-  // Panning
-  const handleZoom = (e) => {
-    console.log(e);
-  };
-  const zoom = d3.zoom().on("zoom", handleZoom);
 
   if (!linePath) {
     return null;
@@ -82,11 +63,12 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
           />
         </g>
         <g
-          width={boundsWidth}
-          height={boundsHeight}
-          ref={axesRef}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-        />
+          transform={`translate(${[MARGIN.left, boundsHeight + MARGIN.top].join(
+            ","
+          )})`}
+        >
+          <XAxis xScale={xScale} width={boundsWidth} />
+        </g>
       </svg>
     </div>
   );
