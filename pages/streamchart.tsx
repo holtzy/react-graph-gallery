@@ -142,8 +142,8 @@ export default function Home() {
       <ChartOrSandbox
         vizName={"StreamGraphPageViews"}
         VizComponent={StreamGraphPageViewsDemo}
-        height={400}
-        maxWidth={600}
+        height={600}
+        maxWidth={900}
         caption="Most basic streamgraph with react and d3.js"
       />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />

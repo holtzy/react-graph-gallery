@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { DataItem, StreamGraph } from "./StreamGraph";
+import { DataItem, StreamGraph, parseTime } from "./StreamGraph";
 import { csvParse } from "d3";
+import * as d3 from "d3";
+
+const HEADER_HEIGHT = 150;
+const monthTimeFormatter = d3.timeFormat("%B %Y");
 
 type StreamGraphPageViewsProps = {
   width: number;
@@ -12,6 +16,8 @@ export const StreamGraphPageViews = ({
   height,
 }: StreamGraphPageViewsProps) => {
   const [data, setData] = useState<DataItem[]>();
+
+  const [startDate, setStartDate] = useState(parseTime("2017-01-01"));
 
   // Data is stored on github at .csv format. This loads it.
   // Note that data is stored in a "long" format. It will be converted to a wide format by the renderer.
@@ -29,13 +35,40 @@ export const StreamGraphPageViews = ({
     fetchData();
   }, []);
 
-  if (!data) {
+  if (!data || !startDate) {
     return null;
   }
 
   return (
     <div>
-      <StreamGraph width={width} height={height} data={data} />
+      <div style={{ height: HEADER_HEIGHT }}>
+        <p style={{ fontSize: 17, paddingTop: 40, marginBottom: 0 }}>
+          <b>
+            Chat-GPT hasn't impacted tech websites traffic significantly (yet)
+          </b>
+        </p>
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <p style={{ fontSize: 12, width: 160, paddingTop: 11 }}>
+            {"Data since " + monthTimeFormatter(startDate)}
+          </p>
+          <input
+            type="range"
+            min={parseTime("2015-01-01")?.getTime()}
+            max={parseTime("2023-01-01")?.getTime()}
+            value={startDate.getTime()}
+            step={10000}
+            onChange={(e) => setStartDate(new Date(Number(e.target.value)))}
+            style={{ height: 1, opacity: 0.5 }}
+          />
+        </div>
+      </div>
+      <StreamGraph
+        width={width}
+        height={height - HEADER_HEIGHT}
+        data={data}
+        startDate={startDate}
+      />
     </div>
   );
 };

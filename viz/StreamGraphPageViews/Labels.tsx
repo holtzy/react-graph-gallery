@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 
 const PADDING_LEFT = 30;
+const BAR_HEIGHT = 20;
 
 type LabelsProps = {
   labelInfos: {
@@ -10,29 +11,52 @@ type LabelsProps = {
     name: string;
   }[];
   xStart: number;
+  xEnd: number;
 };
 
-export const Labels = ({ labelInfos, xStart }: LabelsProps) => {
+export const Labels = ({ labelInfos, xStart, xEnd }: LabelsProps) => {
+  const max = d3.max(labelInfos.map((label) => label.value));
+
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, max])
+    .range([xStart + PADDING_LEFT, xEnd]);
+
   const labels = labelInfos.map((label, i) => {
     return (
       <g key={i}>
+        {/* Dashed Line between stream chart and label */}
         <line
-          x1={xStart}
-          x2={xStart + PADDING_LEFT}
+          x1={xStart + 2}
+          x2={xStart + PADDING_LEFT - 2}
           y1={label.position}
           y2={label.position}
           stroke="#808080"
           opacity={0.9}
+          stroke-dasharray={2}
         />
-        <text
+        {/* Bar that creates a bar chart */}
+        <rect
           x={xStart + PADDING_LEFT}
+          y={label.position - BAR_HEIGHT / 2}
+          width={xScale(label.value) - (xStart + PADDING_LEFT)}
+          height={BAR_HEIGHT}
+          opacity={0.7}
+          stroke={label.color}
+          fill={label.color}
+          fillOpacity={0.3}
+          strokeWidth={1}
+          rx={1}
+        />
+        {/* Name of the group */}
+        <text
+          x={xStart + PADDING_LEFT + 2}
           y={label.position}
           textAnchor="start"
           alignmentBaseline="central"
-          fontSize={14}
-          stroke="black"
+          fontSize={12}
+          stroke="#808080"
           fill="none"
-          opacity={1}
         >
           {label.name}
         </text>
