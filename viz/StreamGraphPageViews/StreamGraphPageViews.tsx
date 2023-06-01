@@ -14,6 +14,8 @@ export const StreamGraphPageViews = ({
   const [data, setData] = useState<DataItem[]>();
 
   // Data is stored on github at .csv format. This loads it.
+  // Note that data is stored in a "long" format. It will be converted to a wide format by the renderer.
+  // See the streamgraph section of the react graph gallery for explanations.
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
