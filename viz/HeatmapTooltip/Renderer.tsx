@@ -105,7 +105,7 @@ export const Renderer = ({
   });
 
   const yLabels = allYGroups.map((name, i) => {
-    const y = xScale(name);
+    const y = yScale(name);
 
     if (!y) {
       return null;

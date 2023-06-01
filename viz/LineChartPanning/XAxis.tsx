@@ -17,50 +17,22 @@ export const XAxis = ({ xScale, width }: XAxisProps) => {
     let xAxisGenerator = d3.axisBottom(xScale);
     xAxisElement.append("g").call(xAxisGenerator);
 
-    // Enable panning
-    let isPanning = false;
-    let startMouseX = 0;
-    let startOldestDate = 0;
-    let startLatestDate = 0;
+    // Define zoom behavior
+    const zoomBehavior = d3.zoom().on("zoom", handleZoom);
 
-    const handleMouseDown = (e) => {
-      isPanning = true;
-      startMouseX = e.clientX;
-      startOldestDate = xScale.range()[0]; // Date at the very left of the X axis
-      startLatestDate = xScale.range()[1]; // Date at the very left of the X axis
-    };
+    // Attach zoom behavior to the SVG
+    xAxisElement.call(zoomBehavior);
 
-    const handleMouseMove = (e) => {
-      if (isPanning) {
-        const dx = e.clientX - startMouseX;
-
-        // When I move from 1 px, how many milliseconds further am I?
-        const ratioPixelTime = xScale.invert(1) - xScale.invert(0);
-
-        const newXDomain = xScale
-          .domain()
-          .map((value) => new Date(value - dx * ratioPixelTime));
-
-        xScale.domain(newXDomain);
-
-        xAxisElement.select("g").call(xAxisGenerator);
-      }
-    };
-
-    const handleMouseUp = () => {
-      isPanning = false;
-    };
-
-    xAxisElement
-      .on("mousedown", handleMouseDown)
-      .on("mousemove", handleMouseMove)
-      .on("mouseup", handleMouseUp);
+    function handleZoom(e) {
+      console.log(e);
+      const transform = e.transform;
+      xScale.domain(transform.rescaleX(xScale).domain());
+      xAxisElement.select("g").call(xAxisGenerator);
+    }
 
     return () => {
       // Cleanup event listeners
-      xAxisElement.on("mousedown", null);
-      xAxisElement.on("mousemove", null);
-      xAxisElement.on("mouseup", null);
+      xAxisElement.on(".zoom", null);
     };
   }, [xScale]);
 

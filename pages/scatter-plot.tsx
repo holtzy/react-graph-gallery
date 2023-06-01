@@ -384,7 +384,6 @@ export default function Home() {
         <Link href="/subscribe">subscribe</Link> to know when.
       </p>
 
-
       {/*
       //
       // Inspiration
@@ -612,8 +611,8 @@ const allShapes = data.map((d, i) => {
     <circle
       key={i}
       r={7} // radius
-      cx={xScale(d.y)} // position on the X axis
-      cy={yScale(d.x)} // on the Y axis
+      cx={xScale(d.x)} // position on the X axis
+      cy={yScale(d.y)} // on the Y axis
       opacity={1}
       stroke="#cb1dd1"
       fill="#cb1dd1"
