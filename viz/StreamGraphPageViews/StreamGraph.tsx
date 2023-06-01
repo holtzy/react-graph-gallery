@@ -1,10 +1,12 @@
 import * as d3 from "d3";
 import { curveCatmullRom } from "d3";
-import { pivotWider } from "./utils";
+import { pivotWider, WideDataItem } from "./utils";
 import { TimeGrid } from "./TimeGrid";
 import { Labels } from "./Labels";
+import { Cursor } from "./Cursor";
+import { useState } from "react";
 
-const MARGIN = { top: 10, right: 150, bottom: 90, left: 0 };
+const MARGIN = { top: 10, right: 250, bottom: 90, left: 0 };
 
 export const parseTime = d3.timeParse("%Y-%m-%d");
 
@@ -29,10 +31,15 @@ export const StreamGraph = ({
   data,
   startDate,
 }: StreamGraphProps) => {
+  const [interactionData, setInteractionData] = useState<WideDataItem | null>(
+    null
+  );
+
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const filteredData = data.filter((d) => parseTime(d.date) > startDate);
+  const biggestValue = d3.max(filteredData.map((d) => d.value));
 
   const allGroups = [...new Set(data.map((d) => d.group))];
 
@@ -63,7 +70,7 @@ export const StreamGraph = ({
     .domain(allGroups)
     .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
 
-  // Build the shapes
+  // Build the streamgraph shapes
   const areaBuilder = d3
     .area<any>()
     .x((d) => {
@@ -89,15 +96,57 @@ export const StreamGraph = ({
 
   const labelInfos = series.map((sery) => {
     const lastItem = sery[sery.length - 1];
-    console.log({ lastItem });
+
+    const value = interactionData
+      ? interactionData[sery.key]
+      : lastItem[1] - lastItem[0];
 
     return {
       name: sery.key,
       color: colorScale(sery.key),
-      value: lastItem[1] - lastItem[0],
+      value,
       position: yScale((lastItem[0] + lastItem[1]) / 2),
     };
   });
+
+  /**
+   *function that takes the cursor position in pixel and return the closest data point
+   */
+  const getClosestPoint = (cursorPixelPosition: number) => {
+    const x = xScale.invert(cursorPixelPosition);
+
+    let minDistance = Infinity;
+    let closest: WideDataItem | null = null;
+
+    for (const point of wideData) {
+      const cursorTime = parseTime(point.date)?.getTime();
+
+      if (!cursorTime) {
+        return null;
+      }
+
+      const distance = Math.abs(cursorTime - x.getTime());
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = point;
+      }
+    }
+
+    return closest;
+  };
+
+  /**
+   * function triggered when cursor moves above the chart
+   * it finds the closest point in the dataset and update the interactionData internal state
+   * this will update the cursor position and the size of the bars on the right hand side
+   */
+  const onMouseMove = (e: React.MouseEvent<SVGRectElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const closest = getClosestPoint(mouseX);
+    setInteractionData(closest);
+  };
 
   return (
     <div>
@@ -112,8 +161,28 @@ export const StreamGraph = ({
             labelInfos={labelInfos}
             xStart={xScale.range()[1]}
             xEnd={width}
+            biggestValue={biggestValue}
           />
           {allPath}
+          {interactionData && (
+            <Cursor
+              height={boundsHeight}
+              x={xScale(parseTime(interactionData.date))}
+              biggestValue={biggestValue}
+            />
+          )}
+          {/* Additional rect on top of everything to catch mouse events */}
+          <rect
+            x={0}
+            y={0}
+            width={boundsWidth}
+            height={boundsHeight}
+            onMouseMove={onMouseMove}
+            onMouseLeave={() => setInteractionData(null)}
+            visibility={"hidden"}
+            pointerEvents={"all"}
+            cursor={"pointer"}
+          />
         </g>
       </svg>
     </div>

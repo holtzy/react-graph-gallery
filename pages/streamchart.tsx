@@ -138,7 +138,30 @@ export default function Home() {
       //
       */}
       <h2 id="application">Application</h2>{" "}
-      <p>Check page view evolution of some major tech websites</p>
+      <p>
+        The following chart is a real-life application of a <b>streamgraph</b>.
+        It shows the evolution if the <b>number of page-views</b> for 5 tech
+        websites in the last 7 years. My goal was to assess if the rise of{" "}
+        <a href="https://openai.com/blog/chatgpt">chat-GPT</a> had an impact on
+        it.
+      </p>
+      <p>
+        This <b>interactive</b> chart has several interesting features:
+      </p>
+      <ul>
+        <li>
+          <b>slider</b>: you can control the displayed time-frame thanks to a
+          slider.
+        </li>
+        <li>
+          <b>inline legend</b>: label of each series are written inline. A
+          background proportional to their value provides additional insight.
+        </li>
+        <li>
+          <b>hover effect</b>: legend will be updated with precise values at the
+          hovered timestamp.
+        </li>
+      </ul>
       <ChartOrSandbox
         vizName={"StreamGraphPageViews"}
         VizComponent={StreamGraphPageViewsDemo}

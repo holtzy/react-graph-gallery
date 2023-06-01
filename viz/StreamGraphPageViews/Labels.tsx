@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { useSpring, animated } from "@react-spring/web";
 
 const PADDING_LEFT = 30;
 const BAR_HEIGHT = 20;
@@ -12,17 +13,23 @@ type LabelsProps = {
   }[];
   xStart: number;
   xEnd: number;
+  biggestValue: number;
 };
 
-export const Labels = ({ labelInfos, xStart, xEnd }: LabelsProps) => {
-  const max = d3.max(labelInfos.map((label) => label.value));
-
+export const Labels = ({
+  labelInfos,
+  xStart,
+  xEnd,
+  biggestValue,
+}: LabelsProps) => {
   const xScale = d3
     .scaleLinear()
-    .domain([0, max])
-    .range([xStart + PADDING_LEFT, xEnd]);
+    .domain([0, biggestValue])
+    .range([xStart + PADDING_LEFT, xEnd - 20]);
 
   const labels = labelInfos.map((label, i) => {
+    const cleanValue = Math.floor(label.value / 1000000);
+
     return (
       <g key={i}>
         {/* Dashed Line between stream chart and label */}
@@ -36,17 +43,11 @@ export const Labels = ({ labelInfos, xStart, xEnd }: LabelsProps) => {
           stroke-dasharray={2}
         />
         {/* Bar that creates a bar chart */}
-        <rect
-          x={xStart + PADDING_LEFT}
+        <BarItem
+          color={label.color}
+          x={xScale(0)}
           y={label.position - BAR_HEIGHT / 2}
-          width={xScale(label.value) - (xStart + PADDING_LEFT)}
-          height={BAR_HEIGHT}
-          opacity={0.7}
-          stroke={label.color}
-          fill={label.color}
-          fillOpacity={0.3}
-          strokeWidth={1}
-          rx={1}
+          width={xScale(label.value) - xScale(0)}
         />
         {/* Name of the group */}
         <text
@@ -58,11 +59,45 @@ export const Labels = ({ labelInfos, xStart, xEnd }: LabelsProps) => {
           stroke="#808080"
           fill="none"
         >
-          {label.name}
+          {label.name + " | " + cleanValue + "M"}
         </text>
       </g>
     );
   });
 
   return <>{labels}</>;
+};
+
+type BarItemProps = {
+  color: string;
+  x: number;
+  y: number;
+  width: number;
+};
+
+export const BarItem = ({ color, x, y, width }: BarItemProps) => {
+  const springProps = useSpring({
+    to: {
+      width,
+    },
+    config: {
+      friction: 10,
+      bounce: 0,
+    },
+  });
+
+  return (
+    <animated.rect
+      x={x}
+      y={y}
+      width={springProps.width}
+      height={BAR_HEIGHT}
+      opacity={0.7}
+      stroke={color}
+      fill={color}
+      fillOpacity={0.3}
+      strokeWidth={1}
+      rx={1}
+    />
+  );
 };

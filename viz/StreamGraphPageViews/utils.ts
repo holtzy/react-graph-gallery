@@ -10,7 +10,7 @@ type LongDataItem = {
     value: number;
 };
 
-type WideDataItem = {
+export type WideDataItem = {
     date: string;
 } & { [key: string]: number }
 

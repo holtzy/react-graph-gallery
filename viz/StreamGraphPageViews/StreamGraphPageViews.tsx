@@ -17,7 +17,7 @@ export const StreamGraphPageViews = ({
 }: StreamGraphPageViewsProps) => {
   const [data, setData] = useState<DataItem[]>();
 
-  const [startDate, setStartDate] = useState(parseTime("2017-01-01"));
+  const [startDate, setStartDate] = useState(parseTime("2015-01-01"));
 
   // Data is stored on github at .csv format. This loads it.
   // Note that data is stored in a "long" format. It will be converted to a wide format by the renderer.
@@ -49,17 +49,24 @@ export const StreamGraphPageViews = ({
         </p>
 
         <div style={{ display: "flex", alignItems: "center" }}>
-          <p style={{ fontSize: 12, width: 160, paddingTop: 11 }}>
-            {"Data since " + monthTimeFormatter(startDate)}
+          <p
+            style={{
+              fontSize: 12,
+              width: 155,
+              paddingTop: 11,
+            }}
+          >
+            {"Data since "}
+            <b>{monthTimeFormatter(startDate)}</b>
           </p>
           <input
             type="range"
             min={parseTime("2015-01-01")?.getTime()}
-            max={parseTime("2023-01-01")?.getTime()}
+            max={parseTime("2022-09-01")?.getTime()}
             value={startDate.getTime()}
             step={10000}
             onChange={(e) => setStartDate(new Date(Number(e.target.value)))}
-            style={{ height: 1, opacity: 0.5 }}
+            style={{ height: 1, opacity: 0.5, width: 80 }}
           />
         </div>
       </div>
