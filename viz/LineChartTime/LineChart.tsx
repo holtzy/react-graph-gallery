@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
@@ -35,7 +35,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
   const xScale = d3.scaleTime().domain(dateDomain).range([0, boundsWidth]);
 
   // Render the X and Y axis using d3.js, not react
-  useLayoutEffect(() => {
+  useEffect(() => {
     const svgElement = d3.select(axesRef.current);
     svgElement.selectAll("*").remove();
     const xAxisGenerator = d3.axisBottom(xScale);

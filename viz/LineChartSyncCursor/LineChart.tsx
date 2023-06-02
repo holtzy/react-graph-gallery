@@ -1,4 +1,4 @@
-import { MouseEventHandler, useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { useSpring, animated } from "react-spring";
 
@@ -46,7 +46,7 @@ export const LineChart = ({
   }, [data, width]);
 
   // Render the X and Y axis using d3.js, not react
-  useLayoutEffect(() => {
+  useEffect(() => {
     const svgElement = d3.select(axesRef.current);
     svgElement.selectAll("*").remove();
     const xAxisGenerator = d3.axisBottom(xScale);

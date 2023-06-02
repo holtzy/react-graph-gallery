@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as d3 from "d3";
 import { curveCatmullRom } from "d3";
 
