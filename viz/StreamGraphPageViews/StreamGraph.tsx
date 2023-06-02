@@ -5,6 +5,7 @@ import { TimeGrid } from "./TimeGrid";
 import { Labels } from "./Labels";
 import { Cursor } from "./Cursor";
 import { useState } from "react";
+import styles from "./streamgraph.module.css";
 
 const MARGIN = { top: 10, right: 250, bottom: 90, left: 0 };
 
@@ -88,6 +89,7 @@ export const StreamGraph = ({
     return (
       <path
         key={i}
+        className={styles.shape}
         d={path}
         opacity={1}
         stroke="grey"
@@ -158,22 +160,9 @@ export const StreamGraph = ({
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          onMouseMove={onMouseMove}
+          onMouseLeave={() => setInteractionData(null)}
         >
-          <TimeGrid xScale={xScale} height={boundsHeight} />
-          <Labels
-            labelInfos={labelInfos}
-            xStart={xScale.range()[1]}
-            xEnd={width}
-            biggestValue={biggestValue}
-          />
-          {allPath}
-          {interactionData && (
-            <Cursor
-              height={boundsHeight}
-              x={xScale(parseTime(interactionData.date))}
-              biggestValue={biggestValue}
-            />
-          )}
           {/* Additional rect on top of everything to catch mouse events */}
           <rect
             x={0}
@@ -186,6 +175,21 @@ export const StreamGraph = ({
             pointerEvents={"all"}
             cursor={"pointer"}
           />
+          <TimeGrid xScale={xScale} height={boundsHeight} />
+          <Labels
+            labelInfos={labelInfos}
+            xStart={xScale.range()[1]}
+            xEnd={width}
+            biggestValue={biggestValue}
+          />
+          <g className={styles.container}>{allPath}</g>
+          {interactionData && (
+            <Cursor
+              height={boundsHeight}
+              x={xScale(parseTime(interactionData.date))}
+              biggestValue={biggestValue}
+            />
+          )}
         </g>
       </svg>
     </div>

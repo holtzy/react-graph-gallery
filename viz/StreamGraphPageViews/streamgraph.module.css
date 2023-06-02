@@ -1,0 +1,16 @@
+.container .shape {
+  transition-duration: 0.3s;
+  transition-property: filter, opacity;
+  opacity: 1;
+  filter: saturate(100%);
+}
+
+.container:hover .shape {
+  opacity: 0.4;
+  filter: saturate(50%);
+}
+
+.container .shape:hover {
+  opacity: 1;
+  filter: saturate(100%);
+}
