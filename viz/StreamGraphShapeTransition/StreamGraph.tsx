@@ -1,17 +1,43 @@
-import { useMemo } from "react";
 import * as d3 from "d3";
-import { curveCatmullRom } from "d3";
 import styles from "./streamgraph.module.css";
+import { AnimatedPathItem } from "./AnimatedPath";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
+
+const OFFSET_TYPES = {
+  silouhette: d3.stackOffsetSilhouette,
+  wiggle: d3.stackOffsetWiggle,
+  none: d3.stackOffsetNone,
+  diverging: d3.stackOffsetDiverging,
+  expand: d3.stackOffsetExpand,
+};
+
+const CURVE_TYPES = {
+  curveBasis: d3.curveBasis,
+  bumpX: d3.curveBumpX,
+  bumpY: d3.curveBumpY,
+  curveCardinal: d3.curveCardinal,
+  catMullRom: d3.curveCatmullRom,
+  curveLinear: d3.curveLinear,
+  curveNatural: d3.curveNatural,
+  curveStep: d3.curveStep,
+};
 
 type StreamGraphProps = {
   width: number;
   height: number;
   data: { [key: string]: number }[];
+  offsetType: string;
+  curveType: string;
 };
 
-export const StreamGraph = ({ width, height, data }: StreamGraphProps) => {
+export const StreamGraph = ({
+  width,
+  height,
+  data,
+  offsetType,
+  curveType,
+}: StreamGraphProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -23,7 +49,7 @@ export const StreamGraph = ({ width, height, data }: StreamGraphProps) => {
     .stack()
     .keys(groups)
     .order(d3.stackOrderNone)
-    .offset(d3.stackOffsetSilhouette);
+    .offset(OFFSET_TYPES[offsetType]);
   const series = stackSeries(data);
 
   // Y axis
@@ -33,18 +59,14 @@ export const StreamGraph = ({ width, height, data }: StreamGraphProps) => {
   const bottomYValues = series.flatMap((s) => s.map((d) => d[0])); // Extract the upper values of each data point in the stacked series
   const yMin = Math.min(...bottomYValues);
 
-  const yScale = useMemo(() => {
-    return d3.scaleLinear().domain([yMin, yMax]).range([boundsHeight, 0]);
-  }, [data, height]);
+  const yScale = d3.scaleLinear().domain([yMin, yMax]).range([boundsHeight, 0]);
 
   // X axis
   const [xMin, xMax] = d3.extent(data, (d) => d.x);
-  const xScale = useMemo(() => {
-    return d3
-      .scaleLinear()
-      .domain([xMin || 0, xMax || 0])
-      .range([0, boundsWidth]);
-  }, [data, width]);
+  const xScale = d3
+    .scaleLinear()
+    .domain([xMin || 0, xMax || 0])
+    .range([0, boundsWidth]);
 
   // Color
   const colorScale = d3
@@ -60,23 +82,20 @@ export const StreamGraph = ({ width, height, data }: StreamGraphProps) => {
     })
     .y1((d) => yScale(d[1]))
     .y0((d) => yScale(d[0]))
-    .curve(curveCatmullRom);
+    .curve(CURVE_TYPES[curveType]);
 
   const allPath = series.map((serie, i) => {
     const path = areaBuilder(serie);
+    if (!path) {
+      console.log("null");
+      return null;
+    }
     return (
-      <path
-        key={i}
-        className={styles.shape}
-        d={path}
-        opacity={1}
-        stroke="grey"
-        fill={colorScale(serie.key)}
-        fillOpacity={0.8}
-        cursor="pointer"
-      />
+      <AnimatedPathItem key={i} path={path} color={colorScale(serie.key)} />
     );
   });
+
+  console.log({ allPath });
 
   const grid = xScale.ticks(5).map((value, i) => (
     <g key={i}>

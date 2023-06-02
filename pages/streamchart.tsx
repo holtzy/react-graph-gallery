@@ -11,8 +11,8 @@ import { ResponsiveExplanationSection } from "../component/ResponsiveExplanation
 import { StreamGraphPageViewsDemo } from "viz/StreamGraphPageViews/StreamGraphPageViewsDemo";
 import { Accordion } from "component/UI/Accordion";
 import { LinkAsButton } from "component/LinkAsButton";
-import { Pill } from "component/UI/Pill";
 import { StreamGraphHoverEffectDemo } from "viz/StreamGraphHoverEffect/StreamGraphHoverEffectDemo";
+import { StreamGraphShapeTransitionDemo } from "viz/StreamGraphShapeTransition/StreamGraphShapeTransitionDemo";
 
 const graphDescription = (
   <>
@@ -245,6 +245,20 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="stream" />
+      {/*
+      //
+      // Transition
+      //
+      */}
+      <h2 id="transition">Streamgraph algorithm with transition</h2>
+      <p>Transition with react-spring</p>
+      <ChartOrSandbox
+        vizName={"StreamGraphShapeTransition"}
+        VizComponent={StreamGraphShapeTransitionDemo}
+        height={400}
+        maxWidth={600}
+        caption="StreamGraph with hover effect that highlights a specific series"
+      />
       {/*
       //
       // Application
