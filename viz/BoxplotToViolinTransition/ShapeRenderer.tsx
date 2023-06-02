@@ -1,6 +1,5 @@
 import { interpolate } from "flubber";
 import { animated, useSpring, config, to } from "react-spring";
-import * as d3 from "d3";
 import { useMemo, useRef } from "react";
 
 type ShapeRendererProps = {
@@ -40,7 +39,7 @@ export const ShapeRenderer = ({
     <animated.path
       d={to(springProps.t, pathInterpolator)}
       transform={`translate(${xTranslate},0)`}
-      opacity={springProps.opacity}
+      opacity={0.8}
       stroke="black"
       fill={color}
       fillOpacity={0.8}

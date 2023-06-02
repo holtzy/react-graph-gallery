@@ -251,7 +251,22 @@ export default function Home() {
       //
       */}
       <h2 id="transition">Streamgraph algorithm with transition</h2>
-      <p>Transition with react-spring</p>
+      <p>
+        Our streamgraph is renderer using a set of <code>path</code>. The{" "}
+        <code>d</code> attribute of those paths provides the boundary
+        <b>coordinates</b> of those paths.
+      </p>
+      <p>
+        When a prop of the <code>StreamGraph</code> component updates, we might
+        want to update the paths to represent the latest state of our
+        application. It can be an update of the <b>dataset</b>, or an update of
+        the function used to <b>stack</b> the data or <b>smooth</b> the area as
+        below.
+      </p>
+      <p>
+        It is possible to smoothly animate this transition thanks to{" "}
+        <code>react-spring</code>.
+      </p>
       <ChartOrSandbox
         vizName={"StreamGraphShapeTransition"}
         VizComponent={StreamGraphShapeTransitionDemo}
@@ -259,6 +274,16 @@ export default function Home() {
         maxWidth={600}
         caption="StreamGraph with hover effect that highlights a specific series"
       />
+      <p>
+        The animation suggested above is a bit tricky to implement. Indeed, we
+        need to transition from paths that <b>do not have the same number</b> of
+        edges. It is possible thanks to a library called <code>flubber</code>{" "}
+        but definitely deserves its own blogpost.
+      </p>
+      <p>I'll publish a full blogpost on the topic soon!</p>
+      <LinkAsButton href={"/subscribe"} isFilled size="sm">
+        {"Get notified"}
+      </LinkAsButton>
       {/*
       //
       // Application

@@ -87,15 +87,12 @@ export const StreamGraph = ({
   const allPath = series.map((serie, i) => {
     const path = areaBuilder(serie);
     if (!path) {
-      console.log("null");
       return null;
     }
     return (
       <AnimatedPathItem key={i} path={path} color={colorScale(serie.key)} />
     );
   });
-
-  console.log({ allPath });
 
   const grid = xScale.ticks(5).map((value, i) => (
     <g key={i}>
