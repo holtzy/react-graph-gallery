@@ -55,9 +55,12 @@ export const StreamGraph = ({
   const series = stackSeries(wideData);
 
   // Y axis
-  const yValues = series.flatMap((s) => s.map((d) => d[1])); // Extract the upper values of each data point in the stacked series
-  const yMin = Math.min(...yValues);
-  const yMax = Math.max(...yValues);
+  const topYValues = series.flatMap((s) => s.map((d) => d[1])); // Extract the upper values of each data point in the stacked series
+  const yMax = Math.max(...topYValues);
+
+  const bottomYValues = series.flatMap((s) => s.map((d) => d[0])); // Extract the upper values of each data point in the stacked series
+  const yMin = Math.min(...bottomYValues);
+
   const yScale = d3.scaleLinear().domain([yMin, yMax]).range([boundsHeight, 0]);
 
   // X axis
