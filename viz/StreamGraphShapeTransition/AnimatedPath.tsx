@@ -28,7 +28,10 @@ export const AnimatedPathItem = ({ path, color }: AnimatedPathItemProps) => {
     onChange: ({ t }) => {
       currD.current = pathInterpolator(t || 1);
     },
-    config: config.molasses,
+    config: {
+      friction: 100,
+      bounce: 0,
+    },
   });
 
   return (

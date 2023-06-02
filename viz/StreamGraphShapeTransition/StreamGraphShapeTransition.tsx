@@ -5,8 +5,8 @@ import { data } from "./data";
 const BUTTON_HEIGHT = 50;
 
 export const StreamGraphShapeTransition = ({ width = 700, height = 400 }) => {
-  const [offsetType, setOffsetType] = useState("silhouette");
-  const [curveType, setCurveType] = useState("curveLinear");
+  const [offsetType, setOffsetType] = useState("silouhette");
+  const [curveType, setCurveType] = useState("catMullRom");
 
   return (
     <div>
