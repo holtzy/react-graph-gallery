@@ -106,8 +106,7 @@ export default function Home() {
       <p>
         The shape of the <code>data</code> is described above. The{" "}
         <code>width</code> and <code>height</code> will be used to render an{" "}
-        <code>svg</code> element in the DOM, in which we will insert the
-        histogram.
+        <code>svg</code> element in the DOM, in which we will insert the graph.
       </p>
       <p>
         To put it in a nutshell, that's the skeleton of our{" "}
