@@ -1,9 +1,5 @@
 import ReactDOM from "react-dom";
-import { data } from "./data";
-import { StreamGraph } from "./StreamGraph";
+import { StreamGraphPageViews } from "./StreamGraphPageViews";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <StreamGraph data={data} width={400} height={400} />,
-  rootElement
-);
+ReactDOM.render(<StreamGraphPageViews width={600} height={400} />, rootElement);

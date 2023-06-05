@@ -1,9 +1,8 @@
 import ReactDOM from "react-dom";
-import { data } from "./data";
-import { StreamGraph } from "./StreamGraph";
+import { StreamGraphShapeTransition } from "./StreamGraphShapeTransition";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <StreamGraph data={data} width={400} height={400} />,
+  <StreamGraphShapeTransition width={600} height={400} />,
   rootElement
 );
