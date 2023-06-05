@@ -13,6 +13,7 @@ import { Accordion } from "component/UI/Accordion";
 import { LinkAsButton } from "component/LinkAsButton";
 import { StreamGraphHoverEffectDemo } from "viz/StreamGraphHoverEffect/StreamGraphHoverEffectDemo";
 import { StreamGraphShapeTransitionDemo } from "viz/StreamGraphShapeTransition/StreamGraphShapeTransitionDemo";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -43,7 +44,7 @@ export default function Home() {
       seoDescription="How to build a stream chart with React and D3.js. A set of re-usable components"
     >
       <TitleAndDescription
-        title="Streamcharts"
+        title="Streamchart"
         description={graphDescription}
         chartType="stream"
       />
@@ -89,10 +90,7 @@ export default function Home() {
         <Link href="/subscribe">Subscribe</Link> to the project to know when it
         is ready!
       </p>
-      <blockquote className="mt-10">
-        <b className="text-reactGallery">ToDo</b> Add some more hints on how to
-        type those data objects
-      </blockquote>
+      <ToDoSection text="Add some more hints on how to type those data objects" />
       {/*
       //
       // Skeleton
@@ -253,7 +251,7 @@ export default function Home() {
       <h2 id="transition">Streamgraph algorithm with transition</h2>
       <p>
         Our streamgraph is renderer using a set of <code>path</code>. The{" "}
-        <code>d</code> attribute of those paths provides the boundary
+        <code>d</code> attribute of those paths provides the boundary{" "}
         <b>coordinates</b> of those paths.
       </p>
       <p>
@@ -272,7 +270,7 @@ export default function Home() {
         VizComponent={StreamGraphShapeTransitionDemo}
         height={400}
         maxWidth={600}
-        caption="StreamGraph with hover effect that highlights a specific series"
+        caption="Try d3.js various options to offset the data and smooth shapes. See a smooth transition between options."
       />
       <p>
         The animation suggested above is a bit tricky to implement. Indeed, we
@@ -284,6 +282,7 @@ export default function Home() {
       <LinkAsButton href={"/subscribe"} isFilled size="sm">
         {"Get notified"}
       </LinkAsButton>
+      <ToDoSection text="find why flubber does some weird interpolation in some cases" />
       {/*
       //
       // Application
@@ -319,7 +318,7 @@ export default function Home() {
         VizComponent={StreamGraphPageViewsDemo}
         height={600}
         maxWidth={900}
-        caption="Most basic streamgraph with react and d3.js"
+        caption="A customized streamgraph built with React and D3.js. It has inline legends, slider to control timeframe, hover effect and more."
       />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />

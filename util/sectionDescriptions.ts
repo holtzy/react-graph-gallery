@@ -304,7 +304,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/streamgraph",
     reactURL: "https://react-graph-gallery.com/streamchart",
     label: "Streamgraph",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "timeseries",
