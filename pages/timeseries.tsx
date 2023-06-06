@@ -2,16 +2,11 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
-import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { ImageGrid } from "component/UI/ImageGrid";
 import { GraphLinkImage } from "component/UI/GraphLinkImage";
-import { graphExampleList } from "util/graphExampleList";
 import { Accordion } from "component/UI/Accordion";
 import { AxisTimeD3Demo } from "viz/AxisTimeD3/AxisTimeD3Demo";
 import { LineChartPageViewsDemo } from "viz/LineChartPageViews/LineChartPageViewsDemo";
@@ -19,18 +14,20 @@ import { LineChartSyncCursorDemo } from "viz/LineChartSyncCursor/LineChartSyncCu
 import { LinkAsButton } from "component/LinkAsButton";
 import { LineChartTimeDemo } from "viz/LineChartTime/LineChartTimeDemo";
 import { LineChartPanningDemo } from "viz/LineChartPanning/LineChartPanningDemo";
+import GraphGallery from "component/GraphGallery";
 
 const graphDescription = (
   <>
     <p>
       This section does not target a specific chart type, even though timeseries
-      are often represented as <Link href="/line-chart">line</Link> charts or
+      are often represented as <Link href="/line-chart">line</Link> charts or{" "}
       <Link href="/area">area</Link> charts.
     </p>
     <p>
       Instead, it provides a tips and tricks to deal with charts that represent
-      the evolution of a numeric variable. For instance, it provides hints on
-      how to deal with dates, how to pan on a chart and more
+      the evolution in <b>time</b> of a numeric variable. For instance, it
+      provides hints on how to deal with <b>dates</b>, how to <b>pan</b> on a
+      chart and more
     </p>
   </>
 );
@@ -53,18 +50,21 @@ export default function Home() {
       */}
       <h2 id="chart types">Useful chart types</h2>{" "}
       <p>
-        Start by linking to the line chart, area chart, stream and so on section
+        This page is <b>not</b> about a specific chart type. Instead it provides
+        hints on how to deal with <b>time</b>.
+      </p>
+      <p>
+        Check the graph sections that are used to visualize timeseries below if
+        there is a specific chart type you want to make.
       </p>
       <br />
-      <ImageGrid>
-        <GraphLinkImage
-          link={"/heatmap"}
-          title={"Heatmap"}
-          description={<p>Useful to show the evolution of several variables</p>}
-          img={"heatmapBasic.png"}
-          alt={"Picture of a simple heatmap made with react and d3.js"}
-        />
-      </ImageGrid>
+      <GraphGallery
+        images={[
+          "line-chart-basic.png",
+          "heatmapBasic.png",
+          "streamgraph-basic.png",
+        ]}
+      />
       {/*
       //
       // The Date format
@@ -141,7 +141,7 @@ export default function Home() {
       // The Time Axis
       //
       */}
-      <h2 id="date format">Building a time axis</h2>
+      <h2 id="time axis">Building a time axis</h2>
       <p>
         A very common task when it comes to build timeseries viz is to draw a{" "}
         <b>time axis</b>. Fortunately, d3 has amazing helper functions allowing
@@ -224,7 +224,7 @@ export default function Home() {
       // Line chart with several groups
       //
       */}
-      <h2 id="line chart">Line chart with several groups</h2>
+      {/* <h2 id="multi group">Line chart with several groups</h2>
       <p>Add notes about the spaghetti issue</p>
       <ChartOrSandbox
         vizName={"LineChartDatasetTransition"}
@@ -232,7 +232,7 @@ export default function Home() {
         height={400}
         maxWidth={600}
         caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
-      />
+      /> */}
       {/*
       //
       // Synced cursors
@@ -277,7 +277,7 @@ export default function Home() {
       // Panning
       //
       */}
-      <h2 id="panning">Axis panning</h2>
+      {/* <h2 id="panning">Axis panning</h2>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartOrSandbox
         vizName={"LineChartPanningDemo"}
@@ -285,7 +285,7 @@ export default function Home() {
         height={300}
         maxWidth={600}
         caption="Hover over a chart to see a cursor on both of them, easing the time comparison."
-      />
+      /> */}
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
     </Layout>

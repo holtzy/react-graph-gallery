@@ -1,6 +1,5 @@
 import React from "react";
 import { graphExampleList } from "util/graphExampleList";
-import type { ChartLogo } from "util/sectionDescriptions";
 import { GraphLinkImage } from "./UI/GraphLinkImage";
 import { ImageGrid } from "./UI/ImageGrid";
 

@@ -179,7 +179,7 @@ export default function Home() {
       <ChartOrSandbox
         vizName={"LineChartBasic"}
         VizComponent={LineChartBasicDemo}
-        height={400}
+        height={500}
         maxWidth={600}
         caption="Most basic line chart made with react (rendering) and d3.js (path computation)"
       />
