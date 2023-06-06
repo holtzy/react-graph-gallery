@@ -2,8 +2,6 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
-import { AccordionSection } from "../component/AccordionSection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import Link from "next/link";
@@ -11,12 +9,11 @@ import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import { LineChartDatasetTransitionDemo } from "viz/LineChartDatasetTransition/LineChartDatasetTransitionDemo";
-import { CodeSandbox } from "component/CodeSandbox";
 import { Accordion } from "component/UI/Accordion";
-import { LineChartPageViewsDemo } from "viz/LineChartPageViews/LineChartPageViewsDemo";
-import { LineChartSyncCursorDemo } from "viz/LineChartSyncCursor/LineChartSyncCursorDemo";
 import { ImageGrid } from "component/UI/ImageGrid";
 import { GraphLinkImage } from "component/UI/GraphLinkImage";
+import { LinkAsButton } from "component/LinkAsButton";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -62,10 +59,18 @@ export default function Home() {
       <p>Here is a minimal example:</p>
       <CodeBlock code={snippetData} />
       <p>
-        Note: if your data is in <code>.csv</code> format, you can translate it
-        thanks to the <code>d3.csv()</code> function as suggested{" "}
+        <u>Note</u>: if your data is in <code>.csv</code> format, you can
+        translate it thanks to the <code>d3.csv()</code> function as suggested{" "}
         <a href="https://d3-graph-gallery.com/graph/line_basic.html">here</a>.
       </p>
+      <p>
+        <u>Note</u>: a line chart is often made to represent <b>time</b>. If
+        your <code>x</code> property is a <b>date</b>, please visit the{" "}
+        <Link href="/timeseries">timeseries</Link> section.
+      </p>
+      <LinkAsButton href="/timeseries" size="sm" isFilled>
+        Timeseries section
+      </LinkAsButton>
       {/*
       //
       // Skeleton
@@ -114,8 +119,17 @@ export default function Home() {
       <p>
         This concept of scale is thoroughly described in other chart type pages
         like for the <Link href="/scatter-plot">scatterplot</Link> so I won't
-        repeat it here.
+        repeat it here. Also, dealing with the <code>Date</code> format shoud
+        drive you to the <Link href="/timeseries">timeseries section</Link>.
       </p>
+      <div className="flex">
+        <LinkAsButton href="/scatter-plot" size="sm">
+          Scatterplot
+        </LinkAsButton>
+        <LinkAsButton href="/timeseries" size="sm" isFilled>
+          Timeseries
+        </LinkAsButton>
+      </div>
       {/*
       //
       // The d3.line() function
@@ -125,9 +139,9 @@ export default function Home() {
         The <code>d3.line()</code> function
       </h2>
       <p>
-        From the dataset described above, we want to draw a line in SVG. This is
-        done using a <code>path</code> element that has a <code>d</code>{" "}
-        attribute.
+        From the dataset described above, we want to draw a line in SVG. In the
+        DOM this is done using a <code>path</code> element that has a{" "}
+        <code>d</code> attribute.
       </p>
       <p>
         Fortunately, d3.js offers the <code>d3.line()</code> function that helps
@@ -203,8 +217,7 @@ export default function Home() {
         <a href="https://react-spring.dev/">react spring</a> library. Basically,
         instead of rendering usual a <code>path</code> element, the library
         provides an <code>animated.path</code> element, that is linked to a{" "}
-        <code>useSpring</code>
-        hook.
+        <code>useSpring</code> hook.
       </p>
       <p>
         This is what the <code>LineItem</code> component I use looks like:
@@ -254,13 +267,40 @@ export default function Home() {
           alt={"line charts with synchronized cursors"}
         />
       </ImageGrid>
-      <ChartOrSandbox
+      {/*
+      //
+      // Coming next
+      //
+      */}
+      <h2 id="next">Next</h2>
+      <p>
+        The{" "}
+        <a href="https://www.react-graph-gallery.com">react graph gallery</a> is
+        under heavy development. Here is a list of things that will be added
+        soon.
+      </p>
+      <ToDoSection text="How to add a tooltip" />
+      <ToDoSection text="Multi groups line charts aka Spaghetti chart" />
+      <ToDoSection text="Sync with a bar chart" />
+      <ToDoSection text="Dual Y Axis" />
+      <ToDoSection text="Inline legend with Reppel" />
+      <p>
+        <br />
+      </p>{" "}
+      <p>Subscribe to the gallery to know when it is ready!</p>
+      <LinkAsButton isFilled size="sm" href="Subscribe">
+        Subscribe
+      </LinkAsButton>
+      <p>
+        <br />
+      </p>{" "}
+      {/* <ChartOrSandbox
         vizName={"LineChartDatasetTransition"}
         VizComponent={LineChartPageViewsDemo}
         height={400}
         maxWidth={600}
         caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
-      />
+      /> */}
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
@@ -272,9 +312,9 @@ const snippetData = `
 const data = [
   {x:1, y: 90},
   {x: 2, y: 12},
-  {x: 3, , y: 34},
-  {x: 4, , y: 53},
-  {x: 5, , y: 98},
+  {x: 3, y: 34},
+  {x: 4, y: 53},
+  {x: 5, y: 98},
 ]
 `.trim();
 

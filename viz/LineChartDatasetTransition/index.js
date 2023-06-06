@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom";
-import { ScatterplotDatasetTransition } from "./ScatterplotDatasetTransition";
+import { LineChartDatasetTransition } from "./LineChartDatasetTransition";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<ScatterplotDatasetTransition width={800} height={300} />, rootElement);
+ReactDOM.render(
+  <LineChartDatasetTransition width={800} height={300} />,
+  rootElement
+);
