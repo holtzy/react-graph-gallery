@@ -284,7 +284,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/area",
     reactURL: "https://react-graph-gallery.com/area-plot",
     label: "Area chart",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "stackedArea",
