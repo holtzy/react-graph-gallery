@@ -274,7 +274,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/line",
     reactURL: "https://react-graph-gallery.com/line-chart",
     label: "Line chart",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "area",
