@@ -427,6 +427,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     isAvailable: false
   },
   {
+    id: "animation",
+    family: "general",
+    logo: "Anim150",
+    dataToVizURL: "",
+    d3URL: "",
+    reactURL: "https://react-graph-gallery.com/animation",
+    label: "Animation",
+    isAvailable: true
+  },
+  {
     id: "colors",
     family: "general",
     logo: "Colours150",
@@ -446,16 +456,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     label: "Interactivity",
     isAvailable: false
   },
-  {
-    id: "animation",
-    family: "general",
-    logo: "Anim150",
-    dataToVizURL: "",
-    d3URL: "",
-    reactURL: "https://react-graph-gallery.com/animation",
-    label: "Animation",
-    isAvailable: false
-  },
+
   {
     id: "cheatSheets",
     family: "general",
