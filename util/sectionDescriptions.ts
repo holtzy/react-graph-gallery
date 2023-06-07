@@ -437,6 +437,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     isAvailable: true
   },
   {
+    id: "plotly",
+    family: "general",
+    logo: "Interactive150",
+    dataToVizURL: "",
+    d3URL: "",
+    reactURL: "https://react-graph-gallery.com/interactivity",
+    label: "Interactivity",
+    isAvailable: true
+  },
+  {
     id: "colors",
     family: "general",
     logo: "Colours150",
@@ -446,16 +456,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     label: "Colors",
     isAvailable: false
   },
-  {
-    id: "plotly",
-    family: "general",
-    logo: "Interactive150",
-    dataToVizURL: "",
-    d3URL: "",
-    reactURL: "https://react-graph-gallery.com/plotly",
-    label: "Interactivity",
-    isAvailable: false
-  },
+
 
   {
     id: "cheatSheets",

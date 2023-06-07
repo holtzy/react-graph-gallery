@@ -10,16 +10,14 @@ import { LinkAsButton } from "component/LinkAsButton";
 const graphDescription = (
   <>
     <p>
-      <b>Animation</b> is both the most <b>challenging</b> and the most{" "}
-      <b>exciting</b> part of an interactive chart. Animation is like salt: use
-      the right amount of it and your creation is a delight. Too much of it and
-      it <b>spoils the dish</b> 🤌.
+      <b>Interactivity</b> is a key feature of any chart displayed on the web.
+      It includes <b>tooltip</b>, <b>hover effect</b>,{" "}
+      <b>cross-graph interaction</b>, <b>zooming</b>, <b>panning</b> and more.
     </p>
     <p>
-      There are <b>many ways</b> to animate the transition between 2 chart
-      states. Here I suggest to use <code>react-spring</code> in combination
-      with <code>react</code> and
-      <code>d3.js</code>.
+      Interactivity is a big topic. This section aims at giving general tips and
+      tricks on the topic together with applied examples ready to be used in
+      your project.
     </p>
   </>
 );
@@ -27,13 +25,13 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="Animation"
-      seoDescription="An overview of all the charts using some animation techniques in the gallery."
+      title="Interactivity"
+      seoDescription="An overview of all the charts displayed in the react graph gallery, ready to be added in your web application."
     >
       <TitleAndDescription
-        title="Animation"
+        title="Interactivity"
         description={graphDescription}
-        chartType="animation"
+        chartType="plotly"
       />
       {/*
       //
@@ -43,8 +41,8 @@ export default function Home() {
       <h2 id="WIP">Work in Progress</h2>
       <p>This section is a work in progress. 🚧</p>
       <p>
-        For now, it just lists all the charts using <code>react-spring</code> in
-        the gallery.
+        For now, it just lists all the charts using Interactivity in the
+        gallery.
       </p>
       <p>
         But I plan to write some <b>complete tutorials</b> on this passionating
@@ -62,6 +60,8 @@ export default function Home() {
       </p>
       <GraphGallery
         images={[
+          "streamgraph-application.gif",
+          "scatterplotHoverEffect.gif",
           "histogram-dataset-transition.gif",
           "violinBoxplotTransition.png",
           "violin-bucket-size-effect.gif",
@@ -70,6 +70,7 @@ export default function Home() {
           "bubble-plot-dataset-transition.gif",
           "line-chart-data-transition.gif",
           "streamgraph-offset-type-transition.gif",
+          "streamgraph-hover-effect.gif",
         ]}
       />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
