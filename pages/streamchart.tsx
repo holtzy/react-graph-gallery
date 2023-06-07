@@ -267,7 +267,7 @@ export default function Home() {
       <ChartOrSandbox
         vizName={"StreamGraphShapeTransition"}
         VizComponent={StreamGraphShapeTransitionDemo}
-        height={400}
+        height={600}
         maxWidth={600}
         caption="Try d3.js various options to offset the data and smooth shapes. See a smooth transition between options."
       />
