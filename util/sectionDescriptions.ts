@@ -134,7 +134,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/density2d",
     reactURL: "https://react-graph-gallery.com/2d-density-plot",
     label: "2D Density",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "barplot",
@@ -447,37 +447,36 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     isAvailable: true
   },
   {
-    id: "colors",
-    family: "general",
-    logo: "Colours150",
-    dataToVizURL: "",
-    d3URL: "",
-    reactURL: "https://react-graph-gallery.com/react-colors",
-    label: "Colors",
-    isAvailable: false
-  },
-
-
-  {
-    id: "cheatSheets",
-    family: "general",
-    logo: "Cheat150",
-    dataToVizURL: "",
-    d3URL: "",
-    reactURL: "https://react-graph-gallery.com/cheat-sheets",
-    label: "Cheat sheets",
-    isAvailable: false
-  },
-  {
     id: "caveats",
     family: "general",
     logo: "Bad150",
     dataToVizURL: "",
     d3URL: "",
-    reactURL: "https://www.data-to-viz.com/caveats.htm",
+    reactURL: "https://www.data-to-viz.com/caveats.html",
     label: "Caveats",
-    isAvailable: false
+    isAvailable: true
   },
+  // {
+  //   id: "colors",
+  //   family: "general",
+  //   logo: "Colours150",
+  //   dataToVizURL: "",
+  //   d3URL: "",
+  //   reactURL: "https://react-graph-gallery.com/react-colors",
+  //   label: "Colors",
+  //   isAvailable: false
+  // },
+  // {
+  //   id: "cheatSheets",
+  //   family: "general",
+  //   logo: "Cheat150",
+  //   dataToVizURL: "",
+  //   d3URL: "",
+  //   reactURL: "https://react-graph-gallery.com/cheat-sheets",
+  //   label: "Cheat sheets",
+  //   isAvailable: false
+  // },
+
   // {
   //   id: "3d",
   //   family: "general",

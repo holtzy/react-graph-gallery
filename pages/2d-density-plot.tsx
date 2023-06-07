@@ -18,6 +18,8 @@ import { SubscribeForm } from "component/SubscribeForm";
 import { Density2dHexbinDemo } from "viz/Density2dHexbin/Density2dHexbinDemo";
 import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
 import { Density2dContourDemo } from "viz/Density2dContour/Density2dContourDemo";
+import { LinkAsButton } from "component/LinkAsButton";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -26,20 +28,20 @@ const graphDescription = (
       <a href="https://www.data-to-viz.com/graph/density2d.html">
         2D density chart
       </a>{" "}
-      is a graphical representation of data that uses color to show the
+      is a graphical representation of data that uses <b>color</b> to show the
       concentration of data points in a given area. It shows the combined
       distribution of two quantitative variables. 2D density charts are often
       used in statistical analysis and data mining to identify trends, patterns,
-      and correlations in the data.
+      and <b>correlations</b> in the data.
     </p>
     <p>
       In this tutorial, we will use the{" "}
-      <a href="https://d3-graph-gallery.com/density2d.html">d3.js</a> and
+      <a href="https://d3-graph-gallery.com/density2d.html">d3.js</a> and{" "}
       <a href="https://reactjs.org/">React</a> libraries to build a 2D density
-      chart.It starts by describing how the <b>data</b> should be organized and
-      how to initialize the <b>Density2d component</b>. It then explains how to
-      prepare the data and compute bins. Once this is done, it shows how to
-      render the shapes and suggests a few variations. 🙇‍♂️.
+      chart. It starts by describing how the <b>data</b> should be organized and
+      how to initialize the <code>Density2d</code> component. It then explains
+      how to prepare the data and compute <b>bins</b>. Once this is done, it
+      shows how to render the shapes and suggests a few variations. 🙇‍♂️.
     </p>
   </>
 );
@@ -51,14 +53,7 @@ export default function Home() {
       seoDescription="A step-by-step guide to build your very own 2d density chart from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title={
-          <h1>
-            2d density chart{" "}
-            <span className="text-gray-600 font-light hidden sm:inline">
-              with React and d3.js
-            </span>
-          </h1>
-        }
+        title={<h1>2d density chart</h1>}
         description={graphDescription}
         chartType="density2d"
       />
@@ -87,7 +82,9 @@ export default function Home() {
         <Link href="/scatter-plot">scatterplot</Link> if you have few data
         points!
       </p>
-
+      <LinkAsButton href="/scatter-plot" size="sm" isFilled>
+        Scatterplot section
+      </LinkAsButton>
       {/*
       //
       // Skeleton
@@ -131,10 +128,23 @@ export default function Home() {
         <Link href="/scatter-plot">bubble chart</Link>. Please refer to the
         according sections.
       </p>
+      <div className="flex mb-10">
+        <LinkAsButton href="/scatter-plot" size="sm">
+          Scatterplot
+        </LinkAsButton>
+        <LinkAsButton href="/bubble-plot" size="sm" isFilled>
+          Bubble plot
+        </LinkAsButton>
+      </div>
+      <p>
+        Scales and axes is a recurring topic in data visualization. I plan to
+        write complete articles on the topic. You can know when it's ready by{" "}
+        <Link href="/subscribe">subscribing</Link> to the project.
+      </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
         vizName={"AxisBasic"}
-        maxWidth={400}
+        maxWidth={600}
         height={300}
         caption={
           "How to build a bottom axis and a left axis component using React, used to render a d3 scale."
@@ -146,15 +156,17 @@ export default function Home() {
       // d3-hexbin
       //
       */}
-      <h2 id="data">Compute hexagons with the d3-hexbin library</h2>
+      <h2 id="data">
+        Compute hexagons with the <code>d3-hexbin</code> library
+      </h2>
       <p>
-        We have a set of points distributed on a 2d coordinate space. We want to
-        split this space in hexagons, and compute the number of points in each
-        hexagon.
+        We have a set of points distributed on a <b>2d coordinate</b> space. We
+        want to split this space in hexagons, and compute the number of points
+        in each hexagon.
       </p>
       <p>
         Fortunately, the <a href="https://github.com/d3/d3-hexbin">d3-hexbin</a>{" "}
-        library has everything we need to do so. This lib is not part of the
+        library has everything we need to do so. This lib is not part of the{" "}
         <Link href="https://github.com/d3/d3">main d3 bundle</Link>, install it
         with:
       </p>
@@ -162,9 +174,9 @@ export default function Home() {
 
       <h3>&rarr; The hexagon generator</h3>
       <p>
-        The d3-hexbin plugin comes with a <code>hexbin()</code> function that
-        returns a <b>hexagon generator</b>. This hexagon generator is a{" "}
-        <b>function</b>. You give it some data, it computes the hexagons.
+        The <code>d3-hexbin</code> plugin comes with a <code>hexbin()</code>{" "}
+        function that returns a <b>hexagon generator</b>. This hexagon generator
+        is a <b>function</b>. You give it some data, it computes the hexagons.
       </p>
       <CodeBlock code={snippet2} />
       <p>
@@ -182,8 +194,9 @@ export default function Home() {
       <h3>&rarr; Hexagon format</h3>
       <p>
         The <code>hexagonGenerator</code> expects some <code>data</code> as
-        input. The data must be an <b>array</b> where each item provides the x
-        and y coordinates of a data point in the 2d space.
+        input. The data must be an <b>array</b> where each item provides the{" "}
+        <code>x</code> and <code>y</code> coordinates of a data point in the 2d
+        space.
       </p>
       <p>You can provide this data using the following code:</p>
       <CodeBlock code={snippet3} />
@@ -249,53 +262,40 @@ export default function Home() {
       */}
       <h2 id="variations">Variations</h2>
       <p>
-        Once you've understood how to build a basic histogram with d3 and react,
-        it opens an infinite world of <b>customization</b>. Here are a few
-        examples showing how to add{" "}
-        <Link href="example/histogram-with-several-groups">several groups</Link>{" "}
-        on the same axis or how to use{" "}
-        <Link href="example/histogram-small-multiple">small multiple</Link> with
-        histograms to compare distributions.
+        The hexbin representation above is just one member of a family of
+        graphics allowing to study the <b>combined distribution</b> of two
+        quantitative variables. You can read more about the existing variations
+        in the{" "}
+        <a href="https://www.data-to-viz.com/graph/density2d.html">
+          data to viz
+        </a>{" "}
+        project.
       </p>
-      <p>Click on the overview below to get details and code.</p>
+      <p>
+        To put it in a nutshell, <b>2d histogram</b>, <b>Gaussian KDE</b>,{" "}
+        <b>2d density</b> and <b>Contour charts</b> are the most common
+        variations. It is of course possible to build them all using{" "}
+        <code>react</code> and <code>d3.js</code>.
+      </p>
+      <p>
+        Here is an example with a contounr chart based on the same dataset than
+        the previous example.
+      </p>
       <br />
       <ChartOrSandbox
         VizComponent={Density2dContourDemo}
         vizName={"Density2dContour"}
         maxWidth={700}
         height={700}
-        caption={
-          "How to build a bottom axis and a left axis component using React, used to render a d3 scale."
-        }
+        caption={"Contour chart made with React and D3.js."}
       />
 
-      <ImageGrid>
-        <GraphLinkImage
-          link={"example/histogram-with-several-groups"}
-          title={"Multiple groups"}
-          description={
-            <p>
-              A histogram with <b>multiple</b> groups displayed on the same
-              axis.
-            </p>
-          }
-          img={"histogram-with-several-groups.png"}
-          alt="Picture of a histogram with multiple groups built with react and d3.js"
-        />
-        <GraphLinkImage
-          link={"example/histogram-small-multiple"}
-          title={"Small multiple"}
-          description={
-            <p>
-              Create one panel per group to show its distribution separately
-            </p>
-          }
-          img={"histogram-small-multiple.png"}
-          alt="Picture of a histogram with small multiple built with react and d3.js"
-        />
-      </ImageGrid>
+      <ToDoSection text="make the contour chart above looks better" />
+      <ToDoSection text="add examples for 2d histograms and other variations" />
+      <ToDoSection text="Add example with a zoom feature implemented" />
+
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />
     </Layout>
   );
