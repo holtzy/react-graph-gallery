@@ -9,6 +9,8 @@ import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { TreemapBasicDemo } from "../viz/TreemapBasic/TreemapBasicDemo";
 import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";
 import { TreemapHoverEffectDemo } from "../viz/TreemapHoverEffect/TreemapHoverEffectDemo";
+import Link from "next/link";
+import { LinkAsButton } from "component/LinkAsButton";
 
 const graphDescription = (
   <>
@@ -68,57 +70,105 @@ export default function Home() {
       //
       */}{" "}
       <div className="bg-gray-50 full-bleed mt-12">
-        <div className="wrapper pb-12">
+        <div className="wrapper pb-20">
           <h2 id="reformat data">Data wrangling</h2>{" "}
           <p>
             <b>Three main input data formats</b> are usually encountered when it
             comes to store hierarchical information. It's always a struggle to
-            deal with those formats so I've tried to describe the most common
-            use-cases here.
+            deal with those various formats:
           </p>
           <p>&rarr; list of connection (csv)</p>
           <p>&rarr; list of connection (js object)</p>
           <p>&rarr; json with hierarchy</p>
           <p>
-            ToDo: write some explanation on how to do the work with the
-            <code>d3.hierarchy</code> and <code>d3.stratify</code> functions.
+            I described in depth how to deal with those format in the{" "}
+            <Link href="/dendrogram">dendrogram section</Link> of the gallery
+            that shares the same kind of input format. Please take a look there!
           </p>
+          <LinkAsButton isFilled size="sm" href="/dendrogram#hierarchy">
+            Read more
+          </LinkAsButton>
         </div>
       </div>
-      <AccordionSection title={"Most basic treemap"} startOpen={true}>
-        <p>
-          The <code>treemap</code> function of d3.js does the biggest part of
-          the job. It basically computes the position of each square on the svg
-          area, returning <code>x0</code>, <code>x1</code>, <code>y0</code> and{" "}
-          <code>y1</code> for each item.
-        </p>
-        <p>
-          Once this is available, it is just a matter of building some{" "}
-          <code>rect</code> and <code>text</code> elements for each rectangle.
-        </p>
-        <ChartOrSandbox
-          vizName={"TreemapBasic"}
-          VizComponent={TreemapBasicDemo}
-          maxWidth={600}
-          height={400}
-          caption="The most basic treemap made with react and d3.js."
-        />
-      </AccordionSection>
-      <AccordionSection title={"Two levels of hierarchy"} startOpen={true}>
-        <p>
-          Treemaps are also handy to display nested data structure. For
-          instance, let's consider a company with a CEO, several teams, and a
-          few employees per team.
-        </p>
-
-        <ChartOrSandbox
-          vizName={"Treemap2Levels"}
-          VizComponent={Treemap2LevelsDemo}
-          maxWidth={600}
-          height={400}
-          caption="Treemap with 2 levels of hierarchy, made with react and d3.js."
-        />
-      </AccordionSection>
+      {/*
+      //
+      // The hierarchy function
+      //
+      */}
+      <h2 id="hierarchy">The hierarchy format or "root node"</h2>
+      <p>
+        A treemap is a <b>hierarchical layout</b>. D3.js has a lot of{" "}
+        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{" "}
+        allowing to deal with this kind of hierarchical data. To use those
+        functions we first need to create a <b>"Root node"</b> or{" "}
+        <b>"Hierarchy"</b>.
+      </p>
+      <p>
+        But <i>what the heck is this</i>? 🤔
+      </p>
+      <p>
+        A "root node" or "hierarchy" is a <b>javascript object</b>. It has
+        almost the same shape as the input data described above. But with some
+        additional properties and methods that will make our life easier.
+      </p>
+      <h3>&rarr; how to build a root node</h3>
+      <p>
+        If your dealing with the format describe in the previous section, you
+        just have to pass it to the d3 <code>hierarchy</code> function:
+      </p>
+      <CodeBlock code={snippetHierarchy} />
+      <p>
+        Note that this concept of <b>root node</b> is <b>key</b> for all the
+        charts representing a hierarchy like{" "}
+        <Link href="/dendrogram">dendrograms</Link>,{" "}
+        <Link href="/circular-packing">circle packing</Link>,{" "}
+        <Link href="/network-chart">networks</Link> and more. Please check the
+        dendrogram page where I explain it in detail.
+      </p>
+      <LinkAsButton isFilled size="sm" href="/dendrogram#hierarchy">
+        Read more
+      </LinkAsButton>
+      {/*
+      //
+      // 1 level treemap
+      //
+      */}
+      <h2 id="1 level">Treemap with 1️⃣ level of hierarchy</h2>
+      <p>
+        The <code>treemap</code> function of d3.js does the biggest part of the
+        job. It basically computes the position of each square on the svg area,
+        returning <code>x0</code>, <code>x1</code>, <code>y0</code> and{" "}
+        <code>y1</code> for each item.
+      </p>
+      <p>
+        Once this is available, it is just a matter of building some{" "}
+        <code>rect</code> and <code>text</code> elements for each rectangle.
+      </p>
+      <ChartOrSandbox
+        vizName={"TreemapBasic"}
+        VizComponent={TreemapBasicDemo}
+        maxWidth={600}
+        height={400}
+        caption="The most basic treemap with 1 level of hierarchy made with react and d3.js."
+      />
+      {/*
+      //
+      // 2 level treemap
+      //
+      */}
+      <h2 id="2 levels">Treemap with 2️⃣ levels of hierarchy</h2>
+      <p>
+        Treemaps are also handy to display nested data structure. For instance,
+        let's consider a company with a CEO, several teams, and a few employees
+        per team.
+      </p>
+      <ChartOrSandbox
+        vizName={"Treemap2Levels"}
+        VizComponent={Treemap2LevelsDemo}
+        maxWidth={600}
+        height={400}
+        caption="Treemap with 2 levels of hierarchy, made with react and d3.js."
+      />
       <AccordionSection title={"Hover effect"} startOpen={true}>
         <p>Dim other groups when a group is hovered over.</p>
 
@@ -136,7 +186,6 @@ export default function Home() {
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
@@ -152,4 +201,10 @@ const data = {
     {type: 'leaf', name:"Emily", value: 34},
     ...
 }
+`.trim();
+
+const snippetHierarchy = `
+const hierarchy = useMemo(() => {
+  return d3.hierarchy(data);
+}, [data]);
 `.trim();

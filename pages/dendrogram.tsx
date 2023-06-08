@@ -2,7 +2,6 @@ import React from "react";
 import { Layout } from "../component/Layout";
 import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { DendrogramBasicDemo } from "viz/DendrogramBasic/DendrogramBasicDemo";
@@ -63,7 +62,7 @@ export default function Home() {
       <CodeBlock code={snippetData} />
       <p>
         <u>Note</u>: if your data is not formatted this way at all, don't fret!
-        In the next section I explain how to deal with <b>other formats</b>.
+        In the next section I explain how to deal with <b>other formats</b>. ⬇️
       </p>
       {/*
       //
