@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StreamGraph } from "./StreamGraph";
 import { data } from "./data";
 
-const BUTTON_HEIGHT = 50;
+const BUTTON_HEIGHT = 250;
 
 export const StreamGraphShapeTransition = ({ width = 700, height = 400 }) => {
   const [offsetType, setOffsetType] = useState("silouhette");

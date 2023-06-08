@@ -11,27 +11,21 @@ import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";
 import { TreemapHoverEffectDemo } from "../viz/TreemapHoverEffect/TreemapHoverEffectDemo";
 
 const graphDescription = (
-  <p>
-    A <a href="https://www.data-to-viz.com/graph/treemap.html">treemap</a>{" "}
-    displays a hierarchical information (a <i>tree</i>) as a set of rectangles.
-    Rectangle sizes are proportional to a numeric value. d3.js has some handy
-    functions to compute the rectangle positions. React becomes useful to render
-    those rectangles, animate transitions and more.
-  </p>
+  <>
+    <p>
+      A <a href="https://www.data-to-viz.com/graph/treemap.html">treemap</a>{" "}
+      displays a hierarchical dataset (a <i>tree</i>) as a set of{" "}
+      <b>rectangles</b>. Rectangle sizes are proportional to their numeric
+      value.
+    </p>
+    <p>
+      <code>d3.js</code> has some handy functions to compute the rectangle
+      positions. <code>React</code> becomes useful to render those rectangles,
+      animate transitions and more. This post explains how to make those 2 tools
+      work together to build a <code>Treemap</code> component.
+    </p>
+  </>
 );
-
-const snippet1 = `
-const data = {
-  type: 'node',
-  name: "boss",
-  value: 2300,
-  children: [
-    {type: 'leaf', name:"Mark", value: 90},
-    {type: 'leaf', name:"Robert", value: 12},
-    {type: 'leaf', name:"Emily", value: 34},
-    ...
-}
-`.trim();
 
 export default function Home() {
   return (
@@ -44,45 +38,53 @@ export default function Home() {
         description={graphDescription}
         chartType="treemap"
       />
-
-      <AccordionSection title={"Dataset"} startOpen={true}>
-        <p>
-          The dataset describes a hierarchy using a recursive structure. Each
-          item in this structure is called a node, the lowest nodes of the
-          hierarchy being called leaves. The dataset is an object that has at
-          least 3 properties: <code>name</code>, <code>value</code> and{" "}
-          <code>children</code>. Children is an array of nodes that have this
-          structure too.
-        </p>
-        <br />
-        <p>Here is a minimal example of the data structure:</p>
-        <CodeBlock code={snippet1} />
-        <p>For a complete example, check the interactive playgrounds below.</p>
-      </AccordionSection>
-
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">The Data</h2>{" "}
+      <p>
+        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{" "}
+        structure. Each item in this structure is called a <b>node</b>, the
+        lowest nodes of the hierarchy being called <b>leaves</b>.
+      </p>
+      <p>
+        The dataset is an <b>object</b> that has at least 3 properties:{" "}
+        <code>name</code>, <code>value</code> and <code>children</code>.
+        <code>children</code> is an array of nodes that have this structure too.
+      </p>
+      <br />
+      <p>Here is a minimal example of the data structure:</p>
+      <CodeBlock code={snippetData} />
+      <p>
+        It's very likely that your dataset is not formatted as above <b>yet</b>.
+        But don't fret, the next section will teach you how to <b>convert</b>{" "}
+        it. ⬇️
+      </p>
+      {/*
+      //
+      // Data Wrangling
+      //
+      */}{" "}
       <div className="bg-gray-50 full-bleed mt-12">
         <div className="wrapper pb-12">
-          <AccordionSection
-            title={"Input data & data wrangling"}
-            startOpen={true}
-          >
-            <p>
-              Three main input data formats are usually encountered when it
-              comes to store hierarchical information. It's always a struggle to
-              deal with those formats so I've tried to describe the most common
-              use-cases here.
-            </p>
-            <p>&rarr; list of connection (csv)</p>
-            <p>&rarr; list of connection (js object)</p>
-            <p>&rarr; json with hierarchy</p>
-            <p>
-              ToDo: write some explanation on how to do the work with the
-              <code>d3.hierarchy</code> and <code>d3.stratify</code> functions.
-            </p>
-          </AccordionSection>
+          <h2 id="reformat data">Data wrangling</h2>{" "}
+          <p>
+            <b>Three main input data formats</b> are usually encountered when it
+            comes to store hierarchical information. It's always a struggle to
+            deal with those formats so I've tried to describe the most common
+            use-cases here.
+          </p>
+          <p>&rarr; list of connection (csv)</p>
+          <p>&rarr; list of connection (js object)</p>
+          <p>&rarr; json with hierarchy</p>
+          <p>
+            ToDo: write some explanation on how to do the work with the
+            <code>d3.hierarchy</code> and <code>d3.stratify</code> functions.
+          </p>
         </div>
       </div>
-
       <AccordionSection title={"Most basic treemap"} startOpen={true}>
         <p>
           The <code>treemap</code> function of d3.js does the biggest part of
@@ -102,7 +104,6 @@ export default function Home() {
           caption="The most basic treemap made with react and d3.js."
         />
       </AccordionSection>
-
       <AccordionSection title={"Two levels of hierarchy"} startOpen={true}>
         <p>
           Treemaps are also handy to display nested data structure. For
@@ -118,7 +119,6 @@ export default function Home() {
           caption="Treemap with 2 levels of hierarchy, made with react and d3.js."
         />
       </AccordionSection>
-
       <AccordionSection title={"Hover effect"} startOpen={true}>
         <p>Dim other groups when a group is hovered over.</p>
 
@@ -130,15 +130,26 @@ export default function Home() {
           caption="Hover over a group on the treemap to see the other groups fading."
         />
       </AccordionSection>
-
       <br />
       <br />
       <br />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
-
       <div className="mt-20" />
       <Contact />
     </Layout>
   );
 }
+
+const snippetData = `
+const data = {
+  type: 'node',
+  name: "boss",
+  value: 2300,
+  children: [
+    {type: 'leaf', name:"Mark", value: 90},
+    {type: 'leaf', name:"Robert", value: 12},
+    {type: 'leaf', name:"Emily", value: 34},
+    ...
+}
+`.trim();
