@@ -6,8 +6,8 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <ParallelCoordinate
     data={data}
-    width={width}
-    height={height}
+    width={700}
+    height={400}
     variables={["petalLength", "petalWidth", "sepalLength", "sepalWidth"]}
   />,
   rootElement

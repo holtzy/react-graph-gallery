@@ -4,16 +4,9 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
-import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { Caption } from "../component/UI/Caption";
-import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
-import { GraphLinkImage } from "../component/UI/GraphLinkImage";
-import { ImageGrid } from "../component/UI/ImageGrid";
 import Link from "next/link";
-import { Accordion } from "component/UI/Accordion";
 import { ParallelCoordinateBasicDemo } from "viz/ParallelCoordinateBasic/ParallelCoordinateDemo";
 import { ParallelCoordinateAxesOnlyDemo } from "viz/ParallelCoordinateAxesOnly/ParallelCoordinateAxesOnlyDemo";
 
@@ -205,7 +198,7 @@ export default function Home() {
       <DatavizInspirationParallaxLink chartId="parallel" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />
     </Layout>
   );
@@ -251,29 +244,6 @@ export const ParallelCoordinate = ({ width, height, data, variables }: ParallelC
     </div>
   );
 };
-`.trim();
-
-const snippet2 = `
-const bucketGenerator = d3
-  .bin()
-  .value((d) => d)
-  .domain([0, 10])
-  .thresholds([0, 2, 4, 6, 8, 10]);
-`.trim();
-
-const snippet3 = `
-bucketGenerator(data)
-`.trim();
-
-const snippet4 = `
-[
-  [x0: 0, x1: 2],
-  [2, 2, 2, 3, x0: 2, x1: 4],
-  [4, 5, x0: 4, x1: 6],
-  [6, 6, 6, x0: 6, x1: 8],
-  [x0: 8, x1: 10],
-  [x0: 10, x1: 10],
-]
 `.trim();
 
 const snippetXScale = `

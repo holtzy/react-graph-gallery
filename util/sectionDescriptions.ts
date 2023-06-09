@@ -174,7 +174,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/parallel",
     reactURL: "https://react-graph-gallery.com/parallel-plot",
     label: "Parallel",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "lollipop",
