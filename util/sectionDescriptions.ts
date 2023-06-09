@@ -204,7 +204,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/treemap",
     reactURL: "https://react-graph-gallery.com/treemap",
     label: "Treemap",
-    isAvailable: false
+    isAvailable: true
   },
   // {
   //   id: "venn",
