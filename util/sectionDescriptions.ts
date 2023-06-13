@@ -117,16 +117,6 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     isAvailable: true
   },
   {
-    id: "connectedScatter",
-    family: "correlation",
-    logo: "ScatterConnected150",
-    dataToVizURL: "https://www.data-to-viz.com/graph/connectedscatter.html",
-    d3URL: "https://www.d3-graph-gallery.com/connectedscatter",
-    reactURL: "https://react-graph-gallery.com/connected-scatter-plot",
-    label: "Connected Scatter",
-    isAvailable: false
-  },
-  {
     id: "density2d",
     family: "correlation",
     logo: "2dDensity150",
@@ -137,6 +127,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     isAvailable: true
   },
   {
+    id: "connectedScatter",
+    family: "correlation",
+    logo: "ScatterConnected150",
+    dataToVizURL: "https://www.data-to-viz.com/graph/connectedscatter.html",
+    d3URL: "https://www.d3-graph-gallery.com/connectedscatter",
+    reactURL: "https://react-graph-gallery.com/connected-scatter-plot",
+    label: "Connected Scatter",
+    isAvailable: false
+  },
+  {
     id: "barplot",
     family: "ranking",
     logo: "Bar150",
@@ -145,16 +145,6 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     reactURL: "https://react-graph-gallery.com/barplot",
     label: "Barplot",
     isAvailable: true
-  },
-  {
-    id: "radar",
-    family: "ranking",
-    logo: "Spider150",
-    dataToVizURL: "https://www.data-to-viz.com/caveat/spider.html",
-    d3URL: "https://www.d3-graph-gallery.comt/spider",
-    reactURL: "https://react-graph-gallery.com/radar-chart",
-    label: "Spider / Radar",
-    isAvailable: false
   },
   {
     id: "wordcloud",
@@ -195,6 +185,16 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     reactURL: "https://react-graph-gallery.com/circular-barplot",
     label: "Circular Barplot",
     isAvailable: true
+  },
+  {
+    id: "radar",
+    family: "ranking",
+    logo: "Spider150",
+    dataToVizURL: "https://www.data-to-viz.com/caveat/spider.html",
+    d3URL: "https://www.d3-graph-gallery.comt/spider",
+    reactURL: "https://react-graph-gallery.com/radar-chart",
+    label: "Spider / Radar",
+    isAvailable: false
   },
   {
     id: "treemap",
