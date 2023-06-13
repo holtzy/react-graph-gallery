@@ -384,7 +384,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/chord",
     reactURL: "https://react-graph-gallery.com/chord-diagram",
     label: "Chord Diagram",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "network",
