@@ -11,6 +11,8 @@ import { VoronoidelaunayOnlyDemo } from "viz/VoronoidelaunayOnly/Voronoidelaunay
 import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
 import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
 import { VoronoiClosestPointDemo } from "viz/VoronoiClosestPoint/VoronoiClosestPointDemo";
+import { LinkAsButton } from "component/LinkAsButton";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -90,10 +92,16 @@ export default function Home() {
         <Link href="/scatter-plot">scatterplot</Link> section of the gallery
         that goes in deep on what's going on here.
       </p>
+      <LinkAsButton isFilled size="sm" href="scatter-plot">
+        Scatterplot section
+      </LinkAsButton>
+      <p>
+        <br />
+      </p>
       <p>
         You need a good understanding about <b>d3 scales</b>, how to{" "}
-        <b>loop through a data</b> object to create <b>svg elements</b> and how
-        to make the component <b>render</b> them.
+        <b>loop through a data</b> array to create <b>svg elements</b> and how
+        to make the component <b>renders</b> them.
       </p>
       <ChartOrSandbox
         VizComponent={VoronoiScatterOnlyDemo}
@@ -120,8 +128,8 @@ export default function Home() {
       </p>
       <p>
         You don't necessarily need to understand what a Delaunay triangulation
-        is. But if you're interested in the topic, it will be covered in the
-        dataviz universe newslette soon.
+        is. But if you're interested in the topic, it will be covered in the{" "}
+        <Link href="subscribe">dataviz universe</Link> newsletter soon.
       </p>
       <p>
         Fortunately, d3.js has a module called{" "}
@@ -144,7 +152,7 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetDelaunay2} />
       <p>
-        This path is provided as a string that we can path to a{" "}
+        This path is provided as a string that we can pass to a{" "}
         <code>path</code> svg element as follow:
       </p>
       <CodeBlock code={snippetDelaunay3} />
@@ -215,9 +223,13 @@ export default function Home() {
       */}
       <h2 id="closest point">Closest point detection</h2>
       <p>
-        The voronoi diagram is commonly used to detect the closest data point of
-        the mouse position. This can be pretty useful to highlight the closest
-        point without having to hover exactly over it.
+        The voronoi diagram is commonly used to detect the <b>closest</b> data
+        point of the mouse position. This can be pretty useful to highlight the
+        closest point without having to hover <b>exactly</b> over it.
+      </p>
+      <p>
+        In the example below, the closest dot will be highlighted with a red
+        circle ⭕️ using the voronoi cells.
       </p>
       <br />
       <ChartOrSandbox
@@ -230,8 +242,11 @@ export default function Home() {
         }
       />
 
+      <ToDoSection text="Scatterplot tooltip made using Voronoi" />
+      <ToDoSection text="Add voronoi treemap example" />
+
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />
     </Layout>
   );

@@ -254,7 +254,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com",
     reactURL: "https://react-graph-gallery.com/voronoi",
     label: "Voronoi",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "circularPacking",
