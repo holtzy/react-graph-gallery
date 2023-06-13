@@ -4,17 +4,14 @@ import TitleAndDescription from "../component/TitleAndDescription";
 import ChartFamilySection from "../component/ChartFamilySection";
 import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
-import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { Caption } from "../component/UI/Caption";
-import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
-import { GraphLinkImage } from "../component/UI/GraphLinkImage";
-import { ImageGrid } from "../component/UI/ImageGrid";
-import Link from "next/link";
-import { Accordion } from "component/UI/Accordion";
 import { ChordDiagramRibbonDemo } from "viz/ChordDiagramRibbon/ChordDiagramRibbonDemo";
+import Link from "next/link";
+import { ChordDiagramNodeOnlyDemo } from "viz/ChordDiagramNodeOnly/ChordDiagramNodeOnlyDemo";
+import { LinkAsButton } from "component/LinkAsButton";
+import { ChordDiagramBasicDemo } from "viz/ChordDiagramBasic/ChordDiagramBasicDemo";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -110,16 +107,59 @@ export default function Home() {
       // The chord() function
       //
       */}
-      <h2 id="chord()">The chord() function</h2>
-
+      <h2 id="chord()">
+        The <code>chord()</code> function
+      </h2>
+      <p>
+        We need to transform the flow matrix described in the{" "}
+        <Link href="#data">data</Link> section into a list of node and
+        connection coordinates. This is easy thanks to the <code>chord()</code>{" "}
+        function of d3.js.
+      </p>
+      <p>The function can be used as follow:</p>
+      <CodeBlock code={snippetChord} />
+      <p>
+        The returned object (<code>chord</code> in this example) is an array
+        listing all the connections. For each, details about the{" "}
+        <code>source</code> and the <code>target</code> are provided:
+      </p>
+      <CodeBlock code={snippetChordObject} />
+      <p>
+        Last but not least, the array also has a <code>group</code> property
+        with details about all nodes of the chord diagram.
+      </p>
+      <LinkAsButton href="https://github.com/d3/d3-chord" isFilled size="sm">
+        chord() official documentation
+      </LinkAsButton>
       {/*
       //
       // Nodes
       //
       */}
       <h2 id="Nodes">Draw the nodes</h2>
-      <p>Hello</p>
-      <CodeBlock code={snippetYScale} />
+      <p>
+        Nodes are drawn using the <code>group</code> property of the{" "}
+        <code>chord</code> object computed above. For each group, the{" "}
+        <b>start</b> and <b>end</b> angles are provided.
+      </p>
+      <p>
+        From this information it is possible to draw an arc thanks to the{" "}
+        <code>arc()</code> function of d3. It is exactly the same process as for
+        a <Link href="donut">donut chart</Link>. Please visit the donut section
+        of the gallery for more explanation!
+      </p>
+      <LinkAsButton href="donut" isFilled size="sm">
+        Donut section
+      </LinkAsButton>
+      <ChartOrSandbox
+        VizComponent={ChordDiagramNodeOnlyDemo}
+        vizName={"ChordDiagramNodeOnly"}
+        maxWidth={400}
+        height={400}
+        caption={
+          "Nodes are drawn thanks to the arc() function of d3.js, like for a donut chart."
+        }
+      />
 
       {/*
       //
@@ -127,17 +167,38 @@ export default function Home() {
       //
       */}
       <h2 id="connections">Draw the connections</h2>
-      <p>Hello</p>
-      <CodeBlock code={snippetYScale} />
+      <p>
+        We now have to draw the connections between nodes that are listed in the
+        initial square matrix (<code>data</code>).
+      </p>
+      <p>
+        The connection coordinates are listed in the <code>chord</code> object
+        computed in the <Link href="#chord()">previous section</Link>. For each
+        connection we know the <code>startAngle</code> and <code>endAngle</code>{" "}
+        of the <code>source</code> and of the
+        <code>target</code>.
+      </p>
+      <p>
+        This is everything we need to compute the connections thanks to the{" "}
+        <code>ribbon()</code> function of d3 as follow:
+      </p>
+      <CodeBlock code={snippetRibbon} />
       <ChartOrSandbox
         VizComponent={ChordDiagramRibbonDemo}
         vizName={"ChordDiagramRibbon"}
-        maxWidth={600}
-        height={600}
+        maxWidth={400}
+        height={400}
         caption={
           "Connections between nodes are drawn thanks to the ribbon() function of d3.js."
         }
       />
+      <LinkAsButton
+        href="https://github.com/d3/d3-chord#ribbon"
+        isFilled
+        size="sm"
+      >
+        <code>d3.ribbon()</code> documentation
+      </LinkAsButton>
 
       {/*
       //
@@ -153,11 +214,37 @@ export default function Home() {
       <DatavizInspirationParallaxLink chartId="chordDiagram" />
       {/*
       //
-      // Variations
+      // First chord diagram
       //
       */}
-      <h2 id="variations">Variations</h2>
+      <h2 id="basic">First chord diagram</h2>
+      <p>I suggest 2 improvements to get a descent chord diagram:</p>
+      <h3>&rarr; Colors</h3>
+      <p>
+        Pretty straightforward to implement. You just need to create an{" "}
+        <code>array of colors</code>. Then, for each item to draw the{" "}
+        <code>index</code> is always available. It can be used to retrieve the
+        color in the color array.
+      </p>
+      <h3>&rarr; Labels</h3>
+      <p>
+        A new <b>prop</b> needs to be passed to the component with a list of
+        names for the nodes. I suggest to position labels as for a{" "}
+        <Link href="donut">donut chart</Link> but many other possibilities are
+        available.
+      </p>
+      <ChartOrSandbox
+        VizComponent={ChordDiagramBasicDemo}
+        vizName={"ChordDiagramBasic"}
+        maxWidth={700}
+        height={450}
+        caption={
+          "Connections between nodes are drawn thanks to the ribbon() function of d3.js."
+        }
+      />
 
+      <ToDoSection text="Add section on hover effect"></ToDoSection>
+      <ToDoSection text="Talk about chordDirected() and chordTranspose()"></ToDoSection>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
@@ -204,16 +291,31 @@ export const ChordDiagram = ({ width, height, data }: ChordDiagramProps) => {
 };
 `.trim();
 
-const snippet2 = `
-const bucketGenerator = d3
-  .bin()
-  .value((d) => d)
-  .domain([0, 10])
-  .thresholds([0, 2, 4, 6, 8, 10]);
+const snippetChord = `
+const chordGenerator = d3
+.chord()
+.padAngle(0.05) // padding between nodes
+.sortSubgroups(d3.descending);
+
+const chord = chordGenerator(data);
 `.trim();
 
-const snippet3 = `
-bucketGenerator(data)
+const snippetChordObject = `
+[
+  // first connection: flow between node 1 and node 1
+  {
+    source: { index: 0, startAngle: 0, endAngle: 0.84, value: 11975 },
+    target: { index: 0, startAngle: 0, endAngle: 0.84, value: 11975
+    }
+  },
+  // second connection: flow between node 2 and node 1
+  {
+    source: { index: 1, startAngle: 3.01, endAngle: 3.15, value: 1951 },
+    target: { index: 1, startAngle: 1.67, endAngle: 1.67, value: 0
+    }
+  },
+  // ...
+]
 `.trim();
 
 const snippet4 = `
@@ -237,16 +339,11 @@ const xScale = d3
 // xScale(10) -> width (the right hand side position of the last bin)
 `.trim();
 
-const snippetYScale = `
-const yScale = useMemo(() => {
-
-  const max = Math.max(...buckets.map((bucket) => bucket?.length));
-
-  return d3.scaleLinear()
-    .range([height, 0])
-    .domain([0, max]);
-
-  }, [data, height]);
+const snippetRibbon = `
+const allConnections = chord.map((connection, i) => {
+  const d = ribbonGenerator(connection);
+  return <path key={i} d={d} />;
+});
 `.trim();
 
 const snippetRects = `

@@ -19,6 +19,7 @@ export const ChordDiagram = ({ width, height, data }: ChordDiagramProps) => {
     .padAngle(0.05) // padding between entities (black arc)
     .sortSubgroups(d3.descending);
   const chord = chordGenerator(data);
+
   //
   // Nodes: They are drawn using arcs, like for a donut chart
   //
@@ -37,25 +38,10 @@ export const ChordDiagram = ({ width, height, data }: ChordDiagramProps) => {
     }
   });
 
-  //
-  // Connections: They are drawn using path thanks to the ribbon function
-  //
-  const ribbonGenerator = d3
-    .ribbon()
-    .radius(radius - NODE_THICKNESS - NODE_CONNECTION_PADDING);
-
-  const allConnections = chord.map((connection, i) => {
-    const d = ribbonGenerator(connection); // TODO: fix type.
-    return <path key={i} d={d} fill="#69b3a2" opacity=".3" />;
-  });
-
   return (
     <div>
       <svg width={width} height={height}>
-        <g transform={`translate(${width / 2}, ${height / 2})`}>
-          {allNodes}
-          {allConnections}
-        </g>
+        <g transform={`translate(${width / 2}, ${height / 2})`}>{allNodes}</g>
       </svg>
     </div>
   );
