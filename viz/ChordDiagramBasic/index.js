@@ -4,6 +4,11 @@ import { ChordDiagram } from "./ChordDiagram";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <ChordDiagram data={data} width={400} height={400} />,
+  <ChordDiagram
+    data={data}
+    width={400}
+    height={400}
+    groups={["Barcelona", "Paris", "Dakar", "NY"]}
+  />,
   rootElement
 );

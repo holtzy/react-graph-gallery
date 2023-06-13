@@ -24,7 +24,7 @@ export const ChordDiagram = ({
   // Compute the chord details: angle of nodes and connections
   //
   const chordGenerator = d3
-    .chordDirected()
+    .chord()
     .padAngle(0.05) // padding between entities (black arc)
     .sortSubgroups(d3.descending);
   const chord = chordGenerator(data);
