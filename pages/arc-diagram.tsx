@@ -148,83 +148,55 @@ export default function Home() {
       */}
       <h2 id="connections">Draw the connections</h2>
       <p>
-        We now have to draw the connections between nodes that are listed in the
-        initial square matrix (<code>data</code>).
+        We now have to draw the <b>connections</b> between nodes using{" "}
+        <b>arcs</b>. All the connections are listed in the <b>links</b> property
+        of the dataset. So it is just a matter of looping through them and draw
+        some SVG for each.
       </p>
       <p>
-        The connection coordinates are listed in the <code>chord</code> object
-        computed in the <Link href="#chord()">previous section</Link>. For each
-        connection we know the <code>startAngle</code> and <code>endAngle</code>{" "}
-        of the <code>source</code> and of the
-        <code>target</code>.
+        Drawing an arc in SVG can be done using a <code>path</code> element.{" "}
       </p>
       <p>
-        This is everything we need to compute the connections thanks to the{" "}
-        <code>ribbon()</code> function of d3 as follow:
+        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">
+          Six types
+        </a>{" "}
+        of <code>path</code> commands exist. The one we need here is the{" "}
+        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">
+          Elliptical Arc Curve
+        </a>
+        . Its syntax is a bit complicated but here is a function that will get
+        the <code>d</code> attribute of the path we need from the coordinates of
+        2 points:
       </p>
-      <CodeBlock code={snippetRibbon} />
+      <CodeBlock code={snippetHorizontalArcGenerator} />
+      <p>
+        We can call this function for each link and pass the result to a{" "}
+        <code>path</code>
+        element. It results in our first basic arc diagram 😋
+      </p>
       <ChartOrSandbox
         VizComponent={ArcDiagramBasicDemo}
         vizName={"ArcDiagramBasic"}
         maxWidth={500}
         height={300}
         caption={
-          "Nodes are drawn thanks to the arc() function of d3.js, like for a donut chart."
+          "Add arcs using a custom functionn that draws some elliptical arc curve in SVG."
         }
       />
-      <LinkAsButton
-        href="https://github.com/d3/d3-chord#ribbon"
-        isFilled
-        size="sm"
-      >
-        <code>d3.ribbon()</code> documentation
-      </LinkAsButton>
 
       {/*
       //
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="chordDiagram" />
+      <ResponsiveExplanationSection chartId="arc" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="chordDiagram" />
-      {/*
-      //
-      // First chord diagram
-      //
-      */}
-      <h2 id="basic">First chord diagram</h2>
-      <p>I suggest 2 improvements to get a descent chord diagram:</p>
-      <h3>&rarr; Colors</h3>
-      <p>
-        Pretty straightforward to implement. You just need to create an{" "}
-        <code>array of colors</code>. Then, for each item to draw the{" "}
-        <code>index</code> is always available. It can be used to retrieve the
-        color in the color array.
-      </p>
-      <h3>&rarr; Labels</h3>
-      <p>
-        A new <b>prop</b> needs to be passed to the component with a list of
-        names for the nodes. I suggest to position labels as for a{" "}
-        <Link href="donut">donut chart</Link> but many other possibilities are
-        available.
-      </p>
-      <ChartOrSandbox
-        VizComponent={ChordDiagramBasicDemo}
-        vizName={"ChordDiagramBasic"}
-        maxWidth={700}
-        height={450}
-        caption={
-          "Connections between nodes are drawn thanks to the ribbon() function of d3.js."
-        }
-      />
+      <DatavizInspirationParallaxLink chartId="arc" />
 
-      <ToDoSection text="Add section on hover effect"></ToDoSection>
-      <ToDoSection text="Talk about chordDirected() and chordTranspose()"></ToDoSection>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
@@ -293,22 +265,33 @@ const allNodes = data.nodes.map((node) => {
 });
 `.trim();
 
-const snippetChordObject = `
-[
-  // first connection: flow between node 1 and node 1
-  {
-    source: { index: 0, startAngle: 0, endAngle: 0.84, value: 11975 },
-    target: { index: 0, startAngle: 0, endAngle: 0.84, value: 11975
-    }
-  },
-  // second connection: flow between node 2 and node 1
-  {
-    source: { index: 1, startAngle: 3.01, endAngle: 3.15, value: 1951 },
-    target: { index: 1, startAngle: 1.67, endAngle: 1.67, value: 0
-    }
-  },
-  // ...
-]
+const snippetHorizontalArcGenerator = `
+const horizontalArcGenerator = (
+  xStart,
+  yStart,
+  xEnd,
+  yEnd
+) => {
+  return [
+    // the arc starts at the coordinate xStart, xEnd
+    "M",
+    xStart,
+    yStart,
+
+    // A means we're gonna build an Elliptical Arc Curve
+    "A",
+    (xStart - xEnd) / 2,    // rx: first radii of the ellipse (inflexion point)
+    (xStart - xEnd) / 2,    // ry: second radii of the ellipse  (inflexion point)
+    0,                      // angle: rotation (in degrees) of the ellipse relative to the x-axis
+    1,                      // large-arc-flag: large arc (1) or small arc (0)
+    xStart < xEnd ? 1 : 0,  // sweep-flag: the clockwise turning arc (1) or counterclockwise turning arc (0)
+
+    // Position of the end of the arc
+    xEnd,
+    ",",
+    yEnd,
+  ].join(" ");
+};
 `.trim();
 
 const snippet4 = `

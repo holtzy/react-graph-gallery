@@ -84,6 +84,12 @@ export const ArcDiagram = ({ width, height, data }: ArcDiagramProps) => {
   );
 };
 
+/**
+ * Get the d attribute of a SVG path element for an arc
+ * that joins 2 points horizontally
+ * using an Elliptical Arc Curve
+ * @returns {string} The d attribute of the path.
+ */
 const horizontalArcGenerator = (
   xStart: number,
   yStart: number,
@@ -95,18 +101,17 @@ const horizontalArcGenerator = (
     "M",
     xStart,
     yStart,
-    // A means we're gonna build an elliptical arc
+    // A means we're gonna build an Elliptical Arc Curve
+    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve
     "A",
-    (xStart - xEnd) / 2,
-    ",", // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
-    (xStart - xEnd) / 2,
-    0,
-    0,
-    ",",
-    xStart < xEnd ? 1 : 0,
+    (xStart - xEnd) / 2, // rx: first radii of the ellipse (inflexion point)
+    (xStart - xEnd) / 2, // ry: second radii of the ellipse  (inflexion point)
+    0, // angle: rotation (in degrees) of the ellipse relative to the x-axis
+    1, // large-arc-flag: large arc (1) or small arc (0)
+    xStart < xEnd ? 1 : 0, // sweep-flag: the clockwise turning arc (1) or counterclockwise turning arc (0)
+    // Position of the end of the arc
     xEnd,
     ",",
     yEnd,
-  ] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
-    .join(" ");
+  ].join(" ");
 };
