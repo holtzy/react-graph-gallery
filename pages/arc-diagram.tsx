@@ -11,6 +11,7 @@ import { LinkAsButton } from "component/LinkAsButton";
 import { ChordDiagramBasicDemo } from "viz/ChordDiagramBasic/ChordDiagramBasicDemo";
 import { ToDoSection } from "component/UI/ToDoSection";
 import { ArcDiagramBasicDemo } from "viz/ArcDiagramBasic/ArcDiagramBasicDemo";
+import { ArcDiagramNodeOnlyDemo } from "viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo";
 
 const graphDescription = (
   <>
@@ -114,26 +115,29 @@ export default function Home() {
       */}
       <h2 id="Nodes">Draw the nodes</h2>
       <p>
-        Nodes are drawn using the <code>group</code> property of the{" "}
-        <code>chord</code> object computed above. For each group, the{" "}
-        <b>start</b> and <b>end</b> angles are provided.
+        Positionning the nodes relies on a{" "}
+        <a href="https://github.com/d3/d3-scale#scalePoint">point scale</a>{" "}
+        implement in the <code>scalePoint()</code> function of d3.
       </p>
       <p>
-        From this information it is possible to draw an arc thanks to the{" "}
-        <code>arc()</code> function of d3. It is exactly the same process as for
-        a <Link href="donut">donut chart</Link>. Please visit the donut section
-        of the gallery for more explanation!
+        The <code>group</code> property of each node can be used to create an
+        categoric color scale.
       </p>
-      <LinkAsButton href="donut" isFilled size="sm">
-        Donut section
-      </LinkAsButton>
+      <p>
+        Once the scales are available, it is just a matter of looping through
+        all nodes and render them with several <code>circle</code> SVG elements.
+      </p>
+      <CodeBlock code={snippetNodes} />
+      <p>
+        Resulting in a few dots being the basis of our ongoing arc diagram 🔥.
+      </p>
       <ChartOrSandbox
-        VizComponent={ArcDiagramBasicDemo}
-        vizName={"ArcDiagramBasic"}
+        VizComponent={ArcDiagramNodeOnlyDemo}
+        vizName={"ArcDiagramNodeOnly"}
         maxWidth={500}
-        height={300}
+        height={150}
         caption={
-          "Nodes are drawn thanks to the arc() function of d3.js, like for a donut chart."
+          "First step of our ongoing arc diagram: the nodes are displayed at the bottom of the figure."
         }
       />
 
@@ -268,13 +272,25 @@ export const ArcDiagram = ({ width, height, data }: ArcDiagramProps) => {
 };
 `.trim();
 
-const snippetChord = `
-const chordGenerator = d3
-.chord()
-.padAngle(0.05) // padding between nodes
-.sortSubgroups(d3.descending);
+const snippetNodes = `
+const xScale = d3.scalePoint().range([0, boundsWidth]).domain(allNodeNames);
 
-const chord = chordGenerator(data);
+const colorScale = d3
+  .scaleOrdinal<string>()
+  .domain(allNodeGroups)
+  .range(COLORS);
+
+const allNodes = data.nodes.map((node) => {
+  return (
+    <circle
+      key={node.id}
+      cx={xScale(node.id)}
+      cy={boundsHeight}
+      r={8}
+      fill={colorScale(node.group)}
+    />
+  );
+});
 `.trim();
 
 const snippetChordObject = `
