@@ -414,7 +414,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/arc",
     reactURL: "https://react-graph-gallery.com/arc-diagram",
     label: "Arc Diagram",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "edgeBundling",
