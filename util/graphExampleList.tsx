@@ -314,13 +314,14 @@ export const graphExampleList: GraphExample[] = [
     img: "streamgraph-application.gif",
     alt: "GIF of a streamgraph with multiple interactive features",
   },
-  //   {
-  //     link: "",
-  //     title: "",
-  //     description: "",
-  //     img: "",
-  //     alt: "",
-  //   },
+  {
+    link: "/example/arc-diagram-vertical",
+    title: "Vertical arc diagram",
+    description:
+      "The vertical version of the arc diagram is more convenient to display labels",
+    img: "vertical-arc-diagram.png",
+    alt: "Picture of a vertical arc diagram",
+  },
   //   {
   //     link: "",
   //     title: "",

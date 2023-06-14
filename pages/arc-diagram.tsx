@@ -12,6 +12,8 @@ import { ChordDiagramBasicDemo } from "viz/ChordDiagramBasic/ChordDiagramBasicDe
 import { ToDoSection } from "component/UI/ToDoSection";
 import { ArcDiagramBasicDemo } from "viz/ArcDiagramBasic/ArcDiagramBasicDemo";
 import { ArcDiagramNodeOnlyDemo } from "viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo";
+import { ImageGrid } from "component/UI/ImageGrid";
+import GraphGallery from "component/GraphGallery";
 
 const graphDescription = (
   <>
@@ -196,6 +198,20 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="arc" />
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        Once you've understood how to build a basic arc diagram with d3 and
+        react, it opens an infinite world of <b>customization</b>. Here are a
+        few examples highlighting what it is possible to do with arc diagrams.
+      </p>
+      <p>Click on the overview below to get details and code.</p>
+      <br />
+      <GraphGallery images={["vertical-arc-diagram.png"]} />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
