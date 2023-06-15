@@ -424,7 +424,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/edge_bundling",
     reactURL: "https://react-graph-gallery.com/hierarchical-edge-bundling",
     label: "Edge Bundling",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "animation",
