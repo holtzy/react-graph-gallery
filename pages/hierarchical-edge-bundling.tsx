@@ -207,7 +207,7 @@ export default function Home() {
         VizComponent={HierarchicalEdgeBundlingBasicDemo}
         maxWidth={600}
         height={600}
-        caption="A first hierarchical edge bundling chart."
+        caption="A first hierarchical edge bundling chart made with d3 and react."
       />
       {/*
       //

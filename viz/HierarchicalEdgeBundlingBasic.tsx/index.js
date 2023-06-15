@@ -1,7 +1,10 @@
 import ReactDOM from "react-dom";
 import { data } from "./data";
-import { Treemap } from "./Treemap";
+import { HierarchicalEdgeBundling } from "./HierarchicalEdgeBundling";
 
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(<Treemap data={data} width={400} height={400} />, rootElement);
+ReactDOM.render(
+  <HierarchicalEdgeBundling data={data} width={600} height={600} />,
+  rootElement
+);
