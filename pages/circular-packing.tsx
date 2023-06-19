@@ -11,6 +11,7 @@ import { CircularPackingDatasetTransitionDemo } from "../viz/CircularPackingData
 import Link from "next/link";
 import { LinkAsButton } from "component/LinkAsButton";
 import { CircularPacking2LevelsDemo } from "viz/CircularPacking2Levels/CircularPacking2LevelsDemo";
+import { ToDoSection } from "component/UI/ToDoSection";
 
 const graphDescription = (
   <>
@@ -208,7 +209,7 @@ export default function Home() {
         <code>circle</code> or <code>text</code>
         svg element, it is passed to an animated component that looks like this:
       </p>
-      <CodeBlock code={snippet2} />
+      <CodeBlock code={snippetAnimation} />
       <p>
         This component uses the <code>useSpring</code> hook of react spring to
         interpolate the <code>cx</code>, <code>cy</code> and <code>r</code>{" "}
@@ -231,6 +232,12 @@ export default function Home() {
       <LinkAsButton isFilled size="sm" href="/subscribe">
         Subscribe
       </LinkAsButton>
+      <p>
+        <br /> <br />
+      </p>
+      <ToDoSection text="Zoom on next level of hierarchy" />
+      <ToDoSection text="Write label along circle with curve" />
+      <ToDoSection text="Better dataset transition where circle keep position" />
       <p>
         <br /> <br />
       </p>
@@ -293,7 +300,7 @@ const packGenerator = d3.pack()
 const root = packGenerator(hierarchy);
 `.trim();
 
-const snippet2 = `
+const snippetAnimation = `
 const AnimatedCircle = ({cx,cy,r,...props}) => {
   const animatedProps = useSpring({
     cx,
