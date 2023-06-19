@@ -8,48 +8,28 @@ import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import { CircularPackingBasicDemo } from "../viz/CircularPackingBasic/CircularPackingBasicDemo";
 import { CircularPackingDatasetTransitionDemo } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransitionDemo";
+import Link from "next/link";
+import { LinkAsButton } from "component/LinkAsButton";
 
 const graphDescription = (
-  <p>
-    A{" "}
-    <a href="https://www.data-to-viz.com/graph/circularpacking.html">
-      circular packing chart
-    </a>{" "}
-    displays a hierarchical dataset as a set of nested circles. Nodes are
-    displayed as circles. Size is usually proportional to a numeric variable.
-  </p>
+  <>
+    <p>
+      A{" "}
+      <a href="https://www.data-to-viz.com/graph/circularpacking.html">
+        circular packing chart
+      </a>{" "}
+      displays a <b>hierarchical</b> dataset as a set of nested circles, each
+      circle representing a node of the data structure. Size is usually
+      proportional to a numeric variable.
+    </p>
+    <p>
+      This page is a tutorial teaching how to create a circle pack chart with{" "}
+      <code>d3.js</code> and <code>React</code>. It starts with a very basic
+      version, adds some levels of nesting and finishes with usual customization
+      like animating the transition between datasets.
+    </p>
+  </>
 );
-
-const snippet1 = `
-const data = {
-  type: 'node',
-  name: "boss",
-  value: 2300,
-  children: [
-    {type: 'leaf', name:"Mark", value: 90},
-    {type: 'leaf', name:"Robert", value: 12},
-    {type: 'leaf', name:"Emily", value: 34},
-    ...
-}
-`.trim();
-
-const snippet2 = `
-const AnimatedCircle = ({cx,cy,r,...props}) => {
-  const animatedProps = useSpring({
-    cx,
-    cy,
-    r,
-  });
-  return (
-    <animated.circle
-      {...props}
-      r={animatedProps.r}
-      cx={animatedProps.cx}
-      cy={animatedProps.cy}
-    />
-  );
-}
-`.trim();
 
 export default function Home() {
   return (
@@ -62,57 +42,131 @@ export default function Home() {
         description={graphDescription}
         chartType="circularPacking"
       />
-
-      <AccordionSection title={"Dataset"} startOpen={true}>
-        <p>
-          The dataset describes a hierarchy using a recursive structure. Each
-          item in this structure is called a node, the lowest nodes of the
-          hierarchy being called leaves. The dataset is an object that has at
-          least 3 properties: <code>name</code>, <code>value</code> and{" "}
-          <code>children</code>. Children is an array of nodes that have this
-          structure too.
-        </p>
-        <br />
-        <p>Here is a minimal example of the data structure:</p>
-        <CodeBlock code={snippet1} />
-      </AccordionSection>
-
-      <AccordionSection
-        title={"Most basic circular packing with React and D3.js"}
-        startOpen={true}
-      >
-        <p>
-          The process used to build a circle packing chart with d3.js is
-          described more in depth in the{" "}
-          <a href="https://www.d3-graph-gallery.com/circularpacking">
-            d3 graph gallery
-          </a>
-          .
-        </p>
-        <h3>&rarr; Compute circle position and radius</h3>
-        <p>
-          Basically, the dataset is given to the <code>d3.hierarchy()</code>{" "}
-          function of d3 that builds a specific kind of object from it. This
-          object can be consumed by the <code>d3.pack()</code> function of d3
-          that computes the position and radius of each circle.
-        </p>
-        <h3>&rarr; Render the circles with react</h3>
-        <p>
-          It is pretty straightforward to <code>map</code> along each node of
-          the <code>d3.pack()</code> output. For each item, we can render a
-          <code>circle</code> element following with a <code>text</code> element
-          to get the following chart.
-        </p>
-        <br />
-        <ChartOrSandbox
-          vizName={"CircularPackingBasic"}
-          VizComponent={CircularPackingBasicDemo}
-          maxWidth={400}
-          height={400}
-          caption="most basic circle packing chart built with react and d3.js"
-        />
-      </AccordionSection>
-
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">The Data</h2>
+      <p>
+        The dataset describes a <b>hierarchy</b> using a recursive structure. It
+        is similar to a <Link href="/dendrogram">dendrogram</Link> or to a{" "}
+        <Link href="/treemap">treemap</Link>.
+      </p>
+      <p>
+        Each item in this structure is called a <b>node</b>, the lowest nodes of
+        the hierarchy being called <b>leaves</b>. The dataset is an object that
+        has at least 3 properties: <code>name</code>, <code>value</code> and{" "}
+        <code>children</code>. Children is an array of nodes that have this
+        structure too.
+      </p>
+      <br />
+      <p>Here is a minimal example of the data structure:</p>
+      <CodeBlock code={snippetData} />
+      {/*
+      //
+      // Hierarchy
+      //
+      */}
+      <h2 id="hierarchy">Dealing with a hierarchical dataset</h2>
+      <p>
+        The circle packing chart belongs to the family of charts being based on
+        a hierarchical dataset.
+      </p>
+      <p>
+        Members of this family always follow the same process: the dataset is
+        passed to the <code>hierarchy()</code> function of d3.js that creates a
+        handy format for us.
+      </p>
+      <p>
+        Building a <Link href="/dendrogram">dendrogram</Link> will then be
+        possible thanks to the <code>cluster()</code>
+        function. Building a <Link href="/treemap">treemap</Link> is then
+        possible with the <code>treemap()</code>
+        function. Building a circle pack will be possible with the{" "}
+        <code>pack()</code>
+        function.
+      </p>
+      <p>
+        The <code>hierarchy()</code> function of d3.js is a key part of the
+        process. I extensively described how it works in the{" "}
+        <Link href="/dendrogram">dendrogram</Link> section and strongly advise
+        to take a look at it before continuing.
+      </p>
+      <LinkAsButton isFilled size="sm" href="/dendrogram">
+        Learn about <code>hierarchy()</code>
+      </LinkAsButton>
+      {/*
+      //
+      // Skeleton
+      //
+      */}
+      <h2 id="skeleton">Component skeleton</h2>
+      <p>
+        The goal here is to create a <code>CircularPacking</code> component that
+        will be stored in a <code>CircularPacking.tsx</code> file. This
+        component requires 3 props to render: a <code>width</code>, a{" "}
+        <code>height</code>, and some <code>data</code>.
+      </p>
+      <p>
+        The shape of the <code>data</code> is described above. The{" "}
+        <code>width</code> and <code>height</code> will be used to render an{" "}
+        <code>svg</code> element in the DOM, in which we will insert the
+        histogram.
+      </p>
+      <p>
+        To put it in a nutshell, that's the skeleton of our{" "}
+        <code>CircularPacking</code> component:
+      </p>
+      <CodeBlock code={snippetSkeleton} />
+      <p>
+        It's fundamental to understand that with this code organization, d3.js
+        will be used to prepare the SVG <code>circle</code>, but it's React that
+        will render them in the <code>return()</code> statement. We won't use d3
+        methods like <code>append</code> that you can find in usual{" "}
+        <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
+      </p>
+      {/*
+      //
+      // 1 level
+      //
+      */}
+      <h2 id="1 level">Circle packing with 1 level of nesting</h2>
+      <p>
+        Here is a summary of the process used to build a circle pack with 1
+        level of nesting:
+      </p>
+      <h3>&rarr; Compute circle position and radius</h3>
+      <p>
+        Pass the dataset to the <code>hierarchy()</code> function of d3. It
+        builds a specific kind of object from it. This object can be consumed by
+        the <code>pack()</code> function of d3 that computes the position and
+        radius of each circle.
+      </p>
+      <CodeBlock code={snippetPack} />
+      <p>
+        For each node of the hierarchy, 3 new properties are now available:{" "}
+        <code>x</code>, <code>y</code> and <code>r</code> that provide the
+        coordinates and radius of each circle respectively.
+      </p>
+      <h3>&rarr; Render the circles with react</h3>
+      <p>
+        The <code>root</code> object computed above has a{" "}
+        <code>.descendants()</code> method that lists all the nodes in an array.
+      </p>
+      <p>
+        It is straightforward to <code>map</code> along those nodes. For each
+        item, we can render a<code>circle</code> element following with a{" "}
+        <code>text</code> element to get the following chart.
+      </p>
+      <br />
+      <ChartOrSandbox
+        vizName={"CircularPackingBasic"}
+        VizComponent={CircularPackingBasicDemo}
+        maxWidth={400}
+        height={400}
+        caption="Most basic circle packing chart built with react and d3.js. One level of nesting."
+      />
       <AccordionSection title={"Animating dataset transition"} startOpen={true}>
         <p>
           The following examples explains how to transition between 2 datasets.
@@ -144,12 +198,80 @@ export default function Home() {
           caption="Animating the transition between 2 similar dataset with react and d3.js (for rendering) and react spring (for animation)."
         />
       </AccordionSection>
-
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
-
       <div className="mt-20" />
       <Contact />
     </Layout>
   );
 }
+
+const snippetData = `
+const data = {
+  type: 'node',
+  name: "boss",
+  value: 2300,
+  children: [
+    {type: 'leaf', name:"Mark", value: 90},
+    {type: 'leaf', name:"Robert", value: 12},
+    {type: 'leaf', name:"Emily", value: 34},
+    ...
+}
+`.trim();
+
+const snippetSkeleton = `
+import * as d3 from "d3"; // we will need d3.js
+
+type CircularPackingProps = {
+  width: number;
+  height: number;
+  data: number[];
+};
+
+export const CircularPacking = ({ width, height, data }: CircularPackingProps) => {
+
+  // read the data
+  // compute the hierarchy format with hierarchy()
+  // compute circle position with pack()
+  // build the circles
+
+  return (
+    <div>
+      <svg width={width} height={height}>
+        // render all the <circle>
+      </svg>
+    </div>
+  );
+};
+`.trim();
+
+const snippetPack = `
+// build the hierarchy object
+const hierarchy = d3
+  .hierarchy(data)
+  .sum((d) => d.value)
+
+// compute the 2d coordinates of nodes
+const packGenerator = d3.pack()
+  .size([width, height])
+  .padding(4); // space between circles
+const root = packGenerator(hierarchy);
+`.trim();
+
+const snippet2 = `
+const AnimatedCircle = ({cx,cy,r,...props}) => {
+  const animatedProps = useSpring({
+    cx,
+    cy,
+    r,
+  });
+  return (
+    <animated.circle
+      {...props}
+      r={animatedProps.r}
+      cx={animatedProps.cx}
+      cy={animatedProps.cy}
+    />
+  );
+}
+`.trim();

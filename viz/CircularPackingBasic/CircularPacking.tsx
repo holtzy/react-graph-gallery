@@ -13,17 +13,13 @@ export const CircularPacking = ({
   height,
   data,
 }: CircularPackingProps) => {
-  const hierarchy = useMemo(() => {
-    return d3
-      .hierarchy(data)
-      .sum((d) => d.value)
-      .sort((a, b) => b.value! - a.value!);
-  }, [data]);
+  const hierarchy = d3
+    .hierarchy(data)
+    .sum((d) => d.value)
+    .sort((a, b) => b.value! - a.value!);
 
-  const root = useMemo(() => {
-    const packGenerator = d3.pack<Tree>().size([width, height]).padding(4);
-    return packGenerator(hierarchy);
-  }, [hierarchy, width, height]);
+  const packGenerator = d3.pack<Tree>().size([width, height]).padding(4);
+  const root = packGenerator(hierarchy);
 
   return (
     <svg width={width} height={height} style={{ display: "inline-block" }}>
