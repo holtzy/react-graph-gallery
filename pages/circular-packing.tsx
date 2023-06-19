@@ -10,6 +10,7 @@ import { CircularPackingBasicDemo } from "../viz/CircularPackingBasic/CircularPa
 import { CircularPackingDatasetTransitionDemo } from "../viz/CircularPackingDatasetTransition/CircularPackingDatasetTransitionDemo";
 import Link from "next/link";
 import { LinkAsButton } from "component/LinkAsButton";
+import { CircularPacking2LevelsDemo } from "viz/CircularPacking2Levels/CircularPacking2LevelsDemo";
 
 const graphDescription = (
   <>
@@ -131,7 +132,7 @@ export default function Home() {
       // 1 level
       //
       */}
-      <h2 id="1 level">Circle packing with 1 level of nesting</h2>
+      <h2 id="1 level">Circle packing with 1️⃣ level of nesting</h2>
       <p>
         Here is a summary of the process used to build a circle pack with 1
         level of nesting:
@@ -167,41 +168,63 @@ export default function Home() {
         height={400}
         caption="Most basic circle packing chart built with react and d3.js. One level of nesting."
       />
-      <AccordionSection title={"Animating dataset transition"} startOpen={true}>
-        <p>
-          The following examples explains how to transition between 2 datasets.
-          Each circle smoothly goes to its new position with its new radius.
-        </p>
-        <p>
-          This is possible thanks to the <code>react-spring</code> library that
-          does the interpolation and animation. When a new dataset is passed to
-          the component, the <code>hierarchy()</code> and <code>pack()</code>{" "}
-          functions are triggered to compute the new position and radius of each
-          node. But instead of passing this information to an usual{" "}
-          <code>circle</code> or <code>text</code>
-          svg element, it is passed to an animated component that looks like
-          this:
-        </p>
-        <CodeBlock code={snippet2} />
-        <p>
-          This component uses the <code>useSpring</code> hook of react spring to
-          interpolate the <code>cx</code>, <code>cy</code> and <code>r</code>{" "}
-          properties. Those values are passed to a special svg element (
-          <code>animated.circle</code>) that does the animation.
-        </p>
-
-        <ChartOrSandbox
-          vizName={"CircularPackingDatasetTransition"}
-          VizComponent={CircularPackingDatasetTransitionDemo}
-          maxWidth={400}
-          height={400}
-          caption="Animating the transition between 2 similar dataset with react and d3.js (for rendering) and react spring (for animation)."
-        />
-      </AccordionSection>
+      {/*
+      //
+      // 2 levels
+      //
+      */}
+      <h2 id="2 levels">Circle packing with 2️⃣ levels of nesting</h2>
+      <p>
+        The process to follow is pretty similar to add a <b>second level</b> of
+        nesting.
+      </p>
+      <p>
+        But this time 2 loops are required. The first one will be used to draw
+        the first level of nesting. The second to draw the leaves.
+      </p>
+      <ChartOrSandbox
+        vizName={"CircularPacking2Levels"}
+        VizComponent={CircularPacking2LevelsDemo}
+        maxWidth={550}
+        height={550}
+        caption="Circle packing chart built with react and d3.js. Two levels of nesting."
+      />
+      {/*
+      //
+      // Animation
+      //
+      */}
+      <h2 id="data transition">Dataset transition</h2>{" "}
+      <p>
+        The following examples explains how to transition between 2 datasets.
+        Each circle smoothly goes to its new position with its new radius.
+      </p>
+      <p>
+        This is possible thanks to the <code>react-spring</code> library that
+        does the interpolation and animation. When a new dataset is passed to
+        the component, the <code>hierarchy()</code> and <code>pack()</code>{" "}
+        functions are triggered to compute the new position and radius of each
+        node. But instead of passing this information to an usual{" "}
+        <code>circle</code> or <code>text</code>
+        svg element, it is passed to an animated component that looks like this:
+      </p>
+      <CodeBlock code={snippet2} />
+      <p>
+        This component uses the <code>useSpring</code> hook of react spring to
+        interpolate the <code>cx</code>, <code>cy</code> and <code>r</code>{" "}
+        properties. Those values are passed to a special svg element (
+        <code>animated.circle</code>) that does the animation.
+      </p>
+      <ChartOrSandbox
+        vizName={"CircularPackingDatasetTransition"}
+        VizComponent={CircularPackingDatasetTransitionDemo}
+        maxWidth={400}
+        height={400}
+        caption="Animating the transition between 2 similar dataset with react and d3.js (for rendering) and react spring (for animation)."
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
