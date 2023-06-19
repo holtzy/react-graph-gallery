@@ -6,26 +6,29 @@ import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
+import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
+import { GraphLinkImage } from "../component/UI/GraphLinkImage";
+import { ImageGrid } from "../component/UI/ImageGrid";
+import Link from "next/link";
+import { Accordion } from "component/UI/Accordion";
 import { ToDoSection } from "component/UI/ToDoSection";
 import { ArcDiagramBasicDemo } from "viz/ArcDiagramBasic/ArcDiagramBasicDemo";
 import { ArcDiagramNodeOnlyDemo } from "viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo";
-import GraphGallery from "component/GraphGallery";
-
+import { SankeyDiagramBasicDemo } from "viz/SankeyDiagramBasic/SankeyDiagramBasicDemo";
 const graphDescription = (
   <>
     <p>
-      An <a href="https://www.data-to-viz.com/graph/arc.html">arc diagram</a> is
-      a special kind of network graph. It is consituted by <b>nodes</b> that
-      represent entities and by <b>links</b> that show relationships between
-      entities. In arc diagrams, nodes are displayed along a <b>single axis</b>{" "}
-      and links are represented with <b>arcs</b>.
+      A{" "}
+      <a href="https://www.data-to-viz.com/graph/sankey.html">Sankey Diagram</a>{" "}
+      display <b>flows</b>. Several entities (<b>nodes</b>) are represented by
+      rectangles or text. Directed <b>links</b> are represented with arrows or
+      arcs that have a width proportional to the importance of the flow.
     </p>
     <p>
-      This page is a step by step tutorial explaining how to build an Arc
-      diagram component with <code>React</code> and <code>D3.js</code>. It comes
-      with explanations and code sandboxes. It starts by simple concept like how
-      to format the data and how to draw arcs in SVG, and then goes further with
-      hover effect, tooltip and more.
+      This tutorial explains how to use <code>React</code>, <code>D3.js</code>{" "}
+      and the <code>d3-sankey</code> plugin to build a Sankey diagram. It comes
+      with explanations and code sandboxes to play along with the suggested
+      implementation.
     </p>
   </>
 );
@@ -33,13 +36,13 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="How to build an Arc Diagram with React and D3."
-      seoDescription="A step-by-step guide to build your very own Arc diagram from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
+      title="How to build a Sankey Diagram with React and D3."
+      seoDescription="A step-by-step guide to build your very own Sankey Diagram from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title="Arc diagram"
+        title={"Sankey Diagram"}
         description={graphDescription}
-        chartType="arc"
+        chartType="sankey"
       />
       {/*
       //
@@ -49,8 +52,8 @@ export default function Home() {
       <h2 id="data">The Data</h2>
       <p>
         Two layers of information are required to build an arc diagram: a list
-        of <b>nodes</b> to build the circles and a list of <b>links</b> to build
-        the arcs.
+        of <b>nodes</b> to build the rectangles and a list of <b>links</b> to
+        build the arcs.
       </p>
       <p>
         Many different data structures can be used to store such information. In
@@ -82,20 +85,19 @@ export default function Home() {
       */}
       <h2 id="skeleton">Component skeleton</h2>
       <p>
-        The goal here is to create a <code>ArcDiagram</code> component that will
-        be stored in a <code>ArcDiagram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code> and some{" "}
+        The goal here is to create a <code>Sankey</code> component that will be
+        stored in a <code>Sankey.tsx</code> file. This component requires 3
+        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
         <code>data</code>.
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{" "}
         <code>width</code> and <code>height</code> will be used to render an{" "}
-        <code>svg</code> element in the DOM, in which we will insert the arc
-        diagram.
+        <code>svg</code> element in the DOM, in which we will insert the Sankey.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
-        <code>ArcDiagram</code> component:
+        To put it in a nutshell, that's the skeleton of our <code>Sankey</code>{" "}
+        component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
@@ -130,10 +132,10 @@ export default function Home() {
         Resulting in a few dots being the basis of our ongoing arc diagram 🔥.
       </p>
       <ChartOrSandbox
-        VizComponent={ArcDiagramNodeOnlyDemo}
-        vizName={"ArcDiagramNodeOnly"}
+        VizComponent={SankeyDiagramBasicDemo}
+        vizName={"SankeyDiagramBasic"}
         maxWidth={500}
-        height={150}
+        height={500}
         caption={
           "First step of our ongoing arc diagram: the nodes are displayed at the bottom of the figure."
         }
@@ -187,30 +189,16 @@ export default function Home() {
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="arc" />
+      <ResponsiveExplanationSection chartId="sankey" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="arc" />
-      {/*
-      //
-      // Variations
-      //
-      */}
-      <h2 id="variations">Variations</h2>
-      <p>
-        Once you've understood how to build a basic arc diagram with d3 and
-        react, it opens an infinite world of <b>customization</b>. Here are a
-        few examples highlighting what it is possible to do with arc diagrams.
-      </p>
-      <p>Click on the overview below to get details and code.</p>
-      <br />
-      <GraphGallery images={["vertical-arc-diagram.png"]} />
+      <DatavizInspirationParallaxLink chartId="sankey" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="flow" />
+      <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />
     </Layout>
   );
@@ -234,22 +222,23 @@ export const data = {
 const snippetSkeleton = `
 import * as d3 from "d3"; // we will need d3.js
 
-type ArcDiagramProps = {
+type SankeyProps = {
   width: number;
   height: number;
   data: number[];
 };
 
-export const ArcDiagram = ({ width, height, data }: ArcDiagramProps) => {
+export const Sankey = ({ width, height, data }: SankeyProps) => {
 
   // read the data
-  // compute the nodes position
-  // build the arcs
+  // create a color scale for the nodes
+  // compute node position thanks to the d3.sankey() function
+  // build the rectangles and arcs
 
   return (
     <div>
       <svg width={width} height={height}>
-        // render all the arcs and circles
+        // render all the <rect> and <path>
       </svg>
     </div>
   );
