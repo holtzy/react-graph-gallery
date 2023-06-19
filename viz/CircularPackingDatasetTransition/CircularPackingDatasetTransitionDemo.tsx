@@ -2,6 +2,18 @@ import { useState } from "react";
 import { CircularPackingDatasetTransition } from "./CircularPackingDatasetTransition";
 import { data, data2, Tree } from "./data";
 
+const BUTTONS_HEIGHT = 50;
+
+const buttonStyle = {
+  border: "1px solid #9a6fb0",
+  borderRadius: "3px",
+  padding: "4px 8px",
+  margin: "10px 2px",
+  fontSize: 14,
+  color: "#9a6fb0",
+  opacity: 0.7,
+};
+
 export const CircularPackingDatasetTransitionDemo = ({
   width = 700,
   height = 400,
@@ -13,13 +25,17 @@ export const CircularPackingDatasetTransitionDemo = ({
   }
   return (
     <>
-      <div>
-        <button onClick={() => setDataset(data)}>Data 1</button>
-        <button onClick={() => setDataset(data2)}>Data 2</button>
+      <div style={{ height: BUTTONS_HEIGHT }}>
+        <button style={buttonStyle} onClick={() => setDataset(data)}>
+          Data 1
+        </button>
+        <button style={buttonStyle} onClick={() => setDataset(data2)}>
+          Data 2
+        </button>
       </div>
       <CircularPackingDatasetTransition
         width={width}
-        height={height}
+        height={height - BUTTONS_HEIGHT - 20}
         data={dataset}
       />
     </>

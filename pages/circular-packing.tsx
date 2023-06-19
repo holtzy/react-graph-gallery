@@ -218,10 +218,22 @@ export default function Home() {
       <ChartOrSandbox
         vizName={"CircularPackingDatasetTransition"}
         VizComponent={CircularPackingDatasetTransitionDemo}
-        maxWidth={400}
-        height={400}
+        maxWidth={550}
+        height={550}
         caption="Animating the transition between 2 similar dataset with react and d3.js (for rendering) and react spring (for animation)."
       />
+      <p>
+        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
+        impossible to go in depth here! I will publish a dedicated blog post on
+        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
+        newsletter if you want to be notified.
+      </p>
+      <LinkAsButton isFilled size="sm" href="/subscribe">
+        Subscribe
+      </LinkAsButton>
+      <p>
+        <br /> <br />
+      </p>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />

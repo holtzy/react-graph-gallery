@@ -264,7 +264,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: "https://www.d3-graph-gallery.com/circularpacking",
     reactURL: "https://react-graph-gallery.com/circular-packing",
     label: "Circular Packing",
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: "line",
