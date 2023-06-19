@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://example.com",
+  siteUrl: "https://www.react-graph-gallery.com",
   generateRobotsTxt: true, // (optional)
   generateIndexSitemap: false, // It's a small website I do not need indexed sitemap
   // ...other options
