@@ -11,6 +11,7 @@ import { ToDoSection } from "component/UI/ToDoSection";
 import { ArcDiagramBasicDemo } from "viz/ArcDiagramBasic/ArcDiagramBasicDemo";
 import { SankeyDiagramBasicDemo } from "viz/SankeyDiagramBasic/SankeyDiagramBasicDemo";
 import { SankeyDiagramNodeOnlyDemo } from "viz/SankeyDiagramNodeOnly/SankeyDiagramNodeOnlyDemo";
+import { SankeyDiagramEnergyFlowDemo } from "viz/SankeyDiagramEnergyFlow/SankeyDiagramEnergyFlowDemo";
 const graphDescription = (
   <>
     <p>
@@ -200,6 +201,39 @@ export default function Home() {
       //
       */}
       <DatavizInspirationParallaxLink chartId="sankey" />
+
+      {/*
+      //
+      // Application
+      //
+      */}
+      <h2 id="application">Application to a real dataset</h2>
+      <p>
+        This Sankey diagram visualizes the flow of energy: supplies are on the
+        left, and demands are on the right. It is a reproduction of this famous
+        observable{" "}
+        <a href="https://observablehq.com/@d3/sankey/2?intent=fork">example</a>.
+        Links show how varying amounts of energy are converted or transmitted
+        before being consumed or lost.
+      </p>
+      <p>
+        The code is very similar to the example above. On top of it, a{" "}
+        <b>color scale</b> is used for the node and connection colors, and some
+        text <b>labels</b> have been added.
+      </p>
+      <ChartOrSandbox
+        VizComponent={SankeyDiagramEnergyFlowDemo}
+        vizName={"SankeyDiagramEnergyFlow"}
+        maxWidth={1000}
+        height={800}
+        caption={
+          "A Sankey diagram showing the flow of energy. Supplies on the left, demands on the right."
+        }
+      />
+
+      <ToDoSection text="Add hover effect to highlight links" />
+      <ToDoSection text="Add gradient along links" />
+      <ToDoSection text="Fix types" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
