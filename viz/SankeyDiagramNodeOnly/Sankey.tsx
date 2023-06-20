@@ -49,30 +49,10 @@ export const Sankey = ({ width, height, data }: SankeyProps) => {
     );
   });
 
-  //
-  // Draw the links
-  //
-  const allLinks = links.map((link, i) => {
-    const linkGenerator = sankeyLinkHorizontal();
-    const path = linkGenerator(link);
-
-    return (
-      <path
-        key={i}
-        d={path}
-        stroke="#a53253"
-        fill="none"
-        strokeOpacity={0.1}
-        strokeWidth={link.width}
-      />
-    );
-  });
-
   return (
     <div>
       <svg width={width} height={height}>
         {allNodes}
-        {allLinks}
       </svg>
     </div>
   );

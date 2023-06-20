@@ -6,15 +6,11 @@ import { CodeBlock } from "../component/UI/CodeBlock";
 import { ChartOrSandbox } from "../component/ChartOrSandbox";
 import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
 import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
-import { GraphLinkImage } from "../component/UI/GraphLinkImage";
-import { ImageGrid } from "../component/UI/ImageGrid";
-import Link from "next/link";
-import { Accordion } from "component/UI/Accordion";
+
 import { ToDoSection } from "component/UI/ToDoSection";
 import { ArcDiagramBasicDemo } from "viz/ArcDiagramBasic/ArcDiagramBasicDemo";
-import { ArcDiagramNodeOnlyDemo } from "viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo";
 import { SankeyDiagramBasicDemo } from "viz/SankeyDiagramBasic/SankeyDiagramBasicDemo";
+import { SankeyDiagramNodeOnlyDemo } from "viz/SankeyDiagramNodeOnly/SankeyDiagramNodeOnlyDemo";
 const graphDescription = (
   <>
     <p>
@@ -51,9 +47,9 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        Two layers of information are required to build an arc diagram: a list
+        Two layers of information are required to build a Sankey diagram: a list
         of <b>nodes</b> to build the rectangles and a list of <b>links</b> to
-        build the arcs.
+        build the paths between them.
       </p>
       <p>
         Many different data structures can be used to store such information. In
@@ -67,12 +63,12 @@ export default function Home() {
       <ul>
         <li>
           <code>nodes</code> is an array where each node is an object defined by
-          its <code>id</code> and its <code>group</code>. Note that any other
-          feature can be added to nodes here.
+          its index (<code>node</code>) and its <code>name</code>. Note that any
+          other feature can be added to nodes here.
         </li>
         <li>
           <code>links</code> is another array listing the connections. They are
-          defined by a<code>source</code> and a <code>target</code> and
+          defined by a <code>source</code> and a <code>target</code> and
           optionnaly with a <code>value</code>.
         </li>
       </ul>
@@ -102,9 +98,10 @@ export default function Home() {
       <CodeBlock code={snippetSkeleton} />
       <p>
         It's fundamental to understand that with this code organization, d3.js
-        will be used to prepare the SVG <code>circle</code>, but it's React that
-        will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        will be used to layout (<code>rect</code> and <code>path</code>{" "}
+        positions), but it's React that will render them in the{" "}
+        <code>return()</code> statement. We won't use d3 methods like{" "}
+        <code>append</code> that you can find in usual{" "}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -115,29 +112,37 @@ export default function Home() {
       */}
       <h2 id="Nodes">Draw the nodes</h2>
       <p>
-        Positionning the nodes relies on a{" "}
-        <a href="https://github.com/d3/d3-scale#scalePoint">point scale</a>{" "}
-        implement in the <code>scalePoint()</code> function of d3.
+        To draw the nodes we first need to compute their positions on the SVG
+        area. This is where the{" "}
+        <a href="https://github.com/d3/d3-sankey">d3-sankey plugin</a> gets
+        helpful with its <code>sankey()</code>
+        function.
       </p>
       <p>
-        The <code>group</code> property of each node can be used to create an
-        categoric color scale.
+        The <code>sankey()</code> function must be called with a set of options
+        described below as inline comments:
       </p>
+      <CodeBlock code={snippetSankeyLAyout} />
       <p>
-        Once the scales are available, it is just a matter of looping through
-        all nodes and render them with several <code>circle</code> SVG elements.
+        We now have a function called <code>sankeyGenerator</code> that computes
+        the sankey layout from our dataset. We can use it as follow:
       </p>
-      <CodeBlock code={snippetNodes} />
+      <CodeBlock code={snippetSankeyGen} />
       <p>
-        Resulting in a few dots being the basis of our ongoing arc diagram 🔥.
+        And that's it. We now have 2 objects called <code>nodes</code> and{" "}
+        <code>links</code> that provide all the necessary information about
+        nodes and links. <code>nodes</code> is an array. For each item we have
+        <code>x0</code>, <code>y0</code>, <code>x1</code> and <code>y1</code>{" "}
+        that are the coordinates of the top-left and bottom right corners of the
+        rectangle. We are ready for the drawing! ✏️
       </p>
       <ChartOrSandbox
-        VizComponent={SankeyDiagramBasicDemo}
-        vizName={"SankeyDiagramBasic"}
+        VizComponent={SankeyDiagramNodeOnlyDemo}
+        vizName={"SankeyDiagramNodeOnly"}
         maxWidth={500}
-        height={500}
+        height={300}
         caption={
-          "First step of our ongoing arc diagram: the nodes are displayed at the bottom of the figure."
+          "First step of our ongoing sankey diagram: the nodes are displayed using rectangles."
         }
       />
 
@@ -148,39 +153,16 @@ export default function Home() {
       */}
       <h2 id="connections">Draw the connections</h2>
       <p>
-        We now have to draw the <b>connections</b> between nodes using{" "}
-        <b>arcs</b>. All the connections are listed in the <b>links</b> property
-        of the dataset. So it is just a matter of looping through them and draw
-        some SVG for each.
-      </p>
-      <p>
-        Drawing an arc in SVG can be done using a <code>path</code> element.{" "}
-      </p>
-      <p>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">
-          Six types
-        </a>{" "}
-        of <code>path</code> commands exist. The one we need here is the{" "}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">
-          Elliptical Arc Curve
-        </a>
-        . Its syntax is a bit complicated but here is a function that will get
-        the <code>d</code> attribute of the path we need from the coordinates of
-        2 points:
-      </p>
-      <CodeBlock code={snippetHorizontalArcGenerator} />
-      <p>
-        We can call this function for each link and pass the result to a{" "}
-        <code>path</code>
-        element. It results in our first basic arc diagram 😋
+        The other object we got from the <code>sankey()</code> function is{" "}
+        <code>links</code>.
       </p>
       <ChartOrSandbox
-        VizComponent={ArcDiagramBasicDemo}
-        vizName={"ArcDiagramBasic"}
+        VizComponent={SankeyDiagramBasicDemo}
+        vizName={"SankeyDiagramBasic"}
         maxWidth={500}
         height={300}
         caption={
-          "Add arcs using a custom functionn that draws some elliptical arc curve in SVG."
+          "First step of our ongoing arc diagram: the nodes are displayed at the bottom of the figure."
         }
       />
 
@@ -205,18 +187,20 @@ export default function Home() {
 }
 
 const snippetData = `
-export const data = {
+const data = {
   nodes: [
-      { id: "Myriel", group: 'team1' },
-      { id: "Anne", group: 'team1' },
-      ...
+      { node: 0, name: "node0" },
+      { node: 1, name: "node1" },
+      { node: 2, name: "node2" },
+      { node: 3, name: "node3" },
   ],
   links: [
-      { source: "Anne", target: "Myriel", value: 1 },
-      { source: "Napoleon", target: "Myriel", value: 1 },
-      ...
+      { source: 0, target: 2, value: 2 },
+      { source: 1, target: 2, value: 2 },
+      { source: 1, target: 3, value: 2 },
   ]
 }
+
 `.trim();
 
 const snippetSkeleton = `
@@ -245,25 +229,20 @@ export const Sankey = ({ width, height, data }: SankeyProps) => {
 };
 `.trim();
 
-const snippetNodes = `
-const xScale = d3.scalePoint().range([0, boundsWidth]).domain(allNodeNames);
+const snippetSankeyLAyout = `
+const sankeyGenerator = sankey()  // Main function of the d3-sankey plugin that computes the layout
+    .nodeWidth(26)                  // width of the node in pixels
+    .nodePadding(29)                // space between nodes
+    .extent([                       // chart area:
+      [MARGIN_X, MARGIN_Y],                   // top-left coordinates
+      [width - MARGIN_X, height - MARGIN_Y],  // botton-right coordinates
+    ])
+    .nodeId((node) => node.id)      // Accessor function: how to retrieve the id that defines each node. This id is then used for the source and target props of links
+    .nodeAlign(sankeyCenter);       // Algorithm used to decide node position
+`.trim();
 
-const colorScale = d3
-  .scaleOrdinal<string>()
-  .domain(allNodeGroups)
-  .range(COLORS);
-
-const allNodes = data.nodes.map((node) => {
-  return (
-    <circle
-      key={node.id}
-      cx={xScale(node.id)}
-      cy={boundsHeight}
-      r={8}
-      fill={colorScale(node.group)}
-    />
-  );
-});
+const snippetSankeyGen = `
+const { nodes, links } = sankeyGenerator(data);
 `.trim();
 
 const snippetHorizontalArcGenerator = `
