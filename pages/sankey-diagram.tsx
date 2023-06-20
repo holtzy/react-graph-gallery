@@ -154,8 +154,30 @@ export default function Home() {
       <h2 id="connections">Draw the connections</h2>
       <p>
         The other object we got from the <code>sankey()</code> function is{" "}
-        <code>links</code>.
+        <code>links</code>. It is an array where each item provides detail about
+        a link.
       </p>
+      <p>Each item is an object with several properties. Among them:</p>
+      <ul>
+        <li>
+          <code>width</code> &rarr; provides the width of the arc we will build.
+          We will pass it to the <code>strokeWidth</code> property of the SVG{" "}
+          <code>path</code>.
+        </li>
+        <li>
+          <code>source</code> and <code>target</code> &rarr; provide a lot of
+          details about the source and target nodes, including their positions.
+          It makes it possible to pass a link to the{" "}
+          <code>sankeyLinkHorizontal()</code> function to get the SVG path we
+          will give as the <code>d</code> argument.
+        </li>
+      </ul>
+      <p>
+        To put it in a nutshell, we can loop through the <code>links</code>{" "}
+        array and draw a<code>path</code> as follow:
+      </p>
+      <CodeBlock code={snippetLinks} />
+      <p>Resulting in a first Sankey diagram 🎉</p>
       <ChartOrSandbox
         VizComponent={SankeyDiagramBasicDemo}
         vizName={"SankeyDiagramBasic"}
@@ -180,7 +202,7 @@ export default function Home() {
       <DatavizInspirationParallaxLink chartId="sankey" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
     </Layout>
   );
@@ -245,117 +267,20 @@ const snippetSankeyGen = `
 const { nodes, links } = sankeyGenerator(data);
 `.trim();
 
-const snippetHorizontalArcGenerator = `
-const horizontalArcGenerator = (
-  xStart,
-  yStart,
-  xEnd,
-  yEnd
-) => {
-  return [
-    // the arc starts at the coordinate xStart, xEnd
-    "M",
-    xStart,
-    yStart,
+const snippetLinks = `
+const allLinks = links.map((link, i) => {
+  const linkGenerator = sankeyLinkHorizontal();
+  const path = linkGenerator(link);
 
-    // A means we're gonna build an Elliptical Arc Curve
-    "A",
-    (xStart - xEnd) / 2,    // rx: first radii of the ellipse (inflexion point)
-    (xStart - xEnd) / 2,    // ry: second radii of the ellipse  (inflexion point)
-    0,                      // angle: rotation (in degrees) of the ellipse relative to the x-axis
-    1,                      // large-arc-flag: large arc (1) or small arc (0)
-    xStart < xEnd ? 1 : 0,  // sweep-flag: the clockwise turning arc (1) or counterclockwise turning arc (0)
-
-    // Position of the end of the arc
-    xEnd,
-    ",",
-    yEnd,
-  ].join(" ");
-};
-`.trim();
-
-const snippet4 = `
-[
-  [x0: 0, x1: 2],
-  [2, 2, 2, 3, x0: 2, x1: 4],
-  [4, 5, x0: 4, x1: 6],
-  [6, 6, 6, x0: 6, x1: 8],
-  [x0: 8, x1: 10],
-  [x0: 10, x1: 10],
-]
-`.trim();
-
-const snippetXScale = `
-const xScale = d3
-  .scaleLinear()
-  .domain([0, 10])
-  .range([0, width]);
-
-// xScale(0) -> 0 (the left hand side position of the first bin)
-// xScale(10) -> width (the right hand side position of the last bin)
-`.trim();
-
-const snippetRibbon = `
-const allConnections = chord.map((connection, i) => {
-  const d = ribbonGenerator(connection);
-  return <path key={i} d={d} />;
-});
-`.trim();
-
-const snippetRects = `
-const allRects = buckets.map((bucket, i) => {
   return (
-    <rect
+    <path
       key={i}
-      fill="#69b3a2"
-      stroke="black"
-      x={xScale(bucket.x0)}
-      width={xScale(bucket.x1) - xScale(bucket.x0)}
-      y={yScale(bucket.length)}
-      height={height - yScale(bucket.length)}
+      d={path}
+      stroke="#a53253"
+      fill="none"
+      strokeOpacity={0.1}
+      strokeWidth={link.width}
     />
   );
 });
-`.trim();
-
-const snippetRectangle = `
-import { useSpring, animated } from "@react-spring/web";
-
-type RectangleProps = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
-export const Rectangle = (props: RectangleProps) => {
-  const { x, y, width, height } = props;
-
-  const springProps = useSpring({
-    to: { x, y, width, height },
-    config: {
-      friction: 30,
-    },
-    delay: x,
-  });
-
-  if (y === undefined) {
-    return null;
-  }
-
-  return (
-    <animated.rect
-      x={springProps.x}
-      y={springProps.y}
-      width={springProps.width}
-      height={springProps.height}
-      opacity={0.7}
-      stroke="#9d174d"
-      fill="#9d174d"
-      fillOpacity={0.3}
-      strokeWidth={1}
-      rx={1}
-    />
-  );
-};
 `.trim();
