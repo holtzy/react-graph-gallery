@@ -1,33 +1,31 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { BoxDemoVerticalDemo } from "../viz/BoxDemoVertical/BoxDemoVerticalDemo";
-import { BoxplotBasicDemo } from "../viz/BoxplotBasic/BoxplotBasicDemo";
-import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import { Accordion } from "component/UI/Accordion";
-import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
-import { GraphLinkImage } from "component/UI/GraphLinkImage";
-import { ImageGrid } from "component/UI/ImageGrid";
-import GraphGallery from "component/GraphGallery";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { BoxDemoVerticalDemo } from '../viz/BoxDemoVertical/BoxDemoVerticalDemo';
+import { BoxplotBasicDemo } from '../viz/BoxplotBasic/BoxplotBasicDemo';
+import DatavizInspirationParallaxLink from 'component/DatavizInspirationParallaxLink';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import { Accordion } from 'component/UI/Accordion';
+import { AxisBasicDemo } from 'viz/AxisBasic/AxisBasicDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/boxplot.html">boxplot</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/boxplot.html">boxplot</a>{' '}
       summarizes the distribution of a numeric variable, often for several
       groups of a dataset. This page is a step-by-step guide on how to build a
-      reusable boxplot component for the web using{" "}
-      <a href="https://reactjs.org/">React</a> and{" "}
+      reusable boxplot component for the web using{' '}
+      <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/boxplot">D3.js</a>.
     </p>
     <p>
       It starts by describing how to format the <b>dataset</b> and how to
-      initialize the <b>boxplot component</b>. It then explains how to create a{" "}
+      initialize the <b>boxplot component</b>. It then explains how to create a{' '}
       <code>Box</code> component that displays a single box. Finally, it shows
       how to render the boxplot and suggests a few variations. 🙇‍♂️.
     </p>
@@ -43,7 +41,7 @@ export default function Home() {
       <TitleAndDescription
         title={
           <h1>
-            Boxplot{" "}
+            Boxplot{' '}
             <span className="text-gray-600 font-light hidden sm:inline">
               with React and d3.js
             </span>
@@ -61,7 +59,7 @@ export default function Home() {
       <h2 id="data">The Data 💾</h2>
       <p>
         The dataset used to build a boxplot is usually an array of objects. For
-        each object, a <code>name</code> property provides the group name, and a{" "}
+        each object, a <code>name</code> property provides the group name, and a{' '}
         <code>value</code> property provides the numeric value. It looks like
         this:
       </p>
@@ -74,7 +72,7 @@ export default function Home() {
       */}
       <h2 id="Summary stats">Summary statistics 🔨</h2>
       <p>
-        A boxplot is based on{" "}
+        A boxplot is based on{' '}
         <a href="https://www.data-to-viz.com/caveat/boxplot.html">
           summary statistics
         </a>
@@ -109,7 +107,7 @@ export default function Home() {
       <h2 id="box component">A reusable box component 📦</h2>
       <p>
         With the output of the <code>getSummaryStats()</code> function above we
-        need to draw a box in SVG. Let's create a <code>VerticalBox</code>{" "}
+        need to draw a box in SVG. Let's create a <code>VerticalBox</code>{' '}
         component that does this for us.
       </p>
       <p>
@@ -121,7 +119,7 @@ export default function Home() {
       <CodeBlock code={snippet3} />
       <p>Bringing this result:</p>
       <ChartOrSandbox
-        vizName={"BoxDemoVertical"}
+        vizName={'BoxDemoVertical'}
         VizComponent={BoxDemoVerticalDemo}
         maxWidth={110}
         height={300}
@@ -142,17 +140,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Boxplot</code> component that will be
         stored in a <code>Boxplot.tsx</code> file. This component requires 3
-        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         histogram.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>Histogram</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -160,7 +158,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>circle</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -177,7 +175,7 @@ export default function Home() {
         is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
       <p>
-        D3.js comes with a handful set of{" "}
+        D3.js comes with a handful set of{' '}
         <a href="https://github.com/d3/d3-scale">predefined scales</a>.
       </p>
       <ul>
@@ -193,7 +191,7 @@ export default function Home() {
         <CodeBlock code={snippetXScale} />
       </ul>
       <p>
-        To dig more into d3 scales, visit this{" "}
+        To dig more into d3 scales, visit this{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
           dedicated page
         </a>
@@ -202,19 +200,19 @@ export default function Home() {
 
       <h3>&rarr; Axes</h3>
       <p>
-        Axes are rather complicated elements. They are composed of the main{" "}
+        Axes are rather complicated elements. They are composed of the main{' '}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
         are often decorated with a <b>title</b>.
       </p>
       <p>
         Here I suggest creating the axes from scratch and storing them in 2
-        react components called <code>AxisBottom</code> and{" "}
+        react components called <code>AxisBottom</code> and{' '}
         <code>AxisLeft</code>. Those components expect a d3 scale as input and
         do all the SVG drawings for us.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
-        vizName={"AxisBasic"}
+        vizName={'AxisBasic'}
         maxWidth={500}
         height={300}
         caption={
@@ -255,7 +253,7 @@ export default function Home() {
       </p>
       <p>Here is the final result:</p>
       <ChartOrSandbox
-        vizName={"BoxplotBasic"}
+        vizName={'BoxplotBasic'}
         VizComponent={BoxplotBasicDemo}
         maxWidth={600}
         caption={
@@ -288,7 +286,7 @@ export default function Home() {
       <h2 id="variation">Boxplot variations</h2>
       <p>
         Even if powerful to summarize the distribution of a numeric variable,
-        the boxplot{" "}
+        the boxplot{' '}
         <a href="https://www.data-to-viz.com/caveat/boxplot.html">has flaws</a>.
       </p>
       <p>
@@ -302,16 +300,16 @@ export default function Home() {
         left (jitter). The underlying distribution becomes instantly available.
       </p>
       <p>
-        Note that another good alternative is the{" "}
+        Note that another good alternative is the{' '}
         <Link href="/violin-plot">violin plot</Link>, especially for a high
         sample size.
       </p>
 
       <GraphGallery
         images={[
-          "boxplot-jitter.png",
-          "violinBoxplotTransition.png",
-          "violinBucketSize.png",
+          'boxplot-jitter.png',
+          'violinBoxplotTransition.png',
+          'violinBucketSize.png',
         ]}
       />
 

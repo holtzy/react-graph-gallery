@@ -34,6 +34,7 @@ const graphDescription = (
 );
 
 export default function Home() {
+
   return (
     <Layout
       title="How to build a histogram with React and D3."
