@@ -10,6 +10,8 @@ import { ToDoSection } from 'component/UI/ToDoSection';
 import { ArcDiagramBasicDemo } from 'viz/ArcDiagramBasic/ArcDiagramBasicDemo';
 import { ArcDiagramNodeOnlyDemo } from 'viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo';
 import GraphGallery from 'component/GraphGallery';
+import { NetworkDiagramBasicDemo } from 'viz/NetworkDiagramBasicSVG/NetworkDiagramBasicSVGDemo';
+import { NetworkDiagramBasicCanvasDemo } from 'viz/NetworkDiagramBasicCanvas/NetworkDiagramBasicCanvasDemo';
 
 const graphDescription = (
   <>
@@ -108,75 +110,16 @@ export default function Home() {
 
       {/*
       //
-      // Nodes
+      // d3 force
       //
       */}
-      <h2 id="Nodes">Draw the nodes</h2>
-      <p>
-        Positionning the nodes relies on a{' '}
-        <a href="https://github.com/d3/d3-scale#scalePoint">point scale</a>{' '}
-        implement in the <code>scalePoint()</code> function of d3.
-      </p>
-      <p>
-        The <code>group</code> property of each node can be used to create an
-        categoric color scale.
-      </p>
-      <p>
-        Once the scales are available, it is just a matter of looping through
-        all nodes and render them with several <code>circle</code> SVG elements.
-      </p>
-      <CodeBlock code={snippetNodes} />
-      <p>
-        Resulting in a few dots being the basis of our ongoing arc diagram 🔥.
-      </p>
+      <h2 id="d3-force">The d3-force</h2>
+      <p>Explain what a force is. We run simulation.</p>
       <ChartOrSandbox
-        VizComponent={ArcDiagramNodeOnlyDemo}
-        vizName={'ArcDiagramNodeOnly'}
-        maxWidth={500}
-        height={150}
-        caption={
-          'First step of our ongoing arc diagram: the nodes are displayed at the bottom of the figure.'
-        }
-      />
-
-      {/*
-      //
-      // Connection
-      //
-      */}
-      <h2 id="connections">Draw the connections</h2>
-      <p>
-        We now have to draw the <b>connections</b> between nodes using{' '}
-        <b>arcs</b>. All the connections are listed in the <b>links</b> property
-        of the dataset. So it is just a matter of looping through them and draw
-        some SVG for each.
-      </p>
-      <p>
-        Drawing an arc in SVG can be done using a <code>path</code> element.{' '}
-      </p>
-      <p>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">
-          Six types
-        </a>{' '}
-        of <code>path</code> commands exist. The one we need here is the{' '}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">
-          Elliptical Arc Curve
-        </a>
-        . Its syntax is a bit complicated but here is a function that will get
-        the <code>d</code> attribute of the path we need from the coordinates of
-        2 points:
-      </p>
-      <CodeBlock code={snippetHorizontalArcGenerator} />
-      <p>
-        We can call this function for each link and pass the result to a{' '}
-        <code>path</code>
-        element. It results in our first basic arc diagram 😋
-      </p>
-      <ChartOrSandbox
-        VizComponent={ArcDiagramBasicDemo}
-        vizName={'ArcDiagramBasic'}
-        maxWidth={500}
-        height={300}
+        VizComponent={NetworkDiagramBasicCanvasDemo}
+        vizName={'NetworkDiagramBasicCanvas'}
+        maxWidth={700}
+        height={700}
         caption={
           'Add arcs using a custom functionn that draws some elliptical arc curve in SVG.'
         }
