@@ -1,9 +1,9 @@
-import ReactDOM from "react-dom";
-import { data } from "./data/";
-import { ArcDiagram } from "./ArcDiagram";
+import ReactDOM from 'react-dom';
+import { data } from './data/';
+import { NetworkDiagram } from './NetworkDiagram';
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <ArcDiagram data={data} width={400} height={400} />,
+  <NetworkDiagram data={data} width={400} height={400} />,
   rootElement
 );

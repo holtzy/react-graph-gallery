@@ -8,10 +8,10 @@ import DatavizInspirationParallaxLink from '../component/DatavizInspirationParal
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import { ToDoSection } from 'component/UI/ToDoSection';
 import GraphGallery from 'component/GraphGallery';
-import { NetworkDiagramBasicDemo } from 'viz/NetworkDiagramBasicSVG/NetworkDiagramBasicSVGDemo';
 import { NetworkDiagramBasicCanvasDemo } from 'viz/NetworkDiagramBasicCanvas/NetworkDiagramBasicCanvasDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import Link from 'next/link';
+import { NetworkDiagramAvailableForcesDemo } from 'viz/NetworkDiagramAvailableForces/NetworkDiagramAvailableForcesDemo';
 
 const graphDescription = (
   <>
@@ -78,7 +78,6 @@ export default function Home() {
         </li>
       </ul>
       <ToDoSection text="Explain how to build this data structure from various initial formats" />
-
       {/*
       //
       // Skeleton
@@ -110,7 +109,6 @@ export default function Home() {
         <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
-
       {/*
       //
       // d3 force
@@ -237,21 +235,66 @@ export default function Home() {
         height={500}
         caption={'A first network diagram built using react and d3-force.'}
       />
-
       {/*
       //
       // Responsiveness
       //
       */}
       <ResponsiveExplanationSection chartId="network" />
-
       {/*
       //
       // Inspiration
       //
       */}
       <DatavizInspirationParallaxLink chartId="network" />
-
+      {/*
+      //
+      // Forces
+      //
+      */}
+      <h2 id="forces">Available forces</h2>
+      <p>
+        The exausthive list of forces that can be applied to nodes is available
+        in the{' '}
+        <a href="https://github.com/d3/d3-force#forces">
+          official documentation
+        </a>
+        . Here is an overview of the main ones:
+      </p>
+      <ul>
+        <li>
+          <code>d3.forceManyBody()</code> &rarr; simulates <b>attraction</b>{' '}
+          between nodes if its strength is positive, <b>repulsion</b> otherwise.
+        </li>
+        <br />
+        <li>
+          <code>d3.forceCenter()</code> &rarr; translates nodes uniformly so
+          that the mean position of all nodes is at a given position.
+        </li>{' '}
+        <br />
+        <li>
+          <code>d3.forceCollide()</code> &rarr; tries to avoid node collision
+          and overlap. You can provide a <code>radius</code> and a{' '}
+          <code>strength</code>.
+        </li>{' '}
+        <br />
+        <li>
+          <code>d3.forceLink()</code> &rarr; pushes linked nodes together or
+          apart according to the desired link distance.
+        </li>{' '}
+        <br />
+        <li>
+          <code>d3.forceX()</code> &rarr; applies a force toward a X position to
+          all nodes. <code>d3.forceY()</code> is also available.
+        </li>
+      </ul>
+      <ChartOrSandbox
+        VizComponent={NetworkDiagramAvailableForcesDemo}
+        vizName={'NetworkDiagramAvailableForces'}
+        maxWidth={1000}
+        height={700}
+        caption={'A first network diagram built using react and d3-force.'}
+      />
       {/*
       //
       // Variations
@@ -259,14 +302,13 @@ export default function Home() {
       */}
       <h2 id="variations">Variations</h2>
       <p>
-        Once you've understood how to build a basic arc diagram with d3 and
+        Once you've understood how to build a basic network diagram with d3 and
         react, it opens an infinite world of <b>customization</b>. Here are a
-        few examples highlighting what it is possible to do with arc diagrams.
+        few examples using the same concepts.
       </p>
       <p>Click on the overview below to get details and code.</p>
       <br />
       <GraphGallery images={['vertical-arc-diagram.png']} />
-
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
@@ -368,70 +410,5 @@ export const drawNetwork = (context, width, height, nodes, links,) => {
     context.fillStyle = '#cb1dd1';
     context.fill();
   });
-};
-`.trim();
-
-const snippetRibbon = `
-const allConnections = chord.map((connection, i) => {
-  const d = ribbonGenerator(connection);
-  return <path key={i} d={d} />;
-});
-`.trim();
-
-const snippetRects = `
-const allRects = buckets.map((bucket, i) => {
-  return (
-    <rect
-      key={i}
-      fill="#69b3a2"
-      stroke="black"
-      x={xScale(bucket.x0)}
-      width={xScale(bucket.x1) - xScale(bucket.x0)}
-      y={yScale(bucket.length)}
-      height={height - yScale(bucket.length)}
-    />
-  );
-});
-`.trim();
-
-const snippetRectangle = `
-import { useSpring, animated } from "@react-spring/web";
-
-type RectangleProps = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
-export const Rectangle = (props: RectangleProps) => {
-  const { x, y, width, height } = props;
-
-  const springProps = useSpring({
-    to: { x, y, width, height },
-    config: {
-      friction: 30,
-    },
-    delay: x,
-  });
-
-  if (y === undefined) {
-    return null;
-  }
-
-  return (
-    <animated.rect
-      x={springProps.x}
-      y={springProps.y}
-      width={springProps.width}
-      height={springProps.height}
-      opacity={0.7}
-      stroke="#9d174d"
-      fill="#9d174d"
-      fillOpacity={0.3}
-      strokeWidth={1}
-      rx={1}
-    />
-  );
 };
 `.trim();
