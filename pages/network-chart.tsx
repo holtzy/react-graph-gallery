@@ -7,11 +7,11 @@ import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import { ToDoSection } from 'component/UI/ToDoSection';
-import { ArcDiagramBasicDemo } from 'viz/ArcDiagramBasic/ArcDiagramBasicDemo';
-import { ArcDiagramNodeOnlyDemo } from 'viz/ArcDiagramNodeOnly/ArcDiagramNodeOnlyDemo';
 import GraphGallery from 'component/GraphGallery';
 import { NetworkDiagramBasicDemo } from 'viz/NetworkDiagramBasicSVG/NetworkDiagramBasicSVGDemo';
 import { NetworkDiagramBasicCanvasDemo } from 'viz/NetworkDiagramBasicCanvas/NetworkDiagramBasicCanvasDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
+import Link from 'next/link';
 
 const graphDescription = (
   <>
@@ -50,9 +50,9 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        Two layers of information are required to build an arc diagram: a list
-        of <b>nodes</b> to build the circles and a list of <b>links</b> to build
-        the arcs.
+        Two layers of information are required to build a network diagram: a
+        list of <b>nodes</b> to build the circles and a list of <b>links</b> to
+        build the lines.
       </p>
       <p>
         Many different data structures can be used to store such information. In
@@ -71,8 +71,10 @@ export default function Home() {
         </li>
         <li>
           <code>links</code> is another array listing the connections. They are
-          defined by a<code>source</code> and a <code>target</code> and
-          optionnaly with a <code>value</code>.
+          defined by a <code>source</code> and a <code>target</code> and
+          optionnaly with a <code>value</code>. Note that all{' '}
+          <code>source</code> and <code>target</code> values must have a value
+          in the <code>nodes</code> array.
         </li>
       </ul>
       <ToDoSection text="Explain how to build this data structure from various initial formats" />
@@ -84,10 +86,10 @@ export default function Home() {
       */}
       <h2 id="skeleton">Component skeleton</h2>
       <p>
-        The goal here is to create a <code>ArcDiagram</code> component that will
-        be stored in a <code>ArcDiagram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code> and some{' '}
-        <code>data</code>.
+        The goal here is to create a <code>NetworkDiagram</code> component that
+        will be stored in a <code>NetworkDiagram.tsx</code> file. This component
+        requires 3 props to render: a <code>width</code>, a <code>height</code>{' '}
+        and some <code>data</code>.
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{' '}
@@ -97,14 +99,15 @@ export default function Home() {
       </p>
       <p>
         To put it in a nutshell, that's the skeleton of our{' '}
-        <code>ArcDiagram</code> component:
+        <code>NetworkDiagram</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
         It's fundamental to understand that with this code organization, d3.js
-        will be used to prepare the SVG <code>circle</code>, but it's React that
-        will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{' '}
+        will be used to prepare the SVG <code>circle</code> and{' '}
+        <code>lines</code>, but it's React that will render them in the{' '}
+        <code>return()</code> statement. We won't use d3 methods like{' '}
+        <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -113,13 +116,71 @@ export default function Home() {
       // d3 force
       //
       */}
-      <h2 id="d3-force">The d3-force</h2>
+      <h2 id="d3-force">
+        Compute node positions with <code>d3-force</code>
+      </h2>
+      <p>
+        The hardest part of a network diagram construction is to{' '}
+        <b>compute the node positions</b>. Fortunately, the{' '}
+        <a href="https://github.com/d3/d3-force">d3-force</a> plugin allows to
+        simulate <b>physical forces</b> on our nodes to find insightful layouts.
+      </p>
+      <LinkAsButton href="https://github.com/d3/d3-force" size="sm" isFilled>
+        d3-force doc
+      </LinkAsButton>
+      <br />
+      <br />
+      <p>
+        Everything is done thanks to the <code>forceSimulation()</code>{' '}
+        function. This function expects an array of nodes as described in the{' '}
+        <Link href="#data">data section</Link> above.
+      </p>
+      <p>
+        it also expects a list of <b>forces</b> to apply to the nodes. Many kind
+        of physical forces are offered and will be described more in depth later
+        in this post.
+      </p>
+      <p>
+        To put it in a nutshell, here is an example of a call to the
+        <code>forceSimulation</code> function
+      </p>
+      <CodeBlock code={snippetForce} />
+      <p>
+        This function is going to run a <b>simulation</b>. It is a basically a{' '}
+        <b>loop</b>. At each iteration the function tries to improve the node
+        positions until it is satisfied by the result.
+      </p>
+      <p>
+        The input we provide to the function (the array of nodes) is
+        progressively <b>mutated</b>. Some very useful properties are added to
+        it! <code>x</code> and <code>y</code> for instance are now providing the
+        node position on the 2d coordinate system 🎉.
+      </p>
+      <p>
+        This is how <code>nodes</code> is now looking like:
+      </p>
+      <CodeBlock code={snippetMutatedNode} />
+      <p>
+        Note that pretty much the same thing happens to the{' '}
+        <b>array of links</b>. The array is mutated, now providing the source
+        and target coordinates too.{' '}
+      </p>
+      <p>
+        This is it! Now it is just a matter of drawing those nodes and links
+        with the available coordinates. 🔥
+      </p>
+      {/*
+      //
+      // rendering
+      //
+      */}
+      <h2 id="rendering">Render nodes and links using canvas</h2>
       <p>Explain what a force is. We run simulation.</p>
       <ChartOrSandbox
         VizComponent={NetworkDiagramBasicCanvasDemo}
         vizName={'NetworkDiagramBasicCanvas'}
         maxWidth={700}
-        height={700}
+        height={500}
         caption={
           'Add arcs using a custom functionn that draws some elliptical arc curve in SVG.'
         }
@@ -131,12 +192,14 @@ export default function Home() {
       //
       */}
       <ResponsiveExplanationSection chartId="arc" />
+
       {/*
       //
       // Inspiration
       //
       */}
       <DatavizInspirationParallaxLink chartId="arc" />
+
       {/*
       //
       // Variations
@@ -177,76 +240,52 @@ export const data = {
 const snippetSkeleton = `
 import * as d3 from "d3"; // we will need d3.js
 
-type ArcDiagramProps = {
+type NetworkDiagramProps = {
   width: number;
   height: number;
   data: number[];
 };
 
-export const ArcDiagram = ({ width, height, data }: ArcDiagramProps) => {
+export const NetworkDiagram = ({ width, height, data }: NetworkDiagramProps) => {
 
   // read the data
-  // compute the nodes position
-  // build the arcs
+  // compute the nodes position using a d3-force
+  // build the links
+  // build the nodes
 
   return (
     <div>
       <svg width={width} height={height}>
-        // render all the arcs and circles
+        // render all the lines and circles
       </svg>
     </div>
   );
 };
 `.trim();
 
-const snippetNodes = `
-const xScale = d3.scalePoint().range([0, boundsWidth]).domain(allNodeNames);
+const snippetForce = `
+d3.forceSimulation(nodes) // apply the simulation to our array of nodes
 
-const colorScale = d3
-  .scaleOrdinal<string>()
-  .domain(allNodeGroups)
-  .range(COLORS);
+  // Force #1: links between nodes
+  .force( 'link', d3.forceLink(links).id((d) => d.id))
 
-const allNodes = data.nodes.map((node) => {
-  return (
-    <circle
-      key={node.id}
-      cx={xScale(node.id)}
-      cy={boundsHeight}
-      r={8}
-      fill={colorScale(node.group)}
-    />
-  );
-});
+  // Force #2: avoid node overlaps
+  .force('collide', d3.forceCollide().radius(RADIUS))
+
+  // Force #3: attraction or repulsion between nodes
+  .force('charge', d3.forceManyBody())
+
+  // Force #4: nodes are attracted by the center of the chart area
+  .force('center', d3.forceCenter(width / 2, height / 2));
 `.trim();
 
-const snippetHorizontalArcGenerator = `
-const horizontalArcGenerator = (
-  xStart,
-  yStart,
-  xEnd,
-  yEnd
-) => {
-  return [
-    // the arc starts at the coordinate xStart, xEnd
-    "M",
-    xStart,
-    yStart,
-
-    // A means we're gonna build an Elliptical Arc Curve
-    "A",
-    (xStart - xEnd) / 2,    // rx: first radii of the ellipse (inflexion point)
-    (xStart - xEnd) / 2,    // ry: second radii of the ellipse  (inflexion point)
-    0,                      // angle: rotation (in degrees) of the ellipse relative to the x-axis
-    1,                      // large-arc-flag: large arc (1) or small arc (0)
-    xStart < xEnd ? 1 : 0,  // sweep-flag: the clockwise turning arc (1) or counterclockwise turning arc (0)
-
-    // Position of the end of the arc
-    xEnd,
-    ",",
-    yEnd,
-  ].join(" ");
-};
+const snippetMutatedNode = `
+// Mutated nodes once the simulation has been run
+[
+  { id: "Myriel", group: 'team1', x: 200, y: 34.5, index: 0, ... },
+  { id: "Anne", group: 'team1', x: 100, y: 53.2, index: 1, ... },
+  ...
+],
 `.trim();
 
 const snippet4 = `

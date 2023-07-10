@@ -1,13 +1,7 @@
 import * as d3 from 'd3';
-import { useEffect, useRef, useState } from 'react';
-
-const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
-const RADIUS = 14;
-
-type Data = {
-  nodes: { id: string; group: string }[];
-  links: { source: string; target: string; value: number }[];
-};
+import { useEffect, useRef } from 'react';
+import { RADIUS, drawNetwork } from './drawNetwork';
+import { Data, Link, Node } from './data';
 
 type NetworkDiagramProps = {
   width: number;
@@ -20,11 +14,10 @@ export const NetworkDiagram = ({
   height,
   data,
 }: NetworkDiagramProps) => {
-  // The force simulation mutates links and nodes, so create a copy
-  // so that re-evaluating this cell produces the same result.
-  // note: node positions are initialized by d3
-  const links = data.links.map((d) => ({ ...d }));
-  const nodes = data.nodes.map((d) => ({ ...d }));
+  // The force simulation mutates links and nodes, so create a copy first
+  // Node positions are initialized by d3
+  const links: Link[] = data.links.map((d) => ({ ...d }));
+  const nodes: Node[] = data.nodes.map((d) => ({ ...d }));
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -36,14 +29,19 @@ export const NetworkDiagram = ({
       return;
     }
 
+    // run d3-force to find the position of nodes on the canvas
     d3.forceSimulation(nodes)
+
+      // list of forces we apply to get node positions
       .force(
         'link',
-        d3.forceLink(links).id((d) => d.id)
+        d3.forceLink<Node, Link>(links).id((d) => d.id)
       )
-      .force('collide', d3.forceCollide().radius(RADIUS).iterations(10))
+      .force('collide', d3.forceCollide().radius(RADIUS))
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(width / 2, height / 2))
+
+      // at each iteration of the simulation, draw the network diagram with the new node positions
       .on('tick', () => {
         drawNetwork(context, width, height, nodes, links);
       });
@@ -62,38 +60,4 @@ export const NetworkDiagram = ({
       />
     </div>
   );
-};
-
-const drawNetwork = (
-  context: CanvasRenderingContext2D,
-  width: number,
-  height: number,
-  nodes: any,
-  links: any
-) => {
-  console.log({ nodes, links });
-
-  context.clearRect(0, 0, width, height);
-  context.fillStyle = 'grey';
-  context.fillRect(0, 0, width, height);
-
-  // Draw the links
-  for (let i = 1; i < links.length; ++i) {
-    const link = links[i];
-    context.beginPath();
-    context.moveTo(link.source.x, link.source.y);
-    context.lineTo(link.target.x, link.target.y);
-    context.stroke();
-  }
-
-  // Draw the nodes
-  for (let i = 1; i < nodes.length; ++i) {
-    const d = nodes[i];
-
-    context.beginPath();
-    context.moveTo(d.x + RADIUS, d.y);
-    context.arc(d.x, d.y, RADIUS, 0, 2 * Math.PI);
-    context.fillStyle = 'red';
-    context.fill();
-  }
 };

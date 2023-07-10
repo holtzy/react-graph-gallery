@@ -1,3 +1,19 @@
+export interface Node extends d3.SimulationNodeDatum {
+  id: string;
+  group: string;
+}
+
+export interface Link extends d3.SimulationLinkDatum<Node> {
+  source: string;
+  target: string;
+  value: number;
+}
+
+export type Data = {
+  nodes: Node[];
+  links: Link[];
+};
+
 export const data = {
   nodes: [
     { id: 'Myriel', group: 'team1' },
@@ -11,6 +27,12 @@ export const data = {
     { id: 'Antoine', group: 'team3' },
     { id: 'Rob', group: 'team3' },
     { id: 'Napoleon', group: 'team3' },
+    { id: 'Toto', group: 'team4' },
+    { id: 'Tutu', group: 'team4' },
+    { id: 'Titi', group: 'team4' },
+    { id: 'Tata', group: 'team4' },
+    { id: 'Turlututu', group: 'team4' },
+    { id: 'Tita', group: 'team4' },
   ],
   links: [
     { source: 'Anne', target: 'Myriel', value: 1 },
@@ -24,5 +46,13 @@ export const data = {
     { source: 'Tuck', target: 'Myriel', value: 1 },
     { source: 'Mel', target: 'Myriel', value: 1 },
     { source: 'Rob', target: 'Antoine', value: 1 },
+    { source: 'Tata', target: 'Tutu', value: 1 },
+    { source: 'Tata', target: 'Titi', value: 1 },
+    { source: 'Tata', target: 'Toto', value: 1 },
+    { source: 'Tata', target: 'Tita', value: 1 },
+    { source: 'Tita', target: 'Toto', value: 1 },
+    { source: 'Tita', target: 'Titi', value: 1 },
+    { source: 'Tita', target: 'Turlututu', value: 1 },
+    { source: 'Rob', target: 'Turlututu', value: 1 },
   ],
 };
