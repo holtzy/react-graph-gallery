@@ -175,15 +175,67 @@ export default function Home() {
       //
       */}
       <h2 id="rendering">Render nodes and links using canvas</h2>
-      <p>Explain what a force is. We run simulation.</p>
+      <p>
+        Rendering a network diagram is <b>a bit more tricky</b> than many other
+        chart types described in this gallery:
+      </p>
+      <h3>&rarr; Simulation takes time</h3>
+      <p>
+        Running the simulations with <code>forceSimulation()</code> to get the
+        node positions <b>takes time</b>. Even with a small dataset like below
+        it takes a few seconds. Since we do not want to leave the graph area
+        empty for such a long period of time, a common workaround is to{' '}
+        <b>update</b> the node positions <b>at each iteration</b> of the
+        simulation.
+      </p>
+      <p>
+        Fortunately this is possible using the <code>on('tick', ...)</code>{' '}
+        method of <code>forceSimulation()</code>. Using the code below I can
+        call a hand-made function called <code>drawNetwork</code> that will
+        render the graph at each iteration.
+      </p>
+      <CodeBlock code={snippetDraw} />
+      <p>
+        Note that the simulation is run in a <code>useEffect</code> hook. It
+        allows to first initialize the graph area in the DOM, and then render
+        the content into it.
+      </p>
+      <h3>&rarr; Performance is key</h3>
+      <p>
+        The number of items to draw in the network diagram is often <b>big</b>.
+        And we need to render it <b>many times</b>, at each iteration of the
+        simulation. Adding that many SVG elements to the DOM could be very bad
+        in term of performance.
+      </p>
+      <p>
+        This is why I strongly advise to use a <code>canvas</code> element to
+        render the shapes. The <code>drawNetwork()</code> function could look as
+        something like this:
+      </p>
+      <CodeBlock code={snippetCanvas} />
+      <p>
+        Using canvas instead of SVG is a very important concept when preformance
+        needs to be improved in a data visualization. I am preparing a full post
+        on the topic so feel free to <Link href="/subscribe">subscribe</Link> to
+        the project to know when it is ready!
+      </p>
+      <LinkAsButton isFilled size="sm" href="/subscribe">
+        More about Canvas
+      </LinkAsButton>
+      <br />
+      <br />
+      <br />
+      <p>
+        Here is a code sandbox putting all of this into action. It results in a
+        first simple network diagram. Refresh the page to see the simulation
+        running and the node slowly reaching their final positons.
+      </p>
       <ChartOrSandbox
         VizComponent={NetworkDiagramBasicCanvasDemo}
         vizName={'NetworkDiagramBasicCanvas'}
         maxWidth={700}
         height={500}
-        caption={
-          'Add arcs using a custom functionn that draws some elliptical arc curve in SVG.'
-        }
+        caption={'A first network diagram built using react and d3-force.'}
       />
 
       {/*
@@ -191,14 +243,14 @@ export default function Home() {
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="arc" />
+      <ResponsiveExplanationSection chartId="network" />
 
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="arc" />
+      <DatavizInspirationParallaxLink chartId="network" />
 
       {/*
       //
@@ -288,25 +340,35 @@ const snippetMutatedNode = `
 ],
 `.trim();
 
-const snippet4 = `
-[
-  [x0: 0, x1: 2],
-  [2, 2, 2, 3, x0: 2, x1: 4],
-  [4, 5, x0: 4, x1: 6],
-  [6, 6, 6, x0: 6, x1: 8],
-  [x0: 8, x1: 10],
-  [x0: 10, x1: 10],
-]
+const snippetDraw = `
+.on('tick', () => {
+  drawNetwork(context, width, height, nodes, links);
+});
 `.trim();
 
-const snippetXScale = `
-const xScale = d3
-  .scaleLinear()
-  .domain([0, 10])
-  .range([0, width]);
+const snippetCanvas = `
+export const RADIUS = 10;
 
-// xScale(0) -> 0 (the left hand side position of the first bin)
-// xScale(10) -> width (the right hand side position of the last bin)
+export const drawNetwork = (context, width, height, nodes, links,) => {
+  context.clearRect(0, 0, width, height);
+
+  // Draw the links first
+  links.forEach((link) => {
+    context.beginPath();
+    context.moveTo(link.source.x, link.source.y);
+    context.lineTo(link.target.x, link.target.y);
+    context.stroke();
+  });
+
+  // Draw the nodes
+  nodes.forEach((node) => {
+    context.beginPath();
+    context.moveTo(node.x + RADIUS, node.y);
+    context.arc(node.x, node.y, RADIUS, 0, 2 * Math.PI);
+    context.fillStyle = '#cb1dd1';
+    context.fill();
+  });
+};
 `.trim();
 
 const snippetRibbon = `
