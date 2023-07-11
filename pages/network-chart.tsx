@@ -308,7 +308,9 @@ export default function Home() {
       </p>
       <p>Click on the overview below to get details and code.</p>
       <br />
-      <GraphGallery images={['vertical-arc-diagram.png']} />
+      <GraphGallery
+        images={['network-les-miserables.png', 'vertical-arc-diagram.png']}
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
