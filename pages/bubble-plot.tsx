@@ -1,33 +1,34 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { BubblePlotBasicDemo } from "../viz/BubblePlotBasic/BubblePlotBasicDemo";
-import { BubblePlotLegendDemo } from "../viz/BubblePlotLegend/BubblePlotLegendDemo";
-import { ImageGrid } from "component/UI/ImageGrid";
-import { GraphLinkImage } from "component/UI/GraphLinkImage";
-import { ScatterplotClimateCrisisDemo } from "viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
-import { BubbleLegendDemo } from "viz/BubbleLegend/BubbleLegendDemo";
-import { Accordion } from "component/UI/Accordion";
-import { BubblePlotDatasetTransitionDemo } from "viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { BubblePlotBasicDemo } from '../viz/BubblePlotBasic/BubblePlotBasicDemo';
+import { BubblePlotLegendDemo } from '../viz/BubblePlotLegend/BubblePlotLegendDemo';
+import { ImageGrid } from 'component/UI/ImageGrid';
+import { GraphLinkImage } from 'component/UI/GraphLinkImage';
+import { ScatterplotClimateCrisisDemo } from 'viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
+import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
+import { Accordion } from 'component/UI/Accordion';
+import { BubblePlotDatasetTransitionDemo } from 'viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/bubble.html">bubble plot</a>{' '}
       is an extension of a <Link href="/scatter-plot">scatterplot</Link>, where
       each circle has its size proportional to a numeric value. This page is a
       step-by-step guide on how to build your own bubble chart for the web,
-      using <a href="https://reactjs.org/">React</a> and{" "}
+      using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/histogram">D3.js</a>.
     </p>
     <p>
-      This page focuses on the implementation of features that are{" "}
-      <b>different from the scatterplot</b> that has its{" "}
-      <Link href="/scatter-plot">dedicated section</Link>. It describes how the{" "}
+      This page focuses on the implementation of features that are{' '}
+      <b>different from the scatterplot</b> that has its{' '}
+      <Link href="/scatter-plot">dedicated section</Link>. It describes how the{' '}
       <b>dataset</b> differs, how the <b>circle size</b> can be mapped to a
       numeric value, and how to explicit it using a <b>legend</b>. Last but not
       least it explains how to add <b>interactivity</b>: hover effect, tooltip,
@@ -52,10 +53,10 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
         The dataset used to build a bubble plot is usually an array of objects
-        where each object is a data point. For each object, at least{" "}
+        where each object is a data point. For each object, at least{' '}
         <b>3 properties</b> are required.
       </p>
       <p>
@@ -63,14 +64,14 @@ export default function Home() {
         one is used for the circle <b>size</b>.
       </p>
       <p>
-        Note that you can add more properties to the object. For instance, a{" "}
-        <code>name</code> can be displayed in the tooltip, and a{" "}
+        Note that you can add more properties to the object. For instance, a{' '}
+        <code>name</code> can be displayed in the tooltip, and a{' '}
         <code>group</code> can be used to color the bubbles.
       </p>
       <CodeBlock code={snippetData} />
       <p>
-        <u>Note</u>: this post is mainly based on the{" "}
-        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
+        <u>Note</u>: this post is mainly based on the{' '}
+        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{' '}
         dataset that provides some info like the life expectancy and the
         population for every country.
       </p>
@@ -81,65 +82,65 @@ export default function Home() {
       */}
       <h2 id="scatter plot">Extending the scatter plot</h2>
       <p>
-        A bubble chart is just an extension of a{" "}
+        A bubble chart is just an extension of a{' '}
         <Link href="/scatter-plot">scatter plot</Link>. The only difference is
-        that a third numeric variable is represented, mapped to the{" "}
+        that a third numeric variable is represented, mapped to the{' '}
         <b>circle size</b>.
       </p>
       <p>
-        As a result, please start by visiting the dedicated scatter plot{" "}
-        <Link href="/scatter-plot">page</Link> that explains how to draw{" "}
-        <Link href="/scatter-plot#scales%20and%20axes">axes</Link> and{" "}
+        As a result, please start by visiting the dedicated scatter plot{' '}
+        <Link href="/scatter-plot">page</Link> that explains how to draw{' '}
+        <Link href="/scatter-plot#scales%20and%20axes">axes</Link> and{' '}
         <Link href="/scatter-plot#circles">circles</Link>, and shows how to add
-        basic interactions like{" "}
-        <Link href="/scatter-plot#hover%20effect">hover effects</Link> and{" "}
+        basic interactions like{' '}
+        <Link href="/scatter-plot#hover%20effect">hover effects</Link> and{' '}
         <Link href="/scatter-plot#tooltip">tooltips</Link>.
       </p>
       <ImageGrid>
         <GraphLinkImage
-          link={"scatter-plot#scales%20and%20axes"}
-          title={"Scales and axes"}
+          link={'scatter-plot#scales%20and%20axes'}
+          title={'Scales and axes'}
           description={
             <p>How to map your data in a 2d space, and how to draw the axes</p>
           }
-          img={"axis-basic-demo.png"}
+          img={'axis-basic-demo.png'}
           alt="Picture of an empty chart area with X and Y axes"
         />
         <GraphLinkImage
-          link={"scatter-plot#circles"}
-          title={"Basic scatter plot"}
+          link={'scatter-plot#circles'}
+          title={'Basic scatter plot'}
           description={<p>Add circles to get a basic scatter plot</p>}
-          img={"scatterplot-most-basic.png"}
+          img={'scatterplot-most-basic.png'}
           alt="Most basic scatterplot made with react and d3"
         />
         <GraphLinkImage
-          link={"scatter-plot#tooltip"}
-          title={"Add tooltip"}
+          link={'scatter-plot#tooltip'}
+          title={'Add tooltip'}
           description={
             <p>
               Get more details about each datapoint by adding a tooltip on hover
             </p>
           }
-          img={"scatterplot-tooltip.png"}
+          img={'scatterplot-tooltip.png'}
           alt="Scatterplot with tooltip made with react and d3"
         />
         <GraphLinkImage
-          link={"scatter-plot#hover%20effect"}
-          title={"Add a hover effect"}
+          link={'scatter-plot#hover%20effect'}
+          title={'Add a hover effect'}
           description={<p>Highlight a specific group on hover</p>}
-          img={"scatterplot-hover-effect.png"}
+          img={'scatterplot-hover-effect.png'}
           alt="Scatterplot with hover effect made with react and d3"
         />
         <GraphLinkImage
-          link={"scatter-plot#real%20life"}
-          title={"Real life use-case"}
+          link={'scatter-plot#real%20life'}
+          title={'Real life use-case'}
           description={
             <p>
               Reproduction of a data wrapper chart representing countries CO2
               data
             </p>
           }
-          img={"scatterplot-co2.png"}
+          img={'scatterplot-co2.png'}
           alt="Real life example of a scatterplot made with react and d3"
         />
       </ImageGrid>
@@ -155,7 +156,7 @@ export default function Home() {
       <h2 id="bubble">Control the circle sizes to make bubbles</h2>
       <p>
         We need to make the circle size <b>proportional</b> to a numeric value.
-        Note that it is the <b>area</b> that must be proportional,{" "}
+        Note that it is the <b>area</b> that must be proportional,{' '}
         <a href="https://www.data-to-viz.com/caveat/radius_or_area.html">
           not the radius
         </a>
@@ -169,7 +170,7 @@ export default function Home() {
       <CodeBlock code={snippetSizeScale} />
       <p>
         This scale provides the radius that we must use for each circle based on
-        its numeric value. We can use it in the <code>r</code> attribute of each{" "}
+        its numeric value. We can use it in the <code>r</code> attribute of each{' '}
         <code>circle</code>
         like this:
       </p>
@@ -181,16 +182,16 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={BubblePlotBasicDemo}
-        vizName={"BubblePlotBasic"}
+        vizName={'BubblePlotBasic'}
         maxWidth={600}
         height={500}
         caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
       />
       <div className="my-10">
         <blockquote>
-          <b>Note</b>: The above example uses the <b>d3.js imperative style</b>{" "}
+          <b>Note</b>: The above example uses the <b>d3.js imperative style</b>{' '}
           to build the axes. This can also be done building your own axis
-          component like{" "}
+          component like{' '}
           <Link href="/scatter-plot#scales%20and%20axes">here</Link>. I'll write
           more about this in the near <Link href="/subscribe">future</Link>.
         </blockquote>
@@ -206,30 +207,30 @@ export default function Home() {
       */}
       <h2 id="legend">Adding a legend</h2>
       <p>
-        There are{" "}
+        There are{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
           many different ways
-        </a>{" "}
+        </a>{' '}
         to add a legend to a d3.js graph. What we mainly need here is to make
-        sense of the <b>bubble size</b>. I suggest using a set of <b>nested</b>{" "}
+        sense of the <b>bubble size</b>. I suggest using a set of <b>nested</b>{' '}
         bubbles, showing a few of the bubble sizes used on the chart with their
         respective values.
       </p>
       <ChartOrSandbox
         VizComponent={BubbleLegendDemo}
-        vizName={"BubbleLegend"}
+        vizName={'BubbleLegend'}
         maxWidth={300}
         height={300}
         caption="A legend to make sense of circle size, based on a d3 scale."
       />
       <p>
         This legend is implemented in a <code>BubbleLegend</code> component that
-        expects 2 props:{" "}
+        expects 2 props:{' '}
       </p>
       <ul>
         <li>
-          <code>scale</code>: the size scale that we described{" "}
-          <a href="#bubble">above</a>, built with the <code>scaleSqrt</code>{" "}
+          <code>scale</code>: the size scale that we described{' '}
+          <a href="#bubble">above</a>, built with the <code>scaleSqrt</code>{' '}
           function.
         </li>
         <li>
@@ -257,7 +258,7 @@ export default function Home() {
       <p>
         It's important to note that the component does <b>not</b> expect any
         dimension as prop. The <code>width</code> and <code>height</code> of the
-        SVG element that is created will be computed from the <code>scale</code>{" "}
+        SVG element that is created will be computed from the <code>scale</code>{' '}
         that is provided.
       </p>
       <p>
@@ -267,7 +268,7 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={BubblePlotLegendDemo}
-        vizName={"BubblePlotLegend"}
+        vizName={'BubblePlotLegend'}
         maxWidth={600}
         height={500}
         caption="Adding a legend to make sense of the bubble size. Legend is hand made, adding svg shapes with React."
@@ -285,10 +286,10 @@ export default function Home() {
         the year, and the bubbles will <b>animate</b> to their new position.
       </p>
       <p>
-        This is possible thanks to the{" "}
+        This is possible thanks to the{' '}
         <a href="https://react-spring.dev/">react spring</a> library. Basically,
         instead of rendering usual <code>circle</code> elements, the library
-        provides an <code>animated.circle</code> element, that is linked to a{" "}
+        provides an <code>animated.circle</code> element, that is linked to a{' '}
         <code>useSpring</code>
         hook.
       </p>
@@ -308,7 +309,7 @@ export default function Home() {
       </Accordion>
       <ChartOrSandbox
         VizComponent={BubblePlotDatasetTransitionDemo}
-        vizName={"BubblePlotDatasetTransition"}
+        vizName={'BubblePlotDatasetTransition'}
         maxWidth={600}
         height={500}
         caption="A bubble chart component that smoothly animates changes between datasets."
@@ -327,7 +328,7 @@ export default function Home() {
       <h2 id="real life">Real-life application</h2>
       <p>Let's apply the concepts learned above to a real-life example.</p>
       <p>
-        I like this scatterplot originally published on the data wrapper{" "}
+        I like this scatterplot originally published on the data wrapper{' '}
         <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
           blog
         </a>
@@ -354,19 +355,36 @@ export default function Home() {
       </ul>
       <ChartOrSandbox
         VizComponent={ScatterplotClimateCrisisDemo}
-        vizName={"ScatterplotClimateCrisis"}
+        vizName={'ScatterplotClimateCrisis'}
         maxWidth={700}
         height={900}
         caption={
           <span>
-            Reproduction of a chart originally published by{" "}
+            Reproduction of a chart originally published by{' '}
             <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
               Data Wrapper
-            </a>{" "}
+            </a>{' '}
             using react and d3.js.
           </span>
         }
       />
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        Once you've understood how to build a basic bubble chart with d3 and
+        react, it opens an infinite world of <b>customization</b>. Here are a
+        few examples using the same concepts.
+      </p>
+      <p>Click on the overview below to get details and code.</p>
+      <br />
+      <GraphGallery images={['circle-pack-d3-force.png']} />
+      <p>
+        <br /> <br />
+      </p>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />

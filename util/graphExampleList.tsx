@@ -358,6 +358,35 @@ export const graphExampleList: GraphExample[] = [
     img: 'streamgraph-application.gif',
     alt: 'GIF of a streamgraph with multiple interactive features',
   },
+
+  //
+  // Circle Packing
+  //
+  {
+    link: '/circular-packing',
+    title: 'Most basic circular packing chart',
+    description:
+      'The most basic circular packing chart one can make using d3.js and React.',
+    img: 'circle-pack-basic.png',
+    alt: 'Picture of a very basic circle packing chart',
+  },
+  {
+    link: '/circular-packing',
+    title: 'Circular packing: 2 levels of hierarchy',
+    description:
+      'A simple circular packing chart with 2 levels of hierarchy built with React and d3.',
+    img: 'circle-pack-2-levels.png',
+    alt: 'Picture of a very basic circle packing chart with 2 levels of hierarchy',
+  },
+  {
+    link: '/example/circle-packing-with-d3-force',
+    title: 'Circle Pack with d3-force',
+    description:
+      'Another approach to build a circle packing chart using physical forces to compute node positions.',
+    img: 'circle-pack-d3-force.png',
+    alt: 'Picture of a circle packing chart made using the d3-force plugin',
+  },
+
   //
   // Arc diagram
   //
@@ -369,6 +398,7 @@ export const graphExampleList: GraphExample[] = [
     img: 'vertical-arc-diagram.png',
     alt: 'Picture of a vertical arc diagram',
   },
+
   //
   // Network Chart
   //
