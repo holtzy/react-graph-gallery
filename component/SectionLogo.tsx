@@ -21,7 +21,7 @@ export default function SectionLogo({ chartLogo }: SectionLogoProps) {
   return (
     <img
       alt={logoDescription}
-      src={'/section/' + chartLogo.replace('150', 'Big') + logoExtension}
+      src={'/section/' + chartLogo + logoExtension}
       width="100%"
       height="100%"
     />
