@@ -11,6 +11,9 @@ import { ImageGrid } from '../component/UI/ImageGrid';
 import Link from 'next/link';
 import { BackgroundMapBasicDemo } from 'viz/BackgroundMapBasic/BackgroundMapBasicDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
+import { CodeSandbox } from 'component/CodeSandbox';
+import { BackgroundMapProjectionDemo } from 'viz/BackgroundMapProjection/BackgroundMapProjectionDemo';
+import { ToDoSection } from 'component/UI/ToDoSection';
 
 const graphDescription = (
   <>
@@ -123,6 +126,25 @@ export default function Home() {
       <LinkAsButton isFilled size="sm" href="https://github.com/d3/d3-geo">
         d3-geo doc
       </LinkAsButton>
+      <h3>&rarr; Note on Typescript</h3>
+      <p>
+        If you are working in a typescript environment (you should!), you
+        probably wonder how to type the geoJson dataset properly.
+      </p>
+      <p>
+        Fortunately, the{' '}
+        <a href="https://github.com/DefinitelyTyped/DefinitelyTyped">
+          DefinitelyTyped
+        </a>{' '}
+        repo has everything we need as always. You can load all the types we
+        need using:
+      </p>
+      <CodeBlock code={snippetInstallTypes} />
+      <p>
+        Once this is done, you can type the geoJson data as a{' '}
+        <code>FeatureCollection</code>:
+      </p>
+      <CodeBlock code={snippetDataType} />
       {/*
       //
       // Skeleton
@@ -191,8 +213,8 @@ export default function Home() {
       <ChartOrSandbox
         VizComponent={BackgroundMapBasicDemo}
         vizName={'BackgroundMapBasic'}
-        maxWidth={600}
-        height={600}
+        maxWidth={900}
+        height={500}
         caption={'First very basic map made with d3.js and React.'}
       />
       <p>
@@ -204,17 +226,43 @@ export default function Home() {
       // Projections
       //
       */}
-      <h2 id="bars">Projection</h2>
-      <p>Finally! ✨</p>
+      <h2 id="projections">Projections</h2>
+      <p>
+        Projections transform <b>spherical polygonal</b> geometry to{' '}
+        <b>planar polygonal</b> geometry. D3 provides implementations of several
+        classes of standard projections.
+      </p>
+      <LinkAsButton
+        isFilled
+        size="sm"
+        href="https://github.com/d3/d3-geo#projections"
+      >
+        all supported projections
+      </LinkAsButton>
+      <p>
+        <br />
+      </p>
+      <p>Setting up a projection always follow the same pattern:</p>
+      <CodeBlock code={snippetProjection} />
+      <p>
+        <code>scale</code> and <code>center</code> are in my opinion the 2 most
+        useful options that you will have to setup for your projections. But
+        once more, take a look at the doc to see every possibilities.
+      </p>
+      <p>
+        Now, here is a little playground to check some of the various offered
+        projections.
+      </p>
       <ChartOrSandbox
-        VizComponent={BackgroundMapBasicDemo}
-        vizName={'BackgroundMapBasic'}
-        maxWidth={600}
+        VizComponent={BackgroundMapProjectionDemo}
+        vizName={'BackgroundMapProjection'}
+        maxWidth={900}
         height={600}
         caption={
-          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
+          'An interactive playground to check how a few map projections look like on a world map.'
         }
       />
+      <ToDoSection text="Make a smooth transition between projections" />
       {/*
       //
       // Make it in Canvas
@@ -373,25 +421,23 @@ const allSvgPaths = data.features
 });
 `.trim();
 
-const snippet4 = `
-[
-  [x0: 0, x1: 2],
-  [2, 2, 2, 3, x0: 2, x1: 4],
-  [4, 5, x0: 4, x1: 6],
-  [6, 6, 6, x0: 6, x1: 8],
-  [x0: 8, x1: 10],
-  [x0: 10, x1: 10],
-]
+const snippetInstallTypes = `
+npm install --save @types/geojson
 `.trim();
 
-const snippetXScale = `
-const xScale = d3
-  .scaleLinear()
-  .domain([0, 10])
-  .range([0, width]);
+const snippetDataType = `
+type MapProps = {
+  width: number;
+  height: number;
+  data: FeatureCollection;
+};`.trim();
 
-// xScale(0) -> 0 (the left hand side position of the first bin)
-// xScale(10) -> width (the right hand side position of the last bin)
+const snippetProjection = `
+const projection = d3
+  .geoMercator()                              // name of the projection
+  .scale(width / 2 / Math.PI)                 // scale: bigger value = more zoom
+  .center([2.34, 48.86])                      // coordinate of the center of the map. e.g. 2 and 48 for Paris
+  ...other options if needed
 `.trim();
 
 const snippetYScale = `

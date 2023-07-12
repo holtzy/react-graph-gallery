@@ -1,16 +1,17 @@
 import * as d3 from 'd3';
+import { FeatureCollection } from 'geojson';
 
 type MapProps = {
   width: number;
   height: number;
-  data: any;
+  data: FeatureCollection;
 };
 
 export const Map = ({ width, height, data }: MapProps) => {
   const projection = d3
     .geoMercator()
-    .scale(width / 2 / Math.PI)
-    .translate([width / 2, height / 2 + 50]);
+    .scale(width / 2 / Math.PI - 40)
+    .center([10, 35]);
 
   const geoPathGenerator = d3.geoPath().projection(projection);
 
