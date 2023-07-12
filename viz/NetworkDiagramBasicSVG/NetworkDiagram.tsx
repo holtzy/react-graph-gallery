@@ -37,8 +37,6 @@ export const NetworkDiagram = ({
       });
   }, [nodes, height, width]);
 
-  console.log({ nodes });
-
   //
   // Compute the nodes
   //

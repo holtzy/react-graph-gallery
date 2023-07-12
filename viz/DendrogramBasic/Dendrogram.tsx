@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { Tree } from "./data";
-import * as d3 from "d3";
+import { useMemo } from 'react';
+import { Tree } from './data';
+import * as d3 from 'd3';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -13,8 +13,6 @@ type DendrogramProps = {
 export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
-
-  console.log(width);
 
   const hierarchy = useMemo(() => {
     return d3.hierarchy(data);
@@ -29,13 +27,13 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
 
   const allNodes = dendrogram.descendants().map((node) => {
     return (
-      <g key={"node" + node.id}>
+      <g key={'node' + node.id}>
         <circle
           cx={node.x}
           cy={node.y}
           r={5}
           stroke="transparent"
-          fill={"#69b3a2"}
+          fill={'#69b3a2'}
         />
         <text x={node.x} y={node.y + 25} fontSize={12} textAnchor="middle">
           {node.data.name}
@@ -50,7 +48,7 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
     }
     return (
       <line
-        key={"line" + node.id}
+        key={'line' + node.id}
         fill="none"
         stroke="grey"
         x1={node.x}
@@ -67,7 +65,7 @@ export const Dendrogram = ({ width, height, data }: DendrogramProps) => {
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
           {allNodes}
           {allEdges}

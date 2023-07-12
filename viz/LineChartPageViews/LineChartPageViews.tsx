@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { LineChart } from "./LineChart";
-import { csvParse } from "d3";
+import { useEffect, useState } from 'react';
+import { LineChart } from './LineChart';
+import { csvParse } from 'd3';
 
 const BUTTONS_HEIGHT = 50;
 
@@ -10,12 +10,12 @@ type LineChartPageViewsProps = {
 };
 
 const buttonStyle = {
-  border: "1px solid #9a6fb0",
-  borderRadius: "3px",
-  padding: "4px 8px",
-  margin: "10px 2px",
+  border: '1px solid #9a6fb0',
+  borderRadius: '3px',
+  padding: '4px 8px',
+  margin: '10px 2px',
   fontSize: 14,
-  color: "#9a6fb0",
+  color: '#9a6fb0',
   opacity: 0.7,
 };
 
@@ -23,8 +23,8 @@ export const LineChartPageViews = ({
   width,
   height,
 }: LineChartPageViewsProps) => {
-  const [selectedGroup, setSelectedGroup] = useState<"melanie" | "yan">(
-    "melanie"
+  const [selectedGroup, setSelectedGroup] = useState<'melanie' | 'yan'>(
+    'melanie'
   );
 
   const [data, setData] = useState<DataItem[]>([]);
@@ -32,11 +32,10 @@ export const LineChartPageViews = ({
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://raw.githubusercontent.com/holtzy/react-graph-gallery/main/data/data_page_views.csv"
+        'https://raw.githubusercontent.com/holtzy/react-graph-gallery/main/data/data_page_views.csv'
       );
       const csvData = await response.text();
       const parsedData: DataItem[] = csvParse(csvData);
-      console.log({ parsedData });
       setData(parsedData);
     };
 
