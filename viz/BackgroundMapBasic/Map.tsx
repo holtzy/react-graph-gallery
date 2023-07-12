@@ -21,9 +21,9 @@ export const Map = ({ width, height, data }: MapProps) => {
         <path
           key={shape.id}
           d={geoPathGenerator(shape)}
-          stroke="black"
+          stroke="lightGrey"
           strokeWidth={0.5}
-          fill="#cb1dd1"
+          fill="grey"
           fillOpacity={0.7}
         />
       );

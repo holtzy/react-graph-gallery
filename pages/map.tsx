@@ -123,7 +123,6 @@ export default function Home() {
       <LinkAsButton isFilled size="sm" href="https://github.com/d3/d3-geo">
         d3-geo doc
       </LinkAsButton>
-
       {/*
       //
       // Skeleton
@@ -131,46 +130,75 @@ export default function Home() {
       */}
       <h2 id="skeleton">Component skeleton</h2>
       <p>
-        The goal here is to create a <code>Histogram</code> component that will
-        be stored in a <code>Histogram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{' '}
-        <code>data</code>.
+        The goal here is to create a <code>Map</code> component that will be
+        stored in a <code>Map.tsx</code> file. This component requires 3 props
+        to render: a <code>width</code>, a <code>height</code>, and some{' '}
+        <code>geoJson</code> data.
       </p>
       <p>
         The shape of the <code>data</code> is described above. The{' '}
         <code>width</code> and <code>height</code> will be used to render an{' '}
-        <code>svg</code> element in the DOM, in which we will insert the
-        histogram.
+        <code>svg</code> element in the DOM, in which we will insert the map.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{' '}
-        <code>Histogram</code> component:
+        To put it in a nutshell, that's the skeleton of our <code>Map</code>{' '}
+        component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
         It's fundamental to understand that with this code organization, d3.js
-        will be used to prepare the SVG <code>circle</code>, but it's React that
+        will be used to prepare the SVG <code>path</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
         methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
       {/*
       //
-      // Basic Map
+      // First Map
       //
       */}
-      <h2 id="bars">Basic MAP using SVG</h2>
-      <p>Finally! ✨</p>
+      <h2 id="first map">First Map</h2>
+      <p>
+        Most of the magick comes from the <code>geoPath()</code> function of d3.
+      </p>
+      <p>
+        We want to draw a shape in SVG for every item of the geoJson input file.
+        In the DOM this is done using a <code>path</code> element that has a{' '}
+        <code>d</code> attribute.
+      </p>
+      <p>
+        The <code>geoPath()</code> function helps us doing this.{' '}
+        <code>geoPath()</code> is a function that returns a function. It can be
+        invoked this way:
+      </p>
+      <CodeBlock code={snippetGeoPath} />
+      <p>
+        Pretty short. We just invoke the function, providing it with the
+        projection of our choice (more on this later).
+      </p>
+      <p>
+        <code>geoPathGenerator</code> is now a function that expects an item of
+        the geoJSON dataset as input and returns a SVG <code>path</code> from
+        it. It is thus possible to loop through the geoJson file and create a
+        <code>path</code> element with the right <code>d</code> attribute for
+        each shape:
+      </p>{' '}
+      <CodeBlock code={snippetPath} />
+      <p>
+        This leads us to our first simple world map. Shapes are computed with
+        d3. Rendering is made with react. 🎉
+      </p>
       <ChartOrSandbox
         VizComponent={BackgroundMapBasicDemo}
         vizName={'BackgroundMapBasic'}
         maxWidth={600}
         height={600}
-        caption={
-          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
-        }
+        caption={'First very basic map made with d3.js and React.'}
       />
-
+      <p>
+        Note: I removed Antartica and chose the most famous yet highly
+        criticiced: Mercator.
+      </p>
       {/*
       //
       // Projections
@@ -187,7 +215,6 @@ export default function Home() {
           'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
         }
       />
-
       {/*
       //
       // Make it in Canvas
@@ -204,7 +231,6 @@ export default function Home() {
           'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
         }
       />
-
       {/*
       //
       // Responsiveness
@@ -307,39 +333,44 @@ npm install d3-geo
 const snippetSkeleton = `
 import * as d3 from "d3"; // we will need d3.js
 
-type HistogramProps = {
+type MapProps = {
   width: number;
   height: number;
-  data: number[];
+  data: GeoJsonData;
 };
 
-export const Histogram = ({ width, height, data }: HistogramProps) => {
+export const Map = ({ width, height, data }: MapProps) => {
 
   // read the data
-  // build buckets from the dataset
-  // build the scales
-  // build the rectangles
+  // create a geoPath generator with the proper projection
+  // build the paths
 
   return (
     <div>
       <svg width={width} height={height}>
-        // render all the <rect>
+        // render all the <path>s
       </svg>
     </div>
   );
 };
 `.trim();
 
-const snippet2 = `
-const bucketGenerator = d3
-  .bin()
-  .value((d) => d)
-  .domain([0, 10])
-  .thresholds([0, 2, 4, 6, 8, 10]);
+const snippetGeoPath = `
+const geoPathGenerator = d3.geoPath().projection(projection);
 `.trim();
 
-const snippet3 = `
-bucketGenerator(data)
+const snippetPath = `
+const allSvgPaths = data.features
+  .map((shape) => {
+    return (
+      <path
+        key={shape.id}
+        d={geoPathGenerator(shape)}
+        stroke="black"
+        fill="#cb1dd1"
+      />
+    );
+});
 `.trim();
 
 const snippet4 = `
