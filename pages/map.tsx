@@ -14,6 +14,7 @@ import { LinkAsButton } from 'component/LinkAsButton';
 import { CodeSandbox } from 'component/CodeSandbox';
 import { BackgroundMapProjectionDemo } from 'viz/BackgroundMapProjection/BackgroundMapProjectionDemo';
 import { ToDoSection } from 'component/UI/ToDoSection';
+import { BackgroundMapCanvasDemo } from 'viz/BackgroundMapCanvas/BackgroundMapCanvasDemo';
 
 const graphDescription = (
   <>
@@ -268,73 +269,61 @@ export default function Home() {
       // Make it in Canvas
       //
       */}
-      <h2 id="bars">Better performance with Canvas</h2>
-      <p>Finally! ✨</p>
+      <h2 id="canvas">Better performance with Canvas</h2>
+      <p>
+        <code>canvas</code> is recommended for dynamic or interactive data
+        visualizations to improve <b>performance</b>. Indeed, drawing in SVG
+        requires to add many elements to the DOM, which can slow down your
+        application, especially if you try to <b>animate transition</b> between
+        states.
+      </p>
+      <p>
+        Canvas rendering is typically faster than SVG, but requires more effort
+        to implement styling and interaction.
+      </p>
+      <p>
+        Fortunatelly, the <code>geoPath()</code> function has everything we need
+        to easily draw our shapes in canvas. If a <code>context</code> is passed
+        to it, it understands that we are dealing with canvas and does not
+        output SVG path like above.
+      </p>
+      <p>Check the example below to see how to draw with canvas:</p>
       <ChartOrSandbox
-        VizComponent={BackgroundMapBasicDemo}
-        vizName={'BackgroundMapBasic'}
-        maxWidth={600}
+        VizComponent={BackgroundMapCanvasDemo}
+        vizName={'BackgroundMapCanvas'}
+        maxWidth={900}
         height={600}
         caption={
-          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
+          'A simple map based on a geoJson file, render using react in a canvas element.'
         }
       />
+      <p>
+        <b>Performance</b> in dataviz using React is a <b>big</b> topic. It's
+        impossible to go in depth here! I will publish a dedicated blog post on
+        the topic soon, with a special focus on canvas. Please{' '}
+        <Link href="subscribe">subscribe</Link> to the newsletter if you want to
+        be notified.
+      </p>
+      <LinkAsButton isFilled size="sm" href="/subscribe">
+        Subscribe
+      </LinkAsButton>
+      <p>
+        <br /> <br />
+      </p>
       {/*
       //
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="histogram" />
+      <ResponsiveExplanationSection chartId="map" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="histogram" />
-      {/*
-      //
-      // Variations
-      //
-      */}
-      <h2 id="variations">Variations</h2>
-      <p>
-        Once you've understood how to build a basic histogram with d3 and react,
-        it opens an infinite world of <b>customization</b>. Here are a few
-        examples showing how to add{' '}
-        <Link href="example/histogram-with-several-groups">several groups</Link>{' '}
-        on the same axis or how to use{' '}
-        <Link href="example/histogram-small-multiple">small multiple</Link> with
-        histograms to compare distributions.
-      </p>
-      <p>Click on the overview below to get details and code.</p>
-      <br />
-      <ImageGrid>
-        <GraphLinkImage
-          link={'example/histogram-with-several-groups'}
-          title={'Multiple groups'}
-          description={
-            <p>
-              A histogram with <b>multiple</b> groups displayed on the same
-              axis.
-            </p>
-          }
-          img={'histogram-with-several-groups.png'}
-          alt="Picture of a histogram with multiple groups built with react and d3.js"
-        />
-        <GraphLinkImage
-          link={'example/histogram-small-multiple'}
-          title={'Small multiple'}
-          description={
-            <p>
-              Create one panel per group to show its distribution separately
-            </p>
-          }
-          img={'histogram-small-multiple.png'}
-          alt="Picture of a histogram with small multiple built with react and d3.js"
-        />
-      </ImageGrid>
+      <DatavizInspirationParallaxLink chartId="map" />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="distribution" />
+      <ChartFamilySection chartFamily="map" />
       <div className="mt-20" />
     </Layout>
   );
@@ -438,74 +427,4 @@ const projection = d3
   .scale(width / 2 / Math.PI)                 // scale: bigger value = more zoom
   .center([2.34, 48.86])                      // coordinate of the center of the map. e.g. 2 and 48 for Paris
   ...other options if needed
-`.trim();
-
-const snippetYScale = `
-const yScale = useMemo(() => {
-
-  const max = Math.max(...buckets.map((bucket) => bucket?.length));
-
-  return d3.scaleLinear()
-    .range([height, 0])
-    .domain([0, max]);
-
-  }, [data, height]);
-`.trim();
-
-const snippetRects = `
-const allRects = buckets.map((bucket, i) => {
-  return (
-    <rect
-      key={i}
-      fill="#69b3a2"
-      stroke="black"
-      x={xScale(bucket.x0)}
-      width={xScale(bucket.x1) - xScale(bucket.x0)}
-      y={yScale(bucket.length)}
-      height={height - yScale(bucket.length)}
-    />
-  );
-});
-`.trim();
-
-const snippetRectangle = `
-import { useSpring, animated } from "@react-spring/web";
-
-type RectangleProps = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
-export const Rectangle = (props: RectangleProps) => {
-  const { x, y, width, height } = props;
-
-  const springProps = useSpring({
-    to: { x, y, width, height },
-    config: {
-      friction: 30,
-    },
-    delay: x,
-  });
-
-  if (y === undefined) {
-    return null;
-  }
-
-  return (
-    <animated.rect
-      x={springProps.x}
-      y={springProps.y}
-      width={springProps.width}
-      height={springProps.height}
-      opacity={0.7}
-      stroke="#9d174d"
-      fill="#9d174d"
-      fillOpacity={0.3}
-      strokeWidth={1}
-      rx={1}
-    />
-  );
-};
 `.trim();

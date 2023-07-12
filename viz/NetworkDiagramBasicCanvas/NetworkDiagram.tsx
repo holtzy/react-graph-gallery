@@ -25,6 +25,7 @@ export const NetworkDiagram = ({
     // set dimension of the canvas element
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
+
     if (!context) {
       return;
     }

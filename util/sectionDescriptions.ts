@@ -426,7 +426,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/map',
     reactURL: 'https://react-graph-gallery.com/map',
     label: 'Map',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'choropleth',
