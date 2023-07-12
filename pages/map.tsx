@@ -4,16 +4,13 @@ import TitleAndDescription from '../component/TitleAndDescription';
 import ChartFamilySection from '../component/ChartFamilySection';
 import { CodeBlock } from '../component/UI/CodeBlock';
 import { ChartOrSandbox } from '../component/ChartOrSandbox';
-import { HistogramWithAxisDemo } from '../viz/HistogramWithAxis/HistogramWithAxisDemo';
-import { HistogramBasicDemo } from '../viz/HistogramBasic/HistogramBasicDemo';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
-import { Caption } from '../component/UI/Caption';
-import { HistogramDatasetTransitionDemo } from '../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo';
 import { GraphLinkImage } from '../component/UI/GraphLinkImage';
 import { ImageGrid } from '../component/UI/ImageGrid';
 import Link from 'next/link';
-import { Accordion } from 'component/UI/Accordion';
+import { BackgroundMapBasicDemo } from 'viz/BackgroundMapBasic/BackgroundMapBasicDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
 
 const graphDescription = (
   <>
@@ -61,15 +58,71 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        Building a histogram only requires a set of <b>numeric values</b>.
+        The first thing you need to build a map is the 2d coordinates of the{' '}
+        <b>boundaries</b> of the regions you want to represent. If you are
+        trying to build a world map, you need to know where the country
+        boundaries are located 🤷‍♀️.
       </p>
       <p>
-        As a result, the dataset is pretty simple: an <code>array</code> of{' '}
-        numbers.
+        Several formats exist to store such a piece of information. When working
+        with d3.js, the expected format is{' '}
+        <a href="https://en.wikipedia.org/wiki/GeoJSON" target="_blank">
+          geoJSON
+        </a>
+        . A geoJSON file looks pretty much like this:
       </p>
       <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
+      <p>
+        It is basically an object, with a <code>features</code> property that is
+        of great interest. This prop is an <code>array</code>, each item of the
+        array being a shape that we will be able to draw.
+      </p>
+      <p>
+        Each item has a <b>geometry</b> property that can be of type{' '}
+        <code>Point</code>, <code>LineString</code>, <code>Polygon</code> and
+        more. On top of that, the <code>coordinates</code> prop provides a list
+        of the 2d coordinates to follow to draw the shape.
+      </p>
+      <p>🧐</p>
+      <p>
+        The first thing you need to do to build your map is to <b>find</b> the
+        appropriate geoJson file on the web! Note that many other formats (like
+        <code>shapeFiles</code>) exist. You can find some converters online to
+        get the geoJson translation.
+      </p>
+      {/*
+      //
+      // D3-geo
+      //
+      */}
+      <h2 id="d3-geo">D3-geo</h2>
+      <p>
+        A geoJson file provides coordinates on a <b>sphere</b>. But we want to
+        display information on a <b>screen</b> which is a 2d space.
+      </p>
+      <p>
+        As a result we need to use a{' '}
+        <a href="https://en.wikipedia.org/wiki/Map_projection">projection</a> to
+        transform the initial coordinates in a SVG or canvas path.
+      </p>
+      <p>
+        This is a <b>very tricky job</b>. Fortunately, d3 has everything we need
+        in its <b>d3-geo</b> module 💙. You can install this module in your
+        react project as follow:
+      </p>
+      <CodeBlock code={snippetInstall} />
+      <p>
+        All the map examples of this gallery rely on this <code>d3-geo</code>{' '}
+        module. I strongly encourage you to take a look at the{' '}
+        <a href="https://github.com/d3/d3-geo">official documentation</a>. The
+        examples provided here are based on it, trying to make it easier to
+        understand.
+      </p>
+      <LinkAsButton isFilled size="sm" href="https://github.com/d3/d3-geo">
+        d3-geo doc
+      </LinkAsButton>
 
       {/*
       //
@@ -101,182 +154,57 @@ export default function Home() {
         methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
-
       {/*
       //
-      // Binning
+      // Basic Map
       //
       */}
-      <h2 id="binning">Computing the histogram buckets</h2>
-      <h3>&rarr; What is a bin / bucket?</h3>
-      <p>
-        To build a histogram we have to split the data values into a set of{' '}
-        <b>buckets</b>. For each bucket, we will count the number of items in
-        it.
-      </p>
-      <p>
-        This process is called <b>binning</b>. Binning groups discrete samples
-        into a smaller number of consecutive, non-overlapping intervals.
-      </p>
-      <div className="flex flex-col items-center mt-8 mb-12">
-        <img
-          src="/img/binning-process.png"
-          style={{ maxWidth: 700 }}
-          alt="schema explaining how histogram buckets are created from the original dataset"
-        />
-        <Caption>
-          Binning is the process of dividing the range of values in a dataset
-          into intervals, and then counting the number of values that fall into
-          each interval.
-        </Caption>
-      </div>
-      <h3>&rarr; The bin generator</h3>
-      <p>
-        Fortunately, d3.js has a handy <code>bin()</code> function for this
-        task. (See the <a href="https://github.com/d3/d3-array#bin">doc</a>.)
-      </p>
-      <p>
-        The <code>bin()</code> function returns a <b>function</b> that is a bin
-        generator. Example:
-      </p>
-      <CodeBlock code={snippet2} />
-      <p>
-        3 arguments are passed to the <code>bin()</code> function:
-      </p>
-      <ul>
-        <li>
-          <code>value</code> is the accessor function. For each item of the
-          array, we will pass to the <code>bucketGenerator</code>, this is how
-          to get the numeric value of interest.
-        </li>
-        <li>
-          <code>domain</code> is the lower and upper bounds of the histogram.
-        </li>
-        <li>
-          <code>thresholds</code> is an array with the limits of each bucket.
-          Note that it can be easily computed from a usual{' '}
-          <code>scaleLinear</code>.
-        </li>
-      </ul>
-      <h3>&rarr; Bucket format</h3>
-      <p>
-        The <code>bucketGenerator</code> can be applied to our dummy dataset:
-      </p>
-      <CodeBlock code={snippet3} />
-      <p>
-        The result is an array of arrays. Each item represents a bucket. Each
-        bucket is composed of all the values assigned to this bucket. Its{' '}
-        <code>length</code> is the bucket size, i.e. the future bar height.
-      </p>
-      <p>
-        Each bin has two additional attributes: <code>x0</code> and{' '}
-        <code>x1</code> being the lower (inclusive) and upper (exclusive) bounds
-        of the bin.
-      </p>
-      <CodeBlock code={snippet4} />
-      <p>Let's transform those buckets in bars 🙇‍♂️!</p>
-      {/*
-      //
-      // Scales
-      //
-      */}
-      <h2 id="Scales">Scales</h2>
-      <p>
-        The data wrangling part is done, but we're not ready to draw our bars
-        yet 😢.
-      </p>
-      <p>
-        Building a histogram requires transforming <b>dimensions</b> (the number
-        of items per bucket and the bucket limits) in <b>positions in pixels</b>
-        . This is done using a fundamental dataviz concept called <b>scale</b>.
-      </p>
-      <p>
-        D3.js comes with a handful set of{' '}
-        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{' '}
-        <code>scaleLinear</code> is what we need for the X and Y axis.
-      </p>
-      <h3>&rarr; X Scale</h3>
-      <p>
-        The X scale is displayed <b>horizontally</b>. It covers the{' '}
-        <code>width</code> of the <code>svg</code> container, and its domain
-        goes from the <code>min</code> to the <code>max</code> of the dataset.
-      </p>
-      <CodeBlock code={snippetXScale} />
-      <h3>&rarr; Y Scale</h3>
-      <p>
-        The Y scale is displayed <b>vertically</b>. It shows how many items are
-        available in each bin. To compute it you need to find the bucket with
-        the highest number of items. Something like:
-      </p>
-      <CodeBlock code={snippetYScale} />
-      {/*
-      //
-      // Bars
-      //
-      */}
-      <h2 id="bars">Drawing the bars</h2>
+      <h2 id="bars">Basic MAP using SVG</h2>
       <p>Finally! ✨</p>
-      <p>
-        We can now <code>map</code> through the bucket object and draw a{' '}
-        <b>rectangle</b> per bucket thanks to the scales computed above.
-      </p>
-      <p>The code looks like this:</p>
-      <CodeBlock code={snippetRects} />
-      <p>
-        Remember that the <code>x</code> and <code>y</code> attributes of the
-        svg <code>rect</code> element provide the x and y position of the top
-        left corner of the rectangle (see{' '}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect">
-          doc
-        </a>
-        ). This is why the rectangle <code>height</code> is computed by
-        subtracting <code>yScale(bucket.length)</code> from the total{' '}
-        <code>height</code>.
-      </p>
-      <br />
       <ChartOrSandbox
-        VizComponent={HistogramBasicDemo}
-        vizName={'HistogramBasic'}
+        VizComponent={BackgroundMapBasicDemo}
+        vizName={'BackgroundMapBasic'}
         maxWidth={600}
-        height={300}
+        height={600}
         caption={
           'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
         }
       />
+
       {/*
       //
-      // Axes
+      // Projections
       //
       */}
-      <h2 id="axes">Axes</h2>
-      <p>
-        The last step to get a decent chart is to add 2 <b>axes</b>. Otherwise,
-        the bucket bounds are not available, removing all potential insight into
-        the chart.
-      </p>
-      <p>
-        There are 2 main strategies to add axes to a react chart made with
-        d3.js. This process is extensively described in the{' '}
-        <a href="https://www.react-graph-gallery.com/build-axis-with-react">
-          axis section
-        </a>
-        .
-      </p>
-      <p>
-        In the example below, I chose to use the d3 way to render both axes.
-        Note also that a real dataset is used this time, showing the
-        distribution of AirBnB prices on the french riviera.
-      </p>
-      <br />
+      <h2 id="bars">Projection</h2>
+      <p>Finally! ✨</p>
       <ChartOrSandbox
-        VizComponent={HistogramWithAxisDemo}
-        vizName={'HistogramWithAxis'}
-        maxWidth={900}
-        height={300}
+        VizComponent={BackgroundMapBasicDemo}
+        vizName={'BackgroundMapBasic'}
+        maxWidth={600}
+        height={600}
         caption={
-          'Adding a X axis with d3 makes the chart much more insightful.'
+          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
         }
       />
+
+      {/*
+      //
+      // Make it in Canvas
+      //
+      */}
+      <h2 id="bars">Better performance with Canvas</h2>
+      <p>Finally! ✨</p>
+      <ChartOrSandbox
+        VizComponent={BackgroundMapBasicDemo}
+        vizName={'BackgroundMapBasic'}
+        maxWidth={600}
+        height={600}
+        caption={
+          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
+        }
+      />
+
       {/*
       //
       // Responsiveness
@@ -331,64 +259,6 @@ export default function Home() {
           alt="Picture of a histogram with small multiple built with react and d3.js"
         />
       </ImageGrid>
-      {/*
-      //
-      // Dataset transition
-      //
-      */}
-      <h2 id="transition">Dataset transition</h2>
-      <p>
-        The last step needed for a powerful histogram React component is a
-        proper way to transition between various datasets. When the{' '}
-        <code>data</code> prop updates, we need a stunning way to transition to
-        the new values.
-      </p>
-      <p>
-        There are many different strategies to approach this problem. I suggest
-        to rely on the <a href="https://react-spring.dev/">react-spring</a>{' '}
-        library that has everything we need to compute{' '}
-        <a href="https://www.joshwcomeau.com/animation/a-friendly-introduction-to-spring-physics/">
-          spring animations
-        </a>
-        .
-      </p>
-      <p>
-        Instead of rendering usual <code>rect</code> elements, the library
-        provides a <code>animated.rect</code> element, that is linked to a{' '}
-        <code>useSpring</code>
-        hook.
-      </p>
-
-      <ChartOrSandbox
-        VizComponent={HistogramDatasetTransitionDemo}
-        vizName={'HistogramDatasetTransition'}
-        maxWidth={900}
-        height={400}
-        caption={
-          'Adding a X axis with d3 makes the chart much more insightful.'
-        }
-      />
-      <p>
-        This is how the <code>Rectangle</code> component I use looks like:
-      </p>
-      <Accordion
-        startOpen={false}
-        title={
-          <span>
-            <code>Rectangle</code>: a component that animates the transition of
-            a <code>rect</code>
-          </span>
-        }
-      >
-        <CodeBlock code={snippetRectangle} />
-      </Accordion>
-      <p>
-        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
-        impossible to go in depth here! I will publish a dedicated blog post on
-        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
-        newsletter if you want to be notified.
-      </p>
-
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />
@@ -397,7 +267,41 @@ export default function Home() {
 }
 
 const snippetData = `
-const data = [1, 2, 2, 2, 3, 4, 5, 6, 6, 6, 9]
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [102.0, 0.5]
+      },
+      "properties": {
+        "prop0": "value0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [102.0, 0.0],
+          [103.0, 1.0],
+          [104.0, 0.0],
+          [105.0, 1.0]
+        ]
+      },
+      "properties": {
+        "prop0": "value0",
+        "prop1": 0.0
+      }
+    },
+    ...
+  ]
+}`.trim();
+
+const snippetInstall = `
+npm install d3-geo
 `.trim();
 
 const snippetSkeleton = `
