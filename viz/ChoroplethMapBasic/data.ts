@@ -1,4 +1,4 @@
-export const numData = [
+export const numData: { code: string; value: number; name: string }[] = [
   {
     name: 'Antigua and Barbuda',
     code: 'ATG',
