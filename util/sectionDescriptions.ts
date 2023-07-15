@@ -436,7 +436,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/choropleth',
     reactURL: 'https://react-graph-gallery.com/choropleth-map',
     label: 'Choropleth',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'hexbin',
