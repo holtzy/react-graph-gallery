@@ -3,7 +3,7 @@ import { FeatureCollection } from 'geojson';
 import { Circle } from './Circle';
 
 const BUBBLE_MIN_SIZE = 4;
-const BUBBLE_MAX_SIZE = 40;
+const BUBBLE_MAX_SIZE = 70;
 const COLOR = '#cb1dd1';
 
 type MapProps = {

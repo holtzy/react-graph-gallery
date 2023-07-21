@@ -18,6 +18,7 @@ import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
 import { BubblePlotLegendDemo } from 'viz/BubblePlotLegend/BubblePlotLegendDemo';
 import { BubblePlotDatasetTransitionDemo } from 'viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo';
 import { BubbleMapDatasetTransitionDemo } from 'viz/BubbleMapDatasetTransition/BubbleMapDatasetTransitionDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
@@ -163,24 +164,48 @@ export default function Home() {
       <p>
         <br />
       </p>
-      <p>Setting up a projection always follow the same pattern:</p>
-      <CodeBlock code={snippetProjection} />
       <p>
-        <code>scale</code> and <code>center</code> are in my opinion the 2 most
-        useful options that you will have to setup for your projections. But
-        once more, take a look at the doc to see every possibilities.
+        We need a scale to translate the numeric <b>value</b> of a data point
+        into the <b>radius</b> of its circle. This is made possible thanks to
+        the <code>scaleSqrt()</code> function that can be used as follow:
+      </p>
+      <CodeBlock code={snippetScale} />
+      <p>
+        Once this <code>sizeScale</code> is available, I can loop through all
+        items of my dataset and draw a SVG circle for each. From each point{' '}
+        <code>value</code>, <code>sizeScale</code> will provide me the radius
+        that I can pass to the <code>r</code> attribute of the{' '}
+        <code>circle</code> SVG element.
       </p>
       <p>
-        Now, here is a little playground to check some of the various offered
-        projections.
+        <br />
       </p>
+      <p>
+        We also need to find the <code>x</code> and <code>y</code> 2d
+        coordinates of each circle. There are 2 use cases for this:
+      </p>
+      <ul>
+        <li>
+          circle at the <b>center of the region</b>: it is possible to determine
+          the position of the <b>baricenter</b> of each region of the geoJson
+          file thanks to the <code>centroid()</code> function of the path
+          generator. See the world bubble map below.
+        </li>
+        <li>
+          circle at <b>precise GPS coordinates</b>: sometimes the data
+          containing the numeric value of each bubble also provides the gps
+          coordinates where it needs to be drawn. Note that in this case those
+          coordinates must be translated for the current projection! (see the{' '}
+          <Link href="#transition">transition section</Link> below)
+        </li>
+      </ul>
       <ChartOrSandbox
         VizComponent={BubbleMapBasicDemo}
         vizName={'BubbleMapBasic'}
         maxWidth={900}
         height={600}
         caption={
-          'Add a color scale to color each country and get your first choropleth map.'
+          'A very simple bubble chart made using d3.js and react, based on a geoJson file.'
         }
       />
       {/*
@@ -188,7 +213,7 @@ export default function Home() {
       // Legend
       //
       */}
-      <h2 id="legend">Adding a legend</h2>
+      <h2 id="legend">Bubble legend</h2>
       <p>
         There are{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_legend.html">
@@ -246,22 +271,18 @@ export default function Home() {
       </p>
       <p>
         As a result, you only need to think about the position of the legend on
-        your chart. Here is an example of adding it at the bottom right of the
-        chart.
+        your chart. Check a few example of charts using this component.
       </p>
-      <ChartOrSandbox
-        VizComponent={BubblePlotLegendDemo}
-        vizName={'BubblePlotLegend'}
-        maxWidth={600}
-        height={500}
-        caption="Adding a legend to make sense of the bubble size. Legend is hand made, adding svg shapes with React."
-      />
+      <p>
+        <br />
+      </p>
+      <GraphGallery images={['bubble-plot-with-legend.png']} />
       {/*
       //
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="map" />
+      <ResponsiveExplanationSection chartId="bubbleMap" />
       {/*
       //
       // Data transition
@@ -272,15 +293,14 @@ export default function Home() {
         How can we <b>smoothly animate</b> the transition between 2 datasets on
         a bubble chart? The chart used in this blog post can be drawn for
         several different years. You can use the select button on top to select
-        the year, and the bubbles will <b>animate</b> to their new position.
+        the year, and the bubbles will <b>animate</b> to their new size.
       </p>
       <p>
         This is possible thanks to the{' '}
         <a href="https://react-spring.dev/">react spring</a> library. Basically,
         instead of rendering usual <code>circle</code> elements, the library
         provides an <code>animated.circle</code> element, that is linked to a{' '}
-        <code>useSpring</code>
-        hook.
+        <code>useSpring</code> hook.
       </p>
       <p>
         This is what the <code>Circle</code> component I use looks like:
@@ -289,8 +309,8 @@ export default function Home() {
         startOpen={false}
         title={
           <span>
-            <code>Rectangle</code>: a component that animates the transition of
-            a <code>rect</code>
+            <code>Circle</code>: a component that animates the transition of a{' '}
+            <code>circle</code>
           </span>
         }
       >
@@ -486,12 +506,11 @@ type MapProps = {
   data: FeatureCollection;
 };`.trim();
 
-const snippetProjection = `
-const projection = d3
-  .geoMercator()                              // name of the projection
-  .scale(width / 2 / Math.PI)                 // scale: bigger value = more zoom
-  .center([2.34, 48.86])                      // coordinate of the center of the map. e.g. 2 and 48 for Paris
-  ...other options if needed
+const snippetScale = `
+const sizeScale = d3
+  .scaleSqrt()
+  .domain([min, max])
+  .range([BUBBLE_MIN_SIZE, BUBBLE_MAX_SIZE]);
 `.trim();
 
 const snippetCircle = `

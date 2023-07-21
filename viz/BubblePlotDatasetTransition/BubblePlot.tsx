@@ -1,8 +1,8 @@
-import { useMemo } from "react";
-import * as d3 from "d3";
-import { AxisLeft } from "./AxisLeft";
-import { AxisBottom } from "./AxisBottom";
-import { Circle } from "./Circle";
+import { useMemo } from 'react';
+import * as d3 from 'd3';
+import { AxisLeft } from './AxisLeft';
+import { AxisBottom } from './AxisBottom';
+import { Circle } from './Circle';
 
 const MARGIN = { top: 10, right: 30, bottom: 50, left: 30 };
 const BUBBLE_MIN_SIZE = 4;
@@ -41,7 +41,7 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
   const colorScale = d3
     .scaleOrdinal<string>()
     .domain(groups)
-    .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
+    .range(['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253']);
 
   const sizeScale = useMemo(() => {
     const [min, max] = d3.extent(data.map((d) => d.pop)) as [number, number];
@@ -67,12 +67,12 @@ export const BubblePlot = ({ width, height, data }: BubblePlotProps) => {
     });
 
   return (
-    <div style={{ position: "relative", width, height }}>
+    <div style={{ position: 'relative', width, height }}>
       <svg width={width} height={height}>
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />

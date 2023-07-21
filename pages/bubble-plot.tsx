@@ -300,8 +300,8 @@ export default function Home() {
         startOpen={false}
         title={
           <span>
-            <code>Rectangle</code>: a component that animates the transition of
-            a <code>rect</code>
+            <code>Circle</code>: a component that animates the transition of a{' '}
+            <code>circle</code>
           </span>
         }
       >

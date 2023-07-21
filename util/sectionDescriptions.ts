@@ -476,7 +476,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/bubblemap',
     reactURL: 'https://react-graph-gallery.com/bubble-map',
     label: 'Bubble',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'chordDiagram',
