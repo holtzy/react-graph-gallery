@@ -57,7 +57,7 @@
 body {
   overflow-x: hidden;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 19px;
   line-height: 30px;
   color: #333;
@@ -74,7 +74,7 @@ code {
   font-size: 85%;
   background-color: #afb8c133;
   border-radius: 6px;
-  font-family: "Fira Mono", monospace;
+  font-family: 'Fira Mono', monospace;
 }
 a {
   color: var(--react-gallery);
@@ -95,7 +95,7 @@ blockquote {
   background: var(--light-grey);
   border-left: 2px solid var(--react-gallery);
   padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
+  quotes: '\201C' '\201D' '\2018' '\2019';
 }
 blockquote p {
   display: inline;
@@ -106,7 +106,7 @@ blockquote p {
 h1 {
   font-size: 42px;
   line-height: 54px;
-  font-family: "Bitter", sans-serif;
+  font-family: 'Bitter', sans-serif;
   font-weight: bold;
   letter-spacing: 0.03em;
 }
@@ -114,7 +114,7 @@ h1 {
 h2 {
   font-size: 32px;
   line-height: 44px;
-  font-family: "Bitter", sans-serif;
+  font-family: 'Bitter', sans-serif;
   font-weight: bold;
   letter-spacing: 0.03em;
   width: 100%;
@@ -127,7 +127,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Bitter", sans-serif;
+  font-family: 'Bitter', sans-serif;
   font-weight: bold;
   line-height: 34px;
   letter-spacing: 0.03em;
@@ -157,7 +157,7 @@ h3 {
 
 /* ---------- Button ----------------- */
 .btn {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 500 !important;
   border-color: var(--react-gallery) !important;
   color: var(--react-gallery) !important;
