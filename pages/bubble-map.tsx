@@ -16,6 +16,8 @@ import { BubbleMapBasicDemo } from 'viz/BubbleMapBasic/BubbleMapBasicDemo';
 import { Accordion } from 'component/UI/Accordion';
 import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
 import { BubblePlotLegendDemo } from 'viz/BubblePlotLegend/BubblePlotLegendDemo';
+import { BubblePlotDatasetTransitionDemo } from 'viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo';
+import { BubbleMapDatasetTransitionDemo } from 'viz/BubbleMapDatasetTransition/BubbleMapDatasetTransitionDemo';
 
 const graphDescription = (
   <>
@@ -262,10 +264,57 @@ export default function Home() {
       <ResponsiveExplanationSection chartId="map" />
       {/*
       //
+      // Data transition
+      //
+      */}
+      <h2 id="transition">Smooth dataset transition</h2>
+      <p>
+        How can we <b>smoothly animate</b> the transition between 2 datasets on
+        a bubble chart? The chart used in this blog post can be drawn for
+        several different years. You can use the select button on top to select
+        the year, and the bubbles will <b>animate</b> to their new position.
+      </p>
+      <p>
+        This is possible thanks to the{' '}
+        <a href="https://react-spring.dev/">react spring</a> library. Basically,
+        instead of rendering usual <code>circle</code> elements, the library
+        provides an <code>animated.circle</code> element, that is linked to a{' '}
+        <code>useSpring</code>
+        hook.
+      </p>
+      <p>
+        This is what the <code>Circle</code> component I use looks like:
+      </p>
+      <Accordion
+        startOpen={false}
+        title={
+          <span>
+            <code>Rectangle</code>: a component that animates the transition of
+            a <code>rect</code>
+          </span>
+        }
+      >
+        <CodeBlock code={snippetCircle} />
+      </Accordion>
+      <ChartOrSandbox
+        VizComponent={BubbleMapDatasetTransitionDemo}
+        vizName={'BubbleMapDatasetTransition'}
+        maxWidth={822}
+        height={600}
+        caption="A bubble chart component that smoothly animates changes between datasets."
+      />
+      <p>
+        <b>Animation</b> in dataviz using React is a <b>big</b> topic. It's
+        impossible to go in-depth here! I will publish a dedicated blog post on
+        the topic soon. Please <Link href="subscribe">subscribe</Link> to the
+        newsletter if you want to be notified.
+      </p>
+      {/*
+      //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="map" />
+      <DatavizInspirationParallaxLink chartId="bubbleMap" />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="map" />
       <div className="mt-20" />
@@ -443,4 +492,40 @@ const projection = d3
   .scale(width / 2 / Math.PI)                 // scale: bigger value = more zoom
   .center([2.34, 48.86])                      // coordinate of the center of the map. e.g. 2 and 48 for Paris
   ...other options if needed
+`.trim();
+
+const snippetCircle = `
+import { useSpring, animated } from "@react-spring/web";
+
+type CircleProps = {
+  color: string;
+  r: number;
+  cx: number;
+  cy: number;
+};
+
+export const Circle = (props: CircleProps) => {
+  const { cx, cy, r, color } = props;
+
+  const springProps = useSpring({
+    to: { cx, cy, r },
+    config: {
+      friction: 30,
+    },
+    delay: 0,
+  });
+
+  return (
+    <animated.circle
+      cx={springProps.cx}
+      cy={springProps.cy}
+      r={springProps.r}
+      opacity={0.7}
+      stroke={color}
+      fill={color}
+      fillOpacity={0.3}
+      strokeWidth={1}
+    />
+  );
+};
 `.trim();

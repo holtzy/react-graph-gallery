@@ -1,4 +1,4 @@
-import { BubblePlotDatasetTransition } from "./BubblePlotDatasetTransition";
+import { BubblePlotDatasetTransition } from './BubblePlotDatasetTransition';
 
 export const BubblePlotDatasetTransitionDemo = ({
   width = 700,
