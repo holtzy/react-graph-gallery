@@ -456,7 +456,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/cartogram',
     reactURL: 'https://react-graph-gallery.com/cartogram',
     label: 'Cartogram',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'connection',
