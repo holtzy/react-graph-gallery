@@ -466,7 +466,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/MapConnection',
     reactURL: 'https://react-graph-gallery.com/connection-map',
     label: 'Connection',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'bubbleMap',
