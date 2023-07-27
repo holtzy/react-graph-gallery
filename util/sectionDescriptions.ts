@@ -236,7 +236,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/connectedscatter',
     reactURL: 'https://react-graph-gallery.com/connected-scatter-plot',
     label: 'Connected Scatter',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'barplot',
