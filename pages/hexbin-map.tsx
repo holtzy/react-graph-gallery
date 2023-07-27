@@ -12,6 +12,7 @@ import { HexbinMapChoroplethDemo } from 'viz/HexbinMapChoropleth/HexbinMapChorop
 import { HexbinMapBackgroundDemo } from 'viz/HexbinMapBackground/HexbinMapBackground';
 import { ContinuousColorLegendDemo } from 'viz/ContinuousColorLegend/ContinuousColorLegendDemo';
 import { HexbinMap2dCoordsDemo } from 'viz/HexbinMap2dCoords/HexbinMap2dCoords';
+import { ToDoSection } from 'component/UI/ToDoSection';
 
 const graphDescription = (
   <>
@@ -144,7 +145,7 @@ export default function Home() {
         maxWidth={900}
         height={500}
         caption={
-          'First very basic map made with d3.js and React. Check the map section for more code explanation.'
+          'A choropleth hexbin map built with react and d3.js from a geoJson file.'
         }
       />
       {/*
@@ -162,7 +163,7 @@ export default function Home() {
       <p>
         Consider a dataset storing a lot of events, each having a geographical
         location. It is possible to split the 2d space in a bunch of hexagons
-        and count how many events happened in each hexagon.
+        and count how many events took place in each hexagon.
       </p>
       <p>
         This is called a <Link href="/2d-density-plot">2d density chart</Link>{' '}
@@ -172,19 +173,24 @@ export default function Home() {
         {'2d density section'}
       </LinkAsButton>
       <p>
+        <br />
         If the data point <code>x</code> and <code>y</code> values are GPS
         coordinates, it will look <b>like a map</b>! Here is an example where I
-        retrieved the location of people tweeting about #surf for a few weeks:
+        retrieved the location of people tweeting about{' '}
+        <a href="https://www.data-to-viz.com/graph/hexbinmap.html">#surf</a> in
+        Europe for a few weeks:
       </p>
       <ChartOrSandbox
         VizComponent={HexbinMap2dCoordsDemo}
         vizName={'HexbinMap2dCoords'}
-        maxWidth={500}
+        maxWidth={900}
         height={500}
         caption={
-          'First very basic map made with d3.js and React. Check the map section for more code explanation.'
+          'A hexbin map built with react and d3.js from a set of 2d coordinates.'
         }
       />
+      <ToDoSection text="should I apply a projection to the coordinates 🤔" />
+      <ToDoSection text="same thing with a background map below the hexagons" />
       {/*
       //
       // Legend

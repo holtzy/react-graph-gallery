@@ -1,15 +1,13 @@
-import * as d3 from "d3";
-import { AxisLeft } from "./AxisLeft";
-import { AxisBottom } from "./AxisBottom";
-import { hexbin } from "d3-hexbin";
+import * as d3 from 'd3';
+import { hexbin } from 'd3-hexbin';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
-const BIN_SIZE = 9;
+const BIN_SIZE = 6;
 
 type HexbinProps = {
   width: number;
   height: number;
-  data: { x: number; y: number }[];
+  data: { lon: number; lat: number }[];
 };
 
 export const Hexbin = ({ width, height, data }: HexbinProps) => {
@@ -19,8 +17,8 @@ export const Hexbin = ({ width, height, data }: HexbinProps) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Scales
-  const yScale = d3.scaleLinear().domain([4, 22]).range([boundsHeight, 0]);
-  const xScale = d3.scaleLinear().domain([2, 19]).range([0, boundsWidth]);
+  const yScale = d3.scaleLinear().domain([25, 65]).range([boundsHeight, 0]);
+  const xScale = d3.scaleLinear().domain([-20, 60]).range([0, boundsWidth]);
 
   const hexbinGenerator = hexbin()
     .radius(BIN_SIZE)
@@ -30,7 +28,7 @@ export const Hexbin = ({ width, height, data }: HexbinProps) => {
     ]);
 
   const hexbinData = hexbinGenerator(
-    data.map((item) => [xScale(item.x), yScale(item.y)])
+    data.map((item) => [xScale(item.lon), yScale(item.lat)])
   );
 
   const maxItemPerBin = Math.max(...hexbinData.map((hex) => hex.length));
@@ -38,7 +36,7 @@ export const Hexbin = ({ width, height, data }: HexbinProps) => {
   const colorScale = d3
     .scaleSqrt<string>()
     .domain([0, maxItemPerBin])
-    .range(["black", "#cb1dd1"]);
+    .range(['#f1d5f7', '#cb1dd1']);
 
   const opacityScale = d3
     .scaleLinear<number>()
@@ -51,9 +49,9 @@ export const Hexbin = ({ width, height, data }: HexbinProps) => {
       <path
         key={i}
         d={hexbinGenerator.hexagon()}
-        transform={"translate(" + d.x + "," + d.y + ")"}
+        transform={'translate(' + d.x + ',' + d.y + ')'}
         opacity={1}
-        stroke={"white"}
+        stroke={'white'}
         fill={colorScale(d.length)}
         // fillOpacity={opacityScale(d.length)}
         strokeOpacity={opacityScale(d.length)}
@@ -65,25 +63,11 @@ export const Hexbin = ({ width, height, data }: HexbinProps) => {
   return (
     <div>
       <svg width={width} height={height}>
-        {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
-          {/* Y axis */}
-          <AxisLeft yScale={yScale} pixelsPerTick={100} width={boundsWidth} />
-
-          {/* X axis, use an additional translation to appear at the bottom */}
-          <g transform={`translate(0, ${boundsHeight})`}>
-            <AxisBottom
-              xScale={xScale}
-              pixelsPerTick={100}
-              height={boundsHeight}
-            />
-          </g>
-
-          {/* Circles */}
           {allShapes}
         </g>
       </svg>

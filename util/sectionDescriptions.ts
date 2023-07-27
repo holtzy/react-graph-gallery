@@ -446,7 +446,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.com/hexbinmap',
     reactURL: 'https://react-graph-gallery.com/hexbin-map',
     label: 'Hexbin',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'cartogram',
