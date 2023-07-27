@@ -9,14 +9,9 @@ import { ResponsiveExplanationSection } from '../component/ResponsiveExplanation
 import Link from 'next/link';
 import { BackgroundMapBasicDemo } from 'viz/BackgroundMapBasic/BackgroundMapBasicDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
-import { BackgroundMapProjectionDemo } from 'viz/BackgroundMapProjection/BackgroundMapProjectionDemo';
-import { ToDoSection } from 'component/UI/ToDoSection';
-import { BackgroundMapCanvasDemo } from 'viz/BackgroundMapCanvas/BackgroundMapCanvasDemo';
 import { BubbleMapBasicDemo } from 'viz/BubbleMapBasic/BubbleMapBasicDemo';
 import { Accordion } from 'component/UI/Accordion';
 import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
-import { BubblePlotLegendDemo } from 'viz/BubblePlotLegend/BubblePlotLegendDemo';
-import { BubblePlotDatasetTransitionDemo } from 'viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo';
 import { BubbleMapDatasetTransitionDemo } from 'viz/BubbleMapDatasetTransition/BubbleMapDatasetTransitionDemo';
 import GraphGallery from 'component/GraphGallery';
 
