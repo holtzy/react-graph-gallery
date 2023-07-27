@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { HexbinMapChoroplethDemo } from 'viz/HexbinMapChoropleth/HexbinMapChoropleth';
 import { HexbinMapBackgroundDemo } from 'viz/HexbinMapBackground/HexbinMapBackground';
+import { ContinuousColorLegendDemo } from 'viz/ContinuousColorLegend/ContinuousColorLegendDemo';
+import { HexbinMap2dCoordsDemo } from 'viz/HexbinMap2dCoords/HexbinMap2dCoords';
 
 const graphDescription = (
   <>
@@ -50,13 +52,12 @@ export default function Home() {
         description={graphDescription}
         chartType="hexbin"
       />
-
       {/*
       //
       // Hexbin map from geoJson
       //
       */}
-      <h2 id="hexbin map">Hexbin map from a geoJson file</h2>
+      <h2 id="hexbin from geoJson">Hexbin map from a geoJson file</h2>
       <p>
         Drawing a map using react and d3.js usually relies on a{' '}
         <code>geoJson</code> file. This file format provides information for
@@ -98,7 +99,6 @@ export default function Home() {
           'First very hexbin map made with d3.js and React. Check the map section for more code explanation.'
         }
       />
-
       {/*
       //
       // Hexbin choropleth map
@@ -147,20 +147,122 @@ export default function Home() {
           'First very basic map made with d3.js and React. Check the map section for more code explanation.'
         }
       />
-
+      {/*
+      //
+      // Hexbin map from 2d coordinates
+      //
+      */}
+      <h2 id="hexbin from coordinates">
+        Hexbin map from a set of 2d coordinates
+      </h2>
+      <p>
+        This is another type of hexbin map. The result looks similar, but the
+        input dataset is <b>totally different</b>.
+      </p>
+      <p>
+        Consider a dataset storing a lot of events, each having a geographical
+        location. It is possible to split the 2d space in a bunch of hexagons
+        and count how many events happened in each hexagon.
+      </p>
+      <p>
+        This is called a <Link href="/2d-density-plot">2d density chart</Link>{' '}
+        and the react graph gallery has a dedicated section on the topic.
+      </p>
+      <LinkAsButton href={'/2d-density-plot'} isFilled size="sm">
+        {'2d density section'}
+      </LinkAsButton>
+      <p>
+        If the data point <code>x</code> and <code>y</code> values are GPS
+        coordinates, it will look <b>like a map</b>! Here is an example where I
+        retrieved the location of people tweeting about #surf for a few weeks:
+      </p>
+      <ChartOrSandbox
+        VizComponent={HexbinMap2dCoordsDemo}
+        vizName={'HexbinMap2dCoords'}
+        maxWidth={500}
+        height={500}
+        caption={
+          'First very basic map made with d3.js and React. Check the map section for more code explanation.'
+        }
+      />
+      {/*
+      //
+      // Legend
+      //
+      */}
+      <h2 id="legend">Color legend</h2>
+      <p>
+        A hexbin choropleth map uses a <b>color scale</b> to encode a numeric
+        value into a color. As a result, it is very much advised to add a color{' '}
+        <b>legend</b> to explicit how this color scale works.
+      </p>
+      <p>
+        Let's consider a variable that goes from <code>0</code> to{' '}
+        <code>100</code>. We want to encode <code>0</code> in{' '}
+        <b>
+          <span style={{ color: '#69b3a2' }}>blue</span>
+        </b>{' '}
+        and <code>100</code> in{' '}
+        <b>
+          <span style={{ color: 'purple' }}>purple</span>
+        </b>
+        . The color scale is built thanks to the <code>scaleLinear()</code>{' '}
+        function of d3 as described <a href="#scales">above</a>.
+      </p>
+      <ChartOrSandbox
+        VizComponent={ContinuousColorLegendDemo}
+        vizName={'ContinuousColorLegend'}
+        maxWidth={300}
+        height={100}
+        caption={'A color legend built with react, canvas and d3.'}
+      />{' '}
+      <p>
+        The trick here is to create a <code>canvas</code> element of the desired{' '}
+        <code>width</code> and <code>height</code>. Then, loop from left to
+        right and add one rectangle for each pixel with the corresponding color
+        using the same color scale as the one used on the chart. It's important
+        to do it in <code>canvas</code>: you don't want to add 300 elements in
+        your DOM if your legend is 300px wide.
+      </p>
+      <p>
+        Once the <code>canvas</code> element is instantiated with a{' '}
+        <a href="https://reactjs.org/docs/hooks-reference.html#useref">ref</a>,
+        you can draw the color scale thanks to a{' '}
+        <a href="https://reactjs.org/docs/hooks-reference.html#useeffect">
+          useEffect
+        </a>{' '}
+        like this:
+      </p>
+      <CodeBlock code={snippetLegend} />
+      <p>
+        Then you probably want to add some <b>ticks</b> on top of the color
+        graduation to make it insightful.
+      </p>
+      <p>
+        {' '}
+        Fortunately, the d3 <code>linearScale</code> comes with a handy{' '}
+        <code>tick()</code> function. Basically, calling{' '}
+        <code>xScale.ticks(4)</code> will create an array with approximately 4
+        items, each providing everything you need to draw a{' '}
+        <b>smartly located tick</b>.
+      </p>
+      <p>
+        Color Legend is a big topic. There is much more to say about it and I'll
+        post a complete blog post on the topic soon.{' '}
+        <Link href="/subscribe">Subscribe</Link> to the gallery if interested!
+      </p>
       {/*
       //
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="bubbleMap" />
-
+      <ResponsiveExplanationSection chartId="hexbin" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="bubbleMap" />
+      <DatavizInspirationParallaxLink chartId="hexbin" />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="map" />
       <div className="mt-20" />
