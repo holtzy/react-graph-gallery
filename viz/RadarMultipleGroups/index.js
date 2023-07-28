@@ -6,8 +6,8 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
   <Radar
     data={data}
-    width={width}
-    height={height}
+    width={500}
+    height={500}
     axisConfig={[
       { name: 'speed', max: 10 },
       { name: 'acceleration', max: 10 },
