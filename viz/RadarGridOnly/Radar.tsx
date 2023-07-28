@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { Data } from './data';
 import { AxisConfig, INNER_RADIUS, RadarGrid } from './RadarGrid';
 
-const MARGIN = 30;
+const MARGIN = 40;
 
 type YScale = d3.ScaleRadial<number, number, never>;
 
@@ -36,22 +36,6 @@ export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
       .range([INNER_RADIUS, outerRadius]);
   });
 
-  // Compute the main radar shapes, 1 per group
-  const lineGenerator = d3.lineRadial();
-
-  const allCoordinates = axisConfig.map((axis) => {
-    const yScale = yScales[axis.name];
-    const angle = xScale(axis.name) ?? 0; // I don't understand the type of scalePoint. IMO x cannot be undefined since I'm passing it something of type Variable.
-    const radius = yScale(data[axis.name]);
-    const coordinate: [number, number] = [angle, radius];
-    return coordinate;
-  });
-
-  // To close the path of each group, the path must finish where it started
-  // so add the last data point at the end of the array
-  allCoordinates.push(allCoordinates[0]);
-  const linePath = lineGenerator(allCoordinates);
-
   return (
     <svg width={width} height={height}>
       <g transform={'translate(' + width / 2 + ',' + height / 2 + ')'}>
@@ -59,13 +43,6 @@ export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
           outerRadius={outerRadius}
           xScale={xScale}
           axisConfig={axisConfig}
-        />
-        <path
-          d={linePath}
-          stroke={'#cb1dd1'}
-          strokeWidth={3}
-          fill={'#cb1dd1'}
-          fillOpacity={0.1}
         />
       </g>
     </svg>

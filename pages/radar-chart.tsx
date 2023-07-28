@@ -1,31 +1,32 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import Link from "next/link";
-import { ParallelCoordinateBasicDemo } from "viz/ParallelCoordinateBasic/ParallelCoordinateDemo";
-import { ParallelCoordinateAxesOnlyDemo } from "viz/ParallelCoordinateAxesOnly/ParallelCoordinateAxesOnlyDemo";
-import { RadarBasicDemo } from "viz/RadarBasic/RadarBasicDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
+import Link from 'next/link';
+import { RadarBasicDemo } from 'viz/RadarBasic/RadarBasicDemo';
+import { RadarGridOnlyDemo } from 'viz/RadarGridOnly/RadarGridOnlyDemo';
+import { RadarMultipleGroupsDemo } from 'viz/RadarMultipleGroups/RadarMultipleGroupsDemo';
+import { ToDoSection } from 'component/UI/ToDoSection';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
+      A{' '}
       <a href="https://www.data-to-viz.com/caveat/spider.html">
         radar or spider or web chart
-      </a>{" "}
+      </a>{' '}
       is a two-dimensional chart type designed to plot one or more series of
-      values over <b>multiple quantitative variables</b>. Each variable has its{" "}
+      values over <b>multiple quantitative variables</b>. Each variable has its{' '}
       <b>own axis</b>, all axes are joined in the <b>center</b> of the figure.
     </p>
     <p>
       This page is a step-by-step guide on how to build your own spider chart
       for the web, using <a href="https://reactjs.org/">React</a> (for
-      rendering) and <a href="https://d3-graph-gallery.com/histogram">D3.js</a>{" "}
+      rendering) and <a href="https://d3-graph-gallery.com/histogram">D3.js</a>{' '}
       (to compute the axis, and shape coordinates).
     </p>
     <p>
@@ -45,7 +46,7 @@ export default function Home() {
       seoDescription="A step-by-step guide on how to build your very own spider chart react component from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title={"Radar plot"}
+        title={'Radar plot'}
         description={graphDescription}
         chartType="radar"
       />
@@ -57,20 +58,20 @@ export default function Home() {
       <h2 id="data">The Data</h2>
       <p>
         The dataset provides several <b>numeric</b> values for a set of data
-        points. It can also add some <b>categorical</b> variables that can be
-        added to customize the marker colors.
+        items.
       </p>
       <p>
         The suggested data structure is an array of <code>object</code>, where
-        each object is a data point. It can have as many numeric properties as
-        needed.
+        each object is a data item. It can have as many numeric properties as
+        needed. It also has a <code>name</code> property that identifies the
+        data item.
       </p>
       <br />
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
       <p>
-        Note: this is the same data format as for a{" "}
-        <Link href="/correlogram">correlogram</Link> or for a{" "}
+        Note: this is the same data format as for a{' '}
+        <Link href="/correlogram">correlogram</Link> or for a{' '}
         <Link href="parallel-plot">parralel chart</Link>.
       </p>
       {/*
@@ -82,26 +83,26 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Radar</code> component that will be
         stored in a <code>Radar.tsx</code> file. This component requires 4 props
-        to render: a <code>width</code>, a <code>height</code>, some{" "}
+        to render: a <code>width</code>, a <code>height</code>, some{' '}
         <code>data</code> and an array providing the name of the variables to
         display.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the spider
         chart.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our <code>Radar</code>{" "}
+        To put it in a nutshell, that's the skeleton of our <code>Radar</code>{' '}
         component:
       </p>
       <CodeBlock code={snippetSkeleton} />
       <p>
         It's fundamental to understand that with this code organization, d3.js
-        will be used to prepare the SVG <code>circle</code>, but it's React that
+        will be used to prepare the SVG <code>path</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -110,77 +111,116 @@ export default function Home() {
       // Scales
       //
       */}
-      <h2 id="Scales">Scales and Axes</h2>
+      <h2 id="scales">Scales</h2>
       <p>
-        Building a parallel coordinate charts requires several <b>scales</b> and{" "}
-        <b>axes</b>.
+        Building a radar chart requires several <b>scales</b> and <b>axes</b>.
+        Understanding how those scales work and how to draw the background grid
+        using <b>polar coordinates</b> is probably the trickiest part or the
+        spider chart creation.
       </p>
       <p>
-        D3.js comes with a handful set of{" "}
-        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
-        <code>scalePoint</code> and <code>scaleLinear</code> are the ones we are
-        goint to use here.
+        D3.js comes with a handful set of{' '}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{' '}
+        <code>scaleBand</code> and <code>scaleRadial</code> are the ones we are
+        going to use here.
       </p>
 
       <h3>&rarr; X Scale</h3>
       <p>
-        We need only 1 X scale. This scale is gonna provide a position in pixels
-        for each variable name of the dataset. Remember that a parallel
-        coordinate chart displays several vertical lines, one per variable. The
-        X scale is displayed <b>horizontally</b>. It covers the{" "}
-        <code>width</code> of the <code>svg</code> container, and its domain
-        goes from the <code>min</code> to the <code>max</code> of the dataset.
+        We need only 1 X scale. This scale is gonna allocate an <b>angle</b> for
+        each variable name of the dataset. The first variable will be directed
+        to the top of the figure, the second a few more radians clock-wise and
+        so on.
       </p>
+      <p>This is how the scale is defined:</p>
       <CodeBlock code={snippetXScale} />
-      <h3>&rarr; Y Scale</h3>
+      <h3>&rarr; Y Scales</h3>
       <p>
-        The Y scale is displayed <b>vertically</b>. It shows how many items are
-        available in each bin. To compute it you need to find the bucket with
-        the highest number of items. Something like:
+        Several Y scales are required, one per variable in the dataset. The
+        corresponding axes will be drawn from the center of the figure to the
+        outer part, with an angle determined by the <code>xScale</code>.
+      </p>
+      <p>
+        The y scales are computed using the <code>scaleRadial()</code> function
+        as follow. They are all stored in a <code>yScales</code> object.
       </p>
       <CodeBlock code={snippetYScale} />
-      <ChartOrSandbox
-        VizComponent={ParallelCoordinateAxesOnlyDemo}
-        vizName={"ParallelCoordinateAxesOnly"}
-        maxWidth={800}
-        height={800}
-        caption={
-          "Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react."
-        }
-      />
 
       {/*
       //
-      // Lines
+      // Grid
       //
       */}
-      <h2 id="bars">Drawing the lines</h2>
+      <h2 id="grid">Radar chart background grid</h2>
+      <p>
+        Once those scales are available, we need to draw the{' '}
+        <b>background grid</b> of the spider chart.
+      </p>
+      <p>
+        A bunch of options exist for this. Here I suggest to loop through the{' '}
+        <code>axisConfig</code> to draw the axes, and add some concentric
+        circles to create a <b>grid</b>.
+      </p>
+      <p>
+        Since the code is a bit long to create this grid, I strongly advise to
+        place it in a separate component (<code>RadarGrid</code> here).
+      </p>
+      <ChartOrSandbox
+        VizComponent={RadarGridOnlyDemo}
+        vizName={'RadarGridOnly'}
+        maxWidth={800}
+        height={400}
+        caption={
+          'Background grid of a spider chart built with react and d3.js. 6 Variables are represented using 6 axes with polar coordinates'
+        }
+      />
+      <p>
+        Note that placing the labels requires to translate some <b>polar</b>{' '}
+        coordinates to <b>cartesian</b> coordinates. This can be done using the
+        following function:
+      </p>
+      <CodeBlock code={snippetPolarCartesian} />
+
+      {/*
+      //
+      // 1 group
+      //
+      */}
+      <h2 id="1 group">Radar chart with 1 group</h2>
       <p>Finally! ✨</p>
       <p>
-        We can now <code>map</code> through the bucket object and draw a{" "}
-        <b>rectangle</b> per bucket thanks to the scales computed above.
+        We can now <code>map</code> through the data array and draw a{' '}
+        <b>path</b> per item thanks to the scales computed above.
       </p>
-      <p>The code looks like this:</p>
-      <CodeBlock code={snippetRects} />
       <p>
-        Remember that the <code>x</code> and <code>y</code> attributes of the
-        svg <code>rect</code> element provide the x and y position of the top
-        left corner of the rectangle (see{" "}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect">
-          doc
-        </a>
-        ). This is why the rectangle <code>height</code> is computed by
-        subtracting <code>yScale(bucket.length)</code> from the total{" "}
-        <code>height</code>.
+        What's tricky here is that we are dealing with <b>polar coordinates</b>.
+        We have a set of points that are defined by an <b>angle</b> (x scale)
+        and by a distance to the center of the figure (y scale).
       </p>
-      <br />
+      <p>
+        Fortunately, the <code>lineRadial()</code> function of d3 is here to
+        help. We can define a radial line generator using the following
+        statement:
+      </p>
+      <CodeBlock code={snippetRadialLine} />
+      <p>
+        It works pretty much the same as the classic{' '}
+        <Link href="line-chart">line()</Link> function of d3, but expects an
+        angle and a distance instead of a <code>x</code> and a <code>y</code>{' '}
+        position.
+      </p>
+      <CodeBlock code={snippetRadialLineUsage} />
+      <p>
+        Note that in order to close the shape, we need to add the first data
+        point again after reaching the last data point, to close the loop.
+      </p>
       <ChartOrSandbox
         VizComponent={RadarBasicDemo}
-        vizName={"RadarBasic"}
+        vizName={'RadarBasic'}
         maxWidth={600}
         height={400}
         caption={
-          "Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react."
+          'A first basic radar chart with only 1 group represented. Made with React and d3.js'
         }
       />
 
@@ -189,13 +229,40 @@ export default function Home() {
       // Responsiveness
       //
       */}
-      <ResponsiveExplanationSection chartId="parallel" />
+      <ResponsiveExplanationSection chartId="radar" />
       {/*
       //
       // Inspiration
       //
       */}
-      <DatavizInspirationParallaxLink chartId="parallel" />
+      <DatavizInspirationParallaxLink chartId="radar" />
+
+      {/*
+      //
+      // Several groups
+      //
+      */}
+      <h2 id="several groups">Radar chart with several groups</h2>
+      <p>
+        The process to get a spider chart with <b>several groups</b> is very
+        similar to the previous example.
+      </p>
+      <p>
+        We just need to create a <b>color scale</b> and add a shape for each
+        item of the dataset through a loop. Do not try to add too many groups on
+        the same figure, it make it totally{' '}
+        <a href="https://www.data-to-viz.com/caveat/spider.html">unreadable</a>.
+      </p>
+      <ChartOrSandbox
+        VizComponent={RadarMultipleGroupsDemo}
+        vizName={'RadarMultipleGroups'}
+        maxWidth={600}
+        height={400}
+        caption={
+          'A radar chart with several groups displayed on the same figure. Made with React and d3.js'
+        }
+      />
+      <ToDoSection text="spider chart with small multiple to make it more readable" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
@@ -206,8 +273,8 @@ export default function Home() {
 
 const snippetData = `
 const data = [
-  {var1: 5.1, var2: 3.5, ..., group: 'setosa'},
-  {var1: 4.9, var2: 3.0, ..., group: 'setosa'},
+  {var1: 5.1, var2: 3.5, ..., name: 'Mark'},
+  {var1: 4.9, var2: 3.0, ..., name: 'Rosa'},
   ...
 ]
 `.trim();
@@ -217,7 +284,7 @@ import * as d3 from "d3"; // we will need d3.js
 
 type DataItem = {
   [variable: string]: number;
-} & { group: string };
+} & { name: string };
 
 
 type RadarProps = {
@@ -247,23 +314,27 @@ export const Radar = ({ width, height, data, variables }: RadarProps) => {
 `.trim();
 
 const snippetXScale = `
+const allVariableNames = axisConfig.map((axis) => axis.name);
+
+// The x scale provides an angle for each variable of the dataset
 const xScale = d3
-  .scalePoint<Variable>()
-  .range([0, boundsWidth])
-  .domain(variables)
-  .padding(0);
+  .scaleBand()
+  .domain(allVariableNames)
+  .range([0, 2 * Math.PI]);
 `.trim();
 
 const snippetYScale = `
-const yScale = useMemo(() => {
+// Compute the y scales: 1 scale per variable.
+// Provides the distance to the center.
+let yScales: { [name: string]: YScale } = {};
 
-  const max = Math.max(...buckets.map((bucket) => bucket?.length));
+axisConfig.forEach((axis) => {
+  yScales[axis.name] = d3
+    .scaleRadial()
+    .domain([0, axis.max])
+    .range([INNER_RADIUS, outerRadius]);
+});
 
-  return d3.scaleLinear()
-    .range([height, 0])
-    .domain([0, max]);
-
-  }, [data, height]);
 `.trim();
 
 const snippetRects = `
@@ -280,4 +351,31 @@ const allRects = buckets.map((bucket, i) => {
     />
   );
 });
+`.trim();
+
+const snippetPolarCartesian = `
+export const polarToCartesian = (angle: number, distance: number) => {
+  const x = distance * Math.cos(angle);
+  const y = distance * Math.sin(angle);
+  return { x, y };
+};
+`.trim();
+
+const snippetRadialLine = `
+// Create a radial line generator
+const lineGenerator = d3.lineRadial();
+`.trim();
+
+const snippetRadialLineUsage = `
+// Use the radial line generator
+const path = lineGenerator([
+  [0, 100], // first data point, 0 is its angle, 100 is its distance to the center
+  [Math.PI / 2, 50], // second data point = second variable
+  [Math.PI, 10],
+]);
+
+// Result is a path that you can pass to the d argument of a SVG <path>
+// console.log(path)
+// M0,-100 L50,-3.06 L1.2246,10
+
 `.trim();

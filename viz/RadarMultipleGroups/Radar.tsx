@@ -3,6 +3,14 @@ import { Data } from './data';
 import { AxisConfig, INNER_RADIUS, RadarGrid } from './RadarGrid';
 
 const MARGIN = 30;
+const COLORS = [
+  '#e0ac2b',
+  '#e85252',
+  '#6689c6',
+  '#9a6fb0',
+  '#a53253',
+  '#69b3a2',
+];
 
 type YScale = d3.ScaleRadial<number, number, never>;
 
@@ -36,21 +44,43 @@ export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
       .range([INNER_RADIUS, outerRadius]);
   });
 
+  // Color Scale
+  const allGroups = data.map((d) => d.name);
+  const colorScale = d3.scaleOrdinal<string>().domain(allGroups).range(COLORS);
+
   // Compute the main radar shapes, 1 per group
   const lineGenerator = d3.lineRadial();
 
-  const allCoordinates = axisConfig.map((axis) => {
-    const yScale = yScales[axis.name];
-    const angle = xScale(axis.name) ?? 0; // I don't understand the type of scalePoint. IMO x cannot be undefined since I'm passing it something of type Variable.
-    const radius = yScale(data[axis.name]);
-    const coordinate: [number, number] = [angle, radius];
-    return coordinate;
-  });
+  const allLines = data.map((series, i) => {
+    const allCoordinates = axisConfig.map((axis) => {
+      const yScale = yScales[axis.name];
+      const angle = xScale(axis.name) ?? 0; // I don't understand the type of scalePoint. IMO x cannot be undefined since I'm passing it something of type Variable.
+      const radius = yScale(series[axis.name]);
+      const coordinate: [number, number] = [angle, radius];
+      return coordinate;
+    });
 
-  // To close the path of each group, the path must finish where it started
-  // so add the last data point at the end of the array
-  allCoordinates.push(allCoordinates[0]);
-  const linePath = lineGenerator(allCoordinates);
+    // To close the path of each group, the path must finish where it started
+    // so add the last data point at the end of the array
+    allCoordinates.push(allCoordinates[0]);
+
+    const d = lineGenerator(allCoordinates);
+
+    if (!d) {
+      return;
+    }
+
+    return (
+      <path
+        key={i}
+        d={d}
+        stroke={colorScale(series.name)}
+        strokeWidth={3}
+        fill={colorScale(series.name)}
+        fillOpacity={0.1}
+      />
+    );
+  });
 
   return (
     <svg width={width} height={height}>
@@ -60,13 +90,7 @@ export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
           xScale={xScale}
           axisConfig={axisConfig}
         />
-        <path
-          d={linePath}
-          stroke={'#cb1dd1'}
-          strokeWidth={3}
-          fill={'#cb1dd1'}
-          fillOpacity={0.1}
-        />
+        {allLines}
       </g>
     </svg>
   );

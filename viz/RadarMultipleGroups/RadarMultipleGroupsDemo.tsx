@@ -1,7 +1,7 @@
 import { data } from './data';
 import { Radar } from './Radar';
 
-export const RadarBasicDemo = ({ width = 700, height = 400 }) => (
+export const RadarMultipleGroupsDemo = ({ width = 700, height = 400 }) => (
   <Radar
     data={data}
     width={width}

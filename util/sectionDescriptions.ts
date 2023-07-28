@@ -296,7 +296,7 @@ export const chartTypesInfo: ChartTypesInfo[] = [
     d3URL: 'https://www.d3-graph-gallery.comt/spider',
     reactURL: 'https://react-graph-gallery.com/radar-chart',
     label: 'Spider / Radar',
-    isAvailable: false,
+    isAvailable: true,
   },
   {
     id: 'treemap',
