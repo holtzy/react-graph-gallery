@@ -9,6 +9,7 @@ import DatavizInspirationParallaxLink from '../component/DatavizInspirationParal
 import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { ConnectedScatterplotBasicDemo } from 'viz/ConnectedScatterplotBasic/ConnectedScatterplotBasicDemo';
+import { ToDoSection } from 'component/UI/ToDoSection';
 
 const graphDescription = (
   <>
@@ -144,6 +145,8 @@ export default function Home() {
       // Inspiration
       //
       */}
+      <ToDoSection text="add links to line chart examples" />
+      <ToDoSection text="reproduce the connected scatter from the state of JS survey" />
       <DatavizInspirationParallaxLink chartId="connectedScatter" />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
@@ -187,57 +190,3 @@ export const ConnectedScatterplot = ({ width, height, data }: ConnectedScatterpl
   );
 };
 `.trim();
-
-const snippetLineBuilder = `
-const lineBuilder = d3
-  .line()
-  .x((d) => xScale(d.x))
-  .y((d) => yScale(d.y));
-`.trim();
-
-const snippetLinePath = `
-const linePath = lineBuilder(data);
-
-// console.log(linePath)
-// 'M31.02,26.99 L63.02,59.9 L287.1,194.4 L319,178.2'
-`.trim();
-
-const snippetRendering = `
-<svg width={width} height={height}>
-  <g ...some translation >
-    <path
-      d={linePath}
-      stroke="#9a6fb0"
-      fill="none"
-      strokeWidth={2}
-    />
-  </g>
-</svg>
-`.trim();
-
-const snippetLine = `
-type LineItemProps = {
-  path: string;
-  color: string;
-};
-
-const LineItem = ({ path, color }: LineItemProps) => {
-  const springProps = useSpring({
-    to: {
-      path,
-      color,
-    },
-    config: {
-      friction: 100,
-    },
-  });
-
-  return (
-    <animated.path
-      d={springProps.path}
-      fill={"none"}
-      stroke={color}
-      strokeWidth={2}
-    />
-  );
-};`.trim();
