@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React from "react";
-import SocialMediaButtons from "./SocialMediaButtons";
+import Link from 'next/link';
+import React from 'react';
+import SocialMediaButtons from './SocialMediaButtons';
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="text-sm font-light flex flex-row justify-start items-center mt-1">
         <span className="hidden sm:inline">
           Copyright © the <span className="gradient">React</span> Graph Gallery
-          2022
+          2023
         </span>
       </div>
 
