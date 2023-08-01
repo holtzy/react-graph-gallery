@@ -40,7 +40,6 @@ export const graphExampleList: GraphExample[] = [
     img: 'scatterplot-tooltip.png',
     alt: 'Scatterplot with tooltip made with react and d3',
   },
-
   {
     link: '/scatter-plot#hover%20effect',
     title: 'Add a hover effect',
@@ -56,6 +55,89 @@ export const graphExampleList: GraphExample[] = [
     img: 'scatterplot-co2.png',
     alt: 'Real life example of a scatterplot made with react and d3',
   },
+  //
+  // Heatmap
+  //
+  {
+    link: '/heatmap',
+    title: 'Basic heatmap',
+    description: 'Most basic heatmap',
+    img: 'heatmapBasic.png',
+    alt: 'Picture of a simple heatmap made with react and d3.js',
+  },
+  {
+    link: '/heatmap#tooltip',
+    title: 'Heatmap with tooltip',
+    description: 'Learn how to add a tooltip to a heatmap with react',
+    img: 'heatmapTooltip.png',
+    alt: 'Picture of a heatmap with a tooltip that appears on hover',
+  },
+  {
+    link: '/heatmap#legend',
+    title: 'Continuous color scale',
+    description:
+      'How to add a color legend to your chart that uses a continuous color scale',
+    img: 'continuousColorLegend.png',
+    alt: 'Picture of a continuous color scale built with d3.js',
+  },
+  {
+    link: '/heatmap#application',
+    title: 'Vaccination heatmap',
+    description:
+      'Reproduction of a famous vaccination heatmap using d3 and react',
+    img: 'heatmapVaccination.png',
+    alt: 'Picture of a heatmap showing the effect of vaccination, built with react and d3',
+  },
+  //
+  // Correlogram
+  //
+  {
+    link: '/correlogram',
+    title: 'Basic correlogram',
+    description: 'Learn how to build a correlogram with react and d3',
+    img: 'correlogramBasic.png',
+    alt: 'Picture of a correlogram built with react and d3',
+  },
+  //
+  // Bubble plot
+  //
+  {
+    link: '/bubble-plot',
+    title: 'Bubble plot',
+    description: 'Learn how to build a bubble plot with react and d3.js',
+    img: 'bubble-plot-with-legend.png',
+    alt: 'Picture of a simple bubble plot with a legend made with react and d3.js',
+  },
+  {
+    link: '/bubble-plot#transition',
+    title: 'Bubble plot data set transition',
+    description: 'How to smoothly animate the transition between dataset',
+    img: 'bubble-plot-dataset-transition.gif',
+    alt: 'GIF of a bubble plot smoothly transitioning data',
+  },
+  //
+  // 2d density
+  //
+  {
+    link: '/2d-density-plot',
+    title: 'Hexbin chart',
+    description:
+      'A hexbin chart split the figure in hexagons to show a 2d density',
+    img: '2d-density-plot.png',
+    alt: 'Picture of a hexbin chart made with React and d3.js',
+  },
+  //
+  // Connected scatter
+  //
+  {
+    link: '/connected-scatter-plot',
+    title: 'Simple connected scatterplot',
+    description:
+      'A very simple connected scatter plot showing the evolution of 1 numeric variable',
+    img: 'connected-scatterplot-basic.png',
+    alt: 'Picture of a connected scatter plot made with React and d3.js',
+  },
+
   //
   // Boxplot
   //
@@ -81,23 +163,7 @@ export const graphExampleList: GraphExample[] = [
     img: 'boxplotBasic.png',
     alt: 'Picture of a basic boxplot built with react and d3',
   },
-  //
-  // Bubble plot
-  //
-  {
-    link: '/bubble-plot',
-    title: 'Bubble plot',
-    description: 'Learn how to build a bubble plot with react and d3.js',
-    img: 'bubble-plot-with-legend.png',
-    alt: 'Picture of a simple bubble plot with a legend made with react and d3.js',
-  },
-  {
-    link: '/bubble-plot#transition',
-    title: 'Bubble plot data set transition',
-    description: 'How to smoothly animate the transition between dataset',
-    img: 'bubble-plot-dataset-transition.gif',
-    alt: 'GIF of a bubble plot smoothly transitioning data',
-  },
+
   //
   // Histogram
   //
@@ -122,6 +188,22 @@ export const graphExampleList: GraphExample[] = [
       'Create a mirror histogram to compare the distribution of 2 groups in a dataset',
     img: 'histogram-mirror.png',
     alt: 'picture of a mirror histogram made with react and d3.js',
+  },
+  {
+    link: '/example/histogram-small-multiple',
+    title: 'Small multiple',
+    description:
+      'Create one panel per group to show its distribution separately',
+    img: 'histogram-small-multiple.png',
+    alt: 'Picture of a histogram with small multiple built with react and d3.js',
+  },
+  {
+    link: '/example/histogram-with-several-groups',
+    title: 'Multiple groups',
+    description:
+      'A histogram with <b>multiple</b> groups displayed on the same axis.',
+    img: 'histogram-with-several-groups.png',
+    alt: 'Picture of a histogram with multiple groups built with react and d3.js',
   },
   //
   // Violin
@@ -171,49 +253,7 @@ export const graphExampleList: GraphExample[] = [
     img: 'violinBucketSize.png',
     alt: 'Picture of a violin plot with variable bucket size',
   },
-  //
-  // Heatmap
-  //
-  {
-    link: '/heatmap',
-    title: 'Basic heatmap',
-    description: 'Most basic heatmap',
-    img: 'heatmapBasic.png',
-    alt: 'Picture of a simple heatmap made with react and d3.js',
-  },
-  {
-    link: '/heatmap#tooltip',
-    title: 'Heatmap with tooltip',
-    description: 'Learn how to add a tooltip to a heatmap with react',
-    img: 'heatmapTooltip.png',
-    alt: 'Picture of a heatmap with a tooltip that appears on hover',
-  },
-  {
-    link: '/heatmap#legend',
-    title: 'Continuous color scale',
-    description:
-      'How to add a color legend to your chart that uses a continuous color scale',
-    img: 'continuousColorLegend.png',
-    alt: 'Picture of a continuous color scale built with d3.js',
-  },
-  {
-    link: '/heatmap#application',
-    title: 'Vaccination heatmap',
-    description:
-      'Reproduction of a famous vaccination heatmap using d3 and react',
-    img: 'heatmapVaccination.png',
-    alt: 'Picture of a heatmap showing the effect of vaccination, built with react and d3',
-  },
-  //
-  // Correlogram
-  //
-  {
-    link: '/correlogram',
-    title: 'Basic correlogram',
-    description: 'Learn how to build a correlogram with react and d3',
-    img: 'correlogramBasic.png',
-    alt: 'Picture of a correlogram built with react and d3',
-  },
+
   //
   // Barplot
   //
@@ -244,25 +284,6 @@ export const graphExampleList: GraphExample[] = [
     description: 'Represent group and subgroup values by stacking the data',
     img: 'barplot-stacked-vertical.png',
     alt: 'Picture of a vertical stacked barchart made with react and d3',
-  },
-  //
-  // Histogram
-  //
-  {
-    link: '/example/histogram-small-multiple',
-    title: 'Small multiple',
-    description:
-      'Create one panel per group to show its distribution separately',
-    img: 'histogram-small-multiple.png',
-    alt: 'Picture of a histogram with small multiple built with react and d3.js',
-  },
-  {
-    link: '/example/histogram-with-several-groups',
-    title: 'Multiple groups',
-    description:
-      'A histogram with <b>multiple</b> groups displayed on the same axis.',
-    img: 'histogram-with-several-groups.png',
-    alt: 'Picture of a histogram with multiple groups built with react and d3.js',
   },
   //
   // density

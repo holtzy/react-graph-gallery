@@ -1,31 +1,32 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { ScatterplotBasicDemo } from "../viz/ScatterplotBasic/ScatterplotBasicDemo";
-import { ScatterplotClimateCrisisDemo } from "../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo";
-import { AxisBasicDemo } from "../viz/AxisBasic/AxisBasicDemo";
-import { ScatterplotHoverHighlightDemo } from "../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo";
-import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { Accordion } from "../component/UI/Accordion";
-import { ScatterplotTooltipDemo } from "../viz/ScatterplotTooltip/ScatterplotTooltipDemo";
-import Link from "next/link";
-import { SubscribeForm } from "../component/SubscribeForm";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { ScatterplotBasicDemo } from '../viz/ScatterplotBasic/ScatterplotBasicDemo';
+import { ScatterplotClimateCrisisDemo } from '../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
+import { AxisBasicDemo } from '../viz/AxisBasic/AxisBasicDemo';
+import { ScatterplotHoverHighlightDemo } from '../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo';
+import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { Accordion } from '../component/UI/Accordion';
+import { ScatterplotTooltipDemo } from '../viz/ScatterplotTooltip/ScatterplotTooltipDemo';
+import Link from 'next/link';
+import { SubscribeForm } from '../component/SubscribeForm';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/scatter.html">scatterplot</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/scatter.html">scatterplot</a>{' '}
       displays the relationship between 2 numeric variables. This page is a
-      step-by-step guide on how to build your own scatterplot for the web, using{" "}
-      <a href="https://reactjs.org/">React</a> and{" "}
+      step-by-step guide on how to build your own scatterplot for the web, using{' '}
+      <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://www.d3-graph-gallery.com">D3.js</a>.
     </p>
     <p>
-      It starts with very basic concepts like <b>data structure</b>,{" "}
+      It starts with very basic concepts like <b>data structure</b>,{' '}
       <b>scales</b> and svg circle <b>rendering</b>. It then shows how to add
       interactivity to the chart with <b>hover effects</b> and <b>tooltips</b>.
       At the end of the post, you should be able to build you own
@@ -43,7 +44,7 @@ export default function Home() {
       <TitleAndDescription
         title={
           <h1>
-            Scatterplot{" "}
+            Scatterplot{' '}
             <span className="text-gray-600 font-light hidden sm:inline">
               with React and d3.js
             </span>
@@ -60,11 +61,11 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        The dataset used to build a scatterplot is usually an{" "}
+        The dataset used to build a scatterplot is usually an{' '}
         <b>array of objects</b>.
       </p>
       <p>
-        For each object, at least 2 properties are required: <code>x</code> and{" "}
+        For each object, at least 2 properties are required: <code>x</code> and{' '}
         <code>y</code>. The value of <code>x</code> will control the position of
         the datapoint on the horizontal axis. The value of <code>y</code> will
         be linked with the vertical axis.
@@ -72,15 +73,15 @@ export default function Home() {
       <CodeBlock code={snippetData} />
       <p>
         We will see later in this guide that some additional properties can
-        become useful. For instance, a third numeric value could be added as a{" "}
+        become useful. For instance, a third numeric value could be added as a{' '}
         <code>size</code> property, and a categorical property could be used as
         a <code>group</code> to control the <b>color</b>.
       </p>
       <p>
         This tutorial starts by using dummy data for the most simple examples.
-        It then uses the famous{" "}
-        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
-        dataset that provides the <b>life expectancy</b> and the{" "}
+        It then uses the famous{' '}
+        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{' '}
+        dataset that provides the <b>life expectancy</b> and the{' '}
         <b>population size</b> for every country.
       </p>
 
@@ -97,13 +98,13 @@ export default function Home() {
         and some <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to rendering a{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to rendering a{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         scatterplot.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>Scatterplot</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -111,7 +112,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the svg <code>circle</code>, but it's react that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -128,14 +129,14 @@ export default function Home() {
         This is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
       <p>
-        D3.js comes with a handful set of{" "}
-        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
+        D3.js comes with a handful set of{' '}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{' '}
         <code>scaleLinear</code> is what we need for the X and Y axis. Here is a
         quick overview on how to build and use a scale:
       </p>
       <CodeBlock code={snippet5} />
       <p>
-        To dig more into d3 scales, visit this{" "}
+        To dig more into d3 scales, visit this{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
           dedicated page
         </a>
@@ -144,30 +145,30 @@ export default function Home() {
 
       <h3>&rarr; Axes</h3>
       <p>
-        Axes are rather complicated elements. They are composed of the main{" "}
+        Axes are rather complicated elements. They are composed of the main{' '}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
         are often decorated with a <b>title</b>.
       </p>
       <p>
-        D3.js offers some powerful{" "}
+        D3.js offers some powerful{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
           functions
-        </a>{" "}
+        </a>{' '}
         to draw those axes for you, based on the scales discussed above. For
-        instance, one could call <code>axisBottom()</code> in a{" "}
+        instance, one could call <code>axisBottom()</code> in a{' '}
         <code>useEffect</code> hook to imperatively draw the X axis into a
         specific DOM element. But this comes with some caveats and is thus not
         the option used in this gallery.
       </p>
       <p>
         Instead, I suggest creating the axes from scratch and storing them in 2
-        react components called <code>AxisBottom</code> and{" "}
+        react components called <code>AxisBottom</code> and{' '}
         <code>AxisLeft</code>. Those components expect a d3 scale as input and
         do all the svg drawing for us.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
-        vizName={"AxisBasic"}
+        vizName={'AxisBasic'}
         maxWidth={500}
         height={300}
         caption={
@@ -215,7 +216,7 @@ export default function Home() {
         <b>That's it!</b> 🎉
       </p>
       <p>
-        Calling the <code>allShapes</code> object in the <code>return()</code>{" "}
+        Calling the <code>allShapes</code> object in the <code>return()</code>{' '}
         statement of the component will add as many circles as needed.
       </p>
       <p>
@@ -225,13 +226,13 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotBasicDemo}
-        vizName={"ScatterplotBasic"}
+        vizName={'ScatterplotBasic'}
         maxWidth={500}
         height={500}
         caption="Add a svg circle for each item of the dataset to get a first scatterplot"
       />
       <p>
-        That's not the best scatterplot in the world yet, but it's definitely a{" "}
+        That's not the best scatterplot in the world yet, but it's definitely a{' '}
         <b>first working version</b>.
       </p>
 
@@ -258,8 +259,8 @@ export default function Home() {
         you want to it, making the chart much more insightful.
       </p>
       <p>
-        In the following chart based on the{" "}
-        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{" "}
+        In the following chart based on the{' '}
+        <a href="https://www.data-to-viz.com/story/ThreeNum.html">gapminder</a>{' '}
         dataset, don't you want to know what are the countries with the highest
         life expectancy or GDP per capita? Labeling all circles would result in
         a very <b>cluttered</b> figure, so let's learn how to add tooltips
@@ -267,20 +268,20 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotTooltipDemo}
-        vizName={"ScatterplotTooltip"}
+        vizName={'ScatterplotTooltip'}
         maxWidth={500}
         height={500}
         caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
       />
       <p>
-        There are <b>many different approaches</b> to building tooltips, and I'm{" "}
+        There are <b>many different approaches</b> to building tooltips, and I'm{' '}
         <Link href="/subscribe">preparing a whole dedicated blog post</Link> on
         the topic.
       </p>
       <p>
-        Here I suggest starting with an internal state using the{" "}
+        Here I suggest starting with an internal state using the{' '}
         <code>useState</code> hook. <code>interactionData</code> is an object
-        providing everything you need to draw a tooltip. It usually has 2{" "}
+        providing everything you need to draw a tooltip. It usually has 2{' '}
         <code>xPos</code> and <code>yPos</code> properties that are the position
         of the tooltip. It then has as many props as needed to fill the tooltip.
         (I'm just adding the country name in my example)
@@ -288,7 +289,7 @@ export default function Home() {
       <CodeBlock code={snippetTooltip1} />
       <p>
         <code>setInteractiondata</code> is a function allowing to update this
-        state. We can use it on each circle to update{" "}
+        state. We can use it on each circle to update{' '}
         <code>interactionData</code> each time it is hovered over:
       </p>
       <CodeBlock code={snippetTooltip2} />
@@ -301,7 +302,7 @@ export default function Home() {
       <p>
         To do so, the tooltip is rendered in an <code>absolute</code> positioned
         div that is drawn exactly on top of the chart area, excluding axes. This
-        is how to <code>return</code> statement of our <code>Scatterplot</code>{" "}
+        is how to <code>return</code> statement of our <code>Scatterplot</code>{' '}
         component now looks like:
       </p>
       <CodeBlock code={snippetTooltip3} />
@@ -310,7 +311,7 @@ export default function Home() {
         Check the code below the example above to see an example.
       </p>
       <p className="text-gray-400">
-        This was a rather succint explanation on tooltips. A more{" "}
+        This was a rather succint explanation on tooltips. A more{' '}
         <Link href="/subscribe">in-depth explanation</Link> will be published
         soon.
       </p>
@@ -342,7 +343,7 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotHoverHighlightDemo}
-        vizName={"ScatterplotHoverHighlight"}
+        vizName={'ScatterplotHoverHighlight'}
         maxWidth={500}
         height={500}
         caption="Scatterplot with hover effect: hover over a circle to highlight it and its group"
@@ -354,8 +355,8 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetHover1} />
       <p>
-        Now, this state needs to be updated when a user hovers over the circle.{" "}
-        <code>setHoveredGroup</code> can be passed as a callback to the{" "}
+        Now, this state needs to be updated when a user hovers over the circle.{' '}
+        <code>setHoveredGroup</code> can be passed as a callback to the{' '}
         <code>onMouseOver</code> attribute of each circle.
       </p>
       <p>
@@ -368,19 +369,19 @@ export default function Home() {
       <CodeBlock code={snippetHover2} />
       <p>
         Last but not least, some css needs to be added to customize the circle
-        depending on if they are in default, <code>.dimmed</code> or{" "}
+        depending on if they are in default, <code>.dimmed</code> or{' '}
         <code>:hover</code> mode.
       </p>
       <p>
         Note that the <code>filter: saturate(0)</code> is a good way to dim
-        unwanted circles. Also, playing with <code>transition-delay</code> and{" "}
+        unwanted circles. Also, playing with <code>transition-delay</code> and{' '}
         <code>transition-duration</code> adds to animate the transition is a
         nice touch you should consider. Check the code below the example to see
         the full css.
       </p>
       <p className="text-gray-400 mt-8">
         The hover effect is another big topic in data visualization. A dedicated
-        post will be published soon on the topic, feel free to{" "}
+        post will be published soon on the topic, feel free to{' '}
         <Link href="/subscribe">subscribe</Link> to know when.
       </p>
 
@@ -399,7 +400,7 @@ export default function Home() {
       <h2 id="real life">Real-life application</h2>
       <p>Let's apply the concepts learned above to a real-life example.</p>
       <p>
-        I like this scatterplot originally published on the data wrapper{" "}
+        I like this scatterplot originally published on the data wrapper{' '}
         <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
           blog
         </a>
@@ -426,18 +427,41 @@ export default function Home() {
       </ul>
       <ChartOrSandbox
         VizComponent={ScatterplotClimateCrisisDemo}
-        vizName={"ScatterplotClimateCrisis"}
+        vizName={'ScatterplotClimateCrisis'}
         maxWidth={700}
         height={900}
         caption={
           <span>
-            Reproduction of a chart originally published by{" "}
+            Reproduction of a chart originally published by{' '}
             <a href="https://blog.datawrapper.de/climate-risk-readiness-responsibility/">
               Data Wrapper
-            </a>{" "}
+            </a>{' '}
             using react and d3.js.
           </span>
         }
+      />
+
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        The scatterplot examples described above are just the <b>beginning</b>{' '}
+        of your journey. There is an infinite world of customization that is
+        open to you. You can also explore{' '}
+        <Link href="/">related chart types</Link> that can be a good fit for
+        your data:
+      </p>
+      <p>Click on the overview below to get details and code.</p>
+      <br />
+      <GraphGallery
+        images={[
+          'bubble-plot-with-legend.png',
+          '2d-density-plot.png',
+          'correlogramBasic.png',
+        ]}
       />
 
       {/*
@@ -450,24 +474,24 @@ export default function Home() {
       <ul>
         <li>
           <i>Building axes in d3.js</i> and the <i>scatterplot section</i> from
-          the{" "}
+          the{' '}
           <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
             d3 graph gallery
           </a>
         </li>
         <li>
           <a href="https://github.com/d3/d3-scale">Official doc</a> about
-          scales.{" "}
+          scales.{' '}
         </li>
         <li>
-          <i>Using React with D3.js</i> on Amelia Wattenberger's{" "}
+          <i>Using React with D3.js</i> on Amelia Wattenberger's{' '}
           <a href="https://wattenberger.com/blog/react-and-d3">blog</a>.
         </li>
         <li>
-          This{" "}
+          This{' '}
           <a href="https://stackoverflow.com/questions/49058890/how-to-get-a-react-components-size-height-width-before-render">
             stack overflow discussion
-          </a>{" "}
+          </a>{' '}
           about react component's size.
         </li>
       </ul>
