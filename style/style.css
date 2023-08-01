@@ -61,8 +61,6 @@ body {
   font-size: 19px;
   line-height: 30px;
   color: #333;
-  /* Trying to load fonts better to solve CLS issue */
-  font-display: optional;
 }
 
 p {
