@@ -115,6 +115,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'histogram-dataset-transition.gif',
     alt: 'GIF of a histogram with animated data transition',
   },
+  {
+    link: '/example/histogram-mirror',
+    title: 'Mirror histogram',
+    description:
+      'Create a mirror histogram to compare the distribution of 2 groups in a dataset',
+    img: 'histogram-mirror.png',
+    alt: 'picture of a mirror histogram made with react and d3.js',
+  },
   //
   // Violin
   //

@@ -1,27 +1,28 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
-import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { Caption } from "../component/UI/Caption";
-import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
-import { GraphLinkImage } from "../component/UI/GraphLinkImage";
-import { ImageGrid } from "../component/UI/ImageGrid";
-import Link from "next/link";
-import { Accordion } from "component/UI/Accordion";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { HistogramWithAxisDemo } from '../viz/HistogramWithAxis/HistogramWithAxisDemo';
+import { HistogramBasicDemo } from '../viz/HistogramBasic/HistogramBasicDemo';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
+import { Caption } from '../component/UI/Caption';
+import { HistogramDatasetTransitionDemo } from '../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo';
+import { GraphLinkImage } from '../component/UI/GraphLinkImage';
+import { ImageGrid } from '../component/UI/ImageGrid';
+import Link from 'next/link';
+import { Accordion } from 'component/UI/Accordion';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/histogram.html">histogram</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/histogram.html">histogram</a>{' '}
       is a chart type that shows the distribution of a numeric variable. This
       page is a step-by-step guide on how to build your own histogram for the
-      web, using <a href="https://reactjs.org/">React</a> and{" "}
+      web, using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/histogram">D3.js</a>.
     </p>
     <p>
@@ -34,7 +35,6 @@ const graphDescription = (
 );
 
 export default function Home() {
-
   return (
     <Layout
       title="How to build a histogram with React and D3."
@@ -43,7 +43,7 @@ export default function Home() {
       <TitleAndDescription
         title={
           <h1>
-            Histogram{" "}
+            Histogram{' '}
             <span className="text-gray-600 font-light hidden sm:inline">
               with React and d3.js
             </span>
@@ -62,7 +62,7 @@ export default function Home() {
         Building a histogram only requires a set of <b>numeric values</b>.
       </p>
       <p>
-        As a result, the dataset is pretty simple: an <code>array</code> of{" "}
+        As a result, the dataset is pretty simple: an <code>array</code> of{' '}
         numbers.
       </p>
       <br />
@@ -78,17 +78,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Histogram</code> component that will
         be stored in a <code>Histogram.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        3 props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         histogram.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>Histogram</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -96,7 +96,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>circle</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -108,7 +108,7 @@ export default function Home() {
       <h2 id="binning">Computing the histogram buckets</h2>
       <h3>&rarr; What is a bin / bucket?</h3>
       <p>
-        To build a histogram we have to split the data values into a set of{" "}
+        To build a histogram we have to split the data values into a set of{' '}
         <b>buckets</b>. For each bucket, we will count the number of items in
         it.
       </p>
@@ -152,7 +152,7 @@ export default function Home() {
         </li>
         <li>
           <code>thresholds</code> is an array with the limits of each bucket.
-          Note that it can be easily computed from a usual{" "}
+          Note that it can be easily computed from a usual{' '}
           <code>scaleLinear</code>.
         </li>
       </ul>
@@ -163,11 +163,11 @@ export default function Home() {
       <CodeBlock code={snippet3} />
       <p>
         The result is an array of arrays. Each item represents a bucket. Each
-        bucket is composed of all the values assigned to this bucket. Its{" "}
+        bucket is composed of all the values assigned to this bucket. Its{' '}
         <code>length</code> is the bucket size, i.e. the future bar height.
       </p>
       <p>
-        Each bin has two additional attributes: <code>x0</code> and{" "}
+        Each bin has two additional attributes: <code>x0</code> and{' '}
         <code>x1</code> being the lower (inclusive) and upper (exclusive) bounds
         of the bin.
       </p>
@@ -189,13 +189,13 @@ export default function Home() {
         . This is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
       <p>
-        D3.js comes with a handful set of{" "}
-        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
+        D3.js comes with a handful set of{' '}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{' '}
         <code>scaleLinear</code> is what we need for the X and Y axis.
       </p>
       <h3>&rarr; X Scale</h3>
       <p>
-        The X scale is displayed <b>horizontally</b>. It covers the{" "}
+        The X scale is displayed <b>horizontally</b>. It covers the{' '}
         <code>width</code> of the <code>svg</code> container, and its domain
         goes from the <code>min</code> to the <code>max</code> of the dataset.
       </p>
@@ -215,7 +215,7 @@ export default function Home() {
       <h2 id="bars">Drawing the bars</h2>
       <p>Finally! ✨</p>
       <p>
-        We can now <code>map</code> through the bucket object and draw a{" "}
+        We can now <code>map</code> through the bucket object and draw a{' '}
         <b>rectangle</b> per bucket thanks to the scales computed above.
       </p>
       <p>The code looks like this:</p>
@@ -223,22 +223,22 @@ export default function Home() {
       <p>
         Remember that the <code>x</code> and <code>y</code> attributes of the
         svg <code>rect</code> element provide the x and y position of the top
-        left corner of the rectangle (see{" "}
+        left corner of the rectangle (see{' '}
         <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect">
           doc
         </a>
         ). This is why the rectangle <code>height</code> is computed by
-        subtracting <code>yScale(bucket.length)</code> from the total{" "}
+        subtracting <code>yScale(bucket.length)</code> from the total{' '}
         <code>height</code>.
       </p>
       <br />
       <ChartOrSandbox
         VizComponent={HistogramBasicDemo}
-        vizName={"HistogramBasic"}
+        vizName={'HistogramBasic'}
         maxWidth={600}
         height={300}
         caption={
-          "Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react."
+          'Values of the dataset as distributed into bins. Bins are represented as rectangles. Data wrangling is made with d3.js, rendering with react.'
         }
       />
       {/*
@@ -254,7 +254,7 @@ export default function Home() {
       </p>
       <p>
         There are 2 main strategies to add axes to a react chart made with
-        d3.js. This process is extensively described in the{" "}
+        d3.js. This process is extensively described in the{' '}
         <a href="https://www.react-graph-gallery.com/build-axis-with-react">
           axis section
         </a>
@@ -268,11 +268,11 @@ export default function Home() {
       <br />
       <ChartOrSandbox
         VizComponent={HistogramWithAxisDemo}
-        vizName={"HistogramWithAxis"}
+        vizName={'HistogramWithAxis'}
         maxWidth={900}
         height={300}
         caption={
-          "Adding a X axis with d3 makes the chart much more insightful."
+          'Adding a X axis with d3 makes the chart much more insightful.'
         }
       />
       {/*
@@ -296,39 +296,22 @@ export default function Home() {
       <p>
         Once you've understood how to build a basic histogram with d3 and react,
         it opens an infinite world of <b>customization</b>. Here are a few
-        examples showing how to add{" "}
-        <Link href="example/histogram-with-several-groups">several groups</Link>{" "}
-        on the same axis or how to use{" "}
+        examples showing how to add{' '}
+        <Link href="example/histogram-with-several-groups">several groups</Link>{' '}
+        on the same axis or how to use{' '}
         <Link href="example/histogram-small-multiple">small multiple</Link> with
         histograms to compare distributions.
       </p>
       <p>Click on the overview below to get details and code.</p>
       <br />
-      <ImageGrid>
-        <GraphLinkImage
-          link={"example/histogram-with-several-groups"}
-          title={"Multiple groups"}
-          description={
-            <p>
-              A histogram with <b>multiple</b> groups displayed on the same
-              axis.
-            </p>
-          }
-          img={"histogram-with-several-groups.png"}
-          alt="Picture of a histogram with multiple groups built with react and d3.js"
-        />
-        <GraphLinkImage
-          link={"example/histogram-small-multiple"}
-          title={"Small multiple"}
-          description={
-            <p>
-              Create one panel per group to show its distribution separately
-            </p>
-          }
-          img={"histogram-small-multiple.png"}
-          alt="Picture of a histogram with small multiple built with react and d3.js"
-        />
-      </ImageGrid>
+      <GraphGallery
+        images={[
+          'histogram-with-several-groups.png',
+          'histogram-small-multiple.png',
+          'histogram-mirror.png',
+        ]}
+      />
+
       {/*
       //
       // Dataset transition
@@ -337,14 +320,14 @@ export default function Home() {
       <h2 id="transition">Dataset transition</h2>
       <p>
         The last step needed for a powerful histogram React component is a
-        proper way to transition between various datasets. When the{" "}
+        proper way to transition between various datasets. When the{' '}
         <code>data</code> prop updates, we need a stunning way to transition to
         the new values.
       </p>
       <p>
         There are many different strategies to approach this problem. I suggest
-        to rely on the <a href="https://react-spring.dev/">react-spring</a>{" "}
-        library that has everything we need to compute{" "}
+        to rely on the <a href="https://react-spring.dev/">react-spring</a>{' '}
+        library that has everything we need to compute{' '}
         <a href="https://www.joshwcomeau.com/animation/a-friendly-introduction-to-spring-physics/">
           spring animations
         </a>
@@ -352,18 +335,18 @@ export default function Home() {
       </p>
       <p>
         Instead of rendering usual <code>rect</code> elements, the library
-        provides a <code>animated.rect</code> element, that is linked to a{" "}
+        provides a <code>animated.rect</code> element, that is linked to a{' '}
         <code>useSpring</code>
         hook.
       </p>
 
       <ChartOrSandbox
         VizComponent={HistogramDatasetTransitionDemo}
-        vizName={"HistogramDatasetTransition"}
+        vizName={'HistogramDatasetTransition'}
         maxWidth={900}
         height={400}
         caption={
-          "Adding a X axis with d3 makes the chart much more insightful."
+          'Adding a X axis with d3 makes the chart much more insightful.'
         }
       />
       <p>
