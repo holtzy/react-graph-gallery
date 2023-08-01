@@ -9,9 +9,10 @@ import type { ChartLogo } from 'util/sectionDescriptions';
 
 type SectionLogoProps = {
   chartLogo: ChartLogo;
+  size?: number;
 };
 
-export default function SectionLogo({ chartLogo }: SectionLogoProps) {
+export default function SectionLogo({ chartLogo, size }: SectionLogoProps) {
   const isGif = chartLogo === 'Anim150' || chartLogo === 'Time150';
   const logoExtension = isGif ? '.gif' : '.png';
 
@@ -22,8 +23,8 @@ export default function SectionLogo({ chartLogo }: SectionLogoProps) {
     <img
       alt={logoDescription}
       src={'/section/' + chartLogo + logoExtension}
-      width="100%"
-      height="100%"
+      width={size ? size + 'px' : '100%'}
+      height={size ? size + 'px' : '100%'}
     />
   );
 }

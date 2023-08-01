@@ -61,6 +61,8 @@ body {
   font-size: 19px;
   line-height: 30px;
   color: #333;
+  /* Trying to load fonts better to solve CLS issue */
+  font-display: optional;
 }
 
 p {
@@ -157,7 +159,6 @@ h3 {
 
 /* ---------- Button ----------------- */
 .btn {
-  font-family: 'Montserrat', sans-serif !important;
   font-weight: 500 !important;
   border-color: var(--react-gallery) !important;
   color: var(--react-gallery) !important;

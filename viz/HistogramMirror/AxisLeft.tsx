@@ -15,7 +15,6 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
   const ticks = useMemo(() => {
     const height = Math.abs(range[0] - range[1]);
     const numberOfTicksTarget = Math.floor(height / pixelsPerTick);
-    console.log({ numberOfTicksTarget });
 
     return yScale.ticks(numberOfTicksTarget).map((value) => ({
       value,

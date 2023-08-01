@@ -29,7 +29,7 @@ export default function Home() {
 
           {/* Title */}
           <h1 className="mt-14">
-            Build <TypingAnimation /> charts for the web
+            Build <span className="gradient">unique</span> React charts
           </h1>
 
           {/* Horizontal Separator */}
@@ -56,7 +56,7 @@ export default function Home() {
               <p className="mt-8">
                 The gallery is organized by chart types following the{' '}
                 <a href="https://www.data-to-viz.com">data-to-viz</a>{' '}
-                classification. &darr;
+                classification.
               </p>
             </>
           </div>

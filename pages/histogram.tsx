@@ -10,8 +10,6 @@ import DatavizInspirationParallaxLink from '../component/DatavizInspirationParal
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import { Caption } from '../component/UI/Caption';
 import { HistogramDatasetTransitionDemo } from '../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo';
-import { GraphLinkImage } from '../component/UI/GraphLinkImage';
-import { ImageGrid } from '../component/UI/ImageGrid';
 import Link from 'next/link';
 import { Accordion } from 'component/UI/Accordion';
 import GraphGallery from 'component/GraphGallery';
@@ -346,7 +344,7 @@ export default function Home() {
         maxWidth={900}
         height={400}
         caption={
-          'Adding a X axis with d3 makes the chart much more insightful.'
+          'A histogram that smoothly transition from 1 dataset to another'
         }
       />
       <p>

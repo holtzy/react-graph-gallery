@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import SectionLogoWithOverlay from "component/SectionLogoWithOverlay";
-import { ChartFamily, chartTypesInfo } from "util/sectionDescriptions";
-import { fullUrlToInternalLink } from "util/utils";
+import SectionLogoWithOverlay from 'component/SectionLogoWithOverlay';
+import { ChartFamily, chartTypesInfo } from 'util/sectionDescriptions';
+import { fullUrlToInternalLink } from 'util/utils';
 
 const TITLES = {
-  distribution: "Distribution",
-  correlation: "Correlation",
-  ranking: "Ranking",
-  partOfAWhole: "Part Of A Whole",
-  evolution: "Evolution",
-  map: "Map",
-  flow: "Flow",
-  general: "General Knowledge",
+  distribution: 'Distribution',
+  correlation: 'Correlation',
+  ranking: 'Ranking',
+  partOfAWhole: 'Part Of A Whole',
+  evolution: 'Evolution',
+  map: 'Map',
+  flow: 'Flow',
+  general: 'General Knowledge',
 };
 
 type ChartFamilySection = {
@@ -44,8 +44,8 @@ export default function ChartFamilySection({
       <p
         className={
           chartFamily +
-          " " +
-          " mt-4 text-md border-b mb-2 border-gray-100 tracking-wider"
+          ' ' +
+          ' mt-4 text-md border-b mb-2 border-gray-100 tracking-wider'
         }
       >
         {TITLES?.[chartFamily]}
