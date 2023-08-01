@@ -54,10 +54,14 @@
 }
 
 /* ---------- Global CSS ----------------- */
+/* App content is wrapped in a main in _app.tsx. This main loads the fonts */
+main {
+  font-family: var(--font-roboto);
+}
+
 body {
   overflow-x: hidden;
   font-weight: 400;
-  font-family: 'Roboto', sans-serif;
   font-size: 19px;
   line-height: 30px;
   color: #333;
@@ -71,10 +75,10 @@ p {
 code {
   padding: 0.2em 0.2em;
   margin-top: -0.2em;
-  font-size: 85%;
+  font-size: 92%;
   background-color: #afb8c133;
   border-radius: 6px;
-  font-family: 'Fira Mono', monospace;
+  font-family: var(--font-fira);
 }
 a {
   color: var(--react-gallery);
@@ -106,7 +110,7 @@ blockquote p {
 h1 {
   font-size: 42px;
   line-height: 54px;
-  font-family: 'Bitter', sans-serif;
+  font-family: var(--font-bitter);
   font-weight: bold;
   letter-spacing: 0.03em;
 }
@@ -114,7 +118,7 @@ h1 {
 h2 {
   font-size: 32px;
   line-height: 44px;
-  font-family: 'Bitter', sans-serif;
+  font-family: var(--font-bitter);
   font-weight: bold;
   letter-spacing: 0.03em;
   width: 100%;
@@ -127,7 +131,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Bitter', sans-serif;
+  font-family: var(--font-bitter);
   font-weight: bold;
   line-height: 34px;
   letter-spacing: 0.03em;

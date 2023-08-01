@@ -3,6 +3,7 @@ import '../style/style.css';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import '../style/prism.css';
+import { bitterFontClass, robotoFontClass } from 'util/fonts';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             gtag('config', 'G-0Q8EEVB6R4');
           `}
       </Script>
-      <Component {...pageProps} />
+      <main className={bitterFontClass + ' ' + robotoFontClass}>
+        <Component {...pageProps} />
+      </main>
     </>
   );
 }

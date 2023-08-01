@@ -29,6 +29,7 @@ export const HeadSeo = ({ title, seoDescription }: HeadSeoProps) => {
         sizes="16x16"
         href="/favicon/favicon-16x16.png"
       />
+
       <meta
         name="keywords"
         content="React, D3, D3.js, data, dataviz, data visualization, DOM, web, dev, chart, graph"
