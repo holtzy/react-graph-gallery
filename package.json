@@ -1,6 +1,6 @@
 {
   "name": "react-graph-gallery",
-  "private": true,
+  "license": "ISC",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
