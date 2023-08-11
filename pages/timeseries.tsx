@@ -206,7 +206,7 @@ export default function Home() {
         If you already understood the content of the{" "}
         <Link href="line-chart">line chart section</Link> of the gallery, you
         just have to use a <code>scaleTime</code> instead of a{" "}
-        <code>scaleLinear</code> ant that's it, you have your first{" "}
+        <code>scaleLinear</code> and that's it, you have your first{" "}
         <b>timeseries</b> visualization. 😋
       </p>
       <LinkAsButton size="sm" href="/line-chart" isFilled>
