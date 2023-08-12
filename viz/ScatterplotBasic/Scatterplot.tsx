@@ -1,6 +1,6 @@
-import * as d3 from "d3";
-import { AxisLeft } from "./AxisLeft";
-import { AxisBottom } from "./AxisBottom";
+import * as d3 from 'd3';
+import { AxisLeft } from './AxisLeft';
+import { AxisBottom } from './AxisBottom';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -40,11 +40,10 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   return (
     <div>
       <svg width={width} height={height}>
-        {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
