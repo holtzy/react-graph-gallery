@@ -7,6 +7,7 @@ import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import Link from 'next/link';
 import { HistogramMirrorDemo } from 'viz/HistogramMirror/HistogramMirrorDemo';
 import { ScatterplotVoronoiTooltipDemo } from 'viz/ScatterplotVoronoiTooltip/ScatterplotVoronoiTooltipDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
 
 const graphDescription = (
   <>
@@ -48,9 +49,14 @@ export default function Home() {
       <h2 id="plot">Plot and code</h2>
       <p>If you are in a hurry, this is what we're trying to achieve here.🙇‍♂️</p>
       <p>
-        The distributions of <b>2 groups</b> are displayed on the same figure, 1
-        group being on top and the other being below the X axis. It allows to
-        compare them efficiently, with no overlap. .
+        This is a <b>scatterplot with voronoi detection</b>. When you enter the
+        chart area with your mouse, the <b>closest point</b> is found using a
+        Delaunay triangulation. The corresponding circle is highlighted on the
+        chart.
+      </p>
+      <p>
+        Same concept could easily be used to add a tooltip with great
+        performance.
       </p>
       <ChartOrSandbox
         VizComponent={ScatterplotVoronoiTooltipDemo}
@@ -68,15 +74,14 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        The dataset used here is slightly different as{' '}
-        <Link href="/histogram#data">the one</Link> used for the simple 1 group
-        histogram.
+        The dataset used here is the same as for an usual{' '}
+        <Link href="scatter-plot">scatterplot</Link>.
       </p>
       <p>
-        An <b>array</b> is used, with each object in it providing the name (
-        <code>group</code> property here) and the <code>values</code> of a
-        group. Note that if more than 2 items are available in the array, only
-        the 2 first will be used by the component.
+        It is an <b>array</b> of objects where each object is a data point. The
+        object can have many properties, but at least a <code>x</code> and a{' '}
+        <code>y</code> prop are needed to provide the{' '}
+        <code>2d coordinates</code>.
       </p>
       <p>Here is a minimal example of the data structure:</p>
       <CodeBlock code={snippetData} />
@@ -86,18 +91,30 @@ export default function Home() {
       // Buckets
       //
       */}
-      <h2 id="buckets">Building the histogram buckets</h2>
+      <h2 id="buckets">Building the Voronoi diagram</h2>
       <p>
-        The exact same logic as the one{' '}
-        <Link href="/histogram#binning">used on the 1 group histogram</Link>{' '}
-        must be used here. But the <code>bucketGenerator</code> must be run on
-        both groups of the dataset.
+        The shapes drawn in the background are called a{' '}
+        <Link href="voronoi">Voronoi diagram</Link>.
       </p>
       <p>
-        Once it is done we'll have use the 2 results to build the top and the
-        bottom histogram charts separately.
+        A voronoi diagram is a is a partition of a plane into regions called{' '}
+        <b>voronoi cells</b>. A voronoi cell consists of every point in the
+        plane whose distance to its linked data point is less than or equal to
+        its distance to any other data point.
       </p>
-      <CodeBlock code={snippetBucket} />
+      <p>
+        This is very handy to detect the mouse closest point on a scatterplot!
+        🔥
+      </p>
+      <p>
+        The react graph gallery has a{' '}
+        <Link href="voronoi">dedicated section</Link> on the topic. Once you
+        understood how Voronoi works with d3, it is just a matter of adding axes
+        to get a scatterplot with point detection.
+      </p>
+      <LinkAsButton href="voronoi" size="sm" isFilled>
+        Voronoi section
+      </LinkAsButton>
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
@@ -108,16 +125,11 @@ export default function Home() {
 
 const snippetData = `
 const data = [
-  {
-    group: "A",
-    values: [0, 0, 2, 2, 2, 0]
-  },
-  {
-    group: "B",
-    values: [0, 0, 2, 2, 2, 0]
-  },
+  { x: 10, y: 10 },
+  { x: 4, y: 4 },
   ...
-];`.trim();
+];
+`.trim();
 
 const snippetSkeleton = `
 // List of arbitrary colors
