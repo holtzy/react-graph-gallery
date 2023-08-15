@@ -45,8 +45,8 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="How to build a histogram with React and D3."
-      seoDescription="A step-by-step guide to build your very own histogram from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
+      title="How to build a Voronoi Diagram with React and D3."
+      seoDescription="A step-by-step guide to build your very own voronoi diagram from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
         title={'Voronoi Diagram'}
