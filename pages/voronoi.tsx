@@ -21,7 +21,7 @@ const graphDescription = (
       <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">
         voronoi diagram
       </a>{" "}
-      is a is a partition of a plane into regions called <b>voronoi cells</b>. A
+      is a partition of a plane into regions called <b>voronoi cells</b>. A
       voronoi cell consists of every point in the plane whose distance to its
       linked data point is less than or equal to its distance to{" "}
       <b>any other data point</b>.{" "}
