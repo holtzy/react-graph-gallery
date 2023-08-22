@@ -23,7 +23,7 @@ const graphDescription = (
       </a>{" "}
       of wordclouds. They can be quite misleading and you should consider
       building a <Link href="/barplot">barplot</Link> or a{" "}
-      <Link href="/lollipop">lollipop plot</Link> instead.
+      <Link href="/lollipop-plot">lollipop plot</Link> instead.
     </p>
   </>
 );
@@ -132,7 +132,7 @@ export default function Home() {
         <a href="https://www.data-to-viz.com/graph/wordcloud.html">
           data-to-viz
         </a>
-        . Why not consider a <Link href="/lollipop">lollipop plot</Link> or a{" "}
+        . Why not consider a <Link href="/lollipop-plot">lollipop plot</Link> or a{" "}
         <Link href="/barplot">barplot</Link> instead?
       </p>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3 mt-28" />
