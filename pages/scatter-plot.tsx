@@ -461,6 +461,7 @@ export default function Home() {
           'bubble-plot-with-legend.png',
           '2d-density-plot.png',
           'correlogramBasic.png',
+          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
         ]}
       />
 

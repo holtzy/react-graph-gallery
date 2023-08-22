@@ -61,7 +61,7 @@ export default function Home() {
       <ChartOrSandbox
         VizComponent={ScatterplotVoronoiTooltipDemo}
         vizName={'ScatterplotVoronoiTooltip'}
-        maxWidth={700}
+        maxWidth={600}
         height={600}
         caption={
           'A scatterplot with tooltip. The closest point is detected using Voronoi to trigger the tooltip apparition.'

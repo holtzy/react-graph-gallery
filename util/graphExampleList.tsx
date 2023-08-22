@@ -55,6 +55,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'scatterplot-co2.png',
     alt: 'Real life example of a scatterplot made with react and d3',
   },
+  {
+    link: '/example/scatterplot-tooltip-with-voronoi-for-closest-point-detection',
+    title: 'Closest point detection with Voronoi',
+    description:
+      'Using a voronoi diagram in the scatterplot background is a smart way to efficiently find the mouse closest point',
+    img: 'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
+    alt: 'gif of a scatterplot with voronoi diagram for closest point detection',
+  },
   //
   // Heatmap
   //

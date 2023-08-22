@@ -1,41 +1,42 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { VoronoiBasicDemo } from "viz/VoronoiBasic/VoronoiBasicDemo";
-import Link from "next/link";
-import { VoronoiScatterOnlyDemo } from "viz/VoronoiScatterOnly/VoronoiScatterOnlyDemo";
-import { VoronoidelaunayOnlyDemo } from "viz/VoronoidelaunayOnly/VoronoidelaunayOnlyDemo";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
-import { VoronoiClosestPointDemo } from "viz/VoronoiClosestPoint/VoronoiClosestPointDemo";
-import { LinkAsButton } from "component/LinkAsButton";
-import { ToDoSection } from "component/UI/ToDoSection";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { VoronoiBasicDemo } from 'viz/VoronoiBasic/VoronoiBasicDemo';
+import Link from 'next/link';
+import { VoronoiScatterOnlyDemo } from 'viz/VoronoiScatterOnly/VoronoiScatterOnlyDemo';
+import { VoronoidelaunayOnlyDemo } from 'viz/VoronoidelaunayOnly/VoronoidelaunayOnlyDemo';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import DatavizInspirationParallaxLink from 'component/DatavizInspirationParallaxLink';
+import { VoronoiClosestPointDemo } from 'viz/VoronoiClosestPoint/VoronoiClosestPointDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { ToDoSection } from 'component/UI/ToDoSection';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
+      A{' '}
       <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">
         voronoi diagram
-      </a>{" "}
+      </a>{' '}
       is a partition of a plane into regions called <b>voronoi cells</b>. A
       voronoi cell consists of every point in the plane whose distance to its
-      linked data point is less than or equal to its distance to{" "}
-      <b>any other data point</b>.{" "}
+      linked data point is less than or equal to its distance to{' '}
+      <b>any other data point</b>.{' '}
     </p>
     <p>
       This page is a step-by-step guide on how to build your own voronoi diagram
-      for the web, using <a href="https://reactjs.org/">React</a> and{" "}
+      for the web, using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com">D3.js</a>.
     </p>
     <p>
       It starts by describing how the <b>data</b> should be organized and
       explains how to run and plot a <b>Delaunay triangulation</b>. Based on
       this, it explains how to build the voronoi diagram. Finally it shows how
-      this can be used for real life application like for a <b>scatterplot</b>{" "}
+      this can be used for real life application like for a <b>scatterplot</b>{' '}
       or to build a <b>voronoi treemap</b>.
     </p>
   </>
@@ -48,7 +49,7 @@ export default function Home() {
       seoDescription="A step-by-step guide to build your very own histogram from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title={"Voronoi Diagram"}
+        title={'Voronoi Diagram'}
         description={graphDescription}
         chartType="voronoi"
       />
@@ -61,17 +62,17 @@ export default function Home() {
       <p>
         Everything starts with a set of <b>two-dimensional points</b>. Their
         coordinates are available with <code>x</code> representing the position
-        on the <b>horizontal</b> axis and <code>y</code> being for the{" "}
+        on the <b>horizontal</b> axis and <code>y</code> being for the{' '}
         <b>vertical</b> axis.
       </p>
       <p>
-        As a result, the dataset is pretty simple: an <code>array</code> of{" "}
+        As a result, the dataset is pretty simple: an <code>array</code> of{' '}
         objects that looks like this:
       </p>
       <br />
       <CodeBlock code={snippetData} />
       <p>
-        Note: this is the same dataset as the one used for a{" "}
+        Note: this is the same dataset as the one used for a{' '}
         <Link href="/scatter-plot">scatterplot</Link>.
       </p>
 
@@ -88,7 +89,7 @@ export default function Home() {
       </p>
       <p>
         If you're not familiar with the basic steps used in the following
-        sandbox, please take a look at the{" "}
+        sandbox, please take a look at the{' '}
         <Link href="/scatter-plot">scatterplot</Link> section of the gallery
         that goes in deep on what's going on here.
       </p>
@@ -99,17 +100,17 @@ export default function Home() {
         <br />
       </p>
       <p>
-        You need a good understanding about <b>d3 scales</b>, how to{" "}
+        You need a good understanding about <b>d3 scales</b>, how to{' '}
         <b>loop through a data</b> array to create <b>svg elements</b> and how
         to make the component <b>renders</b> them.
       </p>
       <ChartOrSandbox
         VizComponent={VoronoiScatterOnlyDemo}
-        vizName={"VoronoiScatterOnly"}
+        vizName={'VoronoiScatterOnly'}
         maxWidth={600}
         height={300}
         caption={
-          "A voronoi diagram starts with a set of 2d coordinate points plotted on a plane."
+          'A voronoi diagram starts with a set of 2d coordinate points plotted on a plane.'
         }
       />
 
@@ -120,7 +121,7 @@ export default function Home() {
       */}
       <h2 id="delaunay">Delaunay triangulation</h2>
       <p>
-        The first required step to build a voronoi diagram is to run a{" "}
+        The first required step to build a voronoi diagram is to run a{' '}
         <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">
           Delaunay triangulation
         </a>
@@ -128,19 +129,19 @@ export default function Home() {
       </p>
       <p>
         You don't necessarily need to understand what a Delaunay triangulation
-        is. But if you're interested in the topic, it will be covered in the{" "}
+        is. But if you're interested in the topic, it will be covered in the{' '}
         <Link href="subscribe">dataviz universe</Link> newsletter soon.
       </p>
       <p>
-        Fortunately, d3.js has a module called{" "}
+        Fortunately, d3.js has a module called{' '}
         <a href="https://github.com/d3/d3-delaunay">d3-delaunay</a> that does
         this triangulation for us. You can import this module as follow. You can
-        also read its complete doc on{" "}
+        also read its complete doc on{' '}
         <a href="https://github.com/d3/d3-delaunay">github</a>.
       </p>
       <CodeBlock code={snippetImport} />
       <p>
-        Start by creating a <code>delaunay</code> object thanks to the{" "}
+        Start by creating a <code>delaunay</code> object thanks to the{' '}
         <code>Delaunay.from()</code> function. This function expects an array of
         array of numbers, so there is a tiny bit of data wrangling to do here.
       </p>
@@ -152,7 +153,7 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetDelaunay2} />
       <p>
-        This path is provided as a string that we can pass to a{" "}
+        This path is provided as a string that we can pass to a{' '}
         <code>path</code> svg element as follow:
       </p>
       <CodeBlock code={snippetDelaunay3} />
@@ -162,11 +163,11 @@ export default function Home() {
       </p>
       <ChartOrSandbox
         VizComponent={VoronoidelaunayOnlyDemo}
-        vizName={"VoronoidelaunayOnly"}
+        vizName={'VoronoidelaunayOnly'}
         maxWidth={600}
         height={300}
         caption={
-          "Second step: run a Delaunay triangulation on the set of two-dimensional points."
+          'Second step: run a Delaunay triangulation on the set of two-dimensional points.'
         }
       />
 
@@ -178,7 +179,7 @@ export default function Home() {
       <h2 id="voronoi">Voronoi diagram</h2>
       <p>
         The Delaunay triangulation above corresponds to the <b>dual graph</b> of
-        the Voronoi diagram. Basically, it means that the <b>circumcenters</b>{" "}
+        the Voronoi diagram. Basically, it means that the <b>circumcenters</b>{' '}
         of the Delaunay triangles are the <b>vertices</b> of the Voronoi
         diagram.
       </p>
@@ -195,11 +196,11 @@ export default function Home() {
       <br />
       <ChartOrSandbox
         VizComponent={VoronoiBasicDemo}
-        vizName={"VoronoiBasic"}
+        vizName={'VoronoiBasic'}
         maxWidth={600}
         height={300}
         caption={
-          "Last step: join the circumcenters of each triangle to get the voronoi diagram."
+          'Last step: join the circumcenters of each triangle to get the voronoi diagram.'
         }
       />
 
@@ -234,15 +235,32 @@ export default function Home() {
       <br />
       <ChartOrSandbox
         VizComponent={VoronoiClosestPointDemo}
-        vizName={"VoronoiClosestPoint"}
+        vizName={'VoronoiClosestPoint'}
         maxWidth={600}
         height={300}
         caption={
-          "Use the voronoi algorithm to detect the closest point of the mouse position."
+          'Use the voronoi algorithm to detect the closest point of the mouse position.'
         }
       />
 
-      <ToDoSection text="Scatterplot tooltip made using Voronoi" />
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        A glimpse of what it is possible to do using the voronoi diagram for
+        data visualization.
+      </p>
+      <p>Click on the overview below to get details and code.</p>
+      <br />
+      <GraphGallery
+        images={[
+          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
+        ]}
+      />
+
       <ToDoSection text="Add voronoi treemap example" />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
