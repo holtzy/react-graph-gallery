@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 type CanvasShapeProps = {
   width: number;
@@ -7,18 +7,18 @@ type CanvasShapeProps = {
 
 export const CanvasShape = ({ width, height }: CanvasShapeProps) => {
   const devicePixelRatio =
-    typeof window === "undefined" ? 1 : window.devicePixelRatio;
+    typeof window === 'undefined' ? 1 : window.devicePixelRatio;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     // set dimension of the canvas element
     const canvas = canvasRef.current;
-    canvas?.setAttribute("width", `${width * devicePixelRatio}px`);
-    canvas?.setAttribute("height", `${height * devicePixelRatio}px`);
+    canvas?.setAttribute('width', `${width * devicePixelRatio}px`);
+    canvas?.setAttribute('height', `${height * devicePixelRatio}px`);
 
     // create the canvas context, ready to draw
-    const context = canvas?.getContext("2d");
+    const context = canvas?.getContext('2d');
     if (!context) {
       return;
     }
@@ -43,7 +43,7 @@ export const CanvasShape = ({ width, height }: CanvasShapeProps) => {
         style={{
           width,
           height,
-          backgroundColor: "#afb8c133",
+          backgroundColor: '#afb8c133',
         }}
       />
     </div>

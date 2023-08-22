@@ -1,27 +1,25 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { TriangleToPolygonStepByStep } from "../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStep";
-import { TriangleToPolygonAnimated } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimated";
-import { BoxplotToViolinTransition } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransition";
-import { data as violinData } from "../data/distribution-multi-groups-random";
-import { TakeHome } from "../component/TakeHome";
-import { LinkAsButton } from "../component/LinkAsButton";
-import { D3InterpolatePathDemo } from "../viz/D3InterpolatePathDemo/D3InterpolatePathDemo";
-import { TriangleToPolygonStepByStepDemo } from "../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStepDemo";
-import { TriangleToPolygonAnimatedDemo } from "../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimatedDemo";
-import { BoxplotToViolinTransitionDemo } from "../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import Contact from '../component/Contact';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { AccordionSection } from '../component/AccordionSection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { BoxplotToViolinTransition } from '../viz/BoxplotToViolinTransition/BoxplotToViolinTransition';
+import { data as violinData } from '../data/distribution-multi-groups-random';
+import { TakeHome } from '../component/TakeHome';
+import { LinkAsButton } from '../component/LinkAsButton';
+import { D3InterpolatePathDemo } from '../viz/D3InterpolatePathDemo/D3InterpolatePathDemo';
+import { TriangleToPolygonStepByStepDemo } from '../viz/TriangleToPolygonStepByStep/TriangleToPolygonStepByStepDemo';
+import { TriangleToPolygonAnimatedDemo } from '../viz/TriangleToPolygonAnimated/TriangleToPolygonAnimatedDemo';
+import { BoxplotToViolinTransitionDemo } from '../viz/BoxplotToViolinTransition/BoxplotToViolinTransitionDemo';
 
 const graphDescription = (
   <p>
     Shape morphism is the art of transitioning between 2 shapes as smoothly as
     possible. This post explores how it can be useful for data visualization and
-    how it can be done using <code>React</code>, <code>d3.js</code>,{" "}
+    how it can be done using <code>React</code>, <code>d3.js</code>,{' '}
     <code>react-spring</code> and <code>flubber</code>.
   </p>
 );
@@ -60,7 +58,7 @@ export default function Home() {
         that define the actual shape of the elements.
         <br />
         As always when talking about animation, it is good to recall this
-        citation by{" "}
+        citation by{' '}
         <a href="https://www.joshwcomeau.com/animation/css-transitions/">
           Josh Comeau
         </a>
@@ -72,7 +70,7 @@ export default function Home() {
       </blockquote>
 
       <AccordionSection
-        title={"Shape morphism for dataviz: some examples"}
+        title={'Shape morphism for dataviz: some examples'}
         startOpen={true}
       >
         <p>
@@ -85,13 +83,13 @@ export default function Home() {
             <a href="https://observablehq.com/@karimdouieb/try-to-impeach-this-challenge-accepted">
               Try to empeach this
             </a>
-            : choropleth to bubble map transition by{" "}
+            : choropleth to bubble map transition by{' '}
             <a href="https://twitter.com/karim_douieb">Karim Douïeb</a>
           </li>
           <br />
           <li>
             <a href="https://bl.ocks.org/mbostock/1256572">d3.js show reel</a>:
-            several chart transition to showcase d3.js possibilities by{" "}
+            several chart transition to showcase d3.js possibilities by{' '}
             <a href="https://bost.ocks.org/mike/">Mike Bostock</a>
           </li>
           <br />
@@ -105,9 +103,9 @@ export default function Home() {
           <li>
             <a href="https://pudding.cool/2019/04/eu-regions/">
               Choropleth to scatterplot
-            </a>{" "}
-            transition with scrolly-telling. By{" "}
-            <a href="http://www.maartenlambrechts.com/">Maarten Lambrechts</a>{" "}
+            </a>{' '}
+            transition with scrolly-telling. By{' '}
+            <a href="http://www.maartenlambrechts.com/">Maarten Lambrechts</a>{' '}
             for the Pudding.
           </li>
           <br />
@@ -115,13 +113,13 @@ export default function Home() {
             <a href="https://github.com/zumbov2/votemapswitzerland">
               Choropleth to circle pack
             </a>
-            , made with R by{" "}
+            , made with R by{' '}
             <a href="https://twitter.com/DavidZumbach">David Zumbach</a>
           </li>
         </ul>
       </AccordionSection>
 
-      <AccordionSection title={"Shape morphism: why"} startOpen={true}>
+      <AccordionSection title={'Shape morphism: why'} startOpen={true}>
         <p>
           In the field of data visualization shape morphism is mostly usefull to
           transition between 2 chart types. It is pretty hard to implement that
@@ -143,7 +141,7 @@ export default function Home() {
         </ul>
       </AccordionSection>
 
-      <AccordionSection title={"What are we trying to do"} startOpen={true}>
+      <AccordionSection title={'What are we trying to do'} startOpen={true}>
         <p>
           Sometimes in dataviz we want to transition between 2 chart types,
           let's say between a pie chart and a barplot. This is pretty hard since
@@ -153,7 +151,7 @@ export default function Home() {
         <br />
         <p>
           This is still possible thanks to a few libraries. This post suggests
-          to use <code>d3.js</code> to build the start and end svg path,{" "}
+          to use <code>d3.js</code> to build the start and end svg path,{' '}
           <code>flubber</code>
           to interpolate those path, <code>react-spring</code> for the animation
           and <code>react</code> for the rendering.
@@ -173,7 +171,7 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={"Shape morphism on the web: a review"}
+        title={'Shape morphism on the web: a review'}
         startOpen={true}
       >
         <p>
@@ -212,11 +210,11 @@ export default function Home() {
           <br />
           <li>
             pure <code>CSS</code>: Chrome has started to allow shape morphing
-            through css. You can simply change the <code>d</code> attribute of a{" "}
+            through css. You can simply change the <code>d</code> attribute of a{' '}
             <code>path</code> in a css file and add some
             <code>transition</code> to it. But chrome only and same number of
             nodes only.
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://codepen.io/chriscoyier/pen/NRwANp"
@@ -231,7 +229,7 @@ export default function Home() {
             library for shape morphism, widely cited on the internet. Supports
             shapes with different number of nodes. But it's not free and not
             open source.
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://greensock.com/morphSVG"
@@ -256,7 +254,7 @@ export default function Home() {
             shapes becomes easy: we just have to interpolate those numbers.
             Problem: it does not work with any shape and building a chart from
             this formula is thus impossible.
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://bl.ocks.org/mbostock/1020902"
@@ -272,12 +270,12 @@ export default function Home() {
             of interpolation methods. It works for paths, even with different
             number of nodes. But when the shape 2 has more nodes than shape 1 it
             just adds some nodes to the end of the shape 1 path. This result in
-            a{" "}
+            a{' '}
             <a href="https://bocoup.com/blog/improving-d3-path-animation">
               bad visual effect
             </a>
             .
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://github.com/d3/d3-interpolate"
@@ -293,7 +291,7 @@ export default function Home() {
             adds an interpolator optimized for SVG <code>path</code> elements.
             It works very well for path including segments only, but from my
             experience less well for arcs.
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://github.com/pbeshai/d3-interpolate-path"
@@ -316,7 +314,7 @@ export default function Home() {
             data stories. It looks very promising for transition between chart
             types. But since it is a library, it means that customization is
             limited to the offered options.
-            <br />{" "}
+            <br />{' '}
             <LinkAsButton
               size="sm"
               href="https://github.com/vizzuhq/vizzu-lib"
@@ -335,7 +333,7 @@ export default function Home() {
         </ul>
         <br />
         <p>
-          None of the item of this list suits my need.{" "}
+          None of the item of this list suits my need.{' '}
           <TakeHome>
             We need an open source library capable of interpolating any path,
             even with different number of nodes.
@@ -345,12 +343,12 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={"Shape interpolation with flubber"}
+        title={'Shape interpolation with flubber'}
         startOpen={true}
       >
         <p>
           <a href="https://github.com/veltman/flubber">flubber</a> is an open
-          source javascript library built by{" "}
+          source javascript library built by{' '}
           <a href="https://github.com/veltman">Noah Veltman</a>. Unlike most of
           the shape morphism libraries it works very well to interpolate shapes
           that are completely different and don't have the same number of nodes.
@@ -377,7 +375,7 @@ export default function Home() {
         <p>Here is a visualization of the final result</p>
 
         <ChartOrSandbox
-          vizName={"TriangleToPolygonStepByStep"}
+          vizName={'TriangleToPolygonStepByStep'}
           VizComponent={TriangleToPolygonStepByStepDemo}
           maxWidth={450}
           height={250}
@@ -386,33 +384,33 @@ export default function Home() {
 
         <br />
         <blockquote>
-          Awesome video by the Flubber creator:{" "}
+          Awesome video by the Flubber creator:{' '}
           <a href="https://www.youtube.com/watch?v=PLc1y-gim_0">link</a>
         </blockquote>
       </AccordionSection>
 
       <AccordionSection
-        title={"Animating the transition with react-spring"}
+        title={'Animating the transition with react-spring'}
         startOpen={true}
       >
         <p>
           Now that we know how to build an interpolated shape between a starting
-          and an ending point, let's animated this transition using{" "}
+          and an ending point, let's animated this transition using{' '}
           <code>react-spring</code>.
         </p>
         <ChartOrSandbox
-          vizName={"TriangleToPolygonAnimated"}
+          vizName={'TriangleToPolygonAnimated'}
           VizComponent={TriangleToPolygonAnimatedDemo}
           maxWidth={450}
           height={250}
           caption={
-            "The transition is now animated thanks to react-spring, a react library for spring animation."
+            'The transition is now animated thanks to react-spring, a react library for spring animation.'
           }
         />
       </AccordionSection>
 
       <AccordionSection
-        title={"Pie chart to barplot transtion"}
+        title={'Pie chart to barplot transtion'}
         startOpen={true}
       >
         <p>
@@ -422,14 +420,14 @@ export default function Home() {
         </p>
       </AccordionSection>
 
-      <AccordionSection title={"Violin to boxplot transition"} startOpen={true}>
+      <AccordionSection title={'Violin to boxplot transition'} startOpen={true}>
         <p>
           I knew nothing about shape morphism 3 weeks ago. It took me a lot of
           effort to browse the web and find what the most appropriate tools are.
           To avoid you the hassle, here is a quick summary:
         </p>
         <ChartOrSandbox
-          vizName={"BoxplotToViolinTransition"}
+          vizName={'BoxplotToViolinTransition'}
           VizComponent={BoxplotToViolinTransitionDemo}
           maxWidth={600}
           height={300}

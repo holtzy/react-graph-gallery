@@ -462,6 +462,7 @@ export default function Home() {
           '2d-density-plot.png',
           'correlogramBasic.png',
           'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
+          'scatterplot-basic-canvas.png',
         ]}
       />
 

@@ -63,6 +63,15 @@ export const graphExampleList: GraphExample[] = [
     img: 'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
     alt: 'gif of a scatterplot with voronoi diagram for closest point detection',
   },
+  {
+    link: '/example/scatterplot-basic-canvas',
+    title: 'Scatterplot in Canvas',
+    description:
+      'Learn how to render a scatterplot in canvas to improve performances',
+    img: 'scatterplot-basic-canvas.png',
+    alt: 'a scatterplot made with react and rendered in canvas',
+  },
+
   //
   // Heatmap
   //
