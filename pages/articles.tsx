@@ -39,7 +39,7 @@ export default function Articles() {
       />
 
       <BlogPostItem
-        title={'Stacked barplot: how to deal with negative values'}
+        title={'🍔 Stacked barplot: how to deal with negative values'}
         timeToRead={6}
         link="stacked-barplot-with-negative-values"
         isAvailable={true}
