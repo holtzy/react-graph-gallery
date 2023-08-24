@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import { ChartId, chartTypesInfo } from "../util/sectionDescriptions";
-import { fullUrlToInternalLink } from "../util/utils";
+import { ChartId, chartTypesInfo } from '../util/sectionDescriptions';
+import { fullUrlToInternalLink } from '../util/utils';
 
-import { HorizontalSeparator } from "./UI/HorizontalSeparator";
-import { LinkAsButton } from "./LinkAsButton";
-import { Tooltip } from "./UI/Tooltip";
-import SectionLogo from "./SectionLogo";
+import { HorizontalSeparator } from './UI/HorizontalSeparator';
+import { LinkAsButton } from './LinkAsButton';
+import { Tooltip } from './UI/Tooltip';
+import SectionLogo from './SectionLogo';
 
 type TitleAndDescription = {
   title: string | JSX.Element;
   description: JSX.Element;
-  chartType?: ChartId | "all";
+  chartType?: ChartId | 'all';
   showSectionLink?: boolean;
   showInspirationLink?: boolean;
   showD3GalleryLink?: boolean;
@@ -27,18 +27,16 @@ export default function TitleAndDescription({
 }: TitleAndDescription) {
   const chartInfo = chartTypesInfo.find((chart) => chart.id === chartType);
 
-  if (!chartInfo) {
-    return null;
-  }
-
   return (
     <div className="w-full pt-1 sm:pt-28 pb-20 ">
       {/* Title */}
       <div className="flex justify-start items-center">
         <h1>{title}</h1>
-        <div className="w-20 ml-4">
-          <SectionLogo chartLogo={chartInfo?.logo} />
-        </div>
+        {chartType && chartInfo && (
+          <div className="w-20 ml-4">
+            <SectionLogo chartLogo={chartInfo?.logo} />
+          </div>
+        )}
       </div>
       {/* Horizontal Separator */}
       <HorizontalSeparator />
@@ -52,7 +50,7 @@ export default function TitleAndDescription({
       )}
 
       {/* Buttons */}
-      {chartType && (
+      {chartInfo && (
         <div className="flex flex-row flex-wrap">
           {showSectionLink && (
             <Tooltip
@@ -63,7 +61,7 @@ export default function TitleAndDescription({
                 href={fullUrlToInternalLink(chartInfo.reactURL)}
                 size="sm"
               >
-                {chartInfo.label + " section"}
+                {chartInfo.label + ' section'}
               </LinkAsButton>
             </Tooltip>
           )}
@@ -73,23 +71,23 @@ export default function TitleAndDescription({
               direction="bottom"
             >
               <LinkAsButton
-                href={"https://www.dataviz-inspiration.com/" + chartInfo.id}
+                href={'https://www.dataviz-inspiration.com/' + chartInfo.id}
                 size="sm"
               >
-                {"inspiration"}
+                {'inspiration'}
               </LinkAsButton>
             </Tooltip>
           )}
           {showD3GalleryLink && (
             <Tooltip text="Pure d3 implementation, no React" direction="bottom">
               <LinkAsButton href={chartInfo.d3URL} size="sm">
-                {"d3 gallery"}
+                {'d3 gallery'}
               </LinkAsButton>
             </Tooltip>
           )}
           <Tooltip text="Dataviz theory about this chart" direction="bottom">
             <LinkAsButton href={chartInfo.dataToVizURL} isFilled size="sm">
-              {"About this chart"}
+              {'About this chart'}
             </LinkAsButton>
           </Tooltip>
         </div>

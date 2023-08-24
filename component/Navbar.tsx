@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { useState } from "react";
-import { AllChartsModal } from "./AllChartsModal";
+import Link from 'next/link';
+import { useState } from 'react';
+import { AllChartsModal } from './AllChartsModal';
 
 export default function Navbar() {
   const [isAllSectionModalOpen, setIsAllSectionModalOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function Navbar() {
     <>
       <nav id="header" className="w-full  h-24">
         <div
-          className={"flex flex-wrap items-center justify-between mt-2 py-2"}
+          className={'flex flex-wrap items-center justify-between mt-2 py-2'}
         >
           <div className="flex items-center">
             <Link href="/">
@@ -20,11 +20,11 @@ export default function Navbar() {
           </div>
 
           <div className="">
-            {/* <Link href="how-to">
+            <Link href="articles">
               <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
-                How to...
+                Articles
               </span>
-            </Link> */}
+            </Link>
             <Link href="/all" className="no-underline">
               <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 All
@@ -49,7 +49,7 @@ export default function Navbar() {
 
             <a
               href="https://datavizuniverse.substack.com"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               <span className="hidden cursor-pointer sm:inline ml-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery border border-gray-300 rounded-md p-2">
                 Subscribe

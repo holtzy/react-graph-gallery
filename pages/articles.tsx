@@ -1,37 +1,49 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
-import ChartFamilySection from "../component/ChartFamilySection";
-import Link from "next/link";
-import { BlogPostItem } from "../component/BlogPostItem";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import Contact from '../component/Contact';
+import Link from 'next/link';
+import { BlogPostItem } from '../component/BlogPostItem';
 
 const graphDescription = (
-  <p>
-    On top of set of chart examples, the react graph gallery provides some more
-    generic blog posts desribing how to make <code>react</code> and{" "}
-    <code>d3.js</code> work together. Here is a list of the main concepts you
-    need to know to build your own viz.
-  </p>
+  <>
+    <p>
+      While our gallery showcases a{' '}
+      <Link href="/all">myriad of graph examples</Link>, this space is dedicated
+      to <b>delving into the intricacies</b> of data visualization using React
+      and D3.js.
+    </p>
+    <p>
+      From unraveling the complexities of creating stacked bar plots with
+      negative values to envisioning futuristic visualizations, our articles aim
+      to <b>enlighten, inspire, and guide you</b> through the advanced realms of
+      dataviz.
+    </p>
+    <p>
+      Whether you're a seasoned developer or just starting out, these articles
+      offer a wealth of knowledge to <b>elevate your visualization game</b>.{' '}
+    </p>
+    <p>Let's embark on this enlightening journey together! 🔥</p>
+  </>
 );
 
-export default function HowTo() {
+export default function Articles() {
   return (
     <Layout
       title="How to make react and d3.js work together"
       seoDescription="A list of blog posts describing the main concepts behind a viz built wih react and d3.js"
     >
       <TitleAndDescription
-        title="How to make d3.js work with react"
+        title="Dataviz Insights with React and D3.js"
         description={graphDescription}
       />
 
       <BlogPostItem
-        title={"Using react and d3.js: The 2 strategies"}
+        title={'Using react and d3.js: The 2 strategies'}
         timeToRead={4}
         link="how-to-includes-a-d3-chart-in-react"
         isAvailable={false}
-        categories={["fundamental"]}
+        categories={['fundamental']}
       >
         <span>
           React modifies the DOM. So does d3.js. It makes it advanced to make
@@ -41,11 +53,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Axes: build them with react (and a bit of d3)"}
+        title={'Axes: build them with react (and a bit of d3)'}
         timeToRead={8}
         link="build-axis-with-react"
         isAvailable={true}
-        categories={["fundamental", "axis"]}
+        categories={['fundamental', 'axis']}
       >
         <span>
           Most of the viz types need some axes to be insightful. This post
@@ -55,14 +67,14 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Responsiveness: a hook that makes your viz fits its container"}
+        title={'Responsiveness: a hook that makes your viz fits its container'}
         timeToRead={5}
         link="make-a-graph-responsive"
         isAvailable={true}
-        categories={["fundamental", "responsiveness", "interaction"]}
+        categories={['fundamental', 'responsiveness', 'interaction']}
       >
         <span>
-          Viz components often take a <code>width</code> and a{" "}
+          Viz components often take a <code>width</code> and a{' '}
           <code>height</code> properties as input. This blogposts explains how
           to build a wrapper around it that computes the parent's div dimension
           and pass it as props
@@ -70,11 +82,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Hover interaction"}
+        title={'Hover interaction'}
         timeToRead={6}
         link="add-hover-interaction-to-graph"
         isAvailable={true}
-        categories={["fundamental", "interaction"]}
+        categories={['fundamental', 'interaction']}
       >
         <span>
           <b>Interactivity</b> is an important part of dataviz when working in
@@ -85,11 +97,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Graph to graph interaction"}
+        title={'Graph to graph interaction'}
         timeToRead={10}
         link="cross-graph-highlight-interaction"
         isAvailable={true}
-        categories={["interaction", "advanced"]}
+        categories={['interaction', 'advanced']}
       >
         <span>
           Let's say you have a choropleth map on a side, a timeseries on the
@@ -99,11 +111,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Spring animations with react spring"}
+        title={'Spring animations with react spring'}
         timeToRead={5}
         link="react-dataviz-animation-with-react-spring"
         isAvailable={true}
-        categories={["fundamental", "animation"]}
+        categories={['fundamental', 'animation']}
       >
         <span>
           It's often necessary to transition between 2 ys of a graph.
@@ -113,42 +125,42 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Dataset transition"}
+        title={'Dataset transition'}
         timeToRead={5}
         link="dataset-transition"
         isAvailable={true}
-        categories={["animation"]}
+        categories={['animation']}
       >
         <span>
           Adding a smooth transition between dataset often adds a nice touch to
-          your viz component. Let's see how to implement it with{" "}
+          your viz component. Let's see how to implement it with{' '}
           <code>react-spring</code>.
         </span>
       </BlogPostItem>
 
       <BlogPostItem
         title={
-          "Shape morphism: animate the transition between 2 distincts charts"
+          'Shape morphism: animate the transition between 2 distincts charts'
         }
         timeToRead={5}
         link="shape-morphism-for-dataviz-with-react"
         isAvailable
-        categories={["advanced", "animation"]}
+        categories={['advanced', 'animation']}
       >
         <span>
-          How can we build a smooth transition between a{" "}
-          <Link href="/pie-plot">pie chart</Link> and a barplot? The{" "}
-          <code>flubber</code> js library allows to interpolate shapes and{" "}
+          How can we build a smooth transition between a{' '}
+          <Link href="/pie-plot">pie chart</Link> and a barplot? The{' '}
+          <code>flubber</code> js library allows to interpolate shapes and{' '}
           <code>react-spring</code> can animate this interpolation.
         </span>
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Improve chart performance with Canvas"}
+        title={'Improve chart performance with Canvas'}
         timeToRead={5}
         link="to-do"
         isAvailable={false}
-        categories={["fundamental", "canvas"]}
+        categories={['fundamental', 'canvas']}
       >
         <span>
           Rendering a chart using svg is limited in term of performace. The DOM
@@ -159,11 +171,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Fix the blurry canvas on Retina screens"}
+        title={'Fix the blurry canvas on Retina screens'}
         timeToRead={5}
         link="fix-canvas-blurry-dataviz"
         isAvailable={true}
-        categories={["canvas", "advanced"]}
+        categories={['canvas', 'advanced']}
       >
         <span>
           When using canvas for your viz, the result will be blurry on retina
@@ -173,11 +185,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Stacked barplot: how to deal with negative values"}
+        title={'Stacked barplot: how to deal with negative values'}
         timeToRead={6}
         link="stacked-barplot-with-negative-values"
         isAvailable={true}
-        categories={["fundamental", "axis"]}
+        categories={['fundamental', 'axis']}
       >
         <span>
           A stacked barchart displays the values of items split in group and
@@ -187,11 +199,11 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"What is a color"}
+        title={'What is a color'}
         timeToRead={3}
         link="what-is-a-color"
         isAvailable={true}
-        categories={["fundamental", "axis"]}
+        categories={['fundamental', 'axis']}
       >
         <span>
           There are so many ways to define a color when talking with a computer.
@@ -201,21 +213,17 @@ export default function HowTo() {
       </BlogPostItem>
 
       <BlogPostItem
-        title={"Buiding a futuristic viz"}
+        title={'Buiding a futuristic viz'}
         timeToRead={3}
         link="viz-from-the-future"
         isAvailable={true}
-        categories={["fundamental", "axis"]}
+        categories={['fundamental', 'axis']}
       >
         <span>
           What makes a viz look from the future. And how to implement it with
           d3.js and reac.
         </span>
       </BlogPostItem>
-
-      <hr className="full-bleed border bg-gray-200 mt-10 mb-3" />
-
-      <ChartFamilySection chartFamily="general" />
 
       <div className="mt-20" />
       <Contact />
