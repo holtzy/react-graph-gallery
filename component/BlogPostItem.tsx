@@ -44,7 +44,7 @@ export const BlogPostItem = ({
   const pills = categories?.map((category, i) => (
     <Pill
       key={i}
-      label={category}
+      label={category.charAt(0).toUpperCase() + category.slice(1)}
       color={categoryColors[category]}
       opacity={0.5}
     />
@@ -53,7 +53,7 @@ export const BlogPostItem = ({
   return (
     <div className={opacity + ' cursor-pointer'}>
       {isAvailable ? (
-        <Link href={link}>
+        <Link href={link} className="text-black no-underline">
           <h2 className="cursor-pointer">{title}</h2>
         </Link>
       ) : (
@@ -65,7 +65,7 @@ export const BlogPostItem = ({
           <span className="ml-4">Read more</span>
         </Link>
       )}
-      <p className="text-gray-400 font-light mt-2">
+      <p className="text-gray-400 font-light mt-2 text-sm">
         {timeToRead + ' minutes read'}
       </p>
       {pills}

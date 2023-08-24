@@ -1,9 +1,9 @@
 import React from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
-import Contact from '../component/Contact';
 import Link from 'next/link';
 import { BlogPostItem } from '../component/BlogPostItem';
+import { SubscribeForm } from 'component/SubscribeForm';
 
 const graphDescription = (
   <>
@@ -37,26 +37,40 @@ export default function Articles() {
         title="Dataviz Insights with React and D3.js"
         description={graphDescription}
       />
-
       <BlogPostItem
         title={'Using react and d3.js: The 2 strategies'}
         timeToRead={4}
         link="how-to-includes-a-d3-chart-in-react"
-        isAvailable={false}
+        isAvailable={true}
         categories={['fundamental']}
       >
         <span>
-          React modifies the DOM. So does d3.js. It makes it advanced to make
-          them work together. This blog post describes the 2 main strategies to
-          do so.
+          React modifies the DOM. <b>So does d3.js</b>. It makes it notoriously{' '}
+          <b>hard</b> to have them work together. This blog post describes the 2
+          main strategies to use d3.js in a react app, with their pros and cons.
         </span>
       </BlogPostItem>
 
+      {/* SUBSCRIBE FORM BEFORE WIP ARTICLES */}
+      <div className="grey-section full-bleed py-24 my-24">
+        <div className="wrapper">
+          <p>
+            The next articles are currently in <b>writing mode</b>. ⬇️
+          </p>
+          <p>
+            They will be released soon and you can be updated through my{' '}
+            <b>newsletter</b>:
+          </p>{' '}
+          <br />
+          <br />
+          <SubscribeForm />
+        </div>
+      </div>
       <BlogPostItem
         title={'Axes: build them with react (and a bit of d3)'}
         timeToRead={8}
         link="build-axis-with-react"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'axis']}
       >
         <span>
@@ -65,12 +79,11 @@ export default function Articles() {
           d3 to create re-usable react components.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Responsiveness: a hook that makes your viz fits its container'}
         timeToRead={5}
         link="make-a-graph-responsive"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'responsiveness', 'interaction']}
       >
         <span>
@@ -80,12 +93,11 @@ export default function Articles() {
           and pass it as props
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Hover interaction'}
         timeToRead={6}
         link="add-hover-interaction-to-graph"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'interaction']}
       >
         <span>
@@ -95,12 +107,11 @@ export default function Articles() {
           it, always keeping performances in mind.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Graph to graph interaction'}
         timeToRead={10}
         link="cross-graph-highlight-interaction"
-        isAvailable={true}
+        isAvailable={false}
         categories={['interaction', 'advanced']}
       >
         <span>
@@ -109,12 +120,11 @@ export default function Articles() {
           to highlight its trend on the timeseries?
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Spring animations with react spring'}
         timeToRead={5}
         link="react-dataviz-animation-with-react-spring"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'animation']}
       >
         <span>
@@ -123,12 +133,11 @@ export default function Articles() {
           easily.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Dataset transition'}
         timeToRead={5}
         link="dataset-transition"
-        isAvailable={true}
+        isAvailable={false}
         categories={['animation']}
       >
         <span>
@@ -137,14 +146,13 @@ export default function Articles() {
           <code>react-spring</code>.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={
           'Shape morphism: animate the transition between 2 distincts charts'
         }
         timeToRead={5}
         link="shape-morphism-for-dataviz-with-react"
-        isAvailable
+        isAvailable={false}
         categories={['advanced', 'animation']}
       >
         <span>
@@ -154,7 +162,6 @@ export default function Articles() {
           <code>react-spring</code> can animate this interpolation.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Improve chart performance with Canvas'}
         timeToRead={5}
@@ -169,12 +176,11 @@ export default function Articles() {
           using it!
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Fix the blurry canvas on Retina screens'}
         timeToRead={5}
         link="fix-canvas-blurry-dataviz"
-        isAvailable={true}
+        isAvailable={false}
         categories={['canvas', 'advanced']}
       >
         <span>
@@ -183,12 +189,11 @@ export default function Articles() {
           implement it.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Stacked barplot: how to deal with negative values'}
         timeToRead={6}
         link="stacked-barplot-with-negative-values"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'axis']}
       >
         <span>
@@ -197,12 +202,11 @@ export default function Articles() {
           values in the dataset brings some interesting dataviz discussions.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'What is a color'}
         timeToRead={3}
         link="what-is-a-color"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'axis']}
       >
         <span>
@@ -211,12 +215,11 @@ export default function Articles() {
           point of view.
         </span>
       </BlogPostItem>
-
       <BlogPostItem
         title={'Buiding a futuristic viz'}
         timeToRead={3}
         link="viz-from-the-future"
-        isAvailable={true}
+        isAvailable={false}
         categories={['fundamental', 'axis']}
       >
         <span>
@@ -224,9 +227,7 @@ export default function Articles() {
           d3.js and reac.
         </span>
       </BlogPostItem>
-
       <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
