@@ -37,17 +37,19 @@ export default function Articles() {
         title="Dataviz Insights with React and D3.js"
         description={graphDescription}
       />
+
       <BlogPostItem
-        title={'Using react and d3.js: The 2 strategies'}
-        timeToRead={4}
-        link="how-to-includes-a-d3-chart-in-react"
+        title={'Stacked barplot: how to deal with negative values'}
+        timeToRead={6}
+        link="stacked-barplot-with-negative-values"
         isAvailable={true}
-        categories={['fundamental']}
+        categories={['dataviz']}
       >
         <span>
-          React modifies the DOM. <b>So does d3.js</b>. It makes it notoriously{' '}
-          <b>hard</b> to have them work together. This blog post describes the 2
-          main strategies to use d3.js in a react app, with their pros and cons.
+          A <Link href="barplot">stacked barchart</Link> displays the values of
+          items split in group and subgroups. It's a quite common chart type,
+          but dealing with <b>negative values</b> in the dataset brings some
+          interesting dataviz discussions.
         </span>
       </BlogPostItem>
 
@@ -66,6 +68,21 @@ export default function Articles() {
           <SubscribeForm />
         </div>
       </div>
+
+      <BlogPostItem
+        title={'Using react and d3.js: The 2 strategies'}
+        timeToRead={4}
+        link="how-to-includes-a-d3-chart-in-react"
+        isAvailable={false}
+        categories={['fundamental']}
+      >
+        <span>
+          React modifies the DOM. <b>So does d3.js</b>. It makes it notoriously{' '}
+          <b>hard</b> to have them work together. This blog post describes the 2
+          main strategies to use d3.js in a react app, with their pros and cons.
+        </span>
+      </BlogPostItem>
+
       <BlogPostItem
         title={'Axes: build them with react (and a bit of d3)'}
         timeToRead={8}
@@ -189,19 +206,7 @@ export default function Articles() {
           implement it.
         </span>
       </BlogPostItem>
-      <BlogPostItem
-        title={'Stacked barplot: how to deal with negative values'}
-        timeToRead={6}
-        link="stacked-barplot-with-negative-values"
-        isAvailable={false}
-        categories={['fundamental', 'axis']}
-      >
-        <span>
-          A stacked barchart displays the values of items split in group and
-          subgroups. It's a quite common chart type, but dealing with negative
-          values in the dataset brings some interesting dataviz discussions.
-        </span>
-      </BlogPostItem>
+
       <BlogPostItem
         title={'What is a color'}
         timeToRead={3}

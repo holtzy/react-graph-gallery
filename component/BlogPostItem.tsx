@@ -8,7 +8,8 @@ type BlogCategory =
   | 'interaction'
   | 'axis'
   | 'advanced'
-  | 'canvas';
+  | 'canvas'
+  | 'dataviz';
 
 type CategoryColor = { [topic in BlogCategory]: string };
 
@@ -20,6 +21,7 @@ const categoryColors: CategoryColor = {
   axis: '#15616d',
   advanced: 'red',
   canvas: '#003566',
+  dataviz: '#69b3a2',
 };
 
 type BlogPostItemProps = {
