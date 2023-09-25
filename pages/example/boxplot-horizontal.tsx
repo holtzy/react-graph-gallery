@@ -40,7 +40,7 @@ export default function Home() {
       <TitleAndDescription
         title="Horizontal Boxplot"
         description={graphDescription}
-        chartType="scatter"
+        chartType="boxplot"
       />
 
       {/*
@@ -49,21 +49,17 @@ export default function Home() {
       //
       */}
       <h2 id="Implementation">Horizontal Boxplot implementation</h2>
-      <p>The trick here is to use 2 layers of drawing:</p>
-      <ul>
-        <li>
-          The first layer is for the <b>axes</b>. It is an SVG element that will
-          add the X and Y axes using some usual <code>AxisLeft</code> and{' '}
-          <code>AxisBottom</code> components.
-        </li>
-        <li>
-          The second layer is for the <b>markers</b>, it is the{' '}
-          <code>canvas</code> element. It has a <code>ref</code>. We can then
-          call a function in a <code>useEffect</code> hook to draw inside this
-          canvas element.
-        </li>
-      </ul>
-
+      <p>
+        Here is a proposal of implementation for a horizontal boxplot with react
+        and d3.js.
+      </p>
+      <p>
+        D3 actually has a very minor role here. It is only used to compute the{' '}
+        <code>x</code>
+        and <code>y</code> scales. The x scale is a <b>linear scale</b> made
+        with the <code>scaleLinear()</code> function. The Y scale shows groups
+        thanks to the <code>scaleBand()</code> function.
+      </p>
       <ChartOrSandbox
         vizName={'BoxplotHorizontalDemo'}
         VizComponent={BoxplotHorizontalDemo}
@@ -71,45 +67,82 @@ export default function Home() {
         height={500}
         caption="A horizontal boxplot made with React and D3.js."
       />
-      <p>
-        <br />
-        <br />
-      </p>
-      <p>
-        Canvas is an important topic in data visualization for the web. I plan
-        to write complete articles on the topic. You can know when it's ready by{' '}
-        <Link href="/subscribe">subscribing</Link> to the project.
-      </p>
-      <LinkAsButton size="sm" isFilled href="/subscribe">
-        {'Tell me when the canvas post is ready!'}
-      </LinkAsButton>
 
+      {/*
+      //
+      // Plot and code
+      //
+      */}
+      <h2 id="Drawing">Horizontal box drawing</h2>
+      <p>
+        We need a function that draws a horizontal box in SVG based on the
+        quartiles position in pixels.
+      </p>
+      <p>The function looks like this:</p>
+      <CodeBlock code={snippetFunction} />
+
+      {/*
+      //
+      // Next
+      //
+      */}
+      <h2 id="Next steps">Next steps</h2>
+      <p>
+        This post is a translation of the{' '}
+        <Link href={'/boxplot'}>basic boxplot example</Link>, switching from{' '}
+        <b>vertical</b> to <b>horizontal</b> mode.
+      </p>
+      <p>
+        Now that this basic horizontal boxplot is available, it should be
+        straightforward to add interesting features like showing{' '}
+        <Link href="/example/boxplot-jitter">individual data points</Link> or
+        switching to a <Link href={'/violin-plot'}>violin plot</Link>.
+      </p>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="flow" />
+      <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />
     </Layout>
   );
 }
 
 const snippetFunction = `
-useEffect(() => {
-  const canvas = canvasRef.current;
-
-  if (!canvas) {
-    return;
-  }
-  const ctx = canvas.getContext('2d');
-
-  // Clear the canvas
-  ctx.clearRect(0, 0, width, height);
-
-  // Draw each data point as a circle
-  data.forEach((point) => {
-    ctx.beginPath();
-    ctx.arc(xScale(point.x), yScale(point.y), CIRCLE_RADIUS, 0, 2 * Math.PI);
-    ctx.globalAlpha = 0.5;
-    ctx.fillStyle = '#cb1dd1';
-    ctx.fill();
-  });
-}, [data, xScale, yScale, width, height]);
+export const HorizontalBox = ({
+  min,
+  q1,
+  median,
+  q3,
+  max,
+  height,
+  stroke,
+  fill,
+}: HorizontalBoxProps) => {
+  return (
+    <>
+      <line
+        y1={height / 2}
+        y2={height / 2}
+        x1={min}
+        x2={max}
+        stroke={stroke}
+        width={STROKE_WIDTH}
+      />
+      <rect
+        x={q1}
+        y={0}
+        width={q3 - q1}
+        height={height}
+        stroke={stroke}
+        fill={fill}
+      />
+      <line
+        y1={0}
+        y2={height}
+        x1={median}
+        x2={median}
+        stroke={stroke}
+        width={STROKE_WIDTH}
+      />
+    </>
+  );
+};
 `.trim();
