@@ -307,6 +307,7 @@ export default function Home() {
 
       <GraphGallery
         images={[
+          'boxplot-horizontal.png',
           'boxplot-jitter.png',
           'violinBoxplotTransition.png',
           'violinBucketSize.png',

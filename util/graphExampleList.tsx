@@ -180,6 +180,13 @@ export const graphExampleList: GraphExample[] = [
     img: 'boxplotBasic.png',
     alt: 'Picture of a basic boxplot built with react and d3',
   },
+  {
+    link: '/example/boxplot-horizontal',
+    title: 'Horizontal boxplot',
+    description: 'How to build a horizontal boxplot with react',
+    img: 'boxplot-horizontal.png',
+    alt: 'Picture of a horizontal boxplot built with react and d3',
+  },
 
   //
   // Histogram
