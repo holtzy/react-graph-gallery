@@ -5,9 +5,6 @@ import ChartFamilySection from 'component/ChartFamilySection';
 import { CodeBlock } from 'component/UI/CodeBlock';
 import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import Link from 'next/link';
-import { ArcDiagramVerticalDemo } from 'viz/ArcDiagramVertical/ArcDiagramVerticalDemo';
-import { LinkAsButton } from 'component/LinkAsButton';
-import { ScatterplotCanvasBasicDemo } from 'viz/ScatterplotCanvas/ScatterplotCanvasBasicDemo';
 import { BoxplotHorizontalDemo } from 'viz/BoxplotHorizontal/BoxplotHorizontalDemo';
 
 const graphDescription = (
@@ -61,7 +58,7 @@ export default function Home() {
         thanks to the <code>scaleBand()</code> function.
       </p>
       <ChartOrSandbox
-        vizName={'BoxplotHorizontalDemo'}
+        vizName={'BoxplotHorizontal'}
         VizComponent={BoxplotHorizontalDemo}
         maxWidth={500}
         height={500}
