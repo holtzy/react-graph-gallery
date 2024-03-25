@@ -7,6 +7,7 @@ import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import Link from 'next/link';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { ScatterplotCanvasBasicDemo } from 'viz/ScatterplotCanvas/ScatterplotCanvasBasicDemo';
+import { ScatterplotCheryTreesDemo } from 'viz/ScatterplotCheryTrees/ScatterplotCheryTreesDemo';
 
 const graphDescription = (
   <>
@@ -71,10 +72,15 @@ export default function Home() {
         captivating portrayal of our changing world.
       </p>
       <p>Here is the chart we're learning to build today:</p>
+      <ChartOrSandbox
+        vizName={'ScatterplotCheryTreesDemo'}
+        VizComponent={ScatterplotCheryTreesDemo}
+        maxWidth={500}
+        height={500}
+        caption="A scatterplot made with React, using SVG for the axes and Canvas for the markers to improve performance."
+      />
 
       {/*
-
-
       //
       // Plot and code
       //
@@ -101,13 +107,7 @@ export default function Home() {
         Here is a complete implementation of the scatterplot using this
         technique with 10000 data points:
       </p>
-      <ChartOrSandbox
-        vizName={'ScatterplotCanvasBasicDemo'}
-        VizComponent={ScatterplotCanvasBasicDemo}
-        maxWidth={500}
-        height={500}
-        caption="A scatterplot made with React, using SVG for the axes and Canvas for the markers to improve performance."
-      />
+
       <p>
         <br />
         <br />
