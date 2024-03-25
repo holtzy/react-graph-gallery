@@ -1,0 +1,7 @@
+.circle {
+  stroke-width: 0px;
+  fill-opacity: 1;
+}
+.circle:hover {
+  stroke-width: 2px;
+}

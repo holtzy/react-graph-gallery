@@ -1,13 +1,12 @@
-import { useMemo } from "react";
-import { ScaleLinear } from "d3";
+import { useMemo } from 'react';
+import { ScaleLinear } from 'd3';
+import { getDateFromDayOfYear } from './getDateFromDayOfYears';
 
 type AxisLeftProps = {
   yScale: ScaleLinear<number, number>;
   pixelsPerTick: number;
   width: number;
 };
-
-const TICK_LENGTH = 10;
 
 export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
   const range = yScale.range();
@@ -28,22 +27,23 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
       {ticks.map(({ value, yOffset }) => (
         <g key={value} transform={`translate(0, ${yOffset})`}>
           <line
-            x1={-TICK_LENGTH}
-            x2={width + TICK_LENGTH}
+            x1={0}
+            x2={width}
             stroke="#D2D7D3"
             strokeWidth={0.5}
-            shapeRendering={"crispEdges"}
+            shapeRendering={'crispEdges'}
+            stroke-dasharray="2,2"
           />
           <text
             key={value}
             style={{
-              fontSize: "10px",
-              textAnchor: "middle",
-              transform: "translateX(-20px)",
-              fill: "#D2D7D3",
+              fontSize: '13px',
+              textAnchor: 'start',
+              transform: 'translateY(-5px)',
+              fill: '#D2D7D3',
             }}
           >
-            {value}
+            {getDateFromDayOfYear(value)}
           </text>
         </g>
       ))}
