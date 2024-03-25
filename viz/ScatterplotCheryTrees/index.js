@@ -1,6 +1,9 @@
-import ReactDOM from "react-dom";
-import { data } from "./data";
-import { Scatterplot } from "./Scatterplot";
+import ReactDOM from 'react-dom';
+import { data } from './data';
+import { ScatterplotCheryTreesDemo } from './ScatterplotCheryTreesDemo';
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Scatterplot data={data} width={400} height={400} />, rootElement);
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+  <ScatterplotCheryTreesDemo data={data} width={600} height={500} />,
+  rootElement
+);

@@ -30,7 +30,7 @@ const graphDescription = (
       With readily available code and straightforward explanations, you'll
       witness the prowess of React in seamlessly stacking multiple layers of
       rendering – from <Link href="/scatter-plot">scatterplots</Link> to{' '}
-      <Link href="/line-chart">line charts</Link> and annotations."
+      <Link href="/line-chart">line charts</Link> and annotations.
     </p>
   </>
 );
