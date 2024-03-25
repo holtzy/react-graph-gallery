@@ -78,7 +78,7 @@ export default function Home() {
       </p>
       <p>Here is the chart we're learning to build today:</p>
       <div className="flex justify-center mt-14">
-        <ScatterplotCheryTreesDemo width={700} height={430} />
+        <ScatterplotCheryTreesDemo width={600} height={500} />
       </div>
       {/*
       //
@@ -138,7 +138,7 @@ export default function Home() {
       //
       // Full code
       //
-      */}{' '}
+      */}
       <h2 id="full code">Full code</h2>
       <p>Let's wrap this up!</p>
       <p>
@@ -146,13 +146,34 @@ export default function Home() {
         <code>Show Code</code> button.
       </p>
       <ChartOrSandbox
-        vizName={'ScatterplotCheryTreesDemo'}
+        vizName={'ScatterplotCheryTrees'}
         VizComponent={ScatterplotCheryTreesDemo}
         maxWidth={700}
         height={500}
         caption="Reproduction of a chart published in the newspaper Le Monde."
       />
+      {/*
+      //
+      // Going further
+      //
+      */}
+      <h2 id="improvement">Going further</h2>
+      <p>This graph looks pretty good. A few potential improvements:</p>
+      <ul>
+        <li>
+          Add a <Link href="/scatter-plot#tooltip">tooltip</Link> to give more
+          information about each data point
+        </li>
+        <li>
+          Use{' '}
+          <Link href="example/scatterplot-tooltip-with-voronoi-for-closest-point-detection">
+            Voronoi
+          </Link>{' '}
+          for closest point detection to trigger the hover effect
+        </li>
+      </ul>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
+
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
     </Layout>

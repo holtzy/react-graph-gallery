@@ -1,19 +1,20 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { LineChartBasicDemo } from "../viz/LineChartBasic/LineChartBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import { LineChartDatasetTransitionDemo } from "viz/LineChartDatasetTransition/LineChartDatasetTransitionDemo";
-import { Accordion } from "component/UI/Accordion";
-import { ImageGrid } from "component/UI/ImageGrid";
-import { GraphLinkImage } from "component/UI/GraphLinkImage";
-import { LinkAsButton } from "component/LinkAsButton";
-import { ToDoSection } from "component/UI/ToDoSection";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { LineChartBasicDemo } from '../viz/LineChartBasic/LineChartBasicDemo';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import { LineChartDatasetTransitionDemo } from 'viz/LineChartDatasetTransition/LineChartDatasetTransitionDemo';
+import { Accordion } from 'component/UI/Accordion';
+import { ImageGrid } from 'component/UI/ImageGrid';
+import { GraphLinkImage } from 'component/UI/GraphLinkImage';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { ToDoSection } from 'component/UI/ToDoSection';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
@@ -21,7 +22,7 @@ const graphDescription = (
       A <a href="https://www.data-to-viz.com/graph/line.html">line chart</a> or
       line graph displays the evolution of one or several numeric variables.
       This page is a step-by-step guide on how to build your own line chart
-      component for the web, using <a href="https://reactjs.org/">React</a> and{" "}
+      component for the web, using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/line">D3.js</a>.
     </p>
     <p>
@@ -49,10 +50,10 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
         The dataset required to build a line chart is usually an array where
-        each item is an object providing the <code>x</code> and the{" "}
+        each item is an object providing the <code>x</code> and the{' '}
         <code>y</code> values of the data point.
       </p>
       <br />
@@ -60,12 +61,12 @@ export default function Home() {
       <CodeBlock code={snippetData} />
       <p>
         <u>Note</u>: if your data is in <code>.csv</code> format, you can
-        translate it thanks to the <code>d3.csv()</code> function as suggested{" "}
+        translate it thanks to the <code>d3.csv()</code> function as suggested{' '}
         <a href="https://d3-graph-gallery.com/graph/line_basic.html">here</a>.
       </p>
       <p>
         <u>Note</u>: a line chart is often made to represent <b>time</b>. If
-        your <code>x</code> property is a <b>date</b>, please visit the{" "}
+        your <code>x</code> property is a <b>date</b>, please visit the{' '}
         <Link href="/timeseries">timeseries</Link> section.
       </p>
       <LinkAsButton href="/timeseries" size="sm" isFilled>
@@ -80,17 +81,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>LineChart</code> component that will
         be stored in a <code>LineChart.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        3 props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         LineChart.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>LineChart</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -98,7 +99,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>path</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
       {/*
@@ -108,7 +109,7 @@ export default function Home() {
       */}
       <h2 id="scales & axes">Scales and Axes</h2>
       <p>
-        Like for many charts, everything starts with <b>scales</b>. A scale is a{" "}
+        Like for many charts, everything starts with <b>scales</b>. A scale is a{' '}
         <b>function</b> that transform the value of a data point in a position
         in <b>pixel</b>.
       </p>
@@ -140,7 +141,7 @@ export default function Home() {
       </h2>
       <p>
         From the dataset described above, we want to draw a line in SVG. In the
-        DOM this is done using a <code>path</code> element that has a{" "}
+        DOM this is done using a <code>path</code> element that has a{' '}
         <code>d</code> attribute.
       </p>
       <p>
@@ -156,11 +157,11 @@ export default function Home() {
       </p>
       <p>
         <code>lineBuilder</code> is now a function that expects a dataset as
-        input and returns a SVG <code>path</code> from it.{" "}
-      </p>{" "}
+        input and returns a SVG <code>path</code> from it.{' '}
+      </p>{' '}
       <CodeBlock code={snippetLinePath} />
       <p>
-        {" "}
+        {' '}
         This path can easily be plotted as shown in the following section. 🎉
       </p>
       {/*
@@ -170,21 +171,21 @@ export default function Home() {
       */}
       <h2 id="basic">Most basic line chart</h2>
       <p>
-        Most of the job is done already. It is just a matter of passing the{" "}
+        Most of the job is done already. It is just a matter of passing the{' '}
         <code>path</code> computed above to the SVG element. Something like
         this:
       </p>
       <CodeBlock code={snippetRendering} />
       <p>Leading to our first line chart! 🔥</p>
       <ChartOrSandbox
-        vizName={"LineChartBasic"}
+        vizName={'LineChartBasic'}
         VizComponent={LineChartBasicDemo}
         height={500}
         maxWidth={600}
         caption="Most basic line chart made with react (rendering) and d3.js (path computation)"
       />
       <p>
-        Note: you can compare this with a{" "}
+        Note: you can compare this with a{' '}
         <a href="https://d3-graph-gallery.com/graph/line_basic.html">
           d3.js only approach
         </a>
@@ -213,10 +214,10 @@ export default function Home() {
         an animation between 2 groups of a dataset.
       </p>
       <p>
-        This is possible thanks to the{" "}
+        This is possible thanks to the{' '}
         <a href="https://react-spring.dev/">react spring</a> library. Basically,
         instead of rendering usual a <code>path</code> element, the library
-        provides an <code>animated.path</code> element, that is linked to a{" "}
+        provides an <code>animated.path</code> element, that is linked to a{' '}
         <code>useSpring</code> hook.
       </p>
       <p>
@@ -226,7 +227,7 @@ export default function Home() {
         startOpen={false}
         title={
           <span>
-            <code>LineItem</code>: a component that animates the transition of a{" "}
+            <code>LineItem</code>: a component that animates the transition of a{' '}
             <code>path</code>
           </span>
         }
@@ -234,7 +235,7 @@ export default function Home() {
         <CodeBlock code={snippetLine} />
       </Accordion>
       <ChartOrSandbox
-        vizName={"LineChartDatasetTransition"}
+        vizName={'LineChartDatasetTransition'}
         VizComponent={LineChartDatasetTransitionDemo}
         height={400}
         maxWidth={600}
@@ -253,20 +254,16 @@ export default function Home() {
       */}
       <h2 id="variation">Variations</h2>
       <p>
-        You know have the basic understanding on how to build a <b>basic</b>{" "}
-        line chart component with React and d3.js. Below are a few examples
-        showing how to build more <b>complex</b> graphs based on those
-        principles.
+        You now have the basic understanding on how to build a <b>basic</b> line
+        chart component with React and d3.js. Below are a few examples showing
+        how to build more <b>complex</b> graphs based on those principles.
       </p>
-      <ImageGrid>
-        <GraphLinkImage
-          link={"/example/line-chart-synchronized-cursors"}
-          title={"Synchronized cursors"}
-          description={<p>Add a cursor synchronized on all your charts</p>}
-          img={"line-chart-synced-cursor.gif"}
-          alt={"line charts with synchronized cursors"}
-        />
-      </ImageGrid>
+      <GraphGallery
+        images={[
+          'line-chart-synced-cursor.gif',
+          'timeseries-moving-average.png',
+        ]}
+      />
       {/*
       //
       // Coming next
@@ -274,7 +271,7 @@ export default function Home() {
       */}
       <h2 id="next">Next</h2>
       <p>
-        The{" "}
+        The{' '}
         <a href="https://www.react-graph-gallery.com">react graph gallery</a> is
         under heavy development. Here is a list of things that will be added
         soon.
@@ -286,14 +283,14 @@ export default function Home() {
       <ToDoSection text="Inline legend with Reppel" />
       <p>
         <br />
-      </p>{" "}
+      </p>{' '}
       <p>Subscribe to the gallery to know when it is ready!</p>
       <LinkAsButton isFilled size="sm" href="Subscribe">
         Subscribe
       </LinkAsButton>
       <p>
         <br />
-      </p>{" "}
+      </p>{' '}
       {/* <ChartOrSandbox
         vizName={"LineChartDatasetTransition"}
         VizComponent={LineChartPageViewsDemo}

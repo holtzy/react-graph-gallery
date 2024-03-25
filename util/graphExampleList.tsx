@@ -355,6 +355,13 @@ export const graphExampleList: GraphExample[] = [
     img: 'line-chart-data-transition.gif',
     alt: 'GIF of a line chart that animates between 2 dataset',
   },
+  {
+    link: '/example/line-chart-synchronized-cursors',
+    title: 'Synchronized cursors',
+    description: 'Add a cursor synchronized on all your charts',
+    img: 'line-chart-synced-cursor.gif',
+    alt: 'line charts with synchronized cursors',
+  },
   //
   // Area Plot
   //
@@ -411,7 +418,17 @@ export const graphExampleList: GraphExample[] = [
     img: 'streamgraph-application.gif',
     alt: 'GIF of a streamgraph with multiple interactive features',
   },
-
+  //
+  // Timeseries
+  //
+  {
+    link: '/example/timeseries-moving-average',
+    title: 'Timeseries with moving average',
+    description:
+      'A scatterplot used for timeseries, with the moving average shown as a line chart on top.',
+    img: 'timeseries-moving-average.png',
+    alt: 'Picture of a timeseries chart made with React and D3.js: scatterplot and line chart in use.',
+  },
   //
   // Circle Packing
   //

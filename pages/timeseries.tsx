@@ -1,26 +1,22 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { ImageGrid } from "component/UI/ImageGrid";
-import { GraphLinkImage } from "component/UI/GraphLinkImage";
-import { Accordion } from "component/UI/Accordion";
-import { AxisTimeD3Demo } from "viz/AxisTimeD3/AxisTimeD3Demo";
-import { LineChartPageViewsDemo } from "viz/LineChartPageViews/LineChartPageViewsDemo";
-import { LineChartSyncCursorDemo } from "viz/LineChartSyncCursor/LineChartSyncCursorDemo";
-import { LinkAsButton } from "component/LinkAsButton";
-import { LineChartTimeDemo } from "viz/LineChartTime/LineChartTimeDemo";
-import { LineChartPanningDemo } from "viz/LineChartPanning/LineChartPanningDemo";
-import GraphGallery from "component/GraphGallery";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { Accordion } from 'component/UI/Accordion';
+import { AxisTimeD3Demo } from 'viz/AxisTimeD3/AxisTimeD3Demo';
+import { LineChartSyncCursorDemo } from 'viz/LineChartSyncCursor/LineChartSyncCursorDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { LineChartTimeDemo } from 'viz/LineChartTime/LineChartTimeDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
       This section does not target a specific chart type, even though timeseries
-      are often represented as <Link href="/line-chart">line</Link> charts or{" "}
+      are often represented as <Link href="/line-chart">line</Link> charts or{' '}
       <Link href="/area">area</Link> charts.
     </p>
     <p>
@@ -48,7 +44,7 @@ export default function Home() {
       // Link to related section
       //
       */}
-      <h2 id="chart types">Useful chart types</h2>{" "}
+      <h2 id="chart types">Useful chart types</h2>{' '}
       <p>
         This page is <b>not</b> about a specific chart type. Instead it provides
         hints on how to deal with <b>time</b>.
@@ -60,9 +56,9 @@ export default function Home() {
       <br />
       <GraphGallery
         images={[
-          "line-chart-basic.png",
-          "heatmapBasic.png",
-          "streamgraph-basic.png",
+          'line-chart-basic.png',
+          'heatmapBasic.png',
+          'streamgraph-basic.png',
         ]}
       />
       {/*
@@ -70,9 +66,9 @@ export default function Home() {
       // The Date format
       //
       */}
-      <h2 id="date format">The Date format</h2>{" "}
+      <h2 id="date format">The Date format</h2>{' '}
       <p>
-        The first struggle when dealing with timeseries is to work with the{" "}
+        The first struggle when dealing with timeseries is to work with the{' '}
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
           javascript Date format
         </a>
@@ -82,8 +78,8 @@ export default function Home() {
       <p>
         Here is an <b>FAQ</b> about the <code>Date</code> format. I constantly
         forget how this works and come back here for reference. Note that it
-        heavily relies on the{" "}
-        <a href="https://github.com/d3/d3-time-format">d3-time-format module</a>{" "}
+        heavily relies on the{' '}
+        <a href="https://github.com/d3/d3-time-format">d3-time-format module</a>{' '}
         that provides great helpers.
       </p>
       <Accordion
@@ -100,7 +96,7 @@ export default function Home() {
         </p>
         <p>
           In order to manipulate and plot those dates, you need to transform it
-          into a{" "}
+          into a{' '}
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
             javascript date format
           </a>
@@ -143,14 +139,14 @@ export default function Home() {
       */}
       <h2 id="time axis">Building a time axis</h2>
       <p>
-        A very common task when it comes to build timeseries viz is to draw a{" "}
+        A very common task when it comes to build timeseries viz is to draw a{' '}
         <b>time axis</b>. Fortunately, d3 has amazing helper functions allowing
         to create and draw temporal scales.
       </p>
       <p>
         All the magic is stored in the <code>d3-scale</code> module, and more
-        precisely in the{" "}
-        <a href="https://github.com/d3/d3-scale#scaleTime">scaleTime</a>{" "}
+        precisely in the{' '}
+        <a href="https://github.com/d3/d3-scale#scaleTime">scaleTime</a>{' '}
         function.
       </p>
       <p>Building a time scale can be summarized as follow:</p>
@@ -160,7 +156,7 @@ export default function Home() {
         a <code>Date</code>, it returns a <code>position in pixels</code>
       </p>
       <p>
-        {" "}
+        {' '}
         You can finally use this scale to draw the X axis using your favorite
         method:
       </p>
@@ -171,7 +167,7 @@ export default function Home() {
         </li>
       </ul>
       <p>
-        I'm preparing a full post on axes with d3 and react,{" "}
+        I'm preparing a full post on axes with d3 and react,{' '}
         <Link href="/subscribe">subscribe</Link> to the newsletter if you want
         to be notified when it's out!
       </p>
@@ -179,7 +175,7 @@ export default function Home() {
         More on axes
       </LinkAsButton>
       <ChartOrSandbox
-        vizName={"AxisTimeD3"}
+        vizName={'AxisTimeD3'}
         VizComponent={AxisTimeD3Demo}
         height={250}
         maxWidth={600}
@@ -203,17 +199,17 @@ export default function Home() {
       */}
       <h2 id="line chart">Line chart application</h2>
       <p>
-        If you already understood the content of the{" "}
+        If you already understood the content of the{' '}
         <Link href="line-chart">line chart section</Link> of the gallery, you
-        just have to use a <code>scaleTime</code> instead of a{" "}
-        <code>scaleLinear</code> and that's it, you have your first{" "}
+        just have to use a <code>scaleTime</code> instead of a{' '}
+        <code>scaleLinear</code> and that's it, you have your first{' '}
         <b>timeseries</b> visualization. 😋
       </p>
       <LinkAsButton size="sm" href="/line-chart" isFilled>
         Line chart section
       </LinkAsButton>
       <ChartOrSandbox
-        vizName={"LineChartDatasetTransition"}
+        vizName={'LineChartDatasetTransition'}
         VizComponent={LineChartTimeDemo}
         height={300}
         maxWidth={900}
@@ -240,7 +236,7 @@ export default function Home() {
       */}
       <h2 id="synced cursor">Synchronized cursor</h2>
       <p>
-        Another pretty common task when dealing with timeseries is to add a{" "}
+        Another pretty common task when dealing with timeseries is to add a{' '}
         <b>synchronized cursor</b> on all charts.
       </p>
       <p>
@@ -252,26 +248,38 @@ export default function Home() {
         The implementation required to build a shared state between all charts
         of the webpage. Hovering a specific chart will update this state and
         thus update all other plots. This process is extensively described in
-        this{" "}
+        this{' '}
         <Link href="/example/line-chart-synchronized-cursors">
           synchronized cursor for timeseries
-        </Link>{" "}
-        post.{" "}
+        </Link>{' '}
+        post.{' '}
       </p>
       <LinkAsButton
         href="/example/line-chart-synchronized-cursors"
         isFilled
         size="sm"
       >
-        {"Read full post"}
+        {'Read full post'}
       </LinkAsButton>
       <ChartOrSandbox
-        vizName={"LineChartSyncCursor"}
+        vizName={'LineChartSyncCursor'}
         VizComponent={LineChartSyncCursorDemo}
         height={300}
         maxWidth={900}
         caption="Hover over a chart to see a cursor on both of them, easing the time comparison."
       />
+      {/*
+      //
+      // Link to related section
+      //
+      */}
+      <h2 id="gallery">Gallery of timeseries example</h2>
+      <p>
+        On top of the generic use-cases presented above, here is a gallery of
+        chart examples involving <b>timeseries</b> visualization:
+      </p>
+      <br />
+      <GraphGallery images={['timeseries-moving-average.png']} />
       {/*
       //
       // Panning
@@ -286,6 +294,7 @@ export default function Home() {
         maxWidth={600}
         caption="Hover over a chart to see a cursor on both of them, easing the time comparison."
       /> */}
+      <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />
     </Layout>
