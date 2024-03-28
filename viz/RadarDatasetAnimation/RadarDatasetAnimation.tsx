@@ -3,6 +3,7 @@ import { data } from './data';
 import { Radar } from './Radar';
 
 const BUTTONS_HEIGHT = 50;
+const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
 
 type RadarDatasetAnimationProps = {
   width: number;
@@ -26,7 +27,9 @@ export const RadarDatasetAnimation = ({
   const allGroups = data.map((d) => d.name);
   const [selectedGroup, setSelectedGroup] = useState(allGroups[0]);
 
-  const groupData = data.find((d) => d.name === selectedGroup);
+  const groupId = data.findIndex((d) => d.name === selectedGroup);
+  const groupData = data[groupId];
+  const groupColor = COLORS[groupId];
 
   if (!groupData) {
     return null;
@@ -34,15 +37,25 @@ export const RadarDatasetAnimation = ({
 
   return (
     <div>
-      <div style={{ height: BUTTONS_HEIGHT }}>
-        {allGroups.map((group) => {
+      <div
+        style={{
+          height: BUTTONS_HEIGHT,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        {allGroups.map((group, i) => {
           return (
             <button
               key={group}
-              style={buttonStyle}
               onClick={() => setSelectedGroup(group)}
+              style={{
+                ...buttonStyle,
+                color: COLORS[i],
+                borderColor: COLORS[i],
+              }}
             >
-              group
+              {group}
             </button>
           );
         })}
@@ -59,6 +72,7 @@ export const RadarDatasetAnimation = ({
           { name: 'style', max: 1000 },
           { name: 'price', max: 100 },
         ]}
+        color={groupColor}
       />
     </div>
   );

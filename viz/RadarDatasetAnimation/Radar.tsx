@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { DataItem, Variable } from './data';
 import { AxisConfig, INNER_RADIUS, RadarGrid } from './RadarGrid';
+import { useSpring, animated } from 'react-spring';
 
 const MARGIN = 30;
 
@@ -11,12 +12,19 @@ type RadarProps = {
   height: number;
   data: DataItem<Variable>;
   axisConfig: AxisConfig[];
+  color?: string;
 };
 
 /*
   A react component that builds a Radar Chart for several groups in the dataset
 */
-export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
+export const Radar = ({
+  width,
+  height,
+  data,
+  axisConfig,
+  color,
+}: RadarProps) => {
   const outerRadius = Math.min(width, height) / 2 - MARGIN;
 
   // The x scale provides an angle for each variable of the dataset
@@ -60,14 +68,35 @@ export const Radar = ({ width, height, data, axisConfig }: RadarProps) => {
           xScale={xScale}
           axisConfig={axisConfig}
         />
-        <path
-          d={linePath}
-          stroke={'#cb1dd1'}
-          strokeWidth={3}
-          fill={'#cb1dd1'}
-          fillOpacity={0.1}
-        />
+        <LineItem path={linePath} color={color || '#cb1dd1'} />
       </g>
     </svg>
+  );
+};
+
+type LineItemProps = {
+  path: string;
+  color: string;
+};
+
+const LineItem = ({ path, color }: LineItemProps) => {
+  const springProps = useSpring({
+    to: {
+      path,
+      color,
+    },
+    config: {
+      friction: 100,
+    },
+  });
+
+  return (
+    <animated.path
+      d={springProps.path}
+      fill={springProps.color}
+      fillOpacity={0.1}
+      stroke={springProps.color}
+      strokeWidth={3}
+    />
   );
 };
