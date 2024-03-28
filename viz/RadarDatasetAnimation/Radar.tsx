@@ -39,8 +39,8 @@ export const Radar = ({
   let yScales: { [name: string]: YScale } = {};
   axisConfig.forEach((axis) => {
     yScales[axis.name] = d3
-      .scaleRadial()
-      .domain([0, axis.max])
+      .scaleLinear()
+      .domain([1, axis.max])
       .range([INNER_RADIUS, outerRadius]);
   });
 

@@ -3,7 +3,7 @@ import { data } from './data';
 import { Radar } from './Radar';
 
 const BUTTONS_HEIGHT = 50;
-const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
+const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0', '#a53253'];
 
 type RadarDatasetAnimationProps = {
   width: number;
@@ -65,12 +65,17 @@ export const RadarDatasetAnimation = ({
         width={width}
         height={height - BUTTONS_HEIGHT}
         axisConfig={[
-          { name: 'speed', max: 10 },
-          { name: 'acceleration', max: 10 },
-          { name: 'conso', max: 10 },
-          { name: 'safety', max: 2 },
-          { name: 'style', max: 1000 },
-          { name: 'price', max: 100 },
+          { name: 'ML Ops', max: 5 },
+          { name: 'Data Pipelines', max: 5 },
+          { name: 'Database', max: 5 },
+          { name: 'Data Viz', max: 5 },
+          { name: 'Storytelling', max: 5 },
+          { name: 'Business Insights', max: 5 },
+          { name: 'Reporting', max: 5 },
+          { name: 'Experimentation', max: 5 },
+          { name: 'Stats', max: 5 },
+          { name: 'ML Modeling', max: 5 },
+          { name: 'Deployment', max: 5 },
         ]}
         color={groupColor}
       />
