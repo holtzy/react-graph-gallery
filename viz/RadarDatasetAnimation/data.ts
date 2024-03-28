@@ -77,3 +77,12 @@ export const data: Data = [
     name: 'Data Analyst',
   },
 ];
+
+// Source: https://reviewnprep.com/blog/data-engineer-vs-data-analyst-vs-data-scientist-salary-skills-background/
+// https://www.glassdoor.com/Salaries/machine-learning-engineer-salary-SRCH_KO0,25.htm
+export const dumbelData = [
+  { name: 'Data Analyst', value1: 90, value2: 200 },
+  { name: 'Data Scientist', value1: 60, value2: 114 },
+  { name: 'ML Engineer', value1: 75, value2: 150 },
+  { name: 'Data Engineer', value1: 125, value2: 220 },
+];

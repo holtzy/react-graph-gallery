@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { data } from './data';
+import { data, dumbelData } from './data';
 import { Radar } from './Radar';
+import { Dumbbell } from './Dumbbell';
 
 const BUTTONS_HEIGHT = 50;
 const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0', '#a53253'];
@@ -60,25 +61,28 @@ export const RadarDatasetAnimation = ({
           );
         })}
       </div>
-      <Radar
-        data={groupData}
-        width={width}
-        height={height - BUTTONS_HEIGHT}
-        axisConfig={[
-          { name: 'ML Ops', max: 5 },
-          { name: 'Data Pipelines', max: 5 },
-          { name: 'Database', max: 5 },
-          { name: 'Data Viz', max: 5 },
-          { name: 'Storytelling', max: 5 },
-          { name: 'Business Insights', max: 5 },
-          { name: 'Reporting', max: 5 },
-          { name: 'Experimentation', max: 5 },
-          { name: 'Stats', max: 5 },
-          { name: 'ML Modeling', max: 5 },
-          { name: 'Deployment', max: 5 },
-        ]}
-        color={groupColor}
-      />
+      <div style={{ display: 'flex' }}>
+        <Radar
+          data={groupData}
+          width={(width / 3) * 2}
+          height={height - BUTTONS_HEIGHT}
+          axisConfig={[
+            { name: 'ML Ops', max: 5 },
+            { name: 'Data Pipelines', max: 5 },
+            { name: 'Database', max: 5 },
+            { name: 'Data Viz', max: 5 },
+            { name: 'Storytelling', max: 5 },
+            { name: 'Business Insights', max: 5 },
+            { name: 'Reporting', max: 5 },
+            { name: 'Experimentation', max: 5 },
+            { name: 'Stats', max: 5 },
+            { name: 'ML Modeling', max: 5 },
+            { name: 'Deployment', max: 5 },
+          ]}
+          color={groupColor}
+        />
+        <Dumbbell width={width / 3} height={200} data={dumbelData} />
+      </div>
     </div>
   );
 };

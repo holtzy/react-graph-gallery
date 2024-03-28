@@ -59,7 +59,7 @@ export const RadarGrid = ({
           x={labelPosition.x}
           y={labelPosition.y}
           fontSize={12}
-          fill={GRID_COLOR}
+          fill={'black'}
           textAnchor={labelPosition.x > 0 ? 'start' : 'end'}
           dominantBaseline="middle"
         >
