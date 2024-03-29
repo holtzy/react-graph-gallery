@@ -32,7 +32,9 @@ export const RadarDatasetAnimation = ({
   const groupData = data[groupId];
   const groupColor = COLORS[groupId];
 
-  if (!groupData) {
+  const groupDumbelData = dumbelData.find((d) => d.name === selectedGroup);
+
+  if (!groupData || !groupDumbelData) {
     return null;
   }
 
@@ -81,7 +83,12 @@ export const RadarDatasetAnimation = ({
           ]}
           color={groupColor}
         />
-        <Dumbbell width={width / 3} height={200} data={dumbelData} />
+        <Dumbbell
+          width={width / 3}
+          height={150}
+          data={groupDumbelData}
+          color={groupColor}
+        />
       </div>
     </div>
   );

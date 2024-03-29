@@ -1,22 +1,20 @@
 import { useSpring, animated } from '@react-spring/web';
 
 type DumbbellItemProps = {
-  name: string;
   xValue1: number;
   xValue2: number;
   y: number;
+  color: string;
 };
 
 type AnimatedProps = {
-  barWidth: number;
   xValue1: number;
   xValue2: number;
-  valueOpacity: number;
-  y: number;
+  color: string;
 };
 
 export const DumbbellItem = (props: DumbbellItemProps) => {
-  const { name, xValue1, xValue2, y } = props;
+  const { xValue1, xValue2, y, color } = props;
 
   const springProps = useSpring<AnimatedProps>({
     // the 'from' properties will be used only to animate the initialization of the component
@@ -24,13 +22,13 @@ export const DumbbellItem = (props: DumbbellItemProps) => {
     from: {
       xValue1: 0,
       xValue2: 0,
-      valueOpacity: 0,
+      color,
     },
     to: {
       xValue1: xValue1,
       xValue2: xValue2,
-      valueOpacity: 1,
       y,
+      color,
     },
     config: {
       friction: 100,
@@ -41,39 +39,52 @@ export const DumbbellItem = (props: DumbbellItemProps) => {
     <g>
       <animated.line
         x1={springProps.xValue1}
-        y1={springProps.y}
-        y2={springProps.y}
+        y1={y}
+        y2={y}
         x2={springProps.xValue2}
-        opacity={0.7}
+        opacity={1}
         stroke="grey"
         strokeWidth={1}
       />
       <animated.circle
-        cy={springProps.y}
+        cy={y}
         cx={springProps.xValue1}
-        opacity={0.7}
-        stroke="#69b3a2"
-        fill="#69b3a2"
-        strokeWidth={1}
-        r={5}
-      />
-      <animated.circle
-        cy={springProps.y}
-        cx={springProps.xValue2}
-        opacity={0.7}
-        stroke="#9d174d"
-        fill="#9d174d"
+        opacity={1}
+        stroke={color}
+        fill={color}
         strokeWidth={1}
         r={5}
       />
       <animated.text
-        x={-7}
-        y={springProps.y}
-        textAnchor="end"
-        alignmentBaseline="central"
+        y={y}
+        x={springProps.xValue1.to((x) => x - 10)}
+        opacity={1}
+        color={color}
         fontSize={12}
+        alignmentBaseline={'central'}
+        textAnchor={'end'}
       >
-        {name}
+        {springProps.xValue1.to((x) => Math.round(x))}
+      </animated.text>
+      <animated.circle
+        cy={y}
+        cx={springProps.xValue2}
+        opacity={1}
+        stroke={color}
+        fill={color}
+        strokeWidth={1}
+        r={5}
+      />
+      <animated.text
+        y={y}
+        x={springProps.xValue2.to((x) => x + 10)}
+        opacity={1}
+        color={color}
+        fontSize={12}
+        alignmentBaseline={'central'}
+        textAnchor={'start'}
+      >
+        {springProps.xValue2.to((x) => Math.round(x))}
       </animated.text>
     </g>
   );

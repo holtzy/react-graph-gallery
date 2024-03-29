@@ -2,50 +2,31 @@ import { useMemo } from 'react';
 import * as d3 from 'd3';
 import { DumbbellItem } from './DumbbellItem';
 
-const MARGIN = { top: 30, right: 30, bottom: 30, left: 70 };
+const MARGIN = { top: 10, right: 10, bottom: 40, left: 10 };
 
 type DumbbellProps = {
   width: number;
   height: number;
-  data: { name: string; value1: number; value2: number }[];
+  data: { name: string; value1: number; value2: number };
+  color: string;
 };
 
-export const Dumbbell = ({ width, height, data }: DumbbellProps) => {
+export const Dumbbell = ({ width, height, data, color }: DumbbellProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  // Y axis is for groups since the barplot is horizontal
-  const groups = data.map((d) => d.name).sort();
-  const yScale = useMemo(() => {
-    return d3.scaleBand().domain(groups).range([0, boundsHeight]);
-  }, [data, height]);
-
   // X axis
   const xScale = useMemo(() => {
-    return d3.scaleLinear().domain([0, 120]).range([0, boundsWidth]);
+    return d3.scaleLinear().domain([0, 250]).range([0, boundsWidth]);
   }, [data, width]);
 
-  // Build the shapes
-  const allShapes = data.map((d) => {
-    return (
-      <DumbbellItem
-        key={d.name}
-        name={d.name}
-        xValue1={xScale(d.value1)}
-        xValue2={xScale(d.value2)}
-        y={yScale(d.name)}
-      />
-    );
-  });
-
-  const selectedData = data[0];
   const selectedShape = (
     <DumbbellItem
-      name={selectedData.name}
-      xValue1={xScale(selectedData.value1)}
-      xValue2={xScale(selectedData.value2)}
-      y={yScale(selectedData.name)}
+      xValue1={xScale(data.value1)}
+      xValue2={xScale(data.value2)}
+      color={color}
+      y={boundsHeight / 2}
     />
   );
 
@@ -57,8 +38,28 @@ export const Dumbbell = ({ width, height, data }: DumbbellProps) => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
-          {allShapes}
           {selectedShape}
+          <g>
+            <line
+              x1={0}
+              y1={boundsHeight}
+              y2={boundsHeight}
+              x2={boundsWidth}
+              opacity={1}
+              stroke="grey"
+              strokeWidth={0.5}
+              shapeRendering="crispEdges"
+            />
+            <text
+              x={boundsWidth}
+              y={boundsHeight + 15}
+              fontSize={12}
+              textAnchor="end"
+              color="grey"
+            >
+              Salary range (k$)
+            </text>
+          </g>
         </g>
       </svg>
     </div>

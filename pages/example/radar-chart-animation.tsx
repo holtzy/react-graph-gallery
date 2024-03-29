@@ -61,7 +61,7 @@ export default function Home() {
       <ChartOrSandbox
         vizName={'RadarDatasetAnimation'}
         VizComponent={RadarDatasetAnimationDemo}
-        maxWidth={500}
+        maxWidth={900}
         height={500}
         caption="An animated radar chart made with React and D3.js."
       />
