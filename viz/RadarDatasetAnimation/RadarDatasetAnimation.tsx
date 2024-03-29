@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { data, dumbelData } from './data';
+import { data, dumbelData, timeseriesData } from './data';
 import { Radar } from './Radar';
 import { Dumbbell } from './Dumbbell';
+import { LineChart } from './LineChart';
 
 const BUTTONS_HEIGHT = 50;
 const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0', '#a53253'];
@@ -29,10 +30,20 @@ export const RadarDatasetAnimation = ({
   const [selectedGroup, setSelectedGroup] = useState(allGroups[0]);
 
   const groupId = data.findIndex((d) => d.name === selectedGroup);
+  const groupName = allGroups[groupId];
   const groupData = data[groupId];
   const groupColor = COLORS[groupId];
 
   const groupDumbelData = dumbelData.find((d) => d.name === selectedGroup);
+
+  const groupLineData = timeseriesData.map((d) => {
+    const [year, month] = d.Month.split('-');
+    const date = new Date(Number(year), Number(month) - 1, 1);
+    return {
+      x: date,
+      value: d[groupName],
+    };
+  });
 
   if (!groupData || !groupDumbelData) {
     return null;
@@ -83,12 +94,27 @@ export const RadarDatasetAnimation = ({
           ]}
           color={groupColor}
         />
-        <Dumbbell
-          width={width / 3}
-          height={150}
-          data={groupDumbelData}
-          color={groupColor}
-        />
+        <div
+          style={{
+            height,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <Dumbbell
+            width={width / 3}
+            height={150}
+            data={groupDumbelData}
+            color={groupColor}
+          />
+          <LineChart
+            data={groupLineData}
+            width={width / 3}
+            height={150}
+            color={groupColor}
+          />
+        </div>
       </div>
     </div>
   );
