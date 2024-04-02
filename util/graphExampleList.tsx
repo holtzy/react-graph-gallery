@@ -346,6 +346,37 @@ export const graphExampleList: GraphExample[] = [
   //
   // Lollipop
   //
+  {
+    link: '/lollipop-plot#basic',
+    title: 'Most basic lollipop plot',
+    description:
+      'Learn how to build a very simple lollipop chart with React and D3.js',
+    img: 'lollipop-plot-basic.png',
+    alt: 'Picture of a very simple lollipop chart',
+  },
+  {
+    link: '/lollipop-plot#dumbbell',
+    title: 'Most basic dumbbell plot',
+    description:
+      'Learn how to build a very simple dumbbell chart with React and D3.js',
+    img: 'lollipop-plot-dumbbell.png',
+    alt: 'Picture of a very simple dumbbell chart',
+  },
+  {
+    link: '/lollipop-plot#hover%20effect',
+    title: 'Lollipop with hover effect',
+    description: 'Learn how to add a hover effect to your lollipop chart',
+    img: 'lollipop-plot-hover-effect.png',
+    alt: 'Picture of a lollipop chart with hover effect',
+  },
+  {
+    link: '/lollipop-plot#data%20transition',
+    title: 'Animation between dataset',
+    description:
+      'Learn how to build a smooth animated transition between 2 datasets',
+    img: 'lollipop-plot-animation.png',
+    alt: 'Picture of a lollipop with buttons and animated transition',
+  },
 
   //
   // Circular Barplot
