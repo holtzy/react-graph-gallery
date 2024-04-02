@@ -209,7 +209,7 @@ export default function Home() {
         Line chart section
       </LinkAsButton>
       <ChartOrSandbox
-        vizName={'LineChartDatasetTransition'}
+        vizName={'LineChartTime'}
         VizComponent={LineChartTimeDemo}
         height={300}
         maxWidth={900}
