@@ -86,7 +86,7 @@ export default function Home() {
         vizName={'RadarDatasetAnimation'}
         VizComponent={RadarDatasetAnimationDemo}
         maxWidth={900}
-        height={800}
+        height={1000}
         caption="Dive deep into the 4 main types of Data Professionals. Understand their main required competencies, their salary ranges and their popularity."
       />
       {/*

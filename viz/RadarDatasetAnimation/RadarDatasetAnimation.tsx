@@ -4,8 +4,8 @@ import { Radar } from './Radar';
 import { Dumbbell } from './Dumbbell';
 import { LineChart } from './LineChart';
 
-const HEADER_HEIGHT = 230; // button + title
-const MARGIN_BOTTOM = 20;
+const HEADER_HEIGHT = 130; // button + title
+const MARGIN_BOTTOM = 70;
 const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0'];
 
 const buttonStyle = {
@@ -58,7 +58,7 @@ export const RadarDatasetAnimation = ({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: 20,
+          marginTop: 70,
         }}
       >
         <h1>Types of Data Professionals</h1>
@@ -108,7 +108,7 @@ export const RadarDatasetAnimation = ({
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Radar
           data={groupRadarData}
-          width={(width / 3) * 2}
+          width={(width / 3) * 2 - 50}
           height={height - HEADER_HEIGHT - MARGIN_BOTTOM}
           axisConfig={[
             { name: 'ML Ops', max: 5 },
