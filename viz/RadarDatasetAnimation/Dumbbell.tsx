@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 import { DumbbellItem } from './DumbbellItem';
 
-const MARGIN = { top: 10, right: 10, bottom: 40, left: 10 };
+const MARGIN = { top: 40, right: 10, bottom: 60, left: 30 };
 
 type DumbbellProps = {
   width: number;
@@ -13,6 +13,7 @@ type DumbbellProps = {
 
 export const Dumbbell = ({ width, height, data, color }: DumbbellProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
+  const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
@@ -30,6 +31,25 @@ export const Dumbbell = ({ width, height, data, color }: DumbbellProps) => {
     />
   );
 
+  // Render the X axis using d3.js, not react
+  useEffect(() => {
+    const svgElement = d3.select(axesRef.current);
+    svgElement.selectAll('*').remove();
+
+    const xAxisGenerator = d3.axisBottom(xScale);
+    svgElement
+      .append('g')
+      .attr('transform', 'translate(0,' + boundsHeight + ')')
+      .call(xAxisGenerator.ticks(4));
+    svgElement
+      .append('text')
+      .attr('x', boundsWidth)
+      .attr('y', boundsHeight + 40)
+      .style('text-anchor', 'end')
+      .style('font-size', 12)
+      .text('Salary range (in k$)');
+  }, [xScale, boundsHeight]);
+
   return (
     <div>
       <svg width={width} height={height}>
@@ -39,28 +59,14 @@ export const Dumbbell = ({ width, height, data, color }: DumbbellProps) => {
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
           {selectedShape}
-          <g>
-            <line
-              x1={0}
-              y1={boundsHeight}
-              y2={boundsHeight}
-              x2={boundsWidth}
-              opacity={1}
-              stroke="grey"
-              strokeWidth={0.5}
-              shapeRendering="crispEdges"
-            />
-            <text
-              x={boundsWidth}
-              y={boundsHeight + 15}
-              fontSize={12}
-              textAnchor="end"
-              color="grey"
-            >
-              Salary range (k$)
-            </text>
-          </g>
+          {/* Second is for the axes */}
         </g>
+        <g
+          width={boundsWidth}
+          height={boundsHeight}
+          ref={axesRef}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+        />
       </svg>
     </div>
   );

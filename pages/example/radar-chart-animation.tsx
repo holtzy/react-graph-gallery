@@ -5,7 +5,6 @@ import ChartFamilySection from 'component/ChartFamilySection';
 import { CodeBlock } from 'component/UI/CodeBlock';
 import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import Link from 'next/link';
-import { BoxplotHorizontalDemo } from 'viz/BoxplotHorizontal/BoxplotHorizontalDemo';
 import { RadarDatasetAnimationDemo } from 'viz/RadarDatasetAnimation/RadarDatasetAnimationDemo';
 
 const graphDescription = (
@@ -62,7 +61,7 @@ export default function Home() {
         vizName={'RadarDatasetAnimation'}
         VizComponent={RadarDatasetAnimationDemo}
         maxWidth={900}
-        height={500}
+        height={800}
         caption="An animated radar chart made with React and D3.js."
       />
 

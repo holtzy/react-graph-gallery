@@ -4,22 +4,22 @@ import { Radar } from './Radar';
 import { Dumbbell } from './Dumbbell';
 import { LineChart } from './LineChart';
 
-const BUTTONS_HEIGHT = 50;
-const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0', '#a53253'];
-
-type RadarDatasetAnimationProps = {
-  width: number;
-  height: number;
-};
+const HEADER_HEIGHT = 230; // button + title
+const MARGIN_BOTTOM = 20;
+const COLORS = ['green', '#e0ac2b', '#6689c6', '#e85252', '#9a6fb0'];
 
 const buttonStyle = {
-  border: '1px solid #9a6fb0',
+  border: '1px solid',
   borderRadius: '3px',
   padding: '0px 8px',
   margin: '10px 2px',
   fontSize: 14,
-  color: '#9a6fb0',
   opacity: 0.7,
+};
+
+type RadarDatasetAnimationProps = {
+  width: number;
+  height: number;
 };
 
 export const RadarDatasetAnimation = ({
@@ -31,8 +31,9 @@ export const RadarDatasetAnimation = ({
 
   const groupId = data.findIndex((d) => d.name === selectedGroup);
   const groupName = allGroups[groupId];
-  const groupData = data[groupId];
   const groupColor = COLORS[groupId];
+
+  const groupRadarData = data[groupId];
 
   const groupDumbelData = dumbelData.find((d) => d.name === selectedGroup);
 
@@ -45,7 +46,7 @@ export const RadarDatasetAnimation = ({
     };
   });
 
-  if (!groupData || !groupDumbelData) {
+  if (!groupRadarData || !groupDumbelData || !groupLineData) {
     return null;
   }
 
@@ -53,32 +54,62 @@ export const RadarDatasetAnimation = ({
     <div>
       <div
         style={{
-          height: BUTTONS_HEIGHT,
+          height: HEADER_HEIGHT,
           display: 'flex',
-          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: 20,
         }}
       >
-        {allGroups.map((group, i) => {
-          return (
-            <button
-              key={group}
-              onClick={() => setSelectedGroup(group)}
-              style={{
-                ...buttonStyle,
-                color: COLORS[i],
-                borderColor: COLORS[i],
-              }}
-            >
-              {group}
-            </button>
-          );
-        })}
+        <h1>Types of Data Professionals</h1>
+        <p
+          style={{
+            fontSize: 14,
+            color: 'grey',
+            maxWidth: 600,
+            lineHeight: 1.5,
+            textAlign: 'center',
+            marginTop: 10,
+          }}
+        >
+          The field of data offers a diverse array of <b>job titles</b>, making
+          it challenging to navigate without <b>getting lost in the jargon</b>{' '}
+          and uncertainty about which roles to pursue. The charts below offer
+          deeper insights into the <b>competencies needed</b>,{' '}
+          <b>salary ranges</b>, and <b>popularity trends</b> for the four
+          primary job titles.
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          {allGroups.map((group, i) => {
+            const isSelected = group === selectedGroup;
+            return (
+              <button
+                key={group}
+                onClick={() => setSelectedGroup(group)}
+                style={{
+                  ...buttonStyle,
+                  color: isSelected ? 'white' : COLORS[i],
+                  borderColor: COLORS[i],
+                  backgroundColor: isSelected ? groupColor : 'white',
+                }}
+              >
+                {group}
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Radar
-          data={groupData}
+          data={groupRadarData}
           width={(width / 3) * 2}
-          height={height - BUTTONS_HEIGHT}
+          height={height - HEADER_HEIGHT - MARGIN_BOTTOM}
           axisConfig={[
             { name: 'ML Ops', max: 5 },
             { name: 'Data Pipelines', max: 5 },
@@ -96,7 +127,7 @@ export const RadarDatasetAnimation = ({
         />
         <div
           style={{
-            height,
+            height: height - HEADER_HEIGHT - MARGIN_BOTTOM,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -111,7 +142,7 @@ export const RadarDatasetAnimation = ({
           <LineChart
             data={groupLineData}
             width={width / 3}
-            height={150}
+            height={250}
             color={groupColor}
           />
         </div>

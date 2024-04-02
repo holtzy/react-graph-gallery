@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 import { useSpring, animated } from '@react-spring/web';
 
-const MARGIN = { top: 10, right: 10, bottom: 40, left: 10 };
+const MARGIN = { top: 10, right: 10, bottom: 60, left: 30 };
 
 type Datapoint = { x: Date; value: number };
 
@@ -24,7 +24,7 @@ export const LineChart = ({ width, height, data, color }: LineChartProps) => {
 
   const xScale = d3.scaleTime().domain(xExtent).range([0, boundsWidth]).nice();
 
-  // Render the X and Y axis using d3.js, not react
+  // Render the X axis using d3.js, not react
   useEffect(() => {
     const svgElement = d3.select(axesRef.current);
     svgElement.selectAll('*').remove();
@@ -34,6 +34,14 @@ export const LineChart = ({ width, height, data, color }: LineChartProps) => {
       .append('g')
       .attr('transform', 'translate(0,' + boundsHeight + ')')
       .call(xAxisGenerator.ticks(4));
+
+    svgElement
+      .append('text')
+      .attr('x', boundsWidth)
+      .attr('y', boundsHeight + 40)
+      .style('text-anchor', 'end')
+      .style('font-size', 12)
+      .text('Google search trend (index)');
   }, [xScale, yScale, boundsHeight]);
 
   const lineBuilder = d3

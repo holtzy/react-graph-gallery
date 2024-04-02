@@ -3,7 +3,7 @@ import { DataItem, Variable } from './data';
 import { AxisConfig, INNER_RADIUS, RadarGrid } from './RadarGrid';
 import { useSpring, animated } from 'react-spring';
 
-const MARGIN = 30;
+const MARGIN = 60;
 
 type YScale = d3.ScaleRadial<number, number, never>;
 
