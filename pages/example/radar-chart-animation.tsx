@@ -27,8 +27,9 @@ const graphDescription = (
       It's a good opportunity to learn how to make a little application with
       React and <a href="https://www.d3-graph-gallery.com">D3.js</a>, featuring
       3 inter-connected chart types with <b>smooth animated transition</b>:{' '}
-      <a href="/radar-chart">radar</a> chart, <a href="/line-chart">line</a>{' '}
-      chart and <a href="/lollipop-plot">lollipop</a>.
+      <Link href="/radar-chart">radar</Link> chart,{' '}
+      <Link href="/line-chart">line</Link> chart and{' '}
+      <Link href="/lollipop-plot">lollipop</Link>.
     </p>
   </>
 );
@@ -95,17 +96,17 @@ export default function Home() {
       */}
       <h2 id="data">Data</h2>
       <p>
-        The <a href="/radar-chart">radar</a> chart explains what competencies
-        are required to be a Data Engineer, a Machine Learning Engineer, a Data
-        Scientist or a Data Analyst. The data and the representation have been
-        first suggested by{' '}
+        The <Link href="/radar-chart">radar</Link> chart explains what
+        competencies are required to be a Data Engineer, a Machine Learning
+        Engineer, a Data Scientist or a Data Analyst. The data and the
+        representation have been first suggested by{' '}
         <a href="https://www.linkedin.com/in/krosamont/en?originalSubdomain=fr">
           Kevin Rosamont Prombo
         </a>
         .
       </p>
       <p>
-        The little <a href="/lollipop-plot">lollipop</a> plot provides the
+        The little <Link href="/lollipop-plot">lollipop</Link> plot provides the
         estimated salary range for the job. Data from{' '}
         <a
           href="https://reviewnprep.com/blog/data-engineer-vs-data-analyst-vs-data-scientist-salary-skills-background/"
@@ -116,8 +117,8 @@ export default function Home() {
         and glassdoor.
       </p>
       <p>
-        The <a href="/line-chart">line</a> chart gives an estimate of the job
-        popularity based on its{' '}
+        The <Link href="/line-chart">line</Link> chart gives an estimate of the
+        job popularity based on its{' '}
         <a href="https://trends.google.com/trends/">google trend</a> score in
         the last ~10 years.
       </p>
@@ -154,10 +155,11 @@ export default function Home() {
       <h2 id="charts">Charts</h2>
       <p>Then we need to build 3 charts based on the 3 filtered dataset.</p>
       <p>
-        The <a href="/">React graph gallery</a> already provides in-depth
+        The <Link href="/">React graph gallery</Link> already provides in-depth
         tutorials for those 3 chart types. So please refer to the{' '}
-        <a href="/radar-chart">radar</a> chart, <a href="/line-chart">line</a>{' '}
-        chart and <a href="/lollipop-plot">lollipop</a> sections to learn how to
+        <Link href="/radar-chart">radar</Link> chart,{' '}
+        <Link href="/line-chart">line</Link> chart and{' '}
+        <Link href="/lollipop-plot">lollipop</Link> sections to learn how to
         build them.
       </p>
       <p>
