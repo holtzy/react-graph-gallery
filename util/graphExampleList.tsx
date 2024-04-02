@@ -156,80 +156,6 @@ export const graphExampleList: GraphExample[] = [
   },
 
   //
-  // Boxplot
-  //
-  {
-    link: '/example/boxplot-jitter',
-    title: 'Boxplot with jitter',
-    description:
-      'Add individual data points using jitter on top of the boxplot',
-    img: 'boxplot-jitter.png',
-    alt: 'Picture of a boxplot with jitter built using react and d3.js',
-  },
-  {
-    link: '/boxplot#box%20component',
-    title: 'Boxplot shape',
-    description: 'How to build a boxplot shape in SVG',
-    img: 'boxplotShape.png',
-    alt: 'Picture of a box component, allowing to build a boxplot later on',
-  },
-  {
-    link: '/boxplot',
-    title: 'Basic boxplot',
-    description: 'How to build a basic boxplot with react',
-    img: 'boxplotBasic.png',
-    alt: 'Picture of a basic boxplot built with react and d3',
-  },
-  {
-    link: '/example/boxplot-horizontal',
-    title: 'Horizontal boxplot',
-    description: 'How to build a horizontal boxplot with react',
-    img: 'boxplot-horizontal.png',
-    alt: 'Picture of a horizontal boxplot built with react and d3',
-  },
-
-  //
-  // Histogram
-  //
-  {
-    link: '/histogram',
-    title: 'Histogram',
-    description: 'Learn how to build a histogram with react and d3.js',
-    img: 'histogram-basic.png',
-    alt: 'Picture of a simple histogram made with react and d3.js',
-  },
-  {
-    link: '/histogram#transition',
-    title: 'Histogram dataset transition',
-    description: 'How to animate the transition between datasets',
-    img: 'histogram-dataset-transition.gif',
-    alt: 'GIF of a histogram with animated data transition',
-  },
-  {
-    link: '/example/histogram-mirror',
-    title: 'Mirror histogram',
-    description:
-      'Create a mirror histogram to compare the distribution of 2 groups in a dataset',
-    img: 'histogram-mirror.png',
-    alt: 'picture of a mirror histogram made with react and d3.js',
-  },
-  {
-    link: '/example/histogram-small-multiple',
-    title: 'Small multiple',
-    description:
-      'Create one panel per group to show its distribution separately',
-    img: 'histogram-small-multiple.png',
-    alt: 'Picture of a histogram with small multiple built with react and d3.js',
-  },
-  {
-    link: '/example/histogram-with-several-groups',
-    title: 'Multiple groups',
-    description:
-      'A histogram with <b>multiple</b> groups displayed on the same axis.',
-    img: 'histogram-with-several-groups.png',
-    alt: 'Picture of a histogram with multiple groups built with react and d3.js',
-  },
-  //
   // Violin
   //
   {
@@ -277,7 +203,107 @@ export const graphExampleList: GraphExample[] = [
     img: 'violinBucketSize.png',
     alt: 'Picture of a violin plot with variable bucket size',
   },
+  //
+  // density
+  //
+  {
+    link: '/density-plot',
+    title: 'Basic density plot',
+    description: 'Most basic density plot built with React and d3',
+    img: 'densityBasic.png',
+    alt: 'Picture of a basic density plot built with React and d3',
+  },
+  {
+    link: '/density-plot#variations',
+    title: 'Density plot with multiple groups',
+    description: 'How to add several groups on the same density plot',
+    img: 'densityMultipleGroups.png',
+    alt: 'Picture of a density plot with multiple groups',
+  },
+  //
+  // Histogram
+  //
+  {
+    link: '/histogram',
+    title: 'Histogram',
+    description: 'Learn how to build a histogram with react and d3.js',
+    img: 'histogram-basic.png',
+    alt: 'Picture of a simple histogram made with react and d3.js',
+  },
+  {
+    link: '/histogram#transition',
+    title: 'Histogram dataset transition',
+    description: 'How to animate the transition between datasets',
+    img: 'histogram-dataset-transition.gif',
+    alt: 'GIF of a histogram with animated data transition',
+  },
+  {
+    link: '/example/histogram-mirror',
+    title: 'Mirror histogram',
+    description:
+      'Create a mirror histogram to compare the distribution of 2 groups in a dataset',
+    img: 'histogram-mirror.png',
+    alt: 'picture of a mirror histogram made with react and d3.js',
+  },
+  {
+    link: '/example/histogram-small-multiple',
+    title: 'Small multiple',
+    description:
+      'Create one panel per group to show its distribution separately',
+    img: 'histogram-small-multiple.png',
+    alt: 'Picture of a histogram with small multiple built with react and d3.js',
+  },
+  {
+    link: '/example/histogram-with-several-groups',
+    title: 'Multiple groups',
+    description:
+      'A histogram with <b>multiple</b> groups displayed on the same axis.',
+    img: 'histogram-with-several-groups.png',
+    alt: 'Picture of a histogram with multiple groups built with react and d3.js',
+  },
 
+  //
+  // Boxplot
+  //
+  {
+    link: '/example/boxplot-jitter',
+    title: 'Boxplot with jitter',
+    description:
+      'Add individual data points using jitter on top of the boxplot',
+    img: 'boxplot-jitter.png',
+    alt: 'Picture of a boxplot with jitter built using react and d3.js',
+  },
+  {
+    link: '/boxplot#box%20component',
+    title: 'Boxplot shape',
+    description: 'How to build a boxplot shape in SVG',
+    img: 'boxplotShape.png',
+    alt: 'Picture of a box component, allowing to build a boxplot later on',
+  },
+  {
+    link: '/boxplot',
+    title: 'Basic boxplot',
+    description: 'How to build a basic boxplot with react',
+    img: 'boxplotBasic.png',
+    alt: 'Picture of a basic boxplot built with react and d3',
+  },
+  {
+    link: '/example/boxplot-horizontal',
+    title: 'Horizontal boxplot',
+    description: 'How to build a horizontal boxplot with react',
+    img: 'boxplot-horizontal.png',
+    alt: 'Picture of a horizontal boxplot built with react and d3',
+  },
+  //
+  // Ridgeline
+  //
+  {
+    link: '/ridgeline',
+    title: 'Basic ridgeline chart',
+    description: 'Most basic version of a ridgeline plot',
+    img: 'ridgelineBasic.png',
+    alt: 'Picture of a basic ridgeline chart built with react and d3',
+  },
   //
   // Barplot
   //
@@ -310,31 +336,52 @@ export const graphExampleList: GraphExample[] = [
     alt: 'Picture of a vertical stacked barchart made with react and d3',
   },
   //
-  // density
+  // Wordcloud
+  //
+
+  //
+  // Parallel
+  //
+
+  //
+  // Lollipop
+  //
+
+  //
+  // Circular Barplot
+  //
+
+  //
+  // Radar
   //
   {
-    link: '/density-plot',
-    title: 'Basic density plot',
-    description: 'Most basic density plot built with React and d3',
-    img: 'densityBasic.png',
-    alt: 'Picture of a basic density plot built with React and d3',
+    link: '/radar-chart#grid',
+    title: 'Most basic line chart',
+    description: 'Learn how to build the background grid of a radar chart',
+    img: 'radar-chart-grid.png',
+    alt: 'Picture of the background grid of a radar chart',
   },
   {
-    link: '/density-plot#variations',
-    title: 'Density plot with multiple groups',
-    description: 'How to add several groups on the same density plot',
-    img: 'densityMultipleGroups.png',
-    alt: 'Picture of a density plot with multiple groups',
+    link: '/radar-chart#1-group',
+    title: 'Most basic radar chart',
+    description: 'The most basic radar chart one can make using d3 and react',
+    img: 'radar-chart-1-group.png',
+    alt: 'Picture of a very simple radar chart with 1 group only made with react and d3',
   },
-  //
-  // Ridgeline
-  //
   {
-    link: '/ridgeline',
-    title: 'Basic ridgeline chart',
-    description: 'Most basic version of a ridgeline plot',
-    img: 'ridgelineBasic.png',
-    alt: 'Picture of a basic ridgeline chart built with react and d3',
+    link: '/radar-chart#several-groups',
+    title: 'Multi-group radar chart',
+    description: 'Radar chart with several groups displayed',
+    img: 'radar-chart-several-group.png',
+    alt: 'Picture of a radar chart made with react and d3, with several groups displayed on the figure.',
+  },
+  {
+    link: '/example/radar-chart-animation',
+    title: 'Radar chart, line chart an lollipop with animated transition',
+    description:
+      'Three charts connected to same buttons, with smooth, synchronized animation when a button is clicked',
+    img: 'radar-chart-animation.png',
+    alt: 'GIF of a radar chart, a line chart and a lollipop that animate between dataset',
   },
 
   //
@@ -362,6 +409,7 @@ export const graphExampleList: GraphExample[] = [
     img: 'line-chart-synced-cursor.gif',
     alt: 'line charts with synchronized cursors',
   },
+
   //
   // Area Plot
   //

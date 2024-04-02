@@ -11,6 +11,7 @@ import { RadarBasicDemo } from 'viz/RadarBasic/RadarBasicDemo';
 import { RadarGridOnlyDemo } from 'viz/RadarGridOnly/RadarGridOnlyDemo';
 import { RadarMultipleGroupsDemo } from 'viz/RadarMultipleGroups/RadarMultipleGroupsDemo';
 import { ToDoSection } from 'component/UI/ToDoSection';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
@@ -24,10 +25,10 @@ const graphDescription = (
       <b>own axis</b>, all axes are joined in the <b>center</b> of the figure.
     </p>
     <p>
-      This page is a step-by-step guide on how to build your own spider chart
-      for the web, using <a href="https://reactjs.org/">React</a> (for
-      rendering) and <a href="https://d3-graph-gallery.com/histogram">D3.js</a>{' '}
-      (to compute the axis, and shape coordinates).
+      This page is a step-by-step guide on how to build your own radar chart for
+      the web, using <a href="https://reactjs.org/">React</a> (for rendering)
+      and <a href="https://d3-graph-gallery.com/histogram">D3.js</a> (to compute
+      the axis, and shape coordinates).
     </p>
     <p>
       It starts by describing how the <b>data</b> should be organized and how to
@@ -42,11 +43,11 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="Spider chart | React graph gallery"
-      seoDescription="A step-by-step guide on how to build your very own spider chart react component from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
+      title="Radar chart | React graph gallery"
+      seoDescription="A step-by-step guide on how to build your very own radar chart react component from scratch. Comes with explanations, code sandboxes, and ready-to-use templates."
     >
       <TitleAndDescription
-        title={'Radar plot'}
+        title={'Radar Chart'}
         description={graphDescription}
         chartType="radar"
       />
@@ -90,7 +91,7 @@ export default function Home() {
       <p>
         The shape of the <code>data</code> is described above. The{' '}
         <code>width</code> and <code>height</code> will be used to render an{' '}
-        <code>svg</code> element in the DOM, in which we will insert the spider
+        <code>svg</code> element in the DOM, in which we will insert the radar
         chart.
       </p>
       <p>
@@ -116,7 +117,7 @@ export default function Home() {
         Building a radar chart requires several <b>scales</b> and <b>axes</b>.
         Understanding how those scales work and how to draw the background grid
         using <b>polar coordinates</b> is probably the trickiest part or the
-        spider chart creation.
+        radar chart creation.
       </p>
       <p>
         D3.js comes with a handful set of{' '}
@@ -154,7 +155,7 @@ export default function Home() {
       <h2 id="grid">Radar chart background grid</h2>
       <p>
         Once those scales are available, we need to draw the{' '}
-        <b>background grid</b> of the spider chart.
+        <b>background grid</b> of the radar chart.
       </p>
       <p>
         A bunch of options exist for this. Here I suggest to loop through the{' '}
@@ -171,7 +172,7 @@ export default function Home() {
         maxWidth={800}
         height={400}
         caption={
-          'Background grid of a spider chart built with react and d3.js. 6 Variables are represented using 6 axes with polar coordinates'
+          'Background grid of a radar chart built with react and d3.js. 6 Variables are represented using 6 axes with polar coordinates'
         }
       />
       <p>
@@ -186,7 +187,7 @@ export default function Home() {
       // 1 group
       //
       */}
-      <h2 id="1 group">Radar chart with 1 group</h2>
+      <h2 id="1-group">Radar chart with 1 group</h2>
       <p>Finally! ✨</p>
       <p>
         We can now <code>map</code> through the data array and draw a{' '}
@@ -244,7 +245,7 @@ export default function Home() {
       */}
       <h2 id="several groups">Radar chart with several groups</h2>
       <p>
-        The process to get a spider chart with <b>several groups</b> is very
+        The process to get a radar chart with <b>several groups</b> is very
         similar to the previous example.
       </p>
       <p>
@@ -263,6 +264,29 @@ export default function Home() {
         }
       />
       <ToDoSection text="spider chart with small multiple to make it more readable" />
+
+      {/*
+      //
+      // Animation
+      //
+      */}
+      <h2 id="animation">Animation</h2>
+      <p>
+        It is common to have a radar chart that is <b>updated</b> when a button
+        is clicked on the application. It is possible to implement a{' '}
+        <b>smooth, animated transitio</b>n between states thanks to the{' '}
+        <code>react-spring</code> library.
+      </p>
+      <p>
+        The <Link href="/example/radar-chart-animation">following example</Link>{' '}
+        illustrates this with a real world example. The radar chart is animated,
+        together with a <a href="/line-chart">line</a> chart and a{' '}
+        <a href="/lollipop-plot">lollipop</a>.
+      </p>
+      <p>
+        <br />
+      </p>
+      <GraphGallery images={['radar-chart-animation.png']} />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />

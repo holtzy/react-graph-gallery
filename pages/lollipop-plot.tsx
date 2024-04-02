@@ -1,32 +1,33 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { LollipopBasicDemo } from "../viz/LollipopBasic/LollipopBasicDemo";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import { LollipopDumbbellDemo } from "viz/LollipopDumbbell/LollipopDumbbellDemo";
-import { LollipopDatasetTransitionDemo } from "viz/LollipopDatasetTransition/LollipopDatasetTransitionDemo";
-import { LollipopHoverEffectDemo } from "viz/LollipopHoverEffect/LollipopHoverEffectDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { LollipopBasicDemo } from '../viz/LollipopBasic/LollipopBasicDemo';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import { LollipopDumbbellDemo } from 'viz/LollipopDumbbell/LollipopDumbbellDemo';
+import { LollipopDatasetTransitionDemo } from 'viz/LollipopDatasetTransition/LollipopDatasetTransitionDemo';
+import { LollipopHoverEffectDemo } from 'viz/LollipopHoverEffect/LollipopHoverEffectDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
+      A{' '}
       <a href="https://www.data-to-viz.com/graph/lollipop.html">
         lollipop plot
-      </a>{" "}
+      </a>{' '}
       is a variation of the more common <Link href="barplot">barplot</Link>.
       This page is a step-by-step guide on how to build your own lollipop for
-      the web, using <a href="https://reactjs.org/">React</a> and{" "}
+      the web, using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/histogram">D3.js</a>.
     </p>
     <p>
       It starts by describing how the <b>data</b> should be organized and how to
-      initialize the <b>lollipop component</b>. It explains how to build the{" "}
+      initialize the <b>lollipop component</b>. It explains how to build the{' '}
       <b>scales</b> and <b>axes</b> and how to add the shapes. A few variations
       are described and a focus is made on the <b>hover interaction</b>. 🙇‍♂️.
     </p>
@@ -52,7 +53,7 @@ export default function Home() {
       <h2 id="data">The Data</h2>
       <p>
         The dataset required to build a lollipop is usually an array where each
-        item is an object providing the <code>name</code> and the{" "}
+        item is an object providing the <code>name</code> and the{' '}
         <code>value</code> of the group.
       </p>
       <br />
@@ -60,7 +61,7 @@ export default function Home() {
       <CodeBlock code={snippetData} />
       <p>
         Note: if your data is in <code>.csv</code> format, you can translate it
-        thanks to the <code>d3.csv()</code> function as suggested{" "}
+        thanks to the <code>d3.csv()</code> function as suggested{' '}
         <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">
           here
         </a>
@@ -76,17 +77,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Lollipop</code> component that will
         be stored in a <code>Lollipop.tsx</code> file. This component requires 3
-        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         histogram.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>Lollipop</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -94,7 +95,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>circle</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -105,9 +106,9 @@ export default function Home() {
       */}
       <h2 id="basic">Most basic lollipop</h2>
       <p>
-        A lollipop chart is a variation of the better known{" "}
+        A lollipop chart is a variation of the better known{' '}
         <Link href="barplot">barplot</Link>. The implementation of a barplot
-        with react is extensively described in the{" "}
+        with react is extensively described in the{' '}
         <Link href="barplot">barplot section</Link> of the gallery. So I will
         just provide a quick recap here.
       </p>
@@ -125,7 +126,7 @@ export default function Home() {
         grid manually and to draw labels at an arbitrary position.
       </p>
       <ChartOrSandbox
-        vizName={"LollipopBasic"}
+        vizName={'LollipopBasic'}
         VizComponent={LollipopBasicDemo}
         height={400}
         maxWidth={600}
@@ -153,7 +154,7 @@ export default function Home() {
       */}
       <h2 id="dumbbell">Dumbbel plot</h2>
       <p>
-        A{" "}
+        A{' '}
         <a href="https://www.data-to-viz.com/graph/lollipop.html">
           dumbbell plot
         </a>
@@ -161,25 +162,25 @@ export default function Home() {
         representation of the <b>difference</b> or <b>change</b> between two
         related variables. It consists of two endpoints, represented by circles
         or dots, connected by a horizontal line, which represents the magnitude
-        of the difference or change.{" "}
+        of the difference or change.{' '}
       </p>
       <p>
         This type of plot is commonly used in scientific research to display the
         effect of an intervention or treatment on a particular outcome, or to
-        compare two different groups or time periods. The plot allows for{" "}
+        compare two different groups or time periods. The plot allows for{' '}
         <b>easy comparison</b> of the magnitude and direction of change between
         the two variables.
       </p>
       <p>
-        The implementation is very close to the{" "}
+        The implementation is very close to the{' '}
         <a href="#basic">basic lollipop</a> chart described above. The dataset
-        provides 2 data points for each item in the dataset: <code>value1</code>{" "}
+        provides 2 data points for each item in the dataset: <code>value1</code>{' '}
         and <code>value2</code>. The scales and axes are exactly the same.
         Instead of drawing 1 line and 1 circle, 2 circles are joined by the
         line.
       </p>
       <ChartOrSandbox
-        vizName={"LollipopDumbbell"}
+        vizName={'LollipopDumbbell'}
         VizComponent={LollipopDumbbellDemo}
         height={400}
         maxWidth={600}
@@ -194,13 +195,13 @@ export default function Home() {
       <h2 id="hover effect">Hover effect</h2>
       <p>
         The circles can be quite <b>far from their label</b> for the biggest
-        values on the chart (see Mark below). Adding an <b>hover interaction</b>{" "}
+        values on the chart (see Mark below). Adding an <b>hover interaction</b>{' '}
         on the lollipop charts allows to <b>highlight a specific row</b>. As a
         result, the label/data point connection becomes more obvious.
       </p>
       <p>
         There are various strategies to implement such an hover effect. Here, I
-        suggest to do everything in <b>css</b> using{" "}
+        suggest to do everything in <b>css</b> using{' '}
         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">
           pseudo classes
         </a>
@@ -234,7 +235,7 @@ export default function Home() {
         for mouse detection.
       </p>
       <ChartOrSandbox
-        vizName={"LollipopHoverEffect"}
+        vizName={'LollipopHoverEffect'}
         VizComponent={LollipopHoverEffectDemo}
         height={400}
         maxWidth={600}
@@ -253,27 +254,39 @@ export default function Home() {
         to smoothly transition between 2 states using a quick <b>animation</b>.
       </p>
       <p>
-        For the example below I rely on the{" "}
+        For the example below I rely on the{' '}
         <a href="https://react-spring.dev/">react-spring</a> library. This lib
         allows to quickly create spring animations using javascript. It results
-        in a very a <b>natural transition</b> that can be <b>interrupted</b>{" "}
+        in a very a <b>natural transition</b> that can be <b>interrupted</b>{' '}
         without restarting from 0. (try to toggle between datasets quickly).
       </p>
       <p>
         It would be too long to explain the code here. Instead, I'm currently
-        writing a set of dedicated tutorials. Please{" "}
+        writing a set of dedicated tutorials. Please{' '}
         <a href="https://datavizuniverse.substack.com/">
           subscribe to the newsletter
-        </a>{" "}
+        </a>{' '}
         to know when this will be released.
       </p>
       <ChartOrSandbox
-        vizName={"LollipopDatasetTransition"}
+        vizName={'LollipopDatasetTransition'}
         VizComponent={LollipopDatasetTransitionDemo}
         height={400}
         maxWidth={600}
         caption="A lollipop chart with smooth transition between dataset."
       />
+
+      {/*
+      //
+      // Variation
+      //
+      */}
+      <h2 id="Variation">Variation</h2>
+      <p>
+        Check a <b>few other examples</b> of the gallery involving lollipop
+        plots:
+      </p>
+      <GraphGallery images={['radar-chart-animation.png']} />
 
       <br />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />

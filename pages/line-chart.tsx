@@ -262,6 +262,7 @@ export default function Home() {
         images={[
           'line-chart-synced-cursor.gif',
           'timeseries-moving-average.png',
+          'radar-chart-animation.png',
         ]}
       />
       {/*
