@@ -280,8 +280,8 @@ export default function Home() {
       <p>
         The <Link href="/example/radar-chart-animation">following example</Link>{' '}
         illustrates this with a real world example. The radar chart is animated,
-        together with a <a href="/line-chart">line</a> chart and a{' '}
-        <a href="/lollipop-plot">lollipop</a>.
+        together with a <Link href="line-chart">line</Link> chart and a{' '}
+        <Link href="/lollipop-plot">lollipop</Link>.
       </p>
       <p>
         <br />

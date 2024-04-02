@@ -1,18 +1,18 @@
-import React, { useEffect, useRef } from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import Contact from "../component/Contact";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { Caption } from "../component/UI/Caption";
-import { CanvasShape } from "../viz/CanvasBasicFix/CanvasShape";
-import { CanvasShape as CanvasShapeBug } from "../viz/CanvasBasicBug/CanvasShape";
-import CodeSandboxButton from "../component/CodeSandboxButton";
+import React, { useEffect, useRef } from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import Contact from '../component/Contact';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { AccordionSection } from '../component/AccordionSection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { Caption } from '../component/UI/Caption';
+import { CanvasShape } from '../viz/CanvasBasicFix/CanvasShape';
+import { CanvasShape as CanvasShapeBug } from '../viz/CanvasBasicBug/CanvasShape';
+import CodeSandboxButton from '../component/CodeSandboxButton';
 
 const graphDescription = (
   <p>
-    Drawing a chart on a <code>canvas</code> element instead of using{" "}
+    Drawing a chart on a <code>canvas</code> element instead of using{' '}
     <code>svg</code> elements can be a huge performance boost. However, it leads
     to a blurry and unreadable viz on retina screens if the resolution is not
     taken into account. <b>Here is how to fix</b>.
@@ -21,7 +21,7 @@ const graphDescription = (
 
 const drawDiagonal = (id: string) => {
   const canvas = document.getElementById(id) as HTMLCanvasElement;
-  const context = canvas.getContext("2d");
+  const context = canvas.getContext('2d');
   if (!context) {
     return;
   }
@@ -55,8 +55,8 @@ return(
 
 export default function Home() {
   useEffect(() => {
-    drawDiagonal("canvas1");
-    drawDiagonal("canvas2");
+    drawDiagonal('canvas1');
+    drawDiagonal('canvas2');
   }, []);
 
   return (
@@ -74,7 +74,7 @@ export default function Home() {
       Part 1: basics about a screen
       *
       */}
-      <AccordionSection title={"⬜ Pixel, Resolution and DPI"} startOpen={true}>
+      <AccordionSection title={'⬜ Pixel, Resolution and DPI'} startOpen={true}>
         <p>
           To understand why a <code>canvas</code> can get blurry on a retina
           screen, you first need to have some basic knowledge about how an image
@@ -82,7 +82,7 @@ export default function Home() {
         </p>
         <p>
           Screens are made up of thousands of tiny dots all bunched together
-          called <b>pixels</b>. Each pixel has the ability to{" "}
+          called <b>pixels</b>. Each pixel has the ability to{' '}
           <a href="https://www.youtube.com/watch?v=3BJU2drrtCM&t=450s">
             change its color
           </a>
@@ -92,19 +92,23 @@ export default function Home() {
           1,024 x 768.
         </p>
         <div className="flex flex-col items-center">
-          <img src="./img/screen_mockup.png" style={{ maxWidth: 600 }} />
+          <img
+            src="./img/screen_mockup.png"
+            style={{ maxWidth: 600 }}
+            alt="A screen is a set of pixels"
+          />
           <Caption>
-            When you watch{" "}
+            When you watch{' '}
             <a href="https://www.dataviz-inspiration.com">
               dataviz-inspiration.com
-            </a>{" "}
+            </a>{' '}
             on your screen, you actually watch thousands of pixels.
           </Caption>
         </div>
         <p>
-          It's important to understand that 2 screens with the same{" "}
+          It's important to understand that 2 screens with the same{' '}
           <b>physical size</b> (let's say 30 inches) can have very different
-          amount of pixels. The density of pixels on a screen is called{" "}
+          amount of pixels. The density of pixels on a screen is called{' '}
           <b>DPI</b> for <b>dots per inch</b> or ppi for pixels per inch.
         </p>
         <p>
@@ -119,11 +123,11 @@ export default function Home() {
       *
       */}
       <AccordionSection
-        title={"↕️ Physical vs CSS resolution"}
+        title={'↕️ Physical vs CSS resolution'}
         startOpen={true}
       >
         <p>
-          Let's say that you create a html element and give it a{" "}
+          Let's say that you create a html element and give it a{' '}
           <code>width</code> of 100px using css. This is the <b>css width</b>.
           If you use a screen that has a very high resolution, pixels are very
           very small. As a result, your element of 100px would appear very small
@@ -136,11 +140,11 @@ export default function Home() {
           This is the <b>physical width</b>.
         </p>
         <p>
-          In javascript, you can access this ratio with{" "}
-          <code>window.devicePixelRatio</code> and here is the{" "}
+          In javascript, you can access this ratio with{' '}
+          <code>window.devicePixelRatio</code> and here is the{' '}
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio">
             complete doc
-          </a>{" "}
+          </a>{' '}
           about it.
         </p>
       </AccordionSection>
@@ -151,7 +155,7 @@ export default function Home() {
       *
       */}
       <AccordionSection
-        title={"🐛 Canvas, High-DPI and the bug"}
+        title={'🐛 Canvas, High-DPI and the bug'}
         startOpen={true}
       >
         <p>
@@ -160,7 +164,7 @@ export default function Home() {
           insert in the DOM.
         </p>
         <p>
-          If we display the result on a retina screen with a{" "}
+          If we display the result on a retina screen with a{' '}
           <code>devicePixelRatio</code> of 2, the image will be scaled up to
           200px wide. The browser will interpolate pixels to make the image
           bigger, and it <b>results in a blurry output</b>.
@@ -170,7 +174,11 @@ export default function Home() {
           on retina screen
         </p>
         <div className="flex flex-col items-center">
-          <img src="/img/pixel-tiger.png" style={{ maxWidth: 500 }} />
+          <img
+            src="/img/pixel-tiger.png"
+            style={{ maxWidth: 500 }}
+            alt="A pixelated output when an image is scaled up"
+          />
           <Caption>
             A small img or canvas on a retina screen will be scaled up,
             resulting in a pixelated / blurry output.
@@ -184,11 +192,11 @@ export default function Home() {
       *
       */}
       <AccordionSection
-        title={"🤦‍♂️ The 2 dimensions of the canvas element"}
+        title={'🤦‍♂️ The 2 dimensions of the canvas element'}
         startOpen={true}
       >
         <p>
-          There are 2 different ways to control the dimension of a{" "}
+          There are 2 different ways to control the dimension of a{' '}
           <code>canvas</code> element.
         </p>
         <ul>
@@ -200,7 +208,7 @@ export default function Home() {
           </li>
           <li>
             <b>css style</b>: the canvas element can be styled using CSS. As a
-            result we can also pass a <code>width</code> and a{" "}
+            result we can also pass a <code>width</code> and a{' '}
             <code>height</code> here. It controls the size of the element on the
             screen.
           </li>
@@ -226,7 +234,7 @@ export default function Home() {
           screen 🙀.
         </p>
         <canvas
-          style={{ border: "1px solid", width: 300, height: 300 }}
+          style={{ border: '1px solid', width: 300, height: 300 }}
           id="canvas1"
           width="100px"
           height="100px"
@@ -242,14 +250,14 @@ export default function Home() {
         <p>
           Much better. But my diagonal is now wrong since it goes to 100,100,
           which is half way to 200,200. Fortunately javascript is here to the
-          rescue. I will just have to use the{" "}
+          rescue. I will just have to use the{' '}
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scales">
             scale function
-          </a>{" "}
+          </a>{' '}
           to automatically correct those coordinates.
         </p>
         <canvas
-          style={{ border: "1px solid", width: 100, height: 100 }}
+          style={{ border: '1px solid', width: 100, height: 100 }}
           id="canvas2"
           width="200px"
           height="200px"
@@ -260,7 +268,7 @@ export default function Home() {
       </AccordionSection>
 
       <AccordionSection
-        title={"🔨 Fixing the Canvas and Retina screens issue"}
+        title={'🔨 Fixing the Canvas and Retina screens issue'}
         startOpen={true}
       >
         <p>To finally fix the retina bug, we need to:</p>
@@ -269,12 +277,12 @@ export default function Home() {
             Control the size of the canvas output using the <b>css dimension</b>
           </li>
           <li>
-            Find the device pixel ratio using{" "}
+            Find the device pixel ratio using{' '}
             <code>window.devicePixelRatio</code>
           </li>
           <li>
             Create a bigger canvas image if the pixel ratio is over 1. This is
-            done thanks to the <code>width</code> and <code>height</code>{" "}
+            done thanks to the <code>width</code> and <code>height</code>{' '}
             attributes.
           </li>
           <li>
