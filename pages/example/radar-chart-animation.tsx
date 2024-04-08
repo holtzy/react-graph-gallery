@@ -190,7 +190,7 @@ export default function Home() {
       <CodeBlock code={snippetAnim} />
       <p>
         I plan to write some <b>complete tutorials</b> on this passionating and
-        complicated topic. You can <Link href="/Subscribe">subscribe</Link> to
+        complicated topic. You can <Link href="/subscribe">subscribe</Link> to
         the project to know when it's ready!
       </p>
 

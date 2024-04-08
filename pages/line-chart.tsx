@@ -286,7 +286,7 @@ export default function Home() {
         <br />
       </p>{' '}
       <p>Subscribe to the gallery to know when it is ready!</p>
-      <LinkAsButton isFilled size="sm" href="Subscribe">
+      <LinkAsButton isFilled size="sm" href="/subscribe">
         Subscribe
       </LinkAsButton>
       <p>

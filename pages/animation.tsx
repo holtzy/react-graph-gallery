@@ -1,16 +1,16 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
 
-import Link from "next/link";
-import GraphGallery from "component/GraphGallery";
-import { LinkAsButton } from "component/LinkAsButton";
+import Link from 'next/link';
+import GraphGallery from 'component/GraphGallery';
+import { LinkAsButton } from 'component/LinkAsButton';
 
 const graphDescription = (
   <>
     <p>
-      <b>Animation</b> is both the most <b>challenging</b> and the most{" "}
+      <b>Animation</b> is both the most <b>challenging</b> and the most{' '}
       <b>exciting</b> part of an interactive chart. Animation is like salt: use
       the right amount of it and your creation is a delight. Too much of it and
       it <b>spoils the dish</b> 🤌.
@@ -48,12 +48,12 @@ export default function Home() {
       </p>
       <p>
         But I plan to write some <b>complete tutorials</b> on this passionating
-        and complicated topic. You can <Link href="/Subscribe">subscribe</Link>{" "}
+        and complicated topic. You can <Link href="/subscribe">subscribe</Link>{' '}
         to the project to know when it's ready!
       </p>
       <p>
         <br />
-      </p>{" "}
+      </p>{' '}
       <LinkAsButton isFilled size="sm" href="/subscribe">
         Subscribe
       </LinkAsButton>
@@ -62,14 +62,14 @@ export default function Home() {
       </p>
       <GraphGallery
         images={[
-          "histogram-dataset-transition.gif",
-          "violinBoxplotTransition.png",
-          "violin-bucket-size-effect.gif",
-          "boxplot-violin-transition.gif",
-          "barplotDatasetAnimation.gif",
-          "bubble-plot-dataset-transition.gif",
-          "line-chart-data-transition.gif",
-          "streamgraph-offset-type-transition.gif",
+          'histogram-dataset-transition.gif',
+          'violinBoxplotTransition.png',
+          'violin-bucket-size-effect.gif',
+          'boxplot-violin-transition.gif',
+          'barplotDatasetAnimation.gif',
+          'bubble-plot-dataset-transition.gif',
+          'line-chart-data-transition.gif',
+          'streamgraph-offset-type-transition.gif',
         ]}
       />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />

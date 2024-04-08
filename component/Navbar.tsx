@@ -20,7 +20,7 @@ export default function Navbar() {
           </div>
 
           <div className="">
-            <Link href="articles">
+            <Link href="/articles">
               <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
                 Articles
               </span>
@@ -41,7 +41,7 @@ export default function Navbar() {
                 Related
               </span>
             </a> */}
-            <Link href="about" className="no-underline">
+            <Link href="/about" className="no-underline">
               <span className="hidden cursor-pointer sm:inline pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider hover:text-reactGallery">
                 About
               </span>
