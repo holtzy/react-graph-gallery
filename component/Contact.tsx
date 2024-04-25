@@ -1,6 +1,6 @@
-import React from "react";
-import { SubscribeForm } from "./SubscribeForm";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { SubscribeForm } from './SubscribeForm';
 
 // Component for the Contact & Edit section at the bottom of each page.
 
@@ -15,16 +15,19 @@ export default function Contact() {
           currently working on this project!
           <br />
           <br />
-          Feedback is welcome ❤️. You can{" "}
+          Feedback is welcome ❤️. You can{' '}
           <a href="https://github.com/holtzy/react-graph-gallery/issues">
             fill an issue
-          </a>{" "}
-          on Github, drop me a message on{" "}
+          </a>{' '}
+          on Github, drop me a message on{' '}
           <a href="https://twitter.com/r_graph_gallery?lang=en">Twitter</a>, or
-          even send me an email pasting <code>yan.holtz.data</code> with{" "}
-          <code>gmail.com</code>. You can also <Link href='/subscribe'>subscribe</Link> to
-          the newsletter to know when I publish more content!
+          even send me an email pasting <code>yan.holtz.data</code> with{' '}
+          <code>gmail.com</code>. You can also{' '}
+          <Link href="/subscribe">subscribe</Link> to the newsletter to know
+          when I publish more content!
         </p>
+
+        <SubscribeForm />
       </div>
     </div>
   );

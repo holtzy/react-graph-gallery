@@ -1,33 +1,25 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { HistogramWithAxisDemo } from "../viz/HistogramWithAxis/HistogramWithAxisDemo";
-import { HistogramBasicDemo } from "../viz/HistogramBasic/HistogramBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { Caption } from "../component/UI/Caption";
-import { HistogramDatasetTransitionDemo } from "../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo";
-import { GraphLinkImage } from "../component/UI/GraphLinkImage";
-import { ImageGrid } from "../component/UI/ImageGrid";
-import Link from "next/link";
-import { Accordion } from "component/UI/Accordion";
-import { SubscribeForm } from "component/SubscribeForm";
-import { Density2dHexbinDemo } from "viz/Density2dHexbin/Density2dHexbinDemo";
-import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
-import { Density2dContourDemo } from "viz/Density2dContour/Density2dContourDemo";
-import { LinkAsButton } from "component/LinkAsButton";
-import { ToDoSection } from "component/UI/ToDoSection";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
+import Link from 'next/link';
+import { Density2dHexbinDemo } from 'viz/Density2dHexbin/Density2dHexbinDemo';
+import { AxisBasicDemo } from 'viz/AxisBasic/AxisBasicDemo';
+import { Density2dContourDemo } from 'viz/Density2dContour/Density2dContourDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { ToDoSection } from 'component/UI/ToDoSection';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
+      A{' '}
       <a href="https://www.data-to-viz.com/graph/density2d.html">
         2D density chart
-      </a>{" "}
+      </a>{' '}
       is a graphical representation of data that uses <b>color</b> to show the
       concentration of data points in a given area. It shows the combined
       distribution of two quantitative variables. 2D density charts are often
@@ -35,8 +27,8 @@ const graphDescription = (
       and <b>correlations</b> in the data.
     </p>
     <p>
-      In this tutorial, we will use the{" "}
-      <a href="https://d3-graph-gallery.com/density2d.html">d3.js</a> and{" "}
+      In this tutorial, we will use the{' '}
+      <a href="https://d3-graph-gallery.com/density2d.html">d3.js</a> and{' '}
       <a href="https://reactjs.org/">React</a> libraries to build a 2D density
       chart. It starts by describing how the <b>data</b> should be organized and
       how to initialize the <code>Density2d</code> component. It then explains
@@ -65,20 +57,20 @@ export default function Home() {
       */}
       <h2 id="data">The Data</h2>
       <p>
-        A 2d density chart is basically a variation of the{" "}
+        A 2d density chart is basically a variation of the{' '}
         <Link href="/scatter-plot">scatterplot</Link>, useful when the amount of
         data points is <b>huge</b>. As a result, it shares the same data
         structure.
       </p>
       <p>
         The data is an <b>array of object</b>. For each object, at least 2
-        properties are required: <code>x</code> and <code>y</code>. The value of{" "}
+        properties are required: <code>x</code> and <code>y</code>. The value of{' '}
         <code>x</code> is the position of the datapoint on the horizontal axis.
         The value of <code>y</code> is linked with the vertical axis.
       </p>
       <CodeBlock code={snippetData} />
       <p>
-        Two dimensional density charts are useful with big datasets. Switch to a{" "}
+        Two dimensional density charts are useful with big datasets. Switch to a{' '}
         <Link href="/scatter-plot">scatterplot</Link> if you have few data
         points!
       </p>
@@ -94,17 +86,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Density2d</code> component that will
         be stored in a <code>Density2d.tsx</code> file. This component requires
-        3 props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        3 props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         histogram.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>Density2d</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -112,7 +104,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>circle</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -123,8 +115,8 @@ export default function Home() {
       */}
       <h2 id="Scales">Scales and axes</h2>
       <p>
-        Scales and axes are computed and rendered exactly as for a{" "}
-        <Link href="/scatter-plot">scatterplot</Link> or a{" "}
+        Scales and axes are computed and rendered exactly as for a{' '}
+        <Link href="/scatter-plot">scatterplot</Link> or a{' '}
         <Link href="/scatter-plot">bubble chart</Link>. Please refer to the
         according sections.
       </p>
@@ -138,16 +130,16 @@ export default function Home() {
       </div>
       <p>
         Scales and axes is a recurring topic in data visualization. I plan to
-        write complete articles on the topic. You can know when it's ready by{" "}
+        write complete articles on the topic. You can know when it's ready by{' '}
         <Link href="/subscribe">subscribing</Link> to the project.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
-        vizName={"AxisBasic"}
+        vizName={'AxisBasic'}
         maxWidth={600}
         height={300}
         caption={
-          "How to build a bottom axis and a left axis component using React, used to render a d3 scale."
+          'How to build a bottom axis and a left axis component using React, used to render a d3 scale.'
         }
       />
 
@@ -165,8 +157,8 @@ export default function Home() {
         in each hexagon.
       </p>
       <p>
-        Fortunately, the <a href="https://github.com/d3/d3-hexbin">d3-hexbin</a>{" "}
-        library has everything we need to do so. This lib is not part of the{" "}
+        Fortunately, the <a href="https://github.com/d3/d3-hexbin">d3-hexbin</a>{' '}
+        library has everything we need to do so. This lib is not part of the{' '}
         <Link href="https://github.com/d3/d3">main d3 bundle</Link>, install it
         with:
       </p>
@@ -174,7 +166,7 @@ export default function Home() {
 
       <h3>&rarr; The hexagon generator</h3>
       <p>
-        The <code>d3-hexbin</code> plugin comes with a <code>hexbin()</code>{" "}
+        The <code>d3-hexbin</code> plugin comes with a <code>hexbin()</code>{' '}
         function that returns a <b>hexagon generator</b>. This hexagon generator
         is a <b>function</b>. You give it some data, it computes the hexagons.
       </p>
@@ -194,7 +186,7 @@ export default function Home() {
       <h3>&rarr; Hexagon format</h3>
       <p>
         The <code>hexagonGenerator</code> expects some <code>data</code> as
-        input. The data must be an <b>array</b> where each item provides the{" "}
+        input. The data must be an <b>array</b> where each item provides the{' '}
         <code>x</code> and <code>y</code> coordinates of a data point in the 2d
         space.
       </p>
@@ -202,11 +194,11 @@ export default function Home() {
       <CodeBlock code={snippet3} />
       <p>
         The result is an array of arrays. Each item represents a hexagon. Each
-        hexagon is composed of all the values assigned to this hexagon. So its{" "}
+        hexagon is composed of all the values assigned to this hexagon. So its{' '}
         <code>length</code> is useful to compute the hexagon color.
       </p>
       <p>
-        Each bin has two additional attributes: <code>x</code> and{" "}
+        Each bin has two additional attributes: <code>x</code> and{' '}
         <code>y</code> being the coordinates of the hexagon on the 2d space.
       </p>
       <CodeBlock code={snippet4} />
@@ -224,7 +216,7 @@ export default function Home() {
         and draw a <b>hexagon</b> per item.
       </p>
       <p>
-        Fortunately, the <code>hexbinGenerator</code> built above comes with a{" "}
+        Fortunately, the <code>hexbinGenerator</code> built above comes with a{' '}
         <code>hexagon()</code> method that builds the shape of a hexagon for us.
         It's thus a breeze to render it in a <code>path</code> svg element:
       </p>
@@ -236,10 +228,10 @@ export default function Home() {
       <br />
       <ChartOrSandbox
         VizComponent={Density2dHexbinDemo}
-        vizName={"Density2dHexbin"}
+        vizName={'Density2dHexbin'}
         maxWidth={600}
         height={600}
-        caption={"A hexbin density chart built with d3.js and React."}
+        caption={'A hexbin density chart built with d3.js and React.'}
       />
 
       {/*
@@ -265,16 +257,16 @@ export default function Home() {
         The hexbin representation above is just one member of a family of
         graphics allowing to study the <b>combined distribution</b> of two
         quantitative variables. You can read more about the existing variations
-        in the{" "}
+        in the{' '}
         <a href="https://www.data-to-viz.com/graph/density2d.html">
           data to viz
-        </a>{" "}
+        </a>{' '}
         project.
       </p>
       <p>
-        To put it in a nutshell, <b>2d histogram</b>, <b>Gaussian KDE</b>,{" "}
+        To put it in a nutshell, <b>2d histogram</b>, <b>Gaussian KDE</b>,{' '}
         <b>2d density</b> and <b>Contour charts</b> are the most common
-        variations. It is of course possible to build them all using{" "}
+        variations. It is of course possible to build them all using{' '}
         <code>react</code> and <code>d3.js</code>.
       </p>
       <p>
@@ -284,10 +276,10 @@ export default function Home() {
       <br />
       <ChartOrSandbox
         VizComponent={Density2dContourDemo}
-        vizName={"Density2dContour"}
+        vizName={'Density2dContour'}
         maxWidth={700}
         height={700}
-        caption={"Contour chart made with React and D3.js."}
+        caption={'Contour chart made with React and D3.js.'}
       />
 
       <ToDoSection text="make the contour chart above looks better" />

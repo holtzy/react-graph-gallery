@@ -62,8 +62,7 @@ export default function Articles() {
           <p>
             They will be released soon and you can be updated through my{' '}
             <b>newsletter</b>:
-          </p>{' '}
-          <br />
+          </p>
           <br />
           <SubscribeForm />
         </div>

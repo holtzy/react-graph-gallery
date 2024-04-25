@@ -13,7 +13,6 @@ import DatavizInspirationParallaxLink from '../component/DatavizInspirationParal
 import { Accordion } from '../component/UI/Accordion';
 import { ScatterplotTooltipDemo } from '../viz/ScatterplotTooltip/ScatterplotTooltipDemo';
 import Link from 'next/link';
-import { SubscribeForm } from '../component/SubscribeForm';
 import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
