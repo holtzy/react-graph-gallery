@@ -1,22 +1,22 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
-import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { TreemapBasicDemo } from "../viz/TreemapBasic/TreemapBasicDemo";
-import { Treemap2LevelsDemo } from "../viz/Treemap2Levels/Treemap2LevelsDemo";
-import { TreemapHoverEffectDemo } from "../viz/TreemapHoverEffect/TreemapHoverEffectDemo";
-import Link from "next/link";
-import { LinkAsButton } from "component/LinkAsButton";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import Contact from '../component/Contact';
+import { AccordionSection } from '../component/AccordionSection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { TreemapBasicDemo } from '../viz/TreemapBasic/TreemapBasicDemo';
+import { Treemap2LevelsDemo } from '../viz/Treemap2Levels/Treemap2LevelsDemo';
+import { TreemapHoverEffectDemo } from '../viz/TreemapHoverEffect/TreemapHoverEffectDemo';
+import Link from 'next/link';
+import { LinkAsButton } from 'component/LinkAsButton';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/treemap.html">treemap</a>{" "}
-      displays a hierarchical dataset (a <i>tree</i>) as a set of{" "}
+      A <a href="https://www.data-to-viz.com/graph/treemap.html">treemap</a>{' '}
+      displays a hierarchical dataset (a <i>tree</i>) as a set of{' '}
       <b>rectangles</b>. Rectangle sizes are proportional to their numeric
       value.
     </p>
@@ -45,14 +45,14 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
-        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{" "}
+        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{' '}
         structure. Each item in this structure is called a <b>node</b>, the
         lowest nodes of the hierarchy being called <b>leaves</b>.
       </p>
       <p>
-        The dataset is an <b>object</b> that has at least 3 properties:{" "}
+        The dataset is an <b>object</b> that has at least 3 properties:{' '}
         <code>name</code>, <code>value</code> and <code>children</code>.
         <code>children</code> is an array of nodes that have this structure too.
       </p>
@@ -61,17 +61,17 @@ export default function Home() {
       <CodeBlock code={snippetData} />
       <p>
         It's very likely that your dataset is not formatted as above <b>yet</b>.
-        But don't fret, the next section will teach you how to <b>convert</b>{" "}
+        But don't fret, the next section will teach you how to <b>convert</b>{' '}
         it. ⬇️
       </p>
       {/*
       //
       // Data Wrangling
       //
-      */}{" "}
+      */}{' '}
       <div className="bg-gray-50 full-bleed mt-12">
         <div className="wrapper pb-20">
-          <h2 id="reformat data">Data wrangling</h2>{" "}
+          <h2 id="reformat data">Data wrangling</h2>{' '}
           <p>
             <b>Three main input data formats</b> are usually encountered when it
             comes to store hierarchical information. It's always a struggle to
@@ -81,7 +81,7 @@ export default function Home() {
           <p>&rarr; list of connection (js object)</p>
           <p>&rarr; json with hierarchy</p>
           <p>
-            I described in depth how to deal with those format in the{" "}
+            I described in depth how to deal with those format in the{' '}
             <Link href="/dendrogram">dendrogram section</Link> of the gallery
             that shares the same kind of input format. Please take a look there!
           </p>
@@ -97,10 +97,10 @@ export default function Home() {
       */}
       <h2 id="hierarchy()">The hierarchy format or "root node"</h2>
       <p>
-        A treemap is a <b>hierarchical layout</b>. D3.js has a lot of{" "}
-        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{" "}
+        A treemap is a <b>hierarchical layout</b>. D3.js has a lot of{' '}
+        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{' '}
         allowing to deal with this kind of hierarchical data. To use those
-        functions we first need to create a <b>"Root node"</b> or{" "}
+        functions we first need to create a <b>"Root node"</b> or{' '}
         <b>"Hierarchy"</b>.
       </p>
       <p>
@@ -119,9 +119,9 @@ export default function Home() {
       <CodeBlock code={snippetHierarchy} />
       <p>
         Note that this concept of <b>root node</b> is <b>key</b> for all the
-        charts representing a hierarchy like{" "}
-        <Link href="/dendrogram">dendrograms</Link>,{" "}
-        <Link href="/circular-packing">circle packing</Link>,{" "}
+        charts representing a hierarchy like{' '}
+        <Link href="/dendrogram">dendrograms</Link>,{' '}
+        <Link href="/circular-packing">circle packing</Link>,{' '}
         <Link href="/network-chart">networks</Link> and more. Please check the
         dendrogram page where I explain it in detail.
       </p>
@@ -146,9 +146,9 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetTree} />
       <p>
-        The result is an object that has almost the same shape as the initial{" "}
-        <code>hierarchy</code> object. But for each node, an additional{" "}
-        <code>x0</code>, <code>x1</code>, <code>y0</code> and <code>y1</code>{" "}
+        The result is an object that has almost the same shape as the initial{' '}
+        <code>hierarchy</code> object. But for each node, an additional{' '}
+        <code>x0</code>, <code>x1</code>, <code>y0</code> and <code>y1</code>{' '}
         are available. Those are the coordinates of the rectangle in our SVG
         space! 🔥
       </p>
@@ -169,7 +169,7 @@ export default function Home() {
       <CodeBlock code={snippetLoop} />
       <p>This results in a first basic treemap 😋</p>
       <ChartOrSandbox
-        vizName={"TreemapBasic"}
+        vizName={'TreemapBasic'}
         VizComponent={TreemapBasicDemo}
         maxWidth={600}
         height={400}
@@ -184,17 +184,17 @@ export default function Home() {
       <p>
         Treemaps are also handy to display <b>nested data structure</b>. For
         instance, let's consider a company with a CEO, several teams, and a few
-        employees per team. This result in a structure with{" "}
+        employees per team. This result in a structure with{' '}
         <b>several levels</b> of hierarchy.
       </p>
       <p>
         Pretty much the same strategy is used to draw the treemap. But note that
-        each leaf has a <code>parent</code> property that is very handy to use a{" "}
+        each leaf has a <code>parent</code> property that is very handy to use a{' '}
         <b>categorical color scale</b> to the graph.
       </p>
       <CodeBlock code={snippetColor} />
       <ChartOrSandbox
-        vizName={"Treemap2Levels"}
+        vizName={'Treemap2Levels'}
         VizComponent={Treemap2LevelsDemo}
         maxWidth={600}
         height={400}
@@ -208,29 +208,27 @@ export default function Home() {
       <h2 id="hover effect">Hover effect</h2>
       <p>
         Adding a <b>hover effect</b> to your treemap is a nice polish detail.
-        Here I suggest to highlight the slice that is hovered over by{" "}
+        Here I suggest to highlight the slice that is hovered over by{' '}
         <b>dimming</b> all the other slices.
       </p>
       <p>
         There are several strategies available to implement such an effect. One
-        can rely on css <b>pseudo classes</b> only, or <b>add a css class</b>{" "}
+        can rely on css <b>pseudo classes</b> only, or <b>add a css class</b>{' '}
         using javascript and the <code>onMouseEnter</code> event. It's also
-        possible to rely on an <b>animation library</b> like{" "}
+        possible to rely on an <b>animation library</b> like{' '}
         <code>react-spring</code>.
       </p>
       <p>
-        I'm preparing a full section on the topic. You can subscribe to my{" "}
-        <a href="https://datavizuniverse.substack.com/">
-          dataviz-universe newsletter
-        </a>{" "}
-        to know when it will be ready. Meanwhile, there is a code sandbox
-        waiting for you below to reveal the code of this example.
+        I'm preparing a full section on the topic. You can subscribe to my{' '}
+        <Link href="/subscribe">dataviz-universe newsletter</Link> to know when
+        it will be ready. Meanwhile, there is a code sandbox waiting for you
+        below to reveal the code of this example.
       </p>
       <LinkAsButton isFilled size="sm" href="/subscribe">
         Subscribe
       </LinkAsButton>
       <ChartOrSandbox
-        vizName={"TreemapHoverEffect"}
+        vizName={'TreemapHoverEffect'}
         VizComponent={TreemapHoverEffectDemo}
         maxWidth={600}
         height={400}

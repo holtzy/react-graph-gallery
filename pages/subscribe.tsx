@@ -24,10 +24,7 @@ export default function Home() {
         description={graphDescription}
       />
 
-      <div
-        style={{ height: 'calc(100vh - 6rem)' }}
-        className="flex justify-center items-center"
-      >
+      <div className="flex justify-center items-center pt-12 pb-32">
         <SubscribeForm />
       </div>
     </Layout>

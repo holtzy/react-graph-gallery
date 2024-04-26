@@ -263,10 +263,8 @@ export default function Home() {
       <p>
         It would be too long to explain the code here. Instead, I'm currently
         writing a set of dedicated tutorials. Please{' '}
-        <a href="https://datavizuniverse.substack.com/">
-          subscribe to the newsletter
-        </a>{' '}
-        to know when this will be released.
+        <Link href="/subscribe">subscribe to the newsletter</Link> to know when
+        this will be released.
       </p>
       <ChartOrSandbox
         vizName={'LollipopDatasetTransition'}

@@ -1,18 +1,18 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { PieChartBasicDemo } from "../viz/PieChartBasic/PieChartBasicDemo";
-import { PieChartLegendDemo } from "viz/PieChartLegend/PieChartLegendDemo";
-import { Caption } from "component/UI/Caption";
-import Link from "next/link";
-import { PieChartHoverDemo } from "viz/PieChartHover/PieChartHoverDemo";
-import { DonutDatasetTransitionDemo } from "viz/DonutDatasetTransition/DonutDatasetTransitionDemo";
-import { DonutBarplotTransitionDemo } from "viz/DonutBarplotTransition/DonutBarplotTransitionDemo";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { PieChartBasicDemo } from '../viz/PieChartBasic/PieChartBasicDemo';
+import { PieChartLegendDemo } from 'viz/PieChartLegend/PieChartLegendDemo';
+import { Caption } from 'component/UI/Caption';
+import Link from 'next/link';
+import { PieChartHoverDemo } from 'viz/PieChartHover/PieChartHoverDemo';
+import { DonutDatasetTransitionDemo } from 'viz/DonutDatasetTransition/DonutDatasetTransitionDemo';
+import { DonutBarplotTransitionDemo } from 'viz/DonutBarplotTransition/DonutBarplotTransitionDemo';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import DatavizInspirationParallaxLink from 'component/DatavizInspirationParallaxLink';
 
 const graphDescription = (
   <>
@@ -24,12 +24,12 @@ const graphDescription = (
       category or group.
     </p>
     <p>
-      This post explains how to build a pie chart with{" "}
-      <a href="https://react.dev/">react</a>, using the <code>pie()</code>{" "}
-      function of d3.js. It describes the expected <b>data format</b>, how the{" "}
+      This post explains how to build a pie chart with{' '}
+      <a href="https://react.dev/">react</a>, using the <code>pie()</code>{' '}
+      function of d3.js. It describes the expected <b>data format</b>, how the{' '}
       <code>Pie</code> component must be structured, how to compute the slice
       positions and how to render those slices. Last but not least, it provides
-      the implementation for common use-cases like <b>hover effect</b> and{" "}
+      the implementation for common use-cases like <b>hover effect</b> and{' '}
       <b>data transition</b>.
     </p>
   </>
@@ -51,7 +51,7 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
         The dataset required to build a pie chart is pretty simple. It is an
         array where each item represents a group of the pie chart. Each item is
@@ -72,17 +72,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>PieChart</code> component that will
         be stored in a <code>PieChart.tsx</code> file. This component requires 3
-        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the pie
         chart.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>PieChart</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -90,7 +90,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG arcs, but it's React that will render
         them in the <code>return()</code> statement. We won't use d3 methods
-        like <code>append</code> that you can find in usual{" "}
+        like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
       {/*
@@ -101,7 +101,7 @@ export default function Home() {
       <h2 id="build arcs">From data to arcs</h2>
       <h3>&rarr; A pie chart is a set of arcs</h3>
       <p>
-        A pie chart is actually a set of <b>arcs</b>. An arc is a slice of a{" "}
+        A pie chart is actually a set of <b>arcs</b>. An arc is a slice of a{' '}
         <b>ring</b>. It is defined using 4 numbers:
       </p>
       <ul>
@@ -112,7 +112,7 @@ export default function Home() {
         </li>
         <li>
           Inner and outer <b>radius</b>. For a pie chart, the inner radius will
-          be set to 0. This is what makes it different from a{" "}
+          be set to 0. This is what makes it different from a{' '}
           <Link href="donut">donut chart</Link>.
         </li>
       </ul>
@@ -120,7 +120,7 @@ export default function Home() {
         <img
           src="/img/arcDefinition.png"
           style={{ maxWidth: 600 }}
-          alt={"schema of an arc built with d3.js to make a pie chart"}
+          alt={'schema of an arc built with d3.js to make a pie chart'}
         />
         <Caption>
           A pie chart is built from a set of arcs. An arc is a slice defined by
@@ -132,7 +132,7 @@ export default function Home() {
       </h3>
       <p>
         The <code>pie()</code> function of d3 is here to transform the dataset
-        in a set of arcs with their coordinates. It returns a function (called{" "}
+        in a set of arcs with their coordinates. It returns a function (called{' '}
         <code>pieGenerator</code> here) that is an <b>arc generator</b>.
       </p>
       <p>
@@ -174,7 +174,7 @@ export default function Home() {
         for rendering, and d3 for layout computation.
       </p>
       <ChartOrSandbox
-        vizName={"PieChartBasic"}
+        vizName={'PieChartBasic'}
         VizComponent={PieChartBasicDemo}
         maxWidth={400}
         height={400}
@@ -187,7 +187,7 @@ export default function Home() {
       */}
       <h2 id="warning">Warning</h2>
       <p>
-        Now is a good time to remind you that pie charts{" "}
+        Now is a good time to remind you that pie charts{' '}
         <a href="https://www.data-to-viz.com/caveat/pie.html">have flaws</a>. To
         put it in a nutshell, humans are pretty <b>bad at reading angles</b>,
         what makes pie charts pretty weak to compare values.
@@ -204,10 +204,10 @@ export default function Home() {
         </Caption>
       </div>
       <p className="mt-4">
-        Hard to find out isn't it? Check this{" "}
+        Hard to find out isn't it? Check this{' '}
         <a href="https://www.data-to-viz.com/caveat/pie.html">
           pie chart dedicated post
-        </a>{" "}
+        </a>{' '}
         to see it visualized as a barplot. You'll see why pie charts are weak
         (and will learn good alternatives).
       </p>
@@ -222,13 +222,13 @@ export default function Home() {
       */}
       <h2 id="legend">Legend</h2>
       <p>
-        There is one very common caveat with pie charts: adding a{" "}
+        There is one very common caveat with pie charts: adding a{' '}
         <b>legend on the side</b> to link each color with a label. It's much
         better to label each slice <b>directly next to it</b> to ease the
         reading.
       </p>
       <p>
-        In the example below a little dot is located on each slice{" "}
+        In the example below a little dot is located on each slice{' '}
         <b>centroid</b>. From there a first segment goes out of the slice,
         followed by a second horizontal segment that goes to the label.
       </p>
@@ -244,13 +244,13 @@ export default function Home() {
       </p>
       <CodeBlock code={snippetCentroid} />
       <p>
-        The exact same technique is used to get the position of the{" "}
+        The exact same technique is used to get the position of the{' '}
         <b>inflexion point</b>. An <b>additional arc</b> is computed, located
         out of the donut area, and with a thickness of 0. Its centroid is the
         inflexion point.
       </p>
       <ChartOrSandbox
-        vizName={"PieChartLegend"}
+        vizName={'PieChartLegend'}
         VizComponent={PieChartLegendDemo}
         maxWidth={700}
         height={600}
@@ -264,26 +264,24 @@ export default function Home() {
       <h2 id="hover effect">Hover effect</h2>
       <p>
         Adding a <b>hover effect</b> to your pie chart is a nice polish detail.
-        Here I suggest to highlight the slice that is hovered over by{" "}
+        Here I suggest to highlight the slice that is hovered over by{' '}
         <b>dimming</b> all the other slices.
       </p>
       <p>
         There are several strategies available to implement such an effect. One
-        can rely on css <b>pseudo classes</b> only, or <b>add a css class</b>{" "}
+        can rely on css <b>pseudo classes</b> only, or <b>add a css class</b>{' '}
         using javascript and the <code>onMouseEnter</code> event. It's also
-        possible to rely on an <b>animation library</b> like{" "}
+        possible to rely on an <b>animation library</b> like{' '}
         <code>react-spring</code>.
       </p>
       <p>
-        I'm preparing a full section on the topic. You can subscribe to my{" "}
-        <a href="https://datavizuniverse.substack.com/">
-          dataviz-universe newsletter
-        </a>{" "}
-        to know when it will be ready. Meanwhile, there is a code sandbox
-        waiting for you below to reveal the code of this example.
+        I'm preparing a full section on the topic. You can subscribe to my{' '}
+        <Link href="/subscribe">dataviz-universe newsletter</Link> to know when
+        it will be ready. Meanwhile, there is a code sandbox waiting for you
+        below to reveal the code of this example.
       </p>
       <ChartOrSandbox
-        vizName={"PieChartHover"}
+        vizName={'PieChartHover'}
         VizComponent={PieChartHoverDemo}
         maxWidth={700}
         height={600}
@@ -319,18 +317,18 @@ export default function Home() {
       </p>
       <p>
         The code below relies on the <code>react-spring</code> library. Instead
-        of rendering a <code>path</code> for each slice, it uses a{" "}
+        of rendering a <code>path</code> for each slice, it uses a{' '}
         <code>animated.path</code> component that handles the spring animation
         for us.
       </p>
       <p>
         The implementation is <b>not trivial</b>. I plan to publish a full
-        tutorial on react-spring for data visualization soon. You can{" "}
+        tutorial on react-spring for data visualization soon. You can{' '}
         <Link href="/subscribe">subscribe here</Link> to be notified when it is
         ready.
       </p>
       <ChartOrSandbox
-        vizName={"DonutDatasetTransition"}
+        vizName={'DonutDatasetTransition'}
         VizComponent={DonutDatasetTransitionDemo}
         maxWidth={800}
         height={400}
@@ -348,28 +346,28 @@ export default function Home() {
       */}
       <h2 id="barplot transition">Pie chart to barplot</h2>
       <p>
-        Pie charts are often{" "}
-        <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a>{" "}
+        Pie charts are often{' '}
+        <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a>{' '}
         since angles are <b>hard to read</b>. Let's represent the same data
         using a pie chart or a <Link href="/barplot">barplot</Link>, to see
         what's the most insightful 🤷‍♂️.
       </p>
       <p>
-        Note that here we animate the transition between{" "}
+        Note that here we animate the transition between{' '}
         <b>different shape types</b>: each arc becomes a rectangle and
-        reciprocally. This is made possible thanks to the{" "}
+        reciprocally. This is made possible thanks to the{' '}
         <a href="https://github.com/veltman/flubber">flubber</a> library, used
-        in coordination with{" "}
+        in coordination with{' '}
         <a href="https://react-spring.dev/">react-spring</a>.
       </p>
       <p>
-        Once more, a full tutorial is needed here. You can{" "}
+        Once more, a full tutorial is needed here. You can{' '}
         <Link href="/subscribe">subscribe here</Link> to be notified when it is
         ready. In the meanwhile, the code of this specific example is provided
         below.
       </p>
       <ChartOrSandbox
-        vizName={"DonutBarplotTransition"}
+        vizName={'DonutBarplotTransition'}
         VizComponent={DonutBarplotTransitionDemo}
         maxWidth={500}
         height={400}

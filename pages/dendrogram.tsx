@@ -1,21 +1,21 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { DendrogramBasicDemo } from "viz/DendrogramBasic/DendrogramBasicDemo";
-import { DendrogramHorizontalDemo } from "viz/DendrogramHorizontal/DendrogramHorizontalDemo";
-import { DendrogramRadialDemo } from "viz/DendrogramRadial/DendrogramRadialDemo";
-import { Accordion } from "component/UI/Accordion";
-import Link from "next/link";
-import { LinkAsButton } from "component/LinkAsButton";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { DendrogramBasicDemo } from 'viz/DendrogramBasic/DendrogramBasicDemo';
+import { DendrogramHorizontalDemo } from 'viz/DendrogramHorizontal/DendrogramHorizontalDemo';
+import { DendrogramRadialDemo } from 'viz/DendrogramRadial/DendrogramRadialDemo';
+import { Accordion } from 'component/UI/Accordion';
+import Link from 'next/link';
+import { LinkAsButton } from 'component/LinkAsButton';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
-      <a href="https://www.data-to-viz.com/graph/dendrogram.html">dendrogram</a>{" "}
+      A{' '}
+      <a href="https://www.data-to-viz.com/graph/dendrogram.html">dendrogram</a>{' '}
       is a <b>network</b> structure. It is constituted of a <b>root</b> node
       that gives birth to several nodes connected by <b>edges</b> or branches.
       The last nodes of the hierarchy are called <b>leaves</b>.
@@ -46,15 +46,15 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
-        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{" "}
+        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{' '}
         structure.
       </p>
       <p>
         Each item in this structure is called a <b>node</b>. The lowest nodes of
         the hierarchy being called <b>leaves</b>. The dataset is an object that
-        has at least 3 properties: <code>name</code>, <code>value</code> and{" "}
+        has at least 3 properties: <code>name</code>, <code>value</code> and{' '}
         <code>children</code>. Children is an array of nodes that have this
         structure too.
       </p>
@@ -71,10 +71,10 @@ export default function Home() {
       */}
       <h2 id="hierarchy">The hierarchy format or "root node"</h2>
       <p>
-        A dendrogram is a <b>hierarchical layout</b>. D3.js has a lot of{" "}
-        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{" "}
+        A dendrogram is a <b>hierarchical layout</b>. D3.js has a lot of{' '}
+        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{' '}
         allowing to deal with this kind of hierarchical data. To use those
-        functions we first need to create a <b>"Root node"</b> or{" "}
+        functions we first need to create a <b>"Root node"</b> or{' '}
         <b>"Hierarchy"</b>.
       </p>
       <p>
@@ -84,7 +84,7 @@ export default function Home() {
         A "root node" or "hierarchy" is a <b>javascript object</b>. It has
         almost the same shape as the input data described above. But with some
         additional properties and methods that will make our life easier. This
-        data structure is typed as a{" "}
+        data structure is typed as a{' '}
         <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/d3-hierarchy/index.d.ts#L29">
           HierarchyNode
         </a>
@@ -116,10 +116,10 @@ export default function Home() {
         </li>
       </ul>
       <p>
-        On top of that, each node also has associated methods like{" "}
+        On top of that, each node also has associated methods like{' '}
         <code>node.descendants()</code> or <code>node.links()</code> that we
-        will describe later. See the complete list in the{" "}
-        <a href="https://github.com/d3/d3-hierarchy">d3-hierarchy doc</a>.{" "}
+        will describe later. See the complete list in the{' '}
+        <a href="https://github.com/d3/d3-hierarchy">d3-hierarchy doc</a>.{' '}
       </p>
       <h3>&rarr; how to build a root node</h3>
       <p>
@@ -156,10 +156,10 @@ export default function Home() {
       >
         <br />
         <p>
-          In this case, you can use the{" "}
-          <a href="https://github.com/d3/d3-dsv#csvParse">csvParse()</a>{" "}
-          function of d3 to get a javascript array and use the{" "}
-          <code>stratify</code> function as shown in the accordion above.{" "}
+          In this case, you can use the{' '}
+          <a href="https://github.com/d3/d3-dsv#csvParse">csvParse()</a>{' '}
+          function of d3 to get a javascript array and use the{' '}
+          <code>stratify</code> function as shown in the accordion above.{' '}
         </p>
         <CodeBlock code={snippetCsv} />
       </Accordion>
@@ -178,7 +178,7 @@ export default function Home() {
       </p>
       <p>
         This is made possible thanks to the <code>cluster()</code> function of
-        d3.js. You can check its{" "}
+        d3.js. You can check its{' '}
         <a href="https://github.com/d3/d3-hierarchy#cluster">
           offical documentation
         </a>
@@ -205,7 +205,7 @@ export default function Home() {
       </h3>
       <p>
         The output is almost the same as the initial <b>hierarchy</b> object.
-        But for each node we have 2 additional properties: <code>x</code> and{" "}
+        But for each node we have 2 additional properties: <code>x</code> and{' '}
         <code>y</code> that are the coordinates we need to build the dendrogram!
       </p>
       {/*
@@ -215,7 +215,7 @@ export default function Home() {
       */}
       <h2 id="basic dendrogram">Most Basic dendrogram</h2>
       <p>
-        We have a list of <code>node</code> in the <code>dendrogram</code>{" "}
+        We have a list of <code>node</code> in the <code>dendrogram</code>{' '}
         object. For each, we now its position.
       </p>
       <p>
@@ -223,8 +223,8 @@ export default function Home() {
         to make the dendrogram
       </p>
       <p>
-        Fortunately, the dendrogram object has a <code>descendants()</code>{" "}
-        method that list all nodes in a flat array. It is then possible to use a{" "}
+        Fortunately, the dendrogram object has a <code>descendants()</code>{' '}
+        method that list all nodes in a flat array. It is then possible to use a{' '}
         <code>map()</code> to loop through nodes. So for instance drawing edges
         looks like:
       </p>
@@ -234,7 +234,7 @@ export default function Home() {
         dendrogram!
       </p>
       <ChartOrSandbox
-        vizName={"DendrogramBasic"}
+        vizName={'DendrogramBasic'}
         VizComponent={DendrogramBasicDemo}
         maxWidth={800}
         height={400}
@@ -251,20 +251,20 @@ export default function Home() {
         make the dendrogram <b>horizontal</b> instead of vertical.
       </p>
       <p>
-        You can also create smooth edges thanks to the{" "}
+        You can also create smooth edges thanks to the{' '}
         <code>d3.linkHorizontal()</code> function. The function is described in
-        its{" "}
+        its{' '}
         <a href="https://github.com/d3/d3-shape#linkHorizontal">
           official documentation
         </a>
-        . Basically, you need to provide an object with a <code>source</code>{" "}
+        . Basically, you need to provide an object with a <code>source</code>{' '}
         and a <code>target</code> property. The coordinates of those properties
-        will be used to create the <code>d</code> attribute of an svg{" "}
+        will be used to create the <code>d</code> attribute of an svg{' '}
         <code>path</code> element.
       </p>
       <CodeBlock code={snippetHorizontalLink} />
       <ChartOrSandbox
-        vizName={"DendrogramHorizontal"}
+        vizName={'DendrogramHorizontal'}
         VizComponent={DendrogramHorizontalDemo}
         maxWidth={600}
         height={400}
@@ -279,7 +279,7 @@ export default function Home() {
       <p>The radial dendrogram is a bit trickier to achieve.</p>
       <h3>&rarr; polar coordinates</h3>
       <p>
-        We are dealing with polar coordinates here. As a result, the{" "}
+        We are dealing with polar coordinates here. As a result, the{' '}
         <code>size</code> attribute of the
         <code>layout()</code>
         function must be updated.
@@ -297,7 +297,7 @@ export default function Home() {
       <CodeBlock code={snippetRadialLayout} />
       <p>
         Since <code>x</code> and <code>y</code> are now describing an angle and
-        a distance to the center, we can position a node using the following{" "}
+        a distance to the center, we can position a node using the following{' '}
         <code>transform</code> property:
       </p>
       <CodeBlock code={snippetTransform} />
@@ -305,29 +305,29 @@ export default function Home() {
         &rarr; Smooth edges with <code>linkRadial</code>
       </h3>
       <p>
-        Edges are not horizontal anymore, so the <code>linkHorizontal</code>{" "}
-        won't be helpful this time. But instead, the{" "}
-        <a href="https://github.com/d3/d3-shape#linkRadial">d3.linkRadial</a>{" "}
+        Edges are not horizontal anymore, so the <code>linkHorizontal</code>{' '}
+        won't be helpful this time. But instead, the{' '}
+        <a href="https://github.com/d3/d3-shape#linkRadial">d3.linkRadial</a>{' '}
         function does the job based on an angle and a distance.
       </p>
       <h3>&rarr; Smart labels</h3>
       <p>
         Please make sure your labels are properly oriented. It always give a bit
         of a headhache to pivot them correctly, and to control the anchoring
-        appropriately. I talked about it extensively in the{" "}
+        appropriately. I talked about it extensively in the{' '}
         <Link href="circular-barplot">circular barplot</Link> section so please
         take a look for this matter.
       </p>
       <ChartOrSandbox
-        vizName={"DendrogramRadial"}
+        vizName={'DendrogramRadial'}
         VizComponent={DendrogramRadialDemo}
         maxWidth={600}
         height={600}
         caption="A minimalist radial dendrogram built using d3 and react."
       />
       <p>
-        <i>Note</i>: please check of the first level edges are{" "}
-        <b>straight lines</b>. IMO it does not make sense to use{" "}
+        <i>Note</i>: please check of the first level edges are{' '}
+        <b>straight lines</b>. IMO it does not make sense to use{' '}
         <code>linkRadial</code> for the first level.
       </p>
       {/*
@@ -339,18 +339,16 @@ export default function Home() {
       <p>There is much more that needs to be added to this tutorial.</p>
       <p>
         Using <code>canvas</code> for rendering is often a requirement when the
-        number of nodes gets big. <b>Interactivity</b> is often necessary, for{" "}
+        number of nodes gets big. <b>Interactivity</b> is often necessary, for{' '}
         <b>hover effect</b> or to <b>collapse</b> a part of the tree. It also
         possible to <b>map</b> the node circle size to a numeric variable.
       </p>
       <p>
-        This will come soon! I have a newsletter called the{" "}
-        <a href="https://datavizuniverse.substack.com/">dataviz universe</a>{" "}
-        where I share my latest updates.
+        This will come soon! I have a newsletter called the{' '}
+        <Link href="/subscribe">dataviz universe</Link> where I share my latest
+        updates.
       </p>
-      <LinkAsButton href={"https://datavizuniverse.substack.com/"}>
-        Subscribe
-      </LinkAsButton>
+      <LinkAsButton href={'/subscribe'}>Subscribe</LinkAsButton>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3 mt-20" />
       <ChartFamilySection chartFamily="partOfAWhole" />
       <div className="mt-20" />

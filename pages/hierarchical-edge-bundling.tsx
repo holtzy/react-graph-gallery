@@ -1,30 +1,30 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import { DendrogramBasicDemo } from "viz/DendrogramBasic/DendrogramBasicDemo";
-import { DendrogramHorizontalDemo } from "viz/DendrogramHorizontal/DendrogramHorizontalDemo";
-import { DendrogramRadialDemo } from "viz/DendrogramRadial/DendrogramRadialDemo";
-import { Accordion } from "component/UI/Accordion";
-import Link from "next/link";
-import { LinkAsButton } from "component/LinkAsButton";
-import { HierarchicalEdgeBundlingBasicDemo } from "viz/HierarchicalEdgeBundlingBasic.tsx/HierarchicalEdgeBundlingBasicDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import { DendrogramBasicDemo } from 'viz/DendrogramBasic/DendrogramBasicDemo';
+import { DendrogramHorizontalDemo } from 'viz/DendrogramHorizontal/DendrogramHorizontalDemo';
+import { DendrogramRadialDemo } from 'viz/DendrogramRadial/DendrogramRadialDemo';
+import { Accordion } from 'component/UI/Accordion';
+import Link from 'next/link';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { HierarchicalEdgeBundlingBasicDemo } from 'viz/HierarchicalEdgeBundlingBasic.tsx/HierarchicalEdgeBundlingBasicDemo';
 
 const graphDescription = (
   <>
     <p>
-      A{" "}
+      A{' '}
       <a href="https://www.data-to-viz.com/graph/edge_bundling.html">
         hierarchical edge bundling
-      </a>{" "}
+      </a>{' '}
       chart allows to visualize <b>relationships</b> between entities organized
       in a <b>hierarchy</b>. The idea is to <b>bundle</b> the adjacency edges
       together to decrease the clutter usually observed in complex networks.
     </p>
     <p>
-      This page explains how to build a hierarchical edge bundling chart using{" "}
+      This page explains how to build a hierarchical edge bundling chart using{' '}
       <b>d3.js</b> to compute the node position, and <b>React</b> to render the
       nodes and edges. It starts by describing the required <b>data</b> format,
       explains how to build a very <b>basic</b> hierarchical edge bundling and
@@ -49,22 +49,22 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
-        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{" "}
+        The dataset describes a <b>hierarchy</b> using a <b>recursive</b>{' '}
         structure.
       </p>
       <p>
         Each item in this structure is called a <b>node</b>. The lowest nodes of
-        the hierarchy being called <b>leaves</b>.{" "}
+        the hierarchy being called <b>leaves</b>.{' '}
       </p>
       <p>
-        The dataset is an object that has at least 3 properties:{" "}
-        <code>name</code>, <code>value</code> and <code>children</code>.{" "}
+        The dataset is an object that has at least 3 properties:{' '}
+        <code>name</code>, <code>value</code> and <code>children</code>.{' '}
         <code>children</code> is an array of nodes that have this structure too.
       </p>
       <p>
-        This kind of data is very close to what's required for a{" "}
+        This kind of data is very close to what's required for a{' '}
         <Link href="/dendrogram">dendrogram</Link>. But an additional property
         is added for the leaves: <code>links</code>. It provides a list of all
         the other leaves this leaf is connected with.
@@ -86,15 +86,15 @@ export default function Home() {
         A hierarchical edge bundling chart is a <b>hierarchical layout</b>.
       </p>
       <p>
-        D3.js has a lot of{" "}
-        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{" "}
+        D3.js has a lot of{' '}
+        <a href="https://github.com/d3/d3-hierarchy">utility functions</a>{' '}
         allowing to deal with this kind of hierarchical data. To use those
-        functions we first need to create a <b>"Root node"</b> or{" "}
+        functions we first need to create a <b>"Root node"</b> or{' '}
         <b>"Hierarchy"</b>.
       </p>
       <p>
         This is possible thanks to the <code>hierarchy</code> function of d3,
-        and I extensively described the process in the{" "}
+        and I extensively described the process in the{' '}
         <Link href="/dendrogram">dendrogram section</Link> of this gallery.
       </p>
       <CodeBlock code={snippetHierarchy} />
@@ -120,7 +120,7 @@ export default function Home() {
       </p>
       <p>
         This is made possible thanks to the <code>cluster()</code> function of
-        d3.js. You can check its{" "}
+        d3.js. You can check its{' '}
         <a href="https://github.com/d3/d3-hierarchy#cluster">
           offical documentation
         </a>
@@ -128,13 +128,13 @@ export default function Home() {
       </p>
       <p>
         The work done here is exactly the same as for a <b>radial dendrogram</b>
-        , so I suggest to follow the <Link href="/dendrogram">dendrogram</Link>{" "}
+        , so I suggest to follow the <Link href="/dendrogram">dendrogram</Link>{' '}
         page for more in-depth explanation.
       </p>
       <CodeBlock code={snippetLayout1} />
       <p>
         The output is almost the same as the initial <b>hierarchy</b> object.
-        But for each node we have 2 additional properties: <code>x</code> and{" "}
+        But for each node we have 2 additional properties: <code>x</code> and{' '}
         <code>y</code> that are the coordinates we need to build the dendrogram!
       </p>
       {/*
@@ -155,7 +155,7 @@ export default function Home() {
       <div className="flex">
         <LinkAsButton href="/circular-barplot" size="sm">
           Circular barplot
-        </LinkAsButton>{" "}
+        </LinkAsButton>{' '}
         <LinkAsButton href="/dendrogram" isFilled size="sm">
           Dendrogram
         </LinkAsButton>
@@ -168,7 +168,7 @@ export default function Home() {
         directly
       </p>
       <ChartOrSandbox
-        vizName={"DendrogramRadial"}
+        vizName={'DendrogramRadial'}
         VizComponent={DendrogramRadialDemo}
         maxWidth={600}
         height={600}
@@ -181,7 +181,7 @@ export default function Home() {
       */}
       <h2 id="Links">Hierarchical edge bundling</h2>
       <p>
-        The last but trickiest part of our graph creation is to draw the{" "}
+        The last but trickiest part of our graph creation is to draw the{' '}
         <b>links</b> between leaves.
       </p>
       <h3>
@@ -203,7 +203,7 @@ export default function Home() {
       <CodeBlock code={snippetEdges} />
       <p>Resulting in our first hierarchical edge bundling example 🎉</p>
       <ChartOrSandbox
-        vizName={"HierarchicalEdgeBundlingBasic"}
+        vizName={'HierarchicalEdgeBundlingBasic'}
         VizComponent={HierarchicalEdgeBundlingBasicDemo}
         maxWidth={600}
         height={600}
@@ -217,18 +217,16 @@ export default function Home() {
       <h2 id="next">Coming soon</h2>
       <p>
         Using <code>canvas</code> for rendering is often a requirement when the
-        number of nodes gets big. <b>Interactivity</b> is often necessary, for{" "}
+        number of nodes gets big. <b>Interactivity</b> is often necessary, for{' '}
         <b>hover effect</b> or to <b>collapse</b> a part of the tree. It also
         possible to <b>map</b> the node circle size to a numeric variable.
       </p>
       <p>
-        This will come soon! I have a newsletter called the{" "}
-        <a href="https://datavizuniverse.substack.com/">dataviz universe</a>{" "}
-        where I share my latest updates.
+        This will come soon! I have a newsletter called the{' '}
+        <Link href="/subscribe">dataviz universe</Link> where I share my latest
+        updates.
       </p>
-      <LinkAsButton href={"https://datavizuniverse.substack.com/"}>
-        Subscribe
-      </LinkAsButton>
+      <LinkAsButton href={'/subscribe'}>Subscribe</LinkAsButton>
       <div className="full-bleed border-t h-0 bg-gray-100 my-3 mt-20" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
