@@ -14,7 +14,7 @@ export const LineItem = ({ path, color, opacity }: LineItemProps) => {
       opacity,
     },
     config: {
-      friction: 100,
+      friction: 10,
     },
   });
 

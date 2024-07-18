@@ -17,10 +17,11 @@ const buttonStyle = {
 export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
   const [data, setData] = useState([]);
 
-  const [selectedGroup, setSelectedGroup] = useState('ADB region: South Asia');
+  const [selectedGroup, setSelectedGroup] = useState(0);
+
+  const allGroups = [...new Set(data.map((d) => d.Location))].sort();
 
   useEffect(() => {
-    // Load CSV data
     csv(
       'https://raw.githubusercontent.com/holtzy/react-graph-gallery/main/data/population-pyramid-percentage.csv'
     )
@@ -32,33 +33,60 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
       });
   }, []);
 
-  const allGroups = [...new Set(data.map((d) => d.Location))].sort();
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') {
+        setSelectedGroup(selectedGroup + 1);
+      } else if (event.key === 'ArrowLeft') {
+        setSelectedGroup(selectedGroup - 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedGroup]);
+
+  const groupSelectButtons = allGroups.map((grp, i) => {
+    return (
+      <button
+        key={i}
+        className="text-xs px-2 py-1 py-0  bg-black border border-white text-white rounded-lg whitespace-nowrap flex-shrink-0"
+        onClick={() => setSelectedGroup(i)}
+      >
+        {grp}
+      </button>
+    );
+  });
 
   return (
-    <>
-      <div style={{ height: BUTTONS_HEIGHT }}>
-        <button
-          style={buttonStyle}
-          onClick={() => setSelectedGroup('ADB region: South Asia')}
-        >
-          South Asia
-        </button>
-        <button
-          style={buttonStyle}
-          onClick={() => setSelectedGroup('Belt-Road Initiative: Africa')}
-        >
-          Africa
-        </button>
-        <button style={buttonStyle} onClick={() => setSelectedGroup('BRICS')}>
-          BRICS
-        </button>
+    <div className="flex flex-col items-center">
+      <div>
+        <p className="text-3xl uppercase text-white font-light">
+          {allGroups[selectedGroup]}
+        </p>
+        <hr className="" />
       </div>
+
+      <br />
+
+      <div className="w-full flex justify-center">
+        <div className="relative max-w-3xl">
+          <div className="overflow-scroll w-full flex gap-1">
+            {groupSelectButtons}
+          </div>
+          <div className="absolute inset-y-0 left-0 w-28 h-full  bg-gradient-to-r from-black to-transparent"></div>
+          <div className="absolute inset-y-0 right-0 w-28 h-full  bg-gradient-to-l from-black to-transparent"></div>
+        </div>
+      </div>
+
       <PopulationPyramid
         data={data}
         width={width}
         height={height}
-        selectedGroup={selectedGroup}
+        selectedGroup={allGroups[selectedGroup]}
       />
-    </>
+    </div>
   );
 };
