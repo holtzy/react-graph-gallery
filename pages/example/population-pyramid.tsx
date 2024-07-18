@@ -36,67 +36,9 @@ const graphDescription = (
 );
 
 export default function Home() {
-  const allLogos = chartTypesInfo
-    .filter((chart) => ['radar', 'lollipop', 'line'].includes(chart.id))
-    .map((chart, id) => {
-      const link = fullUrlToInternalLink(chart.reactURL);
-      return (
-        <div key={id} className="flex flex-col items-center justify-center">
-          <SectionLogoWithOverlay
-            link={link}
-            chartLogo={chart.logo}
-            caption={chart.label}
-            isAvailable={chart.isAvailable}
-            size={129}
-          />
-        </div>
-      );
-    });
-
   return (
-    <Layout
-      title="Population Pyramid"
-      seoDescription="An animated radar chart showing the skills required to belong to any specific type of data professional."
-    >
-      <TitleAndDescription
-        title="Population Pyramid"
-        description={graphDescription}
-        chartType="radar"
-      />
-      {/*
-      //
-      // The plot
-      //
-      */}
-      <h2 id="the-plot">The plot</h2>
-      <p>
-        Here is what we want to build. It is highly inspired by a work from{' '}
-        <a href="https://www.linkedin.com/in/krosamont/en?originalSubdomain=fr">
-          Kevin Rosamont Prombo
-        </a>
-        .
-      </p>
-      <p>
-        Four buttons are provided, <b>one for each type</b> of data
-        professional. Clicking on it will update the 3 following charts.
-      </p>
-      <p>
-        <br />
-      </p>
-      <ChartOrSandbox
-        vizName={'PopulationPyramidArt'}
-        VizComponent={PopulationPyramidArtDemo}
-        maxWidth={900}
-        height={1000}
-        caption="Dive deep into the 4 main types of Data Professionals. Understand their main required competencies, their salary ranges and their popularity."
-      />
-
-      <LinkAsButton isFilled size="sm" href="/subscribe">
-        Subscribe
-      </LinkAsButton>
-      <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="ranking" />
-      <div className="mt-20" />
-    </Layout>
+    <div className="h-screen w-screen bg-black flex justify-center items-center">
+      <PopulationPyramidArtDemo width={1000} height={1000} />
+    </div>
   );
 }

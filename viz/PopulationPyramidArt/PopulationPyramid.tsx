@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
+import { LineItem } from './LineItem';
 
 const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
-const MARGIN = { top: 10, right: 30, bottom: 50, left: 30 };
+const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 
 type DataItem = {
   AgeGrpStart: string;
@@ -32,13 +33,18 @@ export const PopulationPyramid = ({
   const dataFiltered = data.filter((d) => d.Location === selectedGroup);
 
   const allYears = [...new Set(data.map((d) => d.MidPeriod))].sort();
+  const firstYear = Number(allYears[0]);
+  const lastYear = Number(allYears[allYears.length - 1]);
 
   const colorScale = d3
     .scaleLinear<string, string, never>()
-    .range(['blue', 'green'])
-    .domain([1900, 2020]);
+    .range(['blue', 'white'])
+    .domain([firstYear, lastYear]);
 
-  const opacityScale = d3.scaleLinear().range([0, 0.7]).domain([1900, 2020]);
+  const opacityScale = d3
+    .scaleLinear()
+    .range([0, 1])
+    .domain([firstYear, lastYear]);
 
   const yScale = d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
 
@@ -68,12 +74,10 @@ export const PopulationPyramid = ({
       dataFiltered.filter((d) => d.MidPeriod === year)
     );
     return (
-      <path
-        d={path}
-        opacity={opacityScale(Number(year))}
-        stroke={colorScale(year)}
-        fill="none"
-        strokeWidth={1}
+      <LineItem
+        path={path}
+        color={colorScale(year)}
+        opacity={opacityScale(year)}
       />
     );
   });
@@ -83,18 +87,16 @@ export const PopulationPyramid = ({
       dataFiltered.filter((d) => d.MidPeriod === year)
     );
     return (
-      <path
-        d={path}
-        opacity={opacityScale(Number(year))}
-        stroke={colorScale(year)}
-        fill="none"
-        strokeWidth={1}
+      <LineItem
+        path={path}
+        color={colorScale(year)}
+        opacity={opacityScale(year)}
       />
     );
   });
 
   return (
-    <div>
+    <div className="bg-black">
       <svg width={width} height={height}>
         <g
           width={boundsWidth}

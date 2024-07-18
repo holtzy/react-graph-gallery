@@ -32,10 +32,7 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
       });
   }, []);
 
-  console.log('data', data);
-
   const allGroups = [...new Set(data.map((d) => d.Location))].sort();
-  console.log('allGroups', allGroups);
 
   return (
     <>
