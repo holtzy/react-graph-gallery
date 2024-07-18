@@ -10,6 +10,7 @@ import { chartTypesInfo } from 'util/sectionDescriptions';
 import { fullUrlToInternalLink } from 'util/utils';
 import SectionLogoWithOverlay from 'component/SectionLogoWithOverlay';
 import { LinkAsButton } from 'component/LinkAsButton';
+import { PopulationPyramidArtDemo } from 'viz/PopulationPyramidArt/PopulationPyramidArtDemo';
 
 const graphDescription = (
   <>
@@ -83,8 +84,8 @@ export default function Home() {
         <br />
       </p>
       <ChartOrSandbox
-        vizName={'RadarDatasetAnimation'}
-        VizComponent={RadarDatasetAnimationDemo}
+        vizName={'PopulationPyramidArt'}
+        VizComponent={PopulationPyramidArtDemo}
         maxWidth={900}
         height={1000}
         caption="Dive deep into the 4 main types of Data Professionals. Understand their main required competencies, their salary ranges and their popularity."
@@ -99,31 +100,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-const snippetstate = `
-const allGroups = data.map((d) => d.name);
-const [selectedGroup, setSelectedGroup] = useState(allGroups[0]);
-`.trim();
-
-const snippetAnim = `
-const LineItem = ({ path, color }: LineItemProps) => {
-  const springProps = useSpring({
-    to: {
-      path,
-      color,
-    },
-    config: {
-      friction: 100,
-    },
-  });
-
-  return (
-    <animated.path
-      d={springProps.path}
-      fill={'none'}
-      stroke={color}
-      strokeWidth={2}
-    />
-  );
-};
-`.trim();
