@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { data, data2 } from "./data";
-import { Scatterplot } from "./Scatterplot";
+import { useState } from 'react';
+import { data, data2 } from './data';
+import { Scatterplot } from './Scatterplot';
 
 const BUTTONS_HEIGHT = 50;
 
@@ -10,12 +10,12 @@ type ScatterplotDatasetTransitionProps = {
 };
 
 const buttonStyle = {
-  border: "1px solid #9a6fb0",
-  borderRadius: "3px",
-  padding: "4px 8px",
-  margin: "10px 2px",
+  border: '1px solid #9a6fb0',
+  borderRadius: '3px',
+  padding: '4px 8px',
+  margin: '10px 2px',
   fontSize: 14,
-  color: "#9a6fb0",
+  color: '#9a6fb0',
   opacity: 0.7,
 };
 
