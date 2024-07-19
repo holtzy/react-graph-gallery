@@ -1,18 +1,7 @@
 import { csv } from 'd3';
 import { PopulationPyramid } from './PopulationPyramid';
 import { useEffect, useState } from 'react';
-
-const BUTTONS_HEIGHT = 50;
-
-const buttonStyle = {
-  border: '1px solid #9a6fb0',
-  borderRadius: '3px',
-  padding: '4px 8px',
-  margin: '10px 2px',
-  fontSize: 14,
-  color: '#9a6fb0',
-  opacity: 0.7,
-};
+import { HorizontalTabBar } from './HorizontalTabBar';
 
 export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
   const [data, setData] = useState([]);
@@ -33,33 +22,6 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
       });
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowRight') {
-        setSelectedGroup(selectedGroup + 1);
-      } else if (event.key === 'ArrowLeft') {
-        setSelectedGroup(selectedGroup - 1);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedGroup]);
-
-  const groupSelectButtons = allGroups.map((grp, i) => {
-    return (
-      <button
-        key={i}
-        className="text-xs px-2 py-1 py-0  bg-black border border-white text-white rounded-lg whitespace-nowrap flex-shrink-0"
-        onClick={() => setSelectedGroup(i)}
-      >
-        {grp}
-      </button>
-    );
-  });
-
   return (
     <div className="flex flex-col items-center">
       <div>
@@ -72,13 +34,11 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
       <br />
 
       <div className="w-full flex justify-center">
-        <div className="relative max-w-3xl">
-          <div className="overflow-scroll w-full flex gap-1">
-            {groupSelectButtons}
-          </div>
-          <div className="absolute inset-y-0 left-0 w-28 h-full  bg-gradient-to-r from-black to-transparent"></div>
-          <div className="absolute inset-y-0 right-0 w-28 h-full  bg-gradient-to-l from-black to-transparent"></div>
-        </div>
+        <HorizontalTabBar
+          selectedItem={selectedGroup}
+          items={allGroups}
+          setSelectedItem={setSelectedGroup}
+        />
       </div>
 
       <PopulationPyramid
