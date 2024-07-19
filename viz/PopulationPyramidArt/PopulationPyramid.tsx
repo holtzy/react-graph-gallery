@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { LineItem } from './LineItem';
 import { colorScale, opacityScale } from './utils';
+import { useMemo } from 'react';
 
 const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
@@ -30,13 +31,20 @@ export const PopulationPyramid = ({
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const dataFiltered = data.filter((d) => d.Location === selectedGroup);
+  const dataFiltered = useMemo(() => {
+    return data.filter((d) => d.Location === selectedGroup);
+  }, [selectedGroup]);
 
-  const allYears = [...new Set(data.map((d) => d.Time))].sort();
+  const allYears = useMemo(() => {
+    return [...new Set(data.map((d) => d.Time))].sort();
+  }, [data]);
+
   const firstYear = Number(allYears[0]); // 1950
   const lastYear = Number(allYears[allYears.length - 1]);
 
-  const yScale = d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
+  const yScale = useMemo(() => {
+    return d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
+  }, [boundsHeight]);
 
   // Males on the left
   const xScaleMale = d3
@@ -59,27 +67,33 @@ export const PopulationPyramid = ({
     .x((d) => xScaleFemale(Number(d.PopFemale)))
     .y((d) => yScale(Number(d.AgeGrpStart)));
 
-  const allLinePathMale = allYears.map((year) => {
-    const path = lineBuilderMale(dataFiltered.filter((d) => d.Time === year));
-    return (
-      <LineItem
-        path={path}
-        color={colorScale(year)}
-        opacity={opacityScale(year)}
-      />
-    );
-  });
+  const allLinePathMale = useMemo(() => {
+    return allYears.map((year) => {
+      const path = lineBuilderMale(dataFiltered.filter((d) => d.Time === year));
+      return (
+        <LineItem
+          path={path}
+          color={colorScale(year)}
+          opacity={opacityScale(year)}
+        />
+      );
+    });
+  }, [allYears, dataFiltered]);
 
-  const allLinePathFemale = allYears.map((year) => {
-    const path = lineBuilderFemale(dataFiltered.filter((d) => d.Time === year));
-    return (
-      <LineItem
-        path={path}
-        color={colorScale(year)}
-        opacity={opacityScale(year)}
-      />
-    );
-  });
+  const allLinePathFemale = useMemo(() => {
+    return allYears.map((year) => {
+      const path = lineBuilderFemale(
+        dataFiltered.filter((d) => d.Time === year)
+      );
+      return (
+        <LineItem
+          path={path}
+          color={colorScale(year)}
+          opacity={opacityScale(year)}
+        />
+      );
+    });
+  }, [allYears, dataFiltered]);
 
   return (
     <div className="relative bg-black">

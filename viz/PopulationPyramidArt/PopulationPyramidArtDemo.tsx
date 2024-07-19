@@ -1,6 +1,6 @@
 import { csv } from 'd3';
 import { DataItem, PopulationPyramid } from './PopulationPyramid';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { HorizontalTabBar } from './HorizontalTabBar';
 import { Legend } from './Legend';
 
@@ -10,7 +10,9 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
   const [isForecastEnabled, setIsForecastEnabled] = useState(false);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
 
-  const allGroups = [...new Set(data.map((d) => d.Location))].sort();
+  const allGroups = useMemo(() => {
+    return [...new Set(data.map((d) => d.Location))].sort();
+  }, [data]);
 
   const franceId = allGroups.findIndex((g) => g === 'France');
   const bahreinId = allGroups.findIndex((g) => g === 'Bahrein');
@@ -18,13 +20,15 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
   const indiaId = allGroups.findIndex((g) => g === 'India');
   const nigeriaId = allGroups.findIndex((g) => g === 'Nigeria');
 
-  const allGroupsWithCode = [
-    ...new Set(
-      data.map((d) => {
-        return d.Location + '---' + d.ISO2_code;
-      })
-    ),
-  ];
+  const allGroupsWithCode = useMemo(() => {
+    return [
+      ...new Set(
+        data.map((d) => {
+          return d.Location + '---' + d.ISO2_code;
+        })
+      ),
+    ];
+  }, [data]);
 
   const filteredData = isForecastEnabled
     ? data
@@ -70,10 +74,7 @@ export const PopulationPyramidArtDemo = ({ width = 700, height = 400 }) => {
         selectedGroup={allGroups[selectedGroup]}
       />
 
-      <Legend
-        highlightedYear={highlightedYear}
-        setHighlightedYear={setHighlightedYear}
-      />
+      <Legend setHighlightedYear={setHighlightedYear} />
 
       <div className="text-white text-sm">
         <p className="text-xl">Population Pyramid</p>

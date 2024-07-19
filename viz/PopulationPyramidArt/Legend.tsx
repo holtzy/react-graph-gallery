@@ -4,7 +4,6 @@ import styles from './legend.module.css';
 
 type LegendProps = {
   setHighlightedYear: (y: number | undefined) => void;
-  highlightedYear: number | undefined;
 };
 
 const start = 1950;
@@ -16,10 +15,7 @@ for (let i = start; i <= end; i += step) {
   steps.push(i);
 }
 
-export const Legend = ({
-  setHighlightedYear,
-  highlightedYear,
-}: LegendProps) => {
+export const Legend = ({ setHighlightedYear }: LegendProps) => {
   const legendContainerRef = useRef(null);
 
   const allLines = steps.map((y) => {
@@ -30,13 +26,13 @@ export const Legend = ({
           if (legendContainerRef.current) {
             legendContainerRef.current.classList.add(styles.hasHighlight);
           }
-          // setHighlightedYear(y);
+          setHighlightedYear(y);
         }}
         onMouseLeave={() => {
           if (legendContainerRef.current) {
             legendContainerRef.current.classList.remove(styles.hasHighlight);
           }
-          // setHighlightedYear(undefined);
+          setHighlightedYear(undefined);
         }}
       >
         <div
