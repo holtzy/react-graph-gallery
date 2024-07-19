@@ -246,3 +246,15 @@ li {
     border-color: black;
   }
 }
+
+/* ---------- DIV WITH NO SCROLLBAR ----------------- */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.noScrollBar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.noScrollBar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -37,8 +37,20 @@ const graphDescription = (
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen bg-black flex justify-center items-center">
-      <PopulationPyramidArtDemo width={1000} height={1000} />
-    </div>
+    <>
+      <div className="h-screen w-screen bg-black flex justify-center items-center">
+        <PopulationPyramidArtDemo width={1000} height={1000} />
+      </div>
+      <div className="wrapper bg-gray-700">
+        <div>About</div>
+        <br />
+        <h1>Dataset</h1>
+        <p>Coming from the United Nation</p>
+        <p>Not sure how prevision are made?</p>
+        <p>Inspiration from Camaroe</p>
+        <p>Tools? React, react spring, R, data.table.</p>
+        <p>Love data viz? Show newsletter.</p>
+      </div>
+    </>
   );
 }
