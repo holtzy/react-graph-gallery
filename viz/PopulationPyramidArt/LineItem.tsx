@@ -14,7 +14,8 @@ export const LineItem = ({ path, color, opacity }: LineItemProps) => {
       opacity,
     },
     config: {
-      friction: 10,
+      friction: 5,
+      tension: 15, // Lower tension will reduce bounce
     },
   });
 

@@ -20,12 +20,17 @@ export const HorizontalTabBar = ({
       targetRef.scrollIntoView({
         behavior: 'smooth',
         inline: 'center',
+        block: 'nearest',
       });
     }
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
+        return;
+      }
+
       let targetId = selectedItem;
 
       if (event.key === 'ArrowRight') {

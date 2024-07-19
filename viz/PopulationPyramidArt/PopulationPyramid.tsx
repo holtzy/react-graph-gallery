@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 import { LineItem } from './LineItem';
 import { colorScale, opacityScale } from './utils';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import styles from './population-pyramid.module.css';
 
-const COLORS = ['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'];
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
 
 export type DataItem = {
@@ -20,6 +20,7 @@ type PopulationPyramidProps = {
   height: number;
   data: DataItem[];
   selectedGroup: string;
+  highlightedYear: number | undefined;
 };
 
 export const PopulationPyramid = ({
@@ -27,9 +28,12 @@ export const PopulationPyramid = ({
   height,
   data,
   selectedGroup,
+  highlightedYear,
 }: PopulationPyramidProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
+
+  const [mouseY, setMouseY] = useState(null);
 
   const dataFiltered = useMemo(() => {
     return data.filter((d) => d.Location === selectedGroup);
@@ -78,7 +82,7 @@ export const PopulationPyramid = ({
         />
       );
     });
-  }, [allYears, dataFiltered]);
+  }, [allYears, dataFiltered, width, height]);
 
   const allLinePathFemale = useMemo(() => {
     return allYears.map((year) => {
@@ -93,10 +97,30 @@ export const PopulationPyramid = ({
         />
       );
     });
-  }, [allYears, dataFiltered]);
+  }, [allYears, dataFiltered, width, height]);
+
+  const highlightedPathMale = lineBuilderMale(
+    dataFiltered.filter((d) => d.Time === String(highlightedYear))
+  );
+  const highlightedPathFemale = lineBuilderFemale(
+    dataFiltered.filter((d) => d.Time === String(highlightedYear))
+  );
+
+  const handleMouseMove = (
+    event: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    const { clientY } = event;
+    const { top } = event.target.getBoundingClientRect();
+    const mousePosY = clientY - top;
+
+    // Ensure mousePosY is within boundsHeight
+    if (mousePosY >= 0 && mousePosY <= boundsHeight) {
+      setMouseY(mousePosY);
+    }
+  };
 
   return (
-    <div className="relative bg-black">
+    <div className="relative">
       <svg width={width} height={height}>
         <text
           x={width / 2}
@@ -142,10 +166,46 @@ export const PopulationPyramid = ({
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+          className={highlightedYear ? styles.hasHighlight : ''}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setMouseY(null)}
         >
+          {/* A transparent rect to capture mouse events */}
+          <rect width="100%" height="100%" fill="transparent" />
           {allLinePathMale}
           {allLinePathFemale}
+          {mouseY && (
+            <g>
+              <line
+                x1={100}
+                x2={width - 100}
+                y1={mouseY}
+                y2={mouseY}
+                stroke="white"
+                strokeDasharray="5,5"
+              />
+              <text
+                x={width - 100 - 70}
+                y={mouseY - 10}
+                fill="white"
+                fontSize={12}
+              >
+                {Math.round(yScale.invert(mouseY)) + ' years old'}
+              </text>
+            </g>
+          )}
         </g>
+
+        {highlightedYear && (
+          <g
+            width={boundsWidth}
+            height={boundsHeight}
+            transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+          >
+            <LineItem path={highlightedPathMale} color={'red'} opacity={1} />
+            <LineItem path={highlightedPathFemale} color={'red'} opacity={1} />
+          </g>
+        )}
       </svg>
     </div>
   );
