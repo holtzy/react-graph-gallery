@@ -18,6 +18,8 @@ export const PopulationPyramidArtDemo = () => {
     return [...new Set(data.map((d) => d.Location))].sort();
   }, [data]);
 
+  // Not very clean
+  // But I need the ISO2_code somewhere to get the flag in the TabBar
   const allGroupsWithCode = useMemo(() => {
     return [
       ...new Set(
@@ -31,7 +33,6 @@ export const PopulationPyramidArtDemo = () => {
   const franceId = allGroups.findIndex((g) => g === 'France');
   const bahrainId = allGroups.findIndex((g) => g === 'Bahrain');
   const japanId = allGroups.findIndex((g) => g === 'Japan');
-  const indiaId = allGroups.findIndex((g) => g === 'India');
   const nigeriaId = allGroups.findIndex((g) => g === 'Nigeria');
 
   const filteredData = isForecastEnabled
@@ -51,7 +52,7 @@ export const PopulationPyramidArtDemo = () => {
   }, []);
 
   const plot = (
-    <div ref={chartRef} className="w-full flex-grow">
+    <div ref={chartRef} className="w-full h-full max-w-5xl">
       <PopulationPyramid
         data={filteredData || data}
         width={chartSize.width}
@@ -132,14 +133,6 @@ export const PopulationPyramidArtDemo = () => {
     </div>
   );
 
-  const countryName = (
-    <div className="h-24 flex flex-col justify-center ">
-      <p className="text-xl uppercase text-white font-light">
-        {allGroups[selectedGroup]}
-      </p>
-    </div>
-  );
-
   return (
     <>
       {/* Small Screen */}
@@ -154,7 +147,12 @@ export const PopulationPyramidArtDemo = () => {
       <div className="relative hidden lg:block pt-32">
         {introduction}
         {tabBar}
-        {plot}
+        <div
+          className="relative flex justify-center"
+          style={{ height: `calc(100vh - 100px)` }}
+        >
+          {plot}
+        </div>
         <div className="fixed top-1/2 left-10 transform -translate-x-1/2">
           <Legend setHighlightedYear={setHighlightedYear} />
         </div>
