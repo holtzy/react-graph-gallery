@@ -1,0 +1,15 @@
+.hasHighlight .yearItem {
+  opacity: 0.1;
+}
+
+.hasHighlight .yearItem:hover {
+  opacity: 1;
+}
+
+.yearText {
+  opacity: 0;
+}
+
+.hasHighlight .yearItem:hover .yearText {
+  opacity: 1;
+}
