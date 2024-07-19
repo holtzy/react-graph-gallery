@@ -18,12 +18,6 @@ export const PopulationPyramidArtDemo = () => {
     return [...new Set(data.map((d) => d.Location))].sort();
   }, [data]);
 
-  const franceId = allGroups.findIndex((g) => g === 'France');
-  const bahrainId = allGroups.findIndex((g) => g === 'Bahrain');
-  const japanId = allGroups.findIndex((g) => g === 'Japan');
-  const indiaId = allGroups.findIndex((g) => g === 'India');
-  const nigeriaId = allGroups.findIndex((g) => g === 'Nigeria');
-
   const allGroupsWithCode = useMemo(() => {
     return [
       ...new Set(
@@ -31,8 +25,14 @@ export const PopulationPyramidArtDemo = () => {
           return d.Location + '---' + d.ISO2_code;
         })
       ),
-    ];
+    ].sort();
   }, [data]);
+
+  const franceId = allGroups.findIndex((g) => g === 'France');
+  const bahrainId = allGroups.findIndex((g) => g === 'Bahrain');
+  const japanId = allGroups.findIndex((g) => g === 'Japan');
+  const indiaId = allGroups.findIndex((g) => g === 'India');
+  const nigeriaId = allGroups.findIndex((g) => g === 'Nigeria');
 
   const filteredData = isForecastEnabled
     ? data
@@ -63,7 +63,7 @@ export const PopulationPyramidArtDemo = () => {
   );
 
   const tabBar = (
-    <div className="relative w-full flex flex-col justify-center h-12">
+    <div className="relative w-full h-12 flex justify-center">
       <HorizontalTabBar
         selectedItem={selectedGroup}
         items={allGroupsWithCode}
@@ -73,10 +73,10 @@ export const PopulationPyramidArtDemo = () => {
   );
 
   const introduction = (
-    <div className="text-white text-sm">
+    <div className="text-white text-sm flex flex-col justify-center items-center">
       <p className="text-gray-400 text-xl uppercase">Watch the world...</p>
       <p className="text-7xl whitespace-nowrap">Getting older</p>
-      <div className="mt-12">
+      <div className="mt-4 max-w-lg text-center opacity-40">
         <p>
           Some countries are experiencing an{' '}
           <a
@@ -96,10 +96,7 @@ export const PopulationPyramidArtDemo = () => {
           >
             baby boom
           </a>
-          .
-        </p>
-        <p>
-          Some face unusual demographic{' '}
+          . Some face unusual demographic{' '}
           <a
             onClick={() => {
               setSelectedGroup(bahrainId);
@@ -117,16 +114,9 @@ export const PopulationPyramidArtDemo = () => {
           >
             stable
           </a>
-          .
-        </p>
-        <p>
-          Dive into the intriguing patterns of global population dynamics with
+          . Dive into the intriguing patterns of global population dynamics with
           this captivating set of lines.
         </p>
-        <p>
-          A project by <a href="https://www.yan-holtz.com">Yan Holtz</a>
-        </p>
-        <p>Pro Tip: arrows to switch. Command K to search for a country.</p>
       </div>
     </div>
   );
@@ -161,18 +151,12 @@ export const PopulationPyramidArtDemo = () => {
         <p className="text-white">MEDIUM SCREEN</p>
       </div>
       {/* Large Screen */}
-      <div className="relative h-full w-full hidden lg:block ">
-        <div className="relative h-full w-full flex flex-row justify-center items-start">
-          <div className="w-96 overflow-visible mt-24 transform translate-x-20">
-            {introduction}
-            <div className="ml-24 mt-8">
-              <Legend setHighlightedYear={setHighlightedYear} />
-            </div>
-          </div>
-          <div className="relative flex flex-col justify-center items-center overflow-hidden  h-full">
-            {plot}
-            {tabBar}
-          </div>
+      <div className="relative hidden lg:block pt-32">
+        {introduction}
+        {tabBar}
+        {plot}
+        <div className="fixed top-1/2 left-10 transform -translate-x-1/2">
+          <Legend setHighlightedYear={setHighlightedYear} />
         </div>
       </div>
     </>

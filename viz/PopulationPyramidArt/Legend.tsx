@@ -54,14 +54,6 @@ export const Legend = ({ setHighlightedYear }: LegendProps) => {
   return (
     <div ref={legendContainerRef} className="relative flex flex-col w-12">
       {allLines}
-
-      <div className="absolute top-0 left-0 transform -translate-x-full -translate-y-1/2">
-        <span className="text-xs text-white pr-2">1950</span>
-      </div>
-
-      <div className="absolute bottom-0 left-0 transform -translate-x-full translate-y-1/2">
-        <span className="text-xs text-white pr-2">2100</span>
-      </div>
     </div>
   );
 };

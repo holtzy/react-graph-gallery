@@ -26,10 +26,16 @@ export const HorizontalTabBar = ({
   };
 
   useEffect(() => {
+    scrollToButton(selectedItem);
+  }, [selectedItem]);
+
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
         return;
       }
+
+      event.preventDefault();
 
       let targetId = selectedItem;
 
@@ -47,7 +53,6 @@ export const HorizontalTabBar = ({
       }
 
       setSelectedItem(targetId);
-      scrollToButton(targetId);
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -65,7 +70,7 @@ export const HorizontalTabBar = ({
         className={`text-xs px-2 py-1 bg-black border text-white rounded-lg whitespace-nowrap flex-shrink-0 ${
           i === selectedItem
             ? 'opacity-100 border-blue-500'
-            : 'opacity-70 border-white'
+            : 'opacity-40 border-white border-opacity-40'
         }`}
         onClick={() => setSelectedItem(i)}
         ref={(el) => (buttonRefs.current[i] = el)}
@@ -76,7 +81,7 @@ export const HorizontalTabBar = ({
   });
 
   return (
-    <div className="relative max-w-3xl">
+    <div className="relative max-w-lg">
       <div
         ref={containerRef}
         className="overflow-scroll w-full flex gap-1 noScrollBar"

@@ -38,7 +38,7 @@ const graphDescription = (
 export default function Home() {
   return (
     <>
-      <div className="relative h-screen w-screen bg-black">
+      <div className="bg-black">
         <PopulationPyramidArtDemo />
       </div>
 
