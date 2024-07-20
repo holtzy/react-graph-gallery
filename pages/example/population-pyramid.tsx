@@ -41,17 +41,6 @@ export default function Home() {
       <div className="bg-black">
         <PopulationPyramidArtDemo />
       </div>
-
-      <div className="wrapper bg-gray-700">
-        <div>About</div>
-        <br />
-        <h1>Dataset</h1>
-        <p>Coming from the United Nation</p>
-        <p>Not sure how prevision are made?</p>
-        <p>Inspiration from Camaroe</p>
-        <p>Tools? React, react spring, R, data.table.</p>
-        <p>Love data viz? Show newsletter.</p>
-      </div>
     </>
   );
 }

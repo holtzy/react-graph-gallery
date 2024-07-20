@@ -135,16 +135,7 @@ export const PopulationPyramidArtDemo = () => {
 
   return (
     <>
-      {/* Small Screen */}
-      <div className="block md:hidden">
-        <p className="text-white">SMALL SCREEN</p>
-      </div>
-      {/* Medium Screen */}
-      <div className="hidden md:block lg:hidden">
-        <p className="text-white">MEDIUM SCREEN</p>
-      </div>
-      {/* Large Screen */}
-      <div className="relative hidden lg:block pt-32">
+      <div className="relative pt-32">
         {introduction}
         {tabBar}
         <div
@@ -153,8 +144,23 @@ export const PopulationPyramidArtDemo = () => {
         >
           {plot}
         </div>
+
         <div className="fixed top-1/2 left-10 transform -translate-x-1/2">
           <Legend setHighlightedYear={setHighlightedYear} />
+        </div>
+
+        <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
+          <p className="text-gray-400 text-xl uppercase">Looks good but</p>
+          <p className="text-7xl  whitespace-nowrap">What's this?</p>
+          <p>That's a population pyramid!</p>
+          <p>OK, not a very conventional population pyramid. But still!</p>
+          <PopulationPyramid
+            data={data}
+            width={300}
+            height={500}
+            selectedGroup={allGroups[selectedGroup]}
+            highlightedYear={1950}
+          />
         </div>
       </div>
     </>
