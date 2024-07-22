@@ -120,6 +120,7 @@ export const PopulationPyramid = ({
               data={data}
               height={boundsHeight}
               xScaleFemale={xScaleFemale}
+              xScaleMale={xScaleMale}
             />
           </g>
         )}

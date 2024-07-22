@@ -11,14 +11,69 @@ const getExplanations = (id: number) => {
   let text = null;
   switch (id) {
     case 1:
-      text = <p>Just an histogram</p>;
+      text = (
+        <>
+          <p>Welcome to Bahrain!</p>
+          <p>
+            There are about 40M people in this country, among them, about 23M
+            females.
+          </p>
+          <p>
+            Among them, about 3% of the population are between 0 and 3 years
+            old. 4% of the females are between 3 and 6 years old. And so on.
+          </p>
+          <p>We can plot this: it's called an histogram!</p>
+        </>
+      );
       break;
     case 2:
-      text = <p>With the lines mate!</p>;
+      text = (
+        <>
+          <p>Now, let's do the same for Males will we?</p>
+          <p>That's it! We have a population pyramid! 🎉</p>
+        </>
+      );
       break;
     case 3:
-      text = 'State is 2';
+      text = (
+        <>
+          <p>
+            Let's change a bit the style of this. Instead of drawing rectangles,
+            we can plot a little line that shows the same information!
+          </p>
+        </>
+      );
       break;
+    case 4:
+      text = (
+        <>
+          <p>Let's remove the bar to see?</p>
+        </>
+      );
+      break;
+    case 5:
+      text = (
+        <>
+          <p>Hey! We have a bit more of real estate here.</p>
+          <p>
+            So why not adding data from 1950. The color is a bit darker since it
+            is older 🧑‍🍳.
+          </p>
+        </>
+      );
+      break;
+    case 6:
+      text = (
+        <>
+          <p>You know what?</p>
+          <p>
+            We have data from 1950 to 2100 (projections included). So let's show
+            them all on the same chart!
+          </p>
+        </>
+      );
+      break;
+
     default:
       text = null;
   }
@@ -61,10 +116,41 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
     };
   }, []);
 
-  const selectedData =
-    step === 0 ? dummyData : bahrainData.filter((d) => d.Time === '2000');
+  let selectedData = null;
+  switch (step) {
+    case 0:
+      selectedData = dummyData;
+      break;
+    case 1:
+      selectedData = bahrainData
+        .filter((d) => d.Time === '2000')
+        .map((d) => {
+          return { ...d, PopMale: 0 };
+        });
+      break;
+    case 2:
+      selectedData = bahrainData.filter((d) => d.Time === '2000');
+      break;
+    case 3:
+      selectedData = bahrainData.filter((d) => d.Time === '2000');
+      break;
+    case 4:
+      selectedData = bahrainData.filter((d) => d.Time === '2000');
+      break;
+    case 5:
+      selectedData = bahrainData.filter(
+        (d) => d.Time === '2000' || d.Time === '1950'
+      );
+      break;
+    case 6:
+      selectedData = bahrainData;
+      break;
+    default:
+      selectedData = dummyData;
+  }
 
-  const isLineEnabled = step > 1 ? true : false;
+  const isLineEnabled = step > 2 ? true : false;
+  const isHistogramEnabled = step <= 3 ? true : false;
 
   return (
     <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
@@ -107,7 +193,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
               width={300}
               height={500}
               highlightedYear={undefined}
-              isHistogramEnabled={true}
+              isHistogramEnabled={isHistogramEnabled}
               isLineEnabled={isLineEnabled}
             />
           </div>

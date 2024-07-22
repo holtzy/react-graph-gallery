@@ -7,11 +7,13 @@ type HistogramLayerProps = {
   data: DataItem[];
   height: number;
   xScaleFemale: ScaleLinear<number, number, never>;
+  xScaleMale: ScaleLinear<number, number, never>;
 };
 
 export const HistogramLayer = ({
   data,
   xScaleFemale,
+  xScaleMale,
   height,
 }: HistogramLayerProps) => {
   const allAges = useMemo(() => {
@@ -33,5 +35,23 @@ export const HistogramLayer = ({
     );
   });
 
-  return <>{allRectFemales}</>;
+  const allRectMales = data.map((d) => {
+    return (
+      <RectItem
+        x={xScaleMale(Number(d.PopMale))}
+        y={yScale(d.AgeGrpStart)}
+        width={xScaleMale(0) - xScaleMale(Number(d.PopMale))}
+        height={8}
+        opacity={0.5}
+        color="white"
+      />
+    );
+  });
+
+  return (
+    <>
+      {allRectFemales}
+      {allRectMales}
+    </>
+  );
 };
