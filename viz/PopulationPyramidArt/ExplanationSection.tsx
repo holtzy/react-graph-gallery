@@ -65,7 +65,8 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
     };
   }, []);
 
-  const selectedData = step === 1 ? dummyData : bahrainData;
+  const selectedData =
+    step === 1 ? dummyData : bahrainData.filter((d) => d.Time === '2000');
 
   return (
     <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
@@ -108,6 +109,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
               width={300}
               height={500}
               highlightedYear={undefined}
+              isHistogramEnabled={true}
             />
           </div>
         </div>

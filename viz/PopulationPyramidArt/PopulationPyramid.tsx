@@ -3,6 +3,7 @@ import { LineItem } from './LineItem';
 import { colorScale, opacityScale } from './utils';
 import { useMemo, useState } from 'react';
 import styles from './population-pyramid.module.css';
+import { RectItem } from './RectItem';
 
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
 
@@ -20,6 +21,7 @@ type PopulationPyramidProps = {
   height: number;
   data: DataItem[];
   highlightedYear: number | undefined;
+  isHistogramEnabled?: boolean;
 };
 
 export const PopulationPyramid = ({
@@ -27,6 +29,7 @@ export const PopulationPyramid = ({
   height,
   data,
   highlightedYear,
+  isHistogramEnabled,
 }: PopulationPyramidProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -107,6 +110,24 @@ export const PopulationPyramid = ({
       setMouseY(mousePosY);
     }
   };
+
+  const allRectFemales = data.map((d) => {
+    console.log('d', d);
+    console.log(
+      'xScaleFemale(Number(d.PopFemale))',
+      xScaleFemale(Number(d.PopFemale))
+    );
+    return (
+      <RectItem
+        x={xScaleFemale(0)}
+        y={yScale(Number(d.AgeGrpStart))}
+        width={xScaleFemale(Number(d.PopFemale)) - xScaleFemale(0)}
+        height={8}
+        opacity={1}
+        color="white"
+      />
+    );
+  });
 
   return (
     <div className="relative">
@@ -197,6 +218,14 @@ export const PopulationPyramid = ({
             <LineItem path={highlightedPathFemale} color={'red'} opacity={1} />
           </g>
         )}
+
+        <g
+          width={boundsWidth}
+          height={boundsHeight}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+        >
+          {allRectFemales}
+        </g>
       </svg>
     </div>
   );
