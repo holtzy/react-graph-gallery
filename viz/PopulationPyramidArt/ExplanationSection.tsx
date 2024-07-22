@@ -104,13 +104,13 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
 
           {/* RIGHT */}
           <div className="col-span-4">
-            <PopulationPyramid
+            {/* <PopulationPyramid
               data={selectedData}
               width={300}
               height={500}
               highlightedYear={undefined}
               isHistogramEnabled={true}
-            />
+            /> */}
           </div>
         </div>
       </div>

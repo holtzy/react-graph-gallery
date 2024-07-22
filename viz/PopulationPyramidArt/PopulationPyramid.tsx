@@ -1,10 +1,9 @@
 import * as d3 from 'd3';
-import { LineItem } from './LineItem';
-import { colorScale, opacityScale } from './utils';
 import { useMemo, useState } from 'react';
-import styles from './population-pyramid.module.css';
 import { DataItem } from './types';
 import { HistogramLayer } from './HistogramLayer';
+import { AnnotationLayer } from './AnnotationLayer';
+import { LinesLayer } from './LinesLayer';
 
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
 
@@ -13,7 +12,7 @@ type PopulationPyramidProps = {
   height: number;
   data: DataItem[];
   highlightedYear: number | undefined;
-  isHistogramEnabled?: boolean;
+  isHistogramEnabled: boolean;
 };
 
 export const PopulationPyramid = ({
@@ -27,10 +26,6 @@ export const PopulationPyramid = ({
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const [mouseY, setMouseY] = useState(null);
-
-  const allYears = useMemo(() => {
-    return [...new Set(data.map((d) => d.Time))].sort();
-  }, [data]);
 
   const yScale = useMemo(() => {
     return d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
@@ -46,49 +41,6 @@ export const PopulationPyramid = ({
     .scaleLinear()
     .range([boundsWidth / 2 + 10, boundsWidth])
     .domain([0, 10]);
-
-  const lineBuilderMale = d3
-    .line<DataItem>()
-    .x((d) => xScaleMale(Number(d.PopMale)))
-    .y((d) => yScale(Number(d.AgeGrpStart)));
-
-  const lineBuilderFemale = d3
-    .line<DataItem>()
-    .x((d) => xScaleFemale(Number(d.PopFemale)))
-    .y((d) => yScale(Number(d.AgeGrpStart)));
-
-  const allLinePathMale = useMemo(() => {
-    return allYears.map((year) => {
-      const path = lineBuilderMale(data.filter((d) => d.Time === year));
-      return (
-        <LineItem
-          path={path}
-          color={colorScale(Number(year))}
-          opacity={opacityScale(Number(year))}
-        />
-      );
-    });
-  }, [allYears, data, width, height]);
-
-  const allLinePathFemale = useMemo(() => {
-    return allYears.map((year) => {
-      const path = lineBuilderFemale(data.filter((d) => d.Time === year));
-      return (
-        <LineItem
-          path={path}
-          color={colorScale(year)}
-          opacity={opacityScale(year)}
-        />
-      );
-    });
-  }, [allYears, data, width, height]);
-
-  const highlightedPathMale = lineBuilderMale(
-    data.filter((d) => d.Time === String(highlightedYear))
-  );
-  const highlightedPathFemale = lineBuilderFemale(
-    data.filter((d) => d.Time === String(highlightedYear))
-  );
 
   const handleMouseMove = (
     event: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -106,60 +58,18 @@ export const PopulationPyramid = ({
   return (
     <div className="relative">
       <svg width={width} height={height}>
-        <text
-          x={width / 2}
-          y={15}
-          fill="white"
-          opacity={0.3}
-          fontSize={10}
-          alignmentBaseline="central"
-          textAnchor="middle"
-        >
-          100 years old
-        </text>
-        <line
-          x1={width / 2 - 5}
-          y1={32}
-          x2={width / 2 + 5}
-          y2={32}
-          stroke="white"
-          opacity={1}
-          strokeWidth={0.5}
-        />
-
-        <text
-          x={width / 2}
-          y={height - 15}
-          fill="white"
-          opacity={0.3}
-          fontSize={10}
-          alignmentBaseline="central"
-          textAnchor="middle"
-        >
-          0 years old
-        </text>
-        <line
-          x1={width / 2 - 5}
-          y1={height - MARGIN.top}
-          x2={width / 2 + 5}
-          y2={height - MARGIN.top}
-          stroke="white"
-          opacity={1}
-          strokeWidth={0.5}
-        />
+        <AnnotationLayer width={width} height={height} marginTop={MARGIN.top} />
 
         <g
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-          className={highlightedYear ? styles.hasHighlight : ''}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMouseY(null)}
         >
           {/* A transparent rect to capture mouse events */}
           <rect width="100%" height="100%" fill="transparent" />
-          {allLinePathMale}
-          {allLinePathFemale}
+
           {mouseY && (
             <g>
               <line
@@ -182,16 +92,19 @@ export const PopulationPyramid = ({
           )}
         </g>
 
-        {highlightedYear && (
-          <g
-            width={boundsWidth}
-            height={boundsHeight}
-            transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-          >
-            <LineItem path={highlightedPathMale} color={'red'} opacity={1} />
-            <LineItem path={highlightedPathFemale} color={'red'} opacity={1} />
-          </g>
-        )}
+        <g
+          width={boundsWidth}
+          height={boundsHeight}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+        >
+          <LinesLayer
+            data={data}
+            xScaleFemale={xScaleFemale}
+            xScaleMale={xScaleMale}
+            yScale={yScale}
+            highlightedYear={highlightedYear}
+          />
+        </g>
 
         {isHistogramEnabled && (
           <g

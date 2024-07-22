@@ -74,6 +74,7 @@ export const PopulationPyramidArtDemo = () => {
           width={chartSize.width}
           height={chartSize.height}
           highlightedYear={highlightedYear}
+          isHistogramEnabled={false}
         />
       )}
     </div>
@@ -147,7 +148,7 @@ export const PopulationPyramidArtDemo = () => {
           className="relative flex justify-center"
           style={{ height: `calc(100vh - 100px)`, maxHeight: 900 }}
         >
-          {/* {plot} */}
+          {plot}
         </div>
 
         <div className="fixed top-1/2 left-10 transform -translate-x-1/2">
