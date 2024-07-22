@@ -7,8 +7,6 @@ type LineItemProps = {
 };
 
 export const LineItem = ({ path, color, opacity }: LineItemProps) => {
-  console.log('path', path);
-
   const springProps = useSpring({
     from: {
       color: 'black',
@@ -18,13 +16,12 @@ export const LineItem = ({ path, color, opacity }: LineItemProps) => {
       path,
       color,
       opacity,
-      strokeDashoffset: 100,
     },
     config: {
       friction: 5,
       tension: 15, // Lower tension will reduce bounce
     },
-    delay: Math.random() * 10000,
+    delay: Math.random() * 500,
   });
 
   return (

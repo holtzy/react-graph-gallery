@@ -4,10 +4,13 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { HorizontalTabBar } from './HorizontalTabBar';
 import { Legend } from './Legend';
 import { useDimensions } from 'hook/use-dimensions';
+import { bahrainData } from './bahrainData';
+import { dummyData } from './dummyData';
 
 export const PopulationPyramidArtDemo = () => {
-  const [data, setData] = useState<DataItem[]>([]);
-  const [selectedGroup, setSelectedGroup] = useState(0);
+  const [data, setData] = useState<DataItem[]>([]); // used only for datafetching
+  const [selectedData, setSelectedData] = useState<DataItem[]>(dummyData); // the data that is actually passed to the plot
+  const [selectedGroup, setSelectedGroup] = useState(10);
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
 
@@ -35,9 +38,13 @@ export const PopulationPyramidArtDemo = () => {
   const japanId = allGroups.findIndex((g) => g === 'Japan');
   const nigeriaId = allGroups.findIndex((g) => g === 'Nigeria');
 
-  const filteredData = isForecastEnabled
-    ? data
-    : data.filter((d) => Number(d.Time) < 2024);
+  // Load bahrain data 1 sec after the dummy data to trigger an animation
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSelectedData(bahrainData);
+    }, 1500);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     csv(
@@ -51,15 +58,21 @@ export const PopulationPyramidArtDemo = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const newData = data.filter((d) => d.Location === allGroups[selectedGroup]);
+    setSelectedData(newData);
+  }, [data, selectedGroup]);
+
   const plot = (
     <div ref={chartRef} className="w-full h-full max-w-5xl">
-      <PopulationPyramid
-        data={filteredData || data}
-        width={chartSize.width}
-        height={chartSize.height}
-        selectedGroup={allGroups[selectedGroup]}
-        highlightedYear={highlightedYear}
-      />
+      {chartSize.width > 0 && (
+        <PopulationPyramid
+          data={selectedData}
+          width={chartSize.width}
+          height={chartSize.height}
+          highlightedYear={highlightedYear}
+        />
+      )}
     </div>
   );
 
@@ -143,13 +156,13 @@ export const PopulationPyramidArtDemo = () => {
           <p className="text-7xl  whitespace-nowrap">What the heck is this?</p>
           <p>That's a population pyramid!</p>
           <p>OK, not a very conventional population pyramid. But still!</p>
-          <PopulationPyramid
+          {/* <PopulationPyramid
             data={data.filter((d) => d.Time === '2004')}
             width={300}
             height={500}
             selectedGroup={'France'}
             highlightedYear={undefined}
-          />
+          /> */}
         </div>
       </div>
     </>

@@ -27,7 +27,7 @@ export const HorizontalTabBar = ({
 
   useEffect(() => {
     scrollToButton(selectedItem);
-  }, [selectedItem]);
+  }, [selectedItem, items]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

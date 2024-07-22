@@ -21,6 +21,7 @@ export const Legend = ({ setHighlightedYear }: LegendProps) => {
   const allLines = steps.map((y) => {
     return (
       <div
+        key={y}
         className={'flex items-center h-2 ' + styles.yearItem}
         onMouseOver={() => {
           if (legendContainerRef.current) {

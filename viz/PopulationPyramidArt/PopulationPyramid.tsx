@@ -19,7 +19,6 @@ type PopulationPyramidProps = {
   width: number;
   height: number;
   data: DataItem[];
-  selectedGroup: string;
   highlightedYear: number | undefined;
 };
 
@@ -27,17 +26,12 @@ export const PopulationPyramid = ({
   width,
   height,
   data,
-  selectedGroup,
   highlightedYear,
 }: PopulationPyramidProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const [mouseY, setMouseY] = useState(null);
-
-  const dataFiltered = useMemo(() => {
-    return data.filter((d) => d.Location === selectedGroup);
-  }, [selectedGroup]);
 
   const allYears = useMemo(() => {
     return [...new Set(data.map((d) => d.Time))].sort();
@@ -70,7 +64,7 @@ export const PopulationPyramid = ({
 
   const allLinePathMale = useMemo(() => {
     return allYears.map((year) => {
-      const path = lineBuilderMale(dataFiltered.filter((d) => d.Time === year));
+      const path = lineBuilderMale(data.filter((d) => d.Time === year));
       return (
         <LineItem
           path={path}
@@ -79,13 +73,11 @@ export const PopulationPyramid = ({
         />
       );
     });
-  }, [allYears, dataFiltered, width, height]);
+  }, [allYears, data, width, height]);
 
   const allLinePathFemale = useMemo(() => {
     return allYears.map((year) => {
-      const path = lineBuilderFemale(
-        dataFiltered.filter((d) => d.Time === year)
-      );
+      const path = lineBuilderFemale(data.filter((d) => d.Time === year));
       return (
         <LineItem
           path={path}
@@ -94,13 +86,13 @@ export const PopulationPyramid = ({
         />
       );
     });
-  }, [allYears, dataFiltered, width, height]);
+  }, [allYears, data, width, height]);
 
   const highlightedPathMale = lineBuilderMale(
-    dataFiltered.filter((d) => d.Time === String(highlightedYear))
+    data.filter((d) => d.Time === String(highlightedYear))
   );
   const highlightedPathFemale = lineBuilderFemale(
-    dataFiltered.filter((d) => d.Time === String(highlightedYear))
+    data.filter((d) => d.Time === String(highlightedYear))
   );
 
   const handleMouseMove = (
