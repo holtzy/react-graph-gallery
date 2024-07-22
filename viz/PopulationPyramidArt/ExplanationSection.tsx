@@ -153,37 +153,41 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   const isHistogramEnabled = step <= 3 ? true : false;
 
   return (
-    <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
+    <div
+      style={{ backgroundColor: '#121212' }}
+      className="text-white font-light text-md wrapper mt-24 pt-24 flex flex-col justify-center items-start"
+    >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
       <p className="text-7xl  whitespace-nowrap">What the heck is this?</p>
 
       <div className="h-96" ref={refs.current[0]} id={sections[0]}>
         <p>That's a population pyramid!</p>
+        <p>OK, not a very conventional population pyramid. But still!</p>
+        <p>Let me show you step by step.</p>
 
         <div className="grid grid-cols-12">
           {/* LEFT */}
           <div className="col-span-8">
-            <p>OK, not a very conventional population pyramid. But still!</p>
-            <p>Let me show you step by step.</p>
-            <br></br>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-24">
               <button
                 onClick={() => {
                   setStep(step - 1);
                 }}
+                className="opacity-40 px-4 py-2 text-xs font-extralight border border-blue-300 rounded-lg"
               >
-                Previous step
+                Previous
               </button>
-              <p>{'Step ' + step}</p>
               <button
                 onClick={() => {
                   setStep(step + 1);
                 }}
+                className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
               >
-                Next step
+                Next
               </button>
             </div>
-            <div>{getExplanations(step)}</div>
+
+            <div className="mt-12">{getExplanations(step)}</div>
           </div>
 
           {/* RIGHT */}
