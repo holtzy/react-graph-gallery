@@ -6,6 +6,7 @@ import { Legend } from './Legend';
 import { useDimensions } from 'hook/use-dimensions';
 import { bahrainData } from './bahrainData';
 import { dummyData } from './dummyData';
+import { ExplanationSection } from './ExplanationSection';
 
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[]>([]); // used only for datafetching
@@ -13,6 +14,8 @@ export const PopulationPyramidArtDemo = () => {
   const [selectedGroup, setSelectedGroup] = useState(10);
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
+
+  const section3Ref = useRef(null);
 
   const chartRef = useRef(null);
   const chartSize = useDimensions(chartRef);
@@ -151,19 +154,7 @@ export const PopulationPyramidArtDemo = () => {
           <Legend setHighlightedYear={setHighlightedYear} />
         </div>
 
-        <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
-          <p className="text-gray-400 text-xl uppercase">Looks good but</p>
-          <p className="text-7xl  whitespace-nowrap">What the heck is this?</p>
-          <p>That's a population pyramid!</p>
-          <p>OK, not a very conventional population pyramid. But still!</p>
-          {/* <PopulationPyramid
-            data={data.filter((d) => d.Time === '2004')}
-            width={300}
-            height={500}
-            selectedGroup={'France'}
-            highlightedYear={undefined}
-          /> */}
-        </div>
+        <ExplanationSection />
       </div>
     </>
   );
