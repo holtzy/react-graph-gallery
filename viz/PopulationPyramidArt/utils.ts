@@ -6,4 +6,4 @@ export const colorScale = d3
     .range(['blue', 'white'])
     .domain([1950, 2100]);
 
-export const opacityScale = d3.scaleLinear().range([0, 1]).domain([1950, 2100]);
+export const opacityScale = d3.scaleLinear().range([0.2, 1]).domain([1950, 2100]);

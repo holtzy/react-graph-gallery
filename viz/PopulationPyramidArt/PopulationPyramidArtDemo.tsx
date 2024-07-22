@@ -77,7 +77,7 @@ export const PopulationPyramidArtDemo = () => {
     <div className="text-white text-sm flex flex-col justify-center items-center">
       <p className="text-gray-400 text-xl uppercase">Watch the world...</p>
       <p className="text-7xl whitespace-nowrap">Getting older</p>
-      <div className="mt-4 max-w-lg text-center opacity-40">
+      <div className="mt-4 max-w-lg text-center opacity-70">
         <p>
           Some countries are experiencing an{' '}
           <a
@@ -122,17 +122,6 @@ export const PopulationPyramidArtDemo = () => {
     </div>
   );
 
-  const howToRead = (
-    <div>
-      <p>How to read</p>
-      <div className="flex gap-2">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-      </div>
-    </div>
-  );
-
   return (
     <>
       <div className="relative pt-32">
@@ -140,7 +129,7 @@ export const PopulationPyramidArtDemo = () => {
         {tabBar}
         <div
           className="relative flex justify-center"
-          style={{ height: `calc(100vh - 100px)` }}
+          style={{ height: `calc(100vh - 100px)`, maxHeight: 900 }}
         >
           {plot}
         </div>
@@ -151,15 +140,15 @@ export const PopulationPyramidArtDemo = () => {
 
         <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
           <p className="text-gray-400 text-xl uppercase">Looks good but</p>
-          <p className="text-7xl  whitespace-nowrap">What's this?</p>
+          <p className="text-7xl  whitespace-nowrap">What the heck is this?</p>
           <p>That's a population pyramid!</p>
           <p>OK, not a very conventional population pyramid. But still!</p>
           <PopulationPyramid
-            data={data}
+            data={data.filter((d) => d.Time === '2004')}
             width={300}
             height={500}
-            selectedGroup={allGroups[selectedGroup]}
-            highlightedYear={1950}
+            selectedGroup={'France'}
+            highlightedYear={undefined}
           />
         </div>
       </div>

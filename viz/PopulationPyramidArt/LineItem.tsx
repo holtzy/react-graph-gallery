@@ -7,25 +7,33 @@ type LineItemProps = {
 };
 
 export const LineItem = ({ path, color, opacity }: LineItemProps) => {
+  console.log('path', path);
+
   const springProps = useSpring({
+    from: {
+      color: 'black',
+      opacity: 0,
+    },
     to: {
       path,
       color,
       opacity,
+      strokeDashoffset: 100,
     },
     config: {
       friction: 5,
       tension: 15, // Lower tension will reduce bounce
     },
+    delay: Math.random() * 10000,
   });
 
   return (
     <animated.path
       d={springProps.path}
       fill={'none'}
-      stroke={color}
+      stroke={springProps.color}
       strokeWidth={2}
-      opacity={opacity}
+      opacity={springProps.opacity}
     />
   );
 };

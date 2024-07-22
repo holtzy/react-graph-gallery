@@ -43,9 +43,6 @@ export const PopulationPyramid = ({
     return [...new Set(data.map((d) => d.Time))].sort();
   }, [data]);
 
-  const firstYear = Number(allYears[0]); // 1950
-  const lastYear = Number(allYears[allYears.length - 1]);
-
   const yScale = useMemo(() => {
     return d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
   }, [boundsHeight]);
@@ -77,8 +74,8 @@ export const PopulationPyramid = ({
       return (
         <LineItem
           path={path}
-          color={colorScale(year)}
-          opacity={opacityScale(year)}
+          color={colorScale(Number(year))}
+          opacity={opacityScale(Number(year))}
         />
       );
     });
