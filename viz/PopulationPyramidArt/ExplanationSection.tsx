@@ -28,7 +28,7 @@ const getExplanations = (id: number) => {
 export const ExplanationSection = ({}: ExplanationSectionProps) => {
   const refs = useRef(sections.map(() => createRef()));
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const [opacity, setOpacity] = useState(0);
 
@@ -37,11 +37,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(`${entry.target.id} is in view!`);
-
-            if (entry.target.id === 'section2') {
-              setOpacity(1);
-            }
+            setStep(1);
           }
         });
       },
@@ -66,7 +62,9 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   }, []);
 
   const selectedData =
-    step === 1 ? dummyData : bahrainData.filter((d) => d.Time === '2000');
+    step === 0 ? dummyData : bahrainData.filter((d) => d.Time === '2000');
+
+  const isLineEnabled = step > 1 ? true : false;
 
   return (
     <div className="text-white text-sm wrapper mt-24 flex flex-col justify-center items-start">
@@ -104,13 +102,14 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
 
           {/* RIGHT */}
           <div className="col-span-4">
-            {/* <PopulationPyramid
+            <PopulationPyramid
               data={selectedData}
               width={300}
               height={500}
               highlightedYear={undefined}
               isHistogramEnabled={true}
-            /> */}
+              isLineEnabled={isLineEnabled}
+            />
           </div>
         </div>
       </div>

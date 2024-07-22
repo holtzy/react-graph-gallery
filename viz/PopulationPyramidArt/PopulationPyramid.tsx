@@ -13,6 +13,7 @@ type PopulationPyramidProps = {
   data: DataItem[];
   highlightedYear: number | undefined;
   isHistogramEnabled: boolean;
+  isLineEnabled: boolean;
 };
 
 export const PopulationPyramid = ({
@@ -21,6 +22,7 @@ export const PopulationPyramid = ({
   data,
   highlightedYear,
   isHistogramEnabled,
+  isLineEnabled,
 }: PopulationPyramidProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -92,19 +94,21 @@ export const PopulationPyramid = ({
           )}
         </g>
 
-        <g
-          width={boundsWidth}
-          height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
-          <LinesLayer
-            data={data}
-            xScaleFemale={xScaleFemale}
-            xScaleMale={xScaleMale}
-            yScale={yScale}
-            highlightedYear={highlightedYear}
-          />
-        </g>
+        {isLineEnabled && (
+          <g
+            width={boundsWidth}
+            height={boundsHeight}
+            transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+          >
+            <LinesLayer
+              data={data}
+              xScaleFemale={xScaleFemale}
+              xScaleMale={xScaleMale}
+              yScale={yScale}
+              highlightedYear={highlightedYear}
+            />
+          </g>
+        )}
 
         {isHistogramEnabled && (
           <g

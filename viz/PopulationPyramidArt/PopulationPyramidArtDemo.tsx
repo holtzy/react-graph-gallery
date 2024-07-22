@@ -75,6 +75,7 @@ export const PopulationPyramidArtDemo = () => {
           height={chartSize.height}
           highlightedYear={highlightedYear}
           isHistogramEnabled={false}
+          isLineEnabled={true}
         />
       )}
     </div>
