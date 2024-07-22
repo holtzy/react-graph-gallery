@@ -3,18 +3,10 @@ import { LineItem } from './LineItem';
 import { colorScale, opacityScale } from './utils';
 import { useMemo, useState } from 'react';
 import styles from './population-pyramid.module.css';
-import { RectItem } from './RectItem';
+import { DataItem } from './types';
+import { HistogramLayer } from './HistogramLayer';
 
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
-
-export type DataItem = {
-  AgeGrpStart: string;
-  Location: string;
-  ISO2_code: string;
-  Time: string;
-  PopFemale: string;
-  PopMale: string;
-};
 
 type PopulationPyramidProps = {
   width: number;
@@ -111,24 +103,6 @@ export const PopulationPyramid = ({
     }
   };
 
-  const allRectFemales = data.map((d) => {
-    console.log('d', d);
-    console.log(
-      'xScaleFemale(Number(d.PopFemale))',
-      xScaleFemale(Number(d.PopFemale))
-    );
-    return (
-      <RectItem
-        x={xScaleFemale(0)}
-        y={yScale(Number(d.AgeGrpStart))}
-        width={xScaleFemale(Number(d.PopFemale)) - xScaleFemale(0)}
-        height={8}
-        opacity={1}
-        color="white"
-      />
-    );
-  });
-
   return (
     <div className="relative">
       <svg width={width} height={height}>
@@ -219,13 +193,19 @@ export const PopulationPyramid = ({
           </g>
         )}
 
-        <g
-          width={boundsWidth}
-          height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
-          {allRectFemales}
-        </g>
+        {isHistogramEnabled && (
+          <g
+            width={boundsWidth}
+            height={boundsHeight}
+            transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+          >
+            <HistogramLayer
+              data={data}
+              height={boundsHeight}
+              xScaleFemale={xScaleFemale}
+            />
+          </g>
+        )}
       </svg>
     </div>
   );
