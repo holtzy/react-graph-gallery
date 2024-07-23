@@ -39,7 +39,7 @@ export const LinesLayer = ({
         <LineItem
           path={path}
           color={colorScale(Number(year))}
-          opacity={opacityScale(Number(year))}
+          opacity={1}
           hasDelay={true}
         />
       );
@@ -53,7 +53,7 @@ export const LinesLayer = ({
         <LineItem
           path={path}
           color={colorScale(year)}
-          opacity={opacityScale(year)}
+          opacity={1}
           hasDelay={true}
         />
       );
