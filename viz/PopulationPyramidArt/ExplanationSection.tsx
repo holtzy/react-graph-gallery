@@ -13,16 +13,25 @@ const getExplanations = (id: number) => {
     case 1:
       text = (
         <>
-          <p>Welcome to Bahrain!</p>
+          <p>Bahrain has a population of about 23 million females.</p>
           <p>
-            There are about 40M people in this country, among them, about 23M
-            females.
+            3% of these females are between 0 and 3 years old, represented by
+            the <b>bottom bar</b>.
           </p>
           <p>
-            Among them, about 3% of the population are between 0 and 3 years
-            old. 4% of the females are between 3 and 6 years old. And so on.
+            4% of the females are between 3 and 6 years old, represented by the
+            next bar.
           </p>
-          <p>We can plot this: it's called an histogram!</p>
+          <p>
+            Each bar shows a different age group, creating a{' '}
+            <a
+              href="https://www.data-to-viz.com/graph/histogram.html"
+              className="cursor-pointer text-blue-400 hover:text-blue-500 hover:underline"
+            >
+              histogram
+            </a>{' '}
+            that displays the age distribution of the female population.
+          </p>
         </>
       );
       break;
@@ -152,46 +161,54 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   const isLineEnabled = step > 2 ? true : false;
   const isHistogramEnabled = step <= 3 ? true : false;
 
+  const prevAndNextButtons = (
+    <div className="flex gap-2 mt-12">
+      <button
+        onClick={() => {
+          setStep(step - 1);
+        }}
+        className="opacity-40 px-4 py-2 text-xs font-extralight border border-blue-300 rounded-lg"
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => {
+          setStep(step + 1);
+        }}
+        className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
+      >
+        Next
+      </button>
+    </div>
+  );
+
   return (
     <div
       style={{ backgroundColor: '#121212' }}
       className="text-white font-light text-md wrapper mt-24 pt-24 flex flex-col justify-center items-start"
     >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
-      <p className="text-7xl  whitespace-nowrap">What the heck is this?</p>
+      <p className="hidden sm:block text-7xl">What the heck is this?</p>
+      <p className="block sm:hidden text-7xl">What's this?</p>
 
       <div className="h-96" ref={refs.current[0]} id={sections[0]}>
-        <p>That's a population pyramid!</p>
-        <p>OK, not a very conventional population pyramid. But still!</p>
-        <p>Let me show you step by step.</p>
+        <p>
+          These organic shapes look quite appealing.
+          <br />
+          But do they actually mean anything?
+        </p>
+        <p>
+          Yes, they do!
+          <br />
+          They're a creative way to represent the <b>evolution</b> of the{' '}
+          <b>population pyramid</b> over time.
+        </p>
+        <br />
+        <p>Let me walk you through it step by step:</p>
 
         <div className="grid grid-cols-12">
           {/* LEFT */}
-          <div className="col-span-8">
-            <div className="flex gap-2 mt-24">
-              <button
-                onClick={() => {
-                  setStep(step - 1);
-                }}
-                className="opacity-40 px-4 py-2 text-xs font-extralight border border-blue-300 rounded-lg"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => {
-                  setStep(step + 1);
-                }}
-                className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
-              >
-                Next
-              </button>
-            </div>
-
-            <div className="mt-12">{getExplanations(step)}</div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="col-span-4">
+          <div className="col-span-12 sm:col-span-6">
             <PopulationPyramid
               data={selectedData}
               width={300}
@@ -200,6 +217,12 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
               isHistogramEnabled={isHistogramEnabled}
               isLineEnabled={isLineEnabled}
             />
+          </div>
+
+          {/* RIGHT */}
+          <div className="col-span-12 sm:col-span-6">
+            <div className="mt-12">{getExplanations(step)}</div>
+            {prevAndNextButtons}
           </div>
         </div>
       </div>

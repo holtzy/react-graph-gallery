@@ -150,10 +150,9 @@ export const PopulationPyramidArtDemo = () => {
           style={{ height: `calc(100vh - 100px)`, maxHeight: 900 }}
         >
           {plot}
-        </div>
-
-        <div className="fixed top-1/2 left-10 transform -translate-x-1/2">
-          <Legend setHighlightedYear={setHighlightedYear} />
+          <div className="absolute top-1/2 left-10 transform -translate-x-1/2">
+            <Legend setHighlightedYear={setHighlightedYear} />
+          </div>
         </div>
 
         <ExplanationSection />
