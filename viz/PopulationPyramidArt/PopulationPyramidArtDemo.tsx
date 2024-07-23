@@ -1,12 +1,13 @@
 import { csv } from 'd3';
-import { DataItem, PopulationPyramid } from './PopulationPyramid';
+import { PopulationPyramid } from './PopulationPyramid';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { HorizontalTabBar } from './HorizontalTabBar';
-import { Legend } from './Legend';
+import { Legend } from './plot/Legend';
 import { useDimensions } from 'hook/use-dimensions';
-import { bahrainData } from './bahrainData';
-import { dummyData } from './dummyData';
+import { bahrainData } from './data/bahrainData';
+import { dummyData } from './data/dummyData';
 import { ExplanationSection } from './ExplanationSection';
+import { DataItem } from './types';
 
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[]>([]); // used only for datafetching

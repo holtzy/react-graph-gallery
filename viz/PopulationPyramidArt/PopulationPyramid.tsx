@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 import { useMemo, useState } from 'react';
 import { DataItem } from './types';
-import { HistogramLayer } from './HistogramLayer';
-import { AnnotationLayer } from './AnnotationLayer';
-import { LinesLayer } from './LinesLayer';
+import { AnnotationLayer } from './plot/AnnotationLayer';
+import { LinesLayer } from './plot/LinesLayer';
+import { HistogramLayer } from './plot/HistogramLayer';
 
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
 

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { LineItem } from './LineItem';
-import { DataItem } from './types';
+import { DataItem } from '../types';
 import { ScaleLinear, line } from 'd3';
-import { colorScale, opacityScale } from './utils';
+import { colorScale, opacityScale } from '../utils';
 import styles from './lines-layer.module.css';
 
 type LinesLayerProps = {

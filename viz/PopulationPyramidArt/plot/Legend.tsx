@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { colorScale } from './utils';
+import { colorScale } from '../utils';
 import styles from './legend.module.css';
 
 type LegendProps = {

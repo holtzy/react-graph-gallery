@@ -1,7 +1,7 @@
 import { createRef, useEffect, useRef, useState } from 'react';
 import { PopulationPyramid } from './PopulationPyramid';
-import { dummyData } from './dummyData';
-import { bahrainData } from './bahrainData';
+import { dummyData } from './data/dummyData';
+import { bahrainData } from './data/bahrainData';
 
 type ExplanationSectionProps = {};
 

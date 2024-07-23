@@ -1,7 +1,7 @@
 import { ScaleLinear, scaleBand } from 'd3';
 import { RectItem } from './RectItem';
-import { DataItem } from './types';
 import { useMemo } from 'react';
+import { DataItem } from '../types';
 
 type HistogramLayerProps = {
   data: DataItem[];
