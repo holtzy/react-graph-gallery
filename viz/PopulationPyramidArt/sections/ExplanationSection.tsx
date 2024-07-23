@@ -90,11 +90,8 @@ const getExplanations = (id: number) => {
 };
 
 export const ExplanationSection = ({}: ExplanationSectionProps) => {
-  const refs = useRef(sections.map(() => createRef()));
-
+  const ref = useRef(null);
   const [step, setStep] = useState(0);
-
-  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -110,18 +107,14 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
       }
     );
 
-    refs.current.forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => {
-      refs.current.forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
   }, []);
 
@@ -191,7 +184,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
       <p className="hidden sm:block text-7xl">What the heck is this?</p>
       <p className="block sm:hidden text-7xl">What's this?</p>
 
-      <div className="h-96" ref={refs.current[0]} id={sections[0]}>
+      <div className="h-96" ref={ref}>
         <p>
           These organic shapes look quite appealing.
           <br />
@@ -228,16 +221,6 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
       </div>
 
       <div className="h-96"></div>
-
-      <div
-        className="h-96"
-        ref={refs.current[1]}
-        id={sections[1]}
-        style={{ opacity }}
-      >
-        <p>that's the second section</p>
-        <p>OK, not a very conventional population pyramid. But still!</p>
-      </div>
     </div>
   );
 };
