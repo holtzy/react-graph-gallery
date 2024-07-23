@@ -41,11 +41,7 @@ export const Legend = ({ setHighlightedYear }: LegendProps) => {
           className="w-full h-1"
         />
 
-        <span
-          className={
-            'text-xs text-white pl-2 pointer-events-none ' + styles.yearText
-          }
-        >
+        <span className={'text-xs pl-2 pointer-events-none ' + styles.yearText}>
           {y}
         </span>
       </div>

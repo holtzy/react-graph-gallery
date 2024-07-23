@@ -10,6 +10,8 @@ import { ExplanationSection } from './sections/ExplanationSection';
 import { DataItem } from './types';
 import { ConclusionSection } from './sections/ConclusionSection';
 
+import styles from './global-style.module.css';
+
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[]>([]); // used only for datafetching
   const [selectedData, setSelectedData] = useState<DataItem[]>(dummyData); // the data that is actually passed to the plot
@@ -92,17 +94,16 @@ export const PopulationPyramidArtDemo = () => {
   );
 
   const introduction = (
-    <div className="text-white text-sm flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center">
       <p className="text-gray-400 text-xl uppercase">Watch the world...</p>
       <p className="text-7xl whitespace-nowrap">Getting older</p>
-      <div className="mt-4 max-w-lg text-center opacity-70">
+      <div className="mt-4 max-w-lg text-center">
         <p>
           Some countries are experiencing an{' '}
           <a
             onClick={() => {
               setSelectedGroup(japanId);
             }}
-            className="cursor-pointer text-blue-400 hover:text-blue-500 hover:underline"
           >
             aging population
           </a>
@@ -111,7 +112,6 @@ export const PopulationPyramidArtDemo = () => {
             onClick={() => {
               setSelectedGroup(nigeriaId);
             }}
-            className="cursor-pointer text-blue-400 hover:text-blue-500 hover:underline"
           >
             baby boom
           </a>
@@ -120,7 +120,6 @@ export const PopulationPyramidArtDemo = () => {
             onClick={() => {
               setSelectedGroup(bahrainId);
             }}
-            className="cursor-pointer text-blue-400 hover:text-blue-500 hover:underline"
           >
             shifts
           </a>{' '}
@@ -129,7 +128,6 @@ export const PopulationPyramidArtDemo = () => {
             onClick={() => {
               setSelectedGroup(franceId);
             }}
-            className="cursor-pointer text-blue-400 hover:text-blue-500 hover:underline"
           >
             stable
           </a>
@@ -141,9 +139,10 @@ export const PopulationPyramidArtDemo = () => {
   );
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <div className="relative pt-32">
         {introduction}
+        <br />
         {tabBar}
         <div
           className="relative flex justify-center"
@@ -158,6 +157,6 @@ export const PopulationPyramidArtDemo = () => {
         <ExplanationSection />
         <ConclusionSection />
       </div>
-    </>
+    </div>
   );
 };

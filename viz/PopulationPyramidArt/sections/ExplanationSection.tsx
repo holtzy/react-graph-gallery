@@ -185,7 +185,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   return (
     <div
       style={{ backgroundColor: '#121212' }}
-      className="text-white font-light text-md wrapper mt-24 pt-24 flex flex-col justify-center items-start"
+      className="wrapper mt-24 pt-24 flex flex-col justify-center items-start"
     >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
       <p className="hidden sm:block text-7xl">What the heck is this?</p>

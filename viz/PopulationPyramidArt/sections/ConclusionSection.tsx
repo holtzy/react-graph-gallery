@@ -1,9 +1,6 @@
 export const ConclusionSection = () => {
   return (
-    <div
-      style={{ backgroundColor: '#121212' }}
-      className="text-white font-light text-md wrapper mt-24 pt-24 flex flex-col justify-center items-start"
-    >
+    <div className="wrapper py-24 flex flex-col justify-center items-start">
       <p className="text-gray-400 text-xl uppercase">hmm</p>
       <p className="text-7xl">Conclusion</p>
 

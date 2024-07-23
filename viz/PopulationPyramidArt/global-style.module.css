@@ -1,0 +1,14 @@
+.mainContainer {
+  font-weight: 300;
+  line-height: 26px;
+  font-size: 16px;
+  color: rgb(234, 240, 247, 0.9);
+}
+
+.mainContainer a {
+  color: rgba(96, 165, 250, 1);
+}
+.mainContainer a:hover {
+  color: rgba(59, 130, 246, 1);
+  text-decoration: underline;
+}
