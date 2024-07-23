@@ -1,5 +1,8 @@
 import { createRef, useEffect, useRef, useState } from 'react';
-import { PopulationPyramid } from '../PopulationPyramid';
+import {
+  PopulationPyramid,
+  ResponsivePopulationPyramid,
+} from '../PopulationPyramid';
 import { dummyData } from '../data/dummyData';
 import { bahrainData } from '../data/bahrainData';
 
@@ -209,10 +212,8 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
         <div className="grid grid-cols-12">
           {/* LEFT */}
           <div className="col-span-12 sm:col-span-6">
-            <PopulationPyramid
+            <ResponsivePopulationPyramid
               data={selectedData}
-              width={300}
-              height={500}
               highlightedYear={undefined}
               isHistogramEnabled={isHistogramEnabled}
               histogramOpacity={histogramOpacity}

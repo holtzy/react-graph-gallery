@@ -52,7 +52,7 @@ export const LinesLayer = ({
         />
       );
     });
-  }, [allYears, data]);
+  }, [allYears, data, width, height]);
 
   const allLinePathFemale = useMemo(() => {
     return allYears.map((year) => {
@@ -66,7 +66,7 @@ export const LinesLayer = ({
         />
       );
     });
-  }, [allYears, data]);
+  }, [allYears, data, width, height]);
 
   const highlightedPathMale = lineBuilderMale(
     data.filter((d) => d.Time === String(highlightedYear))

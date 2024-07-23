@@ -27,7 +27,7 @@ export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
 
   useLayoutEffect(() => {
     handleResize();
-  }, []);
+  }, [targetRef]);
 
   return dimensions;
 }

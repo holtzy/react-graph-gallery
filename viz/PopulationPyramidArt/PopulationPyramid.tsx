@@ -1,15 +1,14 @@
 import * as d3 from 'd3';
-import { useMemo, useState } from 'react';
+import { useRef } from 'react';
 import { DataItem } from './types';
 import { AnnotationLayer } from './plot/AnnotationLayer';
 import { LinesLayer } from './plot/LinesLayer';
 import { HistogramLayer } from './plot/HistogramLayer';
+import { useDimensions } from 'hook/use-dimensions';
 
 const MARGIN = { top: 30, right: 0, bottom: 30, left: 0 };
 
-type PopulationPyramidProps = {
-  width: number;
-  height: number;
+type ResponsivePopulationPyramidProps = {
   data: DataItem[];
   highlightedYear: number | undefined;
   isHistogramEnabled: boolean;
@@ -17,7 +16,29 @@ type PopulationPyramidProps = {
   histogramOpacity?: number;
 };
 
-export const PopulationPyramid = ({
+export const ResponsivePopulationPyramid = (
+  props: ResponsivePopulationPyramidProps
+) => {
+  const chartRef = useRef(null);
+  const chartSize = useDimensions(chartRef);
+
+  return (
+    <div ref={chartRef} className="relative block h-full w-full">
+      <PopulationPyramid
+        {...props}
+        width={chartSize.width}
+        height={chartSize.height}
+      />
+    </div>
+  );
+};
+
+type PopulationPyramidProps = ResponsivePopulationPyramidProps & {
+  width: number;
+  height: number;
+};
+
+const PopulationPyramid = ({
   width,
   height,
   data,

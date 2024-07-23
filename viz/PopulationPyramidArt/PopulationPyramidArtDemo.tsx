@@ -1,9 +1,8 @@
 import { csv } from 'd3';
-import { PopulationPyramid } from './PopulationPyramid';
+import { ResponsivePopulationPyramid } from './PopulationPyramid';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { HorizontalTabBar } from './HorizontalTabBar';
 import { Legend } from './plot/Legend';
-import { useDimensions } from 'hook/use-dimensions';
 import { bahrainData } from './data/bahrainData';
 import { dummyData } from './data/dummyData';
 import { ExplanationSection } from './sections/ExplanationSection';
@@ -18,9 +17,6 @@ export const PopulationPyramidArtDemo = () => {
   const [selectedGroup, setSelectedGroup] = useState(10);
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
-
-  const chartRef = useRef(null);
-  const chartSize = useDimensions(chartRef);
 
   const allGroups = useMemo(() => {
     return [...new Set(data.map((d) => d.Location))].sort();
@@ -69,17 +65,13 @@ export const PopulationPyramidArtDemo = () => {
   }, [data, selectedGroup]);
 
   const plot = (
-    <div ref={chartRef} className="w-full h-full max-w-5xl">
-      {chartSize.width > 0 && (
-        <PopulationPyramid
-          data={selectedData}
-          width={chartSize.width}
-          height={chartSize.height}
-          highlightedYear={highlightedYear}
-          isHistogramEnabled={false}
-          isLineEnabled={true}
-        />
-      )}
+    <div className="relative w-full h-full max-w-5xl px-8">
+      <ResponsivePopulationPyramid
+        data={selectedData}
+        highlightedYear={highlightedYear}
+        isHistogramEnabled={false}
+        isLineEnabled={true}
+      />
     </div>
   );
 
@@ -145,7 +137,7 @@ export const PopulationPyramidArtDemo = () => {
         <br />
         {tabBar}
         <div
-          className="relative flex justify-center"
+          className="relative flex justify-center w-full"
           style={{ height: `calc(100vh - 100px)`, maxHeight: 900 }}
         >
           {plot}
