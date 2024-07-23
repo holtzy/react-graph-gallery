@@ -4,13 +4,19 @@ type LineItemProps = {
   path: string;
   color: string;
   opacity: number;
+  hasDelay?: boolean;
 };
 
-export const LineItem = ({ path, color, opacity }: LineItemProps) => {
+export const LineItem = ({
+  path,
+  color,
+  opacity,
+  hasDelay = false,
+}: LineItemProps) => {
   const springProps = useSpring({
     from: {
-      color: 'black',
-      opacity: 0,
+      color: hasDelay ? 'black' : color,
+      opacity: hasDelay ? 0 : opacity,
     },
     to: {
       path,
@@ -21,7 +27,7 @@ export const LineItem = ({ path, color, opacity }: LineItemProps) => {
       friction: 5,
       tension: 15, // Lower tension will reduce bounce
     },
-    delay: Math.random() * 500,
+    delay: hasDelay ? Math.random() * 500 : 0,
   });
 
   return (

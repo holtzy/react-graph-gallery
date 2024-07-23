@@ -40,6 +40,7 @@ export const LinesLayer = ({
           path={path}
           color={colorScale(Number(year))}
           opacity={opacityScale(Number(year))}
+          hasDelay={true}
         />
       );
     });
@@ -53,6 +54,7 @@ export const LinesLayer = ({
           path={path}
           color={colorScale(year)}
           opacity={opacityScale(year)}
+          hasDelay={true}
         />
       );
     });

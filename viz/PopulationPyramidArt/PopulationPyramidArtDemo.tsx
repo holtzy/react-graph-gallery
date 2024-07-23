@@ -6,8 +6,9 @@ import { Legend } from './plot/Legend';
 import { useDimensions } from 'hook/use-dimensions';
 import { bahrainData } from './data/bahrainData';
 import { dummyData } from './data/dummyData';
-import { ExplanationSection } from './ExplanationSection';
+import { ExplanationSection } from './sections/ExplanationSection';
 import { DataItem } from './types';
+import { ConclusionSection } from './sections/ConclusionSection';
 
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[]>([]); // used only for datafetching
@@ -15,8 +16,6 @@ export const PopulationPyramidArtDemo = () => {
   const [selectedGroup, setSelectedGroup] = useState(10);
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
-
-  const section3Ref = useRef(null);
 
   const chartRef = useRef(null);
   const chartSize = useDimensions(chartRef);
@@ -157,6 +156,7 @@ export const PopulationPyramidArtDemo = () => {
         </div>
 
         <ExplanationSection />
+        <ConclusionSection />
       </div>
     </>
   );
