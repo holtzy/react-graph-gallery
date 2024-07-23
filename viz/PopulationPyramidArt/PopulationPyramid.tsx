@@ -14,6 +14,7 @@ type PopulationPyramidProps = {
   highlightedYear: number | undefined;
   isHistogramEnabled: boolean;
   isLineEnabled: boolean;
+  histogramOpacity?: number;
 };
 
 export const PopulationPyramid = ({
@@ -23,6 +24,7 @@ export const PopulationPyramid = ({
   highlightedYear,
   isHistogramEnabled,
   isLineEnabled,
+  histogramOpacity = 1,
 }: PopulationPyramidProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -71,6 +73,7 @@ export const PopulationPyramid = ({
               height={boundsHeight}
               xScaleFemale={xScaleFemale}
               xScaleMale={xScaleMale}
+              histogramOpacity={histogramOpacity}
             />
           </g>
         )}

@@ -99,18 +99,19 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setStep(1);
+          } else {
+            setStep(0);
           }
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.8,
       }
     );
 
     if (ref.current) {
       observer.observe(ref.current);
     }
-
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
@@ -153,25 +154,30 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
 
   const isLineEnabled = step > 2 ? true : false;
   const isHistogramEnabled = step <= 3 ? true : false;
+  const histogramOpacity = step > 2 ? 0.1 : 1;
 
   const prevAndNextButtons = (
     <div className="flex gap-2 mt-12">
-      <button
-        onClick={() => {
-          setStep(step - 1);
-        }}
-        className="opacity-40 px-4 py-2 text-xs font-extralight border border-blue-300 rounded-lg"
-      >
-        Previous
-      </button>
-      <button
-        onClick={() => {
-          setStep(step + 1);
-        }}
-        className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
-      >
-        Next
-      </button>
+      {step > 1 && (
+        <button
+          onClick={() => {
+            setStep(step - 1);
+          }}
+          className="opacity-40 px-4 py-2 text-xs font-extralight border border-blue-300 rounded-lg"
+        >
+          Previous
+        </button>
+      )}
+      {step < 5 && (
+        <button
+          onClick={() => {
+            setStep(step + 1);
+          }}
+          className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
+        >
+          Next
+        </button>
+      )}
     </div>
   );
 
@@ -179,12 +185,13 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
     <div
       style={{ backgroundColor: '#121212' }}
       className="wrapper mt-24 pt-24 flex flex-col justify-center items-start"
+      ref={ref}
     >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
       <p className="hidden sm:block text-7xl">What the heck is this?</p>
       <p className="block sm:hidden text-7xl">What's this?</p>
 
-      <div className="h-96" ref={ref}>
+      <div>
         <p>
           These organic shapes look quite appealing.
           <br />
@@ -208,19 +215,22 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
               height={500}
               highlightedYear={undefined}
               isHistogramEnabled={isHistogramEnabled}
+              histogramOpacity={histogramOpacity}
               isLineEnabled={isLineEnabled}
             />
           </div>
 
           {/* RIGHT */}
-          <div className="col-span-12 sm:col-span-6">
-            <div className="mt-12">{getExplanations(step)}</div>
-            {prevAndNextButtons}
+          <div className="col-span-12 sm:col-span-6 flex flex-col justify-end mb-16">
+            {step > 0 && (
+              <>
+                <div className="mt-12">{getExplanations(step)}</div>
+                {prevAndNextButtons}
+              </>
+            )}
           </div>
         </div>
       </div>
-
-      <div className="h-96"></div>
     </div>
   );
 };

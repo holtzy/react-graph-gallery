@@ -8,19 +8,19 @@ type HistogramLayerProps = {
   height: number;
   xScaleFemale: ScaleLinear<number, number, never>;
   xScaleMale: ScaleLinear<number, number, never>;
+  histogramOpacity?: number;
 };
 
 export const HistogramLayer = ({
   data,
   xScaleFemale,
   xScaleMale,
+  histogramOpacity = 1,
   height,
 }: HistogramLayerProps) => {
   const allAges = useMemo(() => {
     return [...new Set(data.map((d) => d.AgeGrpStart))];
   }, [data]);
-
-  console.log('allAges', allAges);
 
   const yScale = scaleBand().range([height, 0]).domain(allAges).padding(0.01);
 
@@ -36,9 +36,11 @@ export const HistogramLayer = ({
         y={yScale(d.AgeGrpStart) || 0}
         width={xScaleFemale(Number(d.PopFemale)) - xScaleFemale(0)}
         height={8}
-        opacity={1}
+        opacity={histogramOpacity}
         color="white"
         value={Number(d.PopFemale)}
+        orientation="right"
+        center={xScaleFemale.range()[0]}
       />
     );
   });
@@ -55,9 +57,11 @@ export const HistogramLayer = ({
         y={yScale(d.AgeGrpStart) || 0}
         width={xScaleMale(0) - xScaleMale(Number(d.PopMale))}
         height={8}
-        opacity={0.5}
+        opacity={histogramOpacity}
         color="white"
         value={Number(d.PopMale)}
+        orientation="left"
+        center={xScaleMale.range()[1]}
       />
     );
   });
