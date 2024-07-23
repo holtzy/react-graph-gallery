@@ -187,7 +187,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   return (
     <div
       style={{ backgroundColor: '#121212' }}
-      className="wrapper mt-24 pt-24 flex flex-col justify-center items-start"
+      className="wrapper my-24 py-24 flex flex-col justify-center items-start"
       ref={ref}
     >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
@@ -211,7 +211,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
 
         <div className="grid grid-cols-12">
           {/* LEFT */}
-          <div className="col-span-12 sm:col-span-6">
+          <div className="relative h-96 col-span-12 sm:col-span-6">
             <ResponsivePopulationPyramid
               data={selectedData}
               highlightedYear={undefined}
