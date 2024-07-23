@@ -17,8 +17,10 @@ export const HistogramLayer = ({
   height,
 }: HistogramLayerProps) => {
   const allAges = useMemo(() => {
-    return [...new Set(data.map((d) => d.AgeGrpStart))].sort();
+    return [...new Set(data.map((d) => d.AgeGrpStart))];
   }, [data]);
+
+  console.log('allAges', allAges);
 
   const yScale = scaleBand().range([height, 0]).domain(allAges).padding(0.01);
 

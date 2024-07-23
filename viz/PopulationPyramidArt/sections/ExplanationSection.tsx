@@ -127,7 +127,7 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
       selectedData = bahrainData
         .filter((d) => d.Time === '2000')
         .map((d) => {
-          return { ...d, PopMale: 0 };
+          return { ...d, PopMale: '0' };
         });
       break;
     case 2:

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { LineItem } from './LineItem';
 import { DataItem } from '../types';
-import { ScaleLinear, line } from 'd3';
+import { ScaleLinear, line, scaleLinear } from 'd3';
 import { colorScale, opacityScale } from '../utils';
 import styles from './lines-layer.module.css';
 
@@ -9,7 +9,6 @@ type LinesLayerProps = {
   data: DataItem[];
   width: number;
   height: number;
-  yScale: ScaleLinear<number, number, never>;
   xScaleFemale: ScaleLinear<number, number, never>;
   xScaleMale: ScaleLinear<number, number, never>;
   highlightedYear: number | undefined;
@@ -17,7 +16,6 @@ type LinesLayerProps = {
 
 export const LinesLayer = ({
   data,
-  yScale,
   xScaleFemale,
   xScaleMale,
   highlightedYear,
@@ -25,6 +23,10 @@ export const LinesLayer = ({
   height,
 }: LinesLayerProps) => {
   const [mouseY, setMouseY] = useState<number | null>(null);
+
+  const yScale = useMemo(() => {
+    return scaleLinear().range([height, 0]).domain([0, 100]);
+  }, [height]);
 
   const allYears = useMemo(() => {
     return [...new Set(data.map((d) => d.Time))].sort();

@@ -27,10 +27,6 @@ export const PopulationPyramid = ({
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const yScale = useMemo(() => {
-    return d3.scaleLinear().range([boundsHeight, 0]).domain([0, 100]);
-  }, [boundsHeight]);
-
   // Males on the left
   const xScaleMale = d3
     .scaleLinear()
@@ -57,7 +53,6 @@ export const PopulationPyramid = ({
               data={data}
               xScaleFemale={xScaleFemale}
               xScaleMale={xScaleMale}
-              yScale={yScale}
               highlightedYear={highlightedYear}
               width={boundsWidth}
               height={boundsHeight}
