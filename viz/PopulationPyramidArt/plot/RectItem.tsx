@@ -53,7 +53,7 @@ export const RectItem = ({
         opacity={springProps.opacity}
         width={springProps.width}
         height={height}
-        x={x}
+        x={springProps.x}
         y={y}
       />
       {value > 0.1 && (

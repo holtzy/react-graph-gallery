@@ -4,15 +4,6 @@ import { Legend } from '../plot/Legend';
 import { DataItem } from '../types';
 import { HorizontalTabBar } from '../HorizontalTabBar';
 
-const weirdCountries = [
-  'Sint Maarten',
-  'Qatar',
-  'Monaco',
-  'Japan',
-  'Bahrain',
-  'Italy',
-];
-
 type WeirdosSectionProps = {
   data: DataItem[];
   allGroupsWithCode: string[];
@@ -25,6 +16,14 @@ export const WeirdosSection = ({
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
   const [selectedGroup, setSelectedGroup] = useState(0);
 
+  const weirdCountriesWithCode = allGroupsWithCode.filter((d) =>
+    ['Sint Maarten', 'Qatar', 'Monaco', 'Japan', 'Bahrain', 'Italy'].includes(
+      d.split('---')[0]
+    )
+  );
+
+  const weirdCountries = weirdCountriesWithCode.map((c) => c.split('---')[0]);
+
   const selectedData = data
     .filter((d) => d.Location === weirdCountries[selectedGroup])
     .filter((d) => Number(d.Time) === 2024);
@@ -34,9 +33,7 @@ export const WeirdosSection = ({
       <div className="relative w-full h-12 flex justify-center">
         <HorizontalTabBar
           selectedItem={selectedGroup}
-          items={allGroupsWithCode.filter((d) =>
-            weirdCountries.includes(d.split('---')[0])
-          )}
+          items={weirdCountriesWithCode}
           setSelectedItem={setSelectedGroup}
           isActive={false}
           hasGradient={false}
@@ -67,8 +64,10 @@ export const WeirdosSection = ({
         </p>
 
         {tabBar}
+      </div>
 
-        <div className="h-96 w-full">
+      <div className="wrapper">
+        <div className="w-full" style={{ height: 600 }}>
           <ResponsivePopulationPyramid
             data={selectedData}
             highlightedYear={highlightedYear}

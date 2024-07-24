@@ -22,7 +22,7 @@ export const HistogramLayer = ({
     return [...new Set(data.map((d) => d.AgeGrpStart))];
   }, [data]);
 
-  const yScale = scaleBand().range([height, 0]).domain(allAges).padding(0.01);
+  const yScale = scaleBand().range([height, 0]).domain(allAges).padding(0.4);
 
   const allRectFemales = data.map((d) => {
     if (Number(d.PopFemale) === 0) {
@@ -35,7 +35,7 @@ export const HistogramLayer = ({
         x={xScaleFemale(0)}
         y={yScale(d.AgeGrpStart) || 0}
         width={xScaleFemale(Number(d.PopFemale)) - xScaleFemale(0)}
-        height={8}
+        height={yScale.bandwidth()}
         opacity={histogramOpacity}
         color="white"
         value={Number(d.PopFemale)}
@@ -56,7 +56,7 @@ export const HistogramLayer = ({
         x={xScaleMale(Number(d.PopMale))}
         y={yScale(d.AgeGrpStart) || 0}
         width={xScaleMale(0) - xScaleMale(Number(d.PopMale))}
-        height={8}
+        height={yScale.bandwidth()}
         opacity={histogramOpacity}
         color="white"
         value={Number(d.PopMale)}
