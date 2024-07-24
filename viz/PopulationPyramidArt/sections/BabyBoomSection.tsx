@@ -14,7 +14,7 @@ export const BabyBoomSection = ({ data }: BabyBoomSectionProps) => {
     <div className="relative">
       <div className="narrowWrapper py-24 flex flex-col justify-center items-start">
         <p className="text-gray-400 text-xl uppercase">ok Boomer!</p>
-        <p className="text-7xl">Old countries</p>
+        <p className="text-7xl">Baby booming</p>
         <p>
           Countries like Nigeria, Angola, and many other African nations are
           currently experiencing a significant <b>baby boom</b>.
@@ -29,7 +29,7 @@ export const BabyBoomSection = ({ data }: BabyBoomSectionProps) => {
 
       <div className="relative w-full flex justify-center">
         <div className="grid grid-cols-3 h-96 w-full max-w-7xl px-8">
-          {['Sint Maarten', 'Monaco', 'Qatar'].map((country) => {
+          {['Nigeria', 'Gabon', 'India'].map((country) => {
             return (
               <div key={country} className="relative w-full h-full max-w-5xl">
                 <ResponsivePopulationPyramid

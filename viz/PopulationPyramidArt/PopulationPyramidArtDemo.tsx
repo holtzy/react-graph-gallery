@@ -12,6 +12,7 @@ import { ConclusionSection } from './sections/ConclusionSection';
 import styles from './global-style.module.css';
 import { BabyBoomSection } from './sections/BabyBoomSection';
 import { WeirdosSection } from './sections/WeirdosSection';
+import { OldCountrySection } from './sections/OldCountrySection';
 
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[] | undefined>(undefined);
@@ -165,6 +166,9 @@ export const PopulationPyramidArtDemo = () => {
         {data && (
           <>
             <BabyBoomSection data={data.filter((d) => Number(d.Time) < 2025)} />
+            <OldCountrySection
+              data={data.filter((d) => Number(d.Time) < 2025)}
+            />
             <WeirdosSection
               data={data.filter((d) => Number(d.Time) < 2025)}
               allGroupsWithCode={allGroupsWithCode}

@@ -6,7 +6,7 @@ import { HorizontalTabBar } from '../HorizontalTabBar';
 
 const weirdCountries = [
   'Sint Maarten',
-  'Quatar',
+  'Qatar',
   'Monaco',
   'Japan',
   'Bahrain',
@@ -39,6 +39,7 @@ export const WeirdosSection = ({
           )}
           setSelectedItem={setSelectedGroup}
           isActive={false}
+          hasGradient={false}
         />
       </div>
     );

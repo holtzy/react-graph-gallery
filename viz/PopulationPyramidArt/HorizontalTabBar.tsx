@@ -5,6 +5,7 @@ type HorizontalTabBarProps = {
   setSelectedItem: (val: number) => void;
   items: string[];
   isActive: boolean; // do not try to scroll if not active (fixing bug when several TabBar are displayed)
+  hasGradient?: boolean;
 };
 
 export const HorizontalTabBar = ({
@@ -12,6 +13,7 @@ export const HorizontalTabBar = ({
   setSelectedItem,
   items,
   isActive,
+  hasGradient = true,
 }: HorizontalTabBarProps) => {
   const containerRef = useRef(null);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -96,8 +98,12 @@ export const HorizontalTabBar = ({
       >
         {groupSelectButtons}
       </div>
-      <div className="absolute inset-y-0 left-0 w-28 h-full  bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-28 h-full  bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+      {hasGradient && (
+        <>
+          <div className="absolute inset-y-0 left-0 w-28 h-full  bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-28 h-full  bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+        </>
+      )}
     </div>
   );
 };
