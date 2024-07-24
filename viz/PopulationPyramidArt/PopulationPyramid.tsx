@@ -58,12 +58,12 @@ const PopulationPyramid = ({
   const xScaleMale = d3
     .scaleLinear()
     .range([0, boundsWidth / 2 - 10])
-    .domain([10, 0]);
+    .domain([12, 0]);
 
   const xScaleFemale = d3
     .scaleLinear()
     .range([boundsWidth / 2 + 10, boundsWidth])
-    .domain([0, 10]);
+    .domain([0, 12]);
 
   return (
     <div className="relative">

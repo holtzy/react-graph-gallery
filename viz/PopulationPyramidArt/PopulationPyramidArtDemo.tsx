@@ -16,7 +16,7 @@ import { WeirdosSection } from './sections/WeirdosSection';
 export const PopulationPyramidArtDemo = () => {
   const [data, setData] = useState<DataItem[] | undefined>(undefined);
   const [loadingData, setLoadingData] = useState<DataItem[]>(dummyData);
-  const [selectedGroup, setSelectedGroup] = useState(10);
+  const [selectedGroup, setSelectedGroup] = useState(15); // bahrein, weak
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
 
@@ -67,7 +67,7 @@ export const PopulationPyramidArtDemo = () => {
         data={
           data
             ? data.filter((d) => d.Location === allGroups[selectedGroup])
-            : dummyData
+            : loadingData
         }
         highlightedYear={highlightedYear}
         isHistogramEnabled={false}
