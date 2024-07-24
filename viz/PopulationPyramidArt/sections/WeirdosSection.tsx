@@ -29,11 +29,10 @@ export const WeirdosSection = ({
     .filter((d) => d.Location === weirdCountries[selectedGroup])
     .filter((d) => Number(d.Time) === 2024);
 
-  console.log('selectedData', selectedData);
-
   const tabBar = (
     <div className="relative w-full h-12 flex justify-center">
       <HorizontalTabBar
+        key="weird-country"
         selectedItem={selectedGroup}
         items={allGroupsWithCode.filter((d) =>
           weirdCountries.includes(d.split('---')[0])
