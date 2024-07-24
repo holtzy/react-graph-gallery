@@ -82,6 +82,7 @@ export const PopulationPyramidArtDemo = () => {
         selectedItem={selectedGroup}
         items={allGroupsWithCode}
         setSelectedItem={setSelectedGroup}
+        isActive={true}
       />
     </div>
   );
@@ -136,6 +137,17 @@ export const PopulationPyramidArtDemo = () => {
   return (
     <div className={styles.mainContainer}>
       <div className="relative pt-32">
+        <div className="absolute top-2 right-2">
+          <p className="text-xs">
+            <i>
+              A work by <a href="https://www.yan-holtz.com">Yan Holtz</a> for
+              the{' '}
+              <a href="https://www.react-graph-gallery.com">
+                React Graph Gallery
+              </a>
+            </i>
+          </p>
+        </div>
         {introduction}
         <br />
         {tabBar}

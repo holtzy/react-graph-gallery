@@ -38,6 +38,7 @@ export const WeirdosSection = ({
             weirdCountries.includes(d.split('---')[0])
           )}
           setSelectedItem={setSelectedGroup}
+          isActive={false}
         />
       </div>
     );

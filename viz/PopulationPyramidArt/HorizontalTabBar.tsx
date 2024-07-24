@@ -4,12 +4,14 @@ type HorizontalTabBarProps = {
   selectedItem: number;
   setSelectedItem: (val: number) => void;
   items: string[];
+  isActive: boolean; // do not try to scroll if not active (fixing bug when several TabBar are displayed)
 };
 
 export const HorizontalTabBar = ({
   selectedItem,
   setSelectedItem,
   items,
+  isActive,
 }: HorizontalTabBarProps) => {
   const containerRef = useRef(null);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -26,12 +28,18 @@ export const HorizontalTabBar = ({
   };
 
   useEffect(() => {
-    scrollToButton(selectedItem);
+    if (isActive) {
+      scrollToButton(selectedItem);
+    }
   }, [selectedItem, items]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
+        return;
+      }
+
+      if (!isActive) {
         return;
       }
 
