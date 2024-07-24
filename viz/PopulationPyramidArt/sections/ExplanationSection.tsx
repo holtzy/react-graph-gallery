@@ -5,6 +5,7 @@ import {
 } from '../PopulationPyramid';
 import { dummyData } from '../data/dummyData';
 import { bahrainData } from '../data/bahrainData';
+import { ShakingButton } from '../ui/ShakingButton';
 
 type ExplanationSectionProps = {};
 
@@ -172,14 +173,16 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
         </button>
       )}
       {step < 5 && (
-        <button
-          onClick={() => {
-            setStep(step + 1);
-          }}
-          className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
-        >
-          Next
-        </button>
+        <ShakingButton>
+          <button
+            onClick={() => {
+              setStep(step + 1);
+            }}
+            className="px-4 py-2 text-xs font-extralight hover:bg-blue-900 border border-blue-300 rounded-lg"
+          >
+            Next
+          </button>
+        </ShakingButton>
       )}
     </div>
   );

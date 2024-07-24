@@ -1,6 +1,6 @@
 import { csv } from 'd3';
 import { ResponsivePopulationPyramid } from './PopulationPyramid';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { HorizontalTabBar } from './HorizontalTabBar';
 import { Legend } from './plot/Legend';
 import { bahrainData } from './data/bahrainData';
@@ -10,16 +10,18 @@ import { DataItem } from './types';
 import { ConclusionSection } from './sections/ConclusionSection';
 
 import styles from './global-style.module.css';
+import { BabyBoomSection } from './sections/BabyBoomSection';
+import { WeirdosSection } from './sections/WeirdosSection';
 
 export const PopulationPyramidArtDemo = () => {
-  const [data, setData] = useState<DataItem[]>([]); // used only for datafetching
-  const [selectedData, setSelectedData] = useState<DataItem[]>(dummyData); // the data that is actually passed to the plot
+  const [data, setData] = useState<DataItem[] | undefined>(undefined);
+  const [loadingData, setLoadingData] = useState<DataItem[]>(dummyData);
   const [selectedGroup, setSelectedGroup] = useState(10);
   const [isForecastEnabled, setIsForecastEnabled] = useState(true);
   const [highlightedYear, setHighlightedYear] = useState<number | undefined>();
 
   const allGroups = useMemo(() => {
-    return [...new Set(data.map((d) => d.Location))].sort();
+    return [...new Set((data || dummyData).map((d) => d.Location))].sort();
   }, [data]);
 
   // Not very clean
@@ -27,7 +29,7 @@ export const PopulationPyramidArtDemo = () => {
   const allGroupsWithCode = useMemo(() => {
     return [
       ...new Set(
-        data.map((d) => {
+        (data || dummyData).map((d) => {
           return d.Location + '---' + d.ISO2_code;
         })
       ),
@@ -42,7 +44,7 @@ export const PopulationPyramidArtDemo = () => {
   // Load bahrain data 1 sec after the dummy data to trigger an animation
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setSelectedData(bahrainData);
+      setLoadingData(bahrainData);
     }, 1500);
     return () => clearTimeout(timeoutId);
   }, []);
@@ -59,15 +61,14 @@ export const PopulationPyramidArtDemo = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const newData = data.filter((d) => d.Location === allGroups[selectedGroup]);
-    setSelectedData(newData);
-  }, [data, selectedGroup]);
-
   const plot = (
     <div className="relative w-full h-full max-w-5xl px-8">
       <ResponsivePopulationPyramid
-        data={selectedData}
+        data={
+          data
+            ? data.filter((d) => d.Location === allGroups[selectedGroup])
+            : dummyData
+        }
         highlightedYear={highlightedYear}
         isHistogramEnabled={false}
         isLineEnabled={true}
@@ -147,6 +148,15 @@ export const PopulationPyramidArtDemo = () => {
         </div>
 
         <ExplanationSection />
+        {data && (
+          <>
+            <BabyBoomSection data={data.filter((d) => Number(d.Time) < 2025)} />
+            <WeirdosSection
+              data={data.filter((d) => Number(d.Time) < 2025)}
+              allGroupsWithCode={allGroupsWithCode}
+            />
+          </>
+        )}
         <ConclusionSection />
       </div>
     </div>
