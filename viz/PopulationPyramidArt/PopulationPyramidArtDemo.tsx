@@ -87,46 +87,48 @@ export const PopulationPyramidArtDemo = () => {
   );
 
   const introduction = (
-    <div className="flex flex-col justify-center items-center">
-      <p className="text-gray-400 text-xl uppercase">Watch the world...</p>
-      <p className="text-7xl whitespace-nowrap">Getting older</p>
-      <div className="mt-4 max-w-lg text-center">
-        <p>
-          Some countries are experiencing an{' '}
-          <a
-            onClick={() => {
-              setSelectedGroup(japanId);
-            }}
-          >
-            aging population
-          </a>
-          , while others are in the midst of a{' '}
-          <a
-            onClick={() => {
-              setSelectedGroup(nigeriaId);
-            }}
-          >
-            baby boom
-          </a>
-          . Some face unusual demographic{' '}
-          <a
-            onClick={() => {
-              setSelectedGroup(bahrainId);
-            }}
-          >
-            shifts
-          </a>{' '}
-          when some others are surprisingly{' '}
-          <a
-            onClick={() => {
-              setSelectedGroup(franceId);
-            }}
-          >
-            stable
-          </a>
-          . Dive into the intriguing patterns of global population dynamics with
-          this captivating set of lines.
-        </p>
+    <div className="narrowWrapper">
+      <div className="flex flex-col justify-center items-center">
+        <p className="text-gray-400 text-xl uppercase">Watch the world...</p>
+        <p className="text-7xl">Getting older</p>
+        <div className="mt-4 max-w-lg text-center">
+          <p>
+            Some countries are experiencing an{' '}
+            <a
+              onClick={() => {
+                setSelectedGroup(japanId);
+              }}
+            >
+              aging population
+            </a>
+            , while others are in the midst of a{' '}
+            <a
+              onClick={() => {
+                setSelectedGroup(nigeriaId);
+              }}
+            >
+              baby boom
+            </a>
+            . Some face unusual demographic{' '}
+            <a
+              onClick={() => {
+                setSelectedGroup(bahrainId);
+              }}
+            >
+              shifts
+            </a>{' '}
+            when some others are surprisingly{' '}
+            <a
+              onClick={() => {
+                setSelectedGroup(franceId);
+              }}
+            >
+              stable
+            </a>
+            . Dive into the intriguing patterns of global population dynamics
+            with this captivating set of lines.
+          </p>
+        </div>
       </div>
     </div>
   );

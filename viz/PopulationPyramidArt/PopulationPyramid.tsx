@@ -47,6 +47,10 @@ const PopulationPyramid = ({
   isLineEnabled,
   histogramOpacity = 1,
 }: PopulationPyramidProps) => {
+  if (width === 0 || height === 0) {
+    return null;
+  }
+
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 

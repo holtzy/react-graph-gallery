@@ -67,7 +67,7 @@ export const HorizontalTabBar = ({
     return (
       <button
         key={i}
-        className={`text-xs px-2 py-1 bg-black border text-white rounded-lg whitespace-nowrap flex-shrink-0 ${
+        className={`text-xs px-2 py-1 bg-black border text-white rounded-lg flex-shrink-0 ${
           i === selectedItem
             ? 'opacity-100 border-blue-500'
             : 'opacity-40 border-white border-opacity-40'
@@ -81,7 +81,7 @@ export const HorizontalTabBar = ({
   });
 
   return (
-    <div className="relative max-w-lg">
+    <div className="relative max-w-lg w-full">
       <div
         ref={containerRef}
         className="overflow-scroll w-full flex gap-1 noScrollBar"

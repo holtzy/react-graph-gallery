@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ResponsivePopulationPyramid } from '../PopulationPyramid';
 import { Legend } from '../plot/Legend';
 import { DataItem } from '../types';
@@ -29,18 +29,19 @@ export const WeirdosSection = ({
     .filter((d) => d.Location === weirdCountries[selectedGroup])
     .filter((d) => Number(d.Time) === 2024);
 
-  const tabBar = (
-    <div className="relative w-full h-12 flex justify-center">
-      <HorizontalTabBar
-        key="weird-country"
-        selectedItem={selectedGroup}
-        items={allGroupsWithCode.filter((d) =>
-          weirdCountries.includes(d.split('---')[0])
-        )}
-        setSelectedItem={setSelectedGroup}
-      />
-    </div>
-  );
+  const tabBar = useMemo(() => {
+    return (
+      <div className="relative w-full h-12 flex justify-center">
+        <HorizontalTabBar
+          selectedItem={selectedGroup}
+          items={allGroupsWithCode.filter((d) =>
+            weirdCountries.includes(d.split('---')[0])
+          )}
+          setSelectedItem={setSelectedGroup}
+        />
+      </div>
+    );
+  }, [selectedGroup]);
 
   return (
     <div className="relative py-60">
@@ -58,9 +59,11 @@ export const WeirdosSection = ({
           factors, such as high levels of immigration, economic specialization,
           or distinctive healthcare and social policies.
         </p>
+
         <p>
           <br />
         </p>
+
         {tabBar}
 
         <div className="h-96 w-full">
