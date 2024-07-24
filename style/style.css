@@ -40,7 +40,19 @@
     min(822px, 100%)
     1fr;
 }
+.narrowWrapper {
+  padding-left: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(600px, 100%)
+    1fr;
+}
 .wrapper > * {
+  grid-column: 2;
+}
+.narrowWrapper > * {
   grid-column: 2;
 }
 .full-bleed {

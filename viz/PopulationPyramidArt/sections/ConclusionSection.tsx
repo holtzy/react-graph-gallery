@@ -1,6 +1,6 @@
 export const ConclusionSection = () => {
   return (
-    <div className="wrapper py-24 flex flex-col justify-center items-start">
+    <div className="narrowWrapper py-24 flex flex-col justify-center items-start">
       <p className="text-gray-400 text-xl uppercase">hmm</p>
       <p className="text-7xl">Conclusion</p>
 

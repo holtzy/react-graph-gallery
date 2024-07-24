@@ -1,15 +1,10 @@
 import { createRef, useEffect, useRef, useState } from 'react';
-import {
-  PopulationPyramid,
-  ResponsivePopulationPyramid,
-} from '../PopulationPyramid';
+import { ResponsivePopulationPyramid } from '../PopulationPyramid';
 import { dummyData } from '../data/dummyData';
 import { bahrainData } from '../data/bahrainData';
 import { ShakingButton } from '../ui/ShakingButton';
 
 type ExplanationSectionProps = {};
-
-const sections = ['section1', 'section2', 'section3'];
 
 const getExplanations = (id: number) => {
   let text = null;
@@ -104,7 +99,9 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
           if (entry.isIntersecting) {
             setStep(1);
           } else {
-            setStep(0);
+            if (entry.boundingClientRect.top > 0) {
+              setStep(0);
+            }
           }
         });
       },
@@ -190,12 +187,11 @@ export const ExplanationSection = ({}: ExplanationSectionProps) => {
   return (
     <div
       style={{ backgroundColor: '#121212' }}
-      className="wrapper my-24 py-24 flex flex-col justify-center items-start"
+      className="narrowWrapper my-24 py-24 flex flex-col justify-center items-start"
       ref={ref}
     >
       <p className="text-gray-400 text-xl uppercase">Looks good but</p>
-      <p className="hidden sm:block text-7xl">What the heck is this?</p>
-      <p className="block sm:hidden text-7xl">What's this?</p>
+      <p className="text-7xl">What's this?</p>
 
       <div>
         <p>

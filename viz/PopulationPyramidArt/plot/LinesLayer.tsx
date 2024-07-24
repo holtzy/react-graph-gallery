@@ -45,6 +45,7 @@ export const LinesLayer = ({
       const path = lineBuilderMale(data.filter((d) => d.Time === year));
       return (
         <LineItem
+          key={'male-' + year}
           path={path}
           color={colorScale(Number(year))}
           opacity={1}
@@ -59,8 +60,9 @@ export const LinesLayer = ({
       const path = lineBuilderFemale(data.filter((d) => d.Time === year));
       return (
         <LineItem
+          key={'female-' + year}
           path={path}
-          color={colorScale(year)}
+          color={colorScale(Number(year))}
           opacity={1}
           hasDelay={true}
         />
