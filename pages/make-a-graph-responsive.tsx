@@ -98,7 +98,7 @@ export const Density = ({ width, height, data }: DensityProps) => {
     </div>
   );
 };
-`}
+`.trim()}
       />
       <p>
         On a narrow screen, this chart may appear distorted. So, how can we make
