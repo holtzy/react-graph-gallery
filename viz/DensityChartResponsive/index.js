@@ -4,7 +4,7 @@ import { ResponsiveDensityChart } from './DensityChart';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <div style={{ width: '100%', height: '100%' }}>
+  <div style={{ width: '100%', height: '300px' }}>
     <ResponsiveDensityChart data={data} />
   </div>,
   rootElement
