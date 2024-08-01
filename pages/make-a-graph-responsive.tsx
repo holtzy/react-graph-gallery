@@ -10,6 +10,7 @@ import { data as densityChartData } from '../data/one-numeric-variable-random';
 import { useDimensions } from '../hook/use-dimensions';
 import { ViolinBasicDemo } from '../viz/ViolinBasic/ViolinBasicDemo';
 import { DensityChart } from '../viz/DensityChartBasic/DensityChart';
+import Link from 'next/link';
 
 const graphDescription = (
   <>
@@ -43,7 +44,6 @@ export default function Home() {
         title="How to build a responsive chart with React and d3.js"
         description={graphDescription}
       />
-
       {/* Demo density chart */}
       <div className="w-full flex flex-col justify-center items-center">
         <div style={{ height: 120, width: '100%' }} ref={densityChartRef}>
@@ -54,10 +54,56 @@ export default function Home() {
           />
         </div>
         <p className="text-sm text-gray-500 max-w-xs italic text-center mt-4 font-light">
-          This density chart is responsive! try to resize your window to see how
-          the graph fits.
+          This <Link href="/density-plot">density chart</Link> is responsive!
+          Resize your window to see how the graph fits its container.
         </p>
       </div>
+      {/*
+      //
+      // Data
+      //
+      */}
+      <h2 id="data">Unresponsive chart</h2>
+      <p>
+        When building a chart with JavaScript, knowing its dimensions —{' '}
+        <code>width</code> and <code>height</code> — is essential. These
+        dimensions are needed to compute scales, draw axes, and determine where
+        to place shapes.
+      </p>
+      <p>
+        Consequently, a visualization component always expects{' '}
+        <code>width</code> and <code>height</code>
+        properties. Consider this simple density plot, for example. The code
+        looks like this:
+      </p>
+      <CodeBlock
+        code={`
+import * as d3 from "d3";
+
+type DensityProps = {
+  width: number; // 🙁 not responsive!
+  height: number; // 🙁 not responsive!
+  data: number[];
+};
+
+export const Density = ({ width, height, data }: DensityProps) => {
+
+  // read the data, make scales, compute svg elements using the dimensions
+
+  return (
+    <div>
+      <svg width={width} height={height}> // pass the dimensions to the svg area
+        // render the shape
+      </svg>
+    </div>
+  );
+};
+`}
+      />
+      <p>
+        On a narrow screen, this chart may appear distorted. So, how can we make
+        it responsive?
+      </p>
 
       <AccordionSection
         title={"A hook to get a div's dimension"}
@@ -86,7 +132,6 @@ export default function Home() {
         <CodeBlock code={snippet1} />
         <br />
       </AccordionSection>
-
       <AccordionSection title={'Using the hook'} startOpen={true}>
         <p>
           Using the <code>useDimensions</code> hook described above is pretty
@@ -126,7 +171,6 @@ export default function Home() {
           height={400}
         />
       </AccordionSection>
-
       <AccordionSection title={'Caveat'} startOpen={true}>
         <p>
           Remember that the element we are tracking needs to have a{' '}
@@ -155,14 +199,10 @@ export default function Home() {
         <h3>&rarr; Mind the border</h3>
         <p>Josh Comeau post about border being part of the main box.</p>
       </AccordionSection>
-
       <br />
       <br />
-
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
-
       <ChartFamilySection chartFamily="general" />
-
       <div className="mt-20" />
       <Contact />
     </Layout>
