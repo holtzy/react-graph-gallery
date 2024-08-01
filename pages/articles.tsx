@@ -39,6 +39,21 @@ export default function Articles() {
       />
 
       <BlogPostItem
+        title={'Responsiveness: a hook that makes your viz fits its container'}
+        timeToRead={5}
+        link="make-a-graph-responsive"
+        isAvailable={true}
+        categories={['fundamental', 'responsiveness', 'interaction']}
+      >
+        <span>
+          Viz components often take a <code>width</code> and a{' '}
+          <code>height</code> properties as input. This blogposts explains how
+          to build a wrapper around it that computes the parent's div dimension
+          and pass it as props
+        </span>
+      </BlogPostItem>
+
+      <BlogPostItem
         title={'🍔 Stacked barplot: how to deal with negative values'}
         timeToRead={6}
         link="stacked-barplot-with-negative-values"
@@ -95,20 +110,7 @@ export default function Articles() {
           d3 to create re-usable react components.
         </span>
       </BlogPostItem>
-      <BlogPostItem
-        title={'Responsiveness: a hook that makes your viz fits its container'}
-        timeToRead={5}
-        link="make-a-graph-responsive"
-        isAvailable={false}
-        categories={['fundamental', 'responsiveness', 'interaction']}
-      >
-        <span>
-          Viz components often take a <code>width</code> and a{' '}
-          <code>height</code> properties as input. This blogposts explains how
-          to build a wrapper around it that computes the parent's div dimension
-          and pass it as props
-        </span>
-      </BlogPostItem>
+
       <BlogPostItem
         title={'Hover interaction'}
         timeToRead={6}
