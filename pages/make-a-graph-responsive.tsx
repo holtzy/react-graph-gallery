@@ -11,6 +11,8 @@ import { useDimensions } from '../hook/use-dimensions';
 import { ViolinBasicDemo } from '../viz/ViolinBasic/ViolinBasicDemo';
 import { DensityChart } from '../viz/DensityChartBasic/DensityChart';
 import Link from 'next/link';
+import { DensityChartBasicDemo } from 'viz/DensityChartBasic/DensityChartBasicDemo';
+import { CodeSandbox } from 'component/CodeSandbox';
 
 const graphDescription = (
   <>
@@ -63,7 +65,7 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">Unresponsive chart</h2>
+      <h2 id="data">😢 Unresponsive chart</h2>
       <p>
         When building a chart with JavaScript, knowing its dimensions —{' '}
         <code>width</code> and <code>height</code> — is essential. These
@@ -73,8 +75,11 @@ export default function Home() {
       <p>
         Consequently, a visualization component always expects{' '}
         <code>width</code> and <code>height</code>
-        properties. Consider this simple density plot, for example. The code
-        looks like this:
+        properties.
+      </p>
+      <p>
+        Consider a simple <Link href="/density-plot">density plot</Link>, for
+        example. The code looks like this:
       </p>
       <CodeBlock
         code={`
@@ -86,7 +91,7 @@ type DensityProps = {
   data: number[];
 };
 
-export const Density = ({ width, height, data }: DensityProps) => {
+export const DensityPlot = ({ width, height, data }: DensityProps) => {
 
   // read the data, make scales, compute svg elements using the dimensions
 
@@ -100,77 +105,99 @@ export const Density = ({ width, height, data }: DensityProps) => {
 };
 `.trim()}
       />
+      <p>On a narrow screen, this chart may be cut.</p>
       <p>
-        On a narrow screen, this chart may appear distorted. So, how can we make
-        it responsive?
+        So, how can we <b>make it responsive</b>?
       </p>
+      {/*
+      //
+      // Hook
+      //
+      */}
+      <h2 id="dimension hook">🎣 Hook to get the container dimensions</h2>
+      <p>
+        The visualization component is going to be <b>wrapped</b> in a
+        responsive <code>div</code>. We need a way to retrieve this container's
+        dimensions.
+      </p>
+      <p>
+        To achieve this, let's create a hook called <code>useDimensions</code>.
+      </p>
+      <p>
+        A hook is a special function that lets you use state and other React
+        features in functional components, as explained{' '}
+        <a href="https://reactjs.org/docs/hooks-intro.html">
+          in the documentation
+        </a>
+        .
+      </p>
+      <p>That's how the hook looks like:</p>
+      <CodeBlock code={snippet1} />
+      <p>
+        This hook is essentially a function that checks the{' '}
+        <code>offsetWidth</code> and <code>offsetHeight</code> of a provided{' '}
+        <code>ref</code>.
+      </p>
+      <br />
+      <p>
+        An event listener for the <code>resize</code> event is added to the{' '}
+        <code>window</code> to ensure the dimensions are updated when the window
+        size changes.
+      </p>
+      {/*
+      //
+      // Use the hook
+      //
+      */}
+      <h2 id="use the hook">💪 Use the hook</h2>
+      <p>
+        Start by creating a <code>ref</code> using the React{' '}
+        <code>useRef()</code> function.
+      </p>
+      <p>
+        A <code>ref</code> allows you to target and interact with a specific
+        HTML element in the DOM of your application.
+      </p>
+      <CodeBlock code={snippet2} />
+      <br />
+      <p>
+        Then, pass this newly created <code>chartRef</code> to the hook:
+      </p>
+      <CodeBlock code={snippet3} />
+      <br />
+      <p>
+        Finally, pass the <code>chartRef</code> to the container you want to
+        monitor.
+      </p>
+      <CodeBlock code={snippet4} />
+      <p>
+        You now have an object called <code>chartSize</code> with two
+        properties: <code>height</code> and <code>width</code>. These properties
+        can be used in your chart component. 🔥
+      </p>
+      <blockquote>
+        Pro tip: Before building a responsive visualization, use{' '}
+        <code>console.log()</code> to check the <code>chartSize</code> object
+        and ensure everything is working correctly.
+      </blockquote>
 
-      <AccordionSection
-        title={"A hook to get a div's dimension"}
-        startOpen={true}
-      >
-        <p>
-          The method I use on this website to make my chart responsive uses a
-          hook. Hooks let you use y and other React features without writing a
-          class as explained{' '}
-          <a href="https://reactjs.org/docs/hooks-intro.html">in the doc</a>
-        </p>
-        <br />
-        <p>
-          This hook is basically a function that checks the{' '}
-          <code>offsetWidth</code> and <code>offsetHeight</code> of a{' '}
-          <code>ref</code> that is provided as input.
-        </p>
-        <br />
-        <p>
-          An event listener to the <code>resize</code> event is added to the{' '}
-          <code>window</code>, to make sure the dimension is updated when the
-          window size changes.
-        </p>
-        <br />
-        <p>That's how the hook looks like:</p>
-        <CodeBlock code={snippet1} />
-        <br />
-      </AccordionSection>
-      <AccordionSection title={'Using the hook'} startOpen={true}>
-        <p>
-          Using the <code>useDimensions</code> hook described above is pretty
-          straight-forward. You first need to create a <code>ref</code> using
-          the react <code>useRef()</code>
-          function:
-        </p>
-        <CodeBlock code={snippet2} />
-        <br />
+      {/*
+      //
+      // Use the hook
+      //
+      */}
+      <h2 id="application">📊 Application</h2>
+      <p>
+        You’re all set! Just pass the values from <code>chartSize</code> to the
+        visualization component, and it will become responsive.
+      </p>
+      <p>Here is a full example with code:</p>
+      <br />
 
-        <p>
-          Then, pass this newly created <code>ref</code> to the hook:
-        </p>
-        <CodeBlock code={snippet3} />
-        <br />
+      <div style={{ maxWidth: 2000 }} className="full-bleed w-full z-50">
+        <CodeSandbox vizName={'DensityChartResponsive'} />
+      </div>
 
-        <p>
-          Last but not least, do not forget to pass this ref to the container
-          you want to track. You now have an object called{' '}
-          <code>chartSize</code> here that has 2 properties, <code>height</code>{' '}
-          and <code>width</code>. You can use those properties for your chart
-          component.
-        </p>
-        <CodeBlock code={snippet4} />
-        <br />
-
-        <p>
-          Here is an application with a ViolinPlot component that accepts a
-          width and a height property, becoming responsive thanks to this hook:
-        </p>
-        <br />
-
-        <ChartOrSandbox
-          vizName={'ViolinBasic'}
-          VizComponent={ViolinBasicDemo}
-          maxWidth={600}
-          height={400}
-        />
-      </AccordionSection>
       <AccordionSection title={'Caveat'} startOpen={true}>
         <p>
           Remember that the element we are tracking needs to have a{' '}
@@ -210,6 +237,10 @@ export const Density = ({ width, height, data }: DensityProps) => {
 }
 
 const snippet1 = `
+import { useEffect, useLayoutEffect, useState } from "react";
+
+// Hook to retrieve the dimensions of a div.
+// react-graph-gallery.com
 export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
 
   const getDimensions = () => {
