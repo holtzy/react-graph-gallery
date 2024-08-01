@@ -180,7 +180,6 @@ export const DensityPlot = ({ width, height, data }: DensityProps) => {
         <code>console.log()</code> to check the <code>chartSize</code> object
         and ensure everything is working correctly.
       </blockquote>
-
       {/*
       //
       // Use the hook
@@ -193,39 +192,45 @@ export const DensityPlot = ({ width, height, data }: DensityProps) => {
       </p>
       <p>Here is a full example with code:</p>
       <br />
-
       <div style={{ maxWidth: 2000 }} className="full-bleed w-full z-50">
         <CodeSandbox vizName={'DensityChartResponsive'} />
       </div>
-
-      <AccordionSection title={'Caveat'} startOpen={true}>
-        <p>
-          Remember that the element we are tracking needs to have a{' '}
-          <code>height</code> and a <code>width</code>. Otherwise the hook will
-          basically return nothing.
-        </p>
-        <h3>
-          &rarr; Container is displayed as <code>inline</code>
-        </h3>
-        <p>
-          An html elemente that is displayed as <code>inline</code> (
-          <code>display: inline;</code>) cannot have a width and height.{' '}
-          <code>span</code>
-          elements are inline by default.
-        </p>
-        <h3>&rarr; By default, a div has no height</h3>
-        <p>
-          By default, the width of a div is 100%, and its height fits its
-          content. Which means that with no content, there is no height.
-        </p>
-        <h3>&rarr; Width 100% is ignored, flex example</h3>
-        <p>
-          By default, the width of a div is 100%, and its height fits its
-          content. Which means that with no content, there is no height.
-        </p>
-        <h3>&rarr; Mind the border</h3>
-        <p>Josh Comeau post about border being part of the main box.</p>
-      </AccordionSection>
+      {/*
+      //
+      // Caveats
+      //
+      */}
+      <h2 id="caveats">🐞 Caveats</h2>
+      <p>
+        Dealing with responsiveness in data visualization is <b>hard</b>. Here
+        are a few potential caveats you have to keep in mind:
+      </p>
+      <h3>1️⃣ Container needs dimensions</h3>
+      <p>
+        Remember that the <code>div</code> container we are tracking needs to
+        have a <code>height</code> and a <code>width</code>. Otherwise the hook
+        will basically return nothing.
+      </p>
+      <p>There are several situations in which this won't be true:</p>
+      <h4>
+        &rarr; Container is displayed as <code>inline</code>
+      </h4>
+      <p>
+        An html elemente that is displayed as <code>inline</code> (
+        <code>display: inline;</code>) cannot have a width and height.{' '}
+        <code>span</code>
+        elements are inline by default.
+      </p>
+      <h4>&rarr; By default, a div has no height</h4>
+      <p>
+        By default, the width of a div is 100%, and its height fits its content.
+        Which means that with no content, there is no height.
+      </p>
+      <h4>&rarr; Width 100% is ignored, flex example</h4>
+      <p>
+        By default, the width of a div is 100%, and its height fits its content.
+        Which means that with no content, there is no height.
+      </p>
       <br />
       <br />
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
