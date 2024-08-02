@@ -7,13 +7,13 @@ import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import { ScatterplotBasicDemo } from '../viz/ScatterplotBasic/ScatterplotBasicDemo';
 import { ScatterplotClimateCrisisDemo } from '../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
 import { AxisBasicDemo } from '../viz/AxisBasic/AxisBasicDemo';
-import { ScatterplotHoverHighlightDemo } from '../viz/ScatterplotHoverHighlightPseudoClass/ScatterplotHoverHighlightDemo';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
 import { Accordion } from '../component/UI/Accordion';
 import { ScatterplotTooltipDemo } from '../viz/ScatterplotTooltip/ScatterplotTooltipDemo';
 import Link from 'next/link';
 import GraphGallery from 'component/GraphGallery';
+import { ScatterplotHoverHighlightDimDemo } from '@/viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo';
 
 const graphDescription = (
   <>
@@ -341,7 +341,7 @@ export default function Home() {
         fade all circles except the ones of the same continent.
       </p>
       <ChartOrSandbox
-        VizComponent={ScatterplotHoverHighlightDemo}
+        VizComponent={ScatterplotHoverHighlightDimDemo}
         vizName={'ScatterplotHoverHighlight'}
         maxWidth={500}
         height={500}
