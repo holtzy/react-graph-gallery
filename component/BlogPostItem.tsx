@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Pill } from './UI/Pill';
+import { Badge } from './UI/badge';
 
 type BlogCategory =
   | 'fundamental'
@@ -44,12 +45,9 @@ export const BlogPostItem = ({
   const opacity = isAvailable ? 'opacity-100' : 'opacity-25';
 
   const pills = categories?.map((category, i) => (
-    <Pill
-      key={i}
-      label={category.charAt(0).toUpperCase() + category.slice(1)}
-      color={categoryColors[category]}
-      opacity={0.5}
-    />
+    <Badge key={i} color={categoryColors[category]}>
+      {category.charAt(0).toUpperCase() + category.slice(1)}
+    </Badge>
   ));
 
   return (

@@ -20,6 +20,8 @@
     "@types/d3-hexbin": "^0.2.3",
     "@types/d3-sankey": "^0.12.1",
     "@types/geojson": "^7946.0.10",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "d3": "^7.1.1",
     "d3-chord": "^3.0.1",
     "d3-cloud": "^1.2.5",
@@ -40,6 +42,8 @@
     "react-dom": "^18.2.0",
     "react-particles": "^2.3.3",
     "react-spring": "^9.7.1",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
     "tsparticles": "^2.3.4"
   },
   "devDependencies": {
