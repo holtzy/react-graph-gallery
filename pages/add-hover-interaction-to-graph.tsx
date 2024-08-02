@@ -122,6 +122,7 @@ export default function Home() {
           needed
         </li>
       </ul>
+      <GraphGallery images={['heatmapVaccination.png']} />
 
       {/*
       //
@@ -201,28 +202,47 @@ export default function Home() {
           (Potentially fixed using <code>z-index</code>).
         </li>
       </ul>
-      <GraphGallery
-        images={[
-          'bubble-plot-with-legend.png',
-          '2d-density-plot.png',
-          'correlogramBasic.png',
-          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
-          'scatterplot-basic-canvas.png',
-          'timeseries-moving-average.png',
-        ]}
-      />
+      <GraphGallery images={['heatmapVaccination.png']} />
 
       {/*
       //
       //
       //
       */}
-      <h2 id="dim other groups">3️⃣ Toggle class in JS</h2>
+      <h2 id="js class toggle">3️⃣ Toggle class in JS</h2>
       <p>
-        More elegant in term of design. Requires to dim all series by adding a
-        class to the parent div. Then highlight the hovered shape by removing
-        it's dim.
+        Problem above: when mouse enter the chart area, triggers effect even if
+        no marker hovered over.
       </p>
+      <p>
+        Solution: CSS compound class selecter (
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector">
+          MDN doc
+        </a>
+        )
+      </p>
+      <p>
+        In CSS, a compound class selector combines multiple class names to
+        target elements that match all of the specified classes.
+      </p>
+      <p>
+        We can use the same css as the above example, but add the highlight
+        class using javascript:
+      </p>
+      <CodeBlock
+        code={`
+onMouseEnter={() => {
+  if (ref.current) {
+    ref.current.classList.add(styles.hasHighlight);
+  }
+}}
+onMouseLeave={() => {
+  if (ref.current) {
+    ref.current.classList.remove(styles.hasHighlight);
+  }
+}}
+              `}
+      />
       <ChartOrSandbox
         vizName={'DonutChartHover'}
         VizComponent={DonutChartHoverDemo}
@@ -315,7 +335,7 @@ const allShapes = data.map((d, i) => {
         <li>
           Allows to sync the hover effect with other UI updates. The hovered
           state can be used to update any other react components in the
-          application.
+          application. Like tooltip or another graph.
         </li>
         <li>
           Using javascript to trigger the animation can give more flexibility to
@@ -332,6 +352,12 @@ const allShapes = data.map((d, i) => {
           circles!
         </li>
       </ul>
+      <GraphGallery
+        images={[
+          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
+          'scatterplot-co2.png',
+        ]}
+      />
 
       {/*
       //
