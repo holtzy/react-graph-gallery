@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { Badge } from '@/component/UI/badge';
 import { ScatterplotHoverHighlightPseudoClassDemo } from '@/viz/ScatterplotHoverHighlightPseudoClass/ScatterplotHoverHighlightPseudoClassDemo';
 import { ScatterplotHoverHighlightDimDemo } from '@/viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo';
+import GraphGallery from '@/component/GraphGallery';
 
 const graphDescription = (
   <>
@@ -200,6 +201,16 @@ export default function Home() {
           (Potentially fixed using <code>z-index</code>).
         </li>
       </ul>
+      <GraphGallery
+        images={[
+          'bubble-plot-with-legend.png',
+          '2d-density-plot.png',
+          'correlogramBasic.png',
+          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
+          'scatterplot-basic-canvas.png',
+          'timeseries-moving-average.png',
+        ]}
+      />
 
       {/*
       //
