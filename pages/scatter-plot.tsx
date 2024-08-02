@@ -7,7 +7,7 @@ import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import { ScatterplotBasicDemo } from '../viz/ScatterplotBasic/ScatterplotBasicDemo';
 import { ScatterplotClimateCrisisDemo } from '../viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
 import { AxisBasicDemo } from '../viz/AxisBasic/AxisBasicDemo';
-import { ScatterplotHoverHighlightDemo } from '../viz/ScatterplotHoverHighlight/ScatterplotHoverHighlightDemo';
+import { ScatterplotHoverHighlightDemo } from '../viz/ScatterplotHoverHighlightPseudoClass/ScatterplotHoverHighlightDemo';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
 import { Accordion } from '../component/UI/Accordion';
