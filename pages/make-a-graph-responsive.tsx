@@ -200,43 +200,103 @@ export const DensityPlot = ({ width, height, data }: DensityProps) => {
       // Caveats
       //
       */}
+      <h2 id="wrapper">🎁 Wrapper component</h2>
+      <p>
+        I like to create a "wrapper" component that manages the responsiveness
+        and pass all the other props to the viz component, plus{' '}
+        <code>width</code> and <code>height</code>.
+      </p>
+      <p>
+        If you already have a dataviz component and just want to make it{' '}
+        <b>responsive</b>, this template should be useful to you:
+      </p>
+      <CodeBlock
+        code={`
+
+type ResponsiveDensityChartProps = {
+  data: number[];
+};
+
+// Responsive component = wrapper that manages the dimensions and does nothing else
+export const ResponsiveDensityChart = (props: ResponsiveDensityChartProps) => {
+  const chartRef = useRef(null);
+
+  const chartSize = useDimensions(chartRef);
+
+  return (
+    <div ref={chartRef} style={{ width: '100%', height: '100%' }}>
+      <DensityChart
+        height={chartSize.height}
+        width={chartSize.width}
+        {...props} // pass all the props
+      />
+    </div>
+  );
+};
+
+// Type is the same, with width and height added!
+type DensityChartProps = ResponsiveDensityChartProps & {
+  width: number;
+  height: number;
+};
+
+// Non responsive component
+const DensityChart = ({ width, height, data }: DensityChartProps) => {
+  //... dataviz code goes here
+}
+      `.trim()}
+      />
+      {/*
+      //
+      // Caveats
+      //
+      */}
       <h2 id="caveats">🐞 Caveats</h2>
       <p>
-        Dealing with responsiveness in data visualization is <b>hard</b>. Here
-        are a few potential caveats you have to keep in mind:
+        Here are some potential caveats to consider when using the{' '}
+        <code>useDimensions</code> hook:
       </p>
-      <h3>1️⃣ Container needs dimensions</h3>
+      <h3>1️⃣ Container Needs Dimensions</h3>
       <p>
-        Remember that the <code>div</code> container we are tracking needs to
-        have a <code>height</code> and a <code>width</code>. Otherwise the hook
-        will basically return nothing.
+        In HTML, not all <code>&lt;div&gt;</code> elements have dimensions by
+        default. If a <code>&lt;div&gt;</code> lacks dimensions, the{' '}
+        <code>useDimensions</code> hook won't be able to measure it!
       </p>
-      <p>There are several situations in which this won't be true:</p>
-      <h4>
-        &rarr; Container is displayed as <code>inline</code>
-      </h4>
+      <ul>
+        <li>
+          An inline <code>&lt;div&gt;</code> cannot have width and height.
+        </li>
+        <li>
+          By default, a <code>&lt;div&gt;</code> has no height. Its width is
+          100%, but its height is determined by its content. This means that
+          without content, the <code>&lt;div&gt;</code> will have no height.
+        </li>
+      </ul>
+      <h3>2️⃣ Performance</h3>
       <p>
-        An html elemente that is displayed as <code>inline</code> (
-        <code>display: inline;</code>) cannot have a width and height.{' '}
-        <code>span</code>
-        elements are inline by default.
+        When the graph dimensions change, ensure that you only recompute what is
+        necessary within the visualization component. <code>useMemo</code> and{' '}
+        <code>useCallback</code> are valuable tools for optimizing performance.
       </p>
-      <h4>&rarr; By default, a div has no height</h4>
+      <h3>3️⃣ Design</h3>
       <p>
-        By default, the width of a div is 100%, and its height fits its content.
-        Which means that with no content, there is no height.
+        A graph is not merely a piece of text; its aspect ratio significantly
+        affects its appearance. A wide graph might look great, while a narrower
+        version may not. Sometimes, adapting the chart type based on window size
+        is the best approach.
       </p>
-      <h4>&rarr; Width 100% is ignored, flex example</h4>
+      <h3>4️⃣ Zero Dimensions</h3>
       <p>
-        By default, the width of a div is 100%, and its height fits its content.
-        Which means that with no content, there is no height.
+        Be cautious with the <code>useDimensions</code> hook. When your app
+        first loads, the reference dimensions might be null or zero. Ensure your
+        code handles this scenario properly to avoid errors.
       </p>
       <br />
+      <br /> <br />
+      <br /> <br />
       <br />
       <hr className="full-bleed  bord er bg-gray-200 mb-3 mt-10" />
       <ChartFamilySection chartFamily="general" />
-      <div className="mt-20" />
-      <Contact />
     </Layout>
   );
 }
