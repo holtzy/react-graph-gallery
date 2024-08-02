@@ -29,18 +29,6 @@ const graphDescription = (
   </>
 );
 
-const snippet1 = `
-.circle {
-  fill-opacity: 1;
-}
-.svgArea:hover .circle {
-  fill-opacity: .1;
-}
-.svgArea .circle:hover {
-  fill-opacity: 1;
-}
-`.trim();
-
 export default function Home() {
   return (
     <Layout
@@ -138,28 +126,79 @@ export default function Home() {
       //
       //
       */}
-      <h2 id="dim other groups">2️⃣ Dim other groups with CSS only</h2>
+      <h2 id="dim-other-groups">2️⃣ Dim Other Groups with CSS Only</h2>
       <p>
-        More elegant in term of design. Requires to dim all series by adding a
-        class to the parent div. Then highlight the hovered shape by removing
-        it's dim.
+        The previous strategy falls short in terms of design. While it
+        highlights the hovered marker, it doesn't sufficiently <b>dim</b> the
+        other markers to make the hover effect <b>stand out</b>.
       </p>
-      <p>Do it for treemap</p>
-      <CodeBlock code={snippet1} />
+      <p>
+        This can be improved using a{' '}
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator">
+          descendant selector
+        </a>
+        , which allows you to target elements that are children of another
+        element.
+      </p>
+      <p>Here’s an example:</p>
+      <CodeBlock
+        code={`
+.rectangle {
+  opacity: 1;
+}
+.container:hover .rectangle {
+  opacity: .1;
+}
+.container .rectangle:hover {
+  opacity: 1;
+}
+`.trim()}
+      />
+      <p>
+        We assign a class called <code>container</code> to the SVG container and
+        a class called <code>rectangle</code> to each rectangle in the chart.
+      </p>
+      <p>
+        Then we set the default rectangle <code>opacity</code> to 1. Using the
+        descendant selector, you can reduce the opacity of all rectangles to 0.1
+        when the <code>container</code> is hovered.
+      </p>
+      <p>
+        Then, use a hover selector to set the opacity of the hovered rectangle
+        back to 1.
+      </p>
+
       <ChartOrSandbox
         vizName={'TreemapHoverEffect'}
         VizComponent={TreemapHoverEffectDemo}
         maxWidth={600}
         height={400}
-        caption="Hover over a group on the treemap to see the other groups fading."
+        caption="Strategy 2: use CSS descendant combinator to dim all markers except the one that is hovered."
       />
+
       <p>
-        <u>Pro</u>: Better design. Easy to implement.
-        <br />
-        <u>Con</u>: If mouse enter chart area withouth hovering a circle, I'm
-        still fading everything. I can highlight a circle that is below another.
-        Perf issue if many dots?
+        <Badge>Pros</Badge>
       </p>
+      <ul>
+        <li>Easy to implement</li>
+        <li>Improves design by making hover effects more noticeable</li>
+        <li>Excellent performance (no JS computation, minimal redrawing)</li>
+      </ul>
+      <p>
+        <Badge variant="destructive">Cons</Badge>
+      </p>
+      <ul>
+        <li>
+          Fades all circles if the mouse enters the chart area without hovering
+          over a specific circle. This technique works for chart where the whole
+          svg area is covered by markers, like a{' '}
+          <Link href="/treemap">treemap</Link>.
+        </li>
+        <li>
+          Cannot highlight circles that are obscured by other elements.
+          (Potentially fixed using <code>z-index</code>).
+        </li>
+      </ul>
 
       {/*
       //
