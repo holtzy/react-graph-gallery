@@ -204,7 +204,12 @@ export default function Home() {
           (Potentially fixed using <code>z-index</code>).
         </li>
       </ul>
-      <GraphGallery images={['lollipop-plot-hover-effect.png']} />
+      <GraphGallery
+        images={[
+          'lollipop-plot-hover-effect.png',
+          'streamgraph-hover-effect.gif',
+        ]}
+      />
 
       {/*
       //
@@ -321,7 +326,6 @@ const allShapes = data.map((d, i) => {
         nice touch you should consider. Check the code below the example to see
         the full css.
       </p>
-
       <ChartOrSandbox
         vizName={'ScatterplotHoverHighlightDim'}
         VizComponent={ScatterplotHoverHighlightDimDemo}
@@ -329,7 +333,6 @@ const allShapes = data.map((d, i) => {
         height={400}
         caption="TODO."
       />
-
       <p>
         <Badge>Pros</Badge>
       </p>
@@ -355,10 +358,7 @@ const allShapes = data.map((d, i) => {
         </li>
       </ul>
       <GraphGallery
-        images={[
-          'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
-          'scatterplot-co2.png',
-        ]}
+        images={['line-chart-synced-cursor.gif', 'streamgraph-application.gif']}
       />
 
       {/*

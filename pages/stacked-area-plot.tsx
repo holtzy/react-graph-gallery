@@ -1,28 +1,26 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import Contact from "../component/Contact";
-import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { StackedAreaChartBasicDemo } from "../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { Accordion } from "component/UI/Accordion";
-import { ToDoSection } from "component/UI/ToDoSection";
-import { LinkAsButton } from "component/LinkAsButton";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import { StreamGraphShapeTransitionDemo } from "viz/StreamGraphShapeTransition/StreamGraphShapeTransitionDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { StackedAreaChartBasicDemo } from '../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { Accordion } from 'component/UI/Accordion';
+import { ToDoSection } from 'component/UI/ToDoSection';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import { StreamGraphShapeTransitionDemo } from 'viz/StreamGraphShapeTransition/StreamGraphShapeTransitionDemo';
 
 const graphDescription = (
   <p>
-    A{" "}
-    <a href="https://www.data-to-viz.com/graph/area.html">stacked area chart</a>{" "}
+    A{' '}
+    <a href="https://www.data-to-viz.com/graph/area.html">stacked area chart</a>{' '}
     is an evolution of an <Link href="area-plot">area chart</Link> used to
     display the evolution of several groups in a dataset. This section explains
     how to build it with <code>d3.js</code> and <code>react</code>. It focus on
-    stacking, so make sure to read the <Link href="area-plot">area chart</Link>{" "}
+    stacking, so make sure to read the <Link href="area-plot">area chart</Link>{' '}
     section first.
   </p>
 );
@@ -60,7 +58,7 @@ export default function Home() {
       <p>
         The format described above is often called the <b>wide</b> format.
         Another common format is the <b>long</b> format, where each object in
-        the array provides information for 1 group only. (The array becomes way{" "}
+        the array provides information for 1 group only. (The array becomes way{' '}
         <i>longer</i> 🙃)
       </p>
       <p>
@@ -76,7 +74,7 @@ export default function Home() {
       <p>
         If your data is in <code>.csv</code> format, you can translate it thanks
         to the <code>csvParse()</code> function of d3. I'll write a blogpost
-        soon on how to deal with the csv format.{" "}
+        soon on how to deal with the csv format.{' '}
         <Link href="/subscribe">Subscribe</Link> to the project to know when it
         is ready!
       </p>
@@ -91,17 +89,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>StackedAreaGraph</code> component
         that will be stored in a <code>StackedAreaGraph.tsx</code> file. This
-        component requires 3 props to render: a <code>width</code>, a{" "}
+        component requires 3 props to render: a <code>width</code>, a{' '}
         <code>height</code>, and some <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the stacked
         area graph.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our{" "}
+        To put it in a nutshell, that's the skeleton of our{' '}
         <code>StackedAreaGraph</code> component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -109,7 +107,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the SVG <code>circle</code>, but it's React that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://www.d3-graph-gallery.com">d3.js examples</a>.
       </p>
 
@@ -120,7 +118,7 @@ export default function Home() {
       */}
       <h2 id="stacking">Stacking</h2>
       <p>
-        The trickiest part of a stacked area chart creation is probably the{" "}
+        The trickiest part of a stacked area chart creation is probably the{' '}
         <b>stacking</b> step.
       </p>
       <p>
@@ -132,7 +130,7 @@ export default function Home() {
       </p>
       <h3>&rarr; Build a stack generator</h3>
       <p>
-        <code>d3.stack()</code> returns a <b>stack generator</b> that we call{" "}
+        <code>d3.stack()</code> returns a <b>stack generator</b> that we call{' '}
         <code>stackSeries</code> here. <code>d3.stack()</code> is a function
         that returns a function.
       </p>
@@ -158,7 +156,7 @@ export default function Home() {
         how it's formatted since shapes will be drawn from it.
       </p>
       <p>
-        Our generated stacked <code>series</code> object is an array. It has{" "}
+        Our generated stacked <code>series</code> object is an array. It has{' '}
         <b>1 item per group</b> in the dataset. <br />
         For each group, there are 3 things:
       </p>
@@ -171,7 +169,7 @@ export default function Home() {
         </li>
         <li>
           Several arrays of length 2. Each array describes the position of the
-          group for a <b>timestamp</b>. First item in the array provides the{" "}
+          group for a <b>timestamp</b>. First item in the array provides the{' '}
           <b>bottom</b>
           position, second item provides the <b>top</b>.
         </li>
@@ -190,7 +188,7 @@ export default function Home() {
       </p>
       <p>
         Note that for each group the <code>area()</code> function of d3 is
-        invoked. The usage of this function is deeply described in the{" "}
+        invoked. The usage of this function is deeply described in the{' '}
         <Link href="/area-plot">area section</Link> of the gallery.
       </p>
       <LinkAsButton size="sm" isFilled href="/area-plot">
@@ -201,7 +199,7 @@ export default function Home() {
       </p>
       <p>Here is a minimal code example wrapping the whole process.</p>
       <ChartOrSandbox
-        vizName={"StackedAreaChartBasic"}
+        vizName={'StackedAreaChartBasic'}
         VizComponent={StackedAreaChartBasicDemo}
         height={400}
         maxWidth={600}
@@ -226,27 +224,27 @@ export default function Home() {
       */}
       <h2 id="Offset & curve">Offset and Curve types</h2>
       <p>
-        Stacked area charts can easily be customized to use other <b>offset</b>{" "}
-        and <b>smoothing</b> algorithm. This process can be used to create{" "}
-        <Link href="/streamchart">streamgraphs</Link> which are a{" "}
+        Stacked area charts can easily be customized to use other <b>offset</b>{' '}
+        and <b>smoothing</b> algorithm. This process can be used to create{' '}
+        <Link href="/streamchart">streamgraphs</Link> which are a{' '}
         <b>varation</b> of the stacked area graph.
       </p>
       <p>
         The <b>offset type</b> controls how the data are stacked. You can read
-        about the offset options available in the{" "}
+        about the offset options available in the{' '}
         <a href="https://github.com/d3/d3-shape#stack-offsets">
           official documentation
-        </a>{" "}
+        </a>{' '}
         or play with the little example below.
       </p>
       <p>
         The <b>curve type</b> controls how the <b>smoothing</b> of each shape is
-        made. There are a{" "}
-        <a href="https://github.com/d3/d3-shape#curves">myriad of options</a>{" "}
+        made. There are a{' '}
+        <a href="https://github.com/d3/d3-shape#curves">myriad of options</a>{' '}
         described in the official documentation.
       </p>
       <ChartOrSandbox
-        vizName={"StreamGraphShapeTransition"}
+        vizName={'StreamGraphShapeTransition'}
         VizComponent={StreamGraphShapeTransitionDemo}
         height={400}
         maxWidth={600}
@@ -256,8 +254,8 @@ export default function Home() {
         The animation uses <code>react-spring</code> to run. I'll publish a full
         blogpost on the topic soon!
       </p>
-      <LinkAsButton href={"/subscribe"} isFilled size="sm">
-        {"Get notified"}
+      <LinkAsButton href={'/subscribe'} isFilled size="sm">
+        {'Get notified'}
       </LinkAsButton>
       <p>
         <br />
