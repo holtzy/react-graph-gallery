@@ -1,7 +1,6 @@
 import React from 'react';
 import ChartFamilySection from '../component/ChartFamilySection';
 import Contact from '../component/Contact';
-import { TypingAnimation } from '../component/TypingAnimation';
 import { ParticlesBg } from '../component/Particles';
 import { HeadSeo } from '../component/HeadSeo';
 import { HorizontalSeparator } from '../component/UI/HorizontalSeparator';

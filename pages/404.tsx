@@ -1,12 +1,4 @@
 import React from 'react';
-import ChartFamilySection from '../component/ChartFamilySection';
-import Contact from '../component/Contact';
-import { TypingAnimation } from '../component/TypingAnimation';
-import { ParticlesBg } from '../component/Particles';
-import { HeadSeo } from '../component/HeadSeo';
-import { HorizontalSeparator } from '../component/UI/HorizontalSeparator';
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
 import { Layout } from 'component/Layout';
 import TitleAndDescription from 'component/TitleAndDescription';
 import Link from 'next/link';
