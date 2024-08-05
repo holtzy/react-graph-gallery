@@ -47,24 +47,6 @@ export default function Articles() {
         description={graphDescription}
       />
 
-      <div>
-        {moduleList.map((module, i) => {
-          const allLessons = lessonList.filter(
-            (lesson) => lesson.moduleId === module.id
-          );
-          return (
-            <div key={module.id} className="mb-24">
-              <div>
-                <Badge variant={'outline'}>{'Module ' + i}</Badge>
-                <h2 className="mt-2">{module.name}</h2>
-              </div>
-              {module.description}
-              <LessonAccordion lessonList={allLessons} />
-            </div>
-          );
-        })}
-      </div>
-
       <BlogPostItem
         title={'Responsiveness: a hook that makes your viz fits its container'}
         timeToRead={5}
