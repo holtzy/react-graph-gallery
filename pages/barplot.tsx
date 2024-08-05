@@ -1,26 +1,26 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { BarplotBasicDemo } from "../viz/BarplotBasic/BarplotBasicDemo";
-import { ResponsiveExplanationSection } from "../component/ResponsiveExplanationSection";
-import { BarplotDatasetTransitionDemo } from "../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo";
-import GraphGallery from "component/GraphGallery";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { BarplotBasicDemo } from '../viz/BarplotBasic/BarplotBasicDemo';
+import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
+import { BarplotDatasetTransitionDemo } from '../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo';
+import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/barplot.html">barplot</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/barplot.html">barplot</a>{' '}
       displays a numeric value for several groups of a dataset using rectangles.
       This page is a step-by-step guide on how to build your own barplot for the
-      web, using <a href="https://reactjs.org/">React</a> and{" "}
+      web, using <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/barplot.html">D3.js</a>.
     </p>
     <p>
-      It starts with very basic concepts like <b>data structure</b>,{" "}
+      It starts with very basic concepts like <b>data structure</b>,{' '}
       <b>scales</b> and svg rectangle <b>rendering</b>. It then shows how to add
       interactivity to the chart with <b>hover effects</b>. Last but not least
       it explains how to build variations like the <b>stacked barplot</b>.
@@ -44,10 +44,10 @@ export default function Home() {
       // Data
       //
       */}
-      <h2 id="data">The Data</h2>{" "}
+      <h2 id="data">The Data</h2>{' '}
       <p>
         The dataset required to build a barplot is usually an array where each
-        item is an object providing the <code>name</code> and the{" "}
+        item is an object providing the <code>name</code> and the{' '}
         <code>value</code> of the group.
       </p>
       <br />
@@ -55,7 +55,7 @@ export default function Home() {
       <CodeBlock code={snippet1} />
       <p>
         Note: if your data is in <code>.csv</code> format, you can translate it
-        thanks to the <code>d3.csv()</code> function as suggested{" "}
+        thanks to the <code>d3.csv()</code> function as suggested{' '}
         <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">
           here
         </a>
@@ -70,17 +70,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Barplot</code> component that will be
         stored in a <code>Barplot.tsx</code> file. This component requires 3
-        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to rendering a{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to rendering a{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         barplot.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our <code>Barplot</code>{" "}
+        To put it in a nutshell, that's the skeleton of our <code>Barplot</code>{' '}
         component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -88,7 +88,7 @@ export default function Home() {
         It's fundamental to understand that with this code organization, d3.js
         will be used to prepare the svg <code>circle</code>, but it's react that
         will render them in the <code>return()</code> statement. We won't use d3
-        methods like <code>append</code> that you can find in usual{" "}
+        methods like <code>append</code> that you can find in usual{' '}
         <a href="https://d3-graph-gallery.com/barplot.html">d3.js examples</a>.
       </p>
       {/*
@@ -99,7 +99,7 @@ export default function Home() {
       <h2 id="Scales">Scales</h2>
       <p>
         A <b>scale</b> is a function that transforms a <b>dimension</b> (like
-        our <code>value</code> or our group <code>name</code>) in a{" "}
+        our <code>value</code> or our group <code>name</code>) in a{' '}
         <b>position</b> in pixels.
       </p>
       <p>
@@ -109,8 +109,8 @@ export default function Home() {
       </p>
       <h3>&rarr; Linear scale for the bar length</h3>
       <p>
-        D3.js comes with a handful set of{" "}
-        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{" "}
+        D3.js comes with a handful set of{' '}
+        <a href="https://github.com/d3/d3-scale">predefined scales</a>.{' '}
         <code>scaleLinear</code> is what we need for the bar length. Here is a
         quick overview on how to build and use a linear scale:
       </p>
@@ -120,7 +120,7 @@ export default function Home() {
         be used by the <b>X</b> axis.
       </p>
       <p>
-        To dig more into d3 scales, visit this{" "}
+        To dig more into d3 scales, visit this{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
           dedicated page
         </a>
@@ -150,13 +150,13 @@ export default function Home() {
       <h2 id="basic barplot">Basic barplot</h2>
       <p>
         We now have all the ingredients to build a basic barplot with react, all
-        being pretty close to the{" "}
+        being pretty close to the{' '}
         <a href="https://d3-graph-gallery.com/barplot">d3-only examples</a>.
       </p>
       <p>
         For each item in the dataset, create a SVG <code>rect</code> element.
-        Its vertical position can be retrieved from the group <code>name</code>{" "}
-        thanks to the band scale. It's size is retrieved using the{" "}
+        Its vertical position can be retrieved from the group <code>name</code>{' '}
+        thanks to the band scale. It's size is retrieved using the{' '}
         <code>xScale</code> and its <code>value</code>.
       </p>
       <p>
@@ -164,7 +164,7 @@ export default function Home() {
         add a label for the name and one for the value.
       </p>
       <ChartOrSandbox
-        vizName={"BarplotBasic"}
+        vizName={'BarplotBasic'}
         VizComponent={BarplotBasicDemo}
         height={500}
         maxWidth={500}
@@ -183,27 +183,27 @@ export default function Home() {
       */}
       <h2 id="transition">Transition</h2>
       <p>
-        When the dataset updates, it adds a nice touch to{" "}
+        When the dataset updates, it adds a nice touch to{' '}
         <b>smoothly animate</b> the transition. In the example below, changing
-        the dataset will update the <b>bar sizes</b> and their <b>positions</b>{" "}
+        the dataset will update the <b>bar sizes</b> and their <b>positions</b>{' '}
         on the Y axis to keep the ranking accurate.
       </p>
       <p>
-        Animation is a complicated topic in dataviz. We have to deal with{" "}
+        Animation is a complicated topic in dataviz. We have to deal with{' '}
         <b>updates</b> (an element changes its features), <b>enter</b> (a new
         element appears) and <b>exit</b> (an element is not present anymore)
         patterns.
       </p>
       <p>
         I suggest to rely on the <code>react-spring</code> library to help here.
-        Please check this{" "}
+        Please check this{' '}
         <Link href="example/barplot-data-transition-animation">
           dedicated blogpost
-        </Link>{" "}
+        </Link>{' '}
         to get explanations about the code of this example.
       </p>
       <ChartOrSandbox
-        vizName={"BarplotDatasetTransition"}
+        vizName={'BarplotDatasetTransition'}
         VizComponent={BarplotDatasetTransitionDemo}
         height={400}
         maxWidth={600}
@@ -216,7 +216,7 @@ export default function Home() {
       */}
       <h2 id="stacking">Stacking</h2>
       <p>
-        A <b>stacked barplot</b> is a variation of a barplot where an{" "}
+        A <b>stacked barplot</b> is a variation of a barplot where an{' '}
         <b>additional level of grouping</b> is represented. Each bar represent
         the value of a <code>group</code>, for instance how much each my friend
         spent in the last month. Each bar is then subdivided, each part
@@ -230,8 +230,8 @@ export default function Home() {
       </p>
       <GraphGallery
         images={[
-          "barplot-stacked-horizontal.png",
-          "barplot-stacked-vertical.png",
+          'barplot-stacked-horizontal.png',
+          'barplot-stacked-vertical.png',
         ]}
       />
       {/*
@@ -239,14 +239,14 @@ export default function Home() {
       // Vertical
       //
       */}
-      <h2 id="vertical">Vertical barplot</h2>{" "}
+      <h2 id="vertical">Vertical barplot</h2>{' '}
       <p>
-        The vertical option is less common since it makes is much{" "}
+        The vertical option is less common since it makes is much{' '}
         <b>harder to read the labels</b>. But if you really need it, it is just
         a matter of swaping the X and Y axes of the previous example.
       </p>
       <p>
-        This example will be publish soon, please{" "}
+        This example will be publish soon, please{' '}
         <Link href="/subscribe">subscribe</Link> below if you want to be
         notified.
       </p>
@@ -255,12 +255,24 @@ export default function Home() {
       // Hover effect
       //
       */}
-      <h2 id="hover effect">Hover effect</h2>{" "}
+      <h2 id="hover effect">Hover effect</h2>{' '}
       <p>
-        This example will be publish soon, please{" "}
+        This example will be publish soon, please{' '}
         <Link href="subscribe">subscribe</Link> to the newsletter if you want to
         be notified.
       </p>
+      {/*
+      //
+      // Variations
+      //
+      */}
+      <h2 id="variations">Variations</h2>
+      <p>
+        Let's go beyond the basic barcharts. Click on the overview images below
+        to get details and code.
+      </p>
+      <br />
+      <GraphGallery images={['donut-barplot-transition.gif']} />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />

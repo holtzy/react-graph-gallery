@@ -1,34 +1,33 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { AccordionSection } from "../component/AccordionSection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { DonutChartBasicDemo } from "../viz/DonutChartBasic/DonutChartBasicDemo";
-import Link from "next/link";
-import { DonutChartLegendDemo } from "../viz/DonutChartLegend/DonutChartLegendDemo";
-import { DonutChartHoverDemo } from "../viz/DonutChartHover/DonutChartHoverDemo";
-import { DonutDatasetTransitionDemo } from "viz/DonutDatasetTransition/DonutDatasetTransitionDemo";
-import { LinkAsButton } from "component/LinkAsButton";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import DatavizInspirationParallaxLink from "component/DatavizInspirationParallaxLink";
-import { DonutBarplotTransitionDemo } from "viz/DonutBarplotTransition/DonutBarplotTransitionDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { DonutChartBasicDemo } from '../viz/DonutChartBasic/DonutChartBasicDemo';
+import Link from 'next/link';
+import { DonutChartLegendDemo } from '../viz/DonutChartLegend/DonutChartLegendDemo';
+import { DonutChartHoverDemo } from '../viz/DonutChartHover/DonutChartHoverDemo';
+import { DonutDatasetTransitionDemo } from 'viz/DonutDatasetTransition/DonutDatasetTransitionDemo';
+import { LinkAsButton } from 'component/LinkAsButton';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import DatavizInspirationParallaxLink from 'component/DatavizInspirationParallaxLink';
+import { DonutBarplotTransitionDemo } from 'viz/DonutBarplotTransition/DonutBarplotTransitionDemo';
 
 const graphDescription = (
   <>
     <p>
-      The <a href="https://www.data-to-viz.com/graph/donut.html">donut chart</a>{" "}
-      is a very common yet{" "}
+      The <a href="https://www.data-to-viz.com/graph/donut.html">donut chart</a>{' '}
+      is a very common yet{' '}
       <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a> way
       to represent the value of a few groups in a dataset. It is very close to
       the <Link href="/pie-plot">pie chart</Link> and thus suffers the same
       downsides.
     </p>
     <p>
-      This page explains how to build a donut chart using <b>d3.js</b> and{" "}
+      This page explains how to build a donut chart using <b>d3.js</b> and{' '}
       <b>React</b>. It starts with a basic example and then focus on
-      customization like <b>legends</b>, <b>hover effect</b> and{" "}
+      customization like <b>legends</b>, <b>hover effect</b> and{' '}
       <b>dataset transition</b>.
     </p>
   </>
@@ -67,14 +66,14 @@ export default function Home() {
       // Most Basic
       //
       */}
-      <h2 id="basic">Most basic donut chart</h2>{" "}
+      <h2 id="basic">Most basic donut chart</h2>{' '}
       <p>
         The process to build a donut chart is highly similar as the process to
         build a <Link href="/pie-plot">pie chart</Link>. It is extensively
         described in <Link href="/pie-plot">its dedicated section</Link>.
       </p>
       <LinkAsButton href="/pie-plot" size="sm" isFilled>
-        {"Long size tutorial"}
+        {'Long size tutorial'}
       </LinkAsButton>
       <br />
       <br />
@@ -93,13 +92,13 @@ export default function Home() {
       <CodeBlock code={snippet3} />
       <br />
       <p>
-        And that's it. This array of path can be renderer with react using a{" "}
+        And that's it. This array of path can be renderer with react using a{' '}
         <code>map</code> as shown in the example below.
       </p>
       <br />
       <br />
       <ChartOrSandbox
-        vizName={"DonutChartBasic"}
+        vizName={'DonutChartBasic'}
         VizComponent={DonutChartBasicDemo}
         maxWidth={400}
         height={400}
@@ -109,7 +108,7 @@ export default function Home() {
       //
       // Legend
       //
-      */}{" "}
+      */}{' '}
       <h2 id="legend">Adding inline labels</h2>
       <p>
         The minimal donut chart above is completely useless as long as it does
@@ -135,12 +134,12 @@ export default function Home() {
       </p>
       <CodeBlock code={snippet4} />
       <p>
-        For more in depth explanation, please refer to the{" "}
+        For more in depth explanation, please refer to the{' '}
         <Link href="/pie-plot">pie chart section</Link> that uses the exact same
         process.
       </p>
       <ChartOrSandbox
-        vizName={"DonutChartLegend"}
+        vizName={'DonutChartLegend'}
         VizComponent={DonutChartLegendDemo}
         maxWidth={800}
         height={400}
@@ -151,7 +150,7 @@ export default function Home() {
         chart. It has some <b>limitations</b> though.
       </p>
       <p>
-        If many groups are available, we will likely get some <b>overlaps</b>{" "}
+        If many groups are available, we will likely get some <b>overlaps</b>{' '}
         between labels, resulting in a messy figure. This could be avoided but
         would require a good amount of additional code. It is thus ignored here.
       </p>
@@ -172,20 +171,20 @@ export default function Home() {
       // Hover effect
       //
       */}
-      <h2 id="legend">Hover effect</h2>
+      <h2 id="hover effect">Hover effect</h2>
       <p>
         On the graph below, hovering over a slice will smoothly highlight it,
         giving a nice polish touch to the widget.
       </p>
       <p>
-        The process is quickly described on the{" "}
+        The process is quickly described on the{' '}
         <Link href="/pie-plot">pie chart hover effect</Link> section. But hover
         effect is a topic on itself. As a result, I plan to write a full
-        tutorial targeting this topic only. You can{" "}
+        tutorial targeting this topic only. You can{' '}
         <Link href="/subscribe">subscribe</Link> to know when it's ready!
       </p>
       <LinkAsButton size="sm" isFilled href="/subscribe">
-        {"Tell me when the Hover effect post is ready!"}
+        {'Tell me when the Hover effect post is ready!'}
       </LinkAsButton>
       <br />
       <br />
@@ -194,7 +193,7 @@ export default function Home() {
         React code:
       </p>
       <ChartOrSandbox
-        vizName={"DonutChartHover"}
+        vizName={'DonutChartHover'}
         VizComponent={DonutChartHoverDemo}
         maxWidth={800}
         height={400}
@@ -218,18 +217,18 @@ export default function Home() {
       </p>
       <p>
         The code below relies on the <code>react-spring</code> library. Instead
-        of rendering a <code>path</code> for each slice, it uses a{" "}
+        of rendering a <code>path</code> for each slice, it uses a{' '}
         <code>animated.path</code> component that handles the spring animation
         for us.
       </p>
       <p>
         The implementation is <b>not trivial</b>. I plan to publish a full
-        tutorial on react-spring for data visualization soon. You can{" "}
+        tutorial on react-spring for data visualization soon. You can{' '}
         <Link href="/subscribe">subscribe here</Link> to be notified when it is
         ready.
       </p>
       <ChartOrSandbox
-        vizName={"DonutDatasetTransition"}
+        vizName={'DonutDatasetTransition'}
         VizComponent={DonutDatasetTransitionDemo}
         maxWidth={800}
         height={400}
@@ -247,28 +246,28 @@ export default function Home() {
       */}
       <h2 id="barplot transition">Pie chart to barplot</h2>
       <p>
-        Pie charts are often{" "}
-        <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a>{" "}
+        Pie charts are often{' '}
+        <a href="https://www.data-to-viz.com/caveat/pie.html">criticized</a>{' '}
         since angles are <b>hard to read</b>. Let's represent the same data
         using a pie chart or a <Link href="/barplot">barplot</Link>, to see
         what's the most insightful 🤷‍♂️.
       </p>
       <p>
-        Note that here we animate the transition between{" "}
+        Note that here we animate the transition between{' '}
         <b>different shape types</b>: each arc becomes a rectangle and
-        reciprocally. This is made possible thanks to the{" "}
+        reciprocally. This is made possible thanks to the{' '}
         <a href="https://github.com/veltman/flubber">flubber</a> library, used
-        in coordination with{" "}
+        in coordination with{' '}
         <a href="https://react-spring.dev/">react-spring</a>.
       </p>
       <p>
-        Once more, a full tutorial is needed here. You can{" "}
+        Once more, a full tutorial is needed here. You can{' '}
         <Link href="/subscribe">subscribe here</Link> to be notified when it is
         ready. In the meanwhile, the code of this specific example is provided
         below.
       </p>
       <ChartOrSandbox
-        vizName={"DonutBarplotTransition"}
+        vizName={'DonutBarplotTransition'}
         VizComponent={DonutBarplotTransitionDemo}
         maxWidth={500}
         height={400}

@@ -335,6 +335,7 @@ export const graphExampleList: GraphExample[] = [
     img: 'barplot-stacked-vertical.png',
     alt: 'Picture of a vertical stacked barchart made with react and d3',
   },
+
   //
   // Wordcloud
   //
@@ -440,6 +441,62 @@ export const graphExampleList: GraphExample[] = [
     alt: 'Picture of a simple treemap',
   },
 
+  //
+  // Donut
+  //
+  {
+    link: '/donut#basic',
+    title: 'Basic Donut chart',
+    description: 'Most simple donut chart. No annotation, static figure.',
+    img: 'donut-most-basic.png',
+    alt: 'Picture of the most basic donut chart',
+  },
+  {
+    link: '/donut#legend',
+    title: 'Inline labels',
+    description: 'Donut chart with inline labels and connection lines',
+    img: 'donut-labels.png',
+    alt: 'Picture of a simple donut chart with inline labels',
+  },
+  {
+    link: '/donut#hover%20effect',
+    title: 'Hover effect',
+    description: 'Donut chart with hover effect to highlight a slice',
+    img: 'donut-hover-effect.gif',
+    alt: 'GIF of a donut chart with a hover effect',
+  },
+  {
+    link: '/donut#data%20transition',
+    title: 'Data transition',
+    description: 'How to smoothly transition dataset',
+    img: 'donut-data-transition.gif',
+    alt: 'GIF of a donut chart switching between 2 datasets',
+  },
+  {
+    link: '/donut#barplot%20transition',
+    title: 'Shape morphism',
+    description: 'Transition between a barplot and a donut chart',
+    img: 'donut-barplot-transition.gif',
+    alt: 'GIF of a donut chart switching between to a barplot and reverse',
+  },
+
+  //
+  // Pie
+  //
+  {
+    link: '/pie#basic',
+    title: 'Basic Pie chart',
+    description: 'Most simple pie chart. No annotation, static figure.',
+    img: 'pie-most-basic.png',
+    alt: 'Picture of the most basic pie chart',
+  },
+  {
+    link: '/pie#legend',
+    title: 'Inline labels',
+    description: 'pie chart with inline labels and connection lines',
+    img: 'pie-labels.png',
+    alt: 'Picture of a simple pie chart with inline labels',
+  },
   //
   // Line Chart
   //

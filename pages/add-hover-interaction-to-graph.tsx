@@ -122,7 +122,9 @@ export default function Home() {
           needed
         </li>
       </ul>
-      <GraphGallery images={['heatmapVaccination.png']} />
+      <GraphGallery
+        images={['heatmapVaccination.png', 'treemap-most-basic.png']}
+      />
 
       {/*
       //
