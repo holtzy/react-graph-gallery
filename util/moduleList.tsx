@@ -5,6 +5,7 @@ export type ModuleId =
   | 'svg'
   | 'axis'
   | 'hover effect'
+  | 'responsiveness'
   | 'reading-data'
   | 'legend';
 
@@ -63,6 +64,19 @@ export const moduleList: Module[] = [
         <p>
           Now that we know how to add shapes on the graph, it is time to add
           context to it. Let's see how to draw axes.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'responsiveness',
+    name: 'Responsiveness',
+    description: (
+      <>
+        <p>
+          Some people have big monitors when others will read your work on their
+          phone. Let's see how to make your graph look good in any situation.
         </p>
       </>
     ),

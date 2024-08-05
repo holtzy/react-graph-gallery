@@ -79,7 +79,6 @@ export const lessonList: Lesson[] = [
   // SVG: your first shapes
   //
   //
-
   {
     name: 'What is SVG',
     description: (
@@ -200,6 +199,81 @@ export const lessonList: Lesson[] = [
   // Responsiveness
   //
   //
+  {
+    name: 'Understanding Responsiveness',
+    description: (
+      <>
+        <p>
+          Learn the basics of what responsiveness means and why it is crucial
+          for creating dynamic charts.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'responsiveness',
+  },
+  {
+    name: 'Creating a useDimensions Hook',
+    description: (
+      <>
+        <p>
+          Discover how to create a custom hook that listens for changes in
+          dimensions, a key component for responsive charts.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'responsiveness',
+  },
+  {
+    name: 'Integrating the Hook with Your Graph',
+    description: (
+      <>
+        <p>
+          Learn how to pass the results of the useDimensions hook to your graph
+          components to make them fully responsive.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'responsiveness',
+  },
+  {
+    name: 'Best Practices for Code Organization',
+    description: (
+      <>
+        <p>
+          Explore suggested ways to organize your code when working with
+          responsive charts in React and D3.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'responsiveness',
+  },
+  {
+    name: 'Common Pitfalls and How to Avoid Them',
+    description: (
+      <>
+        <p>
+          Identify common issues you might face when implementing responsive
+          charts and learn strategies to overcome them.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'responsiveness',
+  },
 
   //
   //
