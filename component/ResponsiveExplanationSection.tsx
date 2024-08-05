@@ -28,7 +28,6 @@ export const ResponsiveExplanationSection = ({
         <code>useDimensions</code> that will do the job for us.
       </p>
       <Accordion
-        startOpen={false}
         title={
           <span>
             <code>useDimensions</code>: a hook to make your viz responsive

@@ -1,22 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
-import Contact from '../component/Contact';
 import ChartFamilySection from '../component/ChartFamilySection';
-import { AccordionSection } from '../component/AccordionSection';
 import { Caption } from '../component/UI/Caption';
-import CodeSandboxButton from '../component/CodeSandboxButton';
 import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import Link from 'next/link';
 
-import { StackedBarplot } from '../viz/BarplotStackedBasic/StackedBarplot';
-import { data } from '../viz/BarplotStackedBasic/data';
-
-import { StackedBarplot as StackedBarplotDiverging } from '../viz/BarplotStackedNegativeDiverging/StackedBarplot';
-import { data as dataDiverging } from '../viz/BarplotStackedNegativeDiverging/data';
-
-import { StackedBarplot as StackedBarplotOverlapping } from '../viz/BarplotStackedNegativeOverlapping/StackedBarplot';
-import { data as dataOverlapping } from '../viz/BarplotStackedNegativeOverlapping/data';
 import { BarplotStackedBasicDemo } from '../viz/BarplotStackedBasic/BarplotStackedBasicDemo';
 import { BarplotStackedNegativeDivergingBasicDemo } from '../viz/BarplotStackedNegativeDiverging/BarplotStackedNegativeDivergingDemo';
 import { BarplotStackedNegativeOverlappingDemo } from '../viz/BarplotStackedNegativeOverlapping/BarplotStackedNegativeOverlappingDemo';

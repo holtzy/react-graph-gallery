@@ -227,7 +227,7 @@ export default function Home() {
         examples will show how straightforward it is to tweak them to reach
         other <b>chart styles</b>.
       </p>
-      <Accordion startOpen={false} title="code for the Y axis react component">
+      <Accordion title="code for the Y axis react component">
         <CodeBlock code={snippetYAxis} />
       </Accordion>
       <p>

@@ -1,17 +1,12 @@
 import React, { useRef } from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
-import Contact from '../component/Contact';
-import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import ChartFamilySection from '../component/ChartFamilySection';
-import { AccordionSection } from '../component/AccordionSection';
 import { CodeBlock } from '../component/UI/CodeBlock';
 import { data as densityChartData } from '../data/one-numeric-variable-random';
 import { useDimensions } from '../hook/use-dimensions';
-import { ViolinBasicDemo } from '../viz/ViolinBasic/ViolinBasicDemo';
 import { DensityChart } from '../viz/DensityChartBasic/DensityChart';
 import Link from 'next/link';
-import { DensityChartBasicDemo } from 'viz/DensityChartBasic/DensityChartBasicDemo';
 import { CodeSandbox } from 'component/CodeSandbox';
 
 const graphDescription = (
