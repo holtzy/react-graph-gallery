@@ -20,9 +20,7 @@ export const Layout = ({ children, title, seoDescription }: LayoutProps) => {
     <>
       <HeadSeo title={title} seoDescription={seoDescription} />
 
-      <div className="wrapper">
-        <Navbar />
-      </div>
+      <Navbar />
 
       <div className="wrapper">{children}</div>
 

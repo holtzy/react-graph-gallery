@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav id="header" className="w-full  h-24">
+      <nav id="header" className="w-full h-24 wrapper">
         <div
           className={'flex flex-wrap items-center justify-between mt-2 py-2'}
         >

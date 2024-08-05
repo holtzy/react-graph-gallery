@@ -1,11 +1,5 @@
 import { ReactNode } from 'react';
-
-export type ModuleId =
-  | 'introduction'
-  | 'axis'
-  | 'hover effect'
-  | 'reading-data'
-  | 'legend';
+import { ModuleId } from './moduleList';
 
 export type Lesson = {
   name: string;
@@ -85,6 +79,58 @@ export const lessonList: Lesson[] = [
   // SVG: your first shapes
   //
   //
+
+  {
+    name: 'What is SVG',
+    description: (
+      <>
+        <p>
+          SVG stands for vector graphic. Let's see why it is useful and
+          widespread in dataviz.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'svg',
+  },
+  {
+    name: 'Your first circle',
+    description: (
+      <>
+        <p>Be ready to build graph in 10 seconds.</p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'svg',
+  },
+  {
+    name: 'Your first rectangle',
+    description: (
+      <>
+        <p>Be ready to build graph in 10 seconds.</p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'svg',
+  },
+  {
+    name: 'Your first path',
+    description: (
+      <>
+        <p>Be ready to build graph in 10 seconds.</p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'svg',
+  },
 
   //
   //
