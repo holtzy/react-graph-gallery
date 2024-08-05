@@ -2,19 +2,8 @@ import React from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
 import ChartFamilySection from '../component/ChartFamilySection';
-import { CodeBlock } from '../component/UI/CodeBlock';
-import { ChartOrSandbox } from '../component/ChartOrSandbox';
-import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
-import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
-import { GraphLinkImage } from '../component/UI/GraphLinkImage';
-import { ImageGrid } from '../component/UI/ImageGrid';
 import Link from 'next/link';
-import { BackgroundMapBasicDemo } from 'viz/BackgroundMapBasic/BackgroundMapBasicDemo';
-import { LinkAsButton } from 'component/LinkAsButton';
-import { CodeSandbox } from 'component/CodeSandbox';
-import { BackgroundMapProjectionDemo } from 'viz/BackgroundMapProjection/BackgroundMapProjectionDemo';
 import { ToDoSection } from 'component/UI/ToDoSection';
-import { BackgroundMapCanvasDemo } from 'viz/BackgroundMapCanvas/BackgroundMapCanvasDemo';
 
 const graphDescription = (
   <>
