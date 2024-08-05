@@ -202,7 +202,7 @@ export default function Home() {
           (Potentially fixed using <code>z-index</code>).
         </li>
       </ul>
-      <GraphGallery images={['heatmapVaccination.png']} />
+      <GraphGallery images={['lollipop-plot-hover-effect.png']} />
 
       {/*
       //

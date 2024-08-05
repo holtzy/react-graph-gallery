@@ -416,6 +416,31 @@ export const graphExampleList: GraphExample[] = [
   },
 
   //
+  // Treemap
+  //
+  {
+    link: '/treemap#1%20level',
+    title: 'Basic treemap',
+    description: 'Most simple treemap, with 1 level of hierarchy only',
+    img: 'treemap-most-basic.png',
+    alt: 'Picture of a simple treemap',
+  },
+  {
+    link: '/treemap#2%20level',
+    title: 'Treemap with 2 levels',
+    description: 'Simple treemap with 2 levels of hierarchy',
+    img: 'treemap-2-levels.png',
+    alt: 'Picture of a simple treemap with 2 levels of hierarchy',
+  },
+  {
+    link: '/treemap#hover%20effect',
+    title: 'Hover effect',
+    description: 'Treemap with hover effect to highlight a group',
+    img: 'treemap-hover-effect.gif',
+    alt: 'Picture of a simple treemap',
+  },
+
+  //
   // Line Chart
   //
   {
