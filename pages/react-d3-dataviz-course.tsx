@@ -2,8 +2,6 @@ import React from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
 import Link from 'next/link';
-import { BlogPostItem } from '../component/BlogPostItem';
-import { SubscribeForm } from 'component/SubscribeForm';
 import {
   Accordion,
   AccordionContent,
@@ -33,6 +31,25 @@ const graphDescription = (
 );
 
 export default function Articles() {
+  const allCards = moduleList.map((module, i) => {
+    const allLessons = lessonList.filter(
+      (lesson) => lesson.moduleId === module.id
+    );
+    return (
+      <div
+        key={module.id}
+        className="border border-gray-200 p-8 rounded-md mt-20 bg-slate-50"
+      >
+        <div>
+          <Badge variant={'outline'}>{'Module ' + i}</Badge>
+          <h2 className="mt-2">{module.name}</h2>
+        </div>
+        {module.description}
+        <LessonAccordion lessonList={allLessons} />
+      </div>
+    );
+  });
+
   return (
     <Layout
       title="Dataviz with react online course"
@@ -43,22 +60,13 @@ export default function Articles() {
         description={graphDescription}
       />
 
-      <div>
-        {moduleList.map((module, i) => {
-          const allLessons = lessonList.filter(
-            (lesson) => lesson.moduleId === module.id
-          );
-          return (
-            <div key={module.id} className="mb-24">
-              <div>
-                <Badge variant={'outline'}>{'Module ' + i}</Badge>
-                <h2 className="mt-2">{module.name}</h2>
-              </div>
-              {module.description}
-              <LessonAccordion lessonList={allLessons} />
-            </div>
-          );
-        })}
+      <div className="w-full grid grid-cols-2 gap-4">
+        <div className="col-span-1">
+          {allCards.filter((c, i) => i % 2 === 0)}
+        </div>
+        <div className="col-span-1 pt-80">
+          {allCards.filter((c, i) => i % 2 === 1)}
+        </div>
       </div>
 
       <div className="mt-20" />
@@ -76,11 +84,11 @@ const LessonAccordion = ({ lessonList }: LessonAccordionProps) => {
         return (
           <AccordionItem value={'item-' + i} key={i}>
             <AccordionTrigger className="text-sm">
-              <div className="flex w-full justify-between mr-10">
+              <div className="flex w-full justify-between mr-1">
                 {lesson.name}
                 {!lesson.isAvailable && (
-                  <Badge variant={'destructive'} className="opacity-30">
-                    WIP
+                  <Badge variant={'outlineDestructive'} className="opacity-100">
+                    wip
                   </Badge>
                 )}
               </div>
