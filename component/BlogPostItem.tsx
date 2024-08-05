@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Pill } from './UI/Pill';
 import { Badge } from './UI/badge';
 
 type BlogCategory =
