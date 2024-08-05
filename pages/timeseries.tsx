@@ -5,7 +5,7 @@ import ChartFamilySection from '../component/ChartFamilySection';
 import { CodeBlock } from '../component/UI/CodeBlock';
 import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import Link from 'next/link';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { AxisTimeD3Demo } from 'viz/AxisTimeD3/AxisTimeD3Demo';
 import { LineChartSyncCursorDemo } from 'viz/LineChartSyncCursor/LineChartSyncCursorDemo';
 import { LinkAsButton } from 'component/LinkAsButton';

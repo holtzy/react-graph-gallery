@@ -9,7 +9,7 @@ import { ScatterplotClimateCrisisDemo } from '../viz/ScatterplotClimateCrisis/Sc
 import { AxisBasicDemo } from '../viz/AxisBasic/AxisBasicDemo';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
-import { Accordion } from '../component/UI/Accordion';
+import { Accordion } from '../component/UI/AccordionGrey';
 import { ScatterplotTooltipDemo } from '../viz/ScatterplotTooltip/ScatterplotTooltipDemo';
 import Link from 'next/link';
 import GraphGallery from 'component/GraphGallery';

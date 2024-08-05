@@ -1,28 +1,28 @@
-import React from "react";
-import { Layout } from "../component/Layout";
-import TitleAndDescription from "../component/TitleAndDescription";
-import ChartFamilySection from "../component/ChartFamilySection";
-import { CodeBlock } from "../component/UI/CodeBlock";
-import { ChartOrSandbox } from "../component/ChartOrSandbox";
-import Link from "next/link";
-import { ViolinBasicDemo } from "../viz/ViolinBasic/ViolinBasicDemo";
-import DatavizInspirationParallaxLink from "../component/DatavizInspirationParallaxLink";
-import { Caption } from "component/UI/Caption";
-import { ViolinShapeVerticalDemo } from "viz/ViolinShapeVertical/ViolinShapeVerticalDemo";
-import { Accordion } from "component/UI/Accordion";
-import { AxisBasicDemo } from "viz/AxisBasic/AxisBasicDemo";
-import { ResponsiveExplanationSection } from "component/ResponsiveExplanationSection";
-import { BoxplotViolinMirrorDemo } from "viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo";
-import { ViolinBucketSizeEffectDemo } from "viz/ViolinBucketSizeEffect/ViolinBucketSizeEffectDemo";
+import React from 'react';
+import { Layout } from '../component/Layout';
+import TitleAndDescription from '../component/TitleAndDescription';
+import ChartFamilySection from '../component/ChartFamilySection';
+import { CodeBlock } from '../component/UI/CodeBlock';
+import { ChartOrSandbox } from '../component/ChartOrSandbox';
+import Link from 'next/link';
+import { ViolinBasicDemo } from '../viz/ViolinBasic/ViolinBasicDemo';
+import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
+import { Caption } from 'component/UI/Caption';
+import { ViolinShapeVerticalDemo } from 'viz/ViolinShapeVertical/ViolinShapeVerticalDemo';
+import { Accordion } from 'component/UI/AccordionGrey';
+import { AxisBasicDemo } from 'viz/AxisBasic/AxisBasicDemo';
+import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
+import { BoxplotViolinMirrorDemo } from 'viz/BoxplotViolinMirror/BoxplotViolinMirrorDemo';
+import { ViolinBucketSizeEffectDemo } from 'viz/ViolinBucketSizeEffect/ViolinBucketSizeEffectDemo';
 
 const graphDescription = (
   <>
     <p>
-      A <a href="https://www.data-to-viz.com/graph/violin.html">violin chart</a>{" "}
+      A <a href="https://www.data-to-viz.com/graph/violin.html">violin chart</a>{' '}
       displays the distribution of a numeric variable, often for several groups
       of a dataset. This page is a step-by-step guide on how to build your own
-      violin component for the web, using{" "}
-      <a href="https://reactjs.org/">React</a> and{" "}
+      violin component for the web, using{' '}
+      <a href="https://reactjs.org/">React</a> and{' '}
       <a href="https://d3-graph-gallery.com/boxplot">D3.js</a>.
     </p>
     <p>
@@ -74,7 +74,7 @@ export default function Home() {
       */}
       <h2 id="data">The Data 💾</h2>
       <p>
-        The dataset used to build a violin chart is usually an{" "}
+        The dataset used to build a violin chart is usually an{' '}
         <b>array of object</b>. For each object, a <code>name</code> property
         provides the group name, and a <code>value</code> property provides the
         numeric value. It looks like this:
@@ -82,8 +82,8 @@ export default function Home() {
       <CodeBlock code={snippet1} />
       <p>
         <u>Note</u>: violin plots are useful for big datasets. If you have less
-        than ~100 data points, you probably better have to build a{" "}
-        <Link href="/boxplot">boxplot</Link> and add{" "}
+        than ~100 data points, you probably better have to build a{' '}
+        <Link href="/boxplot">boxplot</Link> and add{' '}
         <Link href="/example/boxplot-jitter">individual points</Link> on top.
       </p>
       {/*
@@ -93,9 +93,9 @@ export default function Home() {
       */}
       <h2 id="binning">Computing the distribution buckets</h2>
       <p>
-        Each violin shape is actually almost the same thing as a{" "}
-        <Link href="/histogram">histogram</Link>. To build it we first have to{" "}
-        <b>bin</b> the numeric values of a group, which means creating{" "}
+        Each violin shape is actually almost the same thing as a{' '}
+        <Link href="/histogram">histogram</Link>. To build it we first have to{' '}
+        <b>bin</b> the numeric values of a group, which means creating{' '}
         <b>buckets</b>, <b>assigning</b> values to them and <b>counting</b> the
         number of elements per bin:
       </p>
@@ -112,7 +112,7 @@ export default function Home() {
         </Caption>
       </div>
       <p>
-        I summarized the process to get those bins in the{" "}
+        I summarized the process to get those bins in the{' '}
         <Link href="/histogram/#binning">histogram binning section</Link>. I
         strongly advise to take a look before reading the rest of this blog
         post.
@@ -126,7 +126,7 @@ export default function Home() {
       <p>
         Each array item is composed of all the values assigned to this bin. Its
         <code>length</code> is the bucket size, i.e. the future violin width.
-        Each bin has two additional attributes: <code>x0</code> and{" "}
+        Each bin has two additional attributes: <code>x0</code> and{' '}
         <code>x1</code> being the lower (inclusive) and upper (exclusive) bounds
         of the bin.
       </p>
@@ -138,12 +138,12 @@ export default function Home() {
       <h2 id="violin component">A reusable violin component 📦</h2>
       <p>
         The process to build a violin shape with d3.js is described in depth in
-        the{" "}
+        the{' '}
         <a href="https://www.d3-graph-gallery.com/violin">d3 graph gallery</a>.
         Here is a summary and a reusable component:
       </p>
       <h3>
-        &rarr; build the svg path with <code>d3.area()</code> and{" "}
+        &rarr; build the svg path with <code>d3.area()</code> and{' '}
         <code>curve()</code>
       </h3>
       <p>
@@ -159,7 +159,7 @@ export default function Home() {
       </p>
       <h3>&rarr; render the path with react</h3>
       <p>
-        The code above provides a <code>string</code> that is a SVG{" "}
+        The code above provides a <code>string</code> that is a SVG{' '}
         <code>path</code>. We can thus render it with react:
       </p>
       <CodeBlock code={snippetDraw} />
@@ -169,7 +169,7 @@ export default function Home() {
         we will call for all groups of a dataset:
       </p>
       <ChartOrSandbox
-        vizName={"ViolinShapeVertical"}
+        vizName={'ViolinShapeVertical'}
         VizComponent={ViolinShapeVerticalDemo}
         maxWidth={200}
         height={400}
@@ -189,17 +189,17 @@ export default function Home() {
       <p>
         The goal here is to create a <code>Violin</code> component that will be
         stored in a <code>Violin.tsx</code> file. This component requires 3
-        props to render: a <code>width</code>, a <code>height</code>, and some{" "}
+        props to render: a <code>width</code>, a <code>height</code>, and some{' '}
         <code>data</code>.
       </p>
       <p>
-        The shape of the <code>data</code> is described above. The{" "}
-        <code>width</code> and <code>height</code> will be used to render an{" "}
+        The shape of the <code>data</code> is described above. The{' '}
+        <code>width</code> and <code>height</code> will be used to render an{' '}
         <code>svg</code> element in the DOM, in which we will insert the
         histogram.
       </p>
       <p>
-        To put it in a nutshell, that's the skeleton of our <code>Violin</code>{" "}
+        To put it in a nutshell, that's the skeleton of our <code>Violin</code>{' '}
         component:
       </p>
       <CodeBlock code={snippetSkeleton} />
@@ -216,7 +216,7 @@ export default function Home() {
         is done using a fundamental dataviz concept called <b>scale</b>.
       </p>
       <p>
-        D3.js comes with a handful set of{" "}
+        D3.js comes with a handful set of{' '}
         <a href="https://github.com/d3/d3-scale">predefined scales</a>.
       </p>
       <ul>
@@ -232,7 +232,7 @@ export default function Home() {
         <CodeBlock code={snippetXScale} />
       </ul>
       <p>
-        To dig more into d3 scales, visit this{" "}
+        To dig more into d3 scales, visit this{' '}
         <a href="https://d3-graph-gallery.com/graph/custom_axis.html">
           dedicated page
         </a>
@@ -240,19 +240,19 @@ export default function Home() {
       </p>
       <h3>&rarr; Axes</h3>
       <p>
-        Axes are rather complicated elements. They are composed of the main{" "}
+        Axes are rather complicated elements. They are composed of the main{' '}
         <b>segment</b>, several <b>ticks</b> that each have a <b>label</b>, and
         are often decorated with a <b>title</b>.
       </p>
       <p>
         Here I suggest creating the axes from scratch and storing them in 2
-        react components called <code>AxisBottom</code> and{" "}
+        react components called <code>AxisBottom</code> and{' '}
         <code>AxisLeft</code>. Those components expect a d3 scale as input and
         do all the svg drawing for us.
       </p>
       <ChartOrSandbox
         VizComponent={AxisBasicDemo}
-        vizName={"AxisBasic"}
+        vizName={'AxisBasic'}
         maxWidth={500}
         height={300}
         caption={
@@ -268,7 +268,7 @@ export default function Home() {
       </Accordion>
       <p>
         See the code of the graph below for the X axis implementation. I'll post
-        an article dedicated to scales and axes in the{" "}
+        an article dedicated to scales and axes in the{' '}
         <Link href="/subscribe">near future</Link>.
       </p>
       {/*
@@ -279,7 +279,7 @@ export default function Home() {
       <h2 id="first violin plot">First violin plot</h2>
       <p>
         Rendering is made thanks to the react <code>jsx</code> syntax. Each
-        violin path is passed to a SVG <code>path</code> element in its{" "}
+        violin path is passed to a SVG <code>path</code> element in its{' '}
         <code>d</code> attribute.
       </p>
       <p>
@@ -287,7 +287,7 @@ export default function Home() {
         react. This will be discussed more in depth in a blogpost.
       </p>
       <ChartOrSandbox
-        vizName={"ViolinBasic"}
+        vizName={'ViolinBasic'}
         VizComponent={ViolinBasicDemo}
         maxWidth={600}
         height={400}
@@ -317,22 +317,22 @@ export default function Home() {
         the other and understand the tight connection.
       </p>
       <p>
-        As a result the violin plot suffers the same{" "}
+        As a result the violin plot suffers the same{' '}
         <a href="https://www.data-to-viz.com/graph/histogram.html">flaw</a> as
-        the histogram: its shape highly depends on the <b>number of buckets</b>{" "}
+        the histogram: its shape highly depends on the <b>number of buckets</b>{' '}
         used for the computation. Use the slider to see the impact of the target
         bucket number on the violin shape.
       </p>
       <ChartOrSandbox
-        vizName={"ViolinBucketSizeEffect"}
+        vizName={'ViolinBucketSizeEffect'}
         VizComponent={ViolinBucketSizeEffectDemo}
         maxWidth={600}
         height={600}
         caption="Interactive violin plot: try to toggle smoothing and change the number of buckets in use."
       />
       <p>
-        <u>Note</u>: the requested number of buckets is a <b>target</b>. The{" "}
-        <code>bin()</code> function of d3 will create smart buckets{" "}
+        <u>Note</u>: the requested number of buckets is a <b>target</b>. The{' '}
+        <code>bin()</code> function of d3 will create smart buckets{' '}
         <b>around</b> this value.
       </p>
       {/*
@@ -343,7 +343,7 @@ export default function Home() {
       <h2 id="variation">Comparison with a boxplot</h2>
       <p>
         The <b>boxplot</b> is an alternative to represent the exact same kind of
-        dataset. You can visit the <Link href="/boxplot">boxplot section</Link>{" "}
+        dataset. You can visit the <Link href="/boxplot">boxplot section</Link>{' '}
         of the gallery or play with the interactive example below to understand
         how those 2 options behave on the same dataset.
       </p>
@@ -353,7 +353,7 @@ export default function Home() {
         the sentence below the chart to toggle smoothing on the violin.
       </p>
       <ChartOrSandbox
-        vizName={"BoxplotViolinMirror"}
+        vizName={'BoxplotViolinMirror'}
         VizComponent={BoxplotViolinMirrorDemo}
         maxWidth={600}
         height={600}
@@ -374,9 +374,9 @@ export default function Home() {
 
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
         }}
       >
         <img
@@ -389,9 +389,10 @@ export default function Home() {
           plot. Blog post coming soon!
         </Caption>
       </div>
-      <p className={"py-7"}>
-        If you're interested in this topic, feel free to <Link href='subscribe'>subscribe</Link> to the newsletter to be
-        informed when this post is available!
+      <p className={'py-7'}>
+        If you're interested in this topic, feel free to{' '}
+        <Link href="subscribe">subscribe</Link> to the newsletter to be informed
+        when this post is available!
       </p>
 
       {/* <ChartOrSandbox

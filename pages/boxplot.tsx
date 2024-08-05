@@ -9,7 +9,7 @@ import { BoxDemoVerticalDemo } from '../viz/BoxDemoVertical/BoxDemoVerticalDemo'
 import { BoxplotBasicDemo } from '../viz/BoxplotBasic/BoxplotBasicDemo';
 import DatavizInspirationParallaxLink from 'component/DatavizInspirationParallaxLink';
 import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { AxisBasicDemo } from 'viz/AxisBasic/AxisBasicDemo';
 import GraphGallery from 'component/GraphGallery';
 

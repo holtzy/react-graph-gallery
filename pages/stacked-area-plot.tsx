@@ -7,7 +7,7 @@ import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import Link from 'next/link';
 import { StackedAreaChartBasicDemo } from '../viz/StackedAreaChartBasic/StackedAreaChartBasicDemo';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { ToDoSection } from 'component/UI/ToDoSection';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';

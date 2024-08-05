@@ -9,7 +9,7 @@ import { LineChartBasicDemo } from '../viz/LineChartBasic/LineChartBasicDemo';
 import DatavizInspirationParallaxLink from '../component/DatavizInspirationParallaxLink';
 import { ResponsiveExplanationSection } from 'component/ResponsiveExplanationSection';
 import { LineChartDatasetTransitionDemo } from 'viz/LineChartDatasetTransition/LineChartDatasetTransitionDemo';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { ImageGrid } from 'component/UI/ImageGrid';
 import { GraphLinkImage } from 'component/UI/GraphLinkImage';
 import { LinkAsButton } from 'component/LinkAsButton';

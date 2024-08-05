@@ -11,7 +11,7 @@ import { ImageGrid } from 'component/UI/ImageGrid';
 import { GraphLinkImage } from 'component/UI/GraphLinkImage';
 import { ScatterplotClimateCrisisDemo } from 'viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
 import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { BubblePlotDatasetTransitionDemo } from 'viz/BubblePlotDatasetTransition/BubblePlotDatasetTransitionDemo';
 import GraphGallery from 'component/GraphGallery';
 

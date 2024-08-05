@@ -11,7 +11,7 @@ import { ResponsiveExplanationSection } from '../component/ResponsiveExplanation
 import { Caption } from '../component/UI/Caption';
 import { HistogramDatasetTransitionDemo } from '../viz/HistogramDatasetTransition/HistogramDatasetTransitionDemo';
 import Link from 'next/link';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import GraphGallery from 'component/GraphGallery';
 
 const graphDescription = (

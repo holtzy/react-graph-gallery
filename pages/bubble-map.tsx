@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { BackgroundMapBasicDemo } from 'viz/BackgroundMapBasic/BackgroundMapBasicDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { BubbleMapBasicDemo } from 'viz/BubbleMapBasic/BubbleMapBasicDemo';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import { BubbleLegendDemo } from 'viz/BubbleLegend/BubbleLegendDemo';
 import { BubbleMapDatasetTransitionDemo } from 'viz/BubbleMapDatasetTransition/BubbleMapDatasetTransitionDemo';
 import GraphGallery from 'component/GraphGallery';
@@ -442,64 +442,6 @@ export const BubbleLegend = ({ scale, tickNumber }: BubbleLegendProps) => {
   );
 };
 `.trim();
-
-const snippetInstall = `
-npm install d3-geo
-`.trim();
-
-const snippetSkeleton = `
-import * as d3 from "d3"; // we will need d3.js
-
-type MapProps = {
-  width: number;
-  height: number;
-  data: GeoJsonData;
-};
-
-export const Map = ({ width, height, data }: MapProps) => {
-
-  // read the data
-  // create a geoPath generator with the proper projection
-  // build the paths
-
-  return (
-    <div>
-      <svg width={width} height={height}>
-        // render all the <path>s
-      </svg>
-    </div>
-  );
-};
-`.trim();
-
-const snippetGeoPath = `
-const geoPathGenerator = d3.geoPath().projection(projection);
-`.trim();
-
-const snippetPath = `
-const allSvgPaths = data.features
-  .map((shape) => {
-    return (
-      <path
-        key={shape.id}
-        d={geoPathGenerator(shape)}
-        stroke="black"
-        fill="#cb1dd1"
-      />
-    );
-});
-`.trim();
-
-const snippetInstallTypes = `
-npm install --save @types/geojson
-`.trim();
-
-const snippetDataType = `
-type MapProps = {
-  width: number;
-  height: number;
-  data: FeatureCollection;
-};`.trim();
 
 const snippetScale = `
 const sizeScale = d3

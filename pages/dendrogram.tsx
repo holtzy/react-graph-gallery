@@ -7,7 +7,7 @@ import { ChartOrSandbox } from '../component/ChartOrSandbox';
 import { DendrogramBasicDemo } from 'viz/DendrogramBasic/DendrogramBasicDemo';
 import { DendrogramHorizontalDemo } from 'viz/DendrogramHorizontal/DendrogramHorizontalDemo';
 import { DendrogramRadialDemo } from 'viz/DendrogramRadial/DendrogramRadialDemo';
-import { Accordion } from 'component/UI/Accordion';
+import { Accordion } from 'component/UI/AccordionGrey';
 import Link from 'next/link';
 import { LinkAsButton } from 'component/LinkAsButton';
 
