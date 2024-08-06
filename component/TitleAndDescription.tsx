@@ -11,6 +11,7 @@ import SectionLogo from './SectionLogo';
 import { LessonStatus } from '@/util/lessonList';
 import { LessonBadge } from './LessonBadge';
 import { Badge } from './UI/badge';
+import { TocBreadcrumb } from './TocBreadcrumb';
 
 type TitleAndDescription = {
   title: string | JSX.Element;
@@ -21,7 +22,6 @@ type TitleAndDescription = {
   showD3GalleryLink?: boolean;
   lessonStatus?: LessonStatus;
   readTime?: number;
-  topBadge?: string;
 };
 
 export default function TitleAndDescription({
@@ -33,17 +33,12 @@ export default function TitleAndDescription({
   showD3GalleryLink = true,
   lessonStatus,
   readTime,
-  topBadge,
 }: TitleAndDescription) {
   const chartInfo = chartTypesInfo.find((chart) => chart.id === chartType);
 
   return (
     <div className="w-full pt-1 sm:pt-28 pb-20 ">
-      {topBadge && (
-        <Badge className="mb-4" variant={'outline'}>
-          {topBadge}
-        </Badge>
-      )}
+      <TocBreadcrumb />
       {/* Title */}
       <div className="flex justify-start items-center">
         <h1>{title}</h1>
