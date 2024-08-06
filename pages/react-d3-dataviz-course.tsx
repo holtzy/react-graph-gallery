@@ -86,11 +86,17 @@ const LessonAccordion = ({ lessonList }: LessonAccordionProps) => {
             <AccordionTrigger className="text-sm">
               <div className="flex w-full justify-between mr-1">
                 {lesson.name}
-                {!lesson.isAvailable && (
-                  <Badge variant={'outlineDestructive'} className="opacity-100">
-                    wip
-                  </Badge>
-                )}
+                <Badge
+                  variant={
+                    lesson.status === 'not available'
+                      ? 'outlineDestructive'
+                      : lesson.status === 'wip'
+                      ? 'outlineOrange'
+                      : 'outlineGreen'
+                  }
+                >
+                  wip
+                </Badge>
               </div>
             </AccordionTrigger>
             <AccordionContent>{lesson.description}</AccordionContent>

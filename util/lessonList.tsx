@@ -6,7 +6,7 @@ export type Lesson = {
   description: ReactNode;
   readTime: number;
   link: string;
-  isAvailable: boolean;
+  status: 'not available' | 'wip' | 'free';
   moduleId: ModuleId;
 };
 
@@ -28,7 +28,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'introduction',
   },
   {
@@ -43,7 +43,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'introduction',
   },
   {
@@ -58,7 +58,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'introduction',
   },
   {
@@ -70,7 +70,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'introduction',
   },
 
@@ -91,7 +91,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'svg',
   },
   {
@@ -103,7 +103,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'svg',
   },
   {
@@ -115,7 +115,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'svg',
   },
   {
@@ -127,7 +127,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'svg',
   },
 
@@ -145,7 +145,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'axis',
   },
   {
@@ -160,7 +160,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'axis',
   },
   {
@@ -175,7 +175,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'axis',
   },
   {
@@ -190,7 +190,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'axis',
   },
 
@@ -211,7 +211,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'responsiveness',
   },
   {
@@ -226,7 +226,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'responsiveness',
   },
   {
@@ -241,7 +241,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'responsiveness',
   },
   {
@@ -256,7 +256,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'responsiveness',
   },
   {
@@ -271,7 +271,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'responsiveness',
   },
 
@@ -291,7 +291,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
   {
@@ -306,7 +306,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
   {
@@ -321,7 +321,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
   {
@@ -336,7 +336,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
   {
@@ -348,7 +348,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
   {
@@ -363,7 +363,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'hover effect',
   },
 
@@ -384,7 +384,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'tooltip',
   },
   {
@@ -396,7 +396,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'tooltip',
   },
   {
@@ -410,7 +410,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'tooltip',
   },
   {
@@ -424,7 +424,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'tooltip',
   },
 
@@ -442,7 +442,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'legend',
   },
   {
@@ -454,7 +454,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'legend',
   },
   {
@@ -466,7 +466,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'legend',
   },
 
@@ -484,7 +484,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'reading-data',
   },
   {
@@ -496,7 +496,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'reading-data',
   },
   {
@@ -508,7 +508,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'reading-data',
   },
   {
@@ -520,7 +520,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'reading-data',
   },
 
@@ -541,7 +541,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'animation',
   },
   {
@@ -556,7 +556,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'animation',
   },
   {
@@ -571,7 +571,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'animation',
   },
   {
@@ -586,7 +586,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'animation',
   },
 
@@ -613,7 +613,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'canvas',
   },
   {
@@ -628,7 +628,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'canvas',
   },
   {
@@ -643,7 +643,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'canvas',
   },
   {
@@ -658,7 +658,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '',
-    isAvailable: false,
+    status: 'not available',
     moduleId: 'canvas',
   },
 ];
