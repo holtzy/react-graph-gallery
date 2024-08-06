@@ -35,20 +35,10 @@ export default function Home() {
         topBadge={'Lesson ' + currentLessonId}
         description={
           <>
+            <p>The simplest strategy.</p>
             <p>
-              In the previous modules, you learned how to create a wide variety
-              of static charts. 👏
-            </p>
-            <p>
-              However, <b>interactivity</b> is essential web applications.
-              Adding <b>hover effects</b> significantly enhances the user
-              experience by highlighting specific series on the chart.
-            </p>
-            <p>
-              In this module, we'll explore <b>several strategies</b> for
-              implementing hover effects using both CSS and React. Before diving
-              into the code, let's ensure we have a clear understanding of what
-              hover effects are.
+              Let's explore how to use a CSS pseudo-class to modify <b>only</b>{' '}
+              the graph item that is being hovered over.
             </p>
           </>
         }

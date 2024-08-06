@@ -312,7 +312,7 @@ export const lessonList: Lesson[] = [
     moduleId: 'hover effect',
   },
   {
-    name: 'Strategy 2: CSS selector',
+    name: 'Strategy 2: CSS descendant selector',
     description: (
       <>
         <p>
@@ -350,21 +350,6 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/hover-effect/internal-state',
-    status: 'wip',
-    moduleId: 'hover effect',
-  },
-  {
-    name: 'Link graphs together',
-    description: (
-      <>
-        <p>
-          How to make a connection between graphs: hovering one will highlight
-          something on others.
-        </p>
-      </>
-    ),
-    readTime: 4,
-    link: '/course/hover-effect/link-two-graphs',
     status: 'wip',
     moduleId: 'hover effect',
   },
