@@ -4,10 +4,13 @@ export type ModuleId =
   | 'introduction'
   | 'svg'
   | 'axis'
-  | 'hover effect'
   | 'responsiveness'
+  | 'hover effect'
+  | 'tooltip'
   | 'reading-data'
-  | 'legend';
+  | 'legend'
+  | 'animation'
+  | 'canvas';
 
 export type Module = {
   id: ModuleId;
@@ -22,17 +25,8 @@ export const moduleList: Module[] = [
     description: (
       <>
         <p>
-          <a href="https://react.dev" target="_blank">
-            React
-          </a>{' '}
-          and{' '}
-          <a href="https://d3js.org" target="_blank">
-            D3.js
-          </a>{' '}
-          form the most powerful combo for web graph creation, enabling highly
-          flexible and readable code. While you're likely familiar with React,
-          you might not know that D3 is the <b>essential JavaScript library</b>{' '}
-          for data visualization.
+          While you're likely familiar with React, you might not know that D3 is
+          the <b>essential JavaScript library</b> for data visualization.
         </p>
         <p>
           This module provides a quick overview of the <b>tools needed</b> to
@@ -77,6 +71,92 @@ export const moduleList: Module[] = [
         <p>
           Some people have big monitors when others will read your work on their
           phone. Let's see how to make your graph look good in any situation.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'hover effect',
+    name: 'Hover effect',
+    description: (
+      <>
+        <p>
+          You want something to happen when a graph element is hovered. This
+          module dives into several strategies using CSS and Javascript. It
+          provides a clear mental modal of the main use cases and how to deal
+          with each of them.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'tooltip',
+    name: 'Tooltip',
+    description: (
+      <>
+        <p>
+          Let's check how to add a tooltip. Give a tooltip definition. Give
+          several tooltip component starters.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'reading-data',
+    name: 'Reading data',
+    description: (
+      <>
+        <p>
+          Your data can be a json file or a tabular format. It can be hosted
+          locally or available through an API. How can you read it?
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'legend',
+    name: 'Legend',
+    description: (
+      <>
+        <p>
+          Those little legends are often small, but as complicated to build as
+          the main graph. This module provides a few ready to use legend
+          components.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'animation',
+    name: 'Animation',
+    description: (
+      <>
+        <p>
+          Let's dig into those smooth dataset transition that make the viz
+          magical. It's challenging, but <code>react-spring</code> is of great
+          help here.
+        </p>
+      </>
+    ),
+  },
+
+  {
+    id: 'canvas',
+    name: 'Canvas',
+    description: (
+      <>
+        <p>
+          With thousands of shapes on your graph, using SVG will make your graph
+          slow.
+        </p>
+        <p>
+          Canvas is an alternative way to draw on a screen. Much more
+          performant, but harder to deal with.
         </p>
       </>
     ),

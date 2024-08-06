@@ -16,7 +16,7 @@ const graphDescription = (
   <>
     <p>
       Mastering chart creation with React and D3 involves understanding a{' '}
-      <b>multitude</b> of concepts.
+      <b>multitude</b> of concepts. It took me 5 years to get them.
     </p>
     <p>
       The gallery offers <Link href="/all">hundreds</Link> of examples and

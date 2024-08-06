@@ -280,12 +280,153 @@ export const lessonList: Lesson[] = [
   // Hover effect
   //
   //
+  {
+    name: 'What is it?',
+    description: (
+      <>
+        <p>
+          What's an hover effect? Why is it important? How to make it look good?
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
+  {
+    name: 'Strategy 1: CSS pseudo element',
+    description: (
+      <>
+        <p>
+          First simple but weak strategy using css pseudo element. Good for
+          performance, but weak in term of design.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
+  {
+    name: 'Strategy 2: CSS selector',
+    description: (
+      <>
+        <p>
+          With smart usage of css descending selectors, you can start creating
+          good looking hover effects.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
+  {
+    name: 'Strategy 3: toggle css classes',
+    description: (
+      <>
+        <p>
+          With smart usage of css descending selectors, you can start creating
+          good looking hover effects.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
+  {
+    name: 'Strategy 4: react internal state',
+    description: (
+      <>
+        <p>Perfect to build complicated UIs, but mind the performances!</p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
+  {
+    name: 'Link graphs together',
+    description: (
+      <>
+        <p>
+          How to make a connection between graphs: hovering one will highlight
+          something on others.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'hover effect',
+  },
 
   //
   //
   // Tooltip
   //
   //
+  {
+    name: 'Design consideration',
+    description: (
+      <>
+        <p>
+          Before coding, let's check what a tooltip is, when it can be useful,
+          and how to make it look good.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'tooltip',
+  },
+  {
+    name: 'Tooltip component',
+    description: (
+      <>
+        <p>Let's create a tooltip component</p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'tooltip',
+  },
+  {
+    name: 'Display on hover',
+    description: (
+      <>
+        <p>
+          Now, let's displays the tooltip only on hover, at the right position.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'tooltip',
+  },
+  {
+    name: 'Templates',
+    description: (
+      <>
+        <p>
+          Several tooltip template components ready to be used in your graph.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'tooltip',
+  },
 
   //
   //
@@ -328,12 +469,6 @@ export const lessonList: Lesson[] = [
     isAvailable: false,
     moduleId: 'legend',
   },
-
-  //
-  //
-  // Animation
-  //
-  //
 
   //
   //
@@ -391,6 +526,72 @@ export const lessonList: Lesson[] = [
 
   //
   //
+  // Animation
+  //
+  //
+  {
+    name: "What's a spring animation",
+    description: (
+      <>
+        <p>
+          There are 2 big families of animation. Let's understand why spring
+          animations are more natural.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'animation',
+  },
+  {
+    name: 'Most simple: animating a circle',
+    description: (
+      <>
+        <p>
+          Let's try to make the most simple animation with react-spring. Just a
+          circle that moves from right to left.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'animation',
+  },
+  {
+    name: 'Application on a scatterplot',
+    description: (
+      <>
+        <p>
+          Now, let's create a reusable circle component that we can use to
+          animate a scatterplot transition.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'animation',
+  },
+  {
+    name: 'Enter, Update, Exit',
+    description: (
+      <>
+        <p>
+          Let's see how to deal with shapes that appear, move and leave the
+          graph.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'animation',
+  },
+
+  //
+  //
   // Colors
   //
   //
@@ -400,10 +601,64 @@ export const lessonList: Lesson[] = [
   // Canvas
   //
   //
-
-  //
-  //
-  // Miscellaneous
-  //
-  //
+  {
+    name: 'What is it, and why is it useful?',
+    description: (
+      <>
+        <p>
+          Canvas is the alternative to SVG to increase performance. This lesson
+          explains what is it and why it's faster.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'canvas',
+  },
+  {
+    name: 'Draw basic shapes',
+    description: (
+      <>
+        <p>
+          A quick intro to drawing circles, rectangles, lines, paths and any
+          shape you need.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'canvas',
+  },
+  {
+    name: 'Tooltip',
+    description: (
+      <>
+        <p>
+          You don't draw the tooltip in canvas. Let's see how to mix layers to
+          use the best of both worlds and display a tooltip.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'canvas',
+  },
+  {
+    name: 'Hover effect',
+    description: (
+      <>
+        <p>
+          Let's use a little trick for a nice hover effect: using 2 canvas
+          layers: one for the normal state, one for the hovered state.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '',
+    isAvailable: false,
+    moduleId: 'canvas',
+  },
 ];
