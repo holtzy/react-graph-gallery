@@ -8,6 +8,9 @@ import { LinkAsButton } from './LinkAsButton';
 import { Tooltip } from './UI/Tooltip';
 import SectionLogo from './SectionLogo';
 
+import { LessonStatus } from '@/util/lessonList';
+import { LessonBadge } from './LessonBadge';
+
 type TitleAndDescription = {
   title: string | JSX.Element;
   description: JSX.Element;
@@ -15,6 +18,8 @@ type TitleAndDescription = {
   showSectionLink?: boolean;
   showInspirationLink?: boolean;
   showD3GalleryLink?: boolean;
+  lessonStatus?: LessonStatus;
+  readTime?: number;
 };
 
 export default function TitleAndDescription({
@@ -24,6 +29,8 @@ export default function TitleAndDescription({
   showSectionLink = false, // e.g: link to the scatterplot section
   showInspirationLink = true,
   showD3GalleryLink = true,
+  lessonStatus,
+  readTime,
 }: TitleAndDescription) {
   const chartInfo = chartTypesInfo.find((chart) => chart.id === chartType);
 
@@ -90,6 +97,14 @@ export default function TitleAndDescription({
               {'About this chart'}
             </LinkAsButton>
           </Tooltip>
+        </div>
+      )}
+
+      {/* Badge and reading length */}
+      {lessonStatus && readTime && (
+        <div className="flex flex-row items-center flex-wrap gap-2">
+          <LessonBadge lessonStatus={lessonStatus} />
+          <span className="text-xs">{readTime + ' minutes read'}</span>
         </div>
       )}
     </div>

@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 import { ModuleId } from './moduleList';
 
+export type LessonStatus = 'not available' | 'wip' | 'free' | 'membersOnly';
+
 export type Lesson = {
   name: string;
   description: ReactNode;
   readTime: number;
   link: string;
-  status: 'not available' | 'wip' | 'free';
+  status: LessonStatus;
   moduleId: ModuleId;
 };
 
@@ -270,7 +272,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: 'course/responsiveness/common-pitfalls',
     status: 'not available',
     moduleId: 'responsiveness',
   },

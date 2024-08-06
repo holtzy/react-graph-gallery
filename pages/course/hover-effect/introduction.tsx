@@ -1,46 +1,44 @@
 import React from 'react';
-import { Layout } from '@/component/Layout';
 import TitleAndDescription from '@/component/TitleAndDescription';
-import { ChartOrSandbox } from '@/component/ChartOrSandbox';
-import ChartFamilySection from '@/component/ChartFamilySection';
-import { CodeBlock } from '@/component/UI/CodeBlock';
-import { ScatterplotHoverHighlightTwoLayersDemo } from '@/viz/ScatterplotHoverHighlightTwoLayers/ScatterplotHoverHighlightTwoLayersDemo';
-import { DonutChartHoverDemo } from '@/viz/DonutChartHover/DonutChartHoverDemo';
-import { TreemapHoverEffectDemo } from '@/viz/TreemapHoverEffect/TreemapHoverEffectDemo';
 import Link from 'next/link';
-import { Badge } from '@/component/UI/badge';
-import { ScatterplotHoverHighlightPseudoClassDemo } from '@/viz/ScatterplotHoverHighlightPseudoClass/ScatterplotHoverHighlightPseudoClassDemo';
-import { ScatterplotHoverHighlightDimDemo } from '@/viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo';
-import GraphGallery from '@/component/GraphGallery';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 
-const graphDescription = (
-  <>
-    <p>
-      <b>Interactivity</b> is crucial in data visualization, especially for web
-      applications. Adding <b>hover effects</b> enhances user experience by
-      highlighting specific series on the chart.
-    </p>
-    <p>
-      This post suggests a few strategies to implement hover effects using css
-      and react.
-    </p>
-  </>
-);
-
+const previousURL = 'course/responsiveness/common-pitfalls';
+const currentURL = 'course/hover-effect/introduction';
+const nextURL = 'course/hover-effect/css-pseudo-class';
+const seoDescription = '';
 export default function Home() {
+  const currentLesson = lessonList.find((l) => l.link === currentURL);
+
+  if (!currentLesson) {
+    return null;
+  }
+
   return (
     <LayoutCourse
-      title="Hover interaction on a chart with React"
-      seoDescription="How to add a hover effect on a chart built with d3.js and React"
-      nextTocItem={lessonList.find(
-        (l) => l.link === 'course/hover-effect/css-pseudo-class'
-      )}
+      title={currentLesson.name}
+      seoDescription={seoDescription}
+      nextTocItem={lessonList.find((l) => l.link === nextURL)}
+      previousTocItem={lessonList.find((l) => l.link === previousURL)}
     >
       <TitleAndDescription
-        title="Hover interaction on a chart with React"
-        description={graphDescription}
+        title={currentLesson.name}
+        lessonStatus={currentLesson.status}
+        readTime={currentLesson.readTime}
+        description={
+          <>
+            <p>
+              <b>Interactivity</b> is crucial in data visualization, especially
+              for web applications. Adding <b>hover effects</b> enhances user
+              experience by highlighting specific series on the chart.
+            </p>
+            <p>
+              This post suggests a few strategies to implement hover effects
+              using css and react.
+            </p>
+          </>
+        }
       />
 
       <p>Let's describe what we are going to learn.</p>
