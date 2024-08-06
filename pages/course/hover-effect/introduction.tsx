@@ -10,9 +10,9 @@ import { ScatterplotHoverHighlightPseudoClassDemo } from '@/viz/ScatterplotHover
 import { TreemapHoverEffectDemo } from '@/viz/TreemapHoverEffect/TreemapHoverEffectDemo';
 import { LineChartSyncCursorDemo } from '@/viz/LineChartSyncCursor/LineChartSyncCursorDemo';
 
-const previousURL = 'course/responsiveness/common-pitfalls';
-const currentURL = 'course/hover-effect/introduction';
-const nextURL = 'course/hover-effect/css-pseudo-class';
+const previousURL = '/course/responsiveness/common-pitfalls';
+const currentURL = '/course/hover-effect/introduction';
+const nextURL = '/course/hover-effect/css-pseudo-class';
 const seoDescription = '';
 
 export default function Home() {
