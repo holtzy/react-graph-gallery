@@ -1,8 +1,8 @@
-import { ReactNode, useRef, useState } from "react";
-import { useDimensions } from "../hook/use-dimensions";
-import { Button } from "./UI/Button";
-import { Caption } from "./UI/Caption";
-import { CodeSandbox } from "./CodeSandbox";
+import { ReactNode, useRef, useState } from 'react';
+import { useDimensions } from '../hook/use-dimensions';
+import { Caption } from './UI/Caption';
+import { CodeSandbox } from './CodeSandbox';
+import { Button } from '@/component/UI/button';
 
 type ChartOrSandboxProps = {
   VizComponent: (props: {
@@ -32,7 +32,7 @@ export const ChartOrSandbox = ({
     // Add a full screen width wrapper with grey background around everything.
     // It has to be "relative". Note that it goes out of the article container if necessary!
     <div
-      style={{ marginLeft: "-50vw", left: "50%" }}
+      style={{ marginLeft: '-50vw', left: '50%' }}
       className="my-4 py-4 w-screen relative"
     >
       {showSandbox ? (
@@ -50,7 +50,7 @@ export const ChartOrSandbox = ({
         <div className="flex flex-col items-center justify-center">
           <div className="bg-gray-100 bg-opacity-50 w-screen flex justify-center z-50 pointer-events-none">
             <div
-              style={{ height, width: "100%", maxWidth }}
+              style={{ height, width: '100%', maxWidth }}
               ref={chartRef}
               className="pointer-events-auto"
             >

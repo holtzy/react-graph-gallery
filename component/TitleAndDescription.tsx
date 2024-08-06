@@ -8,9 +8,8 @@ import { LinkAsButton } from './LinkAsButton';
 import { Tooltip } from './UI/Tooltip';
 import SectionLogo from './SectionLogo';
 
-import { LessonStatus } from '@/util/lessonList';
+import { Lesson, LessonStatus } from '@/util/lessonList';
 import { LessonBadge } from './LessonBadge';
-import { Badge } from './UI/badge';
 import { TocBreadcrumb } from './TocBreadcrumb';
 
 type TitleAndDescription = {
@@ -22,6 +21,7 @@ type TitleAndDescription = {
   showD3GalleryLink?: boolean;
   lessonStatus?: LessonStatus;
   readTime?: number;
+  selectedLesson?: Lesson;
 };
 
 export default function TitleAndDescription({
@@ -33,12 +33,17 @@ export default function TitleAndDescription({
   showD3GalleryLink = true,
   lessonStatus,
   readTime,
+  selectedLesson,
 }: TitleAndDescription) {
   const chartInfo = chartTypesInfo.find((chart) => chart.id === chartType);
 
   return (
     <div className="w-full pt-1 sm:pt-28 pb-20 ">
-      <TocBreadcrumb />
+      {selectedLesson && (
+        <div className="mb-4">
+          <TocBreadcrumb selectedLesson={selectedLesson} />
+        </div>
+      )}
       {/* Title */}
       <div className="flex justify-start items-center">
         <h1>{title}</h1>

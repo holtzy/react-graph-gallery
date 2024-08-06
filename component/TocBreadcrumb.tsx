@@ -7,15 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/component/UI/breadcrumb';
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from '@/component/UI/menubar';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,15 +20,38 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './UI/dropdown-menu';
+import { Button, buttonVariants } from '@/component/UI/button';
+import { moduleList } from '@/util/moduleList';
+import { Lesson, lessonList } from '@/util/lessonList';
+import { Circle } from 'lucide-react';
+import { LessonBadge } from './LessonBadge';
 
-type TocBreadcrumbProps = {};
+type TocBreadcrumbProps = {
+  selectedLesson: Lesson;
+};
 
-export const TocBreadcrumb = ({}: TocBreadcrumbProps) => {
+export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
+  const selectedModuleId = selectedLesson.moduleId;
+  const selectedModule = moduleList.find((m) => m.id === selectedModuleId);
+
+  if (!selectedModule) {
+    return null;
+  }
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Course</BreadcrumbLink>
+          <BreadcrumbLink
+            href="/react-d3-dataviz-course"
+            className={
+              buttonVariants({ variant: 'outline', size: 'sm' }) +
+              ' ' +
+              'no-underline text-xs border-gray-200 h-8 text-gray-500'
+            }
+          >
+            Course
+          </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbSeparator />
@@ -44,35 +59,51 @@ export const TocBreadcrumb = ({}: TocBreadcrumbProps) => {
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">Open</Button>
+              <Button
+                variant="outline"
+                size={'sm'}
+                className="text-xs border-gray-200 h-8"
+              >
+                {selectedModule.name}
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                  <span>Invite users</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem>
-                      <span>Email</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <span>Message</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                      <span>More...</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              {moduleList.map((module, i) => {
+                return (
+                  <DropdownMenuSub key={i}>
+                    <DropdownMenuSubTrigger>
+                      <Circle
+                        fill="black"
+                        size={8}
+                        className="mr-2"
+                        opacity={module.id === selectedModuleId ? 1 : 0}
+                      />
+                      <span>{module.name}</span>
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        {lessonList
+                          .filter((lesson) => lesson.moduleId === module.id)
+                          .map((lesson, i) => {
+                            return (
+                              <DropdownMenuItem key={i}>
+                                <Circle
+                                  fill="black"
+                                  size={8}
+                                  className="mr-2"
+                                  opacity={
+                                    lesson.name === selectedLesson.name ? 1 : 0
+                                  }
+                                />
+                                <span>{lesson.name}</span>
+                              </DropdownMenuItem>
+                            );
+                          })}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>
@@ -81,16 +112,37 @@ export const TocBreadcrumb = ({}: TocBreadcrumbProps) => {
 
         <BreadcrumbItem>
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              Lesson 7: css pseudo element
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size={'sm'}
+                className="text-xs border-gray-200 h-8"
+              >
+                {selectedLesson.name}
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              {lessonList
+                .filter((lesson) => lesson.moduleId === selectedModuleId)
+                .map((lesson, i) => {
+                  return (
+                    <DropdownMenuItem
+                      key={i}
+                      className="flex justify-between gap-4"
+                    >
+                      <div className="flex items-center">
+                        <Circle
+                          fill="black"
+                          size={8}
+                          className="mr-2"
+                          opacity={lesson.name === selectedLesson.name ? 1 : 0}
+                        />
+                        {lesson.name}
+                      </div>
+                      <LessonBadge lessonStatus={lesson.status} />
+                    </DropdownMenuItem>
+                  );
+                })}
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>

@@ -17,7 +17,6 @@ const seoDescription = '';
 
 export default function Home() {
   const currentLesson = lessonList.find((l) => l.link === currentURL);
-  const currentLessonId = lessonList.findIndex((l) => l.link === currentURL);
 
   if (!currentLesson) {
     return null;
@@ -34,7 +33,7 @@ export default function Home() {
         title={currentLesson.name}
         lessonStatus={currentLesson.status}
         readTime={currentLesson.readTime}
-        topBadge={'Lesson ' + currentLessonId}
+        selectedLesson={currentLesson}
         description={
           <>
             <p>

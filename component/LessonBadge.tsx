@@ -7,16 +7,31 @@ type LessonBadgeProps = {
 
 export const LessonBadge = ({ lessonStatus }: LessonBadgeProps) => {
   if (lessonStatus === 'free') {
-    return <Badge variant={'outlineGreen'}>Free</Badge>;
+    return (
+      <Badge variant={'outlineGreen'} className="font-extralight opacity-90">
+        Free
+      </Badge>
+    );
   }
   if (lessonStatus === 'wip') {
-    return <Badge variant={'outlineOrange'}>Wip</Badge>;
+    return (
+      <Badge variant={'outlineOrange'} className="font-extralight opacity-90">
+        Wip
+      </Badge>
+    );
   }
   if (lessonStatus === 'membersOnly') {
-    return <Badge>Members Only</Badge>;
+    return <Badge className="font-extralight opacity-90">Members Only</Badge>;
   }
   if (lessonStatus === 'not available') {
-    return <Badge variant={'outlineDestructive'}>Unavail.</Badge>;
+    return (
+      <Badge
+        variant={'outlineDestructive'}
+        className="font-extralight opacity-90"
+      >
+        Unavail.
+      </Badge>
+    );
   }
   return null;
 };
