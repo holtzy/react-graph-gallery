@@ -39,7 +39,11 @@ export default function TitleAndDescription({
 
   return (
     <div className="w-full pt-1 sm:pt-28 pb-20 ">
-      {topBadge && <Badge className="mb-4 opacity-60">{topBadge}</Badge>}
+      {topBadge && (
+        <Badge className="mb-4" variant={'outline'}>
+          {topBadge}
+        </Badge>
+      )}
       {/* Title */}
       <div className="flex justify-start items-center">
         <h1>{title}</h1>

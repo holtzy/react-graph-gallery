@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-tabs": "^1.1.0",
     "@react-spring/types": "^9.3.1",
     "@react-spring/web": "^9.3.1",
     "@types/d3": "^7.1.0",
