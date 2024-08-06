@@ -290,8 +290,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/introduction',
+    status: 'wip',
     moduleId: 'hover effect',
   },
   {
@@ -305,8 +305,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/css-pseudo-class',
+    status: 'wip',
     moduleId: 'hover effect',
   },
   {
@@ -320,8 +320,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/css-descendant-selector',
+    status: 'wip',
     moduleId: 'hover effect',
   },
   {
@@ -335,8 +335,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/toggle-class-in-js',
+    status: 'wip',
     moduleId: 'hover effect',
   },
   {
@@ -347,8 +347,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/internal-state',
+    status: 'wip',
     moduleId: 'hover effect',
   },
   {
@@ -362,8 +362,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: 'course/hover-effect/link-two-graphs',
+    status: 'wip',
     moduleId: 'hover effect',
   },
 
