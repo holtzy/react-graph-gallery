@@ -3,6 +3,7 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import Link from 'next/link';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
+import { Sidenote } from '@/component/SideNote';
 
 const previousURL = 'course/responsiveness/common-pitfalls';
 const currentURL = 'course/hover-effect/introduction';
@@ -56,11 +57,17 @@ export default function Home() {
       <p>
         Do you need to be carefull about performances? Nit: you probably should.
       </p>
-      <blockquote>
-        {' '}
-        Note: this article does not talk about tooltips that has its{' '}
-        <Link href="/articles">dedicated section</Link>.
-      </blockquote>
+
+      <div className="relative">
+        <Sidenote
+          text={
+            <p>
+              Technically speaking, tooltip are also a hover effect. But we will
+              talk about them in a dedicated section.
+            </p>
+          }
+        />
+      </div>
     </LayoutCourse>
   );
 }
