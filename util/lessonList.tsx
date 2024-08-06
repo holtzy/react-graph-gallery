@@ -29,8 +29,23 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/introduction/introduction-to-react',
+    status: 'wip',
+    moduleId: 'introduction',
+  },
+  {
+    name: "Chart libraries: don't",
+    description: (
+      <>
+        <p>
+          Why it will make you save time at the beginning, but is a bad idea on
+          the long run
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/introduction/js-dataviz-libraries',
+    status: 'wip',
     moduleId: 'introduction',
   },
   {
@@ -44,25 +59,11 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/introduction/introduction-to-d3',
+    status: 'wip',
     moduleId: 'introduction',
   },
-  {
-    name: 'Do not use a viz library!',
-    description: (
-      <>
-        <p>
-          Why it will make you save time at the beginning, but is a bad idea on
-          the long run
-        </p>
-      </>
-    ),
-    readTime: 4,
-    link: '',
-    status: 'not available',
-    moduleId: 'introduction',
-  },
+
   {
     name: 'Initial setup',
     description: (
@@ -71,8 +72,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/introduction/initial-setup',
+    status: 'wip',
     moduleId: 'introduction',
   },
 
@@ -92,7 +93,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/introduction/what-is-svg',
     status: 'not available',
     moduleId: 'svg',
   },

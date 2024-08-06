@@ -12,6 +12,7 @@ import { Lesson, lessonList } from '@/util/lessonList';
 import { Badge } from '@/component/UI/badge';
 import { moduleList } from '@/util/moduleList';
 import { LessonBadge } from '@/component/LessonBadge';
+import { buttonVariants } from '@/component/UI/button';
 
 const graphDescription = (
   <>
@@ -39,7 +40,7 @@ export default function Articles() {
     return (
       <div
         key={module.id}
-        className="border border-gray-200 p-8 rounded-md mt-20 bg-slate-50"
+        className="border border-gray-200 p-8 rounded-md mt-20 bg-slate-50 hover:border-black"
       >
         <div>
           <Badge variant={'outline'}>{'Module ' + i}</Badge>
@@ -84,13 +85,27 @@ const LessonAccordion = ({ lessonList }: LessonAccordionProps) => {
       {lessonList.map((lesson, i) => {
         return (
           <AccordionItem value={'item-' + i} key={i}>
-            <AccordionTrigger className="text-sm">
-              <div className="flex w-full justify-between mr-1">
-                {lesson.name}
+            <AccordionTrigger className="text-sm no-underline hover:no-underline">
+              <div className="flex w-full justify-between items-center mr-1 ">
+                <span className="hover:underline text-left">{lesson.name}</span>
                 <LessonBadge lessonStatus={lesson.status} />
               </div>
             </AccordionTrigger>
-            <AccordionContent>{lesson.description}</AccordionContent>
+            <AccordionContent>
+              {lesson.description}
+              {
+                <Link
+                  href={lesson.link}
+                  className={
+                    buttonVariants({ variant: 'default', size: 'sm' }) +
+                    ' ' +
+                    'no-underline text-black'
+                  }
+                >
+                  Read
+                </Link>
+              }
+            </AccordionContent>
           </AccordionItem>
         );
       })}
