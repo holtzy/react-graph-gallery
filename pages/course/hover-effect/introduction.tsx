@@ -1,6 +1,5 @@
 import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
-import Link from 'next/link';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { Sidenote } from '@/component/SideNote';
@@ -9,8 +8,11 @@ const previousURL = 'course/responsiveness/common-pitfalls';
 const currentURL = 'course/hover-effect/introduction';
 const nextURL = 'course/hover-effect/css-pseudo-class';
 const seoDescription = '';
+
 export default function Home() {
   const currentLesson = lessonList.find((l) => l.link === currentURL);
+  const currentLessonId = lessonList.findIndex((l) => l.link === currentURL);
+  const currentModule = currentLesson?.moduleId;
 
   if (!currentLesson) {
     return null;
@@ -27,6 +29,7 @@ export default function Home() {
         title={currentLesson.name}
         lessonStatus={currentLesson.status}
         readTime={currentLesson.readTime}
+        topBadge={'Lesson ' + currentLessonId}
         description={
           <>
             <p>
