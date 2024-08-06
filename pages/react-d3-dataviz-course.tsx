@@ -11,6 +11,7 @@ import {
 import { Lesson, lessonList } from '@/util/lessonList';
 import { Badge } from '@/component/UI/badge';
 import { moduleList } from '@/util/moduleList';
+import { LessonBadge } from '@/component/LessonBadge';
 
 const graphDescription = (
   <>
@@ -86,17 +87,7 @@ const LessonAccordion = ({ lessonList }: LessonAccordionProps) => {
             <AccordionTrigger className="text-sm">
               <div className="flex w-full justify-between mr-1">
                 {lesson.name}
-                <Badge
-                  variant={
-                    lesson.status === 'not available'
-                      ? 'outlineDestructive'
-                      : lesson.status === 'wip'
-                      ? 'outlineOrange'
-                      : 'outlineGreen'
-                  }
-                >
-                  wip
-                </Badge>
+                <LessonBadge lessonStatus={lesson.status} />
               </div>
             </AccordionTrigger>
             <AccordionContent>{lesson.description}</AccordionContent>

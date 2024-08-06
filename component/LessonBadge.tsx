@@ -16,7 +16,7 @@ export const LessonBadge = ({ lessonStatus }: LessonBadgeProps) => {
     return <Badge>Members Only</Badge>;
   }
   if (lessonStatus === 'not available') {
-    return <Badge variant={'outlineDestructive'}>Not Available</Badge>;
+    return <Badge variant={'outlineDestructive'}>Unavail.</Badge>;
   }
   return null;
 };
