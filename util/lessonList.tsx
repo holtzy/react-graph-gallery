@@ -192,7 +192,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/axis/draw-with-d3',
     status: 'not available',
     moduleId: 'axis',
   },
@@ -203,7 +203,7 @@ export const lessonList: Lesson[] = [
   //
   //
   {
-    name: 'Understanding Responsiveness',
+    name: 'Introduction to responsiveness',
     description: (
       <>
         <p>
@@ -213,7 +213,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/responsiveness/introduction',
     status: 'not available',
     moduleId: 'responsiveness',
   },
@@ -228,7 +228,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/responsiveness/use-dimension-hook',
     status: 'not available',
     moduleId: 'responsiveness',
   },
@@ -243,7 +243,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/responsiveness/using-the-hook',
     status: 'not available',
     moduleId: 'responsiveness',
   },
@@ -258,7 +258,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/responsiveness/code-organization',
     status: 'not available',
     moduleId: 'responsiveness',
   },
@@ -371,7 +371,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/responsiveness/introduction',
     status: 'not available',
     moduleId: 'tooltip',
   },
