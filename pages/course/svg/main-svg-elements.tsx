@@ -4,6 +4,9 @@ import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { CodeSandbox } from '@/component/CodeSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import Link from 'next/link';
+import { Badge } from '@/component/UI/badge';
 
 const previousURL = '/course/svg/introduction';
 const currentURL = '/course/svg/main-svg-elements';
@@ -114,6 +117,75 @@ export default function Home() {
         Here is an interactive example so that you can experiment with text and
         understand how it works.
       </p>
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
+        <CodeSandbox vizName="SvgText" />
+      </div>
+
+      <h2>Circle</h2>
+      <p>
+        SVG circles are created using the <code>&lt;circle&gt;</code> element,
+        which requires the center coordinates and radius as attributes. The{' '}
+        <code>cx</code> and <code>cy</code> attributes specify the center point,
+        while the <code>r</code> attribute determines the radius of the circle.
+      </p>
+      <p>
+        For example, this code will draw a red circle with a center at (50,50)
+        and a radius of 40.
+      </p>
+      <CodeBlock
+        code={`
+<circle cx="50" cy="50" r="40" fill="red" />
+`.trim()}
+      />
+      <p>
+        Here is an interactive example so that you can experiment with circles
+        and understand how they work.
+      </p>
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
+        <CodeSandbox vizName="SvgCircle" />
+      </div>
+
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        exercises={[
+          {
+            title: <span>Draw 2 circles</span>,
+            description: <p>Do this and this mate</p>,
+            practiceSandbox: 'SvgCircle',
+            solutionSandbox: 'SvgRectangle',
+          },
+          {
+            title: (
+              <span>
+                Use a loop with <code>map</code> to draw several circles
+              </span>
+            ),
+            whyItMatters: (
+              <>
+                <p>
+                  In real life you won't have 1, 2 or 3 circles to draw. You
+                  will have heaps of them and that will make a{' '}
+                  <Link href="/scatter-plot">scatterplot</Link>.
+                </p>
+                <p>
+                  But you do not want to use hundreds of <code>circle</code>{' '}
+                  elements, you want to create a loop that draw 1 circle at each
+                  iteration.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>Create a loop that goes from 1 to 10</li>
+                <li>At each iteration, draw a circle in the SVG area</li>
+                <li>Change the circle position at each iteration</li>
+              </ul>
+            ),
+            practiceSandbox: 'SvgCircle',
+            solutionSandbox: 'SvgRectangle',
+          },
+        ]}
+      />
     </LayoutCourse>
   );
 }
