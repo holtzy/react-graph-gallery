@@ -50,6 +50,14 @@ export default function Home() {
       </p>
       <p>Talk about css specificity</p>
       <p>Talk about text specificity in SVG vs HTML</p>
+      <p>
+        SVG dimensions: what happens with "100%". Link to responsiveness module.
+      </p>
+      <p>Talk about filter and blur effects, gradients</p>
+
+      <p>SVG layers are drawn one on top of each other -- order matters.</p>
+
+      <p>Talk about blury SVG elements: crispEdges</p>
     </LayoutCourse>
   );
 }

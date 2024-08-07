@@ -83,7 +83,7 @@ export const lessonList: Lesson[] = [
   //
   //
   {
-    name: 'What is SVG',
+    name: 'Introduction to svg',
     description: (
       <>
         <p>
@@ -93,7 +93,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '/course/svg/what-is-svg',
+    link: '/course/svg/introduction',
     status: 'not available',
     moduleId: 'svg',
   },
