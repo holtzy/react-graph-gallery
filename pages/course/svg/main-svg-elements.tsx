@@ -3,9 +3,9 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 
-const previousURL = '/course/introduction/initial-setup';
-const currentURL = '/course/introduction/what-is-svg';
-const nextURL = '/course/introduction/what-is-svg';
+const previousURL = '/course/svg/introduction';
+const currentURL = '/course/svg/main-svg-elements';
+const nextURL = undefined;
 const seoDescription = '';
 
 export default function Home() {
@@ -30,13 +30,18 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's create a confortable working environment: let's use Next.js.
+              In the previous lesson we learnt what SVG is and how to draw a
+              circle with it.
+            </p>
+            <p>
+              We'll need other shapes to make graphs: rectangle, text, segment.
+              Let's see how to make them too.
             </p>
           </>
         }
       />
 
-      <h2>Why Next.js?</h2>
+      <h2>Rectangle</h2>
       <p>Explain why react is great?</p>
       <p>Talk about the setup I recommend: next.js + Typescript</p>
       <p>Talk about style management in next.</p>

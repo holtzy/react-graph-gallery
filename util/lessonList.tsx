@@ -94,21 +94,22 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/svg/introduction',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'svg',
   },
   {
-    name: 'Your first circle',
+    name: 'Main SVG elements',
     description: (
       <>
         <p>
-          Let's make the first drawing of this course! Just a little circle.
+          Let's learn how to draw the basic SVG shapes: circle, rectangles,
+          segment and text.
         </p>
       </>
     ),
     readTime: 4,
-    link: '/course/svg/first-circle',
-    status: 'not available',
+    link: '/course/svg/main-svg-elements',
+    status: 'wip',
     moduleId: 'svg',
   },
   {
