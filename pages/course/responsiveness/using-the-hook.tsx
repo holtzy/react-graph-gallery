@@ -32,12 +32,17 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's create a confortable working environment: let's use Next.js.
+              We have a hook that listens for changes in a div's dimensions and
+              returns those dimensions.
+            </p>
+            <p>
+              Now, it's time to use this hook to inject the dimensions into our
+              graph!
             </p>
           </>
         }
       />
-      <h2 id="use the hook">💪 Use the hook</h2>
+      <h2>Create a ref</h2>
       <p>
         Start by creating a <code>ref</code> using the React{' '}
         <code>useRef()</code> function.
@@ -49,15 +54,17 @@ export default function Home() {
       <CodeBlock code={snippet2} />
       <br />
       <p>
-        Then, pass this newly created <code>chartRef</code> to the hook:
-      </p>
-      <CodeBlock code={snippet3} />
-      <br />
-      <p>
         Finally, pass the <code>chartRef</code> to the container you want to
         monitor.
       </p>
       <CodeBlock code={snippet4} />
+
+      <h2>Use the hook</h2>
+      <p>
+        Then, pass this newly created <code>chartRef</code> to the hook:
+      </p>
+      <CodeBlock code={snippet3} />
+      <br />
       <p>
         You now have an object called <code>chartSize</code> with two
         properties: <code>height</code> and <code>width</code>. These properties

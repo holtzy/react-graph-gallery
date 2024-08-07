@@ -214,7 +214,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/introduction',
-    status: 'not available',
+    status: 'free',
     moduleId: 'responsiveness',
   },
   {
@@ -229,7 +229,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/use-dimension-hook',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'responsiveness',
   },
   {
@@ -244,7 +244,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/using-the-hook',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'responsiveness',
   },
   {
@@ -259,7 +259,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/code-organization',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'responsiveness',
   },
   {
@@ -274,7 +274,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/common-pitfalls',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'responsiveness',
   },
 

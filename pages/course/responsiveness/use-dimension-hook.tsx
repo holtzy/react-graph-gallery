@@ -31,20 +31,18 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's create a confortable working environment: let's use Next.js.
+              The visualization component is going to be <b>wrapped</b> in a
+              responsive <code>div</code>. We need a way to retrieve this
+              container's dimensions.
+            </p>
+            <p>
+              To achieve this, let's create a hook called{' '}
+              <code>useDimensions</code>.
             </p>
           </>
         }
       />
-      <h2 id="dimension hook">🎣 Hook to get the container dimensions</h2>
-      <p>
-        The visualization component is going to be <b>wrapped</b> in a
-        responsive <code>div</code>. We need a way to retrieve this container's
-        dimensions.
-      </p>
-      <p>
-        To achieve this, let's create a hook called <code>useDimensions</code>.
-      </p>
+      <h2>What is a hook</h2>
       <p>
         A hook is a special function that lets you use state and other React
         features in functional components, as explained{' '}
@@ -53,6 +51,9 @@ export default function Home() {
         </a>
         .
       </p>
+      <p>Explain more why a hook is what we need.</p>
+
+      <h2 id="dimension hook">🎣 Hook to get the container dimensions</h2>
       <p>That's how the hook looks like:</p>
       <CodeBlock
         code={`
@@ -99,6 +100,8 @@ export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
         <code>window</code> to ensure the dimensions are updated when the window
         size changes.
       </p>
+      <p>Why do I have the useLayoutEffect in there?</p>
+      <p>Explain more in depth how it works.</p>
     </LayoutCourse>
   );
 }
