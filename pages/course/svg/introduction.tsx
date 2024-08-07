@@ -6,9 +6,9 @@ import { CodeSandbox } from '@/component/CodeSandbox';
 import Link from 'next/link';
 import { Badge } from '@/component/UI/badge';
 
-const previousURL = '/course/svg/initial-setup';
+const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
-const nextURL = '/course/svg/what-is-svg';
+const nextURL = '/course/svg/main-svg-elements';
 const seoDescription = '';
 
 export default function Home() {

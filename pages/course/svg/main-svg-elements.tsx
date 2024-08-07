@@ -2,6 +2,7 @@ import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
+import { CodeSandbox } from '@/component/CodeSandbox';
 
 const previousURL = '/course/svg/introduction';
 const currentURL = '/course/svg/main-svg-elements';
@@ -42,11 +43,11 @@ export default function Home() {
       />
 
       <h2>Rectangle</h2>
-      <p>Explain why react is great?</p>
-      <p>Talk about the setup I recommend: next.js + Typescript</p>
-      <p>Talk about style management in next.</p>
-      <p>Say I like shadCn UI and tailwind, but won't be used in the course.</p>
-      <p>Talk about my boiler plate.</p>
+      <p>Explainr ectangle</p>
+
+      <div className="full-bleed my-4">
+        <CodeSandbox vizName="SvgRectangle" />
+      </div>
     </LayoutCourse>
   );
 }
