@@ -88,13 +88,17 @@ export default function Home() {
         </li>
       </ul>
 
-      <div className="full-bleed my-4">
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
         <CodeSandbox vizName="SvgCircle" />
       </div>
       <p>Awesome! 🔆</p>
       <p>
         With just a few more circles like this, we'll have a complete{' '}
         <Link href="/scatter-plot">scatterplot</Link>!
+      </p>
+      <p>
+        <u>Note</u>: The coordinate system of SVG starts at the top-left corner,
+        where the origin point (0,0) is located.
       </p>
 
       <h2>You can style SVG</h2>
