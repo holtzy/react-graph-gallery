@@ -93,7 +93,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '/course/introduction/what-is-svg',
+    link: '/course/svg/what-is-svg',
     status: 'not available',
     moduleId: 'svg',
   },
@@ -101,23 +101,28 @@ export const lessonList: Lesson[] = [
     name: 'Your first circle',
     description: (
       <>
-        <p>Be ready to build graph in 10 seconds.</p>
+        <p>
+          Let's make the first drawing of this course! Just a little circle.
+        </p>
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/svg/first-circle',
     status: 'not available',
     moduleId: 'svg',
   },
   {
-    name: 'Your first rectangle',
+    name: 'Other shapes',
     description: (
       <>
-        <p>Be ready to build graph in 10 seconds.</p>
+        <p>
+          Rectangle, lines, segments, ellipses.. You can draw literally anything
+          in SVG.
+        </p>
       </>
     ),
     readTime: 4,
-    link: '',
+    link: 'other-shapes',
     status: 'not available',
     moduleId: 'svg',
   },
@@ -125,7 +130,7 @@ export const lessonList: Lesson[] = [
     name: 'Your first path',
     description: (
       <>
-        <p>Be ready to build graph in 10 seconds.</p>
+        <p>path is the most complicated yet most useful svg element.</p>
       </>
     ),
     readTime: 4,
