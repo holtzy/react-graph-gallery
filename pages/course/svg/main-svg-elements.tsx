@@ -6,7 +6,6 @@ import { CodeSandbox } from '@/component/CodeSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
-import { Badge } from '@/component/UI/badge';
 
 const previousURL = '/course/svg/introduction';
 const currentURL = '/course/svg/main-svg-elements';
@@ -35,12 +34,13 @@ export default function Home() {
         description={
           <>
             <p>
-              In the previous lesson we learnt what SVG is and how to draw a
+              In the previous lesson, we learned about SVG and how to draw a
               circle with it.
             </p>
             <p>
-              We'll need other shapes to make graphs: rectangle, text, segment.
-              Let's see how to make them too.
+              To create comprehensive graphs, we'll also need{' '}
+              <b>other shapes</b> such as rectangles, text, and lines. Let's
+              explore how to create these as well.
             </p>
           </>
         }
@@ -123,10 +123,14 @@ export default function Home() {
 
       <h2>Circle</h2>
       <p>
-        SVG circles are created using the <code>&lt;circle&gt;</code> element,
-        which requires the center coordinates and radius as attributes. The{' '}
-        <code>cx</code> and <code>cy</code> attributes specify the center point,
-        while the <code>r</code> attribute determines the radius of the circle.
+        We talked about them already, but remember that SVG circles are created
+        using the <code>&lt;circle&gt;</code> element, which requires the{' '}
+        <b>center coordinates</b> and <b>radius</b> as attributes.
+      </p>
+      <p>
+        The <code>cx</code> and <code>cy</code> attributes specify the center
+        point, while the <code>r</code> attribute determines the radius of the
+        circle.
       </p>
       <p>
         For example, this code will draw a red circle with a center at (50,50)
@@ -150,7 +154,8 @@ export default function Home() {
         exercises={[
           {
             title: <span>Draw 2 circles</span>,
-            description: <p>Do this and this mate</p>,
+            whyItMatters: <p>Do this and this mate</p>,
+            toDo: <p>Do this</p>,
             practiceSandbox: 'SvgCircle',
             solutionSandbox: 'SvgRectangle',
           },
@@ -181,8 +186,8 @@ export default function Home() {
                 <li>Change the circle position at each iteration</li>
               </ul>
             ),
-            practiceSandbox: 'SvgCircle',
-            solutionSandbox: 'SvgRectangle',
+            practiceSandbox: 'SvgMultipleCirclesPractice',
+            solutionSandbox: 'SvgMultipleCirclesSolution',
           },
         ]}
       />
