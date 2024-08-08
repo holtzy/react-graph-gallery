@@ -8,4 +8,8 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.join(__dirname, '.');
+    return config;
+  },
 };
