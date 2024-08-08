@@ -124,9 +124,8 @@ export default function Home() {
           onMouseEnter={() => setDraggingCircleId(null)}
         >
           {circles.map((circle) => (
-            <>
+            <g key={circle.id}>
               <circle
-                key={circle.id}
                 cx={circle.cx}
                 cy={140}
                 r={30}
@@ -147,7 +146,7 @@ export default function Home() {
               >
                 {circle.value}
               </text>
-            </>
+            </g>
           ))}
 
           {/* Annotation */}

@@ -1,10 +1,8 @@
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/component/UI/breadcrumb';
 
@@ -12,9 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuPortal,
-  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -92,8 +88,9 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
                               <Link
                                 className="no-underline text-black"
                                 href={lesson.link}
+                                key={i}
                               >
-                                <DropdownMenuItem key={i}>
+                                <DropdownMenuItem>
                                   <Circle
                                     fill="black"
                                     size={8}
@@ -140,11 +137,9 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
                     <Link
                       className="no-underline text-black"
                       href={lesson.link}
+                      key={i}
                     >
-                      <DropdownMenuItem
-                        key={i}
-                        className="flex justify-between gap-4"
-                      >
+                      <DropdownMenuItem className="flex justify-between gap-4">
                         <div className="flex items-center">
                           <Circle
                             fill="black"
