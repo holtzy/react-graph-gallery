@@ -262,8 +262,8 @@ export default function Home() {
                 </li>
               </ul>
             ),
-            practiceSandbox: 'exercise/SvgStackingOrderPractice',
-            solutionSandbox: 'exercise/SvgStackingOrderSolution',
+            practiceSandbox: 'exercise/SvgOverflowPractice',
+            solutionSandbox: 'exercise/SvgOverflowSolution',
           },
         ]}
       />

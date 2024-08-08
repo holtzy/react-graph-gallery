@@ -109,34 +109,19 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/svg/main-svg-elements',
-    status: 'wip',
+    status: 'free',
     moduleId: 'svg',
   },
   {
-    name: 'Other shapes',
-    description: (
-      <>
-        <p>
-          Rectangle, lines, segments, ellipses.. You can draw literally anything
-          in SVG.
-        </p>
-      </>
-    ),
-    readTime: 4,
-    link: 'other-shapes',
-    status: 'not available',
-    moduleId: 'svg',
-  },
-  {
-    name: 'Your first path',
+    name: 'The path element',
     description: (
       <>
         <p>path is the most complicated yet most useful svg element.</p>
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/svg/path-element',
+    status: 'wip',
     moduleId: 'svg',
   },
 
