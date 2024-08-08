@@ -10,7 +10,7 @@ import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 
 const previousURL = '/course/svg/main-svg-elements';
 const currentURL = '/course/svg/path-element';
-const nextURL = undefined;
+const nextURL = '/course/svg/tips-and-tricks';
 const seoDescription = '';
 
 export default function Home() {

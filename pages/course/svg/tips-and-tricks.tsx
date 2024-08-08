@@ -1,15 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
+import { CodeSandbox } from '@/component/CodeSandbox';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/component/UI/select';
+import { Sidenote } from '@/component/SideNote';
+import { MoveHorizontal, MoveVertical } from 'lucide-react';
 
-const previousURL = '/course/introduction/initial-setup';
-const currentURL = '/course/introduction/what-is-svg';
-const nextURL = '/course/introduction/what-is-svg';
+const previousURL = '/course/svg/path-element';
+const currentURL = '/course/svg/tips-and-tricks';
+const nextURL = undefined;
 const seoDescription = '';
+
+const alignmentBaselineValues = [
+  'auto',
+  'baseline',
+  'before-edge',
+  'text-before-edge',
+  'middle',
+  'central',
+  'after-edge',
+  'text-after-edge',
+  'ideographic',
+  'alphabetic',
+  'hanging',
+  'mathematical',
+  'inherit',
+] as const;
+
+type AlignmentBaseline = (typeof alignmentBaselineValues)[number];
+
+const textAnchorValues = ['start', 'middle', 'end', 'inherit'] as const;
+
+type TextAnchor = (typeof textAnchorValues)[number];
 
 export default function Home() {
   const currentLesson = lessonList.find((l) => l.link === currentURL);
+
+  const [alignmentBaseline, setAlignmentBaseline] =
+    useState<AlignmentBaseline>('baseline');
+  const [textAnchor, setTextAnchor] = useState<TextAnchor>('start');
 
   if (!currentLesson) {
     return null;
@@ -30,34 +66,207 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's create a confortable working environment: let's use Next.js.
+              By now, SVG might seem straightforward, but trust me,{' '}
+              <b>it has its quirks</b> that can make your data visualization
+              journey challenging.
+            </p>
+            <p>
+              In this lesson, I'll share some tips and tricks that can{' '}
+              <b>save yo hours of frustration</b> — lessons I learned the hard
+              way.
             </p>
           </>
         }
       />
 
+      <h2>1️⃣ SVG Elements Don’t Have a Background Color</h2>
       <p>
-        You cannot change the background color of an SVG area. You need to draw
-        a rectangle on top.
+        Unlike HTML elements, SVG elements do not support background colors
+        directly. They also do not support <b>borders</b>.
       </p>
       <p>
-        Aligning text has a weird terminology: textAnchor and alignment
-        baseline.
+        If you want to create a background or add a border to your SVG, you need
+        to draw a <b>rectangle that covers the desired area</b>. CSS properties
+        like <code>background-color</code> or <code>fill</code> or{' '}
+        <code>border</code> on the SVG element itself are not recognized and
+        will be ignored.
       </p>
-      <p>You can group svg items using the g tag.</p>
-      <p>
-        Talk about stroke, fill, color that do not work the same way as div.
-      </p>
-      <p>Talk about css specificity</p>
-      <p>Talk about text specificity in SVG vs HTML</p>
-      <p>
-        SVG dimensions: what happens with "100%". Link to responsiveness module.
-      </p>
-      <p>Talk about filter and blur effects, gradients</p>
+      <p>Example:</p>
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
+        <CodeSandbox vizName="exercise/SvgStackingOrderSolution" />
+      </div>
 
-      <p>SVG layers are drawn one on top of each other -- order matters.</p>
+      <h2>2️⃣ Text Alignment in SVG</h2>
+      <p>
+        Text alignment in SVG works differently compared to HTML. You can
+        control both horizontal and vertical alignment using the{' '}
+        <code>text-anchor</code> and <code>alignment-baseline</code> properties,
+        which are unique to SVG.
+      </p>
 
-      <p>Talk about blury SVG elements: crispEdges</p>
+      <div className="relative">
+        <Sidenote
+          text={
+            <p>
+              Remember, in JSX, CSS properties should be camelCased (e.g.,{' '}
+              <code>textAnchor</code> instead of <code>text-anchor</code>).
+            </p>
+          }
+        />
+      </div>
+
+      <p>
+        <br />
+      </p>
+      <p>Here’s a summary of how they work:</p>
+      <div className="flex items-center justify-start gap-4">
+        <MoveHorizontal />
+        <span>
+          <code>text-anchor</code> controls the horizontal alignment &rarr;
+        </span>
+        <Select
+          value={textAnchor}
+          onValueChange={(value) => setTextAnchor(value as TextAnchor)}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue>{textAnchor}</SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {textAnchorValues.map((val, i) => {
+              return (
+                <SelectItem key={i} value={val}>
+                  {val}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center justify-start gap-4 mt-2 mb-8">
+        <MoveVertical />
+        <span>
+          <code>alignment-baseline</code> controls the vertical alignment &rarr;
+        </span>
+        <Select
+          value={alignmentBaseline}
+          onValueChange={(value) =>
+            setAlignmentBaseline(value as AlignmentBaseline)
+          }
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue>{alignmentBaseline}</SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {alignmentBaselineValues.map((val, i) => {
+              return (
+                <SelectItem key={i} value={val}>
+                  {val}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <svg width="500" height="300">
+        <rect width="100%" height={'100%'} stroke="black" fill="none" />
+        <circle cx={250} cy={150} r={5} />
+        <text
+          x={250}
+          y={150}
+          fontSize={30}
+          alignmentBaseline={alignmentBaseline}
+          textAnchor={textAnchor}
+        >
+          This is some text
+        </text>
+      </svg>
+
+      <h2>
+        3️⃣ Grouping Elements with <code>&lt;g&gt;</code>
+      </h2>
+      <p>
+        The <code>&lt;g&gt;</code> element in SVG is used to group multiple
+        elements together. This is especially useful for applying
+        transformations, styles, or events to a collection of elements as a
+        single unit. By grouping elements, you can move, scale, or rotate them
+        together, simplifying the manipulation of complex SVG structures.
+      </p>
+
+      <h2>4️⃣ Stroke, Fill, and Color: Different from HTML</h2>
+      <p>
+        In SVG, the concepts of <code>stroke</code>, <code>fill</code>, and{' '}
+        <code>color</code> work differently than in standard HTML. The{' '}
+        <code>fill</code> property controls the interior color of shapes, while{' '}
+        <code>stroke</code> affects the outline. Unlike <code>div</code>{' '}
+        elements, SVG shapes don’t have separate properties for borders and
+        backgrounds; instead, you use <code>stroke</code> and <code>fill</code>{' '}
+        to control these aspects.
+      </p>
+      <p>
+        For text elements, avoid using <code>stroke</code> to outline text, as
+        it can result in poor readability. Instead, focus on using{' '}
+        <code>fill</code> for color and <code>text-anchor</code> for alignment.
+      </p>
+
+      <h2>5️⃣ CSS Specificity in SVG</h2>
+      <p>
+        CSS specificity in SVG can be a bit more complex than in HTML. Styles
+        applied to SVG elements can come from inline styles, internal
+        stylesheets, or external stylesheets, and the rules of specificity still
+        apply. However, because SVG elements are often nested and grouped,
+        understanding which styles take precedence requires a good grasp of CSS
+        specificity rules.
+      </p>
+
+      <h2>6️⃣ Text Specificity in SVG vs. HTML</h2>
+      <p>
+        Text rendering in SVG differs from HTML in several ways. For instance,
+        text in SVG is not subject to the same layout constraints, meaning that
+        text wrapping and alignment work differently. SVG also offers unique
+        properties like <code>text-anchor</code> and{' '}
+        <code>alignment-baseline</code> to control text positioning, which do
+        not exist in HTML.
+      </p>
+
+      <h2>7️⃣ SVG Dimensions: The Impact of “100%”</h2>
+      <p>
+        Setting SVG dimensions to "100%" can lead to unexpected results,
+        especially in responsive designs. SVGs can scale based on their
+        container, but how they scale depends on the viewBox and
+        preserveAspectRatio attributes. Understanding these attributes is key to
+        ensuring your SVGs display correctly across different screen sizes. For
+        more details, refer to our module on responsiveness.
+      </p>
+
+      <h2>8️⃣ Filters, Blur Effects, and Gradients</h2>
+      <p>
+        SVG offers powerful capabilities for applying visual effects, such as
+        filters and gradients. Filters like <code>blur</code>,{' '}
+        <code>drop-shadow</code>, and <code>grayscale</code> can add depth and
+        dimension to your graphics. Gradients allow for smooth transitions
+        between colors, which can be applied to fills or strokes, adding
+        richness to your visualizations.
+      </p>
+
+      <h2>9️⃣ Stacking Order Matters</h2>
+      <p>
+        In SVG, elements are rendered in the order they appear in the markup,
+        creating a natural stacking order. This means that the order of elements
+        in your SVG code affects their visual layering. Elements later in the
+        code will appear on top of earlier ones, so careful planning is needed
+        when layering elements to achieve the desired visual effect.
+      </p>
+
+      <h2>🔟 Dealing with Blurry SVG Elements</h2>
+      <p>
+        SVG elements can sometimes appear blurry, especially when scaled. This
+        is often due to anti-aliasing, which can smooth edges but also cause
+        them to lose sharpness. To fix this, you can use the{' '}
+        <code>shape-rendering="crispEdges"</code> property to make edges appear
+        sharper, especially for pixel-perfect designs.
+      </p>
     </LayoutCourse>
   );
 }

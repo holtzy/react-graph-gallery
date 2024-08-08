@@ -124,6 +124,18 @@ export const lessonList: Lesson[] = [
     status: 'wip',
     moduleId: 'svg',
   },
+  {
+    name: 'SVG tips & tricks',
+    description: (
+      <>
+        <p>path is the most complicated yet most useful svg element.</p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/svg/tips-and-tricks',
+    status: 'wip',
+    moduleId: 'svg',
+  },
 
   //
   //
