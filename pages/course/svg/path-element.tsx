@@ -182,6 +182,50 @@ export default function Home() {
             practiceSandbox: 'exercise/SvgPathFirstLineChartPractice',
             solutionSandbox: 'exercise/SvgPathFirstLineChartSolution',
           },
+
+          {
+            title: (
+              <span>
+                Close a path with <code>Z</code> (and build your first area
+                chart)
+              </span>
+            ),
+            whyItMatters: (
+              <>
+                <p>
+                  The <code>&lt;path&gt;</code> element can be used to draw
+                  extended lines or create closed shapes.
+                </p>
+                <p>
+                  To close a shape, add <code>Z</code> at the end of the{' '}
+                  <code>d</code> attribute and use the <code>fill</code>{' '}
+                  property to apply a color.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>
+                  Modify the path to start at the bottom-left corner of the SVG
+                  area.
+                </li>
+                <li>
+                  Adjust the path to end at the bottom-right corner of the SVG
+                  area.
+                </li>
+                <li>
+                  Add a <code>Z</code> at the end of the <code>d</code>{' '}
+                  attribute to close the shape.
+                </li>
+                <li>
+                  Update the <code>fill</code> property to apply a color to the
+                  shape.
+                </li>
+              </ul>
+            ),
+            practiceSandbox: 'exercise/SvgPathFirstAreaChartPractice',
+            solutionSandbox: 'exercise/SvgPathFirstAreaChartSolution',
+          },
         ]}
       />
     </LayoutCourse>
