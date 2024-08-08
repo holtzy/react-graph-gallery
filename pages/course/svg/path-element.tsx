@@ -43,7 +43,7 @@ export default function Home() {
               shapes and lines that go beyond the basic geometric shapes. It is
               essential to build some graph types like an{' '}
               <Link href="/area-plot">area chart</Link> or a{' '}
-              <a href="/line-chart">line chart</a>.
+              <Link href="/line-chart">line chart</Link>.
             </p>
           </>
         }
