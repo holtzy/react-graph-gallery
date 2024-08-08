@@ -188,10 +188,11 @@ export default function Home() {
       </h2>
       <p>
         The <code>&lt;g&gt;</code> element in SVG is used to group multiple
-        elements together. This is especially useful for applying
-        transformations, styles, or events to a collection of elements as a
-        single unit. By grouping elements, you can move, scale, or rotate them
-        together, simplifying the manipulation of complex SVG structures.
+        elements together.
+      </p>
+      <p>
+        This is especially useful for applying transformations, styles, or
+        events to a collection of elements as a single unit.
       </p>
 
       <h2>4️⃣ Stroke, Fill, and Color: Different from HTML</h2>
@@ -222,12 +223,14 @@ export default function Home() {
 
       <h2>6️⃣ Text Specificity in SVG vs. HTML</h2>
       <p>
-        Text rendering in SVG differs from HTML in several ways. For instance,
-        text in SVG is not subject to the same layout constraints, meaning that
-        text wrapping and alignment work differently. SVG also offers unique
-        properties like <code>text-anchor</code> and{' '}
-        <code>alignment-baseline</code> to control text positioning, which do
-        not exist in HTML.
+        In SVG, there is no built-in functionality for automatic text wrapping
+        like you would find in HTML or CSS. You have to manage text wrapping
+        manually or use JavaScript libraries to handle it. You need to calculate
+        where to break the text and create multiple
+      </p>
+      <p>
+        This is very super annoying. We will talk about workarounds in this
+        course.
       </p>
 
       <h2>7️⃣ SVG Dimensions: The Impact of “100%”</h2>
@@ -258,6 +261,9 @@ export default function Home() {
         code will appear on top of earlier ones, so careful planning is needed
         when layering elements to achieve the desired visual effect.
       </p>
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
+        <CodeSandbox vizName="exercise/SvgStackingOrderSolution" />
+      </div>
 
       <h2>🔟 Dealing with Blurry SVG Elements</h2>
       <p>
