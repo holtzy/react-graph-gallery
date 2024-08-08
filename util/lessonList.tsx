@@ -94,7 +94,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/svg/introduction',
-    status: 'wip',
+    status: 'free',
     moduleId: 'svg',
   },
   {
@@ -121,7 +121,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/svg/path-element',
-    status: 'wip',
+    status: 'free',
     moduleId: 'svg',
   },
   {
@@ -135,6 +135,69 @@ export const lessonList: Lesson[] = [
     link: '/course/svg/tips-and-tricks',
     status: 'wip',
     moduleId: 'svg',
+  },
+
+  //
+  //
+  // Scales
+  //
+  //
+  {
+    name: 'Introduction to scales',
+    description: (
+      <>
+        <p>
+          Thanks to SVG we now know how to build any shape anywhere on the
+          screen. But we do not want to draw theme anywhere.
+        </p>
+        <p>
+          We want to draw them on a spot determined by data. And we need a scale
+          for this.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/scales/introduction',
+    status: 'wip',
+    moduleId: 'scales',
+  },
+  {
+    name: 'Linear Scales',
+    description: (
+      <>
+        <p>
+          Thanks to SVG we now know how to build any shape anywhere on the
+          screen. But we do not want to draw theme anywhere.
+        </p>
+        <p>
+          We want to draw them on a spot determined by data. And we need a scale
+          for this.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/scales/linear-scale',
+    status: 'wip',
+    moduleId: 'scales',
+  },
+  {
+    name: 'Other scale types',
+    description: (
+      <>
+        <p>
+          Thanks to SVG we now know how to build any shape anywhere on the
+          screen. But we do not want to draw theme anywhere.
+        </p>
+        <p>
+          We want to draw them on a spot determined by data. And we need a scale
+          for this.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/scales/other-scale-types',
+    status: 'wip',
+    moduleId: 'scales',
   },
 
   //

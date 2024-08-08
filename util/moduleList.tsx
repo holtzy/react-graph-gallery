@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 export type ModuleId =
   | 'introduction'
   | 'svg'
+  | 'scales'
   | 'axis'
   | 'responsiveness'
   | 'hover effect'
@@ -38,7 +39,7 @@ export const moduleList: Module[] = [
 
   {
     id: 'svg',
-    name: 'Drawing shapes with SVG',
+    name: 'SVG',
     description: (
       <>
         <p>A graph is basically a compendium of shapes drawn on a screen.</p>
@@ -51,8 +52,22 @@ export const moduleList: Module[] = [
   },
 
   {
+    id: 'scales',
+    name: 'Scales',
+    description: (
+      <>
+        <p>
+          Your svg area goes from 0 to 500px. Your data goes from 0 to 100. If
+          the value of a data point is 30, where should you draw it?
+        </p>
+        <p>You need a scale to find out.</p>
+      </>
+    ),
+  },
+
+  {
     id: 'axis',
-    name: 'Drawing axes',
+    name: 'Axes',
     description: (
       <>
         <p>

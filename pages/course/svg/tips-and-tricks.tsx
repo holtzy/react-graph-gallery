@@ -15,7 +15,7 @@ import { MoveHorizontal, MoveVertical } from 'lucide-react';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/svg/tips-and-tricks';
-const nextURL = undefined;
+const nextURL = '/course/scales/introduction';
 const seoDescription = '';
 
 const alignmentBaselineValues = [
