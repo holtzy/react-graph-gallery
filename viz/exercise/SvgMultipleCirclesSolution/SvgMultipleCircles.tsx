@@ -1,4 +1,4 @@
-export const SvgRectangle = () => {
+export const SvgMultipleCircles = () => {
   const numbers = [...Array(10).keys()];
 
   return (

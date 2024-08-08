@@ -186,8 +186,8 @@ export default function Home() {
                 <li>Change the circle position at each iteration</li>
               </ul>
             ),
-            practiceSandbox: 'SvgMultipleCirclesPractice',
-            solutionSandbox: 'SvgMultipleCirclesSolution',
+            practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
+            solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
           },
         ]}
       />
