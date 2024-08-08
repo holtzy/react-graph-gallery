@@ -5,6 +5,8 @@ import { lessonList } from '@/util/lessonList';
 import Link from 'next/link';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Sidenote } from '@/component/SideNote';
+import { CodeSandbox } from '@/component/CodeSandbox';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 
 const previousURL = '/course/svg/main-svg-elements';
 const currentURL = '/course/svg/path-element';
@@ -124,6 +126,14 @@ export default function Home() {
           to the point (<code>200, 200</code>).
         </li>
       </ul>
+      <p>
+        Now, experiment with some changes in the sandbox below to get a better
+        understanding of how it works:
+      </p>
+
+      <div className="full-bleed my-4 max-w-7xl mx-auto">
+        <CodeSandbox vizName="SvgPath" />
+      </div>
 
       <h2>The good news 🎁</h2>
       <p>
@@ -139,6 +149,41 @@ export default function Home() {
         This is one of the reasons why d3.js is so powerful and beloved for data
         visualization! 💙
       </p>
+
+      <h2>Exercises</h2>
+      <ExerciseAccordion
+        exercises={[
+          {
+            title: <span>Your first line chart</span>,
+            whyItMatters: (
+              <>
+                <p>
+                  Creating a graph involves translating a <b>set of numbers</b>{' '}
+                  from a table (the data) into <b>coordinates</b> on a screen!
+                </p>
+                <p>
+                  While doing this manually can be tedious, we'll soon explore
+                  how d3.js can <b>automate</b> the process and make it much
+                  easier.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>
+                  Add a <code>path</code> element to the svg area
+                </li>
+                <li>
+                  The x coordinates must be 0, 50, 100, 150, 200, 250, 300
+                </li>
+                <li>The y coordinates must be 40, 70, 150, 150, 200, 50, 90</li>
+              </ul>
+            ),
+            practiceSandbox: 'exercise/SvgPathFirstLineChartPractice',
+            solutionSandbox: 'exercise/SvgPathFirstLineChartSolution',
+          },
+        ]}
+      />
     </LayoutCourse>
   );
 }
