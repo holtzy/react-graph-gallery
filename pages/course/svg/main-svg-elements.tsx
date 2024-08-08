@@ -154,10 +154,32 @@ export default function Home() {
         exercises={[
           {
             title: <span>Draw 2 circles</span>,
-            whyItMatters: <p>Do this and this mate</p>,
-            toDo: <p>Do this</p>,
-            practiceSandbox: 'SvgCircle',
-            solutionSandbox: 'SvgRectangle',
+            whyItMatters: (
+              <>
+                <p>
+                  Your SVG element is your canvas. You can draw as many shapes
+                  in it as you want.
+                </p>
+                <p>
+                  You just need to put them at the right location and it makes a
+                  graph.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>Draw 2 circles in the SVG area</li>
+                <li>
+                  First one must be small and <code>blue</code>
+                </li>
+                <li>
+                  Second must be big and use <code>#69b3a2</code> as a color
+                  with an opacity of <code>.3</code>
+                </li>
+              </ul>
+            ),
+            practiceSandbox: 'exercise/SvgTwoCirclesPractice',
+            solutionSandbox: 'exercise/SvgTwoCirclesSolution',
           },
           {
             title: (
