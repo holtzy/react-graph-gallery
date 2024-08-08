@@ -211,6 +211,31 @@ export default function Home() {
             practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
             solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
           },
+
+          {
+            title: <span>Understand stacking order</span>,
+            whyItMatters: (
+              <>
+                <p>What you draw first will be below what you draw second.</p>
+                <p>
+                  Like in HTML, stacking order matters. Keep this in mind for
+                  when you will start drawing more complex graphs.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>
+                  Create one big grey rectangle that takes the full width and
+                  height of the SVG area
+                </li>
+                <li>Add one big yellow circle in it</li>
+                <li>Add some text in the circle</li>
+              </ul>
+            ),
+            practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
+            solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
+          },
         ]}
       />
     </LayoutCourse>
