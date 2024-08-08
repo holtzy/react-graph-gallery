@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from '@/component/UI/accordion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
-import { Eye } from 'lucide-react';
+import { Check, Eye } from 'lucide-react';
 import { ReactNode } from 'react';
 import { CodeSandbox } from './CodeSandbox';
 import { Badge } from './UI/badge';
@@ -34,9 +34,10 @@ export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
                   <span>{i + 1}</span>
                 </div>
                 <span>{exercise.title}</span>
-                <Eye />
+                <Check size={16} />
               </div>
             </AccordionTrigger>
+
             <AccordionContent>
               <div className="grid grid-cols-2 gap-4 pt-4">
                 <div>

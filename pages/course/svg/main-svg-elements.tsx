@@ -233,8 +233,37 @@ export default function Home() {
                 <li>Add some text in the circle</li>
               </ul>
             ),
-            practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
-            solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
+            practiceSandbox: 'exercise/SvgStackingOrderPractice',
+            solutionSandbox: 'exercise/SvgStackingOrderSolution',
+          },
+
+          {
+            title: <span>Dealing with SVG overflow</span>,
+            whyItMatters: (
+              <>
+                <p>
+                  Parts of the SVG elements that extend beyond the SVG canvas
+                  boundaries will not be visible. It is called <b>clipping</b>.{' '}
+                </p>
+                <p>
+                  But you can change the <code>overflow</code> css property of
+                  the svg element to <code>visible</code> to show shapes outside
+                  the SVG element boundaries.
+                </p>
+              </>
+            ),
+            toDo: (
+              <ul>
+                <li>Draw a big circle at the bottom of the SVG area.</li>
+                <li>Notice that a part of it is clipped!</li>
+                <li>
+                  Use the overflow property to avoid clipping and show the full
+                  circle
+                </li>
+              </ul>
+            ),
+            practiceSandbox: 'exercise/SvgStackingOrderPractice',
+            solutionSandbox: 'exercise/SvgStackingOrderSolution',
           },
         ]}
       />
