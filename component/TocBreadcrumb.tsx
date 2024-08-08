@@ -25,6 +25,7 @@ import { moduleList } from '@/util/moduleList';
 import { Lesson, lessonList } from '@/util/lessonList';
 import { Circle } from 'lucide-react';
 import { LessonBadge } from './LessonBadge';
+import Link from 'next/link';
 
 type TocBreadcrumbProps = {
   selectedLesson: Lesson;
@@ -41,6 +42,7 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
+        {/* ////////////// Most left = back to course home page */}
         <BreadcrumbItem>
           <BreadcrumbLink
             href="/react-d3-dataviz-course"
@@ -56,6 +58,7 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
 
         <BreadcrumbSeparator />
 
+        {/* ////////////// Middle = list of modules */}
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -86,17 +89,24 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
                           .filter((lesson) => lesson.moduleId === module.id)
                           .map((lesson, i) => {
                             return (
-                              <DropdownMenuItem key={i}>
-                                <Circle
-                                  fill="black"
-                                  size={8}
-                                  className="mr-2"
-                                  opacity={
-                                    lesson.name === selectedLesson.name ? 1 : 0
-                                  }
-                                />
-                                <span>{lesson.name}</span>
-                              </DropdownMenuItem>
+                              <Link
+                                className="no-underline text-black"
+                                href={lesson.link}
+                              >
+                                <DropdownMenuItem key={i}>
+                                  <Circle
+                                    fill="black"
+                                    size={8}
+                                    className="mr-2"
+                                    opacity={
+                                      lesson.name === selectedLesson.name
+                                        ? 1
+                                        : 0
+                                    }
+                                  />
+                                  <span>{lesson.name}</span>
+                                </DropdownMenuItem>
+                              </Link>
                             );
                           })}
                       </DropdownMenuSubContent>
@@ -110,6 +120,7 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
 
         <BreadcrumbSeparator />
 
+        {/* ////////////// Right = list of lessons */}
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -126,21 +137,28 @@ export const TocBreadcrumb = ({ selectedLesson }: TocBreadcrumbProps) => {
                 .filter((lesson) => lesson.moduleId === selectedModuleId)
                 .map((lesson, i) => {
                   return (
-                    <DropdownMenuItem
-                      key={i}
-                      className="flex justify-between gap-4"
+                    <Link
+                      className="no-underline text-black"
+                      href={lesson.link}
                     >
-                      <div className="flex items-center">
-                        <Circle
-                          fill="black"
-                          size={8}
-                          className="mr-2"
-                          opacity={lesson.name === selectedLesson.name ? 1 : 0}
-                        />
-                        {lesson.name}
-                      </div>
-                      <LessonBadge lessonStatus={lesson.status} />
-                    </DropdownMenuItem>
+                      <DropdownMenuItem
+                        key={i}
+                        className="flex justify-between gap-4"
+                      >
+                        <div className="flex items-center">
+                          <Circle
+                            fill="black"
+                            size={8}
+                            className="mr-2"
+                            opacity={
+                              lesson.name === selectedLesson.name ? 1 : 0
+                            }
+                          />
+                          {lesson.name}
+                        </div>
+                        <LessonBadge lessonStatus={lesson.status} />
+                      </DropdownMenuItem>
+                    </Link>
                   );
                 })}
             </DropdownMenuContent>
