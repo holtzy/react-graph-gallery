@@ -16,7 +16,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './UI/dropdown-menu';
-import { Button, buttonVariants } from '@/component/UI/buttonFromShadcnUI';
+import { Button, buttonVariants } from '@/component/UI/button';
 import { moduleList } from '@/util/moduleList';
 import { Lesson, lessonList } from '@/util/lessonList';
 import { Circle } from 'lucide-react';

@@ -12,7 +12,7 @@ import { Lesson, lessonList } from '@/util/lessonList';
 import { Badge } from '@/component/UI/badge';
 import { moduleList } from '@/util/moduleList';
 import { LessonBadge } from '@/component/LessonBadge';
-import { buttonVariants } from '@/component/UI/buttonFromShadcnUI';
+import { buttonVariants } from '@/component/UI/button';
 
 const graphDescription = (
   <>

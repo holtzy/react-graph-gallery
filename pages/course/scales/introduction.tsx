@@ -3,7 +3,7 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { CodeBlock } from '@/component/UI/CodeBlock';
-import { Button } from '@/component/UI/buttonFromShadcnUI';
+import { Button } from '@/component/UI/button';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/scales/introduction';
