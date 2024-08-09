@@ -2,18 +2,8 @@ import React, { useCallback, useState } from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
-import { CodeSandbox } from '@/component/CodeSandbox';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/component/UI/select';
-import { Sidenote } from '@/component/SideNote';
-import { MoveHorizontal, MoveVertical } from 'lucide-react';
 import { CodeBlock } from '@/component/UI/CodeBlock';
-import { Button } from '@/component/UI/button';
+import { Button } from '@/component/UI/buttonFromShadcnUI';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/scales/introduction';

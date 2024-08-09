@@ -2,7 +2,7 @@ import { ReactNode, useRef, useState } from 'react';
 import { useDimensions } from '../hook/use-dimensions';
 import { Caption } from './UI/Caption';
 import { CodeSandbox } from './CodeSandbox';
-import { Button } from './UI/button';
+import { Button } from './UI/buttonFromShadcnUI';
 
 type ChartOrSandboxProps = {
   VizComponent: (props: {
