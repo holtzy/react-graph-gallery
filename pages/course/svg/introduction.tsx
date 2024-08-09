@@ -5,6 +5,7 @@ import { lessonList } from '@/util/lessonList';
 import { CodeSandbox } from '@/component/CodeSandbox';
 import Link from 'next/link';
 import { Badge } from '@/component/UI/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
@@ -52,23 +53,33 @@ export default function Home() {
       />
 
       <h2>What is SVG</h2>
-      <h3>Boring definition 🙈</h3>
-      <p>
-        Scalable Vector Graphics (
-        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG</a>) is
-        an XML-based format for vector graphics. Unlike raster graphics which
-        are made up of pixels, SVG uses vector data (points, lines, and curves)
-        to create images. This means SVG images are resolution-independent and
-        can scale up or down without losing quality.
-      </p>
-      <h3>Personal Definition 🙂</h3>
-      <p>
-        The <code>&lt;svg&gt;</code> tag is an HTML element that you can use
-        directly in your React components. You can draw a variety of shapes
-        using predefined SVG elements like <code>&lt;circle&gt;</code> and{' '}
-        <code>&lt;rect&gt;</code>. Many of the graphs and visualizations you see
-        on the web are created using SVG.
-      </p>
+
+      <Tabs defaultValue="boring">
+        <TabsList className="my-4">
+          <TabsTrigger value="boring">Boring definition</TabsTrigger>
+          <TabsTrigger value="personal">Personal Definition</TabsTrigger>
+        </TabsList>
+        <TabsContent value="boring">
+          <p>
+            Scalable Vector Graphics (
+            <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG</a>)
+            is an XML-based format for vector graphics. Unlike raster graphics
+            which are made up of pixels, SVG uses vector data (points, lines,
+            and curves) to create images. This means SVG images are
+            resolution-independent and can scale up or down without losing
+            quality.
+          </p>
+        </TabsContent>
+        <TabsContent value="personal">
+          <p>
+            The <code>&lt;svg&gt;</code> tag is an HTML element that you can use
+            directly in your React components. You can draw a variety of shapes
+            using predefined SVG elements like <code>&lt;circle&gt;</code> and{' '}
+            <code>&lt;rect&gt;</code>. Many of the graphs and visualizations you
+            see on the web are created using SVG.
+          </p>
+        </TabsContent>
+      </Tabs>
 
       <h2>Most simple example</h2>
       <p>Here is a very simple react app that uses SVG to render a circle:</p>
