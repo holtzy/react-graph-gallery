@@ -4,11 +4,6 @@ import { HeadSeo } from './HeadSeo';
 import Link from 'next/link';
 import { Lesson } from '@/util/lessonList';
 
-// The Layout component
-// - adds the top navBar
-// - adds the footer
-// - adds the head: everything needed for SEO and social media sharing
-
 type LayoutCourseProps = {
   children: React.ReactNode;
   title: string;
