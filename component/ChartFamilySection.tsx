@@ -33,7 +33,7 @@ export default function ChartFamilySection({
             chartLogo={chart.logo}
             caption={chart.label}
             isAvailable={chart.isAvailable}
-            size={129}
+            size={122}
           />
         </div>
       );
