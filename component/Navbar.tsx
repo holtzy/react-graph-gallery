@@ -20,9 +20,9 @@ export default function Navbar() {
           </div>
 
           <div className="">
-            <Link href="/articles">
+            <Link href="/react-d3-dataviz-course">
               <span className="pl-8 text-black font-light text-sm lg:text-md uppercase tracking-wider cursor-pointer">
-                Articles
+                Learn
               </span>
             </Link>
             <Link href="/all" className="no-underline">
