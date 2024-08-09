@@ -65,7 +65,10 @@ export default function Post() {
           </p>
         </div>
         <div className="col-span-2 flex flex-col items-center justify-center">
-          <img src="/img/stacked-barplot-explanation-1.png" />
+          <img
+            src="/img/stacked-barplot-explanation-1.png"
+            alt="explanation of a stacked barplot wit positive values"
+          />
           <Caption>Stacking positive values is straightforward</Caption>
         </div>
       </div>
@@ -218,7 +221,10 @@ export default function Post() {
         </p>
       </div>
       <div className="col-span-2 flex flex-col items-center justify-center">
-        <img src="/img/stacked-barplot-explanation-4.png" />
+        <img
+          src="/img/stacked-barplot-explanation-4.png"
+          alt="stacked barplot with overlapping item does not work well"
+        />
         <Caption>
           Stacking items by overlapping the items on top of each other.
         </Caption>
