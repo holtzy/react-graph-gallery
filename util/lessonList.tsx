@@ -206,6 +206,18 @@ export const lessonList: Lesson[] = [
   //
   //
   {
+    name: 'Introduction',
+    description: (
+      <>
+        <p>How to add margins around the chart withouth the headache</p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/axis/introduction',
+    status: 'wip',
+    moduleId: 'axis',
+  },
+  {
     name: 'Margin and translation',
     description: (
       <>
@@ -213,22 +225,19 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/axis/margin-and-translation',
+    status: 'wip',
     moduleId: 'axis',
   },
   {
-    name: 'Your first axis component',
+    name: 'Build a bottom axis',
     description: (
       <>
-        <p>
-          Let's build a react component that adds an axis on the left of the
-          chart
-        </p>
+        <p>Let's learn how to build a bottom axis component</p>
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/axis/bottom-axis',
     status: 'not available',
     moduleId: 'axis',
   },
@@ -243,7 +252,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/axis/axis-variations',
     status: 'not available',
     moduleId: 'axis',
   },
@@ -258,7 +267,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '/course/axis/draw-with-d3',
+    link: '/course/axis/axis-with-d3',
     status: 'not available',
     moduleId: 'axis',
   },

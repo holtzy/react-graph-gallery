@@ -58,7 +58,7 @@ export default function Articles() {
       seoDescription="An online course explaining how to create any charts using react and d3"
     >
       <TitleAndDescription
-        title="Dataviz with react course"
+        title="Dataviz with React fundamentals"
         description={graphDescription}
       />
 

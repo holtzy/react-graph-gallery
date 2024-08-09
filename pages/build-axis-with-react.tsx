@@ -113,20 +113,6 @@ export const AxisLeft = ({ yScale, pixelsPerTick }) => {
 };
 `.trim();
 
-const snippet3 = `
-const chartSize = useDimensions(chartRef);
-`.trim();
-
-const snippet4 = `
-return(
-  <div ref={chartRef}>
-    <MyChartComponent
-      height={chartSize.height}
-      width={chartSize.width}
-  </div>
-)
-`.trim();
-
 export default function Home() {
   const axisRef = useRef<HTMLDivElement>(null);
   const axisDemo = useDimensions(axisRef);
