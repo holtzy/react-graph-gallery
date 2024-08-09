@@ -91,7 +91,11 @@ export default function Post() {
 
       <br />
       <div className="flex flex-col items-center">
-        <img src="/img/hsv-explanation.png" style={{ maxWidth: 400 }} />
+        <img
+          src="/img/hsv-explanation.png"
+          alt="color cylinder of HSV"
+          style={{ maxWidth: 400 }}
+        />
         <Caption>The color cylinder of HSV</Caption>
       </div>
       <p>
@@ -131,7 +135,11 @@ export default function Post() {
       <p>Try to fix this difference between computer and human perception.</p>
       <p>unintuitive to use to generate colors</p>
       <div className="flex flex-col items-center">
-        <img src="/img/cielab-color-space.png" style={{ maxWidth: 400 }} />
+        <img
+          src="/img/cielab-color-space.png"
+          alt="cielab color spec"
+          style={{ maxWidth: 400 }}
+        />
         <Caption>The cielab color space</Caption>
       </div>
 
@@ -191,6 +199,7 @@ export default function Post() {
       <div className="flex flex-col items-center">
         <img
           src="/img/contrast-ratio-calculator.png"
+          alt="contrast ratio calculator"
           style={{ maxWidth: 600 }}
         />
         <Caption>
