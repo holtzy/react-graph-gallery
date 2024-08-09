@@ -60,7 +60,11 @@ export default function Post() {
       <p>That's the famous color wheel you see in every color picker!</p>
       <br />
       <div className="flex flex-col items-center">
-        <img src="/img/color-picked-me.png" style={{ maxWidth: 400 }} />
+        <img
+          src="/img/color-picked-me.png"
+          alt="overview of color picker.me"
+          style={{ maxWidth: 400 }}
+        />
         <Caption>
           On <a href="https://colorpicker.me">colorpicker.me</a> you can define
           a color using its hue (vertical bar), its saturation (x axis of the
