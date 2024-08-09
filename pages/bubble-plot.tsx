@@ -245,7 +245,6 @@ export default function Home() {
       </p>
       <p>You can check the complete implementation of the legend here:</p>
       <Accordion
-        startOpen={false}
         title={
           <span>
             <code>BubbleLegend</code>: a component to build a legend for circle
