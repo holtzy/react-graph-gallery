@@ -60,7 +60,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/introduction/introduction-to-d3',
-    status: 'wip',
+    status: 'free',
     moduleId: 'introduction',
   },
 
