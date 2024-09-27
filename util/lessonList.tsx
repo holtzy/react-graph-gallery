@@ -238,7 +238,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/bottom-axis',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'axis',
   },
   {
@@ -253,7 +253,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/axis-variations',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'axis',
   },
   {
@@ -268,7 +268,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/axis-with-d3',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'axis',
   },
 

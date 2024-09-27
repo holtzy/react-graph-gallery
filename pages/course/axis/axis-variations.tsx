@@ -45,11 +45,22 @@ export default function Home() {
         }
       />
 
-      <h2>Left axis</h2>
-
       <h2>Gallery</h2>
       <p>
         Show a gallery with the various axis styles available in the gallery.
+      </p>
+      <p>
+        I need a first series of button: linear / ordinal / bandwidth / time /
+        any = type of scale
+      </p>
+      <p>Then a second series: left / bottom </p>
+      <p>
+        Then it shows all the example in the gallery using this setup with a set
+        of images
+      </p>
+      <p>
+        When user clicks on an image, it opens the sandbox so user has the code
+        ready to copy paste.
       </p>
     </LayoutCourse>
   );

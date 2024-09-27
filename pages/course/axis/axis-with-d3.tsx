@@ -77,6 +77,40 @@ export default function Home() {
 const axesRef = useRef(null);
   `.trim()}
       />
+      <p>
+        This ref is used to target a specific svg element where the axis will be
+        drawn:
+      </p>
+      <CodeBlock
+        code={`
+<g
+  width={boundsWidth}
+  height={boundsHeight}
+  ref={axesRef}
+  transform={...do the translate}
+/>`.trim()}
+      />
+      <p>
+        And then a <code>useEffect</code> is used to call the d3 functions that
+        render the axis.
+      </p>
+      <CodeBlock
+        code={`
+useEffect(() => {
+  const svgElement = d3.select(axesRef.current);
+  svgElement.selectAll("*").remove();
+  const xAxisGenerator = d3.axisBottom(xScale);
+  svgElement
+    .append("g")
+    .attr("transform", "translate(0," + boundsHeight + ")")
+    .call(xAxisGenerator);
+
+  const yAxisGenerator = d3.axisLeft(yScale);
+  svgElement.append("g").call(yAxisGenerator);
+}, [xScale, yScale, boundsHeight]);
+
+  `.trim()}
+      />
     </LayoutCourse>
   );
 }
