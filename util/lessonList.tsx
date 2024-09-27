@@ -158,7 +158,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/scales/introduction',
-    status: 'wip',
+    status: 'free',
     moduleId: 'scales',
   },
   {
