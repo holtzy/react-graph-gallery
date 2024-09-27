@@ -132,13 +132,16 @@ export default function Home() {
         this sandbox:
       </p>
       <div className="full-bleed my-4 max-w-7xl mx-auto">
-        <CodeSandbox vizName="SvgCircle" />
+        <CodeSandbox vizName="HTMLCircle" />
       </div>
       <p>
-        However, you don’t need to be a React expert to take this course. Even
-        seasoned developers will find valuable insights here: creating
-        visualizations with React and D3 involves specialized knowledge that
-        differs significantly from typical UI development.
+        <br />
+        That's it, no need to be a React expert.
+      </p>
+      <p>
+        Even <b>seasoned developers</b> will find valuable insights here:
+        creating visualizations with React and D3 involves <b>specialized</b>{' '}
+        knowledge that differs significantly from typical UI development.
       </p>
       <p>
         Lastly, you don’t need prior experience with D3 to get started! We’ll
@@ -153,11 +156,29 @@ export default function Home() {
 -
 -
 - */}
-      <h2>Alternatives</h2>
-      <p>Talk about Vue and </p>
-
+      <h2>🤔Alternatives</h2>
       <p>
-        Link: https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190
+        While React is a leading choice for building user interfaces, there are
+        notable alternatives, primarily <a href="https://vuejs.org">Vue</a> and{' '}
+        <a href="https://angular.dev">Angular</a>. Additionally,{' '}
+        <a href="https://svelte.dev">Svelte</a> has gained considerable traction
+        within the data visualization community.
+      </p>
+      <p>
+        However, React's popularity is significantly larger, as illustrated in
+        the graph below from{' '}
+        <a href="https://npmtrends.com/@angular/core-vs-react-vs-svelte-vs-vue">
+          npmtrends
+        </a>
+        .
+      </p>
+      <p>
+        For further insights, you can explore a variety of metrics on{' '}
+        <a href="https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190">
+          this repository
+        </a>
+        . It's clear to me that React has established itself as the de-facto
+        library for creating user interfaces and is here to stay.
       </p>
 
       <div className="flex flex-col items-center mt-8 mb-12">
@@ -166,7 +187,10 @@ export default function Home() {
           style={{ width: '100%', maxWidth: 900 }}
           alt="schema showing the number of download evolution of the main JS libraries"
         />
-        <Caption>React is big</Caption>
+        <Caption>
+          Evolution of the number of downloads for React (green), Angular, Vue
+          and Svelte
+        </Caption>
       </div>
     </LayoutCourse>
   );
