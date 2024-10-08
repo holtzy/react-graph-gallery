@@ -46,7 +46,7 @@ export default function Home() {
         VizComponent={SankeyBumpChartDemo}
         maxWidth={500}
         height={500}
-        caption="A vertical arc diagram made with d3.js and react."
+        caption="A Sankey Bump chart"
       />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
