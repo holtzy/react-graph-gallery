@@ -2,16 +2,21 @@ import { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
 const MARGIN = { top: 30, right: 30, bottom: 40, left: 50 };
-const BUCKET_NUMBER = 20;
 const BUCKET_PADDING = 1;
 
 type HistogramProps = {
   width: number;
   height: number;
   data: number[];
+  bucketNumber: number;
 };
 
-export const Histogram = ({ width, height, data }: HistogramProps) => {
+export const Histogram = ({
+  width,
+  height,
+  data,
+  bucketNumber,
+}: HistogramProps) => {
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -28,14 +33,14 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
       .bin()
       .value((d) => d)
       .domain(xScale.domain())
-      .thresholds(xScale.ticks(BUCKET_NUMBER));
+      .thresholds(xScale.ticks(bucketNumber));
     return bucketGenerator(data);
-  }, [xScale]);
+  }, [xScale, bucketNumber]);
 
   const yScale = useMemo(() => {
     const max = Math.max(...buckets.map((bucket) => bucket?.length));
     return d3.scaleLinear().range([boundsHeight, 0]).domain([0, max]).nice();
-  }, [data, height]);
+  }, [data, height, bucketNumber]);
 
   // Render the X axis using d3.js, not react
   useEffect(() => {

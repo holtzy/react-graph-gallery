@@ -56,8 +56,8 @@ export default function Home() {
         just the first 100,000 rows focused on male finishers.
       </p>
       <p>
-        The cleaned dataset is just an array of numbers, stored in an array
-        called <code>data</code>.
+        The cleaned dataset is just an<b> array of numbers</b>, stored in an
+        array called <code>data</code>.
       </p>
 
       {/*
@@ -67,13 +67,29 @@ export default function Home() {
       */}
       <h2 id="plot">Plot and code</h2>
       <p>
-        If you are in a hurry, here is the final plot we're trying to achieve
-        here, together with its code:🙇‍♂️
+        The goal of this post is to create a{' '}
+        <Link href="/histogram">histogram</Link> that illustrates the
+        distribution of finishing times for a marathon.
       </p>
       <p>
-        It is a very simple vertical <b>arc diagram</b>, a variation of the
-        <b>horizontal</b> version deeply described in the{' '}
-        <Link href="/arc-diagram">arc diagram section</Link> of the gallery
+        Specifically, it demonstrates how to use D3 to compute <b>bins</b> from
+        the original dataset and how React can be utilized to render the
+        rectangles that form the histogram.
+      </p>
+      <p>
+        Additionally, it features a slider that allows users to adjust the bin
+        size, dynamically recalculating and rendering the bar sizes in real
+        time.
+      </p>
+      <p>
+        More importantly, this post highlights the significance of experimenting
+        with <b>bin sizes</b> in a histogram.
+      </p>
+      <p>
+        With a <b>lower bin count</b> (around 30), readers will observe a nearly
+        normal distribution. However, increasing the number of bins{' '}
+        <b>reveals a significant gap</b> around the 4-hour mark, showcasing the
+        intense effort many runners put in to finish under this threshold!
       </p>
 
       <LinkAsButton isFilled size="sm" href="/histogram">
