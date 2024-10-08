@@ -12,14 +12,15 @@ import { HistogramSliderBinSizeDemo } from '@/viz/HistogramSliderBinSize/Histogr
 const graphDescription = (
   <>
     <p>
-      Building an histogram comes with a big responsability: choosing the right
-      bin size. It is essential to try different values, as picking up the wrong
-      one can completely hide the underlying story.
+      Constructing a <Link href="/histogram">histogram</Link> carries a
+      significant responsibility: selecting the <b>appropriate bin size</b>.
+      It's crucial to experiment with different values, as an incorrect choice
+      can <b>obscure</b> the underlying narrative.
     </p>
     <p>
-      Men really want to run a marathon in less than 4 hours, and that creates a
-      massive break in the histogram. Pick a too big bin size and you will miss
-      the story!
+      Many aspire to complete a marathon in <b>under four hours</b>, leading to
+      a pronounced gap in the histogram. Choosing a bin size that is too large
+      can cause you to overlook this important detail!
     </p>
   </>
 );
@@ -27,14 +28,38 @@ const graphDescription = (
 export default function Home() {
   return (
     <Layout
-      title="Histogram with slider to control bin size"
+      title="Histogram with Adjustable Bin Size Slider"
       seoDescription="Learn how to create a histogram with react and d3.js, with a slider that controls the bin size of the chart."
     >
       <TitleAndDescription
-        title="Histogram with slider to control bin size"
+        title="Histogram with Adjustable Bin Size Slider"
         description={graphDescription}
         chartType="histogram"
       />
+      {/*
+      //
+      // Plot and code
+      //
+      */}
+      <h2 id="data">Data</h2>
+      <p>
+        Countless marathons are held around the globe each year.{' '}
+        <a href="https://pubsonline.informs.org/doi/suppl/10.1287/mnsc.2015.2417">
+          This article
+        </a>{' '}
+        examines the completion times for male participants across various
+        events.
+      </p>
+      <p>
+        I downloaded the data and used{' '}
+        <a href="https://www.r-graph-gallery.com">R</a> to filter it down to
+        just the first 100,000 rows focused on male finishers.
+      </p>
+      <p>
+        The cleaned dataset is just an array of numbers, stored in an array
+        called <code>data</code>.
+      </p>
+
       {/*
       //
       // Plot and code
@@ -63,7 +88,7 @@ export default function Home() {
       />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
-      <ChartFamilySection chartFamily="flow" />
+      <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />
     </Layout>
   );
