@@ -98,8 +98,8 @@ export default function Home() {
       <ChartOrSandbox
         vizName={'HistogramSliderBinSize'}
         VizComponent={HistogramSliderBinSizeDemo}
-        maxWidth={1200}
-        height={500}
+        maxWidth={1100}
+        height={600}
         caption="A histogram with a slider that controls the bin size."
       />
 
