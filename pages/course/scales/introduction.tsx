@@ -4,7 +4,7 @@ import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Button } from '@/component/UI/button';
-import { CircleScaleExercise } from './CircleScaleExercise';
+import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/scales/introduction';

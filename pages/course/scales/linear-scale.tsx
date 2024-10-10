@@ -1,11 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
-import { CodeBlock } from '@/component/UI/CodeBlock';
-import { Button } from '@/component/UI/button';
 import Link from 'next/link';
-import { CircleScaleExercise } from './CircleScaleExercise';
+import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
 
 const previousURL = '/course/scales/introduction';
 const currentURL = '/course/scales/linear-scale';
