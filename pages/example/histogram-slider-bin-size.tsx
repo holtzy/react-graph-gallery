@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { ArcDiagramVerticalDemo } from 'viz/ArcDiagramVertical/ArcDiagramVerticalDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { HistogramSliderBinSizeDemo } from '@/viz/HistogramSliderBinSize/HistogramSliderBinSizeDemo';
+import { cn } from '@/util/utils';
+import { buttonVariants } from '@/component/UI/button';
 
 const graphDescription = (
   <>
@@ -103,6 +105,38 @@ export default function Home() {
         caption="A histogram with a slider that controls the bin size."
       />
 
+      {/*
+      //
+      // Flash card
+      //
+      */}
+      <h2 id="caveats">Dataviz caveat</h2>
+      <p>
+        A great way to improve your data visualization skills is by learning the
+        most <b>common pitfalls</b> when creating charts.
+      </p>
+      <p>
+        I’ve compiled a{' '}
+        <a href="https://www.data-to-viz.com/caveats.html">large collection</a>{' '}
+        of these mistakes and created flashcards that summarize each one. For
+        example, here’s the card that explains the bin size issue.
+      </p>
+      <p>Explore the full collection when you can!</p>
+      <p>
+        <Link
+          className={cn(buttonVariants(), 'no-underline')}
+          href={'https://www.data-to-viz.com/caveats.html'}
+        >
+          Caveat collection
+        </Link>
+      </p>
+      <p>
+        <br />
+      </p>
+      <img
+        src="https://github.com/holtzy/dataviz-caveat-flashcards/blob/main/4HistogramMindTheBin-01.png?raw=true"
+        alt="a dataviz flashcard explaining that one must always check the optimal bin size when making an histogram"
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />

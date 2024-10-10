@@ -13,6 +13,9 @@ import { HistogramDatasetTransitionDemo } from '../viz/HistogramDatasetTransitio
 import Link from 'next/link';
 import { Accordion } from 'component/UI/AccordionGrey';
 import GraphGallery from 'component/GraphGallery';
+import { HistogramSliderBinSizeDemo } from '@/viz/HistogramSliderBinSize/HistogramSliderBinSizeDemo';
+import { Button } from '@/component/UI/button';
+import { ChartWithLink } from '@/component/ChartWithLink';
 
 const graphDescription = (
   <>
@@ -367,6 +370,35 @@ export default function Home() {
         the topic soon. Please <Link href="subscribe">subscribe</Link> to the
         newsletter if you want to be notified.
       </p>
+
+      {/*
+      //
+      // Bin size
+      //
+      */}
+      <h2 id="bin-size">Mind the bin size</h2>
+      <p>
+        When creating a{' '}
+        <a href="https://www.data-to-viz.com/graph/histogram.html">histogram</a>
+        , remember that <b>bin size</b> plays a crucial role in shaping the
+        story your data tells.
+      </p>
+      <p>
+        For example, the histogram below displays the finish times of 400,000
+        marathoners. With smaller bins, patterns around 3h, 3:30h, and 4h
+        emerge. However, using larger bins can{' '}
+        <b>obscure these details entirely</b>!
+      </p>
+
+      <ChartWithLink
+        VizComponent={HistogramSliderBinSizeDemo}
+        maxWidth={900}
+        height={600}
+        caption={
+          'A histogram with a slider that controls the bin size. With big bins, the breaks in the distribution are completely hidden.'
+        }
+        link="/example/histogram-slider-bin-size"
+      />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
