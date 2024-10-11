@@ -84,7 +84,6 @@ export const Histogram = ({
         y={yScale(bucket.length)}
         height={boundsHeight - yScale(bucket.length)}
         onMouseOver={(e) => {
-          console.log('e', e);
           setInteractionData({
             min: bucket.x0,
             max: bucket.x1,
@@ -92,6 +91,7 @@ export const Histogram = ({
           });
         }}
         onMouseLeave={() => setInteractionData(null)}
+        shapeRendering={'crispEdges'}
       />
     );
   });
