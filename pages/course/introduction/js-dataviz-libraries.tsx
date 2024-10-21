@@ -285,6 +285,11 @@ const datavizLibs = [
     link: 'https://github.com/vega/vega',
   },
   {
+    name: 'ObservablePlot',
+    stars: '4k',
+    link: 'https://github.com/observablehq/plot',
+  },
+  {
     name: 'ChartKick',
     stars: '1k',
     link: 'https://github.com/ankane/chartkick.js',

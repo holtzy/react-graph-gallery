@@ -73,7 +73,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/introduction/initial-setup',
-    status: 'wip',
+    status: 'free',
     moduleId: 'introduction',
   },
 
