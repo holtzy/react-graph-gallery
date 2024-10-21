@@ -27,6 +27,8 @@ export const ExerciseAccordion = ({
 }: ExerciseAccordionProps) => {
   const [exoStates, setExoStates] = useState<ExoState[]>([]);
 
+  const [value, setValue] = useState('');
+
   // Weird, I need to update the state after component mounts otherwiser localStorage is not available...
   useEffect(() => {
     const storedStates = localStorage.getItem(localStorageId);
@@ -37,7 +39,13 @@ export const ExerciseAccordion = ({
   }, []);
 
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion
+      value={value}
+      onValueChange={setValue}
+      type="single"
+      collapsible
+      className="w-full"
+    >
       {exercises.map((exercise, i) => {
         return (
           <AccordionItem value={'item-' + i}>
@@ -81,6 +89,7 @@ export const ExerciseAccordion = ({
                       localStorageId,
                       JSON.stringify(newExoStates)
                     );
+                    setValue('');
                   }}
                 >
                   Failed
@@ -94,6 +103,7 @@ export const ExerciseAccordion = ({
                       localStorageId,
                       JSON.stringify(newExoStates)
                     );
+                    setValue('');
                   }}
                 >
                   Done<span className="ml-2">🎉</span>
