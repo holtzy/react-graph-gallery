@@ -45,7 +45,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/introduction/js-dataviz-libraries',
-    status: 'wip',
+    status: 'free',
     moduleId: 'introduction',
   },
   {
