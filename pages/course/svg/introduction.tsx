@@ -6,6 +6,8 @@ import { CodeSandbox } from '@/component/CodeSandbox';
 import Link from 'next/link';
 import { Badge } from '@/component/UI/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
@@ -144,9 +146,8 @@ export default function Home() {
           content, making it more usable for people with disabilities.
         </li>
         <li>
-          <strong>Performance:</strong> SVG files are often smaller in size
-          compared to raster images, especially for complex graphics. This can
-          lead to faster load times and improved performance of web pages.
+          <strong>Usability:</strong> SVG elements are easy to manipulate,
+          allowing you to create complex shapes from simple ones with ease.
         </li>
       </ul>
 
@@ -173,6 +174,58 @@ export default function Home() {
         This can lead to performance bottlenecks, particularly on devices with
         limited processing power or memory.
       </p>
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        exercises={[
+          {
+            title: <span>Draw 2 circles</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+          },
+        ]}
+      />
+
+      <p>
+        Mental model: find where the circle is -click to find the right position
+      </p>
+      <p>
+        Developer console: inspect this scatterplot and try ot understand its
+        SVG structure
+      </p>
+      <p>Try to change the background color of the SVG area!</p>
+      <p>What happens if I do not give any dimension?</p>
+      <p>Talk about overflow?</p>
+      <p>Talk about stacking </p>
     </LayoutCourse>
   );
 }
+
+const exercices = [
+  {
+    title: <span>Draw 2 circles</span>,
+    whyItMatters: (
+      <>
+        <p>
+          Your SVG element is your canvas. You can draw as many shapes in it as
+          you want.
+        </p>
+        <p>
+          You just need to put them at the right location and it makes a graph.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Draw 2 circles in the SVG area</li>
+        <li>
+          First one must be small and <code>blue</code>
+        </li>
+        <li>
+          Second must be big and use <code>#69b3a2</code> as a color with an
+          opacity of <code>.3</code>
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgTwoCirclesPractice',
+    solutionSandbox: 'exercise/SvgTwoCirclesSolution',
+  },
+];
