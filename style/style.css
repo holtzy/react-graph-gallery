@@ -354,3 +354,12 @@ li {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.no-decoration {
+  text-decoration: none !important;
+  @apply text-primary;
+}
+.no-decoration:hover {
+  text-decoration: none;
+  @apply text-primary;
+}

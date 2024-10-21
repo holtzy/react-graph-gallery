@@ -8,6 +8,7 @@ import { Badge } from '@/component/UI/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
+import Confetti from '@/component/Confetti';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
