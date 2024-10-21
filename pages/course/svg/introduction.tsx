@@ -181,20 +181,40 @@ export default function Home() {
             title: <span>Draw 2 circles</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
           },
+          {
+            title: <span>SVG coordinates</span>,
+            content: (
+              <div>
+                <p>Some random content mate!</p>
+              </div>
+            ),
+          },
+          {
+            title: <span>Developer console</span>,
+            content: (
+              <div>
+                <p>Some random content mate!</p>
+              </div>
+            ),
+          },
+          {
+            title: <span>Background Color</span>,
+            content: (
+              <div>
+                <p>Some random content mate!</p>
+              </div>
+            ),
+          },
+          {
+            title: <span>Overflow</span>,
+            content: (
+              <div>
+                <p>Some random content mate!</p>
+              </div>
+            ),
+          },
         ]}
       />
-
-      <p>
-        Mental model: find where the circle is -click to find the right position
-      </p>
-      <p>
-        Developer console: inspect this scatterplot and try ot understand its
-        SVG structure
-      </p>
-      <p>Try to change the background color of the SVG area!</p>
-      <p>What happens if I do not give any dimension?</p>
-      <p>Talk about overflow?</p>
-      <p>Talk about stacking </p>
     </LayoutCourse>
   );
 }
