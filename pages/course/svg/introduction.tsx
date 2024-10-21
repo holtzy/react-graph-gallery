@@ -8,7 +8,6 @@ import { Badge } from '@/component/UI/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
-import Confetti from '@/component/Confetti';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
@@ -177,6 +176,7 @@ export default function Home() {
       </p>
       <h2>Exercices</h2>
       <ExerciseAccordion
+        localStorageId={currentLesson.link}
         exercises={[
           {
             title: <span>Draw 2 circles</span>,

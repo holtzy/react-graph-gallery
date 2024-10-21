@@ -16,16 +16,20 @@ export type Exercise = {
 
 type ExerciseAccordionProps = {
   exercises: Exercise[];
+  localStorageId: string; // used for localStorage
 };
 
 type ExoState = 'failed' | 'ok' | 'todo';
 
-export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
+export const ExerciseAccordion = ({
+  exercises,
+  localStorageId,
+}: ExerciseAccordionProps) => {
   const [exoStates, setExoStates] = useState<ExoState[]>([]);
 
   // Weird, I need to update the state after component mounts otherwiser localStorage is not available...
   useEffect(() => {
-    const storedStates = localStorage.getItem('exoStates');
+    const storedStates = localStorage.getItem(localStorageId);
     const initialStates = storedStates
       ? JSON.parse(storedStates)
       : Array(exercises.length).fill('todo');
@@ -74,7 +78,7 @@ export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
                     newExoStates[i] = 'failed';
                     setExoStates(newExoStates);
                     localStorage.setItem(
-                      'exoStates',
+                      localStorageId,
                       JSON.stringify(newExoStates)
                     );
                   }}
@@ -87,7 +91,7 @@ export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
                     newExoStates[i] = 'ok';
                     setExoStates(newExoStates);
                     localStorage.setItem(
-                      'exoStates',
+                      localStorageId,
                       JSON.stringify(newExoStates)
                     );
                   }}
