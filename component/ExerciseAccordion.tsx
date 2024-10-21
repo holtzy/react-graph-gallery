@@ -5,9 +5,10 @@ import {
   AccordionTrigger,
 } from '@/component/UI/accordion';
 import { Check, CircleX } from 'lucide-react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Button } from './UI/button';
 import { cn } from '@/util/utils';
+
 export type Exercise = {
   title: ReactNode;
   content: ReactNode;
@@ -20,9 +21,16 @@ type ExerciseAccordionProps = {
 type ExoState = 'failed' | 'ok' | 'todo';
 
 export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
-  const [exoStates, setExoStates] = useState<ExoState[]>(
-    Array(exercises.length).fill('todo')
-  );
+  const [exoStates, setExoStates] = useState<ExoState[]>([]);
+
+  // Weird, I need to update the state after component mounts otherwiser localStorage is not available...
+  useEffect(() => {
+    const storedStates = localStorage.getItem('exoStates');
+    const initialStates = storedStates
+      ? JSON.parse(storedStates)
+      : Array(exercises.length).fill('todo');
+    setExoStates(initialStates);
+  }, []);
 
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -62,20 +70,26 @@ export const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
                 <Button
                   variant={'outline'}
                   onClick={() => {
-                    const newExoStates = exoStates.map((exoState, exoIndex) =>
-                      exoIndex === i ? 'failed' : exoState
-                    );
+                    const newExoStates = [...exoStates];
+                    newExoStates[i] = 'failed';
                     setExoStates(newExoStates);
+                    localStorage.setItem(
+                      'exoStates',
+                      JSON.stringify(newExoStates)
+                    );
                   }}
                 >
                   Failed
                 </Button>
                 <Button
                   onClick={() => {
-                    const newExoStates = exoStates.map((exoState, exoIndex) =>
-                      exoIndex === i ? 'ok' : exoState
-                    );
+                    const newExoStates = [...exoStates];
+                    newExoStates[i] = 'ok';
                     setExoStates(newExoStates);
+                    localStorage.setItem(
+                      'exoStates',
+                      JSON.stringify(newExoStates)
+                    );
                   }}
                 >
                   Done<span className="ml-2">🎉</span>
