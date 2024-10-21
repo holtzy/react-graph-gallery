@@ -9,10 +9,10 @@ summary(data)
 # Filter for male and select the clocktime column
 male_clocktimes <- data %>%
   filter(gender == "M" & !is.na(clocktime)) %>%
-  head(100000) %>%
+  #head(300000) %>%
   select(clocktime) %>%
-  pull()%>%
-  round(1)  # Round to 2 decimal places
+  pull() 
+length(male_clocktimes)
 
 hist(male_clocktimes, breaks=1000)
 

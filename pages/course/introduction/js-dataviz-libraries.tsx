@@ -2,6 +2,16 @@ import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../../../component/ui/table';
 
 const previousURL = '/course/introduction/introduction-to-react';
 const currentURL = '/course/introduction/js-dataviz-libraries';
@@ -47,6 +57,34 @@ export default function Home() {
         You start with a lib with NIVO. In a few minutes you have your chart.
         Great!
       </p>
+
+      <Table>
+        <TableCaption>
+          List of the biggest javascript libraries for data visualization
+        </TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Stars</TableHead>
+            <TableHead>Link</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {datavizLibs.map((lib) => (
+            <TableRow key={lib.name}>
+              <TableCell className="font-medium">{lib.name}</TableCell>
+              <TableCell>{lib.stars}</TableCell>
+              <TableCell>
+                <a href={lib.link}>link</a>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      <p>
+        <br />
+      </p>
       <p>Now your boss ask for X, Y, Z. Doable.</p>
       <p>
         Now he asks for something new. That's doable but hard. Your code starts
@@ -58,3 +96,41 @@ export default function Home() {
     </LayoutCourse>
   );
 }
+
+const datavizLibs = [
+  {
+    name: 'Nivo',
+    stars: '13',
+    link: 'https://github.com/plouc/nivo',
+  },
+  {
+    name: 'Chart.js',
+    stars: '64',
+    link: 'https://github.com/chartjs/Chart.js',
+  },
+  {
+    name: 'HighCharts',
+    stars: '12',
+    link: 'https://github.com/highcharts/highcharts',
+  },
+  {
+    name: 'Recharts',
+    stars: '24',
+    link: 'https://github.com/recharts/recharts',
+  },
+  {
+    name: 'ChartKick',
+    stars: '1',
+    link: 'https://github.com/ankane/chartkick.js',
+  },
+  {
+    name: 'Vega',
+    stars: '11',
+    link: 'https://github.com/vega/vega',
+  },
+  {
+    name: 'ECharts',
+    stars: '60',
+    link: 'https://github.com/apache/echarts',
+  },
+];
