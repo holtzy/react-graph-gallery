@@ -10,6 +10,7 @@ import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
+import { ScatterplotBasicDemo } from '@/viz/ScatterplotBasic/ScatterplotBasicDemo';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
@@ -238,17 +239,22 @@ export default function Home() {
             title: <span>Developer console</span>,
             content: (
               <div>
-                <p>Some random content mate!</p>
+                <p>
+                  Open your developer console and inspect the scatterplot below.
+                </p>
+                <p>
+                  Take some time to understand how the SVG structure is
+                  organized.
+                </p>
+                <center>
+                  <ScatterplotBasicDemo width={500} height={500} />
+                </center>
               </div>
             ),
           },
           {
             title: <span>Background Color</span>,
-            content: (
-              <div>
-                <p>Some random content mate!</p>
-              </div>
-            ),
+            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
           {
             title: <span>Overflow</span>,
@@ -322,5 +328,27 @@ const exercices = [
     ),
     practiceSandbox: 'exercise/SvgThreeCirclesPractice',
     solutionSandbox: 'exercise/SvgThreeCirclesSolution',
+  },
+  {
+    title: <span>Background Color</span>,
+    whyItMatters: (
+      <>
+        <p>
+          Many CSS features either don't work or behave differently with SVG.
+        </p>
+        <p>We'll uncover them all as we go through the course!</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <p>
+          Add some <b>inline style</b> to the svg area below. Use the{' '}
+          <code>backgroundColor</code>
+          property to change the background to <code>yellow</code>.
+        </p>
+      </>
+    ),
+    practiceSandbox: 'exercise/SvgBackgroundColorPractice',
+    solutionSandbox: 'exercise/SvgBackgroundColorSolution',
   },
 ];
