@@ -301,7 +301,7 @@ const exercices: Exercise[] = [
     toDo: (
       <ul>
         <li>Create 4 bars using 4 rectangles.</li>
-        <li>The bars should be 400, 300, 200, and 100px high, respectively.</li>
+        <li>The bars should be 250, 200, 150, and 100px high, respectively.</li>
         <li>
           Distribute them along the X axis to create your first vertical bar
           chart!
