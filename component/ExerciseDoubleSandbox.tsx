@@ -18,7 +18,7 @@ export const ExerciseDoubleSandbox = ({
   exercise,
 }: ExerciseDoubleSandboxProps) => {
   return (
-    <>
+    <div>
       <div className="grid grid-cols-2 gap-4 pt-4">
         <div>
           <Badge>To Do</Badge>
@@ -30,11 +30,13 @@ export const ExerciseDoubleSandbox = ({
         </div>
       </div>
 
-      <Tabs defaultValue="practice" className="w-full">
-        <TabsList>
-          <TabsTrigger value="practice">Practice</TabsTrigger>
-          <TabsTrigger value="solution">Solution</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="practice" className="">
+        <center>
+          <TabsList>
+            <TabsTrigger value="practice">Practice</TabsTrigger>
+            <TabsTrigger value="solution">Solution</TabsTrigger>
+          </TabsList>
+        </center>
         <TabsContent value="practice">
           <div className="full-bleed my-4 max-w-7xl mx-auto">
             <CodeSandbox vizName={exercise.practiceSandbox} />
@@ -46,6 +48,6 @@ export const ExerciseDoubleSandbox = ({
           </div>
         </TabsContent>
       </Tabs>
-    </>
+    </div>
   );
 };

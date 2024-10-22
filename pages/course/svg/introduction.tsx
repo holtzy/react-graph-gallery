@@ -8,6 +8,8 @@ import { Badge } from '@/component/UI/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
+import { Caption } from '@/component/UI/Caption';
+import { Sidenote } from '@/component/SideNote';
 
 const previousURL = '/course/introduction/initial-setup';
 const currentURL = '/course/svg/introduction';
@@ -82,6 +84,20 @@ export default function Home() {
           </p>
         </TabsContent>
       </Tabs>
+
+      <p>
+        <br />
+      </p>
+      <center>
+        <img
+          src="/excalidraw/anatomy-of-a-svg.png"
+          width={400}
+          alt="anatomy of a react app with a svg area"
+        />
+        <Caption>
+          Anatomy of a React app with a graph built in a svg area.
+        </Caption>
+      </center>
 
       <h2>Most simple example</h2>
       <p>Here is a very simple react app that uses SVG to render a circle:</p>
@@ -158,28 +174,38 @@ export default function Home() {
         </Badge>
       </h2>
       <p>
-        While SVG is a powerful tool for creating high-quality, scalable
-        graphics, it does have <b>performance limitations</b>, especially when
-        used for data visualization.
+        SVG has <b>performance limitations</b>, especially when used for data
+        visualization.
       </p>
-      <p>
-        As SVG graphs are defined in the DOM, each shape or element added to an
-        SVG <b>increases the number of DOM nodes</b>. For complex visualizations
-        with a large number of elements, such as detailed scatterplots or large
-        datasets, this can <b>make the DOM very heavy</b>.
-      </p>
+      <div className="relative">
+        <Sidenote
+          text={
+            <p>
+              💡 DOM = <b>Document Object Model</b>. It is basically list that
+              shows all the elements of a webpage and how they're arranged.
+            </p>
+          }
+        />
+        <p>
+          SVG graphs are defined in the DOM. Each SVG element{' '}
+          <b>increases the number of DOM nodes</b>. If you create a scatterplot
+          with 1 million circles, it will make the make the DOM{' '}
+          <b> very heavy</b>.
+        </p>
+      </div>
       <p>
         As a result, <b>the browser may become slow and unresponsive</b> due to
         the increased workload of rendering and managing numerous SVG elements.
         This can lead to performance bottlenecks, particularly on devices with
         limited processing power or memory.
       </p>
+
       <h2>Exercices</h2>
       <ExerciseAccordion
         localStorageId={currentLesson.link}
         exercises={[
           {
-            title: <span>Draw 2 circles</span>,
+            title: <span>Your first circle</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
           },
           {
@@ -222,27 +248,27 @@ export default function Home() {
 
 const exercices = [
   {
-    title: <span>Draw 2 circles</span>,
+    title: <span>Draw 1 Circle</span>,
     whyItMatters: (
       <>
         <p>
-          Your SVG element is your canvas. You can draw as many shapes in it as
-          you want.
+          A chart is basically a <b>set of SVG elements</b>!
         </p>
         <p>
-          You just need to put them at the right location and it makes a graph.
+          Learn how to draw one circle, and you almost know how to make a
+          scatterplot 🎉.
         </p>
       </>
     ),
     toDo: (
       <ul>
-        <li>Draw 2 circles in the SVG area</li>
+        <li>Draw 1 circle in the SVG area</li>
         <li>
-          First one must be small and <code>blue</code>
+          Use the <code>circle</code> element
         </li>
         <li>
-          Second must be big and use <code>#69b3a2</code> as a color with an
-          opacity of <code>.3</code>
+          Provide values for <code>cx</code>, <code>cy</code>, and{' '}
+          <code>r</code>. Use also <code>fill</code> for the color.
         </li>
       </ul>
     ),
