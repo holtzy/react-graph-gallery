@@ -130,11 +130,33 @@ export default function Home() {
         where the origin point (0,0) is located.
       </p>
 
-      <h2>You can style SVG</h2>
+      <h2>Coordinates are upside down 🙃</h2>
       <p>
-        SHow that yu can add a css file and it works. But it has some
-        specificity.
+        SVG uses a coordinate system where the origin <code>(0, 0)</code> is at
+        the <b>top-left</b> corner of the canvas.
       </p>
+      <p>
+        As you move right, the <code>x</code> values increase, just like you'd
+        expect. But here's the catch: the <code>y</code> values increase as you
+        move down instead of up, which is different from typical Cartesian
+        coordinates.
+      </p>
+      <p>So, it's like the coordinate system is upside down for the y axis.</p>
+
+      <p>
+        <br />
+      </p>
+
+      <center>
+        <img
+          src="/excalidraw/svg-coordinates.png"
+          width={400}
+          alt="Diagram explaining svg coordinates"
+        />
+        <Caption>
+          SVG coordinates are upside-down: 0,0 is at the top left!
+        </Caption>
+      </center>
 
       <h2>
         Benefits{' '}
@@ -210,11 +232,7 @@ export default function Home() {
           },
           {
             title: <span>SVG coordinates</span>,
-            content: (
-              <div>
-                <p>Some random content mate!</p>
-              </div>
-            ),
+            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
           },
           {
             title: <span>Developer console</span>,
@@ -272,7 +290,37 @@ const exercices = [
         </li>
       </ul>
     ),
-    practiceSandbox: 'exercise/SvgTwoCirclesPractice',
-    solutionSandbox: 'exercise/SvgTwoCirclesSolution',
+    practiceSandbox: 'exercise/SvgOneCirclePractice',
+    solutionSandbox: 'exercise/SvgOneCircleSolution',
+  },
+  {
+    title: <span>SVG coordinates</span>,
+    whyItMatters: (
+      <>
+        <p>
+          It's counter intuitive! <code>0,0</code> is at the top left.
+        </p>
+        <p>
+          It's important to get used to this mental gymnastic, we'll use it in
+          literally every chart.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          Draw a <code>red</code> circle 20px from the top left of the svg area.
+        </li>
+        <li>
+          Draw a <code>blue</code> circle at 19px from the bottom right corner.
+        </li>
+        <li>
+          Draw a <code>pink</code> circle at 43px from the left and 12px from
+          the bottom.
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgThreeCirclesPractice',
+    solutionSandbox: 'exercise/SvgThreeCirclesSolution',
   },
 ];
