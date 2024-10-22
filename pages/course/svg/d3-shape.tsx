@@ -11,11 +11,10 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 
-const previousURL = '/course/svg/main-svg-elements';
-const currentURL = '/course/svg/path-element';
-const nextURL = '/course/svg/d3-shape';
+const previousURL = '/course/svg/path-element';
+const currentURL = '/course/svg/d3-shape';
+const nextURL = '/course/svg/tips-and-tricks';
 const seoDescription = '';
 
 export default function Home() {
@@ -40,28 +39,17 @@ export default function Home() {
         description={
           <>
             <p>
-              In this lesson, we'll dive into one of the most versatile and
-              powerful elements in SVG: the <code>&lt;path&gt;</code> element.
+              Some shapes can be quite complex—like rings, slices, paths,
+              polygons, and curves. Manually creating the `d` attribute for
+              these shapes would be a nightmare!
             </p>
             <p>
-              The <code>&lt;path&gt;</code> element allows you to create complex
-              shapes and lines that go beyond the basic geometric shapes. It is
-              essential to build some graph types like an{' '}
-              <Link href="/area-plot">area chart</Link> or a{' '}
-              <Link href="/line-chart">line chart</Link>.
+              Fortunately, D3 provides a module specifically for handling all
+              these shapes. Let’s explore how it can simplify our work.
             </p>
           </>
         }
       />
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
       <h2>Most basic example</h2>
       <p>
         The <code>&lt;path&gt;</code> element allows to draw literally any shape
@@ -97,15 +85,6 @@ export default function Home() {
         <code>d</code> attribute. This attribute defines the shape of the path.
         Let's discover its syntax.
       </p>
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
       <h2>
         Understanding the <code>d</code> Attribute
       </h2>
@@ -153,65 +132,6 @@ export default function Home() {
       <div className="full-bleed my-4 max-w-7xl mx-auto">
         <CodeSandbox vizName="SvgPath" />
       </div>
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
-      <h2>Not only lines!</h2>
-      <p>
-        The <code>path</code> element can create a wide variety of shapes,
-        including the most complex ones.
-      </p>
-      <p>
-        Two particularly useful features are the Bézier curve (<code>C</code>)
-        and the arc curve (<code>A</code>). Check how they work with those 2
-        diagrams:
-      </p>
-      <Tabs defaultValue="boring">
-        <center>
-          <TabsList className="my-4">
-            <TabsTrigger value="curve">Curve</TabsTrigger>
-            <TabsTrigger value="arc">Arc</TabsTrigger>
-          </TabsList>
-        </center>
-        <TabsContent value="curve">
-          <center>
-            <img src="/excalidraw/bezier-curve-svg.png" width={600} />
-          </center>
-        </TabsContent>
-        <TabsContent value="arc">
-          <center>
-            <img src="/excalidraw/arc-curve-svg.png" width={600} />
-          </center>
-        </TabsContent>
-      </Tabs>
-      <p>
-        <br />
-      </p>
-      <p>
-        Ok, that's definitely <b>not easy</b> to grasp.
-      </p>
-      <p>
-        In the sandbox below, try to play with the numbers, and see what
-        happens.
-      </p>
-      <div className="full-bleed my-4 max-w-7xl mx-auto">
-        <CodeSandbox vizName="SvgCurveArc" />
-      </div>
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
       <h2>The good news 🎁</h2>
       <p>
         You won’t need to manually write the <code>d</code> attribute yourself.
@@ -246,15 +166,6 @@ const pathData = lineGenerator(data);
         This is one of the reasons why d3.js is so powerful and beloved for data
         visualization! 💙
       </p>
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
       <h2>Exercises</h2>
       <ExerciseAccordion
         localStorageId={currentLesson.link}

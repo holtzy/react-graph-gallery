@@ -13,7 +13,7 @@ import {
 
 const previousURL = '/course/svg/introduction';
 const currentURL = '/course/svg/main-svg-elements';
-const nextURL = undefined;
+const nextURL = '/course/svg/path-element';
 const seoDescription = '';
 
 export default function Home() {

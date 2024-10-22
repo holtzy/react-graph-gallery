@@ -125,6 +125,18 @@ export const lessonList: Lesson[] = [
     moduleId: 'svg',
   },
   {
+    name: 'Building shapes with d3',
+    description: (
+      <>
+        <p>Some shapes are complicated to draw. Fortunately, d3.js is here.</p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/svg/d3-shape',
+    status: 'wip',
+    moduleId: 'svg',
+  },
+  {
     name: 'SVG tips & tricks',
     description: (
       <>
