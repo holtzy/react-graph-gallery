@@ -175,6 +175,10 @@ export default function Home() {
             title: <span>A first barplot!</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
           },
+          {
+            title: <span>Vertical barplot 🤕</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[4]} />,
+          },
         ]}
       />
     </LayoutCourse>
@@ -280,7 +284,32 @@ const exercices: Exercise[] = [
       </ul>
     ),
 
-    practiceSandbox: 'exercise/SvgOverflowPractice',
-    solutionSandbox: 'exercise/SvgOverflowSolution',
+    practiceSandbox: 'exercise/SvgFourRectsPractice',
+    solutionSandbox: 'exercise/SvgFourRectsSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>Rectangles are drawn from top to bottom in SVG.</p>
+        <p>
+          As a result, there is always a bit of thinking overhead to perform
+          each time. Annoying but necessary!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Create 4 bars using 4 rectangles.</li>
+        <li>The bars should be 400, 300, 200, and 100px high, respectively.</li>
+        <li>
+          Distribute them along the X axis to create your first vertical bar
+          chart!
+        </li>
+      </ul>
+    ),
+
+    practiceSandbox: 'exercise/SvgFourRectsVerticalPractice',
+    solutionSandbox: 'exercise/SvgFourRectsVerticalSolution',
   },
 ];
