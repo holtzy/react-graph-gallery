@@ -201,7 +201,7 @@ export default function Home() {
         happens.
       </p>
       <div className="full-bleed my-4 max-w-7xl mx-auto">
-        <CodeSandbox vizName="SvgCurveArc" />
+        <CodeSandbox vizName="exercise/SvgCurveArc" />
       </div>
       {/* -
       -
