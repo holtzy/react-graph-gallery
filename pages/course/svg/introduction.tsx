@@ -7,7 +7,10 @@ import Link from 'next/link';
 import { Badge } from '@/component/UI/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
-import { ExerciseDoubleSandbox } from '@/component/ExerciseDoubleSandbox';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
 import { ScatterplotBasicDemo } from '@/viz/ScatterplotBasic/ScatterplotBasicDemo';
@@ -266,9 +269,8 @@ export default function Home() {
   );
 }
 
-const exercices = [
+const exercices: Exercise[] = [
   {
-    title: <span>Draw 1 Circle</span>,
     whyItMatters: (
       <>
         <p>
@@ -296,7 +298,6 @@ const exercices = [
     solutionSandbox: 'exercise/SvgOneCircleSolution',
   },
   {
-    title: <span>SVG coordinates</span>,
     whyItMatters: (
       <>
         <p>
@@ -326,7 +327,6 @@ const exercices = [
     solutionSandbox: 'exercise/SvgThreeCirclesSolution',
   },
   {
-    title: <span>Background Color</span>,
     whyItMatters: (
       <>
         <p>
@@ -348,7 +348,6 @@ const exercices = [
     solutionSandbox: 'exercise/SvgBackgroundColorSolution',
   },
   {
-    title: <span>Overflow</span>,
     whyItMatters: (
       <>
         <p>

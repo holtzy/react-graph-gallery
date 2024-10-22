@@ -6,6 +6,10 @@ import { CodeSandbox } from '@/component/CodeSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
 
 const previousURL = '/course/svg/introduction';
 const currentURL = '/course/svg/main-svg-elements';
@@ -150,123 +154,133 @@ export default function Home() {
       </div>
 
       <h2>Exercices</h2>
+
       <ExerciseAccordion
+        localStorageId={currentLesson.link}
         exercises={[
           {
-            title: <span>Draw 2 circles</span>,
-            whyItMatters: (
-              <>
-                <p>
-                  Your SVG element is your canvas. You can draw as many shapes
-                  in it as you want.
-                </p>
-                <p>
-                  You just need to put them at the right location and it makes a
-                  graph.
-                </p>
-              </>
-            ),
-            toDo: (
-              <ul>
-                <li>Draw 2 circles in the SVG area</li>
-                <li>
-                  First one must be small and <code>blue</code>
-                </li>
-                <li>
-                  Second must be big and use <code>#69b3a2</code> as a color
-                  with an opacity of <code>.3</code>
-                </li>
-              </ul>
-            ),
-            practiceSandbox: 'exercise/SvgTwoCirclesPractice',
-            solutionSandbox: 'exercise/SvgTwoCirclesSolution',
+            title: <span>Two circles</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
           },
           {
-            title: (
-              <span>
-                Use a loop with <code>map</code> to draw several circles
-              </span>
-            ),
-            whyItMatters: (
-              <>
-                <p>
-                  In real life you won't have 1, 2 or 3 circles to draw. You
-                  will have heaps of them and that will make a{' '}
-                  <Link href="/scatter-plot">scatterplot</Link>.
-                </p>
-                <p>
-                  But you do not want to use hundreds of <code>circle</code>{' '}
-                  elements, you want to create a loop that draw 1 circle at each
-                  iteration.
-                </p>
-              </>
-            ),
-            toDo: (
-              <ul>
-                <li>Create a loop that goes from 1 to 10</li>
-                <li>At each iteration, draw a circle in the SVG area</li>
-                <li>Change the circle position at each iteration</li>
-              </ul>
-            ),
-            practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
-            solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
+            title: <span>10 circles (use a loop!)</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
           },
 
           {
-            title: <span>Understand stacking order</span>,
-            whyItMatters: (
-              <>
-                <p>What you draw first will be below what you draw second.</p>
-                <p>
-                  Like in HTML, stacking order matters. Keep this in mind for
-                  when you will start drawing more complex graphs.
-                </p>
-              </>
-            ),
-            toDo: (
-              <ul>
-                <li>
-                  Create one big grey rectangle that takes the full width and
-                  height of the SVG area
-                </li>
-                <li>Add one big yellow circle in it</li>
-                <li>Add some text in the circle</li>
-              </ul>
-            ),
-            practiceSandbox: 'exercise/SvgStackingOrderPractice',
-            solutionSandbox: 'exercise/SvgStackingOrderSolution',
+            title: <span>Background Color</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
-
           {
-            title: <span>Dealing with SVG overflow</span>,
-            whyItMatters: (
-              <>
-                <p>
-                  Parts of the SVG elements that extend beyond the SVG canvas
-                  boundaries will not be visible. It is called <b>clipping</b>.{' '}
-                </p>
-                <p>
-                  But you can change the <code>overflow</code> css property of
-                  the svg element to <code>visible</code> to show shapes outside
-                  the SVG element boundaries.
-                </p>
-              </>
-            ),
-            toDo: (
-              <ul>
-                <li>Draw a big circle at the bottom of the SVG area.</li>
-                <li>Notice that a part of it is clipped!</li>
-                <li>
-                  Use the overflow property to avoid clipping and show the full
-                  circle
-                </li>
-              </ul>
-            ),
-            practiceSandbox: 'exercise/SvgOverflowPractice',
-            solutionSandbox: 'exercise/SvgOverflowSolution',
+            title: <span>A first barplot!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
           },
         ]}
       />
     </LayoutCourse>
   );
 }
+
+const exercices: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Your SVG element is your canvas. You can draw as many shapes in it as
+          you want.
+        </p>
+        <p>
+          You just need to put them at the right location and it makes a graph.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Draw 2 circles in the SVG area</li>
+        <li>
+          First one must be small and <code>blue</code>
+        </li>
+        <li>
+          Second must be big and use <code>#69b3a2</code> as a color with an
+          opacity of <code>.3</code>
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgTwoCirclesPractice',
+    solutionSandbox: 'exercise/SvgTwoCirclesSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          In real life you won't have 1, 2 or 3 circles to draw. You will have
+          heaps of them and that will make a{' '}
+          <Link href="/scatter-plot">scatterplot</Link>.
+        </p>
+        <p>
+          But you do not want to use hundreds of <code>circle</code> elements,
+          you want to create a loop that draw 1 circle at each iteration.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Create a loop that goes from 1 to 10</li>
+        <li>At each iteration, draw a circle in the SVG area</li>
+        <li>Change the circle position at each iteration</li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgMultipleCirclesPractice',
+    solutionSandbox: 'exercise/SvgMultipleCirclesSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>What you draw first will be below what you draw second.</p>
+        <p>
+          Like in HTML, stacking order matters. Keep this in mind for when you
+          will start drawing more complex graphs.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          Create one big grey rectangle that takes the full width and height of
+          the SVG area
+        </li>
+        <li>Add one big yellow circle in it</li>
+        <li>Add some text in the circle</li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgStackingOrderPractice',
+    solutionSandbox: 'exercise/SvgStackingOrderSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Notice how tricky it is to divide the height by the number of bars
+          while also leaving space for padding?
+        </p>
+        <p>
+          No worries—the next module on <b>scales</b> will help with that!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Create 4 bars using 4 rectangles.</li>
+        <li>The bars should be 400, 300, 200, and 100px wide, respectively.</li>
+        <li>
+          Distribute them along the Y axis to create your first bar chart!
+        </li>
+      </ul>
+    ),
+
+    practiceSandbox: 'exercise/SvgOverflowPractice',
+    solutionSandbox: 'exercise/SvgOverflowSolution',
+  },
+];
