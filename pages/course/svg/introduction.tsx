@@ -258,11 +258,7 @@ export default function Home() {
           },
           {
             title: <span>Overflow</span>,
-            content: (
-              <div>
-                <p>Some random content mate!</p>
-              </div>
-            ),
+            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
           },
         ]}
       />
@@ -350,5 +346,30 @@ const exercices = [
     ),
     practiceSandbox: 'exercise/SvgBackgroundColorPractice',
     solutionSandbox: 'exercise/SvgBackgroundColorSolution',
+  },
+  {
+    title: <span>Overflow</span>,
+    whyItMatters: (
+      <>
+        <p>
+          This is a common challenge. Allowing overflow can be helpful for
+          labels, tooltips, and other elements.
+        </p>
+        <p>
+          However, it can quickly become frustrating when multiple charts are
+          displayed in the same app.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <p>Half the circle below is missing 😱.</p>
+        <p>
+          Use the <code>overflow</code> css property to make it appear.
+        </p>
+      </>
+    ),
+    practiceSandbox: 'exercise/SvgOverflowPractice',
+    solutionSandbox: 'exercise/SvgOverflowSolution',
   },
 ];
