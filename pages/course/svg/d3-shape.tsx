@@ -377,34 +377,24 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
+        <p>Accessor functions are a fundamental concept in d3.js.</p>
         <p>
-          The <code>&lt;path&gt;</code> element can be used to draw extended
-          lines or create closed shapes.
-        </p>
-        <p>
-          To close a shape, add <code>Z</code> at the end of the <code>d</code>{' '}
-          attribute and use the <code>fill</code> property to apply a color.
+          They’re incredibly useful because they allow d3 to work with any
+          structure of input data, giving you the flexibility to handle
+          different data formats.
         </p>
       </>
     ),
     toDo: (
       <ul>
         <li>
-          Modify the path to start at the bottom-left corner of the SVG area.
+          This time, the data format is slightly different, with the x position
+          stored in a <code>xAxisPosition</code> property.
         </li>
-        <li>
-          Adjust the path to end at the bottom-right corner of the SVG area.
-        </li>
-        <li>
-          Add a <code>Z</code> at the end of the <code>d</code> attribute to
-          close the shape.
-        </li>
-        <li>
-          Update the <code>fill</code> property to apply a color to the shape.
-        </li>
+        <li>Update the accessor function to create the line chart again.</li>
       </ul>
     ),
-    practiceSandbox: 'exercise/SvgPathFirstAreaChartPractice',
-    solutionSandbox: 'exercise/SvgPathFirstAreaChartSolution',
+    practiceSandbox: 'exercise/d3LineFunctionChangeAccessorPractice',
+    solutionSandbox: 'exercise/d3LineFunctionChangeAccessorSolution',
   },
 ];
