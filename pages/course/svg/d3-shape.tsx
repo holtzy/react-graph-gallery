@@ -13,6 +13,7 @@ import {
 } from '@/component/ExerciseDoubleSandbox';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { Caption } from '@/component/UI/Caption';
+import { GraphTOTO } from '@/viz/exercise/d3LineMultipleLineChartSolution/Graph';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/svg/d3-shape';
@@ -341,8 +342,16 @@ multiply(4, 6))
             ),
             content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
+          {
+            title: <span>Multiple lines!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
+          },
+          {
+            title: <span>Line chart with filled area</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[4]} />,
+          },
         ]}
-      />{' '}
+      />
     </LayoutCourse>
   );
 }
@@ -430,5 +439,85 @@ const exercices: Exercise[] = [
     ),
     practiceSandbox: 'exercise/d3AreaFunctionPractice',
     solutionSandbox: 'exercise/d3AreaFunctionSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Using the <code>area()</code> function is almost the same as the{' '}
+          <code>line()</code> function.
+        </p>
+        <p>
+          That's the magic of the <code>d3-shape</code> module, you switch from
+          one shape to the other easily!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          Let's switch to an area chart, thanks to the <code>d3.area()</code>{' '}
+          function. Three methods must be chained to <code>area()</code>:
+        </li>
+        <li>
+          <code>x()</code> is the same as for the line chart.
+        </li>
+        <li>
+          <code>y0()</code>: Y coordinate of the bottom of the area
+        </li>
+        <li>
+          <code>y1()</code> Y coordinate of the top.
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/d3LineMultipleLineChartPractice',
+    solutionSandbox: 'exercise/d3LineMultipleLineChartSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Once the path generator is available, it can be used to create as many
+          elements as you wish!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>This time, 2 datasets are available. We want to draw 2 lines.</li>
+        <li>Create a line path generator.</li>
+        <li>
+          Use the path generator twice, once per dataset, to create 2 paths and
+          draw them!
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/d3LineMultipleLineChartPractice',
+    solutionSandbox: 'exercise/d3LineMultipleLineChartSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          A chart is essentially a combination of shapes! Once you know how to
+          build them individually, it's just a matter of drawing them together!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Create both a line generator and an area generator</li>
+        <li>Add 2 paths to the SVG: the area first, the line second.</li>
+        <li>
+          Use low opacity for the area and a stroke width of 2 for the line.
+        </li>
+      </ul>
+    ),
+
+    practiceSandbox: 'exercise/d3LineFilledAreaPractice',
+    solutionSandbox: 'exercise/d3LineFilledAreaSolution',
   },
 ];
