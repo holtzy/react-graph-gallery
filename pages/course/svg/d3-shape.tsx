@@ -352,26 +352,26 @@ const exercices: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          Creating a graph involves translating a <b>set of numbers</b> from a
-          table (the data) into <b>coordinates</b> on a screen!
+          The logic behind each functions of the <code>d3-shape</code> module is
+          the same.
         </p>
         <p>
-          While doing this manually can be tedious, we'll soon explore how d3.js
-          can <b>automate</b> the process and make it much easier.
+          If you have a good understanding of d3.line(), you're on the right way
+          to build any other chart type!
         </p>
       </>
     ),
     toDo: (
       <ul>
+        <li>Fill the code in the sandbox below.</li>
         <li>
-          Add a <code>path</code> element to the svg area
+          You must create a line chart based on the dataset provided at the
+          beginning of the file.
         </li>
-        <li>The x coordinates must be 0, 50, 100, 150, 200, 250, 300</li>
-        <li>The y coordinates must be 40, 70, 150, 150, 200, 50, 90</li>
       </ul>
     ),
-    practiceSandbox: 'exercise/SvgPathFirstLineChartPractice',
-    solutionSandbox: 'exercise/SvgPathFirstLineChartSolution',
+    practiceSandbox: 'exercise/d3LineFunctionBasicPractice',
+    solutionSandbox: 'exercise/d3LineFunctionBasicSolution',
   },
 
   {
