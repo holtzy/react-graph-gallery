@@ -12,6 +12,7 @@ import {
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
+import { Caption } from '@/component/UI/Caption';
 
 const previousURL = '/course/svg/main-svg-elements';
 const currentURL = '/course/svg/path-element';
@@ -172,7 +173,7 @@ export default function Home() {
         and the arc curve (<code>A</code>). Check how they work with those 2
         diagrams:
       </p>
-      <Tabs defaultValue="boring">
+      <Tabs defaultValue="curve">
         <center>
           <TabsList className="my-4">
             <TabsTrigger value="curve">Curve</TabsTrigger>
@@ -212,49 +213,9 @@ export default function Home() {
       -
       -
        */}
-      <h2>The good news 🎁</h2>
       <p>
-        You won’t need to manually write the <code>d</code> attribute yourself.
-        Understanding its role is helpful, but in practice, you'll rely on a
-        d3.js helper function to <b>generate paths for you</b>.
+        <br />
       </p>
-      <p>
-        This helper function is called <code>line()</code>. It takes your data
-        and automatically <b>convert</b> it into the appropriate path{' '}
-        <code>d</code> string. It looks like this:
-      </p>
-      <CodeBlock
-        code={`
-const data = [
-  { x: 0, y: 40 },
-  { x: 50, y: 70 },
-  { x: 100, y: 150 },
-  ...
-];
-
-const lineGenerator = line()
-  .x((d) => d.x)
-  .y((d) => d.y);
-
-const pathData = lineGenerator(data);
-
-// console.log(pathData)
-// "M0 40 L50 70 L100 150 L150 150 L200 200 L250 50 L300 90"
-      `}
-      />
-      <p>
-        This is one of the reasons why d3.js is so powerful and beloved for data
-        visualization! 💙
-      </p>
-      {/* -
-      -
-      -
-      -
-      -
-      -
-      -
-      -
-       */}
       <h2>Exercises</h2>
       <ExerciseAccordion
         localStorageId={currentLesson.link}
@@ -273,7 +234,50 @@ const pathData = lineGenerator(data);
             content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
           },
         ]}
-      />{' '}
+      />
+      <p>
+        <br />
+      </p>
+      {/* -
+      -
+      -
+      -
+      -
+      -
+      -
+      -
+       */}
+      <h2>The good news 🎁</h2>
+      <p>
+        You won’t have to manually write the <code>d</code> attribute yourself.
+        🎉{' '}
+      </p>{' '}
+      <p>
+        While it’s helpful to understand its role, in practice, you’ll rely on
+        d3.js helper functions to <b>generate paths for you</b>.{' '}
+      </p>{' '}
+      <p>
+        These functions are all part of a d3 module called <code>d3-shape</code>
+        . They follow a consistent pattern: taking your data and{' '}
+        <b>converting</b> it into the appropriate path <code>d</code> string.{' '}
+      </p>
+      <p>
+        <br />
+      </p>
+      <center>
+        <img src="/excalidraw/d3-shape-intro.png" width={800} />{' '}
+        <Caption>
+          The d3-shape module provides functions that generate SVG paths from a
+          dataset. It’s a core component of d3.js!{' '}
+        </Caption>
+      </center>
+      <p>
+        <br />
+      </p>
+      <p>
+        The <code>d3-shape</code> module is one of the most useful in d3.js! 💙{' '}
+      </p>
+      <p>It’s also the focus of the next lesson.</p>
     </LayoutCourse>
   );
 }
