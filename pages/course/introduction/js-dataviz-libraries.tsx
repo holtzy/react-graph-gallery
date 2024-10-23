@@ -2,6 +2,12 @@ import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
+
+// import { ResponsiveBar } from '@nivo/bar';
+import { CodeBlock } from '@/component/UI/CodeBlock';
+import { Caption } from '@/component/UI/Caption';
+import { Sidenote } from '@/component/SideNote';
+import { ResponsiveBar } from '@nivo/bar';
 import {
   Table,
   TableBody,
@@ -10,12 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../../../component/ui/table';
-// import { ResponsiveBar } from '@nivo/bar';
-import { CodeBlock } from '@/component/UI/CodeBlock';
-import { Caption } from '@/component/UI/Caption';
-import { Sidenote } from '@/component/SideNote';
-import { ResponsiveBar } from '@nivo/bar';
+} from '@/component/UI/table';
 
 const data = [
   { country: 'USA', value: 100 },
