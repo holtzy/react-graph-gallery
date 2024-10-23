@@ -1,4 +1,4 @@
-import { line } from 'd3';
+import { area } from 'd3';
 
 // Positions in pixels
 const data = [
@@ -10,16 +10,14 @@ const data = [
 ];
 
 export const Graph = () => {
-  // Use the line() function of d3 to create a path generator that expects data as input
-  const lineGenerator = '';
+  // use the d3.area() function here
+  const areaGenerator = '';
 
-  // Use the lineGenerator function above to build the path string
   const path = '';
 
   return (
     <svg width={500} height={300} style={{ overflow: 'visible' }}>
-      {/* The path built above is used here for the d argument */}
-      <path d={path} fill="none" stroke="#69b3a2" />
+      <path d={path} fill="grey" stroke="#69b3a2" />
     </svg>
   );
 };

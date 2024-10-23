@@ -401,21 +401,31 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>Accessor functions are a fundamental concept in d3.js.</p>
         <p>
-          They’re incredibly useful because they allow d3 to work with any
-          structure of input data, giving you the flexibility to handle
-          different data formats.
+          Using the <code>area()</code> function is almost the same as the{' '}
+          <code>line()</code> function.
+        </p>
+        <p>
+          That's the magic of the <code>d3-shape</code> module, you switch from
+          one shape to the other easily!
         </p>
       </>
     ),
     toDo: (
       <ul>
         <li>
-          This time, the data format is slightly different, with the x position
-          stored in a <code>xAxisPosition</code> property.
+          Let's switch to an area chart, thanks to the <code>d3.area()</code>{' '}
+          function. Three methods must be chained to <code>area()</code>:
         </li>
-        <li>Update the accessor function to create the line chart again.</li>
+        <li>
+          <code>x()</code> is the same as for the line chart.
+        </li>
+        <li>
+          <code>y0()</code>: Y coordinate of the bottom of the area
+        </li>
+        <li>
+          <code>y1()</code> Y coordinate of the top.
+        </li>
       </ul>
     ),
     practiceSandbox: 'exercise/d3AreaFunctionPractice',

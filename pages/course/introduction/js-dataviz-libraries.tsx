@@ -3,11 +3,9 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 
-// import { ResponsiveBar } from '@nivo/bar';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
-import { ResponsiveBar } from '@nivo/bar';
 import {
   Table,
   TableBody,
@@ -17,14 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/component/UI/table';
-
-const data = [
-  { country: 'USA', value: 100 },
-  { country: 'UK', value: 80 },
-  { country: 'Canada', value: 60 },
-  { country: 'Germany', value: 50 },
-  { country: 'Japan', value: 70 },
-];
 
 const previousURL = '/course/introduction/introduction-to-react';
 const currentURL = '/course/introduction/js-dataviz-libraries';
@@ -132,30 +122,11 @@ import { ResponsiveBar } from '@nivo/bar';
         Time to celebrate 🎉.
       </p>
       <div className="full-bleed bg-muted/50">
-        <div className="wrapper" style={{ height: 400 }}>
-          <ResponsiveBar
-            data={data}
-            keys={['value']}
-            indexBy="country"
-            margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
-            padding={0.3}
-            colors={'#69b3a2'}
-            axisBottom={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: 'Country',
-              legendPosition: 'middle',
-              legendOffset: 32,
-            }}
-            axisLeft={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: 'Value',
-              legendPosition: 'middle',
-              legendOffset: -40,
-            }}
+        <div className="wrapper flex justify-center" style={{ height: 400 }}>
+          <img
+            src="/img/nivo-barchart.png"
+            alt="overview of a barchart made with Nivo"
+            width={800}
           />
         </div>
       </div>
