@@ -397,4 +397,28 @@ const exercices: Exercise[] = [
     practiceSandbox: 'exercise/d3LineFunctionChangeAccessorPractice',
     solutionSandbox: 'exercise/d3LineFunctionChangeAccessorSolution',
   },
+
+  {
+    whyItMatters: (
+      <>
+        <p>Accessor functions are a fundamental concept in d3.js.</p>
+        <p>
+          They’re incredibly useful because they allow d3 to work with any
+          structure of input data, giving you the flexibility to handle
+          different data formats.
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          This time, the data format is slightly different, with the x position
+          stored in a <code>xAxisPosition</code> property.
+        </li>
+        <li>Update the accessor function to create the line chart again.</li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/d3AreaFunctionPractice',
+    solutionSandbox: 'exercise/d3AreaFunctionSolution',
+  },
 ];
