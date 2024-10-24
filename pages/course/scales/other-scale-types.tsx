@@ -10,10 +10,14 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
+import { scaleBand } from 'd3';
+import { Caption } from '@/component/UI/Caption';
+import { Sidenote } from '@/component/SideNote';
+import { CodeSandbox } from '@/component/CodeSandbox';
 
-const previousURL = '/course/scales/introduction';
-const currentURL = '/course/scales/linear-scale';
-const nextURL = '/course/scales/other-scale-types';
+const previousURL = '/course/scales/linear-scale';
+const currentURL = '/course/scales/other-scale-types';
+const nextURL = '/course/axis/introduction';
 const seoDescription = '';
 
 export default function Home() {
@@ -22,6 +26,17 @@ export default function Home() {
   if (!currentLesson) {
     return null;
   }
+
+  const yScale = scaleBand()
+    .domain(['A', 'B', 'C'])
+    .range([0, 240])
+    .paddingInner(0.33)
+    .paddingOuter(0);
+
+  // console.log(yScale('A'));
+  // console.log(yScale('B'));
+  // console.log(yScale('C'));
+  // console.log(yScale.bandwidth());
 
   return (
     <LayoutCourse
@@ -38,22 +53,17 @@ export default function Home() {
         description={
           <>
             <p>
-              The previous lesson described the concept of{' '}
-              <Link href="/course/scales/introduction">scale</Link> in data
-              visualization. Scales allow, for instance, to translate a value in
-              our dataset to a position on the screen.
+              While <code>scaleLinear</code> is one of the most commonly used D3
+              scales, other scale types are essential for creating even basic
+              charts.
             </p>
             <p>
-              Now, let's study the most common scale type and its d3.js
-              implementation: the <b>linear</b> scale and its{' '}
-              <code>scaleLinear()</code> function.
+              Let's explore <code>scaleBand</code>, <code>scaleOrdinal</code>,
+              and other indispensable functions!
             </p>
           </>
         }
       />
-
-      <CircleScaleExercise />
-
       {/* -
 -
 -
@@ -61,52 +71,99 @@ export default function Home() {
 -
 -
 - */}
-
       <h2>
-        The <code>scaleLinear()</code> function
+        <code>scaleBand()</code> to create... bands 🙂
       </h2>
       <p>
-        The <code>scaleLinear()</code> function is part of the{' '}
-        <a href="https://github.com/d3/d3-scale">d3-scale</a> module of d3.js.
+        <code>scaleBand()</code> is ideal for categorical variables as it
+        allocates equal space for each category, ensuring that every discrete
+        value is uniformly represented on the axis.
       </p>
+      <h3>Example</h3>
       <p>
-        It expects 2 inputs: a <b>domain</b> and a <b>range</b>.
+        You want to create a horizontal bar chart with <b>3 bars</b> in a figure
+        that is <b>240 pixels high</b>. You want to dedicate 33% of the total
+        height for white space: this is the padding between bars.
       </p>
-      <h3 className="mt-2 text-md">🏠 Domain</h3>
+      <p>You'll end up with the dimensions outlined below:</p>
+      <div className="flex flex-col items-center mt-8 mb-12">
+        <img
+          src="/excalidraw/anatomy-scaleBand.png"
+          style={{ maxWidth: 800 }}
+          alt="schema explaining what the scaleBand() function produces"
+        />
+        <Caption>
+          All the numbers produced by the <code>scaleBand()</code> function.
+        </Caption>
+      </div>
       <p>
-        Usually an array of length 2. It provides the <code>min</code> and the{' '}
-        <code>max</code> of the values we have in the dataset.
+        You can easily compute these values using the <code>scaleBand()</code>{' '}
+        function!
       </p>
-      <h3 className="mt-2 text-md">📏 Range</h3>
+      <div className="relative">
+        <Sidenote
+          text={
+            <p>
+              There are many ways to control the <code>padding</code>. The
+              official <a href="https://d3js.org/d3-scale/band">doc</a> explains
+              very well!
+            </p>
+          }
+        />
+        <ul>
+          <li>
+            The <code>domain</code> is an array that lists the groups.
+          </li>
+          <li>
+            The <code>range</code> is a two-element array that specifies the
+            pixel positions where the shapes will be drawn.
+          </li>
+          <li>
+            The optional <code>padding</code> method is expressed as a fraction
+            of the band width.
+          </li>
+        </ul>
+      </div>
+      <CodeBlock
+        code={`
+const yScale = d3.scaleBand()
+  .domain(['A', 'B', 'C'])
+  .range([0, height])
+  .padding(0.1)
+      `.trim()}
+      />
+
       <p>
-        Usually an array of length 2. It provides the start and the end of the
-        positions we are targeting <b>in pixel</b>.
+        Now that this scale is available, let's use it to get all the positions
+        we need! Note that the <code>yScale</code> function we now have returns
+        the <code>start</code> of the corresponding band:
       </p>
+
+      <CodeBlock
+        code={`
+// Top of each bar:
+console.log(yScale('A')); // 0
+console.log(yScale('B')); // 90
+console.log(yScale('C')); // 180
+
+// Width of a bar:
+console.log(yScale.bandwidth()); // 60
+      `.trim()}
+      />
+
+      <p>
+        That's it! We have all the numbers we need to make a{' '}
+        <Link href="/barplot">barplot</Link>! 🎉
+      </p>
+
       <p>
         <br />
       </p>
-      <p>
-        The output is a <b>function</b> that takes a single argument. You
-        provide a value from the domain, and it returns the corresponding value
-        from the range.
-      </p>
-      <p>
-        Let's create a scale to address the issue with the green circles above!
-      </p>
-      <CodeBlock
-        code={`
-import {scaleLinear} from d3
 
-const scale = scaleLinear()
-  .domain([0, 100])
-  .range([0, 500]);
-
-console.log( scale(82) )
-// 240
-
-      `}
-      />
-
+      <blockquote>
+        TODO: add a simulator to make ppl understand <code>padding</code>,{' '}
+        <code>innerPadding</code> and <code>outerPadding</code>.
+      </blockquote>
       {/* -
 -
 -
@@ -114,30 +171,60 @@ console.log( scale(82) )
 -
 -
 - */}
-      <h2>Dealing with the Y Axis</h2>
-      <p>By now, working with the X scale should feel intuitive.</p>
+      <h2>
+        Scales are not just for positioning: <code>scaleOrdinal()</code>
+      </h2>
       <p>
-        However, the Y axis behaves a bit differently. Typically, when a value
-        is <b>high</b>, we expect the corresponding data point to be{' '}
-        <b>near the top</b> of the SVG area. Conversely, a value close to 0
-        should appear near the bottom.
+        Scales are a fundamental concept in data visualization, and they are not
+        limited to positioning elements!
       </p>
       <p>
-        This means the Y scale is essentially inverted! Luckily, we can handle
-        this easily by <b>reversing the order</b> of the range array.
+        <code>scaleOrdinal()</code> is a great example: it maps a set of
+        discrete values to another set of discrete values. For instance, it can
+        be used to assign a specific color to each group name.
       </p>
-      <p>Take a close look at the code below:</p>
 
       <CodeBlock
         code={`
-const yScale = d3.scaleLinear()
-  .domain([0, 100])
-  .range([300, 0]); // Array is inverted! Smallest value will return 300px = bottom of the svg area
+const colorScale = d3.scaleOrdinal()
+  .domain(["a", "b", "c"])            // I have 3 groups in the dataset: a, b, c
+  .range(["red", "green", "blue"])    // I want to assign 3 colors to them
 
-console.log(yScale(0))    // 300
-console.log(yScale(100))  // 0
-`}
+colorScale("a") // --> red!
+colorScale("b") // --> green
+
+      `.trim()}
       />
+      {/* -
+-
+-
+-
+-
+-
+- */}
+      <h2>More Scale Types to Explore!</h2>
+      <p>
+        The <code>d3-scale</code> module includes 13 different types of scales.
+      </p>
+      <p>
+        However, they all follow the same core pattern. Rather than covering
+        each one individually now, we'll explore them throughout the course as
+        they come up.
+      </p>
+
+      <blockquote className="bg-fuchsia-50 py-8">
+        <div>
+          <p>
+            By now, you should have a solid understanding of how scales work.
+          </p>
+          <p>
+            While I don’t recommend it, you can always check out the full list
+            of scale types in the{' '}
+            <a href="https://d3js.org/d3-scale">official documentation</a> if
+            you're curious!
+          </p>
+        </div>
+      </blockquote>
 
       {/* -
 -
@@ -175,7 +262,6 @@ console.log(yScale(100))  // 0
 -
 -
 - */}
-
       <h2>Wouch! 😅</h2>
       <p>That was challenging!</p>
       <p>
