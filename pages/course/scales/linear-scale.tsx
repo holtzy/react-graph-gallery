@@ -4,6 +4,16 @@ import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import Link from 'next/link';
 import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
+import { CodeBlock } from '@/component/UI/CodeBlock';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
+import { Graph1 } from '@/viz/exercise/linearScaleBarSizeSolution/Graph';
+import { Graph4 } from '@/viz/exercise/linearScaleMirrorSolution/Graph';
+import { Graph3 } from '@/viz/exercise/linearScaleReverseSolution/Graph';
+import { Graph2 } from '@/viz/exercise/linearScaleThreeBarsSolution/Graph';
 
 const previousURL = '/course/scales/introduction';
 const currentURL = '/course/scales/linear-scale';
@@ -12,6 +22,10 @@ const seoDescription = '';
 
 export default function Home() {
   const currentLesson = lessonList.find((l) => l.link === currentURL);
+
+  if (!currentLesson) {
+    return null;
+  }
 
   return (
     <LayoutCourse
@@ -62,22 +76,70 @@ export default function Home() {
       <p>
         It expects 2 inputs: a <b>domain</b> and a <b>range</b>.
       </p>
-      <h3>🏠 Domain</h3>
+      <h3 className="mt-2 text-md">🏠 Domain</h3>
       <p>
         Usually an array of length 2. It provides the <code>min</code> and the{' '}
         <code>max</code> of the values we have in the dataset.
       </p>
-      <h3>📏 Range</h3>
+      <h3 className="mt-2 text-md">📏 Range</h3>
       <p>
         Usually an array of length 2. It provides the start and the end of the
-        positions we are targeting in pixel.
+        positions we are targeting <b>in pixel</b>.
       </p>
       <p>
-        The output is a function that expects only 1 argument. You give it a
-        value from the domain, and it returns the corresponding value in the
-        Range
+        <br />
       </p>
+      <p>
+        The output is a <b>function</b> that takes a single argument. You
+        provide a value from the domain, and it returns the corresponding value
+        from the range.
+      </p>
+      <p>
+        Let's create a scale to address the issue with the green circles above!
+      </p>
+      <CodeBlock
+        code={`
+import {scaleLinear} from d3
 
+const scale = scaleLinear()
+  .domain([0, 100])
+  .range([0, 500]);
+
+console.log( scale(82) )
+// 240
+
+      `}
+      />
+
+      {/* -
+-
+-
+-
+-
+-
+- */}
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Control bar size with a scale</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+          },
+          {
+            title: <span>Three Bars!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
+          },
+          {
+            title: <span>Reverse direction</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
+          },
+          {
+            title: <span>Mirror barplot</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
+          },
+        ]}
+      />
       {/* -
 -
 -
@@ -88,6 +150,117 @@ export default function Home() {
 
       <h2>Much more power</h2>
       <p>The scaleLinear function actually make much more than that!!!</p>
+
+      <Graph1 />
+      <Graph2 />
+      <Graph3 />
+      <Graph4 />
     </LayoutCourse>
   );
 }
+
+const exercices: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Now that you know what a scale is, time to write your first scale!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Create a barplot with 1 bar only.</li>
+        <li>The SVG area is 500px wide. Your dataset goes from 0 to 100.</li>
+        <li>
+          Draw a horizontal bar that goes from the very left, and has a length
+          that represents a value of 82 in the dataset.
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/linearScaleBarSizePractice',
+    solutionSandbox: 'exercise/linearScaleBarSizeSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Once a scale is available, everything you draw on your screen will go
+          through it to determine positions!
+        </p>
+        <p>
+          Also, see how convenient scales are when it comes to adding margins!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>Now create 3 bars.</li>
+        <li>Vertical positions are written manually</li>
+        <li>
+          Widths must represent the value <code>34</code>, <code>53</code> and{' '}
+          <code>82</code>
+        </li>
+        <li>
+          ⚠️ You must leave a <b>margin</b> of 20px on the left hand side.
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/linearScaleThreeBarsPractice',
+    solutionSandbox: 'exercise/linearScaleThreeBarsSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>Scales are very useful to reverse the direction of drawing</p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          Let's draw one single bar that represents the value <code>82</code>
+        </li>
+        <li>But this time, the bar must go from the right to the left.</li>
+        <li>
+          Hint: reverse the <code>range</code> array!
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/linearScaleReversePractice',
+    solutionSandbox: 'exercise/linearScaleReverseSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          The logic behind each functions of the <code>d3-shape</code> module is
+          the same.
+        </p>
+        <p>
+          If you have a good understanding of d3.line(), you're on the right way
+          to build any other chart type!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <p>
+          Let's create a mirror histogram!! The mirror histogram looks like
+          this:
+        </p>
+        <ul>
+          <li>Create 2 scales!</li>
+          <li>
+            Values are <code>23</code>, <code>55</code>, <code>87</code> on the
+            left, and <code>12</code>, <code>43</code>, <code>98</code> on the
+            right
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/linearScaleMirrorPractice',
+    solutionSandbox: 'exercise/linearScaleMirrorSolution',
+  },
+];
