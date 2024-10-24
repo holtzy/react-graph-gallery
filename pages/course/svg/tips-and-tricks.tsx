@@ -12,6 +12,7 @@ import {
 } from '@/component/UI/select';
 import { Sidenote } from '@/component/SideNote';
 import { MoveHorizontal, MoveVertical } from 'lucide-react';
+import { CodeBlock } from '@/component/UI/CodeBlock';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/svg/tips-and-tricks';
@@ -194,13 +195,35 @@ export default function Home() {
         This is especially useful for applying transformations, styles, or
         events to a collection of elements as a single unit.
       </p>
-
+      <CodeBlock
+        code={`
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="black">
+    <circle cx="50" cy="50" r="40" />
+    <rect x="100" y="100" width="80" height="80" />
+    <line x1="20" y1="20" x2="180" y2="180" />
+  </g>
+</svg>
+`.trim()}
+      />
+      {/* -
+      -
+      -
+      -
+      -
+      -
+      -
+      -
+      -
+       */}
       <h2>4️⃣ Stroke, Fill, and Color: Different from HTML</h2>
       <p>
         In SVG, the concepts of <code>stroke</code>, <code>fill</code>, and{' '}
-        <code>color</code> work differently than in standard HTML. The{' '}
-        <code>fill</code> property controls the interior color of shapes, while{' '}
-        <code>stroke</code> affects the outline. Unlike <code>div</code>{' '}
+        <code>color</code> work differently than in standard HTML.
+      </p>
+      <p>
+        The <code>fill</code> property controls the interior color of shapes,
+        while <code>stroke</code> affects the outline. Unlike <code>div</code>{' '}
         elements, SVG shapes don’t have separate properties for borders and
         backgrounds; instead, you use <code>stroke</code> and <code>fill</code>{' '}
         to control these aspects.
@@ -221,16 +244,20 @@ export default function Home() {
         specificity rules.
       </p>
 
-      <h2>6️⃣ Text Specificity in SVG vs. HTML</h2>
+      <h2>6️⃣ Text Wrapping</h2>
       <p>
-        In SVG, there is no built-in functionality for automatic text wrapping
-        like you would find in HTML or CSS. You have to manage text wrapping
-        manually or use JavaScript libraries to handle it. You need to calculate
-        where to break the text and create multiple
+        In SVG, there is{' '}
+        <b>no built-in functionality for automatic text wrapping</b> like you
+        would find in HTML or CSS. 😱
       </p>
       <p>
-        This is very super annoying. We will talk about workarounds in this
-        course.
+        You have to manage text wrapping manually or use JavaScript libraries to
+        handle it.
+      </p>
+      <p>
+        This is very very annoying. In practice, we'll often use a HTML layer on
+        top of the SVG layer to add text (like in tooltips) to make our life
+        simpler.
       </p>
 
       <h2>7️⃣ SVG Dimensions: The Impact of “100%”</h2>

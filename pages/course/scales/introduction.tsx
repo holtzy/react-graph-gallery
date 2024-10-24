@@ -5,6 +5,7 @@ import { lessonList } from '@/util/lessonList';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Button } from '@/component/UI/button';
 import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 
 const previousURL = '/course/svg/path-element';
 const currentURL = '/course/scales/introduction';
@@ -13,6 +14,10 @@ const seoDescription = '';
 
 export default function Home() {
   const currentLesson = lessonList.find((l) => l.link === currentURL);
+
+  if (!currentLesson) {
+    return null;
+  }
 
   return (
     <LayoutCourse
@@ -66,6 +71,33 @@ export default function Home() {
       </p>
 
       <CircleScaleExercise />
+
+      <p>
+        <br /> <br />
+      </p>
+
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Let's do some math</span>,
+            content: (
+              <>
+                <p>
+                  I'm pretty sure you managed to put the circles at the right
+                  position.
+                </p>
+                <p>
+                  But, before reading the following, try to write down the{' '}
+                  <b>function</b> that allows to go from a value in the dataset
+                  to a position in pixel.
+                </p>
+                <p>The answer is coming below!</p>
+              </>
+            ),
+          },
+        ]}
+      />
 
       <h2>How it actually works</h2>
 

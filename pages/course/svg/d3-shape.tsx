@@ -445,40 +445,6 @@ const exercices: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          Using the <code>area()</code> function is almost the same as the{' '}
-          <code>line()</code> function.
-        </p>
-        <p>
-          That's the magic of the <code>d3-shape</code> module, you switch from
-          one shape to the other easily!
-        </p>
-      </>
-    ),
-    toDo: (
-      <ul>
-        <li>
-          Let's switch to an area chart, thanks to the <code>d3.area()</code>{' '}
-          function. Three methods must be chained to <code>area()</code>:
-        </li>
-        <li>
-          <code>x()</code> is the same as for the line chart.
-        </li>
-        <li>
-          <code>y0()</code>: Y coordinate of the bottom of the area
-        </li>
-        <li>
-          <code>y1()</code> Y coordinate of the top.
-        </li>
-      </ul>
-    ),
-    practiceSandbox: 'exercise/d3LineMultipleLineChartPractice',
-    solutionSandbox: 'exercise/d3LineMultipleLineChartSolution',
-  },
-
-  {
-    whyItMatters: (
-      <>
-        <p>
           Once the path generator is available, it can be used to create as many
           elements as you wish!
         </p>

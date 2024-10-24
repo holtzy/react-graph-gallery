@@ -1,15 +1,17 @@
 import { Button } from '@/component/UI/button';
 import { useCallback, useState } from 'react';
 
+const INITIAL_POSITIONS = [
+  { id: 1, cx: 370, value: 0 },
+  { id: 2, cx: 280, value: 50 },
+  { id: 3, cx: 150, value: 60 },
+  { id: 4, cx: 260, value: 82 },
+  { id: 5, cx: 80, value: 100 },
+];
+
 export const CircleScaleExercise = () => {
   // Initial positions of the circles
-  const [circles, setCircles] = useState([
-    { id: 1, cx: 200, value: 0 },
-    { id: 2, cx: 220, value: 50 },
-    { id: 3, cx: 240, value: 60 },
-    { id: 4, cx: 260, value: 82 },
-    { id: 5, cx: 280, value: 100 },
-  ]);
+  const [circles, setCircles] = useState(INITIAL_POSITIONS);
   const [draggingCircleId, setDraggingCircleId] = useState(null);
 
   // Handle mouse down event to start dragging
@@ -47,7 +49,7 @@ export const CircleScaleExercise = () => {
       <div className="mx-auto">
         <svg
           width={500}
-          height={400}
+          height={320}
           overflow={'visible'}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -65,15 +67,30 @@ export const CircleScaleExercise = () => {
                 fillOpacity={1}
                 onMouseDown={(e) => handleMouseDown(e, circle.id)}
                 cursor={'pointer'}
+                style={{
+                  transition: 'cx 0.5s ease', // Smooth transition for the x-position
+                }}
+                onMouseEnter={(e) => (e.target.style.transition = 'none')} // Disable transition on hover
+                onMouseLeave={(e) =>
+                  (e.target.style.transition = 'transform 0.5s ease')
+                } // Re-enable transition when hover ends
               />
               <text
-                x={circle.cx}
+                x={0}
                 y={140}
                 textAnchor="middle"
                 alignmentBaseline="central"
                 fontSize={12}
                 cursor={'pointer'}
                 pointerEvents={'none'}
+                style={{
+                  transition: 'transform 0.5s ease', // Smooth transition for position
+                  transform: `translateX(${circle.cx}px)`,
+                }}
+                onMouseEnter={(e) => (e.target.style.transition = 'none')} // Disable transition on hover
+                onMouseLeave={(e) =>
+                  (e.target.style.transition = 'transform 0.5s ease')
+                } // Re-enable transition when hover ends
               >
                 {circle.value}
               </text>
@@ -118,7 +135,15 @@ export const CircleScaleExercise = () => {
         </svg>
       </div>
 
-      <div>
+      <div className="w-full flex justify-center gap-2">
+        <Button
+          variant={'outline'}
+          onClick={() => {
+            setCircles(INITIAL_POSITIONS);
+          }}
+        >
+          Reset
+        </Button>
         <Button
           onClick={() => {
             setCircles([

@@ -133,7 +133,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/svg/d3-shape',
-    status: 'wip',
+    status: 'free',
     moduleId: 'svg',
   },
   {
