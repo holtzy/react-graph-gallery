@@ -3,7 +3,6 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import Link from 'next/link';
-import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import {
@@ -13,11 +12,10 @@ import {
 import { scaleBand } from 'd3';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
-import { CodeSandbox } from '@/component/CodeSandbox';
 
 const previousURL = '/course/scales/linear-scale';
 const currentURL = '/course/scales/other-scale-types';
-const nextURL = '/course/axis/introduction';
+const nextURL = '/course/scales/project';
 const seoDescription = '';
 
 export default function Home() {
@@ -238,19 +236,19 @@ colorScale("b") // --> green
         localStorageId={currentLesson.link}
         exercises={[
           {
-            title: <span>Control bar size with a scale</span>,
+            title: <span>First barplot!</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
           },
           {
-            title: <span>Three Bars!</span>,
+            title: <span>Tiny bars?</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
           },
           {
-            title: <span>Reverse direction</span>,
+            title: <span>Use colors for groups</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
           {
-            title: <span>Mirror barplot</span>,
+            title: <span>Switch to vertical version</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
           },
         ]}
@@ -262,16 +260,18 @@ colorScale("b") // --> green
 -
 -
 - */}
-      <h2>Wouch! 😅</h2>
-      <p>That was challenging!</p>
+
+      <h2>It's taking shape! 🎉</h2>
       <p>
-        Scales are a core concept in D3.js data visualization, which is why we
-        needed so many exercises!
+        You've now mastered two fundamental concepts of dataviz with React and
+        D3: <b>SVG</b> and <b>Scales</b>. This means{' '}
+        <b>we're ready to build actual graphs</b>!
       </p>
       <p>
-        You've mastered the most important part, but we're not done with scales
-        just yet. Let's explore a few other useful scale types!
+        In the next lesson, you'll dive into a hands-on exercise where we
+        recreate a real-world chart using everything you've learned so far.
       </p>
+      <p>Let's do it! 🙇</p>
     </LayoutCourse>
   );
 }

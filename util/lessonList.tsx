@@ -208,6 +208,21 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/scales/other-scale-types',
+    status: 'free',
+    moduleId: 'scales',
+  },
+  {
+    name: 'Project',
+    description: (
+      <>
+        <p>
+          Time to apply what we know about scales and SVG to reproduce a barplot
+          from the Economist!
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/scales/project',
     status: 'wip',
     moduleId: 'scales',
   },
