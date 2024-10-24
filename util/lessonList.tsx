@@ -223,7 +223,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/scales/project',
-    status: 'wip',
+    status: 'free',
     moduleId: 'scales',
   },
 
