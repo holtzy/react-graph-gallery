@@ -128,15 +128,15 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 - */}
       <h2>Let's draw! ✏️</h2>
       <p>
-        Now that we know where the ticks are going to be, we just need to draw a
-        long horizontal line, and a multitude of small ticks with their labels
-        at those positions!
+        Now that we know <b>where the ticks are going to be</b>, we just need to
+        draw a long horizontal line, and a multitude of small ticks with their
+        labels at those positions!
       </p>
       <p>
         Here is a sandbox with a very minimal example. Take a bit of time to
         read the code carefully!
       </p>
-      <CodeSandbox vizName="AxisBottomMinimalDemo" />
+      <CodeSandbox vizName="AxisBottomMinimal" />
       {/* -
 -
 -
