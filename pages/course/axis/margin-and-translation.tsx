@@ -7,6 +7,7 @@ import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
 import { Code } from 'lucide-react';
+import { Caption } from '@/component/UI/Caption';
 
 const previousURL = '/course/axis/introduction';
 const currentURL = '/course/axis/margin-and-translation';
@@ -34,39 +35,57 @@ export default function Home() {
         selectedLesson={currentLesson}
         description={
           <>
-            <p>Most of the chart types use a bottom and a left axis.</p>
             <p>
-              In that case, there is a need to leave some space for the tick
-              label and axis titles. Let's see how to implement this.
+              Most chart types use a <b>bottom</b> and <b>left</b> axis.
+            </p>
+            <p>
+              In these cases, we need to <b>leave space</b> for tick labels and
+              axis titles. Let’s look at how to implement this effectively.
             </p>
           </>
         }
       />
-
-      <h2>Chart area and Bounds area</h2>
+      <h2>SVG Area and Bounds Area</h2>
       <p>
-        <p>
-          The bottom and left axes are not displays at the border of the main
-          chart component. Some margins are computed by the viz component. It is
-          important to understand that a chart is composed by:
-        </p>
-        <ul className="list-disc list-inside pl-10">
-          <li>
-            the global chart area, often specified by the <code>width</code> and{' '}
-            <code>height</code> properties of the chart components.
-          </li>
-          <li>
-            the "bounds" area, i.e. the area located inside the x and y axis. It
-            is calculated by substracting the margins
-          </li>
-        </ul>
+        Imagine an SVG area with a <code>width</code> of 500px and a{' '}
+        <code>height</code> of 300px.
       </p>
+      <p>
+        The left and bottom axes aren’t displayed right at the SVG border.
+        Instead, we add <b>margins</b> on all sides: left, right, bottom, and
+        top.
+      </p>
+      <p>
+        The area within these margins is known as the <b>bounds</b>, where the
+        chart content is positioned between the x and y axes. In our code, we’ll
+        refer to the width and height of this bounds area as{' '}
+        <code>boundsWidth</code> and <code>boundsHeight</code>.
+      </p>
+
+      <div className="flex flex-col items-center mt-8 mb-12">
+        <img
+          src="/excalidraw/bounds-explanation.png"
+          style={{ maxWidth: 750 }}
+          alt="Anatomy of the chart areas: some margins are set all around the SVG area. The area inside is called the Bounds."
+        />
+        <Caption>
+          Anatomy of the chart areas: some margins are set all around the SVG
+          area. The area inside is called the Bounds.
+        </Caption>
+      </div>
+      {/* -
+-
+-
+-
+-
+-
+-
+- */}
 
       <h2>Implementation</h2>
       <p>
-        Let's start by defining the margins we want to use, as a const. This can
-        be defined at the top of your file, out of the viz component, or even in
-        a separate file containing all your constants.
+        A chart component often starts by defining its margins. An object with 4
+        properties is ideal for that:
       </p>
       <CodeBlock
         code={`
@@ -80,8 +99,10 @@ const MARGIN = {
       />
 
       <p>
-        Then we can compute, at the beginning of the viz component, the
-        dimension of the boundWidth and boundHeight
+        Since the chart component has defined <code>width</code> and{' '}
+        <code>height</code>, we can easily determine the dimensions of the
+        bounds area, referred to as <code>boundsWidth</code> and{' '}
+        <code>boundsHeight</code>:
       </p>
 
       <CodeBlock
@@ -91,7 +112,9 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
       `.trim()}
       />
 
-      <p>And finally the svg is going to be rendered like this:</p>
+      <h3>🪄 The tricky part</h3>
+
+      <p>Finally the svg is going to be rendered like this:</p>
       <CodeBlock
         code={`
 <svg width={width} height={height}>
@@ -105,16 +128,30 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 </svg>
       `.trim()}
       />
-      <p>Explain the translation</p>
+      <p>What's going on here? 😱</p>
       <p>
-        Explain that for the bottom axis, an additional translation is required
-        to draw it at the bottom
+        1️⃣ The SVG area is created as usual with the <code>svg</code> element,
+        along with the specified <code>width</code> and <code>height</code>.
+      </p>
+      <p>
+        2️⃣ The <code>g</code> element is used to group other SVG elements,
+        similar to how a <code>div</code> works in HTML. This group represents
+        the bounds, defined by its <code>boundsWidth</code> and{' '}
+        <code>boundsHeight</code> dimensions!
+      </p>
+      <p>
+        3️⃣ The <code>transform</code> property is used to translate the bounds
+        slightly to the right and down, creating space for the left and top
+        margins!
       </p>
 
-      <h2>Draw the axis</h2>
+      <h2>Exercices</h2>
+      <p>TODO</p>
+
+      <h2>Drawing the Axis</h2>
       <p>
-        Now that we have some space for it, it is time to actually draw the
-        axis. Let's build a reusable component.
+        Now that we’ve created space for it, it’s time to <b>draw the axis</b>.
+        Let’s build some reusable components for this!
       </p>
     </LayoutCourse>
   );

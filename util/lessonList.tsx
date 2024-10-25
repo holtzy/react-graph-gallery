@@ -189,7 +189,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/scales/linear-scale',
-    status: 'wip',
+    status: 'free',
     moduleId: 'scales',
   },
   {

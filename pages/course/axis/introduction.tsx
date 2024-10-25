@@ -8,6 +8,7 @@ import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
 import { useDimensions } from '@/hook/use-dimensions';
 import { AxisBasic } from '@/viz/AxisBasic/AxisBasic';
+import { Caption } from '@/component/UI/Caption';
 
 const previousURL = '/course/scales/other-scale-types';
 const currentURL = '/course/axis/introduction';
@@ -67,32 +68,48 @@ export default function Home() {
         </p>
       </div>
 
-      <h2>Terminology</h2>
+      <h2>Key Terminology</h2>
       <p>
-        To effectively understand and work with axes in data visualization, it's
-        essential to familiarize yourself with the following key terms:
+        To work effectively with axes in data visualization, it's important to
+        understand the key terms highlighted on the figure below.
       </p>
-      <p>Here I need a figure that helps understanding the following terms:</p>
-      <ul>
-        <li>Axis</li>
-        <li>Tick</li>
-        <li>Tick Label</li>
-        <li>Grid Line</li>
-        <li>Axis Label</li>
-        <li>Title</li>
-        <li>Scale</li>
-        <li>Domain</li>
-        <li>Range</li>
-        <li>Orientation</li>
-        <li>Axis Line</li>
-        <li>Baseline</li>
-      </ul>
+      <p>
+        While <b>left</b> and <b>bottom</b> axes are the most common, they
+        aren’t the only options. In the previous module on scales, we created a{' '}
+        <Link href="/course/scales/project">barplot</Link> with the x-axis
+        positioned at the <b>top</b>.
+      </p>
+      <p>
+        <b>Right-side</b> axes can also be useful, though they’re typically
+        associated with dual y-axis line charts—a practice generally best{' '}
+        <a href="https://www.data-to-viz.com/caveats.html">avoided</a>.
+      </p>
 
+      <div className="flex flex-col items-center mt-8 mb-12">
+        <img
+          src="/excalidraw/anatomy-of-axes.png"
+          style={{ maxWidth: 750 }}
+          alt="schema explaining what the scaleBand() function produces"
+        />
+      </div>
+      {/* -
+      -
+      -
+      -
+      -
+      -
+      -
+      - */}
       <h2>Margins</h2>
       <p>
-        We need some space between the chart area and the svg area. Let's see
-        how to build this.
+        You may have noticed that axes <b>take up some space</b>! To accommodate
+        them, we'll need to add<b> margins</b> around the chart area.
       </p>
+      <p>
+        Managing margins can quickly become challenging, but don’t worry—I’ll
+        show you a simple trick to make it easy.
+      </p>
+      <p>Let’s dive in!</p>
     </LayoutCourse>
   );
 }
