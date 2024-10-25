@@ -6,7 +6,7 @@ const FOOTER_HEIGHT = 90;
 
 export const BarplotTheEconomistDemo = ({ width = 700, height = 400 }) => {
   return (
-    <div>
+    <div style={{ width }}>
       <div style={{ height: HEADER_HEIGHT }}>
         <div
           style={{

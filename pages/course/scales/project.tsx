@@ -60,17 +60,21 @@ export default function Home() {
 -
 -
 - */}
-      <h2>What we're trying to do:</h2>
+      <h2>Our Objective</h2>
       <p>
-        The goal of this lesson is to reproduce this chart made by the
-        Economist. It has a few interesting features:
+        In this lesson, we aim to recreate a chart from The Economist with
+        several key design elements:
       </p>
       <ul>
-        <li>Title, Subtitle, Footer</li>
-        <li>Grid with number on top</li>
-        <li>Inline labels inside or outside the bars</li>
+        <li>Title, subtitle, and footer</li>
+        <li>Grid lines with values displayed at the top</li>
+        <li>Inline labels placed inside or outside the bars</li>
       </ul>
-      <BarplotTheEconomistDemo width={700} height={550} />
+      <p>
+        <br />
+      </p>
+
+      <BarplotTheEconomistDemo width={650} height={550} />
       {/* -
 -
 -
@@ -117,12 +121,15 @@ export const data = [
 -
 -
 - */}
-      <h2>Good luck!</h2>
-      <p>A few hints to help you!</p>
+      <h2>Good Luck!</h2>
+      <p>Here are a few helpful hints:</p>
       <ul>
         <li>
-          You can do <code>xScale.ticks(10)</code> to get an array with the most
-          logical tick informations
+          Use <code>xScale.ticks(10)</code> to generate an array of optimal tick
+          values.
+        </li>
+        <li>
+          Bar color is <code>#076fa2</code>
         </li>
       </ul>
 
