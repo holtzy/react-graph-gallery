@@ -148,26 +148,28 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 -
 -
 - */}
-      <h2>Re-usable Bottom Axis component</h2>
+      <h2>Reusable Bottom Axis Component</h2>
+      <p>Great news! We’ve mastered creating a bottom axis.</p>
       <p>
-        The code snippet below builds a <code>AxisBottom</code> component. It is{' '}
-        <TakeHome>
-          very much inspired from{' '}
-          <a href="https://wattenberger.com/blog/react-and-d3">this blogpost</a>{' '}
-          by Amelia Wattenberger
-        </TakeHome>
-        . I've just changed a few things, notably passing a scale as input
-        instead of a range and a domain.
+        This logic will be applicable across multiple charts, so let’s develop a{' '}
+        <b>reusable component</b> named <code>AxisBottom</code> that we can
+        implement universally!
       </p>
       <p>
-        The logic mainly relies on the <code>ticks()</code> method of a d3
-        scale. It takes a target number of ticks as input, find the most
-        appropriate way to build smart ticks based on this target, and returns
-        an array with all the tick positions.
+        The <code>AxisBottom</code> component accepts several properties:
       </p>
-      <p>
-        What follows is just some svg drawings based on those tick positions.
-      </p>
+      <ul>
+        <li>
+          <code>xScale</code>: The scale that the axis will represent.
+        </li>
+        <li>
+          <code>pixelsPerTick</code>: Instead of specifying the number of ticks,
+          it's better to define the pixels per tick. This approach ensures a
+          consistent appearance, regardless of whether the chart is displayed on
+          a large screen or a mobile device!
+        </li>
+      </ul>
+
       <CodeBlock code={snippet1} />
 
       <h2>Using the component</h2>
@@ -187,11 +189,15 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         height={300}
         caption="This axis is rendered without using d3.js to render."
       />
+
+      <a href="https://wattenberger.com/blog/react-and-d3">this blogpost</a>
     </LayoutCourse>
   );
 }
 
 const snippet1 = `
+// AxisBottom.tsx
+
 const TICK_LENGTH = 6;
 
 export const AxisBottom = ({ xScale, pixelsPerTick }) => {
