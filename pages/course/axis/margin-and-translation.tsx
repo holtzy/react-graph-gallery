@@ -8,6 +8,10 @@ import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
 import { Code } from 'lucide-react';
 import { Caption } from '@/component/UI/Caption';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
 
 const previousURL = '/course/axis/introduction';
 const currentURL = '/course/axis/margin-and-translation';
@@ -36,7 +40,7 @@ export default function Home() {
         description={
           <>
             <p>
-              Most chart types use a <b>bottom</b> and <b>left</b> axis.
+              Most chart types use a <b>bottom</b> and a <b>left</b> axis.
             </p>
             <p>
               In these cases, we need to <b>leave space</b> for tick labels and
@@ -146,8 +150,15 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
       </p>
 
       <h2>Exercices</h2>
-      <p>TODO</p>
-
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Let's translate this! ↔️</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+          },
+        ]}
+      />
       <h2>Drawing the Axis</h2>
       <p>
         Now that we’ve created space for it, it’s time to <b>draw the axis</b>.
@@ -156,3 +167,36 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
     </LayoutCourse>
   );
 }
+
+const exercices: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Almost all graphs use this translation mecanism! Let's code it once to
+          integrate it for ever!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          The <code>Graph</code> component renders a SVG are that is 500px{' '}
+          <code>width</code> and 300px <code>height</code>.
+        </li>
+        <li>
+          The component define its margin as a const: 100px at the left and
+          bottom, 30px at the top and right
+        </li>
+        <li>The bounds is represented as a grey rectangle</li>
+        <li>
+          Two circles are drawn within the rectangle. In a dataset where both
+          the X and Y axes range from 0 to 100, render the circles at
+          coordinates (33, 33) and (66, 66).
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/SvgPathFirstLineChartPractice',
+    solutionSandbox: 'exercise/SvgPathFirstLineChartSolution',
+  },
+];

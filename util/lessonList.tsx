@@ -239,9 +239,9 @@ export const lessonList: Lesson[] = [
         <p>How to add margins around the chart withouth the headache</p>
       </>
     ),
-    readTime: 4,
+    readTime: 2,
     link: '/course/axis/introduction',
-    status: 'wip',
+    status: 'free',
     moduleId: 'axis',
   },
   {

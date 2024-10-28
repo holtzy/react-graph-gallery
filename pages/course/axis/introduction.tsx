@@ -73,6 +73,15 @@ export default function Home() {
         To work effectively with axes in data visualization, it's important to
         understand the key terms highlighted on the figure below.
       </p>
+
+      <div className="flex flex-col items-center mt-8 mb-12">
+        <img
+          src="/excalidraw/anatomy-of-axes.png"
+          style={{ maxWidth: 750 }}
+          alt="schema explaining what the scaleBand() function produces"
+        />
+      </div>
+
       <p>
         While <b>left</b> and <b>bottom</b> axes are the most common, they
         aren’t the only options. In the previous module on scales, we created a{' '}
@@ -84,14 +93,6 @@ export default function Home() {
         associated with dual y-axis line charts—a practice generally best{' '}
         <a href="https://www.data-to-viz.com/caveats.html">avoided</a>.
       </p>
-
-      <div className="flex flex-col items-center mt-8 mb-12">
-        <img
-          src="/excalidraw/anatomy-of-axes.png"
-          style={{ maxWidth: 750 }}
-          alt="schema explaining what the scaleBand() function produces"
-        />
-      </div>
       {/* -
       -
       -
