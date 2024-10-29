@@ -215,12 +215,17 @@ const exercices: Exercise[] = [
     toDo: (
       <ul>
         <li>
-          This time, loop on the dataset to render 10 circles, one for each item
-          in the dataset.
+          This time, loop on <code>data</code> to render <b>10 circles</b>, one
+          for each item in the dataset.
         </li>
         <li>
           There is a <code>size</code> property for each data item. Use it to
           control the circle size!
+        </li>
+        <li>
+          Data must be mapped to circle <b>area</b>, not to circle <b>radius</b>
+          . Use the
+          <code>scaleSqrt</code> function of d3 for that!
         </li>
       </ul>
     ),
