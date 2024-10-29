@@ -253,7 +253,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/margin-and-translation',
-    status: 'wip',
+    status: 'free',
     moduleId: 'axis',
   },
   {
@@ -263,9 +263,9 @@ export const lessonList: Lesson[] = [
         <p>Let's learn how to build a bottom axis component</p>
       </>
     ),
-    readTime: 4,
+    readTime: 8,
     link: '/course/axis/bottom-axis',
-    status: 'wip',
+    status: 'free',
     moduleId: 'axis',
   },
   {
@@ -295,10 +295,24 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/axis-with-d3',
+    status: 'free',
+    moduleId: 'axis',
+  },
+  {
+    name: 'Project',
+    description: (
+      <>
+        <p>
+          Time to apply what we know about scales and SVG to reproduce a barplot
+          from the Economist!
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/axis/project',
     status: 'wip',
     moduleId: 'axis',
   },
-
   //
   //
   // Responsiveness

@@ -26,7 +26,7 @@ const BUBBLE_MAX_SIZE = 20;
 const width = 500;
 const height = 300;
 
-export const Graph9 = () => {
+export const Graph = () => {
   const boundsWidth = width - MARGIN.left - MARGIN.right;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 

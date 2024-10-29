@@ -240,19 +240,41 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
               </div>
             ),
           },
+          {
+            title: <span>Add axis title</span>,
+            content: (
+              <div className="max-w-96">
+                <p>
+                  Adding a title is simply a matter of including a{' '}
+                  <code>text</code> element in your SVG!
+                </p>
+                <p>
+                  However, handling text in SVG can be a hassle, as it doesn’t
+                  natively support wrapping.
+                </p>
+                <p>
+                  Personally, I prefer to place the title manually within the
+                  main SVG area rather than in the <b>AxisBottom</b> component,
+                  but it's entirely up to you!
+                </p>
+              </div>
+            ),
+          },
         ]}
       />
 
-      <h2>Using the component</h2>
+      <h2>We got axes! 🪓</h2>
       <p>
-        Once you have the bottom and left axis component described above you
-        just need to call them properly. You need to compute the bounds area by
-        substracting the margins to the total svg area.
+        If you've followed the previous exercises, you now know how to add a
+        bottom axis to your graph.
       </p>
       <p>
-        Don't forget to add an additional translation to the bottom axis to
-        render it... at the bottom.
+        Adding a <b>left</b> axis works in <b>much the same way</b>! Wrap it in
+        an <code>AxisLeft</code>
+        component, and you're good to go!
       </p>
+      <p>Take a moment to review the example code below:</p>
+
       <ChartOrSandbox
         vizName={'AxisBasic'}
         VizComponent={AxisBasicDemo}
@@ -267,40 +289,44 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 const snippet1 = `
 // AxisBottom.tsx
 
+import { ScaleLinear } from 'd3';
+
+type AxisBottomProps = {
+  xScale: ScaleLinear<number, number>;
+  pixelsPerTick: number;
+};
+
+// tick length
 const TICK_LENGTH = 6;
 
-export const AxisBottom = ({ xScale, pixelsPerTick }) => {
+export const AxisBottom = ({ xScale, pixelsPerTick }: AxisBottomProps) => {
   const range = xScale.range();
 
-  const ticks = useMemo(() => {
-    const width = range[1] - range[0];
-    const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
-
-    return xScale.ticks(numberOfTicksTarget).map((value) => ({
-      value,
-      xOffset: xScale(value),
-    }));
-  }, [xScale]);
+  const width = range[1] - range[0];
+  const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
 
   return (
     <>
       {/* Main horizontal line */}
-      <path
-        d={["M", range[0], 0, "L", range[1], 0].join(" ")}
-        fill="none"
+      <line
+        x1={range[0]}
+        y1={0}
+        x2={range[1]}
+        y2={0}
         stroke="currentColor"
+        fill="none"
       />
 
       {/* Ticks and labels */}
-      {ticks.map(({ value, xOffset }) => (
-        <g key={value} transform={\`translate(\${xOffset}, 0)\`}>
+      {xScale.ticks(numberOfTicksTarget).map((value) => (
+        <g key={value} transform={\`translate(\${xScale(value)}, 0)\`}>
           <line y2={TICK_LENGTH} stroke="currentColor" />
           <text
             key={value}
             style={{
-              fontSize: "10px",
-              textAnchor: "middle",
-              transform: "translateY(20px)",
+              fontSize: '10px',
+              textAnchor: 'middle',
+              transform: 'translateY(20px)',
             }}
           >
             {value}
