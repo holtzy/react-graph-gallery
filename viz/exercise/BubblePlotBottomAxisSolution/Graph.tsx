@@ -1,4 +1,5 @@
 import { scaleLinear, scaleSqrt } from 'd3';
+import { AxisBottom } from './AxisBottom';
 
 const data = [
   { x: 10, y: 76, size: 8 },
@@ -25,7 +26,7 @@ const BUBBLE_MAX_SIZE = 20;
 const width = 500;
 const height = 300;
 
-export const Graph = () => {
+export const Graph9 = () => {
   const boundsWidth = width - MARGIN.left - MARGIN.right;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
@@ -47,6 +48,10 @@ export const Graph = () => {
             <circle cx={xScale(d.x)} cy={yScale(d.y)} r={sizeScale(d.size)} />
           );
         })}
+
+        <g transform={`translate(0, ${boundsHeight})`}>
+          <AxisBottom xScale={xScale} pixelsPerTick={60} />
+        </g>
       </g>
     </svg>
   );

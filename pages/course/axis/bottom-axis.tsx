@@ -11,6 +11,12 @@ import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { AxisBasicDemo } from '@/viz/AxisBasic/AxisBasicDemo';
 import { scaleLinear } from 'd3';
 import { GraphTIIT } from '@/viz/AxisBottomMinimal/Graph';
+import { Sidenote } from '@/component/SideNote';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
+import { Graph9 } from '@/viz/exercise/BubblePlotBottomAxisSolution/Graph';
 
 const previousURL = '/course/axis/margin-and-translation';
 const currentURL = '/course/axis/bottom-axis';
@@ -55,7 +61,7 @@ export default function Home() {
       />
 
       <h2>
-        More about <code>scaleLinear()</code>
+        🔍 More about <code>scaleLinear()</code>
       </h2>
       <p>
         In the previous lessons we talked a lot about the <b>scaleLinear()</b>{' '}
@@ -99,14 +105,21 @@ console.log(xScale(100))  // 500
       </ul>
 
       <h3>Example 🧐</h3>
-      <CodeBlock
-        code={`
+      <div className="relative">
+        <Sidenote
+          text={
+            "⚠️ Take some time to fully understand this code snippet; it's important!"
+          }
+        />
+        <CodeBlock
+          code={`
 xScale.ticks(2)  // [0, 50, 100]
 xScale.ticks(5)  // [0, 20, 40, 60, 80]
 xScale.ticks(9)  // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 `.trim()}
-      />
+        />
+      </div>
       <p>See?</p>
       <p>
         The <code>.ticks()</code> method doesn't always return the <b>exact</b>{' '}
@@ -137,6 +150,24 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         read the code carefully!
       </p>
       <CodeSandbox vizName="AxisBottomMinimal" />
+      <p>
+        <br />
+        <br />
+      </p>
+      <ul>
+        <li>
+          The horizontal line is made using a <code>line</code> element that
+          takes the full <code>boundsWidth</code>.
+        </li>
+        <li>
+          <code>xScale.ticks()</code> is used to start a loop: 1 iteration per
+          tick!
+        </li>
+        <li>
+          For each tick, a <code>g</code> element wraps a <code>line</code> and
+          a <code>text</code> element forming the tick.
+        </li>
+      </ul>
       {/* -
 -
 -
@@ -148,12 +179,11 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 -
 -
 - */}
-      <h2>Reusable Bottom Axis Component</h2>
-      <p>Great news! We’ve mastered creating a bottom axis.</p>
+      <h2>🎁 Reusable Bottom Axis Component</h2>
       <p>
-        This logic will be applicable across multiple charts, so let’s develop a{' '}
-        <b>reusable component</b> named <code>AxisBottom</code> that we can
-        implement universally!
+        This bottom axis will likely be used across <b>multiple</b> charts in
+        your project, so let’s develop a <b>reusable component</b> named{' '}
+        <code>AxisBottom</code>.
       </p>
       <p>
         The <code>AxisBottom</code> component accepts several properties:
@@ -170,7 +200,48 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         </li>
       </ul>
 
-      <CodeBlock code={snippet1} />
+      <div className="relative">
+        <Sidenote
+          text={
+            <p>
+              This code is inspired by{' '}
+              <a href="https://wattenberger.com/blog/react-and-d3">
+                Amelia Wattenberger's blog post
+              </a>
+              !
+            </p>
+          }
+        />
+        <CodeBlock code={snippet1} />
+      </div>
+
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Bubble Plot with bottom axis</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+          },
+          {
+            title: <span>Add grid</span>,
+            content: (
+              <div className="max-w-96">
+                <p>Let's tweak the previous sandbox to add grid lines.</p>
+                <p>
+                  To do this, simply adjust the <b>y1</b> property of the tick
+                  lines in the <b>AxisBottom</b> component to extend through the
+                  entire bounds area.
+                </p>
+                <p>
+                  This is the advantage of having a <b>custom</b> axis
+                  component: you can easily adapt it to match your style. 🎉
+                </p>
+              </div>
+            ),
+          },
+        ]}
+      />
 
       <h2>Using the component</h2>
       <p>
@@ -189,8 +260,6 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         height={300}
         caption="This axis is rendered without using d3.js to render."
       />
-
-      <a href="https://wattenberger.com/blog/react-and-d3">this blogpost</a>
     </LayoutCourse>
   );
 }
@@ -242,3 +311,29 @@ export const AxisBottom = ({ xScale, pixelsPerTick }) => {
   );
 };
 `.trim();
+
+const exercices: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Almost all graphs use this translation mecanism! Let's code it once to
+          integrate it for ever!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <p>Let's improve the bubble plot we started in the previous lesson.</p>
+        <ul>
+          <li>
+            Fill the AxisBottom.tsx file with the code provided in this lesson.
+          </li>
+          <li>Use it to render a bottom axis on the bubble chart.</li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/BubblePlotBottomAxisPractice',
+    solutionSandbox: 'exercise/BubblePlotBottomAxisSolution',
+  },
+];
