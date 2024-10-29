@@ -12,6 +12,7 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
+import { Graph4 } from '@/viz/exercise/BoundsAreaTranslationSolution/Graph';
 
 const previousURL = '/course/axis/introduction';
 const currentURL = '/course/axis/margin-and-translation';
@@ -164,6 +165,7 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
         Now that we’ve created space for it, it’s time to <b>draw the axis</b>.
         Let’s build some reusable components for this!
       </p>
+      <Graph4 />
     </LayoutCourse>
   );
 }
