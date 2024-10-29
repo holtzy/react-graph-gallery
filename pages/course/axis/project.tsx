@@ -18,10 +18,11 @@ import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { BarplotTheEconomistDemo } from '@/viz/BarplotTheEconomist/BarplotTheEconomistDemo';
 import { buttonVariants } from '@/component/UI/button';
 import { cn } from '@/util/utils';
+import { BubblePlotBasicDemo } from '@/viz/BubblePlotBasic/BubblePlotBasicDemo';
 
-const previousURL = '/course/scales/other-scale-types';
-const currentURL = '/course/scales/project';
-const nextURL = '/course/axis/introduction';
+const previousURL = '/course/axis/axis-with-d3';
+const currentURL = '/course/axis/project';
+const nextURL = '/course/responsiveness/introduction';
 const seoDescription = '';
 
 export default function Home() {
@@ -74,7 +75,7 @@ export default function Home() {
         <br />
       </p>
 
-      <BarplotTheEconomistDemo width={650} height={550} />
+      <BubblePlotBasicDemo width={550} height={550} />
       {/* -
 -
 -
@@ -86,17 +87,23 @@ export default function Home() {
       <p>The dataset is very simple! It looks like this:</p>
       <CodeBlock
         code={`
-export const data = [
+data = [
   {
-      count: 6,
-      name: "Hantavirus",
+    "country": "Afghanistan",
+    "continent": "Asia",
+    "lifeExp": 43.828,
+    "pop": 31889923,
+    "gdpPercap": 974.5803384
   },
   {
-      count: 7,
-      name: "Tularemia",
-  },
+    "country": "Albania",
+    "continent": "Europe",
+    "lifeExp": 76.423,
+    "pop": 3600523,
+    "gdpPercap": 5937.029526
+  }
 ]
-      `.trim()}
+`.trim()}
       />
       <p>
         You can find the complete js object{' '}
@@ -142,11 +149,11 @@ export const data = [
 - */}
       <h2>Solution</h2>
       <ChartOrSandbox
-        vizName={'BarplotTheEconomist'}
-        VizComponent={BarplotTheEconomistDemo}
-        height={550}
-        maxWidth={700}
-        caption="Reproduction of a barplot made by the Economist"
+        VizComponent={BubblePlotBasicDemo}
+        vizName={'BubblePlotBasic'}
+        maxWidth={600}
+        height={500}
+        caption="A clean bubble chart built with d3.js in a react context. A color scale is used to represent a categorical variable."
       />
     </LayoutCourse>
   );
