@@ -13,6 +13,7 @@ import {
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
 import { Graph4 } from '@/viz/exercise/BoundsAreaTranslationSolution/Graph';
+import { Graph9 } from '@/viz/exercise/BubblePlotKickOffSolution/Graph';
 
 const previousURL = '/course/axis/introduction';
 const currentURL = '/course/axis/margin-and-translation';
@@ -158,6 +159,10 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
             title: <span>Let's translate this! ↔️</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
           },
+          {
+            title: <span>Bubble plot kick off 🫧</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
+          },
         ]}
       />
       <h2>Drawing the Axis</h2>
@@ -165,7 +170,6 @@ const boundsHeight = height - MARGIN.top - MARGIN.bottom;
         Now that we’ve created space for it, it’s time to <b>draw the axis</b>.
         Let’s build some reusable components for this!
       </p>
-      <Graph4 />
     </LayoutCourse>
   );
 }
@@ -198,7 +202,29 @@ const exercices: Exercise[] = [
         </li>
       </ul>
     ),
-    practiceSandbox: 'exercise/SvgPathFirstLineChartPractice',
-    solutionSandbox: 'exercise/SvgPathFirstLineChartSolution',
+    practiceSandbox: 'exercise/BoundsAreaTranslationPractice',
+    solutionSandbox: 'exercise/BoundsAreaTranslationSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>Let's remind how to loop on a dataset to render shape.</p>
+        <p>Oh and let's introduce a new scale type too!</p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          This time, loop on the dataset to render 10 circles, one for each item
+          in the dataset.
+        </li>
+        <li>
+          There is a <code>size</code> property for each data item. Use it to
+          control the circle size!
+        </li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/BubblePlotKickOffPractice',
+    solutionSandbox: 'exercise/BubblePlotKickOffSolution',
   },
 ];
