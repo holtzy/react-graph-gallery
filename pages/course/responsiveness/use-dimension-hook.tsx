@@ -3,6 +3,7 @@ import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { CodeBlock } from '@/component/UI/CodeBlock';
+import { TakeHome } from '@/component/TakeHome';
 
 const previousURL = '/course/responsiveness/introduction';
 const currentURL = '/course/responsiveness/use-dimension-hook';
@@ -51,7 +52,10 @@ export default function Home() {
         </a>
         .
       </p>
-      <p>Explain more why a hook is what we need.</p>
+      <p>
+        That's exactly what we need! A function that we can <b>reuse</b> in all
+        our chart components and that manages its <b>internal state</b>.
+      </p>
 
       <h2 id="dimension hook">🎣 Hook to get the container dimensions</h2>
       <p>That's how the hook looks like:</p>
@@ -100,8 +104,10 @@ export const useDimensions = (targetRef: React.RefObject<HTMLDivElement>) => {
         <code>window</code> to ensure the dimensions are updated when the window
         size changes.
       </p>
-      <p>Why do I have the useLayoutEffect in there?</p>
-      <p>Explain more in depth how it works.</p>
+      <p>
+        I do not want to go too much in depth on how it works. More importantly,
+        let's see <TakeHome>how to use it</TakeHome>!
+      </p>
     </LayoutCourse>
   );
 }

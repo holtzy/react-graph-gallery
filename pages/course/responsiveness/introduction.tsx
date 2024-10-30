@@ -7,8 +7,9 @@ import { useDimensions } from '@/hook/use-dimensions';
 import { DensityChart } from '@/viz/DensityChartBasic/DensityChart';
 import Link from 'next/link';
 import { CodeBlock } from '@/component/UI/CodeBlock';
+import { TakeHome } from '@/component/TakeHome';
 
-const previousURL = '/course/axis/draw-with-d3';
+const previousURL = '/course/axis/project';
 const currentURL = '/course/responsiveness/introduction';
 const nextURL = '/course/responsiveness/use-dimension-hook';
 const seoDescription = '';
@@ -38,8 +39,8 @@ export default function Home() {
         description={
           <>
             <p>
-              Most of the visualization components in this gallery accept{' '}
-              <code>width</code> and <code>height</code> properties.
+              To build a graph, you need to know the <code>width</code> and{' '}
+              <code>height</code> of the SVG area.
             </p>
             <p>
               However, we often don't know the exact dimensions we need for our
@@ -143,14 +144,16 @@ export const DensityPlot = ({ width, height, data }: DensityProps) => {
 
       <h2>Let's Code</h2>
       <p>
-        Let's assume we have a div that is responsive and takes the full width
-        of an app.
+        Let's assume we have a <code>div</code> that is responsive and takes the
+        full width of an app.
       </p>
       <p>
-        How can we draw a chart inside this div that also takes up the{' '}
-        <b>entire space</b> and remains responsive?
+        How can we draw a chart inside this <code>div</code> that also takes up
+        the <b>entire space</b> and remains responsive?
       </p>
-      <p>Let's find out! 🙇</p>
+      <p>
+        <TakeHome>Let's find out!</TakeHome> 🙇
+      </p>
     </LayoutCourse>
   );
 }
