@@ -360,7 +360,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/using-the-hook',
-    status: 'wip',
+    status: 'free',
     moduleId: 'responsiveness',
   },
   {

@@ -189,8 +189,8 @@ const exercices: Exercise[] = [
         </li>
       </ul>
     ),
-    practiceSandbox: 'exercise/ResponsiveDivSolutionPractice',
-    solutionSandbox: 'exercise/ResponsiveDivSolutionSolution',
+    practiceSandbox: 'exercise/ResponsiveDivPractice',
+    solutionSandbox: 'exercise/ResponsiveDivSolution',
   },
   {
     whyItMatters: (
