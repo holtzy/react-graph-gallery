@@ -10,7 +10,6 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
-import { Graph9 } from '@/viz/exercise/ResponsiveDivUseDimensionsSolution/Graph';
 
 const previousURL = '/course/responsiveness/use-dimension-hook';
 const currentURL = '/course/responsiveness/using-the-hook';
@@ -128,10 +127,14 @@ export default function Home() {
           {
             title: (
               <span>
-                First use of the <code>use-dimensions</code> hook 🫧
+                First use of the <code>use-dimensions</code> hook
               </span>
             ),
             content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
+          },
+          {
+            title: <span>Responsive Bubbles</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
         ]}
       />
@@ -222,5 +225,25 @@ const exercices: Exercise[] = [
     ),
     practiceSandbox: 'exercise/ResponsiveDivUseDimensionsPractice',
     solutionSandbox: 'exercise/ResponsiveDivUseDimensionsSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>Practice, practice, practice!</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Take the bubble chart examples we made in the{' '}
+            <Link href="/course/axis/bottom-axis">bottom axis lesson</Link>.
+          </li>
+          <li>Make it responsive using the same techique!</li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/BubblePlotBottomAxisResponsivePractice',
+    solutionSandbox: 'exercise/BubblePlotBottomAxisResponsiveSolution',
   },
 ];
