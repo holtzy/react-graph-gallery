@@ -1,0 +1,12 @@
+.container .slice {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.container.hasHighlight .slice {
+  opacity: 0.2;
+}
+
+.container.hasHighlight .slice:hover {
+  opacity: 1;
+}

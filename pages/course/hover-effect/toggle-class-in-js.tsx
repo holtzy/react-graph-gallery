@@ -17,6 +17,7 @@ import {
 } from '@/component/ExerciseDoubleSandbox';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { Graph23 } from '@/viz/exercise/PieFirstSolution/Graph';
+import { Graph42 } from '@/viz/exercise/PieHoverEffectSolution/Graph';
 
 const previousURL = '/course/hover-effect/css-descendant-selector';
 const currentURL = '/course/hover-effect/toggle-class-in-js';
@@ -204,6 +205,7 @@ const containerRef = useRef();
         >
           Visit project
         </Link>
+        <Graph42 />
       </center>
       {/* -
 -
@@ -217,7 +219,7 @@ const containerRef = useRef();
         localStorageId={currentLesson.link}
         exercises={[
           {
-            title: <span>Your first pie chart! 🍭</span>,
+            title: <span>Your first pie chart! 🍰</span>,
             content: <ExerciseDoubleSandbox exercise={exercises[0]} />,
           },
           {
@@ -234,8 +236,9 @@ const exercises: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          With the SVG and D3 foundations you’ve built, creating a new chart
-          type becomes a breeze!
+          Time to learn a new chart type! Check the{' '}
+          <Link href="/pie-plot">pie chart</Link> page for the full in-depth
+          tutorial.
         </p>
       </>
     ),
@@ -243,12 +246,11 @@ const exercises: Exercise[] = [
       <>
         <ul>
           <li>A dataset is provided in the sandbox folder.</li>
+          <li>Build a pie chart representing this dataset.</li>
           <li>
-            Build a Cleveland chart with this dataset. (This chart is a
-            variation of the lollipop plot and is helpful for comparing two
-            values across multiple groups.)
+            Read the <Link href="/pie-plot">pie chart</Link> section for help on
+            <code>d3.pie()</code> and <code>d3.arc()</code>.
           </li>
-          <li>Check the solution tab to see the intended chart appearance.</li>
         </ul>
       </>
     ),
