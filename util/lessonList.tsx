@@ -453,9 +453,9 @@ export const lessonList: Lesson[] = [
         </p>
       </>
     ),
-    readTime: 4,
+    readTime: 14,
     link: '/course/hover-effect/toggle-class-in-js',
-    status: 'wip',
+    status: 'free',
     moduleId: 'hover effect',
   },
   {
@@ -465,9 +465,9 @@ export const lessonList: Lesson[] = [
         <p>Perfect to build complicated UIs, but mind the performances!</p>
       </>
     ),
-    readTime: 4,
+    readTime: 12,
     link: '/course/hover-effect/internal-state',
-    status: 'wip',
+    status: 'free',
     moduleId: 'hover effect',
   },
 

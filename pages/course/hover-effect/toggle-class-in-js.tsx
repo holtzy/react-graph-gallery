@@ -205,7 +205,6 @@ const containerRef = useRef();
         >
           Visit project
         </Link>
-        <Graph42 />
       </center>
       {/* -
 -
@@ -281,7 +280,7 @@ const exercises: Exercise[] = [
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/LollipopHoverEffectPractice',
-    solutionSandbox: 'exercise/LollipopHoverEffectSolution',
+    practiceSandbox: 'exercise/PieHoverEffectPractice',
+    solutionSandbox: 'exercise/PieHoverEffectSolution',
   },
 ];

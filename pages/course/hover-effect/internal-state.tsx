@@ -7,6 +7,8 @@ import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ScatterplotHoverHighlightDimDemo } from '@/viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo';
 import { Badge } from '@/component/UI/badge';
 import GraphGallery from '@/component/GraphGallery';
+import { Caption } from '@/component/UI/Caption';
+import Link from 'next/link';
 
 const previousURL = '/course/hover-effect/toggle-class-in-js';
 const currentURL = '/course/hover-effect/internal-state';
@@ -36,85 +38,148 @@ export default function Home() {
         description={
           <>
             <p>
-              In the previous lesson, we learned how to modify a hovered graph
-              item using the <code>:hover</code> CSS pseudo-class.
+              We've already explored three different strategies for adding hover
+              effects to a chart! 😳 Each relies heavily on CSS, which is ideal
+              as it requires <b>minimal redrawing</b>.
             </p>
             <p>
-              However, this approach has <b>design limitations</b>. To achieve a
-              more effective highlighting effect, it's better to simultaneously{' '}
-              <b>dim the other graph items</b>.
-            </p>
-            <p>
-              This can be accomplished using CSS alone, with the help of the CSS
-              descendant selector.
+              However, sometimes a more traditional React approach is needed,
+              using a <b>central state</b> to trigger redraws when the state
+              updates. Let’s explore why. ⬇️
             </p>
           </>
         }
       />
 
-      <h2>Internal state & event listener</h2>
-      <p>Add onMouseEnter event listener to all circle</p>
-      <p>Set an internal state</p>
-      <p>Trigger a redraw of all circles with conditional state.</p>
-
+      <h2>⚙️ Why and How</h2>
       <p>
-        As for the tooltip example above, everything starts with an internal
-        state (called <code>hoveredGroup</code>) that stores which circle is
-        hovered hover.
+        Imagine you have multiple UI components. Say, a{' '}
+        <Link href="/barplot">barplot</Link> and a{' '}
+        <Link href="/pie-plot">pie chart</Link>, both displaying numbers for the
+        same groups.
+      </p>
+      <p>
+        When you hover over Group <code>B</code> on the barplot, you also want
+        group <code>B</code> to be highlighted on the pie chart. This setup is
+        common in dashboards.
+      </p>
+      <p>
+        The CSS-focused strategies we've used before <b>won’t work here</b>.
+        Instead, we need a<b> parent component </b>that wraps both charts and
+        manages a <b>shared state</b>. When one chart is hovered, it updates the
+        shared state, which in turn updates both charts.
+      </p>
+
+      <div className="flex flex-col items-center mt-8 mb-12">
+        <img
+          src="/excalidraw/state-update.png"
+          style={{ maxWidth: 650 }}
+          alt="Anatomy of a state update connection 2 charts."
+        />
+        <Caption>
+          Anatomy of a state update, connecting 2 charts together.
+        </Caption>
+      </div>
+
+      <p>Here’s a step-by-step breakdown:</p>
+      <p>
+        1️⃣ The mouse hovers over group <code>B</code> on the bar plot,
+        triggering a function thanks to <code>onMouseEnter</code>
+      </p>
+      <p>
+        2️⃣ This function calls <code>setHoverGroup</code>, updating the{' '}
+        <b>global state</b> in the parent component.
+      </p>
+      <p>
+        3️⃣ <code>hoveredGroup</code>, the global state, is passed to the pie
+        chart as a prop.
+      </p>
+      <p>
+        4️⃣ When <code>hoveredGroup</code> updates, the pie chart re-renders,
+        highlighting the group <code>B</code> slice.
+      </p>
+      {/* -
+-
+-
+-
+-
+-
+- */}
+
+      <h2>Let's code!</h2>
+      <h3>1️⃣ Internal state</h3>
+      <p>
+        First, we need an internal state (called <code>hoveredGroup</code>) that
+        stores which group is hovered hover. It can also be <code>null</code> if
+        there is nothing hovered!
+      </p>
+      <p>
+        This is possible thanks to the{' '}
+        <a href="https://react.dev/reference/react/useState">useState</a> hook:
       </p>
       <CodeBlock
         code={`
 const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 `.trim()}
       />
+      <h3>2️⃣ Updating the state</h3>
       <p>
-        Now, this state needs to be updated when a user hovers over the circle.{' '}
-        <code>setHoveredGroup</code> can be passed as a callback to the{' '}
-        <code>onMouseOver</code> attribute of each circle.
+        Now, this state needs to be updated when a user hovers over a bar in the{' '}
+        <code>Barplot</code> component.
       </p>
       <p>
-        On top of this, some specific css classes can be attributed to circles
-        depending on the circle that is hovered hover. In the example above, a
-        class called <code>dimmed</code> is added to circles that must
-        disappear.
+        To do so, the <code>setHoveredGroup()</code> function can be passed as a
+        prop to the Barplot component.
       </p>
-      <p>To put it in a nutshell, the circles are created as follows:</p>
       <CodeBlock
         code={`
-const allShapes = data.map((d, i) => {
-  const className = // class if the circle depends on the hover state
-    hoveredGroup && d.group !== hoveredGroup
-      ? styles.scatterplotCircle + " " + styles.dimmed
-      : styles.scatterplotCircle;
-
-  return (
-    <circle
-      key={i}
-      r={5}
-      cx={xScale(d.x)}
-      cy={yScale(d.y)}
-      className={className} // class is attributed here
-      stroke={colorScale(d.group)}
-      fill={colorScale(d.group)}
-      onMouseOver={() => setHoveredGroup(d.group)} // callback to update the state
-      onMouseLeave={() => setHoveredGroup(null)} // and to set it back to null
-    />
-  );
-});
-`.trim()}
+<Barplot width={300} height={300} setHoveredGroup={setHoveredGroup}>`.trim()}
       />
       <p>
-        Last but not least, some css needs to be added to customize the circle
-        depending on if they are in default, <code>.dimmed</code> or{' '}
-        <code>:hover</code> mode.
+        Then, the <code>onMouseOver</code> attribute of each rectangle can call
+        this setter function!
       </p>
+      <CodeBlock
+        code={`
+<svg>
+  {data.map(d => {
+    return(
+      <rect
+        x={}
+        y={}
+        onMouseOver={() => setHoveredGroup(d.group)} // update the state
+        onMouseLeave={() => setHoveredGroup(null)} // and to set it back to null
+</svg>`.trim()}
+      />
+      <p>That's it, the state is updated!</p>
+
+      <h3>3️⃣ Update the pie chart</h3>
       <p>
-        Note that the <code>filter: saturate(0)</code> is a good way to dim
-        unwanted circles. Also, playing with <code>transition-delay</code> and{' '}
-        <code>transition-duration</code> adds to animate the transition is a
-        nice touch you should consider. Check the code below the example to see
-        the full css.
+        <code>hoveredGroup</code> is now updated. We just have to pass it to the
+        pie chart component!
       </p>
+      <CodeBlock
+        code={`
+<Pie width={300} height={300} hoveredGroup={hoveredGroup}>`.trim()}
+      />
+      <p>
+        This will trigger a rerender of the <code>Pie</code> component, since a
+        prop just changed.
+      </p>
+
+      <h3>4️⃣ Highlight a slice</h3>
+      <p>
+        Now, we can use the value of <code>hoveredGroup</code> in the rendering
+        logic to change the style of the slice that must be highlighted.
+      </p>
+      <CodeBlock
+        code={`
+<path
+    fill = {d.group === hoveredGroup ? "blue" : "red"}
+/>
+`.trim()}
+      />
+
       <ChartOrSandbox
         vizName={'ScatterplotHoverHighlightDim'}
         VizComponent={ScatterplotHoverHighlightDimDemo}
