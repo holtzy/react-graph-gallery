@@ -8,6 +8,13 @@ import { Badge } from '@/component/UI/badge';
 import GraphGallery from '@/component/GraphGallery';
 import { TreemapHoverEffectDemo } from '@/viz/TreemapHoverEffect/TreemapHoverEffectDemo';
 import Link from 'next/link';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import { Graph9 } from '@/viz/exercise/LollipopFirstSolution/Graph';
+import { Graph12 } from '@/viz/exercise/LollipopHoverEffectSolution/Graph';
 
 const previousURL = '/course/hover-effect/css-pseudo-class';
 const currentURL = '/course/hover-effect/css-descendant-selector';
@@ -135,6 +142,79 @@ export default function Home() {
           'streamgraph-hover-effect.gif',
         ]}
       />
+
+      {/* -
+-
+-
+-
+-
+-
+- */}
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Your first lollipop! 🍭</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[0]} />,
+          },
+          {
+            title: <span>Lollipop with hover effect</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
+          },
+        ]}
+      />
     </LayoutCourse>
   );
 }
+
+const exercises: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          With the SVG and d3 fundations you have, it is a breeze to create a
+          new chart type!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>A dataset is provided in the sandbox folder</li>
+          <li>
+            Build a cleveland chart with this dataset. (It is a variation of the
+            lollipop, handy to compare 2 values across many groups!)
+          </li>
+          <li>Check the solution tab to see how the graph must look like</li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/LollipopFirstPractice',
+    solutionSandbox: 'exercise/LollipopFirstSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Descendant selectors are so good to create fancy hover effect using
+          CSS only!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>Add a class for the SVG container</li>
+          <li>
+            Using CSS descendant selector, highlight the hovered row, and dim
+            other rows.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/LollipopHoverEffectPractice',
+    solutionSandbox: 'exercise/LollipopHoverEffectSolution',
+  },
+];

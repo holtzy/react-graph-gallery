@@ -1,0 +1,10 @@
+.row {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.rowsContainer:hover .row {
+  opacity: 0.3;
+}
+.rowsContainer .row:hover {
+  opacity: 1;
+}
