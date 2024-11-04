@@ -1,0 +1,12 @@
+.rectangle {
+  fill-opacity: 0.3;
+  stroke-width: 2px;
+  cursor: pointer;
+}
+
+.rectangle:hover {
+  opacity: 1;
+  stroke: black;
+  fill-opacity: 1;
+  stroke-width: 1px;
+}

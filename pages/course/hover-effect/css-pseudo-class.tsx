@@ -7,6 +7,14 @@ import { ScatterplotHoverHighlightPseudoClassDemo } from '@/viz/ScatterplotHover
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Badge } from '@/component/UI/badge';
 import GraphGallery from '@/component/GraphGallery';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import Link from 'next/link';
+import { TakeHome } from '@/component/TakeHome';
+import { Graph9 } from '@/viz/exercise/HoverFirstTreemapSolution/Graph';
 
 const previousURL = '/course/hover-effect/introduction';
 const currentURL = '/course/hover-effect/css-pseudo-class';
@@ -122,6 +130,138 @@ export default function Home() {
       <GraphGallery
         images={['heatmapVaccination.png', 'treemap-most-basic.png']}
       />
+      {/* -
+-
+-
+-
+-
+-
+- */}
+
+      <h2>Exercices</h2>
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Three circles</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[0]} />,
+          },
+          {
+            title: <span>Your first treemap</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
+          },
+          {
+            title: (
+              <span>
+                Death by <code>useState()</code>
+              </span>
+            ),
+            content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
+          },
+        ]}
+      />
+
+      <Graph9 />
     </LayoutCourse>
   );
 }
+
+const exercises: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Learn the <code>:hover</code> pseudo-class once, and you'll remember
+          it forever!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>Add 3 circles in the SVG area.</li>
+          <li>
+            Apply the <code>:hover</code> pseudo-class to change their style on
+            hover.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/Hover3CirclesPractice',
+    solutionSandbox: 'exercise/Hover3CirclesSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          The <code>:hover</code> pseudo-class is especially useful in treemaps,
+          a great alternative to pie charts.
+        </p>
+        <p>Let's use this opportunity to create your first treemap!</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            A dataset is provided with numeric values for 5 groups (A &rarr; E).
+          </li>
+          <li>
+            Use d3's <code>treemap()</code> function to calculate positions for
+            the 5 rectangles.
+          </li>
+          <li>
+            Render the 5 rectangles using <code>rect</code> elements in the SVG
+            area.
+          </li>
+          <li>
+            For more details, refer to the{' '}
+            <Link href="/treemap">treemap section</Link> in the gallery!
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/HoverFirstTreemapPractice',
+    solutionSandbox: 'exercise/HoverFirstTreemapSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Performance matters, and can quicly become a nightmare when dealing
+          with interactivity.
+        </p>
+        <p>This exercise shows a very common mistake: too much rerendering.</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>A dataset containing 500,000 data points is provided.</li>
+          <li>
+            Create a state variable to store the ID of the data point to
+            highlight. This variable should initially be set to{' '}
+            <code>null</code> and can later hold a value between 0 and 500,000.
+          </li>
+          <li>Render all 500,000 data points as small circles.</li>
+          <li>
+            Display the circles in black, except for the highlighted circle,
+            which should appear in red.
+          </li>
+          <li>
+            Add an <code>onMouseOver</code> event to update the state with the
+            ID of the hovered circle.
+          </li>
+          <li>
+            Now play with the chart.{' '}
+            <TakeHome>What do you think about performances?</TakeHome>
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/HoverDeathByStatePractice',
+    solutionSandbox: 'exercise/HoverDeathByStateSolution',
+  },
+];
