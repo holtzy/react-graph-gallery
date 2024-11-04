@@ -13,9 +13,6 @@ import {
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
-import { Graph9 } from '@/viz/exercise/LollipopFirstSolution/Graph';
-import { Graph12 } from '@/viz/exercise/LollipopHoverEffectSolution/Graph';
-import { Graph22 } from '@/viz/exercise/Hover3CirclesDescandantSelectorIssueSolution/Graph';
 
 const previousURL = '/course/hover-effect/css-pseudo-class';
 const currentURL = '/course/hover-effect/css-descendant-selector';
@@ -41,7 +38,7 @@ export default function Home() {
         title={currentLesson.name}
         lessonStatus={currentLesson.status}
         readTime={currentLesson.readTime}
-        topBadge={'Lesson ' + currentLessonId}
+        selectedLesson={currentLesson}
         description={
           <>
             <p>
@@ -164,11 +161,35 @@ export default function Home() {
             content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
           },
           {
-            title: <span>Scatterplot = problem 🚨</span>,
+            title: <span>Scatterplot = problem? 🚨</span>,
             content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
           },
         ]}
       />
+
+      <p>
+        <br />
+        <br />
+      </p>
+
+      <blockquote className="bg-fuchsia-50 py-8">
+        <div>
+          <p>
+            Note: When you use the <code>:hover</code> pseudo-class on an SVG
+            area, it activates whenever the mouse enters the entire SVG
+            rectangle.
+          </p>
+          <p>
+            <br />
+            <br />
+          </p>
+          <p>
+            However, if you apply <code>:hover</code> to a <code>g</code>{' '}
+            element, it will only trigger when the mouse hovers over one of the
+            elements within the <code>g</code> group!
+          </p>
+        </div>
+      </blockquote>
     </LayoutCourse>
   );
 }

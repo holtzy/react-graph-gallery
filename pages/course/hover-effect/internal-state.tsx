@@ -4,7 +4,6 @@ import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
-import { DonutChartHoverDemo } from '@/viz/DonutChartHover/DonutChartHoverDemo';
 import { ScatterplotHoverHighlightDimDemo } from '@/viz/ScatterplotHoverHighlightDim/ScatterplotHoverHighlightDimDemo';
 import { Badge } from '@/component/UI/badge';
 import GraphGallery from '@/component/GraphGallery';
@@ -33,7 +32,7 @@ export default function Home() {
         title={currentLesson.name}
         lessonStatus={currentLesson.status}
         readTime={currentLesson.readTime}
-        topBadge={'Lesson ' + currentLessonId}
+        selectedLesson={currentLesson}
         description={
           <>
             <p>

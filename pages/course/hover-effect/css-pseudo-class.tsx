@@ -14,9 +14,6 @@ import {
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
 import { TakeHome } from '@/component/TakeHome';
-import { Graph9 } from '@/viz/exercise/HoverFirstTreemapSolution/Graph';
-import { Graph10 } from '@/viz/exercise/HoverDeathByStateSolution/Graph';
-import { Graph11 } from '@/viz/exercise/HoverDeathByStateFixSolution/Graph';
 
 const previousURL = '/course/hover-effect/introduction';
 const currentURL = '/course/hover-effect/css-pseudo-class';
@@ -42,7 +39,7 @@ export default function Home() {
         title={currentLesson.name}
         lessonStatus={currentLesson.status}
         readTime={currentLesson.readTime}
-        topBadge={'Lesson ' + currentLessonId}
+        selectedLesson={currentLesson}
         description={
           <>
             <p>The simplest strategy.</p>
