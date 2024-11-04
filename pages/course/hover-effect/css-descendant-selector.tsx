@@ -15,6 +15,7 @@ import {
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { Graph9 } from '@/viz/exercise/LollipopFirstSolution/Graph';
 import { Graph12 } from '@/viz/exercise/LollipopHoverEffectSolution/Graph';
+import { Graph22 } from '@/viz/exercise/Hover3CirclesDescandantSelectorIssueSolution/Graph';
 
 const previousURL = '/course/hover-effect/css-pseudo-class';
 const currentURL = '/course/hover-effect/css-descendant-selector';
@@ -162,31 +163,35 @@ export default function Home() {
             title: <span>Lollipop with hover effect</span>,
             content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
           },
+          {
+            title: <span>Scatterplot = problem 🚨</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
+          },
         ]}
       />
     </LayoutCourse>
   );
 }
-
 const exercises: Exercise[] = [
   {
     whyItMatters: (
       <>
         <p>
-          With the SVG and d3 fundations you have, it is a breeze to create a
-          new chart type!
+          With the SVG and D3 foundations you’ve built, creating a new chart
+          type becomes a breeze!
         </p>
       </>
     ),
     toDo: (
       <>
         <ul>
-          <li>A dataset is provided in the sandbox folder</li>
+          <li>A dataset is provided in the sandbox folder.</li>
           <li>
-            Build a cleveland chart with this dataset. (It is a variation of the
-            lollipop, handy to compare 2 values across many groups!)
+            Build a Cleveland chart with this dataset. (This chart is a
+            variation of the lollipop plot and is helpful for comparing two
+            values across multiple groups.)
           </li>
-          <li>Check the solution tab to see how the graph must look like</li>
+          <li>Check the solution tab to see the intended chart appearance.</li>
         </ul>
       </>
     ),
@@ -198,17 +203,20 @@ const exercises: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          Descendant selectors are so good to create fancy hover effect using
-          CSS only!
+          Descendant selectors are fantastic for creating advanced hover effects
+          with only CSS!
         </p>
       </>
     ),
     toDo: (
       <>
         <ul>
-          <li>Add a class for the SVG container</li>
           <li>
-            Using CSS descendant selector, highlight the hovered row, and dim
+            Add a class <code>rowsContainer</code> to the SVG container and a
+            class <code>row</code> to each row.
+          </li>
+          <li>
+            Using a CSS descendant selector, highlight the hovered row and dim
             other rows.
           </li>
         </ul>
@@ -216,5 +224,32 @@ const exercises: Exercise[] = [
     ),
     practiceSandbox: 'exercise/LollipopHoverEffectPractice',
     solutionSandbox: 'exercise/LollipopHoverEffectSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          The descendant selector technique has limitations! It doesn’t work
+          when the SVG area isn’t fully filled with elements.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Use the CSS descendant selector technique to dim circles that aren’t
+            hovered over when one circle is hovered.
+          </li>
+          <li>
+            What happens when your mouse enters the SVG area but doesn’t reach
+            any circles?
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/Hover3CirclesDescendantSelectorIssuePractice',
+    solutionSandbox: 'exercise/Hover3CirclesDescendantSelectorIssueSolution',
   },
 ];
