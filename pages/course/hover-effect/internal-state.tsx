@@ -9,6 +9,7 @@ import { Badge } from '@/component/UI/badge';
 import GraphGallery from '@/component/GraphGallery';
 import { Caption } from '@/component/UI/Caption';
 import Link from 'next/link';
+import { ConnectionBarPieDemo } from '@/viz/ConnectionBarPie/ConnectionBarPieDemo';
 
 const previousURL = '/course/hover-effect/toggle-class-in-js';
 const currentURL = '/course/hover-effect/internal-state';
@@ -179,38 +180,59 @@ const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 />
 `.trim()}
       />
+      {/* -
+-
+-
+-
+-
+-
+- */}
+      <h2>Example</h2>
+      <p>
+        Here’s a preview of this strategy in action. Hover over one graph, and
+        watch the <b>corresponding section</b> in the other graph highlight as
+        well:
+      </p>
 
       <ChartOrSandbox
-        vizName={'ScatterplotHoverHighlightDim'}
-        VizComponent={ScatterplotHoverHighlightDimDemo}
+        vizName={'ConnectionBarPie'}
+        VizComponent={ConnectionBarPieDemo}
         maxWidth={800}
         height={400}
-        caption="TODO."
+        caption="Two graphs inter-connected thanks to a hover effect"
       />
-
+      {/* -
+-
+-
+-
+-
+-
+- */}
       <h2>Pros & Cons</h2>
+
       <p>
         <Badge>Pros</Badge>
       </p>
       <ul>
         <li>
-          Allows to sync the hover effect with other UI updates. The hovered
-          state can be used to update any other react components in the
-          application. Like tooltip or another graph.
+          Enables synchronization across <b>multiple</b> UI components, allowing
+          hover effects, tooltips, and text highlights to update together.
+          Highly versatile.
         </li>
         <li>
-          Using javascript to trigger the animation can give more flexibility to
-          customize the hover effect, using react-spring for instance.
+          Provides flexibility for hover effects by using JavaScript animations,
+          for instance, with <code>react-spring</code>.
         </li>
       </ul>
+
       <p>
         <Badge variant="destructive">Cons</Badge>
       </p>
       <ul>
         <li>
-          Performance 🚨. Here we are redrawing all the circles each time a
-          hover effect is hovered. This can be dramatic if you have thousands of
-          circles!
+          Performance 🚨🚨🚨: Redrawing all elements on each hover event can
+          significantly impact performance, especially with many elements, such
+          as thousands of circles.
         </li>
       </ul>
 
@@ -222,6 +244,30 @@ const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
       <GraphGallery
         images={['line-chart-synced-cursor.gif', 'streamgraph-application.gif']}
       />
+
+      {/* -
+-
+-
+-
+-
+-
+- */}
+      <h2>Exercise</h2>
+      <p>
+        Open a new sandbox, and build the barplot + pie chart example above from
+        scratch!
+      </p>
+
+      <p>
+        <br />
+        <br />
+      </p>
+      <blockquote className="bg-fuchsia-50 py-8">
+        <p>
+          Remember, this strategy can have <b>performance drawbacks</b>! We'll
+          cover a workaround using Canvas later in this course.
+        </p>
+      </blockquote>
     </LayoutCourse>
   );
 }
