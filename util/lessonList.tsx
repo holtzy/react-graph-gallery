@@ -438,9 +438,9 @@ export const lessonList: Lesson[] = [
         </p>
       </>
     ),
-    readTime: 4,
+    readTime: 10,
     link: '/course/hover-effect/css-descendant-selector',
-    status: 'wip',
+    status: 'free',
     moduleId: 'hover effect',
   },
   {
