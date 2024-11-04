@@ -166,8 +166,6 @@ export default function Home() {
           },
         ]}
       />
-
-      <Graph11 />
     </LayoutCourse>
   );
 }

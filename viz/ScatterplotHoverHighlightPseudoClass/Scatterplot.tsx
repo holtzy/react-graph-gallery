@@ -1,8 +1,7 @@
-import * as d3 from "d3";
-import styles from "./scatterplot.module.css";
-import { AxisLeft } from "./AxisLeft";
-import { AxisBottom } from "./AxisBottom";
-import { useState } from "react";
+import * as d3 from 'd3';
+import styles from './scatterplot.module.css';
+import { AxisLeft } from './AxisLeft';
+import { AxisBottom } from './AxisBottom';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -17,8 +16,6 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-  const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
-
   // Scales
   const yScale = d3.scaleLinear().domain([35, 85]).range([boundsHeight, 0]);
   const xScale = d3
@@ -29,14 +26,11 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
   const colorScale = d3
     .scaleOrdinal<string>()
     .domain(allGroups)
-    .range(["#e0ac2b", "#e85252", "#6689c6", "#9a6fb0", "#a53253"]);
+    .range(['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253']);
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
-    const className =
-      hoveredGroup && d.group !== hoveredGroup
-        ? styles.scatterplotCircle + " " + styles.dimmed
-        : styles.scatterplotCircle;
+    const className = styles.scatterplotCircle;
 
     return (
       <circle
@@ -47,8 +41,6 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
         className={className}
         stroke={colorScale(d.group)}
         fill={colorScale(d.group)}
-        onMouseOver={() => setHoveredGroup(d.group)}
-        onMouseLeave={() => setHoveredGroup(null)}
       />
     );
   });
@@ -60,7 +52,7 @@ export const Scatterplot = ({ width, height, data }: ScatterplotProps) => {
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
