@@ -1,0 +1,10 @@
+.circle {
+  fill-opacity: 0.1;
+  fill: blue;
+  cursor: pointer;
+}
+
+.circle:hover {
+  fill-opacity: 1;
+  fill: red;
+}

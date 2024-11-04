@@ -15,6 +15,8 @@ import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
 import { TakeHome } from '@/component/TakeHome';
 import { Graph9 } from '@/viz/exercise/HoverFirstTreemapSolution/Graph';
+import { Graph10 } from '@/viz/exercise/HoverDeathByStateSolution/Graph';
+import { Graph11 } from '@/viz/exercise/HoverDeathByStateFixSolution/Graph';
 
 const previousURL = '/course/hover-effect/introduction';
 const currentURL = '/course/hover-effect/css-pseudo-class';
@@ -158,10 +160,14 @@ export default function Home() {
             ),
             content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
           },
+          {
+            title: <span>Fix the mess!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[3]} />,
+          },
         ]}
       />
 
-      <Graph9 />
+      <Graph11 />
     </LayoutCourse>
   );
 }
@@ -263,5 +269,27 @@ const exercises: Exercise[] = [
     ),
     practiceSandbox: 'exercise/HoverDeathByStatePractice',
     solutionSandbox: 'exercise/HoverDeathByStateSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          When something can be achieved with CSS only, always ditch Javascript!
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Fix the previous exercise: instead of using a js state, use a css
+            pseudo class for the hover effect!
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/HoverDeathByStateFixPractice',
+    solutionSandbox: 'exercise/HoverDeathByStateFixSolution',
   },
 ];

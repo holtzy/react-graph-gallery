@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import styles from './graph.module.css';
 
 const width = 500;
 const height = 300;
@@ -7,21 +7,10 @@ const sampleSize = 100000;
 const data = generateDataset(sampleSize);
 
 export const Graph = () => {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <svg width={500} height={300}>
       {data.map((d, i) => {
-        return (
-          <circle
-            cx={d.x}
-            cy={d.y}
-            r={hovered === i ? 4 : 2}
-            fill={hovered === i ? 'red' : 'blue'}
-            onMouseOver={() => setHovered(i)}
-            fillOpacity={0.4}
-          />
-        );
+        return <circle cx={d.x} cy={d.y} r={4} className={styles.circle} />;
       })}
     </svg>
   );
