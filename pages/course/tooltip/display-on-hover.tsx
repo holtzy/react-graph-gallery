@@ -11,7 +11,6 @@ import {
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { ScatterplotTooltipDemo } from '@/viz/ScatterplotTooltip/ScatterplotTooltipDemo';
-import { Graph88 } from '@/viz/exercise/TooltipContentOnHoverSolution/Graph';
 
 const previousURL = '/course/tooltip/tooltip-component';
 const currentURL = '/course/tooltip/display-on-hover';

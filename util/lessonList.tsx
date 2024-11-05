@@ -560,7 +560,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/legend/introduction',
     status: 'not available',
     moduleId: 'legend',
   },
