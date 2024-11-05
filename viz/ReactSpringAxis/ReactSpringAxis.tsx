@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { AxisBottom } from "./AxisBottom";
-import * as d3 from "d3";
+import { useState } from 'react';
+import { AxisBottom } from './AxisBottom';
+import * as d3 from 'd3';
 
 type ReactSpringAxisProps = {
   width: number;
@@ -8,12 +8,12 @@ type ReactSpringAxisProps = {
 };
 
 const buttonStyle = {
-  border: "1px solid #9a6fb0",
-  borderRadius: "3px",
-  padding: "4px 8px",
-  margin: "10px 2px",
+  border: '1px solid #9a6fb0',
+  borderRadius: '3px',
+  padding: '4px 8px',
+  margin: '10px 2px',
   fontSize: 14,
-  color: "#9a6fb0",
+  color: '#9a6fb0',
   opacity: 0.7,
 };
 
@@ -28,8 +28,8 @@ export const ReactSpringAxis = ({ width, height }: ReactSpringAxisProps) => {
         <button style={buttonStyle} onClick={() => setLimit(40)}>
           40
         </button>
-        <button style={buttonStyle} onClick={() => setLimit(400)}>
-          400
+        <button style={buttonStyle} onClick={() => setLimit(80)}>
+          80
         </button>
       </div>
       <div style={{ width, height }}>

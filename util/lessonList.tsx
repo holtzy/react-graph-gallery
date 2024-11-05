@@ -638,7 +638,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/data-fetching/spinner',
     status: 'not available',
     moduleId: 'reading-data',
   },
@@ -649,7 +649,7 @@ export const lessonList: Lesson[] = [
   //
   //
   {
-    name: "What's a spring animation",
+    name: 'Introduction',
     description: (
       <>
         <p>
@@ -659,8 +659,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/animation/introduction',
+    status: 'wip',
     moduleId: 'animation',
   },
   {
@@ -674,8 +674,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/animation/animate-a-circle',
+    status: 'wip',
     moduleId: 'animation',
   },
   {
@@ -689,8 +689,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/animation/scatterplot',
+    status: 'wip',
     moduleId: 'animation',
   },
   {
@@ -704,16 +704,25 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/animation/enter-update-exit',
+    status: 'wip',
     moduleId: 'animation',
   },
-
-  //
-  //
-  // Colors
-  //
-  //
+  {
+    name: 'Dealing with path',
+    description: (
+      <>
+        <p>
+          Let's see how to deal with shapes that appear, move and leave the
+          graph.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/animation/dealing-with-path',
+    status: 'wip',
+    moduleId: 'animation',
+  },
 
   //
   //

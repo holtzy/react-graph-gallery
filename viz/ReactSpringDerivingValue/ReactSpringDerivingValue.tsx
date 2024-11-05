@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Circle } from './Circle';
+import { Circle, Preset } from './Circle';
 
-type ReactSpringMostBasicProps = {
+type ReactSpringDerivingValueProps = {
   width: number;
   height: number;
 };
@@ -16,10 +16,10 @@ const buttonStyle = {
   opacity: 0.7,
 };
 
-export const ReactSpringMostBasic = ({
+export const ReactSpringDerivingValue = ({
   width,
   height,
-}: ReactSpringMostBasicProps) => {
+}: ReactSpringDerivingValueProps) => {
   const [position, setPosition] = useState(40);
 
   return (
@@ -35,7 +35,7 @@ export const ReactSpringMostBasic = ({
       </div>
 
       {/* Viz */}
-      <svg width={width} height={height}>
+      <svg width={width} height={height} style={{ overflow: 'visible' }}>
         <Circle
           position={position}
           color={position === 40 ? '#9a6fb0' : '#69b3a2'}

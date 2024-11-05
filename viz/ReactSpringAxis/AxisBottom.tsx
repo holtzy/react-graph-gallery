@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { ScaleLinear } from "d3";
-import { animated, useSpring, config } from "react-spring";
+import { useMemo } from 'react';
+import { ScaleLinear } from 'd3';
+import { animated, useSpring, config } from 'react-spring';
 
 type AxisBottomProps = {
   xScale: ScaleLinear<number, number>;
@@ -12,18 +12,20 @@ const TICK_LENGTH = 6;
 
 const Tick = ({ xOffset, value }: { xOffset: number; value: number }) => {
   const springProps = useSpring({
+    from: { xOffset: 900 },
     to: { xOffset },
     config: config.molasses,
+    reset: true,
   });
 
   return (
-    <animated.g transform={`translate(${xOffset}, 0)`}>
+    <animated.g transform={springProps.xOffset.to((v) => `translate(${v}, 0)`)}>
       <line y2={TICK_LENGTH} stroke="currentColor" />
       <text
         style={{
-          fontSize: "10px",
-          textAnchor: "middle",
-          transform: "translateY(20px)",
+          fontSize: '10px',
+          textAnchor: 'middle',
+          transform: 'translateY(20px)',
         }}
       >
         {value}
@@ -34,29 +36,22 @@ const Tick = ({ xOffset, value }: { xOffset: number; value: number }) => {
 
 export const AxisBottom = ({ xScale, pixelsPerTick }: AxisBottomProps) => {
   const range = xScale.range();
-
-  const ticks = useMemo(() => {
-    const width = range[1] - range[0];
-    const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
-
-    return xScale.ticks(numberOfTicksTarget).map((value) => ({
-      value,
-      xOffset: xScale(value),
-    }));
-  }, [xScale]);
+  const width = range[1] - range[0];
+  const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
+  const ticks = xScale.ticks(numberOfTicksTarget);
 
   return (
     <>
       {/* Main horizontal line */}
       <path
-        d={["M", range[0], 0, "L", range[1], 0].join(" ")}
+        d={['M', range[0], 0, 'L', range[1], 0].join(' ')}
         fill="none"
         stroke="currentColor"
       />
 
       {/* Ticks and labels */}
-      {ticks.map(({ value, xOffset }, i) => {
-        return <Tick key={i} value={value} xOffset={xOffset} />;
+      {ticks.map((value, i) => {
+        return <Tick key={value} value={value} xOffset={xScale(value)} />;
       })}
     </>
   );
