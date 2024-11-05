@@ -477,7 +477,7 @@ export const lessonList: Lesson[] = [
   //
   //
   {
-    name: 'Design consideration',
+    name: 'Introduction',
     description: (
       <>
         <p>
@@ -486,9 +486,9 @@ export const lessonList: Lesson[] = [
         </p>
       </>
     ),
-    readTime: 4,
-    link: '/course/responsiveness/introduction',
-    status: 'not available',
+    readTime: 3,
+    link: '/course/tooltip/introduction',
+    status: 'free',
     moduleId: 'tooltip',
   },
   {
@@ -499,8 +499,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/tooltip/tooltip-component',
+    status: 'free',
     moduleId: 'tooltip',
   },
   {
@@ -513,8 +513,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/tooltip/display-on-hover',
+    status: 'free',
     moduleId: 'tooltip',
   },
   {
@@ -527,8 +527,23 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/tooltip/templates',
+    status: 'free',
+    moduleId: 'tooltip',
+  },
+  {
+    name: 'Project',
+    description: (
+      <>
+        <p>
+          Let's create a stunning heatmap with good tooltips to apply everything
+          we learnt so far.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/tooltip/project',
+    status: 'free',
     moduleId: 'tooltip',
   },
 

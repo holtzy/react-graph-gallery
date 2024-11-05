@@ -166,7 +166,7 @@ export default function Home() {
         </li>
         <li>
           Use{' '}
-          <Link href="example/scatterplot-tooltip-with-voronoi-for-closest-point-detection">
+          <Link href="/example/scatterplot-tooltip-with-voronoi-for-closest-point-detection">
             Voronoi
           </Link>{' '}
           for closest point detection to trigger the hover effect
