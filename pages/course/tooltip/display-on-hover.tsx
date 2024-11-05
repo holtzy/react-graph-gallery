@@ -7,11 +7,14 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
-import { CodeBlock } from '@/component/UI/CodeBlock';
 
-const previousURL = '/course/tooltip/introduction';
-const currentURL = '/course/tooltip/tooltip-component';
-const nextURL = '/course/tooltip/display-on-hover';
+import { CodeBlock } from '@/component/UI/CodeBlock';
+import { ChartOrSandbox } from '@/component/ChartOrSandbox';
+import { ScatterplotTooltipDemo } from '@/viz/ScatterplotTooltip/ScatterplotTooltipDemo';
+
+const previousURL = '/course/tooltip/tooltip-component';
+const currentURL = '/course/tooltip/display-on-hover';
+const nextURL = '/course/tooltip/templates';
 const seoDescription = '';
 
 export default function Home() {
@@ -36,92 +39,125 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's see how to create a <code>Tooltip</code> component that can
-              be re-used in your codebase when a tooltip is required.
+              In the previous lesson, we learned how to create a{' '}
+              <code>Tooltip</code> component, position it correctly, and design
+              its API.
             </p>
+            <p>Now, let’s make it appear only on hover!</p>
           </>
         }
       />
-      <h2>Minimal tooltip example</h2>
-      <h3>
-        💾 <code>InteractionData</code>: where the tooltip info is stored.
-      </h3>
+      {/* -
+-
+-
+-
+-
+-
+-
+- */}
+      <h2>1️⃣ Internal State</h2>
       <p>
-        Our tooltip component is going to expect one property only: an object of
-        type InteractionData.
+        The first thing we need is an internal state, created with the{' '}
+        <code>useState</code> hook.
       </p>
       <p>
-        This object stores everything we need to build a tooltip. At the very
-        least we need some positions (xPos and yPos) and a title to display
-        (name here)
+        This state can be <code>null</code> when nothing is hovered. If the user
+        hovers over a graph marker, its value becomes an object of type{' '}
+        <code>InteractionData</code>, storing everything we need to know about
+        the marker!
       </p>
+
       <CodeBlock
         code={`
-type InteractionData = {
-  xPos: number;
-  yPos: number;
-  name: string;
-}
-
-type TooltipProps = {
-  interactionData: InteractionData | undefined;
-};
+// Initialize an internal state
+const [interactionData, setInteractiondata] = useState<InteractionData | null>(null);
       `.trim()}
       />
+      {/* -
+-
+-
+-
+-
+-
+-
+- */}
+      <h2>2️⃣ Updating the State on Hover</h2>
       <p>
-        But we could put many other things! A color for the border, some values
-        to display, a link to an image.. Anything really.
-      </p>
-      <h3>🦴 Tooltip component skeleton</h3>
-      <p>
-        The Tooltip component uses some props of type TooltipProps, which is
-        basically just an interactionData object.
+        The <code>setInteractionData</code> function allows us to update this
+        state. We can use it to update <code>interactionData</code> whenever a
+        graph marker is hovered over!
       </p>
       <p>
-        If this object is undefined (user is not hovering anything), then we do
-        not return anything;
+        For example, if the marker is a circle, as in a scatterplot, the code
+        might look like this:
       </p>
+
       <CodeBlock
         code={`
-// Tooltip.tsx
-export const Tooltip = ({ interactionData }: TooltipProps) => {
-
-  if (!interactionData) {
-    return null;
+<circle
+  r={8}
+  cx={250}
+  cy={150}
+  onMouseEnter={() => // Each time the circle is hovered hover...
+    setInteractionData({ // ... update the interactionData state with the circle information
+      xPos: 250,
+      yPos: 150,
+      name: "hello",
+    })
   }
+  onMouseLeave={() => setInteractionData(null)} // When the user stops hovering, reset the interactionData to null
+/>
 
-  ... Do something with interactionData otherwise
-};
-
-      `.trim()}
+      `}
       />
-      <h3>🍔 The meat</h3>
+      {/* -
+-
+-
+-
+-
+-
+-
+- */}
+      <h2>3️⃣ Conditionally Render the Tooltip</h2>
       <p>
-        Now, we just need to return something based on the{' '}
-        <code>interactionData</code> information.
+        The <code>Tooltip</code> component takes <code>interactionData</code>{' '}
+        (the internal state) as a prop.
       </p>
       <p>
-        Do not forget to use <code>xPos</code> and <code>yPos</code> to put the
-        tooltip at the right position!
+        If <code>interactionData</code> is <code>null</code>, the component
+        returns nothing, so the tooltip appears only when{' '}
+        <code>interactionData</code> has a value—i.e., when the user hovers over
+        a marker.
       </p>
-      <CodeBlock
-        code={`
-const { xPos, yPos, name } = interactionData;
 
-return (
-  <div
-    style={{
-      left: xPos,
-      top: yPos,
-    }}
-  >
-    <b>{name}</b>
-  </div>
-);
+      <blockquote className="bg-fuchsia-50 py-8">
+        <p>
+          Don’t forget to add <code>pointerEvents: "none"</code> to the{' '}
+          <code>div</code> that wraps the <code>Tooltip</code> component!
+          Otherwise, the <code>onMouseEnter()</code> event on SVG elements won’t
+          be triggered.
+        </p>
+      </blockquote>
 
-      `.trim()}
+      {/* -
+-
+-
+-
+-
+-
+-
+- */}
+      <h2>Scatterplot minimal example</h2>
+      <p>
+        Let's apply what we learnt on a scatterplot, creating a minimal tooltip:
+      </p>
+      <ChartOrSandbox
+        VizComponent={ScatterplotTooltipDemo}
+        vizName={'ScatterplotTooltip'}
+        maxWidth={500}
+        height={500}
+        caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
       />
-
       {/* -
       -
       -

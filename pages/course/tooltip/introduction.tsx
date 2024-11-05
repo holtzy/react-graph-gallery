@@ -2,17 +2,8 @@ import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
-import { CodeSandbox } from '@/component/CodeSandbox';
 import Link from 'next/link';
-import { Badge } from '@/component/UI/badge';
-import { ExerciseAccordion } from '@/component/ExerciseAccordion';
-import {
-  Exercise,
-  ExerciseDoubleSandbox,
-} from '@/component/ExerciseDoubleSandbox';
 import { Caption } from '@/component/UI/Caption';
-import { Sidenote } from '@/component/SideNote';
-import { ScatterplotBasicDemo } from '@/viz/ScatterplotBasic/ScatterplotBasicDemo';
 import { ScatterplotClimateCrisisDemo } from '@/viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { TakeHome } from '@/component/TakeHome';
