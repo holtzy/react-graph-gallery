@@ -11,6 +11,7 @@ import {
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { ScatterplotTooltipDemo } from '@/viz/ScatterplotTooltip/ScatterplotTooltipDemo';
+import { Graph88 } from '@/viz/exercise/TooltipContentOnHoverSolution/Graph';
 
 const previousURL = '/course/tooltip/tooltip-component';
 const currentURL = '/course/tooltip/display-on-hover';
@@ -70,7 +71,7 @@ export default function Home() {
       <CodeBlock
         code={`
 // Initialize an internal state
-const [interactionData, setInteractiondata] = useState<InteractionData | null>(null);
+const [interactionData, setInteractionData] = useState<InteractionData | null>(null);
       `.trim()}
       />
       {/* -
@@ -175,12 +176,8 @@ const [interactionData, setInteractiondata] = useState<InteractionData | null>(n
         localStorageId={currentLesson.link}
         exercises={[
           {
-            title: <span>Your first tooltip!</span>,
+            title: <span>Tooltip on hover only</span>,
             content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
-          },
-          {
-            title: <span>Pass more information</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
           },
         ]}
       />
@@ -192,59 +189,19 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>
-          Let's start with a very simple tooltip. We'll see how to improve it
-          later on.
-        </p>
+        <p>Let's apply what we just learned!</p>
       </>
     ),
     toDo: (
       <ul>
-        <li>The Sandbox has a circle rendered in SVG.</li>
-        <li>Create an absolute positionned div on top of the SVG area</li>
+        <li>The Sanbox below has a circle with a tooltip on it</li>
         <li>
-          Create a <code>Tooltip</code> component in a <code>Tooltip.tsx</code>{' '}
-          file.
-        </li>
-        <li>
-          In this div, render a small div exactly where the circle is with one
-          word in it: <code>hello</code>
+          Make sure the tooltip is displayed only when the circle is hovered
+          over!
         </li>
       </ul>
     ),
-    practiceSandbox: 'exercise/TooltipFirstPractice',
-    solutionSandbox: 'exercise/TooltipFirstSolution',
-  },
-  {
-    whyItMatters: (
-      <>
-        <p>
-          Keep in mind that you can pass absolutely any information to the
-          tooltip component to display it.
-        </p>
-        <p>
-          Passing styling information like the marker color to make the tooltip
-          fit the style is a very good practice.
-        </p>
-      </>
-    ),
-    toDo: (
-      <ul>
-        <li>
-          Pass 3 more information to the <code>Tooltip</code> component:{' '}
-          <code>xValue</code>, <code>yValue</code> and color (use{' '}
-          <code>green</code>)
-        </li>
-        <li>
-          Use the <code>color</code> to change the tooltip border color
-        </li>
-        <li>
-          Display <code>xValue</code> and <code>yValue</code> in the tooltip
-          body.
-        </li>
-      </ul>
-    ),
-    practiceSandbox: 'exercise/TooltipAddContentPractice',
-    solutionSandbox: 'exercise/TooltipAddContentSolution',
+    practiceSandbox: 'exercise/TooltipContentOnHoverPractice',
+    solutionSandbox: 'exercise/TooltipContentOnHoverSolution',
   },
 ];
