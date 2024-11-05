@@ -3,7 +3,7 @@ import { Tooltip } from './Tooltip';
 const width = 500;
 const height = 300;
 
-export const Graph8 = () => {
+export const Graph = () => {
   return (
     <div style={{ position: 'relative' }}>
       {/* SVG layer */}
