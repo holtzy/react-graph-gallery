@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { ScaleLinear } from 'd3';
 import { animated, useSpring, config } from 'react-spring';
 
@@ -10,9 +10,18 @@ type AxisBottomProps = {
 // tick length
 const TICK_LENGTH = 6;
 
-const Tick = ({ xOffset, value }: { xOffset: number; value: number }) => {
+const Tick = ({
+  xOffset,
+  value,
+  prevScale,
+}: {
+  xOffset: number;
+  value: number;
+  prevScale: ScaleLinear<number, number>;
+}) => {
+  const prevPosition = prevScale(value);
   const springProps = useSpring({
-    from: { xOffset: 900 },
+    from: { xOffset: prevPosition > xOffset ? prevPosition : xOffset },
     to: { xOffset },
     config: config.molasses,
     reset: true,
@@ -40,6 +49,11 @@ export const AxisBottom = ({ xScale, pixelsPerTick }: AxisBottomProps) => {
   const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
   const ticks = xScale.ticks(numberOfTicksTarget);
 
+  const prevMyPropRef = useRef(xScale);
+  useEffect(() => {
+    prevMyPropRef.current = xScale;
+  }, [xScale]);
+
   return (
     <>
       {/* Main horizontal line */}
@@ -51,7 +65,14 @@ export const AxisBottom = ({ xScale, pixelsPerTick }: AxisBottomProps) => {
 
       {/* Ticks and labels */}
       {ticks.map((value, i) => {
-        return <Tick key={value} value={value} xOffset={xScale(value)} />;
+        return (
+          <Tick
+            key={value}
+            value={value}
+            xOffset={xScale(value)}
+            prevScale={prevMyPropRef.current}
+          />
+        );
       })}
     </>
   );
