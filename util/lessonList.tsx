@@ -756,11 +756,11 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/canvas/introduction',
-    status: 'not available',
+    status: 'wip',
     moduleId: 'canvas',
   },
   {
-    name: '',
+    name: 'Drawing shapes with canvas',
     description: (
       <>
         <p>
@@ -770,8 +770,8 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
-    status: 'not available',
+    link: '/course/canvas/drawing-shapes-with-canvas',
+    status: 'wip',
     moduleId: 'canvas',
   },
   {
