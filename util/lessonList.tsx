@@ -723,6 +723,21 @@ export const lessonList: Lesson[] = [
     status: 'wip',
     moduleId: 'animation',
   },
+  {
+    name: 'Project',
+    description: (
+      <>
+        <p>
+          Let's apply everything we learnt to create a nice mirror histogram
+          with animation
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/animation/project',
+    status: 'wip',
+    moduleId: 'animation',
+  },
 
   //
   //
@@ -740,7 +755,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/canvas/introduction',
     status: 'not available',
     moduleId: 'canvas',
   },

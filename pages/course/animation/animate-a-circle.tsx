@@ -105,6 +105,13 @@ export default function Home() {
         height={200}
         caption="A very basic animation using react and react-spring."
       />
+
+      <h2>Exercices</h2>
+      <p>Redo the circle</p>
+      <p>Click on a div to animate value</p>
+      <p>Make a rect rotate</p>
+      <p>Make a very big mass with no friction</p>
+      <p>Make something with 3 elements</p>
     </LayoutCourse>
   );
 }
