@@ -664,7 +664,7 @@ export const lessonList: Lesson[] = [
     moduleId: 'animation',
   },
   {
-    name: 'Most simple: animating a circle',
+    name: 'Introduction to react-spring for data visualization',
     description: (
       <>
         <p>
@@ -674,7 +674,7 @@ export const lessonList: Lesson[] = [
       </>
     ),
     readTime: 4,
-    link: '/course/animation/animate-a-circle',
+    link: '/course/animation/react-spring-for-dataviz',
     status: 'wip',
     moduleId: 'animation',
   },
@@ -760,7 +760,7 @@ export const lessonList: Lesson[] = [
     moduleId: 'canvas',
   },
   {
-    name: 'Draw basic shapes',
+    name: '',
     description: (
       <>
         <p>

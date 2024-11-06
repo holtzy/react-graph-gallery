@@ -12,7 +12,7 @@ import { buttonVariants } from '@/component/UI/button';
 
 const previousURL = '/course/data-fetching/spinner';
 const currentURL = '/course/animation/introduction';
-const nextURL = '/course/animation/animate-a-circle';
+const nextURL = '/course/animation/react-spring-for-dataviz';
 const seoDescription = '';
 
 export default function Home() {

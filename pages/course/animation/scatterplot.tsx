@@ -17,7 +17,7 @@ import { HistogramDatasetTransitionDemo } from '@/viz/HistogramDatasetTransition
 import { BarplotDatasetTransitionDemo } from '@/viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo';
 import { LollipopDatasetTransitionDemo } from '@/viz/LollipopDatasetTransition/LollipopDatasetTransitionDemo';
 
-const previousURL = '/course/animation/animate-a-circle';
+const previousURL = '/course/animation/react-spring-for-dataviz';
 const currentURL = '/course/animation/scatterplot';
 const nextURL = '/course/animation/enter-update-exit';
 const seoDescription = '';
