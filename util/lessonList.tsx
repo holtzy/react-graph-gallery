@@ -775,6 +775,36 @@ export const lessonList: Lesson[] = [
     moduleId: 'canvas',
   },
   {
+    name: 'Combining SVG and Canvas',
+    description: (
+      <>
+        <p>
+          Let's keep using SVG for axes, but use canvas for numerous elements.
+          Your first canvas scatterplot!
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/canvas/combining-svg-and-canvas',
+    status: 'free',
+    moduleId: 'canvas',
+  },
+  {
+    name: 'Using paths in Canvas',
+    description: (
+      <>
+        <p>
+          D3 builds SVG paths for us. How can we use it in a canvas context?
+          Let's make a donhut chart.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/canvas/svg-path-in-canvas',
+    status: 'free',
+    moduleId: 'canvas',
+  },
+  {
     name: 'Tooltip',
     description: (
       <>
