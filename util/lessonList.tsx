@@ -756,7 +756,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/canvas/introduction',
-    status: 'wip',
+    status: 'free',
     moduleId: 'canvas',
   },
   {
@@ -771,7 +771,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/canvas/drawing-shapes-with-canvas',
-    status: 'wip',
+    status: 'free',
     moduleId: 'canvas',
   },
   {
@@ -809,13 +809,13 @@ export const lessonList: Lesson[] = [
     description: (
       <>
         <p>
-          You don't draw the tooltip in canvas. Let's see how to mix layers to
-          use the best of both worlds and display a tooltip.
+          There is no <code>onMouseMove</code> on canvas elements. How can we
+          add a tooltip?
         </p>
       </>
     ),
     readTime: 4,
-    link: '',
+    link: '/course/canvas/tooltip',
     status: 'not available',
     moduleId: 'canvas',
   },

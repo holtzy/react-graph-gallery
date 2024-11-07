@@ -15,16 +15,10 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
-import { Graph1 } from '@/viz/exercise/CanvasBasicCircleSolution/Graph';
-import { Graph2 } from '@/viz/exercise/CanvasRectOutlineSolution/Graph';
-import { Graph3 } from '@/viz/exercise/CanvasClearRectSolution/Graph';
-import { Graph4 } from '@/viz/exercise/CanvasBasicLineSolution/Graph';
-import { Graph5 } from '@/viz/exercise/CanvasTenCirclesSolution/Graph';
-import { Graph6 } from '@/viz/exercise/CanvasBasicTextSolution/Graph';
 
 const previousURL = '/course/canvas/introduction';
 const currentURL = '/course/canvas/drawing-shapes-with-canvas';
-const nextURL = '';
+const nextURL = '/course/canvas/combining-svg-and-canvas';
 const seoDescription = '';
 
 export default function Home() {
@@ -206,37 +200,30 @@ ctx.fill();
         exercises={[
           {
             title: <span>Your first circle</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[0]} />,
           },
           {
             title: <span>Outline of a rectangle with strokeRect()</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
           },
           {
             title: <span>Clear a portion of the canvas with clearRect()</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
           },
           {
             title: <span>Let's make a path</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[3]} />,
           },
           {
             title: <span>Ten circles?</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[4]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[4]} />,
           },
           {
             title: <span>What about text</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[5]} />,
+            content: <ExerciseDoubleSandbox exercise={exercises[5]} />,
           },
         ]}
       />
-      <Graph1 />
-
-      <Graph2 />
-      <Graph3 />
-      <Graph4 />
-      <Graph5 />
-      <Graph6 />
     </LayoutCourse>
   );
 }
