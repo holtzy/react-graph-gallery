@@ -4,9 +4,13 @@ import React from 'react';
 
 type CodeSandboxProps = {
   vizName: string;
+  height?: string;
 };
 
-export const CodeSandbox = ({ vizName }: CodeSandboxProps) => {
+export const CodeSandbox = ({
+  vizName,
+  height = '500px',
+}: CodeSandboxProps) => {
   const url =
     'https://codesandbox.io/embed/github/holtzy/react-graph-gallery/tree/main/viz/' +
     vizName +
@@ -17,7 +21,7 @@ export const CodeSandbox = ({ vizName }: CodeSandboxProps) => {
       src={url}
       style={{
         width: '100%',
-        height: '500px',
+        height: height,
         border: 'solid',
         borderWidth: 2,
         borderRadius: '4px',

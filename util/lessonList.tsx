@@ -660,7 +660,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/animation/introduction',
-    status: 'wip',
+    status: 'free',
     moduleId: 'animation',
   },
   {
