@@ -316,16 +316,19 @@ const springProps = useSpring({
 -
 -
 - */}
-      <h2>Deriving value?</h2>
+      <h2>Deriving Values</h2>
       <p>
-        It is straightforward to animate a value directly using react-spring,
-        like we've just done for the position property.
+        Animating a value directly using <b>react-spring</b>, like we did for
+        the position property, is straightforward.
       </p>
-      <p>But in data visualization, we'll often derive a value from another.</p>
       <p>
-        For instance, let's say I want the size of the circle to be proportional
-        to the X position. One might think that I could simply use the
-        springProps.position value like a normal number:
+        However, in data visualization, we often need to{' '}
+        <b>derive one value from another</b>.
+      </p>
+      <p>
+        For example, suppose we want the size of the circle to be proportional
+        to the X position. You might think that we could simply use the{' '}
+        <code>springProps.position</code> value as a regular number, like this:
       </p>
       <CodeBlock
         code={`
@@ -334,32 +337,67 @@ return (
     cx={springProps.position}
     cy={50}
     r={springProps.position / 10} // This will not work! 😱
-    />
+  />
 );
   `}
       />
       <p>
-        Instead, I have to use the to() function of the spring property, as
-        follow:
+        Instead, to achieve this, we need to use the <code>to()</code> method of
+        the <code>springProps.position</code> property, like so:
       </p>
+      <CodeBlock
+        code={`
+return (
+  <animated.circle
+    cx={springProps.position}
+    cy={50}
+    r={springProps.position.to((pos) => pos / 10)}
+  />
+);
+  `}
+      />
+      <p>
+        This is called <b>interpolation</b> in <code>react-spring</code>{' '}
+        terminology. You can learn more about it in the full documentation{' '}
+        <a
+          href="https://www.react-spring.dev/docs/advanced/interpolation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          here
+        </a>
+        .
+      </p>
+      <p>Let’s take a look at the result!</p>
+
       <ChartOrSandbox
         vizName={'ReactSpringDerivingValue'}
         VizComponent={ReactSpringDerivingValueDemo}
         maxWidth={800}
         height={200}
-        caption="A very basic animation using react and react-spring."
+        caption="Smooth animation where circle size is derived from X position."
       />
 
-      <h2>Text</h2>
+      <h2>Animating Text</h2>
+      <p>
+        So far, we’ve only animated numerical values—like smoothly transitioning
+        the position from <code>1</code> to <code>100</code>.
+      </p>
+      <p>
+        But <code>react-spring</code> is much more powerful than that! It can
+        animate almost anything, including <b>text</b> and <b>colors</b>!
+      </p>
+      <p>In the example below, watch how the number evolves progressively:</p>
+
       <ChartOrSandbox
         vizName={'ReactSpringText'}
         VizComponent={ReactSpringTextDemo}
         maxWidth={800}
         height={200}
-        caption="A very basic animation using react and react-spring."
+        caption="Demo: react-spring can also animate text, colors and so much more!"
       />
 
-      <h2>Exercices</h2>
+      <h2>Exercises</h2>
       <p>Redo the circle</p>
       <p>Click on a div to animate value</p>
       <p>Make a rect rotate</p>
