@@ -22,7 +22,7 @@ import {
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
-import { Graph14 } from '@/viz/exercise/AnimationSimpleCircleSolution/Graph';
+import { Graph11 } from '@/viz/exercise/AnimationSimpleDivSolution/Graph';
 
 const previousURL = '/course/animation/introduction';
 const currentURL = '/course/animation/react-spring-for-dataviz';
@@ -234,6 +234,7 @@ export const Circle = ({ position }) => {
         maxWidth={800}
         height={200}
         caption="A very basic animation using react and react-spring."
+        fileToOpen={'Circle.tsx'}
       />
 
       <Accordion type="single" collapsible>
@@ -304,6 +305,7 @@ const springProps = useSpring({
             feel. Try them in this sandbox!
           </p>
         }
+        fileToOpen={'Circle.tsx'}
       />
       <p>To use one of the presets, you can do something like this:</p>
       <CodeBlock
@@ -382,6 +384,7 @@ return (
         maxWidth={800}
         height={200}
         caption="Smooth animation where circle size is derived from X position."
+        fileToOpen={'Circle.tsx'}
       />
 
       <h2>Animating Text</h2>
@@ -401,6 +404,7 @@ return (
         maxWidth={800}
         height={200}
         caption="Demo: react-spring can also animate text, colors and so much more!"
+        fileToOpen={'Circle.tsx'}
       />
 
       <h2>Exercises</h2>
@@ -445,28 +449,25 @@ const exercises: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>
-          Let’s apply what we just learned by creating your first{' '}
-          <code>canvas</code> element, modifying it using a <code>ref</code> and{' '}
-          <code>useEffect</code>.
-        </p>
-        <p>And while we’re at it, let’s explore how to adjust opacity!</p>
+        <p>Just applying the very basic usage we just learned</p>
       </>
     ),
     toDo: (
       <>
         <ul>
           <li>
-            Use <code>useRef()</code> to create a ref targeting the canvas
-            element.
+            Create a <code>Circle.tsx</code> file that makes a{' '}
+            <code>Circle</code> component
           </li>
           <li>
-            Add a <code>useEffect()</code> hook to draw a blue circle on the
-            canvas.
+            Create a <code>position</code> state in <code>Graph.tsx</code>. Each
+            time the user click on the SVG area, this position must toggle
+            between <code>40</code> and <code>width - 40</code>
           </li>
           <li>
-            Adjust the circle’s opacity with the <code>globalAlpha</code>{' '}
-            property.
+            Provide the position to the <code>Circle</code> component. Render a
+            circle at this <code>x</code> position, animate its movement with{' '}
+            <code>react-spring</code>.
           </li>
         </ul>
       </>
@@ -479,49 +480,67 @@ const exercises: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          Unlike SVG elements, strokes and fills must be drawn separately on the
-          canvas. 😱
+          react-spring can animate many sorts of values. Opacity is one of them,
+          but text, and colors work too!
         </p>
       </>
     ),
     toDo: (
       <>
         <ul>
-          <li>Draw a rectangle on the canvas.</li>
           <li>
-            Use <code>strokeRect()</code> and <code>fillRect()</code> to apply a
-            green stroke and fill it with pink.
+            Same as previous exercise, but add a property for the{' '}
+            <code>opacity</code>.
+          </li>
+          <li>
+            <code>opacity</code> must toggle between <code>0.2</code> and{' '}
+            <code>1</code> depending on if the circle is on the left or on the
+            right.
           </li>
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasRectOutlinePractice',
-    solutionSandbox: 'exercise/CanvasRectOutlineSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
       <>
         <p>
-          When working with canvas drawings, you’ll often need to clear previous
-          content.{' '}
+          <code>react-spring</code> does not only work with SVG! HTML elements
+          can be animated too!
         </p>
         <p>
-          This is possible with <code>clearRect()</code>.
+          note also that the spring can be made directly in the{' '}
+          <code>Graph</code> component. Making a separate component to organise
+          your work is nice IMO, but not required.
         </p>
       </>
     ),
     toDo: (
       <>
         <ul>
-          <li>Draw a large circle on the canvas.</li>
           <li>
-            Use <code>clearRect()</code> to erase part of the circle.
+            In <code>Graph.tsx</code>, render a parent <code>div</code> using
+            the <code>width</code> and <code>height</code> provided at the top
+            of the component instead of the usual SVG area.
+          </li>
+          <li>
+            In this <code>div</code>, render another <code>div</code>. It must
+            be square, have a <code>backgroundColor</code> of <code>red</code>{' '}
+            and be absolutely positioned.
+          </li>
+          <li>
+            Now make the red <code>div</code> moves from right to left when user
+            clicks on the parent div.
           </li>
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasClearRectPractice',
-    solutionSandbox: 'exercise/CanvasClearRectSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleDivSolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
@@ -547,8 +566,9 @@ const exercises: Exercise[] = [
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasBasicLinePractice',
-    solutionSandbox: 'exercise/CanvasBasicLineSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
@@ -571,8 +591,9 @@ const exercises: Exercise[] = [
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasTenCirclesPractice',
-    solutionSandbox: 'exercise/CanvasTenCirclesSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
@@ -598,7 +619,8 @@ const exercises: Exercise[] = [
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasBasicTextPractice',
-    solutionSandbox: 'exercise/CanvasBasicTextSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    fileToOpen: 'Graph.tsx',
   },
 ];

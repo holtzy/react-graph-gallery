@@ -13,6 +13,7 @@ type ChartOrSandboxProps = {
   height?: number;
   maxWidth?: number;
   caption?: string | ReactNode;
+  fileToOpen?: string;
 };
 
 export const ChartOrSandbox = ({
@@ -21,6 +22,7 @@ export const ChartOrSandbox = ({
   height = 400,
   maxWidth = 800,
   caption,
+  fileToOpen,
 }: ChartOrSandboxProps) => {
   const [showSandbox, setShowSandbox] = useState(false);
 
@@ -38,7 +40,7 @@ export const ChartOrSandbox = ({
       {showSandbox ? (
         <div className="flex flex-col items-center justify-center w-full">
           <div style={{ maxWidth: 2000 }} className="w-full z-50">
-            <CodeSandbox vizName={vizName} />
+            <CodeSandbox vizName={vizName} fileToOpen={fileToOpen} />
           </div>
           <div className="flex justify-center mt-2">
             <Button size="sm" onClick={() => setShowSandbox(!showSandbox)}>
