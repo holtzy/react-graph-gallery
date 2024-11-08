@@ -471,8 +471,9 @@ const exercises: Exercise[] = [
         </ul>
       </>
     ),
-    practiceSandbox: 'exercise/CanvasBasicCirclePractice',
-    solutionSandbox: 'exercise/CanvasBasicCircleSolution',
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleCircleSolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
