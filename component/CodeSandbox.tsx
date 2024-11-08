@@ -5,16 +5,19 @@ import React from 'react';
 type CodeSandboxProps = {
   vizName: string;
   height?: string;
+  fileToOpen?: string; // path to the file to open first in the sandbox
 };
 
 export const CodeSandbox = ({
   vizName,
   height = '500px',
+  fileToOpen,
 }: CodeSandboxProps) => {
   const url =
     'https://codesandbox.io/embed/github/holtzy/react-graph-gallery/tree/main/viz/' +
     vizName +
-    '?fontsize=14&hidenavigation=1&theme=dark&expanddevtools=0';
+    '?fontsize=14&hidenavigation=1&theme=dark&expanddevtools=0&view=split' +
+    (fileToOpen ? `&module=/${fileToOpen}` : '');
 
   return (
     <iframe

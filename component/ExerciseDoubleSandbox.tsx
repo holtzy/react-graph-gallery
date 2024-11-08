@@ -2,7 +2,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ReactNode, useEffect, useState } from 'react';
 import { CodeSandbox } from './CodeSandbox';
 import { Badge } from './UI/badge';
-import { Sidenote } from './SideNote';
 import { Button } from './UI/button';
 
 export type Exercise = {
@@ -10,6 +9,7 @@ export type Exercise = {
   toDo: ReactNode;
   practiceSandbox: string;
   solutionSandbox: string;
+  fileToOpen?: string;
 };
 
 type ExerciseDoubleSandboxProps = {
@@ -27,11 +27,27 @@ export const ExerciseDoubleSandbox = ({
         setIsFullScreen(false);
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+
+  const practiceSandbox = (
+    <CodeSandbox
+      vizName={exercise.practiceSandbox}
+      height={isFullScreen ? '100%' : '500px'}
+      fileToOpen={exercise.fileToOpen}
+    />
+  );
+
+  const solutionSandbox = (
+    <CodeSandbox
+      vizName={exercise.solutionSandbox}
+      height={isFullScreen ? '100%' : '500px'}
+      fileToOpen={exercise.fileToOpen}
+    />
+  );
 
   return (
     <div>
@@ -64,40 +80,58 @@ export const ExerciseDoubleSandbox = ({
         </div>
 
         <TabsContent value="practice">
-          <div
-            className={
-              isFullScreen
-                ? 'fixed h-screen inset-0 flex justify-center items-center'
-                : 'my-4'
-            }
-          >
-            {isFullScreen && (
-              <div className="absolute inset-0 w-full h-full bg-white/80" />
-            )}
-            <div className={isFullScreen ? 'relative w-4/5 h-4/5' : ''}>
-              <CodeSandbox
-                vizName={exercise.practiceSandbox}
-                height={isFullScreen ? '100%' : '500px'}
-              />
-              {isFullScreen && (
-                <div className="w-full mt-2 flex justify-center">
-                  <Button
-                    onClick={() => setIsFullScreen(false)}
-                    variant={'destructive'}
-                  >
-                    Leave Fullscreen mode
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
+          {isFullScreen ? (
+            <FullScreenSandbox
+              setIsFullScreen={setIsFullScreen}
+              sandbox={practiceSandbox}
+            />
+          ) : (
+            <div className="my-4">{practiceSandbox}</div>
+          )}
         </TabsContent>
         <TabsContent value="solution">
-          <div className="full-bleed my-4 max-w-7xl mx-auto">
-            <CodeSandbox vizName={exercise.solutionSandbox} />
-          </div>
+          {isFullScreen ? (
+            <FullScreenSandbox
+              setIsFullScreen={setIsFullScreen}
+              sandbox={solutionSandbox}
+            />
+          ) : (
+            <div className="my-4">{solutionSandbox}</div>
+          )}
         </TabsContent>
       </Tabs>
+    </div>
+  );
+};
+
+type FullScreenSandboxProps = {
+  sandbox: JSX.Element;
+  setIsFullScreen: (y: boolean) => void;
+};
+
+const FullScreenSandbox = ({
+  sandbox,
+  setIsFullScreen,
+}: FullScreenSandboxProps) => {
+  return (
+    <div className="fixed h-screen inset-0 flex justify-center items-center">
+      <div className="absolute inset-0 w-full h-full bg-white/80" />
+      <div className="relative w-11/12 h-4/5">
+        {sandbox}
+        <div className="w-full mt-2 flex justify-center items-center gap-2">
+          <div className="relative">
+            <Button
+              onClick={() => setIsFullScreen(false)}
+              variant={'destructive'}
+            >
+              Leave Fullscreen mode
+            </Button>
+            <span className="absolute w-96 ml-2 text-gray-500 text-xs mt-3">
+              You can also press <code>Esc</code>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

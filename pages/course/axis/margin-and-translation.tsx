@@ -204,6 +204,7 @@ const exercices: Exercise[] = [
     ),
     practiceSandbox: 'exercise/BoundsAreaTranslationPractice',
     solutionSandbox: 'exercise/BoundsAreaTranslationSolution',
+    fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
@@ -231,5 +232,6 @@ const exercices: Exercise[] = [
     ),
     practiceSandbox: 'exercise/BubblePlotKickOffPractice',
     solutionSandbox: 'exercise/BubblePlotKickOffSolution',
+    fileToOpen: 'Graph.tsx',
   },
 ];
