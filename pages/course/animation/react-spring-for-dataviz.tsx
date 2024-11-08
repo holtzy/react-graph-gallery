@@ -17,6 +17,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/component/UI/accordion';
+import {
+  Exercise,
+  ExerciseDoubleSandbox,
+} from '@/component/ExerciseDoubleSandbox';
+import { ExerciseAccordion } from '@/component/ExerciseAccordion';
+import { Graph14 } from '@/viz/exercise/AnimationSimpleCircleSolution/Graph';
 
 const previousURL = '/course/animation/introduction';
 const currentURL = '/course/animation/react-spring-for-dataviz';
@@ -398,11 +404,200 @@ return (
       />
 
       <h2>Exercises</h2>
-      <p>Redo the circle</p>
-      <p>Click on a div to animate value</p>
-      <p>Make a rect rotate</p>
-      <p>Make a very big mass with no friction</p>
-      <p>Make something with 3 elements</p>
+
+      <ExerciseAccordion
+        localStorageId={currentLesson.link}
+        exercises={[
+          {
+            title: <span>Your first animated circle!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[0]} />,
+          },
+          {
+            title: <span>Opacity? 👻</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[1]} />,
+          },
+          {
+            title: (
+              <span>
+                Let's make this <code>div</code> moves
+              </span>
+            ),
+            content: <ExerciseDoubleSandbox exercise={exercises[2]} />,
+          },
+          {
+            title: <span>Rotate this rect</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[3]} />,
+          },
+          {
+            title: <span>Is it to heavy?</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[4]} />,
+          },
+          {
+            title: <span>Three elements</span>,
+            content: <ExerciseDoubleSandbox exercise={exercises[5]} />,
+          },
+        ]}
+      />
     </LayoutCourse>
   );
 }
+const exercises: Exercise[] = [
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Let’s apply what we just learned by creating your first{' '}
+          <code>canvas</code> element, modifying it using a <code>ref</code> and{' '}
+          <code>useEffect</code>.
+        </p>
+        <p>And while we’re at it, let’s explore how to adjust opacity!</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Use <code>useRef()</code> to create a ref targeting the canvas
+            element.
+          </li>
+          <li>
+            Add a <code>useEffect()</code> hook to draw a blue circle on the
+            canvas.
+          </li>
+          <li>
+            Adjust the circle’s opacity with the <code>globalAlpha</code>{' '}
+            property.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasBasicCirclePractice',
+    solutionSandbox: 'exercise/CanvasBasicCircleSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Unlike SVG elements, strokes and fills must be drawn separately on the
+          canvas. 😱
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>Draw a rectangle on the canvas.</li>
+          <li>
+            Use <code>strokeRect()</code> and <code>fillRect()</code> to apply a
+            green stroke and fill it with pink.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasRectOutlinePractice',
+    solutionSandbox: 'exercise/CanvasRectOutlineSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          When working with canvas drawings, you’ll often need to clear previous
+          content.{' '}
+        </p>
+        <p>
+          This is possible with <code>clearRect()</code>.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>Draw a large circle on the canvas.</li>
+          <li>
+            Use <code>clearRect()</code> to erase part of the circle.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasClearRectPractice',
+    solutionSandbox: 'exercise/CanvasClearRectSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Unlike SVG, canvas doesn’t directly support complex shapes with
+          strings. Instead, we need to create loops for drawing such shapes.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Draw a segmented line starting from <code>(50, 150)</code>.
+          </li>
+          <li>
+            Use <code>beginPath()</code> and <code>moveTo()</code>, then draw
+            lines to <code>(100, 120)</code>, <code>(150, 180)</code>,
+            <code>(200, 100)</code>, <code>(250, 160)</code>,{' '}
+            <code>(300, 90)</code>, and <code>(350, 140)</code>.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasBasicLinePractice',
+    solutionSandbox: 'exercise/CanvasBasicLineSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Creating a scatterplot involves looping through a dataset and creating
+          a circle for each item.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>A dataset is provided in the sandbox.</li>
+          <li>
+            Draw a circle for each data point, using its <code>x</code> and{' '}
+            <code>y</code> values as coordinates.
+          </li>
+          <li>Use a loop to complete the task.</li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasTenCirclesPractice',
+    solutionSandbox: 'exercise/CanvasTenCirclesSolution',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Handling text in canvas can be tricky. Whenever possible, we should
+          use HTML or SVG.
+        </p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>Draw a large circle.</li>
+          <li>
+            Use the{' '}
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText">
+              fillText
+            </a>{' '}
+            function to write "Hello, World!" at the center of the circle.
+          </li>
+          <li>Align the text vertically and horizontally.</li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/CanvasBasicTextPractice',
+    solutionSandbox: 'exercise/CanvasBasicTextSolution',
+  },
+];
