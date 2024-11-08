@@ -23,6 +23,9 @@ import {
 } from '@/component/ExerciseDoubleSandbox';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import { Graph11 } from '@/viz/exercise/AnimationSimpleDivSolution/Graph';
+import { Graph12 } from '@/viz/exercise/AnimationSimpleDivRotateSolution/Graph';
+import { Graph2 } from '@/viz/exercise/AnimationSimpleDivHeavySolution/Graph';
+import { Graph99 } from '@/viz/exercise/AnimationMultiCircleDelaySolution/Graph';
 
 const previousURL = '/course/animation/introduction';
 const currentURL = '/course/animation/react-spring-for-dataviz';
@@ -545,82 +548,77 @@ const exercises: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>
-          Unlike SVG, canvas doesn’t directly support complex shapes with
-          strings. Instead, we need to create loops for drawing such shapes.
-        </p>
+        <p>Just a bit of fun!</p>
       </>
     ),
     toDo: (
       <>
         <ul>
           <li>
-            Draw a segmented line starting from <code>(50, 150)</code>.
-          </li>
-          <li>
-            Use <code>beginPath()</code> and <code>moveTo()</code>, then draw
-            lines to <code>(100, 120)</code>, <code>(150, 180)</code>,
-            <code>(200, 100)</code>, <code>(250, 160)</code>,{' '}
-            <code>(300, 90)</code>, and <code>(350, 140)</code>.
+            Use the <code>rotate</code> property of a div to make the rectangle
+            spin when it goes from one side to another!
           </li>
         </ul>
       </>
     ),
     practiceSandbox: 'exercise/AnimationDefaultPractice',
-    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    solutionSandbox: 'exercise/AnimationSimpleDivRotateSolution',
+    fileToOpen: 'Graph.tsx',
+  },
+  {
+    whyItMatters: (
+      <>
+        <p>Spring physics matters!</p>
+      </>
+    ),
+    toDo: (
+      <>
+        <ul>
+          <li>
+            Apply a mass of <code>120</code> to the moving <code>div</code>
+          </li>
+          <li>What happens? Why?</li>
+          <li>
+            Try to play with <code>friction</code> and <code>tension</code> too
+            to get an intuition on how physics work.
+          </li>
+        </ul>
+      </>
+    ),
+    practiceSandbox: 'exercise/AnimationDefaultPractice',
+    solutionSandbox: 'exercise/AnimationSimpleDivHeavySolution',
     fileToOpen: 'Graph.tsx',
   },
   {
     whyItMatters: (
       <>
         <p>
-          Creating a scatterplot involves looping through a dataset and creating
-          a circle for each item.
+          <code>delay</code> can give some cool effects to dataviz projects. But
+          use it with care, you do not want to waste people time!
         </p>
       </>
     ),
     toDo: (
       <>
         <ul>
-          <li>A dataset is provided in the sandbox.</li>
+          <li>Instead of 1 circle (exercise 1), render 3 animated circles.</li>
           <li>
-            Draw a circle for each data point, using its <code>x</code> and{' '}
-            <code>y</code> values as coordinates.
+            Use y positions of 50, 100, 150 respectively (you need to create a y
+            prop in the Circle componetn)
           </li>
-          <li>Use a loop to complete the task.</li>
+          <li>
+            Add a new property called delay to the Circle component. Give values
+            of 10, 100 and 1000 to the 3 circles respectively.
+          </li>
+          <li>
+            Use this delay value to delay the start of the animation: you can
+            just pass it to the useSpring hook!
+          </li>
         </ul>
       </>
     ),
     practiceSandbox: 'exercise/AnimationDefaultPractice',
-    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
-    fileToOpen: 'Graph.tsx',
-  },
-  {
-    whyItMatters: (
-      <>
-        <p>
-          Handling text in canvas can be tricky. Whenever possible, we should
-          use HTML or SVG.
-        </p>
-      </>
-    ),
-    toDo: (
-      <>
-        <ul>
-          <li>Draw a large circle.</li>
-          <li>
-            Use the{' '}
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText">
-              fillText
-            </a>{' '}
-            function to write "Hello, World!" at the center of the circle.
-          </li>
-          <li>Align the text vertically and horizontally.</li>
-        </ul>
-      </>
-    ),
-    practiceSandbox: 'exercise/AnimationDefaultPractice',
-    solutionSandbox: 'exercise/AnimationSimpleCircleOpacitySolution',
+    solutionSandbox: 'exercise/AnimationMultiCircleDelaySolution',
     fileToOpen: 'Graph.tsx',
   },
 ];
