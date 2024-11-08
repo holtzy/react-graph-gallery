@@ -1,5 +1,8 @@
-import ReactDOM from "react-dom";
-import { ReactSpringMostBasic } from "./ReactSpringMostBasic";
+import ReactDOM from 'react-dom';
+import { ReactSpringPresetValues } from './ReactSpringPresetValues';
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<ReactSpringMostBasic width={800} height={300} />, rootElement);
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+  <ReactSpringPresetValues width={800} height={300} />,
+  rootElement
+);

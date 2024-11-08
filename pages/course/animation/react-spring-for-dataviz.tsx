@@ -66,9 +66,12 @@ export default function Home() {
 - */}
       <h2>Animating a Circle</h2>
       <p>
-        Let’s keep it <b>simple</b> for this first lesson! Our goal is to
-        animate a circle transitioning from one position to another. Here’s the
-        result:
+        Let’s start with something <strong>simple</strong> for this first
+        lesson.
+      </p>
+      <p>
+        Our goal is to animate a circle moving smoothly from one position to
+        another. Here’s what the final effect will look like:
       </p>
 
       <div className="border p-4 my-4">
@@ -147,74 +150,77 @@ export const Circle = ({ position }) => {
 
         `}
       />
+      {/* -
+      -
+      -
+      -
+      -
+      -
+      -
+      -
+       */}
       <h2>Explanation</h2>
       <p>
-        In this code, we are creating a simple animated circle that moves
-        smoothly based on the position prop passed to the Circle component.
+        In this code, we’re creating a simple <code>Circle</code> component that
+        renders <strong>one circle</strong>. The component takes a{' '}
+        <code>position</code> property, which controls the circle’s X position.
       </p>
-
-      <p>Here's a breakdown of what's happening:</p>
-
-      <h3>Import</h3>
-      <ul>
-        <li>
-          <strong>useSpring</strong> is a hook from the react-spring library
-          that helps us create animated values.
-        </li>
-        <li>
-          <strong>animated</strong> is a special version of elements (like{' '}
-          <code>&lt;circle&gt;</code>) that can be animated with react-spring.
-        </li>
-      </ul>
-
-      <h3>Using useSpring:</h3>
-      <ul>
-        <li>
-          Inside the Circle component, we call <code>useSpring</code> to define
-          the animation.
-        </li>
-        <li>
-          The <code>useSpring</code> hook takes an object where we specify the
-          animation properties.
-        </li>
-        <li>
-          In this case, we're animating the position of the circle, setting it
-          to the value of the <code>position</code> prop.
-        </li>
-      </ul>
-
-      <h3>Binding the animation to the circle:</h3>
-      <ul>
-        <li>
-          The <code>springProps</code> returned by <code>useSpring</code>{' '}
-          contains the animated values.
-        </li>
-        <li>
-          Specifically, we have <code>springProps.position</code>, which will
-          smoothly transition to the new position value whenever it changes.
-        </li>
-        <li>
-          The <code>cx</code> (center x) attribute of the{' '}
-          <code>&lt;circle&gt;</code> element is set to{' '}
-          <code>springProps.position</code>, meaning the circle will move
-          horizontally based on this animated value.
-        </li>
-      </ul>
-
-      <h3>The animated.circle component:</h3>
-      <ul>
-        <li>
-          Instead of a regular <code>&lt;circle&gt;</code> element, we use{' '}
-          <code>&lt;animated.circle&gt;</code>, which allows the circle to be
-          animated using the values defined in <code>springProps</code>.
-        </li>
-      </ul>
-
       <p>
-        The result is that whenever the <code>position</code> prop changes, the
-        circle will smoothly animate from its current position to the new one,
-        creating a fluid motion effect.
+        Whenever this prop updates, the circle’s position will change, but it
+        will happen <strong>smoothly</strong>!
       </p>
+
+      <p>Here’s a breakdown of what’s happening:</p>
+
+      <h3>🚚 Import</h3>
+      <p>
+        Once installed with a classic <code>npm install react-spring</code>, we
+        need to import:
+      </p>
+      <ul>
+        <li>
+          <code>useSpring</code>: a hook that helps us create animated values.
+        </li>
+        <li>
+          <code>animated</code>:a special version of elements (like{' '}
+          <code>&lt;circle&gt;</code>) that can be animated.
+        </li>
+      </ul>
+
+      <h3>
+        🌸 Using <code>useSpring</code>
+      </h3>
+      <ul>
+        <li>
+          The <code>useSpring</code> hook is used to define an animation. It
+          accepts an object where we specify the properties to animate and how
+          to animate them. In this case, we're animating the{' '}
+          <code>position</code>.
+        </li>
+        <li>
+          We now have access to <code>springProps.position</code>. If the
+          position changes from <code>0</code> to <code>100</code>,{' '}
+          <code>springProps.position</code> will smoothly transition through
+          values like 1, 3, 10, 15, and so on, until it reaches 100.{' '}
+          <code>react-spring</code> handles the calculation of these
+          intermediate values for us!
+        </li>
+      </ul>
+
+      <h3>🔗 Binding the Animation to the Circle</h3>
+      <ul>
+        <li>
+          Instead of using a regular <code>circle</code> SVG element, we use{' '}
+          <code>animated.circle</code>. React-spring provides its own animated
+          version of all HTML and SVG elements!
+        </li>
+        <li>
+          Instead of passing <code>position</code> directly to the{' '}
+          <code>cx</code> property, we pass <code>springProps.position</code>,
+          which contains all the intermediate values, ensuring the circle moves
+          smoothly.
+        </li>
+      </ul>
 
       <ChartOrSandbox
         vizName={'ReactSpringMostBasic'}
@@ -230,8 +236,8 @@ export const Circle = ({ position }) => {
           <AccordionContent>
             <p>
               There is something I find very confusing about useSpring hook. It
-              can be used with a config object (like in my explanation), or with
-              a function.
+              can be used with a config object (like in my explanation), or{' '}
+              <b>with a function</b>.
             </p>
             <p>
               You will see both in the{' '}
@@ -243,24 +249,98 @@ export const Circle = ({ position }) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      {/* -
+-
+-
+-
+-
+-
+- */}
 
-      <h2>Spring config</h2>
-      <p>You can custom mass, friction manually</p>
+      <h2>🔥 Spring Config</h2>
       <p>
-        But honnestly I strongly advise to use one of the preset that is offered
-        by the lib
+        Spring animations follow physics laws to make the animation feel
+        natural. There are three key properties you can control to adjust the
+        feel of the animation: <code>mass</code>, <code>friction</code>, and{' '}
+        <code>tension</code>.
       </p>
+      <p>
+        You can customize these properties in the <code>useSpring</code> hook
+        like this:
+      </p>
+      <CodeBlock
+        code={`
+const springProps = useSpring({
+  to: { position, color },
+  config: {
+    mass: 5,
+    friction: 120,
+    tension: 120,
+  }
+});
+  `}
+      />
+
+      <p>
+        But honestly, I strongly advise using one of the{' '}
+        <strong>presets</strong> provided by the library, as they offer great
+        results right out of the box.
+      </p>
+      <p>Check out the preset effects in the example below:</p>
       <ChartOrSandbox
         vizName={'ReactSpringPresetValues'}
         VizComponent={ReactSpringPresetValuesDemo}
         maxWidth={800}
         height={200}
-        caption="A very basic animation using react and react-spring."
+        caption={
+          <p>
+            <code>react-spring</code> offers a few presets for the animation
+            feel. Try them in this sandbox!
+          </p>
+        }
+      />
+      <p>To use one of the presets, you can do something like this:</p>
+      <CodeBlock
+        code={`
+const springProps = useSpring({
+  position: 100,
+  config: config.default
+});
+  `}
       />
 
+      {/* -
+-
+-
+-
+-
+-
+- */}
       <h2>Deriving value?</h2>
       <p>
-        Let's say I want the circle size to be proportional to its x position?
+        It is straightforward to animate a value directly using react-spring,
+        like we've just done for the position property.
+      </p>
+      <p>But in data visualization, we'll often derive a value from another.</p>
+      <p>
+        For instance, let's say I want the size of the circle to be proportional
+        to the X position. One might think that I could simply use the
+        springProps.position value like a normal number:
+      </p>
+      <CodeBlock
+        code={`
+return (
+  <animated.circle
+    cx={springProps.position}
+    cy={50}
+    r={springProps.position / 10} // This will not work! 😱
+    />
+);
+  `}
+      />
+      <p>
+        Instead, I have to use the to() function of the spring property, as
+        follow:
       </p>
       <ChartOrSandbox
         vizName={'ReactSpringDerivingValue'}

@@ -1,5 +1,8 @@
-import ReactDOM from "react-dom";
-import { ReactSpringMostBasic } from "./ReactSpringMostBasic";
+import ReactDOM from 'react-dom';
+import { ReactSpringDerivingValue } from './ReactSpringDerivingValue';
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<ReactSpringMostBasic width={800} height={300} />, rootElement);
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+  <ReactSpringDerivingValue width={800} height={300} />,
+  rootElement
+);
