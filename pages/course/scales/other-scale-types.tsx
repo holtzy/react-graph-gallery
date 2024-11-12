@@ -244,8 +244,6 @@ colorScale("b") // --> green
         ]}
       />
 
-      <blockquote>TODOOOOOOOOO</blockquote>
-      <Graph12 />
       {/* -
 -
 -

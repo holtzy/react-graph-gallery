@@ -26,7 +26,7 @@ const data = [
   },
 ];
 
-export const Graph12 = () => {
+export const Graph = () => {
   const xScale = scaleLinear().domain([0, 100]).range([0, width]);
 
   const yScale = scaleBand()

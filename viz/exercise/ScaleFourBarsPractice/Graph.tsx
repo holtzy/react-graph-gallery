@@ -26,7 +26,7 @@ const data = [
   },
 ];
 
-export const Graph12 = () => {
+export const Graph = () => {
   const xScale = '';
 
   const yScale = '';
