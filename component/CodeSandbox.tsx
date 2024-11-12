@@ -19,6 +19,8 @@ export const CodeSandbox = ({
     '?fontsize=14&hidenavigation=1&theme=dark&expanddevtools=0&view=split' +
     (fileToOpen ? `&module=/${fileToOpen}` : '');
 
+  console.log('rerendeeeerrrrr');
+
   return (
     <iframe
       src={url}

@@ -340,7 +340,7 @@ const exercices: Exercise[] = [
         <p>
           Add some <b>inline style</b> to the svg area below. Use the{' '}
           <code>backgroundColor</code>
-          property to change the background to <code>yellow</code>.
+          property to change the background to <code>grey</code>.
         </p>
       </>
     ),
