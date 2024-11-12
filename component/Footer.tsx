@@ -3,12 +3,16 @@ import React from 'react';
 import SocialMediaButtons from './SocialMediaButtons';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <div className="h-24 w-full grid grid-cols-3 gap-1 ">
       <div className="text-sm font-light flex flex-row justify-start items-center mt-1">
         <span className="hidden sm:inline">
-          Copyright © the <span className="gradient">React</span> Graph Gallery
-          2023
+          <span>Copyright © the </span>
+          <span className="gradient">React</span>
+          <span> Graph Gallery </span>
+          <span>{currentYear}</span>
         </span>
       </div>
 

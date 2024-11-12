@@ -13,6 +13,7 @@ import { scaleBand } from 'd3';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
 import { Graph12 } from '@/viz/exercise/ScaleFourBarsSolution/Graph';
+import { Graph19 } from '@/viz/exercise/ScaleFourBarsAndNameSolution/Graph';
 
 const previousURL = '/course/scales/linear-scale';
 const currentURL = '/course/scales/other-scale-types';
@@ -238,12 +239,16 @@ colorScale("b") // --> green
             content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
           },
           {
+            title: <span>Add name labels!</span>,
+            content: <ExerciseDoubleSandbox exercise={exercices[2]} />,
+          },
+          {
             title: <span>Switch to vertical version</span>,
             content: 'todo',
           },
         ]}
       />
-
+      <Graph19 />
       {/* -
 -
 -
@@ -319,6 +324,30 @@ const exercices: Exercise[] = [
     ),
     practiceSandbox: 'exercise/ScaleFourBarsPractice',
     solutionSandbox: 'exercise/ScaleFourBarsSolution',
+  },
+
+  {
+    whyItMatters: (
+      <>
+        <p>
+          Lear how to use <code>scaleOrdinal</code> to create a color scale!
+        </p>
+      </>
+    ),
+    toDo: (
+      <ul>
+        <li>
+          There is now a <code>group</code> property in the dataset
+        </li>
+        <li>
+          Create a scaleOrdinal that uses blue the for A group, and orange for
+          the B group
+        </li>
+        <li>Use this scale to color the bars</li>
+      </ul>
+    ),
+    practiceSandbox: 'exercise/ScaleFourBarsAndNamePractice',
+    solutionSandbox: 'exercise/ScaleFourBarsAndNameSolution',
   },
 
   {

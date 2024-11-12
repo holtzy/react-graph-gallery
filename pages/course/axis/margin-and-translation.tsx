@@ -191,14 +191,21 @@ const exercices: Exercise[] = [
           <code>width</code> and 300px <code>height</code>.
         </li>
         <li>
-          The component define its margin as a const: 100px at the left and
-          bottom, 30px at the top and right
+          Fill the full SVG area with a <code>rect</code>. Use a color of{' '}
+          <code>lightgrey</code> and a <code>fillOpacity</code> of{' '}
+          <code>.3</code>
         </li>
-        <li>The bounds is represented as a grey rectangle</li>
+        <li>
+          The component define its margin as a const: <code>100px</code> at the
+          left and bottom, <code>30px</code> at the top and right
+        </li>
+        <li>
+          Create a bounds area. Fill it with a <code>lightgrey</code> rectangle
+        </li>
         <li>
           Two circles are drawn within the rectangle. In a dataset where both
           the X and Y axes range from 0 to 100, render the circles at
-          coordinates (33, 33) and (66, 66).
+          coordinates <code>(33, 33)</code> and <code>(66, 66)</code>.
         </li>
       </ul>
     ),
