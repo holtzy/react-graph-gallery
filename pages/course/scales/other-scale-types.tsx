@@ -317,8 +317,8 @@ const exercices: Exercise[] = [
         <li>Use this scale to color the bars</li>
       </ul>
     ),
-    practiceSandbox: 'exercise/scaleFourBarsPractice',
-    solutionSandbox: 'exercise/scaleFourBarsSolution',
+    practiceSandbox: 'exercise/ScaleFourBarsPractice',
+    solutionSandbox: 'exercise/ScaleFourBarsSolution',
   },
 
   {
