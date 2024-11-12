@@ -10,6 +10,7 @@ import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
+import { scaleLinear } from 'd3';
 
 const previousURL = '/course/scales/introduction';
 const currentURL = '/course/scales/linear-scale';
@@ -102,7 +103,7 @@ const scale = scaleLinear()
   .range([0, 500]);
 
 console.log( scale(82) )
-// 240
+// 410
 
       `}
       />

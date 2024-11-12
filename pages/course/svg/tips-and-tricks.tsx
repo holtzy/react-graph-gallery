@@ -228,20 +228,26 @@ export default function Home() {
         backgrounds; instead, you use <code>stroke</code> and <code>fill</code>{' '}
         to control these aspects.
       </p>
+
       <p>
+        <br />
+      </p>
+
+      <blockquote className="bg-fuchsia-50 py-8">
         For text elements, avoid using <code>stroke</code> to outline text, as
         it can result in poor readability. Instead, focus on using{' '}
         <code>fill</code> for color and <code>text-anchor</code> for alignment.
-      </p>
+      </blockquote>
 
-      <h2>5️⃣ CSS Specificity in SVG</h2>
+      <h2>5️⃣ Inheritance Rules</h2>
       <p>
-        CSS specificity in SVG can be a bit more complex than in HTML. Styles
-        applied to SVG elements can come from inline styles, internal
-        stylesheets, or external stylesheets, and the rules of specificity still
-        apply. However, because SVG elements are often nested and grouped,
-        understanding which styles take precedence requires a good grasp of CSS
-        specificity rules.
+        In HTML, styling generally doesn’t inherit by default (e.g., a color
+        applied to a <code>div</code> doesn’t affect child elements unless they
+        inherit it explicitly). In SVG, many properties do inherit by default,
+        especially graphic-specific ones. For example, fill and stroke values
+        applied to an SVG container <code>g</code> (group) element will cascade
+        down to all children unless overridden. This makes grouping styles
+        common in SVG.
       </p>
 
       <h2>6️⃣ Text Wrapping</h2>
