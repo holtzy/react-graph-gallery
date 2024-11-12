@@ -267,27 +267,33 @@ const exercices: Exercise[] = [
     whyItMatters: (
       <>
         <p>
-          The logic behind each functions of the <code>d3-shape</code> module is
-          the same.
+          There is no way you can build this kind of chart with a charting
+          library like <code>plotly</code> or <code>highCharts</code>.
         </p>
         <p>
-          If you have a good understanding of d3.line(), you're on the right way
-          to build any other chart type!
+          Thanks to <code>d3</code>, we can build literally anything. It's just
+          a bit of mental gymnastic!
         </p>
       </>
     ),
     toDo: (
       <>
         <p>
-          Let's create a mirror histogram!! The mirror histogram looks like
-          this:
+          Let's create a mirror histogram! Check the <code>solution</code> tab
+          to see how it must look like.
         </p>
         <ul>
-          <li>Create 2 scales!</li>
           <li>
-            Values are <code>23</code>, <code>55</code>, <code>87</code> on the
-            left, and <code>12</code>, <code>43</code>, <code>98</code> on the
-            right
+            There are 3 bars on the left, and 3 and on the right. All starting
+            from the center.
+          </li>
+          <li>
+            A bit of <code>padding</code> is added in the center.
+          </li>
+          <li>
+            Bar values are <code>23</code>, <code>55</code>, <code>87</code> on
+            the left, and <code>12</code>, <code>43</code>, <code>98</code> on
+            the right. Axes go from 0 to 100.
           </li>
         </ul>
       </>

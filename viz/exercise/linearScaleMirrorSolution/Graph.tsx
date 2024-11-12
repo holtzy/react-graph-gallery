@@ -43,24 +43,24 @@ export const Graph = () => {
 
       {/* Right Bars */}
       <rect
-        x={WIDTH / 2 + PADDING_CENTER / 2}
+        x={scaleRight(0)}
         y={50}
         height={30}
-        width={scaleRight(12)}
+        width={scaleRight(12) - scaleRight(0)}
         fill="#69b3a2"
       />
       <rect
-        x={WIDTH / 2 + PADDING_CENTER / 2}
+        x={scaleRight(0)}
         y={100}
         height={30}
-        width={scaleRight(43)}
+        width={scaleRight(43) - scaleRight(0)}
         fill="#69b3a2"
       />
       <rect
-        x={WIDTH / 2 + PADDING_CENTER / 2}
+        x={scaleRight(0)}
         y={150}
         height={30}
-        width={scaleRight(98)}
+        width={scaleRight(98) - scaleRight(0)}
         fill="#69b3a2"
       />
 
@@ -69,21 +69,21 @@ export const Graph = () => {
         x={scaleLeft(23)}
         y={50}
         height={30}
-        width={WIDTH / 2 - PADDING_CENTER / 2 - scaleLeft(23)}
+        width={scaleLeft(0) - scaleLeft(23)}
         fill="#69b3a2"
       />
       <rect
         x={scaleLeft(55)}
         y={100}
         height={30}
-        width={WIDTH / 2 - PADDING_CENTER / 2 - scaleLeft(55)}
+        width={scaleLeft(0) - scaleLeft(55)}
         fill="#69b3a2"
       />
       <rect
         x={scaleLeft(87)}
         y={150}
         height={30}
-        width={WIDTH / 2 - PADDING_CENTER / 2 - scaleLeft(87)}
+        width={scaleLeft(0) - scaleLeft(87)}
         fill="#69b3a2"
       />
     </svg>

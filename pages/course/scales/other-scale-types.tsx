@@ -25,17 +25,6 @@ export default function Home() {
     return null;
   }
 
-  const yScale = scaleBand()
-    .domain(['A', 'B', 'C'])
-    .range([0, 240])
-    .paddingInner(0.33)
-    .paddingOuter(0);
-
-  // console.log(yScale('A'));
-  // console.log(yScale('B'));
-  // console.log(yScale('C'));
-  // console.log(yScale.bandwidth());
-
   return (
     <LayoutCourse
       title={currentLesson.name}
@@ -253,6 +242,8 @@ colorScale("b") // --> green
           },
         ]}
       />
+
+      <blockquote>TODOOOOOOOOO</blockquote>
       {/* -
 -
 -
