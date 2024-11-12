@@ -12,6 +12,7 @@ import {
 import { scaleBand } from 'd3';
 import { Caption } from '@/component/UI/Caption';
 import { Sidenote } from '@/component/SideNote';
+import { Graph12 } from '@/viz/exercise/ScaleFourBarsSolution/Graph';
 
 const previousURL = '/course/scales/linear-scale';
 const currentURL = '/course/scales/other-scale-types';
@@ -226,11 +227,11 @@ colorScale("b") // --> green
         exercises={[
           {
             title: <span>First barplot!</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[0]} />,
+            content: 'todo',
           },
           {
             title: <span>Tiny bars?</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[1]} />,
+            content: 'todo',
           },
           {
             title: <span>Use colors for groups</span>,
@@ -238,12 +239,13 @@ colorScale("b") // --> green
           },
           {
             title: <span>Switch to vertical version</span>,
-            content: <ExerciseDoubleSandbox exercise={exercices[3]} />,
+            content: 'todo',
           },
         ]}
       />
 
       <blockquote>TODOOOOOOOOO</blockquote>
+      <Graph12 />
       {/* -
 -
 -
@@ -271,19 +273,12 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>
-          Now that you know what a scale is, time to write your first scale!
-        </p>
+        <p>todo</p>
       </>
     ),
     toDo: (
       <ul>
-        <li>Create a barplot with 1 bar only.</li>
-        <li>The SVG area is 500px wide. Your dataset goes from 0 to 100.</li>
-        <li>
-          Draw a horizontal bar that goes from the very left, and has a length
-          that represents a value of 82 in the dataset.
-        </li>
+        <li>todo</li>
       </ul>
     ),
     practiceSandbox: 'exercise/linearScaleBarSizePractice',
@@ -292,26 +287,12 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>
-          Once a scale is available, everything you draw on your screen will go
-          through it to determine positions!
-        </p>
-        <p>
-          Also, see how convenient scales are when it comes to adding margins!
-        </p>
+        <p>todo</p>
       </>
     ),
     toDo: (
       <ul>
-        <li>Now create 3 bars.</li>
-        <li>Vertical positions are written manually</li>
-        <li>
-          Widths must represent the value <code>34</code>, <code>53</code> and{' '}
-          <code>82</code>
-        </li>
-        <li>
-          ⚠️ You must leave a <b>margin</b> of 20px on the left hand side.
-        </li>
+        <li>todo</li>
       </ul>
     ),
     practiceSandbox: 'exercise/linearScaleThreeBarsPractice',
@@ -321,22 +302,25 @@ const exercices: Exercise[] = [
   {
     whyItMatters: (
       <>
-        <p>Scales are very useful to reverse the direction of drawing</p>
+        <p>
+          Lear how to use <code>scaleOrdinal</code> to create a color scale!
+        </p>
       </>
     ),
     toDo: (
       <ul>
         <li>
-          Let's draw one single bar that represents the value <code>82</code>
+          There is now a <code>group</code> property in the dataset
         </li>
-        <li>But this time, the bar must go from the right to the left.</li>
         <li>
-          Hint: reverse the <code>range</code> array!
+          Create a scaleOrdinal that uses blue the for A group, and orange for
+          the B group
         </li>
+        <li>Use this scale to color the bars</li>
       </ul>
     ),
-    practiceSandbox: 'exercise/linearScaleReversePractice',
-    solutionSandbox: 'exercise/linearScaleReverseSolution',
+    practiceSandbox: 'exercise/scaleFourBarsPractice',
+    solutionSandbox: 'exercise/scaleFourBarsSolution',
   },
 
   {
