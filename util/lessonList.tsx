@@ -834,4 +834,16 @@ export const lessonList: Lesson[] = [
     status: 'not available',
     moduleId: 'canvas',
   },
+  {
+    name: 'Animation',
+    description: (
+      <>
+        <p>How to animate this canvas?</p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/canvas/animation',
+    status: 'not available',
+    moduleId: 'canvas',
+  },
 ];

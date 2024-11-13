@@ -215,6 +215,26 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         <CodeBlock code={snippet1} />
       </div>
 
+      <h2>↕️ Positioning the Axis</h2>
+      <p>
+        Now that we have a functional axis, it needs to be positioned
+        correctly—at the <b>bottom</b> of the bounding area.
+      </p>
+      <p>
+        To achieve this, we can wrap the <code>BottomAxis</code> call in a{' '}
+        <code>g</code> element and apply a <b>vertical translation</b>. Here’s
+        what the code looks like:
+      </p>
+
+      <CodeBlock
+        code={`
+<g transform={\`translate(0, \${boundsHeight})\`}>
+    <AxisBottom xScale={xScale} pixelsPerTick={60} />
+</g>
+
+        `.trim()}
+      />
+
       <h2>Exercices</h2>
       <ExerciseAccordion
         localStorageId={currentLesson.link}
