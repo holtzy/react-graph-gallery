@@ -47,9 +47,13 @@ export default function Home() {
         description={
           <>
             <p>
-              We've built a solid foundation in <b>D3</b>, <b>SVG</b>, and{' '}
-              <b>scales</b>! Now, let's put that knowledge to the test by
-              recreating a barplot inspired by <b>The Economist</b>.
+              We've built a solid foundation in <b>D3</b>, <b>SVG</b>, scales,
+              and <b>axes</b>!
+            </p>
+            <p>
+              Now, we have everything we need to create a{' '}
+              <Link href="/bubble-plot">bubble plot</Link> using one of the most
+              famous datasets: <code>Gapminder</code>.
             </p>
           </>
         }
@@ -63,19 +67,23 @@ export default function Home() {
 - */}
       <h2>Our Objective</h2>
       <p>
-        In this lesson, we aim to recreate a chart from The Economist with
-        several key design elements:
+        In this lesson, we’ll recreate a{' '}
+        <Link href="/bubble-plot">bubble plot</Link> illustrating the
+        relationship between <b>GDP per capita</b> (x-axis) and{' '}
+        <b>life expectancy</b> (y-axis).
       </p>
-      <ul>
-        <li>Title, subtitle, and footer</li>
-        <li>Grid lines with values displayed at the top</li>
-        <li>Inline labels placed inside or outside the bars</li>
-      </ul>
+      <p>
+        Each bubble represents a country, with color indicating the{' '}
+        <b>continent</b> and size representing <b>population</b>.
+      </p>
+
       <p>
         <br />
       </p>
 
-      <BubblePlotBasicDemo width={550} height={550} />
+      <center>
+        <BubblePlotBasicDemo width={550} height={550} />
+      </center>
       {/* -
 -
 -
@@ -84,10 +92,15 @@ export default function Home() {
 -
 - */}
       <h2>The data</h2>
-      <p>The dataset is very simple! It looks like this:</p>
+      <p>
+        The dataset is an array of objects, with each object representing a
+        country. Each object has five properties that provide all the
+        information needed for the bubble chart:
+      </p>
+
       <CodeBlock
         code={`
-data = [
+const data = [
   {
     "country": "Afghanistan",
     "continent": "Asia",
@@ -129,16 +142,36 @@ data = [
 -
 - */}
       <h2>Good Luck!</h2>
-      <p>Here are a few helpful hints:</p>
+      <p>
+        You’ll soon see that the process for creating a graph follows similar
+        steps each time.
+      </p>
       <ul>
         <li>
-          Use <code>xScale.ticks(10)</code> to generate an array of optimal tick
-          values.
+          Start by carefully examining the data to fully understand its
+          contents.
         </li>
         <li>
-          Bar color is <code>#076fa2</code>
+          Next, consider the necessary scales. For this chart, you’ll need four:
+          x, y, color, and size! (Use these colors: <code>#e0ac2b</code>,{' '}
+          <code>#e85252</code>, <code>#6689c6</code>, <code>#9a6fb0</code>,{' '}
+          <code>#a53253</code>)
         </li>
+        <li>
+          Then, organize your <code>return()</code> statement to initialize the{' '}
+          <code>boundsArea</code>.
+        </li>
+        <li>
+          Next, loop through the dataset to render your markers (circles in this
+          case). This step is straightforward once your scales are set up!
+        </li>
+        <li>Finally, add the axis components.</li>
       </ul>
+      <p>
+        <u>Note</u>: Avoid typing everything from scratch. Instead, refer to
+        previous exercises in the course to copy and paste any code snippets you
+        need!
+      </p>
 
       {/* -
 -

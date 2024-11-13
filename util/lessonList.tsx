@@ -310,7 +310,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/axis/project',
-    status: 'wip',
+    status: 'free',
     moduleId: 'axis',
   },
   //
