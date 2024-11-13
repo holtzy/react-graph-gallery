@@ -6,17 +6,15 @@ import { CodeSandbox } from '@/component/CodeSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { ExerciseAccordion } from '@/component/ExerciseAccordion';
 import Link from 'next/link';
-import { TakeHome } from '@/component/TakeHome';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { AxisBasicDemo } from '@/viz/AxisBasic/AxisBasicDemo';
 import { scaleLinear } from 'd3';
-import { GraphTIIT } from '@/viz/AxisBottomMinimal/Graph';
 import { Sidenote } from '@/component/SideNote';
 import {
   Exercise,
   ExerciseDoubleSandbox,
 } from '@/component/ExerciseDoubleSandbox';
-import { Graph9 } from '@/viz/exercise/BubblePlotBottomAxisSolution/Graph';
+import { Accordion } from '@/component/UI/AccordionGrey';
 
 const previousURL = '/course/axis/margin-and-translation';
 const currentURL = '/course/axis/bottom-axis';
@@ -302,9 +300,58 @@ xScale.ticks(10) // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         height={300}
         caption="This axis is rendered without using d3.js to render."
       />
+      <Accordion title="code for the Y axis react component">
+        <CodeBlock code={snippetAxis} />
+      </Accordion>
     </LayoutCourse>
   );
 }
+
+const snippetAxis = `
+import { ScaleLinear } from 'd3';
+
+type AxisLeftProps = {
+  yScale: ScaleLinear<number, number>;
+  pixelsPerTick: number;
+};
+
+// tick length
+const TICK_LENGTH = 6;
+
+export const AxisLeft = ({ yScale, pixelsPerTick }: AxisLeftProps) => {
+  const range = yScale.range();
+  const height = range[0] - range[1];
+  const numberOfTicksTarget = Math.floor(height / pixelsPerTick);
+
+  return (
+    <>
+      {/* Main vertical line */}
+      <path
+        d={['M', 0, range[0], 'L', 0, range[1]].join(' ')}
+        fill="none"
+        stroke="currentColor"
+      />
+
+      {/* Ticks and labels */}
+      {yScale.ticks(numberOfTicksTarget).map((value, i) => (
+        <g key={value} transform={\`translate(0, \${yScale(value)})\`}>
+          <line x2={-TICK_LENGTH} stroke="currentColor" />
+          <text
+            key={value}
+            style={{
+              fontSize: '10px',
+              textAnchor: 'middle',
+              transform: 'translateX(-20px)',
+            }}
+          >
+            {value}
+          </text>
+        </g>
+      ))}
+    </>
+  );
+};
+`.trim();
 
 const snippet1 = `
 // AxisBottom.tsx

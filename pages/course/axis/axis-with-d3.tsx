@@ -61,8 +61,7 @@ export default function Home() {
       </p>
       <p>
         It performs essentially the same function as the <code>AxisBottom</code>{' '}
-        and
-        <code>AxisLeft</code> components we created in the previous lesson:
+        and <code>AxisLeft</code> components we created in the previous lesson:
         taking a scale and <b>rendering</b> lines and ticks based on it on the
         screen.
       </p>
