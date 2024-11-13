@@ -31,7 +31,13 @@ export default function Home() {
         description={
           <>
             <p>
-              Let's create a confortable working environment: let's use Next.js.
+              As a software engineer, making graphs responsive is a common task.
+              You’ll likely apply this approach across{' '}
+              <b>all chart components</b> in your codebase.
+            </p>
+            <p>
+              Let’s explore a useful convention I like to use in my work to
+              simplify this process.
             </p>
           </>
         }
@@ -44,9 +50,10 @@ export default function Home() {
         <code>width</code> and <code>height</code>.
       </p>
       <p>
-        If you already have a dataviz component and just want to make it{' '}
-        <b>responsive</b>, this template should be useful to you:
+        If the graph component is called let's say <code>DensityChart</code>, I
+        like calling the wrapper <code>ResponsiveDensityChart</code>.
       </p>
+      <p>Here is the organization I usually use:</p>
       <CodeBlock
         code={`
 
@@ -83,6 +90,30 @@ const DensityChart = ({ width, height, data }: DensityChartProps) => {
 }
       `.trim()}
       />
+
+      <h2>Why It’s Great:</h2>
+
+      <h3>🚃 Seamless Prop Forwarding</h3>
+      <p>
+        Using the <code>...props</code> notation, all props are automatically
+        passed to the child component, streamlining component configuration and
+        usage.
+      </p>
+
+      <h3>TypeScript Support</h3>
+      <p>
+        With the <code>&</code> operator, there’s no need to re-type both the
+        main chart component and its responsive variant. The responsive
+        component has the same type as the chart component, with the addition of
+        width and height props.
+      </p>
+
+      <h3>Consistency Across Components</h3>
+      <p>
+        For codebases with multiple chart components, consistently using this
+        wrapper approach minimizes mental overhead, making it easier to manage
+        and scale your components.
+      </p>
     </LayoutCourse>
   );
 }

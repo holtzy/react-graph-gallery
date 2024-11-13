@@ -375,7 +375,7 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/responsiveness/code-organization',
-    status: 'wip',
+    status: 'free',
     moduleId: 'responsiveness',
   },
   {
