@@ -107,7 +107,7 @@ data = [
       />
       <p>
         You can find the complete js object{' '}
-        <a href="https://github.com/holtzy/react-graph-gallery/blob/main/viz/BarplotTheEconomist/data.ts">
+        <a href="https://github.com/holtzy/react-graph-gallery/blob/main/viz/BubblePlotBasic/data.ts">
           here
         </a>
         .
@@ -115,7 +115,7 @@ data = [
       <p>
         <Link
           className={cn('no-underline', buttonVariants({ variant: 'default' }))}
-          href="https://github.com/holtzy/react-graph-gallery/blob/main/viz/BarplotTheEconomist/data.ts"
+          href="https://github.com/holtzy/react-graph-gallery/blob/main/viz/BubblePlotBasic/data.ts"
         >
           Get full data
         </Link>
