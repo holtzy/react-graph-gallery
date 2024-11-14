@@ -300,6 +300,8 @@ export default function Home() {
         maxWidth={600}
         caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
       /> */}
+      <h2>Line chart with brush to zoom</h2>
+      <p>How to zoom on a line chart using a brush. (WIP)</p>
       <ChartOrSandbox
         vizName={'LineChartPanning'}
         VizComponent={LineChartPanningDemo}

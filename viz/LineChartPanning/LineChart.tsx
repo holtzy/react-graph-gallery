@@ -34,7 +34,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
     .map((d) => customTimeParser(d.x))
     .filter((item) => item instanceof Date) as Date[]; // filter is typed weirdly 🤔
   const dateDomain = d3.extent(times);
-  const [domain, setDomain] = useState<[number, number]>([dateDomain]);
+  const [domain, setDomain] = useState<[number, number]>(dateDomain);
 
   const xScale = d3.scaleTime().domain(domain).range([0, boundsWidth]);
 
@@ -74,7 +74,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
   }
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <svg width={width} height={height}>
         <g
           width={boundsWidth}
@@ -115,6 +115,17 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
           />
         )}
       </svg>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          border: 'solid black 2px',
+          padding: 3,
+        }}
+      >
+        <button onClick={() => setDomain(dateDomain)}>Reset</button>
+      </div>
     </div>
   );
 };
