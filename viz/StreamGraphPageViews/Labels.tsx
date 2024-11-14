@@ -1,5 +1,5 @@
-import * as d3 from "d3";
-import { useSpring, animated } from "@react-spring/web";
+import * as d3 from 'd3';
+import { useSpring, animated } from '@react-spring/web';
 
 const PADDING_LEFT = 30;
 const BAR_HEIGHT = 20;
@@ -56,10 +56,9 @@ export const Labels = ({
           textAnchor="start"
           alignmentBaseline="central"
           fontSize={12}
-          stroke="#808080"
-          fill="none"
+          fill="#808080"
         >
-          {label.name + " | " + cleanValue + "M"}
+          {label.name + ' | ' + cleanValue + 'M'}
         </text>
       </g>
     );
