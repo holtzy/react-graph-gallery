@@ -15,6 +15,7 @@ import { GraphLinkImage } from 'component/UI/GraphLinkImage';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { ToDoSection } from 'component/UI/ToDoSection';
 import GraphGallery from 'component/GraphGallery';
+import { LineChartPanningDemo } from '@/viz/LineChartPanning/LineChartPanningDemo';
 
 const graphDescription = (
   <>
@@ -299,6 +300,13 @@ export default function Home() {
         maxWidth={600}
         caption="Click on the buttons to trigger a smooth transition between the 2 line charts."
       /> */}
+      <ChartOrSandbox
+        vizName={'LineChartPanning'}
+        VizComponent={LineChartPanningDemo}
+        height={500}
+        maxWidth={600}
+        caption="Most basic line chart made with react (rendering) and d3.js (path computation)"
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 my-3" />
       <ChartFamilySection chartFamily="evolution" />
       <div className="mt-20" />

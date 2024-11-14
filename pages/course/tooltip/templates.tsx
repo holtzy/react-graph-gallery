@@ -6,6 +6,7 @@ import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { ScatterplotTooltipDemo } from '@/viz/ScatterplotTooltip/ScatterplotTooltipDemo';
 import { ScatterplotVoronoiTooltipDemo } from '@/viz/ScatterplotVoronoiTooltip/ScatterplotVoronoiTooltipDemo';
 import { ScatterplotClimateCrisisDemo } from '@/viz/ScatterplotClimateCrisis/ScatterplotClimateCrisisDemo';
+import { HeatmapTooltipSwapDemo } from '@/viz/HeatmapTooltipSwap/HeatmapTooltipSwapDemo';
 
 const previousURL = '/course/tooltip/display-on-hover';
 const currentURL = '/course/tooltip/templates';
@@ -52,6 +53,20 @@ export default function Home() {
         vizName={'ScatterplotTooltip'}
         maxWidth={500}
         height={500}
+        caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
+      />
+      <h2>Tooltip with Dynamic Direction</h2>
+      <p>
+        To prevent tooltips from extending outside the chart area, adjust their
+        direction based on the hovered element's position, displaying them on
+        the left or right as needed.
+      </p>
+
+      <ChartOrSandbox
+        VizComponent={HeatmapTooltipSwapDemo}
+        vizName={'HeatmapTooltipSwap'}
+        maxWidth={800}
+        height={400}
         caption="Scatterplot with tooltip. Hover over a circle to get the corresponding country name."
       />
 

@@ -1,0 +1,11 @@
+.container .rectangle {
+  opacity: 0.8;
+}
+
+.container:hover .rectangle {
+  opacity: 0.3;
+}
+
+.container .rectangle:hover {
+  opacity: 1;
+}

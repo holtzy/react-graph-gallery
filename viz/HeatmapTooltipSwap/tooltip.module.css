@@ -1,0 +1,17 @@
+.tooltip {
+  width: 100px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.tooltipRight {
+  transform: translate(50px, -50%);
+}
+
+.tooltipLeft {
+  transform: translate(-150px, -50%);
+}
