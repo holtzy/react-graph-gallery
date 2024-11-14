@@ -1,6 +1,6 @@
-import * as d3 from "d3";
+import * as d3 from 'd3';
 
-const yearTimeFormatter = d3.timeFormat("%B %Y");
+const yearTimeFormatter = d3.timeFormat('%B %Y');
 
 type TimeGridProps = {
   xScale: Date[] & d3.ScaleTime<number, number, never>;
@@ -25,8 +25,7 @@ export const TimeGrid = ({ xScale, height }: TimeGridProps) => {
           textAnchor="middle"
           alignmentBaseline="central"
           fontSize={9}
-          stroke="#808080"
-          fill="none"
+          fill="#808080"
           opacity={0.8}
         >
           {yearTimeFormatter(value)}
