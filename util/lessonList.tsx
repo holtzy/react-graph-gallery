@@ -804,6 +804,22 @@ export const lessonList: Lesson[] = [
     status: 'free',
     moduleId: 'canvas',
   },
+
+  {
+    name: 'Hover effect',
+    description: (
+      <>
+        <p>
+          Let's use a little trick for a nice hover effect: using 2 canvas
+          layers: one for the normal state, one for the hovered state.
+        </p>
+      </>
+    ),
+    readTime: 4,
+    link: '/course/canvas/hover-effect',
+    status: 'wip',
+    moduleId: 'canvas',
+  },
   {
     name: 'Tooltip',
     description: (
@@ -816,21 +832,6 @@ export const lessonList: Lesson[] = [
     ),
     readTime: 4,
     link: '/course/canvas/tooltip',
-    status: 'not available',
-    moduleId: 'canvas',
-  },
-  {
-    name: 'Hover effect',
-    description: (
-      <>
-        <p>
-          Let's use a little trick for a nice hover effect: using 2 canvas
-          layers: one for the normal state, one for the hovered state.
-        </p>
-      </>
-    ),
-    readTime: 4,
-    link: '',
     status: 'not available',
     moduleId: 'canvas',
   },

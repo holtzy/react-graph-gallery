@@ -20,7 +20,7 @@ import { DonutChartCanvasDemo } from '@/viz/DonutChartCanvas/DonutChartCanvasDem
 
 const previousURL = '/course/canvas/combining-svg-and-canvas';
 const currentURL = '/course/canvas/svg-path-in-canvas';
-const nextURL = '/course/canvas/tooltip';
+const nextURL = '/course/canvas/hover-effect';
 const seoDescription = '';
 
 export default function Home() {
