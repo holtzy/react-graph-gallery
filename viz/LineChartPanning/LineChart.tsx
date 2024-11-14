@@ -13,8 +13,6 @@ type LineChartProps = {
 };
 
 export const LineChart = ({ width, height, data }: LineChartProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
-  const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
@@ -23,7 +21,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
   const [brushStart, setBrushStart] = useState<number | null>(null);
   const [brushEnd, setBrushEnd] = useState<number | null>(null);
 
-  // Y axis
+  // Y scale
   const max = d3.max(data, (d) => d.y);
   const yScale = d3
     .scaleLinear()
@@ -35,10 +33,10 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
   const times = data
     .map((d) => customTimeParser(d.x))
     .filter((item) => item instanceof Date) as Date[]; // filter is typed weirdly 🤔
-
   const dateDomain = d3.extent(times);
+  const [domain, setDomain] = useState<[number, number]>([dateDomain]);
 
-  const xScale = d3.scaleTime().domain(dateDomain).range([0, boundsWidth]);
+  const xScale = d3.scaleTime().domain(domain).range([0, boundsWidth]);
 
   // Build the line
   const lineBuilder = d3
@@ -63,8 +61,8 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
     if (isBrushing && brushStart !== null && brushEnd !== null) {
       const startX = Math.min(brushStart, brushEnd);
       const endX = Math.max(brushStart, brushEnd);
-      // const newDomain = [currentXScale.invert(startX), currentXScale.invert(endX)];
-      // setCurrentXScale(currentXScale.copy().domain(newDomain));
+      const newDomain = [xScale.invert(startX), xScale.invert(endX)];
+      setDomain(newDomain);
     }
     setIsBrushing(false);
     setBrushStart(null);
@@ -113,6 +111,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
             width={Math.abs(brushEnd - brushStart)}
             height={boundsHeight}
             fill="rgba(154, 111, 176, 0.3)"
+            pointerEvents={'none'}
           />
         )}
       </svg>
