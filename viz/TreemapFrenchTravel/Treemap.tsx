@@ -1,12 +1,24 @@
 import { useMemo } from 'react';
-import { Tree } from './data';
 import * as d3 from 'd3';
 import styles from './treemap.module.css';
+
+export type TreeNode = {
+  type: 'node';
+  name: string;
+  children: Tree[];
+};
+export type TreeLeaf = {
+  parent: string;
+  name: string;
+  value: number;
+};
+
+export type Tree = TreeNode | TreeLeaf;
 
 type TreemapProps = {
   width: number;
   height: number;
-  data: Tree;
+  data: d3.HierarchyNode<unknown>;
 };
 
 const colors = [
@@ -21,21 +33,22 @@ const colors = [
 
 export const Treemap = ({ width, height, data }: TreemapProps) => {
   const hierarchy = d3.hierarchy(data).sum((d) => d.value);
+  console.log('hierarchy', hierarchy);
 
-  // List of item of level 1 (just under root) & related color scale
   const firstLevelGroups = hierarchy?.children?.map((child) => child.data.name);
+  console.log('firstLevelGroups', firstLevelGroups);
+
   var colorScale = d3
     .scaleOrdinal<string>()
     .domain(firstLevelGroups || [])
     .range(colors);
 
-  const root = useMemo(() => {
-    const treeGenerator = d3.treemap<Tree>().size([width, height]).padding(4);
-    return treeGenerator(hierarchy);
-  }, [hierarchy, width, height]);
+  const treeGenerator = d3.treemap<Tree>().size([width, height]).padding(4);
+  const root = treeGenerator(hierarchy);
+  console.log('root', root);
 
   const allShapes = root.leaves().map((leaf, i) => {
-    const parentName = leaf.parent?.data.name;
+    console.log('leaf', leaf);
     return (
       <g key={leaf.id} className={styles.rectangle}>
         <rect
@@ -44,7 +57,7 @@ export const Treemap = ({ width, height, data }: TreemapProps) => {
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
           stroke="transparent"
-          fill={colorScale(parentName)}
+          fill={colorScale(leaf.data.name)}
           className={'opacity-80 hover:opacity-100'}
         />
         <text

@@ -8,7 +8,8 @@ import Link from 'next/link';
 import { SankeyBumpChartDemo } from 'viz/SankeyBumpChart/SankeyBumpChartDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { Treemap } from '@/viz/TreemapFrenchTravel/Treemap';
-import { data } from '@/viz/TreemapFrenchTravel/data';
+import { data, rawData } from '@/viz/TreemapFrenchTravel/data';
+import { stratify } from 'd3';
 
 const graphDescription = (
   <>
@@ -17,6 +18,31 @@ const graphDescription = (
 );
 
 export default function Home() {
+  const groups = ['Etudes', 'Professionnel', 'Vacances'];
+  const target = 'Temps';
+
+  const mainDataSelection = rawData['Motifs de déplacement'];
+  console.log('mainDataSelection', mainDataSelection);
+
+  const selectedData = Object.keys(mainDataSelection).map((key) => {
+    return {
+      parent: 'Temps',
+      name: key,
+      value: Number(mainDataSelection[key]['Temps'].replace('%', '')),
+    };
+  });
+  console.log('selectedData', selectedData);
+
+  const hierarchyBuilder = stratify()
+    .id((d) => d.name)
+    .parentId((d) => d.parent);
+  const hierarchy = hierarchyBuilder([
+    { parent: undefined, name: 'Temps' },
+    ...selectedData,
+  ]);
+
+  console.log(hierarchy);
+
   return (
     <Layout
       title="How do people travel in France"
@@ -38,7 +64,7 @@ export default function Home() {
         here, together with its code:🙇‍♂️
       </p>
 
-      <Treemap data={data} width={600} height={400} />
+      <Treemap data={hierarchy} width={900} height={600} />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
