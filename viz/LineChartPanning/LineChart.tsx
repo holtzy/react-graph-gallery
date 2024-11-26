@@ -115,6 +115,7 @@ export const LineChart = ({ width, height, data }: LineChartProps) => {
           />
         )}
       </svg>
+
       <div
         style={{
           position: 'absolute',
