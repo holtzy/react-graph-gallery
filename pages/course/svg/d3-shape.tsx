@@ -242,8 +242,8 @@ const pathData = lineGenerator(data);
 // Create a function that expects 2 parameters
 const multiply = (x, y) => x * y;
 
-// Use the function, providing it the 2 paramters
-multiply(4, 6))
+// Use the function, providing it the 2 parameters
+multiply(4, 6)
 // 24
       `.trim()}
       />
