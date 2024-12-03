@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'component/Layout';
 import TitleAndDescription from 'component/TitleAndDescription';
 import ChartFamilySection from 'component/ChartFamilySection';
@@ -8,8 +8,10 @@ import Link from 'next/link';
 import { SankeyBumpChartDemo } from 'viz/SankeyBumpChart/SankeyBumpChartDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { Treemap } from '@/viz/TreemapFrenchTravel/Treemap';
-import { data, rawData } from '@/viz/TreemapFrenchTravel/data';
+import { modeDeTransport, Tree } from '@/viz/TreemapFrenchTravel/data';
 import { stratify } from 'd3';
+import * as d3 from 'd3';
+import { Tabs, TabsList, TabsTrigger } from '@/component/UI/tabs';
 
 const graphDescription = (
   <>
@@ -18,30 +20,11 @@ const graphDescription = (
 );
 
 export default function Home() {
-  const groups = ['Etudes', 'Professionnel', 'Vacances'];
-  const target = 'Temps';
+  const [selectedmetric, setSelectedMetric] = useState('Distance');
 
-  const mainDataSelection = rawData['Motifs de déplacement'];
-  console.log('mainDataSelection', mainDataSelection);
-
-  const selectedData = Object.keys(mainDataSelection).map((key) => {
-    return {
-      parent: 'Temps',
-      name: key,
-      value: Number(mainDataSelection[key]['Temps'].replace('%', '')),
-    };
-  });
-  console.log('selectedData', selectedData);
-
-  const hierarchyBuilder = stratify()
-    .id((d) => d.name)
-    .parentId((d) => d.parent);
-  const hierarchy = hierarchyBuilder([
-    { parent: undefined, name: 'Temps' },
-    ...selectedData,
-  ]);
-
-  console.log(hierarchy);
+  const data = modeDeTransport.children.find(
+    (node) => node.name === selectedmetric
+  );
 
   return (
     <Layout
@@ -64,7 +47,27 @@ export default function Home() {
         here, together with its code:🙇‍♂️
       </p>
 
-      <Treemap data={hierarchy} width={900} height={600} />
+      <Tabs defaultValue={selectedmetric} className="w-[400px]">
+        <TabsList>
+          <TabsTrigger value="temps" onClick={() => setSelectedMetric('Temps')}>
+            Temps
+          </TabsTrigger>
+          <TabsTrigger
+            value="distance"
+            onClick={() => setSelectedMetric('Distance')}
+          >
+            Distance
+          </TabsTrigger>
+          <TabsTrigger
+            value="em"
+            onClick={() => setSelectedMetric('Emissions')}
+          >
+            Emissions
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+
+      <Treemap data={data} width={900} height={600} />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
