@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import styles from './treemap.module.css';
 import { Tree } from '@/viz/TreemapFrenchTravel/data';
 import { Rectangle } from './Rectangle';
+import { useMemo } from 'react';
 
 type TreemapProps = {
   width: number;
@@ -17,47 +18,48 @@ const colors = [
   '#9a6fb0',
   '#a53253',
   '#7f7f7f',
+  'red',
 ];
 
 export const Treemap = ({ width, height, data }: TreemapProps) => {
-  const hierarchy = d3.hierarchy(data).sum((d) => d.value);
-  console.log('hierarchy', hierarchy);
+  const hierarchy = d3
+    .hierarchy(data)
+    .sum((d) => d.value)
+    .sort((a, b) => b.value - a.value);
 
-  const treeGenerator = d3.treemap<Tree>().size([width, height]).padding(4);
+  const treeGenerator = useMemo(() => {
+    console.log('compute tree generator');
+
+    return d3
+      .treemap()
+      .size([width, height])
+      .padding(4)
+      .round(true)
+      .tile(d3.treemapResquarify);
+  }, []);
+
   const root = treeGenerator(hierarchy);
+
+  const allGroups = hierarchy
+    .leaves()
+    .map((l) => l.data.name)
+    .sort((a, b) => b.localeCompare(a));
+
+  var colorScale = d3.scaleOrdinal().domain(allGroups).range(colors);
 
   const allShapes = root.leaves().map((leaf) => {
     return (
       <g key={leaf.id}>
         <Rectangle
+          key={leaf.data.name}
           x={leaf.x0}
           y={leaf.y0}
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
+          label={leaf.data.name}
+          value={leaf.data.value}
+          color={colorScale(leaf.data.name)}
         />
-
-        {/* <text
-          x={leaf.x0 + 3}
-          y={leaf.y0 + 3}
-          fontSize={12}
-          textAnchor="start"
-          alignmentBaseline="hanging"
-          fill="white"
-          className="font-bold"
-        >
-          {leaf.data.name}
-        </text>
-        <text
-          x={leaf.x0 + 3}
-          y={leaf.y0 + 18}
-          fontSize={12}
-          textAnchor="start"
-          alignmentBaseline="hanging"
-          fill="white"
-          className="font-light"
-        >
-          {leaf.data.value}
-        </text> */}
       </g>
     );
   });
