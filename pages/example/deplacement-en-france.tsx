@@ -43,8 +43,12 @@ export default function Home() {
       */}
       <h2 id="plot">Plot and code</h2>
       <p>
-        If you are in a hurry, here is the final plot we're trying to achieve
-        here, together with its code:🙇‍♂️
+        On commence par ce demander quel est le moyen de transport le plus
+        utilisé par les francais?
+      </p>
+      <p>
+        la réponse: la voiture! 2/3 du temps passé dans les transports se passe
+        en voiture. Pour le nombre de déplacement c'est pareil.
       </p>
 
       <Tabs defaultValue={selectedmetric} className="w-[400px]">
@@ -63,6 +67,13 @@ export default function Home() {
             onClick={() => setSelectedMetric('Emissions')}
           >
             Emissions
+          </TabsTrigger>
+
+          <TabsTrigger
+            value="cod"
+            onClick={() => setSelectedMetric('Déplacements')}
+          >
+            # Of Déplacements
           </TabsTrigger>
         </TabsList>
       </Tabs>

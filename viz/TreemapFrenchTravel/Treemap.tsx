@@ -22,14 +22,9 @@ const colors = [
 ];
 
 export const Treemap = ({ width, height, data }: TreemapProps) => {
-  const hierarchy = d3
-    .hierarchy(data)
-    .sum((d) => d.value)
-    .sort((a, b) => b.value - a.value);
+  const hierarchy = d3.hierarchy(data).sum((d) => d.value);
 
   const treeGenerator = useMemo(() => {
-    console.log('compute tree generator');
-
     return d3
       .treemap()
       .size([width, height])
@@ -40,27 +35,26 @@ export const Treemap = ({ width, height, data }: TreemapProps) => {
 
   const root = treeGenerator(hierarchy);
 
-  const allGroups = hierarchy
-    .leaves()
-    .map((l) => l.data.name)
-    .sort((a, b) => b.localeCompare(a));
-
+  const allGroups = useMemo(() => {
+    return hierarchy
+      .leaves()
+      .map((l) => l.data.name)
+      .sort((a, b) => b.localeCompare(a));
+  }, []);
   var colorScale = d3.scaleOrdinal().domain(allGroups).range(colors);
 
-  const allShapes = root.leaves().map((leaf) => {
+  const allShapes = root.leaves().map((leaf, i) => {
     return (
-      <g key={leaf.id}>
-        <Rectangle
-          key={leaf.data.name}
-          x={leaf.x0}
-          y={leaf.y0}
-          width={leaf.x1 - leaf.x0}
-          height={leaf.y1 - leaf.y0}
-          label={leaf.data.name}
-          value={leaf.data.value}
-          color={colorScale(leaf.data.name)}
-        />
-      </g>
+      <Rectangle
+        key={leaf.data.name}
+        x={leaf.x0}
+        y={leaf.y0}
+        width={leaf.x1 - leaf.x0}
+        height={leaf.y1 - leaf.y0}
+        label={leaf.data.name}
+        value={leaf.data.value}
+        color={colorScale(leaf.data.name)}
+      />
     );
   });
 

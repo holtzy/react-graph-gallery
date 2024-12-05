@@ -59,17 +59,19 @@ export const modeDeTransport: Tree = {
     },
     {
       type: "node",
-      name: "Coût",
+      name: "Déplacements",
       children: [
-        { type: "leaf", name: "Marche", value: 0 },
-        { type: "leaf", name: "Vélo", value: 0.1 },
-        { type: "leaf", name: "2RM", value: 0.5 },
-        { type: "leaf", name: "Voiture", value: 5 },
-        { type: "leaf", name: "Bus et car", value: 1.2 },
-        { type: "leaf", name: "Ferroviaire", value: 2 },
-        { type: "leaf", name: "Avion", value: 20 },
-        { type: "leaf", name: "Autres", value: 0.3 }
+        { type: "leaf", name: "Marche", value: 23.6 },
+        { type: "leaf", name: "Vélo", value: 2.5 },
+        { type: "leaf", name: "2RM", value: 1.0 },
+        { type: "leaf", name: "Voiture", value: 64 },
+        { type: "leaf", name: "Bus et car", value: 3.6 },
+        { type: "leaf", name: "Ferroviaire", value: 4.7 },
+        { type: "leaf", name: "Avion", value: 0.1 },
+        { type: "leaf", name: "Autres", value: 0.4 }
       ]
     }
+
+
   ]
 };
