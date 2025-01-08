@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { ScaleLinear } from "d3";
+import { useMemo } from 'react';
+import { ScaleLinear } from 'd3';
 
 type AxisLeftProps = {
   yScale: ScaleLinear<number, number>;
@@ -29,7 +29,7 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
         <g
           key={value}
           transform={`translate(0, ${yOffset})`}
-          shapeRendering={"crispEdges"}
+          shapeRendering={'crispEdges'}
         >
           <line
             x1={-TICK_LENGTH}
@@ -40,10 +40,10 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
           <text
             key={value}
             style={{
-              fontSize: "10px",
-              textAnchor: "middle",
-              transform: "translateX(-20px)",
-              fill: "#D2D7D3",
+              fontSize: '10px',
+              textAnchor: 'middle',
+              transform: 'translateX(-20px)',
+              fill: '#D2D7D3',
             }}
           >
             {value}

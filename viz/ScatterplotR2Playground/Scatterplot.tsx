@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { AxisLeft } from './AxisLeft';
 import { AxisBottom } from './AxisBottom';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useMemo, useState } from 'react';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -23,28 +23,26 @@ export const Scatterplot = ({
     null
   );
 
-  console.log('isDragging? ---->', isDragging);
-
   // Layout
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Scales
-  const yScale = d3.scaleLinear().domain([0, 10]).range([boundsHeight, 0]);
-  const xScale = d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
+  const yScale = useMemo(() => {
+    return d3.scaleLinear().domain([0, 10]).range([boundsHeight, 0]);
+  }, []);
+
+  const xScale = useMemo(() => {
+    return d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
+  }, []);
 
   // Compute regression parameters
-  const n = data.length;
   const xMean = d3.mean(data, (d) => d.x) || 0;
   const yMean = d3.mean(data, (d) => d.y) || 0;
-
   const slope =
     d3.sum(data, (d) => (d.x - xMean) * (d.y - yMean)) /
     d3.sum(data, (d) => (d.x - xMean) ** 2);
-
   const intercept = yMean - slope * xMean;
-
-  // Compute R2
   const ssTotal = d3.sum(data, (d) => (d.y - yMean) ** 2);
   const ssResidual = d3.sum(
     data,
@@ -94,11 +92,13 @@ export const Scatterplot = ({
     return (
       <circle
         key={i}
-        r={5}
+        r={i === draggedPointIndex ? 12 : 8}
         cx={xScale(d.x)}
         cy={yScale(d.y)}
         fill="#cb1dd1"
-        fillOpacity={0.8}
+        stroke="#cb1dd1"
+        fillOpacity={i === draggedPointIndex ? 0.6 : 0.1}
+        strokeWidth={i === draggedPointIndex ? 3 : 1}
         onMouseDown={() => handleMouseDown(i)}
         onMouseUp={handleMouseUp}
         cursor={'pointer'}
