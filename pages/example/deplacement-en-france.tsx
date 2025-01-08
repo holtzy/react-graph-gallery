@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { SankeyBumpChartDemo } from 'viz/SankeyBumpChart/SankeyBumpChartDemo';
 import { LinkAsButton } from 'component/LinkAsButton';
 import { Treemap } from '@/viz/TreemapFrenchTravel/Treemap';
-import { modeDeTransport, Tree } from '@/viz/TreemapFrenchTravel/data';
+import { Metric, modeDeTransport, Tree } from '@/viz/TreemapFrenchTravel/data';
 import { stratify } from 'd3';
 import * as d3 from 'd3';
 import { Tabs, TabsList, TabsTrigger } from '@/component/UI/tabs';
@@ -20,7 +20,7 @@ const graphDescription = (
 );
 
 export default function Home() {
-  const [selectedmetric, setSelectedMetric] = useState('Distance');
+  const [selectedmetric, setSelectedMetric] = useState<Metric>('Distances');
 
   const data = modeDeTransport.children.find(
     (node) => node.name === selectedmetric
@@ -58,13 +58,13 @@ export default function Home() {
           </TabsTrigger>
           <TabsTrigger
             value="distance"
-            onClick={() => setSelectedMetric('Distance')}
+            onClick={() => setSelectedMetric('Distances')}
           >
             Distance
           </TabsTrigger>
           <TabsTrigger
             value="em"
-            onClick={() => setSelectedMetric('Emissions')}
+            onClick={() => setSelectedMetric('Emissions directes')}
           >
             Emissions
           </TabsTrigger>
@@ -80,6 +80,10 @@ export default function Home() {
 
       <Treemap data={data} width={900} height={600} />
 
+      <p>
+        Par contre l'avion c'est ghetto. représente que .1% des déplacements,
+        mais xx% des émissions.
+      </p>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />
       <div className="mt-20" />
