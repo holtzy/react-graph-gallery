@@ -1,7 +1,9 @@
 import * as d3 from 'd3';
 import { AxisLeft } from './AxisLeft';
 import { AxisBottom } from './AxisBottom';
-import { MouseEventHandler, useMemo, useState } from 'react';
+import { MouseEventHandler, useCallback, useMemo, useState } from 'react';
+import { Circle } from './Circle';
+import { Line } from './Line';
 
 const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
 
@@ -30,11 +32,11 @@ export const Scatterplot = ({
   // Scales
   const yScale = useMemo(() => {
     return d3.scaleLinear().domain([0, 10]).range([boundsHeight, 0]);
-  }, []);
+  }, [height]);
 
   const xScale = useMemo(() => {
     return d3.scaleLinear().domain([0, 10]).range([0, boundsWidth]);
-  }, []);
+  }, [width]);
 
   // Compute regression parameters
   const xMean = d3.mean(data, (d) => d.x) || 0;
@@ -56,10 +58,21 @@ export const Scatterplot = ({
   const x2 = 10;
   const y2 = slope * x2 + intercept;
 
-  const handleMouseDown = (index: number) => {
+  // COEFFICIENT OF CORRELATION
+  const numerator = d3.sum(data, (d) => (d.x - xMean) * (d.y - yMean)); // Numerator: Covariance of x and y
+
+  // Denominator: Product of standard deviations of x and y
+  const xVariance = d3.sum(data, (d) => (d.x - xMean) ** 2);
+  const yVariance = d3.sum(data, (d) => (d.y - yMean) ** 2);
+  const denominator = Math.sqrt(xVariance * yVariance);
+
+  // Correlation coefficient
+  const correlationCoefficient = numerator / denominator;
+
+  const handleMouseDown = useCallback((index: number) => {
     setIsDragging(true);
     setDraggedPointIndex(index);
-  };
+  }, []);
 
   const handleMouseMove: MouseEventHandler<SVGRectElement> = (event) => {
     if (!isDragging) {
@@ -82,15 +95,15 @@ export const Scatterplot = ({
     setData(newData);
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
     setDraggedPointIndex(null);
-  };
+  }, []);
 
   // Build shapes
   const allShapes = data.map((d, i) => {
     return (
-      <circle
+      <Circle
         key={i}
         r={i === draggedPointIndex ? 12 : 8}
         cx={xScale(d.x)}
@@ -107,7 +120,7 @@ export const Scatterplot = ({
   });
 
   return (
-    <div>
+    <div className="relative">
       <svg width={width} height={height}>
         <g
           width={boundsWidth}
@@ -142,22 +155,28 @@ export const Scatterplot = ({
             />
           </g>
 
-          {/* Circles */}
-          {allShapes}
-
           {/* Regression line */}
-          <line
+          <Line
             x1={xScale(x1)}
             y1={yScale(y1)}
             x2={xScale(x2)}
             y2={yScale(y2)}
-            stroke="blue"
-            strokeWidth={2}
           />
+
+          {/* Circles */}
+          {allShapes}
         </g>
       </svg>
 
-      <p>R²: {r2.toFixed(3)}</p>
+      <div
+        className="absolute inset-0 w-full flex justify-center gap-2"
+        style={{ height: 60 }}
+      >
+        <p style={{ opacity: r2 + 0.2 }} className="text-md">
+          R² &rarr; <code className="mr-5">{r2.toFixed(3)}</code> Correlation
+          &rarr; <code>{correlationCoefficient.toFixed(3)}</code>
+        </p>
+      </div>
     </div>
   );
 };
