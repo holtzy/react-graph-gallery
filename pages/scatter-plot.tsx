@@ -463,6 +463,7 @@ export default function Home() {
           'scatterplot-tooltip-with-voronoi-for-closest-point-detection.gif',
           'scatterplot-basic-canvas.png',
           'timeseries-moving-average.png',
+          'scatterplot-r2-draggable.png',
         ]}
       />
 

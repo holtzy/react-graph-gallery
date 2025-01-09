@@ -71,6 +71,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'scatterplot-basic-canvas.png',
     alt: 'a scatterplot made with react and rendered in canvas',
   },
+  {
+    link: '/example/scatterplot-r2-playground',
+    title: 'Scatterplot with r2, linear regression and draggable circles',
+    description:
+      'Get a good intuition of what r2 is thanks to this interactive scatterplot with linear regression and draggable points',
+    img: 'scatterplot-r2-draggable.png',
+    alt: 'interactive scatter with r2 and linear regression',
+  },
 
   //
   // Heatmap
