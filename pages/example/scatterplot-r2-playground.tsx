@@ -106,7 +106,7 @@ export default function Home() {
         VizComponent={ScatterplotR2PlaygroundDemo}
         maxWidth={500}
         height={580}
-        caption="A scatterplot made with React, using SVG for the axes and Canvas for the markers to improve performance."
+        caption="An interactive scatterplot with linear regression line. Drag a circle to see the impact on the r2!"
       />
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
