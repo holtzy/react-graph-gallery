@@ -32,10 +32,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
   }, [data]);
 
   // Compute scales
-  const yScale = d3
-    .scaleLinear()
-    .domain([chartMin, chartMax])
-    .range([boundsHeight, 0]);
+  const yScale = d3.scaleLinear().domain([-1, 20]).range([boundsHeight, 0]);
 
   const xScale = d3
     .scaleBand()

@@ -41,6 +41,7 @@
     "d3-interpolate-path": "^2.2.3",
     "d3-sankey": "^0.12.3",
     "flubber": "^0.4.2",
+    "jstat": "^1.9.6",
     "lodash": "^4.17.21",
     "lucide-react": "^0.418.0",
     "next": "^13.4.12",
