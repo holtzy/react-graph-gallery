@@ -1,3 +1,5 @@
+import { animated, useSpring, config } from 'react-spring';
+
 const STROKE_WIDTH = 40;
 
 // A reusable component that builds a vertical box shape using svg
@@ -24,29 +26,34 @@ export const VerticalBox = ({
   stroke,
   fill,
 }: VerticalBoxProps) => {
+  const springProps = useSpring({
+    to: { min, q1, median, q3, max, diff: q1 - q3 },
+    config: config.molasses,
+  });
+
   return (
     <>
-      <line
+      <animated.line
         x1={width / 2}
         x2={width / 2}
-        y1={min}
-        y2={max}
+        y1={springProps.min}
+        y2={springProps.max}
         stroke={stroke}
         width={STROKE_WIDTH}
       />
-      <rect
+      <animated.rect
         x={0}
-        y={q3}
+        y={springProps.q3}
         width={width}
-        height={q1 - q3}
+        height={springProps.diff}
         stroke={stroke}
         fill={fill}
       />
-      <line
+      <animated.line
         x1={0}
         x2={width}
-        y1={median}
-        y2={median}
+        y1={springProps.median}
+        y2={springProps.median}
         stroke={stroke}
         width={STROKE_WIDTH}
       />

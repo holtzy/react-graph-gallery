@@ -4,20 +4,20 @@ import TitleAndDescription from 'component/TitleAndDescription';
 import ChartFamilySection from 'component/ChartFamilySection';
 import { CodeBlock } from 'component/UI/CodeBlock';
 import { ChartOrSandbox } from 'component/ChartOrSandbox';
-import Link from 'next/link';
-import { ArcDiagramVerticalDemo } from 'viz/ArcDiagramVertical/ArcDiagramVerticalDemo';
-import { LinkAsButton } from 'component/LinkAsButton';
-import { ScatterplotCanvasBasicDemo } from 'viz/ScatterplotCanvas/ScatterplotCanvasBasicDemo';
-import { ScatterplotR2PlaygroundDemo } from '@/viz/ScatterplotR2Playground/ScatterplotR2PlaygroundDemo';
+
 import { TTestPlaygroundDemo } from '@/viz/TTestPlayground/TTestPlayground';
+import Link from 'next/link';
 
 const graphDescription = (
   <>
-    <p>p-value is nothing without size effect.</p>
     <p>
-      This post features an interactive sandbox that explores several edge
-      cases, demonstrating how relying on these summary statistics without
-      visualizing the data can be <b>dangerously misleading</b>.
+      You just spent hours analyzing data and got a <b>p-value of 0.051</b>.
+      Does that make your findings meaningless? Would 0.049 really change
+      everything?
+    </p>
+    <p>
+      This post explains why <b>chasing statistical significance</b> often
+      misses the bigger picture. <b>Practical significance</b> matters more.
     </p>
   </>
 );
@@ -33,45 +33,34 @@ export default function Home() {
 
       {/*
       //
-      // What is R2
+      //
       //
       */}
-      <h2 id="definition">🤔 What are p-value and effect size</h2>
-      <h3>&rarr; p-value</h3>
+      <h2 id="t-test">🤔 Comparing Two Groups</h2>
+      <h3>&rarr; Data and Question</h3>
       <p>
-        R², or the{' '}
-        <a
-          href="https://en.wikipedia.org/wiki/Coefficient_of_determination"
-          target="_blank"
-        >
-          coefficient of determination
-        </a>
-        , measures the <b>proportion of variance</b> in the <u>dep</u>endent
-        variable that is explained by the <u>indep</u>endent variable in a
-        regression model.
+        You have values for <b>two groups</b>. Calculating the <b>mean</b> and{' '}
+        <b>variance</b> for each group is straightforward.
       </p>
       <p>
-        It ranges from <code>0</code> to <code>1</code>, with higher values
-        indicating a stronger linear relationship.
+        But are the differences statistically significant? Can we conclude that
+        the groups are <b>meaningfully different</b>, or could the observed
+        differences be due to random chance?
       </p>
 
-      <h3>&rarr; effect size</h3>
+      <h3>&rarr; T-Test, p-Value, and Effect Size</h3>
       <p>
         The{' '}
         <a
-          href="https://en.wikipedia.org/wiki/Correlation_coefficient"
+          href="https://en.wikipedia.org/wiki/Student%27s_t-test"
           target="_blank"
         >
-          correlation coefficient
+          t-test
         </a>{' '}
-        (<code>r</code>) measures the <b>strength</b> and <b>direction</b> of a
-        linear relationship between two variables, ranging from <code>-1</code>{' '}
-        to <code>1</code>. R² is actually the square of the correlation
-        coefficient in a simple linear regression!
-      </p>
-      <p>
-        The correlation describes the <b>relationship</b> directly, R² focuses
-        on the <b>explanatory power </b>of a regression model.
+        is a statistical method designed precisely for this purpose. The result
+        is a <b>p-value</b>, which indicates the{' '}
+        <b>probability of observing the data </b>if the null hypothesis (no
+        difference between groups) is true.
       </p>
 
       {/*
@@ -79,30 +68,58 @@ export default function Home() {
       // Plot and code
       //
       */}
-      <h2 id="sandbox">🎮 Scatterplot, R², and Draggable Circles</h2>
+      <h2 id="sandbox">🎮 Visualizing the p-value</h2>
       <p>
-        Summary statistics are popular because they condense large datasets into
-        a few <b>easy-to-understand numbers</b>. However, relying solely on them
-        can lead to a <b>false sense of clarity</b>.
+        The sliders below let you experiment with <b>sample size</b>,{' '}
+        <b>effect size</b>
+        (average difference), and <b>standard deviation</b>. The values of both
+        groups are displayed on a <Link href="/boxplot">boxplot</Link> using
+        jittering to illustrate their distribution.
       </p>
       <p>
-        The graph below showcases datasets with high R² and correlation values,
-        even when there's clearly <b>no meaningful relationship</b> between x
-        and y.
+        Adjust the sliders to build an intuition about how the p-value changes!
       </p>
       <p>
-        Bonus: the circles are <b>draggable</b>! Experiment by moving them
-        around and watch how the R² and correlation change in real time. It’s a
-        great way to build intuition about these metrics.
+        For example, consider this scenario. With a standard deviation of{' '}
+        <code>4</code> and an effect size of <code>2</code>, the difference
+        won't be statistically significant with a sample size of <code>25</code>
+        . However, it will become significant if the sample size is increased to{' '}
+        <code>50</code>!
       </p>
 
       <ChartOrSandbox
         vizName={'TTestPlayground'}
         VizComponent={TTestPlaygroundDemo}
-        maxWidth={500}
-        height={580}
-        caption="Understand the pvalue."
+        maxWidth={700}
+        height={880}
+        caption="Explore how the p-value behaves."
       />
+
+      <h2 id="conclusion">Conclusion</h2>
+      <p>
+        In summary, increasing the sample size will always make a difference
+        statistically significant eventually. But{' '}
+        <b>does that mean it truly matters</b>? Sometimes yes, sometimes no—it
+        depends on the context.
+      </p>
+
+      <p>
+        Statistical tools like the p-values are valuable for analyzing data, but
+        they're just <b>one part of the bigger picture</b>.
+      </p>
+      <p>
+        Focusing solely on whether a result is "statistically significant" can
+        lead to <b>misleading interpretations</b> and overlook the practical
+        importance of findings.
+      </p>
+      <p>
+        By considering effect sizes, confidence intervals, and the context of
+        your data, you can draw conclusions that are not only statistically
+        sound but also <b>meaningful and impactful</b>.
+      </p>
+      <p>
+        Stop chasing the p-value. Start seeking the story behind the numbers!
+      </p>
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="flow" />

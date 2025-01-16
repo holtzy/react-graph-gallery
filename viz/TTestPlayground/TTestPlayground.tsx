@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Boxplot } from './Boxplot';
 import { jStat } from 'jstat';
 
-const HEADER_HEIGHT = 280;
+const HEADER_HEIGHT = 180;
 
 export const TTestPlaygroundDemo = ({ width = 700, height = 400 }) => {
-  const [sampleSize, setSampleSize] = useState(1000);
+  const [sampleSize, setSampleSize] = useState(100);
   const [effectSize, setEffectSize] = useState(0);
   const [stDev, setStDev] = useState(1);
 
@@ -37,14 +37,13 @@ export const TTestPlaygroundDemo = ({ width = 700, height = 400 }) => {
   const res = calculatePValue(vals1, vals2);
 
   const parameterSliders = (
-    <div className="flex flex-col items-start gap-2">
-      <span className="mt-2 font-thin">&rarr; Parameters</span>
+    <div className="flex flex-col items-start gap-2 py-6">
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <span className="text-sm w-32">Sample Size:</span>
         <input
           type="range"
           min={5}
-          max={1000}
+          max={200}
           value={sampleSize}
           step={5}
           onChange={(e) => setSampleSize(Number(e.target.value))}
@@ -84,16 +83,22 @@ export const TTestPlaygroundDemo = ({ width = 700, height = 400 }) => {
   );
 
   const results = (
-    <div className="flex flex-col items-start gap-2 mt-8">
-      <span className="mt-2 font-thin">&rarr; Results</span>
-      <span className="text-sm">{'p-value is ' + res.pValue?.toFixed(6)}</span>
+    <div className="pt-2">
+      <span className="text-sm border rounded-sm px-2 py-1 bg-slate-100">
+        {'p-value is ' + res.pValue?.toFixed(6)}
+      </span>
+      <span className="text-sm ml-6">
+        {res.pValue <= 0.05 && <span>✅ Significant</span>}
+        {res.pValue > 0.05 && <span>❌ Not Significant</span>}
+      </span>
     </div>
   );
 
   return (
     <div>
-      <div style={{ height: HEADER_HEIGHT }}>
+      <div style={{ height: HEADER_HEIGHT }} className="pl-12">
         {parameterSliders}
+        <hr />
         {results}
       </div>
 

@@ -4,6 +4,7 @@ import { getSummaryStats } from './summary-stats';
 import { AxisLeft } from './AxisLeft';
 import { AxisBottom } from './AxisBottomCategoric';
 import { VerticalBox } from './VerticalBox';
+import { Circle } from './Circle';
 
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 50 };
 const JITTER_WIDTH = 40;
@@ -19,6 +20,8 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
+  const sizeScale = d3.scaleLinear().domain([5, 420]).range([15, 2]);
+
   // Compute everything derived from the dataset:
   const { chartMin, chartMax, groups } = useMemo(() => {
     const [chartMin, chartMax] = d3.extent(data.map((d) => d.value)) as [
@@ -32,7 +35,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
   }, [data]);
 
   // Compute scales
-  const yScale = d3.scaleLinear().domain([-1, 20]).range([boundsHeight, 0]);
+  const yScale = d3.scaleLinear().domain([-10, 30]).range([boundsHeight, 0]);
 
   const xScale = d3
     .scaleBand()
@@ -58,7 +61,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
     const { min, q1, median, q3, max } = sumStats;
 
     const allCircles = groupData.map((value, i) => (
-      <circle
+      <Circle
         key={i}
         cx={
           xScale.bandwidth() / 2 -
@@ -66,9 +69,7 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
           Math.random() * JITTER_WIDTH
         }
         cy={yScale(value)}
-        r={4}
-        fill="grey"
-        fillOpacity={0.3}
+        r={sizeScale(data.length)}
       />
     ));
 
@@ -97,12 +98,8 @@ export const Boxplot = ({ width, height, data }: BoxplotProps) => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
-          {allShapes}
           <AxisLeft yScale={yScale} pixelsPerTick={30} />
-          {/* X axis uses an additional translation to appear at the bottom */}
-          <g transform={`translate(0, ${boundsHeight})`}>
-            <AxisBottom xScale={xScale} />
-          </g>
+          {allShapes}
         </g>
       </svg>
     </div>

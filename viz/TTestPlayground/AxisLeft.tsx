@@ -31,18 +31,14 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
           transform={`translate(0, ${yOffset})`}
           shapeRendering={'crispEdges'}
         >
-          <line
-            x1={-TICK_LENGTH}
-            x2={width + TICK_LENGTH}
-            stroke="#D2D7D3"
-            strokeWidth={0.5}
-          />
+          <line x1={-TICK_LENGTH} x2={800} stroke="#D2D7D3" strokeWidth={0.5} />
           <text
             key={value}
             style={{
               fontSize: '10px',
               textAnchor: 'middle',
-              transform: 'translateX(-20px)',
+              alignmentBaseline: 'central',
+              transform: 'translate(-20px, -2px)',
               fill: '#D2D7D3',
             }}
           >
