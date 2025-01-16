@@ -28,7 +28,7 @@ export default function Home() {
       <TitleAndDescription
         title="Stop chasing the p-value"
         description={graphDescription}
-        chartType="scatter"
+        chartType="boxplot"
       />
 
       {/*

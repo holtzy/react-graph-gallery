@@ -302,6 +302,15 @@ export const graphExampleList: GraphExample[] = [
     img: 'boxplot-horizontal.png',
     alt: 'Picture of a horizontal boxplot built with react and d3',
   },
+  {
+    link: '/example/t-test-playground',
+    title: 'Stop chasing the p-value',
+    description:
+      'A playground to compute a t-test in real time. Stop trusting the p-value only!',
+    img: 'boxplot-ttest-playground.png',
+    alt: 'Picture of a playground allowing to compute and visualize a t-test in real time',
+  },
+
   //
   // Ridgeline
   //

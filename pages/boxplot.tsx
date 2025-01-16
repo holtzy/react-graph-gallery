@@ -311,6 +311,7 @@ export default function Home() {
           'boxplot-jitter.png',
           'violinBoxplotTransition.png',
           'violinBucketSize.png',
+          'boxplot-ttest-playground.png',
         ]}
       />
 
