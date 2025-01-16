@@ -6,8 +6,8 @@ const HEADER_HEIGHT = 180;
 
 export const TTestPlaygroundDemo = ({ width = 700, height = 400 }) => {
   const [sampleSize, setSampleSize] = useState(100);
-  const [effectSize, setEffectSize] = useState(0);
-  const [stDev, setStDev] = useState(1);
+  const [effectSize, setEffectSize] = useState(2);
+  const [stDev, setStDev] = useState(3);
 
   const vals1 = generateNormalDistribution(
     10 + effectSize / 2,
