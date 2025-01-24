@@ -96,6 +96,7 @@ export const LineChart = ({
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+          overflow={'hidden'}
         >
           <rect
             x={-30}

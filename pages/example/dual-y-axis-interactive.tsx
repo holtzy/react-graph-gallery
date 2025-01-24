@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Layout } from 'component/Layout';
 import TitleAndDescription from 'component/TitleAndDescription';
 import ChartFamilySection from 'component/ChartFamilySection';
@@ -6,6 +6,7 @@ import { LineChartDualYAxisDemo } from '@/viz/LineChartDualYAxis/LineChartDualYA
 import { Button, buttonVariants } from '@/component/UI/button';
 import { cn } from '@/util/utils';
 import { DualRangeSlider } from '@/component/UI/dual-range-slider';
+import { useDimensions } from '@/hook/use-dimensions';
 
 const graphDescription = (
   <>
@@ -27,6 +28,9 @@ export default function PostDualY() {
   const [rightDomain, setRightDomain] = useState<[number, number]>([2, 3.3]);
 
   const [selectedScenario, setSelectedScenario] = useState(0);
+
+  const chartRef = useRef(null);
+  const chartSize = useDimensions(chartRef);
 
   return (
     <Layout title="Dual Y Axis: run away" seoDescription="TODO">
@@ -71,13 +75,13 @@ export default function PostDualY() {
         <b>the axis limits can be easily manipulated</b>, allowing the author to
         completely alter the perceived story.
       </p>
-      <p>Take a look at the following examples.</p>
       <p>
-        Each chart uses the <b>same data and design</b>, but the{' '}
-        <b>axis limits</b> vary, dramatically changing the interpretation:
+        Take a look at the following examples. Each chart uses the{' '}
+        <b>same data and design</b>, but the <b>axis limits</b> vary,
+        dramatically changing the interpretation:
       </p>
 
-      <div className="flex gap-2 items-center my-2">
+      <div className="flex gap-2 items-center my-4">
         <Button
           onClick={() => {
             setLeftDomain([44, 300]);
@@ -178,21 +182,23 @@ export default function PostDualY() {
         <span className="text-sm text-slate-700">0 baseline</span>
       </div>
 
-      <LineChartDualYAxisDemo
-        leftDomain={leftDomain}
-        rightDomain={rightDomain}
-      />
+      <div ref={chartRef} className="w-full" style={{ height: 400 }}>
+        <LineChartDualYAxisDemo
+          leftDomain={leftDomain}
+          rightDomain={rightDomain}
+          height={chartSize.height}
+          width={chartSize.width}
+        />
+      </div>
 
-      <div
-        style={{
-          height: 100,
-          marginLeft: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <div className="flex justify-between">
+      <p className="mt-4 text-sm text-slate-600">
+        If you prefer, you can also manually change the axis limits thanks to
+        the 2 sliders below:
+      </p>
+
+      <div className="flex gap-2">
+        <div className="flex flex-col gap-2 w-60">
+          <span className="text-sm text-slate-600">Left axis</span>
           <DualRangeSlider
             defaultValue={leftDomain}
             max={140}
@@ -202,7 +208,9 @@ export default function PostDualY() {
             className="max-w-44"
             ra
           />
-
+        </div>
+        <div className="flex flex-col gap-2 w-60">
+          <span className="text-sm text-slate-600">Right axis</span>
           <DualRangeSlider
             defaultValue={rightDomain}
             max={15}
@@ -214,6 +222,21 @@ export default function PostDualY() {
           />
         </div>
       </div>
+
+      <h2>Takeaway?</h2>
+      <p>
+        I don't want to write yet another post about when dual Y axes are
+        acceptable or what the alternatives are. Lisa already wrote the{' '}
+        <a href="https://blog.datawrapper.de/dualaxis/" target="_blank">
+          definitive article
+        </a>{' '}
+        on this topic, it's impossible to improve upon it.
+      </p>
+      <p>
+        My hope is that this interactive playground helps you gain a{' '}
+        <b>real intuition</b> about the issue. After all, as they say, an
+        interactive graph is worth a thousand words! 🙃
+      </p>
 
       {/* <ChartOrSandbox
         vizName={'LineChartDualYAxis'}
