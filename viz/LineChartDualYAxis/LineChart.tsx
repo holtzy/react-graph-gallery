@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
+import { Circle } from './Circle';
+import { LineItem } from './Line';
 
-const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
+const MARGIN = { top: 30, right: 60, bottom: 50, left: 60 };
 
 type DataPoint = { x: number; y: number; z: number };
 
@@ -9,16 +11,16 @@ type LineChartProps = {
   width: number;
   height: number;
   data: DataPoint[];
-  domainLeft: [number, number];
-  domainRight: [number, number];
+  leftDomain: [number, number];
+  rightDomain: [number, number];
 };
 
 export const LineChart = ({
   width,
   height,
   data,
-  domainLeft,
-  domainRight,
+  leftDomain,
+  rightDomain,
 }: LineChartProps) => {
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
@@ -27,18 +29,18 @@ export const LineChart = ({
   // Y axis (left)
   const yScaleLeft = d3
     .scaleLinear()
-    .domain(domainLeft)
+    .domain(leftDomain)
     .range([boundsHeight, 0]);
 
   // Y axis (right)
   const yScaleRight = d3
     .scaleLinear()
-    .domain(domainRight)
+    .domain(rightDomain)
     .range([boundsHeight, 0]);
 
   // X axis
   const xScale = useMemo(() => {
-    return d3.scaleLinear().domain([2004, 2023]).range([0, boundsWidth]);
+    return d3.scaleTime().domain([2004, 2023]).range([0, boundsWidth]);
   }, [data, width]);
 
   // Render the X and Y axis using d3.js, not react
@@ -47,18 +49,22 @@ export const LineChart = ({
     svgElement.selectAll('*').remove();
 
     const xAxisGenerator = d3.axisBottom(xScale);
+
     svgElement
       .append('g')
       .attr('transform', 'translate(0,' + boundsHeight + ')')
       .call(xAxisGenerator);
 
     const yAxisGenerator = d3.axisLeft(yScaleLeft);
-    svgElement.append('g').call(yAxisGenerator);
+    svgElement
+      .append('g')
+      .attr('transform', 'translate(-30,0)')
+      .call(yAxisGenerator);
 
     const yRightAxisGenerator = d3.axisRight(yScaleRight);
     svgElement
       .append('g')
-      .attr('transform', 'translate(' + boundsWidth + ', 0)')
+      .attr('transform', 'translate(' + (boundsWidth + 30) + ', 0)')
       .call(yRightAxisGenerator);
   }, [xScale, yScaleRight, yScaleLeft, boundsHeight]);
 
@@ -76,15 +82,11 @@ export const LineChart = ({
   const linePathRight = lineBuilderRight(data);
 
   const allCircleLeft = data.map((d) => {
-    return (
-      <circle cx={xScale(d.x)} cy={yScaleLeft(d.y)} r={5} fill="#9a6fb0" />
-    );
+    return <Circle cx={xScale(d.x)} cy={yScaleLeft(d.y)} color="#9a6fb0" />;
   });
 
   const allCircleRight = data.map((d) => {
-    return (
-      <circle cx={xScale(d.x)} cy={yScaleRight(d.z)} r={5} fill="orange" />
-    );
+    return <Circle cx={xScale(d.x)} cy={yScaleRight(d.z)} color="orange" />;
   });
 
   if (!linePathRight || !linePathLeft) {
@@ -99,21 +101,17 @@ export const LineChart = ({
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
         >
-          <path
-            d={linePathLeft}
-            opacity={1}
-            stroke="#9a6fb0"
-            fill="none"
-            strokeWidth={2}
+          <rect
+            x={-30}
+            width={boundsWidth + 30 * 2}
+            y={0}
+            height={boundsHeight}
+            className="bg-sl"
+            fill="#f8fafc"
           />
+          <LineItem path={linePathLeft} color="#9a6fb0" />
           {allCircleLeft}
-          <path
-            d={linePathRight}
-            opacity={1}
-            stroke="orange"
-            fill="none"
-            strokeWidth={2}
-          />
+          <LineItem path={linePathRight} color="orange" />
           {allCircleRight}
         </g>
         <g
