@@ -2,8 +2,11 @@ import { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 import { Circle } from './Circle';
 import { LineItem } from './Line';
+import { AxisBottom } from './AxisBottom';
 
 const MARGIN = { top: 30, right: 60, bottom: 50, left: 60 };
+const COLOR1 = '#9a6fb0';
+const COLOR2 = '#e0ac2b';
 
 type DataPoint = { x: number; y: number; z: number };
 
@@ -40,20 +43,13 @@ export const LineChart = ({
 
   // X axis
   const xScale = useMemo(() => {
-    return d3.scaleTime().domain([2004, 2023]).range([0, boundsWidth]);
+    return d3.scaleLinear().domain([2004, 2023]).range([0, boundsWidth]);
   }, [data, width]);
 
   // Render the X and Y axis using d3.js, not react
   useEffect(() => {
     const svgElement = d3.select(axesRef.current);
     svgElement.selectAll('*').remove();
-
-    const xAxisGenerator = d3.axisBottom(xScale);
-
-    svgElement
-      .append('g')
-      .attr('transform', 'translate(0,' + boundsHeight + ')')
-      .call(xAxisGenerator);
 
     const yAxisGenerator = d3.axisLeft(yScaleLeft);
     svgElement
@@ -82,11 +78,11 @@ export const LineChart = ({
   const linePathRight = lineBuilderRight(data);
 
   const allCircleLeft = data.map((d) => {
-    return <Circle cx={xScale(d.x)} cy={yScaleLeft(d.y)} color="#9a6fb0" />;
+    return <Circle cx={xScale(d.x)} cy={yScaleLeft(d.y)} color={COLOR1} />;
   });
 
   const allCircleRight = data.map((d) => {
-    return <Circle cx={xScale(d.x)} cy={yScaleRight(d.z)} color="orange" />;
+    return <Circle cx={xScale(d.x)} cy={yScaleRight(d.z)} color={COLOR2} />;
   });
 
   if (!linePathRight || !linePathLeft) {
@@ -109,11 +105,30 @@ export const LineChart = ({
             className="bg-sl"
             fill="#f8fafc"
           />
-          <LineItem path={linePathLeft} color="#9a6fb0" />
+
+          {/* Axes */}
+          <g transform={`translate(0, ${boundsHeight})`}>
+            <AxisBottom
+              xScale={xScale}
+              pixelsPerTick={80}
+              height={boundsHeight}
+            />
+          </g>
+
+          {/* axis title */}
+          <text x={-10} y={16} fontSize={12} fill={COLOR1}>
+            World GDP
+          </text>
+          <text x={boundsWidth - 60} y={16} fontSize={12} fill={COLOR2}>
+            France GDP
+          </text>
+
+          <LineItem path={linePathLeft} color={COLOR1} />
           {allCircleLeft}
-          <LineItem path={linePathRight} color="orange" />
+          <LineItem path={linePathRight} color={COLOR2} />
           {allCircleRight}
         </g>
+
         <g
           width={boundsWidth}
           height={boundsHeight}

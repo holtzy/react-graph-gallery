@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Layout } from 'component/Layout';
 import TitleAndDescription from 'component/TitleAndDescription';
 import ChartFamilySection from 'component/ChartFamilySection';
-import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import { LineChartDualYAxisDemo } from '@/viz/LineChartDualYAxis/LineChartDualYAxisDemo';
 import { Button, buttonVariants } from '@/component/UI/button';
 import { cn } from '@/util/utils';
 import { DualRangeSlider } from '@/component/UI/dual-range-slider';
-import { LineChart } from '@/viz/LineChartDualYAxis/LineChart';
 
 const graphDescription = (
   <>
@@ -33,7 +31,7 @@ export default function PostDualY() {
   return (
     <Layout title="Dual Y Axis: run away" seoDescription="TODO">
       <TitleAndDescription
-        title={<h1>Why you should avoid dual Y axis</h1>}
+        title={<h1>The Problem with Dual Y-Axes</h1>}
         description={graphDescription}
         chartType="line"
       />
@@ -67,12 +65,18 @@ export default function PostDualY() {
       // Plot and code
       //
       */}
-      <h2 id="plot">🚨 Dual Y axis charts are misleading</h2>
+      <h2 id="plot">🚨 Why Dual Y-Axis Charts Are Misleading</h2>
       <p>
-        The problem with dual Y axis line charts is that the author can tweak
-        the axis limits to completely change the story.
+        Dual Y-axis line charts are problematic because{' '}
+        <b>the axis limits can be easily manipulated</b>, allowing the author to
+        completely alter the perceived story.
       </p>
-      <p>Consider the following scenarios:</p>
+      <p>Take a look at the following examples.</p>
+      <p>
+        Each chart uses the <b>same data and design</b>, but the{' '}
+        <b>axis limits</b> vary, dramatically changing the interpretation:
+      </p>
+
       <div className="flex gap-2 items-center my-2">
         <Button
           onClick={() => {
@@ -87,10 +91,10 @@ export default function PostDualY() {
             })
           )}
         >
-          Apply
+          Scenario 1
         </Button>
         <span className="text-sm text-slate-700">
-          World GDP stale, France grows!
+          World flatlines, france surges!
         </span>
       </div>
 
@@ -108,10 +112,10 @@ export default function PostDualY() {
             })
           )}
         >
-          Apply
+          Scenario 2
         </Button>{' '}
         <span className="text-sm text-slate-700">
-          World GDP grows, France stales!
+          World surges, france flatlines!
         </span>
       </div>
 
@@ -129,11 +133,49 @@ export default function PostDualY() {
             })
           )}
         >
-          Apply
+          Scenario 3
         </Button>{' '}
         <span className="text-sm text-slate-700">
-          World GDP crosses france in 2011 🙈🙈🙈
+          World crosses France in 2011 🙈🙈🙈
         </span>
+      </div>
+
+      <div className="flex gap-2 items-center my-2">
+        <Button
+          onClick={() => {
+            setLeftDomain([40, 120]);
+            setRightDomain([2, 3.11]);
+            setSelectedScenario(3);
+          }}
+          className={cn(
+            buttonVariants({
+              size: 'sm',
+              variant: selectedScenario === 3 ? 'default' : 'secondary',
+            })
+          )}
+        >
+          Scenario 4
+        </Button>{' '}
+        <span className="text-sm text-slate-700">Correct Y axis limits</span>
+      </div>
+
+      <div className="flex gap-2 items-center my-2">
+        <Button
+          onClick={() => {
+            setLeftDomain([0, 125]);
+            setRightDomain([0, 3.3]);
+            setSelectedScenario(4);
+          }}
+          className={cn(
+            buttonVariants({
+              size: 'sm',
+              variant: selectedScenario === 4 ? 'default' : 'secondary',
+            })
+          )}
+        >
+          Scenario 5
+        </Button>{' '}
+        <span className="text-sm text-slate-700">0 baseline</span>
       </div>
 
       <LineChartDualYAxisDemo
