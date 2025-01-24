@@ -264,6 +264,7 @@ export default function Home() {
           'line-chart-synced-cursor.gif',
           'timeseries-moving-average.png',
           'radar-chart-animation.png',
+          'line-dual-Y-axis.png',
         ]}
       />
       {/*
@@ -281,7 +282,6 @@ export default function Home() {
       <ToDoSection text="How to add a tooltip" />
       <ToDoSection text="Multi groups line charts aka Spaghetti chart" />
       <ToDoSection text="Sync with a bar chart" />
-      <ToDoSection text="Dual Y Axis" />
       <ToDoSection text="Inline legend with Reppel" />
       <p>
         <br />

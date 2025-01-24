@@ -539,6 +539,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'line-chart-synced-cursor.gif',
     alt: 'line charts with synchronized cursors',
   },
+  {
+    link: '/example/dual-y-axis-interactive',
+    title: 'Dual Y axis chart',
+    description:
+      'How to make a dual Y axis chart, and why you should not make one.',
+    img: 'line-dual-Y-axis.png',
+    alt: 'dual Y axis line chart made with react',
+  },
 
   //
   // Area Plot
