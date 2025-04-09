@@ -1,24 +1,26 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { DataItem, Group, Subgroup } from './data';
-
-const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
+import { MARGIN, allSubgroups, colorScale } from './utils';
 
 type Props = {
   width: number;
   height: number;
   data: DataItem[];
+  highlightedSubgroup: Subgroup;
 };
 
-export const StackedBarplotAlternative = ({ width, height, data }: Props) => {
+export const StackedBarplotAlternative = ({
+  width,
+  height,
+  data,
+  highlightedSubgroup,
+}: Props) => {
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.left - MARGIN.right;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const allGroups: Group[] = data.map((d) => d.group);
-  const allSubgroups: Subgroup[] = Object.keys(data[0]).filter(
-    (key) => key !== 'group'
-  );
 
   const totalsPerGroup = data.map((d) => {
     const { group, ...segments } = d;
@@ -41,7 +43,8 @@ export const StackedBarplotAlternative = ({ width, height, data }: Props) => {
     .scaleBand<Subgroup>()
     .domain(allSubgroups)
     .range([0, xScaleGroups.bandwidth()])
-    .padding(0.05);
+    .paddingOuter(0.4)
+    .paddingInner(0.1);
 
   // Y scale
   const maxY = d3.max(totalsPerGroup, (d) => d.total) ?? 0;
@@ -52,39 +55,52 @@ export const StackedBarplotAlternative = ({ width, height, data }: Props) => {
     .range([boundsHeight, 0])
     .nice();
 
-  // Color scale based on segment
-  const color = d3
-    .scaleOrdinal<Subgroup, string>()
-    .domain(allSubgroups)
-    .range(['#28B463', '#F39C12', '#3498DB']);
-
   // Axes
   useEffect(() => {
     const svg = d3.select(axesRef.current);
     svg.selectAll('*').remove();
-
-    const xAxis = d3.axisBottom(xScaleGroups);
-    svg
-      .append('g')
-      .attr('transform', `translate(0, ${boundsHeight})`)
-      .call(xAxis);
-
     const yAxis = d3.axisLeft(yScale);
     svg.append('g').call(yAxis);
-  }, [xScaleGroups, yScale, boundsHeight]);
+  }, [yScale, boundsHeight]);
 
-  // Group Bars
+  // X axis
+  const xAxis = xScaleGroups.domain().map((grp) => {
+    return (
+      <text
+        x={xScaleGroups(grp) + xScaleGroups.bandwidth() / 2}
+        y={boundsHeight + 20}
+        textAnchor="middle"
+        fontSize={14}
+        letterSpacing={1.1}
+      >
+        {grp}
+      </text>
+    );
+  });
+
+  // Group Bars (grey background)
   const groupBars = totalsPerGroup.map((grp) => {
     return (
-      <rect
-        key={grp.group}
-        x={xScaleGroups(grp.group)}
-        y={yScale(grp.total)}
-        width={xScaleGroups.bandwidth()}
-        height={yScale(0) - yScale(grp.total)}
-        fill="#e0e0e0"
-        rx={2}
-      />
+      <>
+        <rect
+          key={grp.group}
+          x={xScaleGroups(grp.group)}
+          y={yScale(grp.total)}
+          width={xScaleGroups.bandwidth()}
+          height={yScale(0) - yScale(grp.total)}
+          fill="#e0e0e0"
+          rx={2}
+        />
+        <text
+          x={xScaleGroups(grp.group) + xScaleGroups.bandwidth() / 2}
+          y={yScale(grp.total) - 4}
+          fontSize={12}
+          textAnchor="middle"
+          fill="grey"
+        >
+          {grp.total}
+        </text>
+      </>
     );
   });
 
@@ -92,16 +108,37 @@ export const StackedBarplotAlternative = ({ width, height, data }: Props) => {
   const bars = data.map((group, i) => {
     return (
       <g key={i} transform={`translate(${xScaleGroups(group.group)}, 0)`}>
-        {allSubgroups.map((key) => (
-          <rect
-            key={key}
-            x={xScaleSubgroups(key)}
-            y={yScale(group[key])}
-            width={xScaleSubgroups.bandwidth()}
-            height={boundsHeight - yScale(group[key])}
-            fill={color(key)}
-          />
-        ))}
+        {allSubgroups.map((key) => {
+          const x = xScaleSubgroups(key);
+          if (!x) {
+            return;
+          }
+
+          return (
+            <g
+              opacity={
+                highlightedSubgroup === key ? 1 : highlightedSubgroup ? 0.2 : 1
+              }
+            >
+              <rect
+                key={key}
+                x={x}
+                y={yScale(group[key])}
+                width={xScaleSubgroups.bandwidth()}
+                height={boundsHeight - yScale(group[key])}
+                fill={colorScale(key)}
+              />
+              <text
+                x={x + xScaleSubgroups.bandwidth() / 2}
+                y={yScale(group[key]) - 4}
+                fontSize={12}
+                textAnchor="middle"
+              >
+                {group[key]}
+              </text>
+            </g>
+          );
+        })}
       </g>
     );
   });
@@ -109,6 +146,7 @@ export const StackedBarplotAlternative = ({ width, height, data }: Props) => {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+        {xAxis}
         {groupBars}
         {bars}
       </g>

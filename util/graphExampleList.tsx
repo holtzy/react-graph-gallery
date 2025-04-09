@@ -352,6 +352,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'barplot-stacked-vertical.png',
     alt: 'Picture of a vertical stacked barchart made with react and d3',
   },
+  {
+    link: '/example/barplot-stacked-alternative',
+    title: 'Stacked Barplot Alternative',
+    description:
+      'An alternative to the stacked barplot: grouped barplot plus background for total',
+    img: 'barplot-stacked-alternative.png',
+    alt: 'Picture of a grouped barplot used as a good alternative to the stacked barplot',
+  },
 
   //
   // Wordcloud

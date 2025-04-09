@@ -1,7 +1,7 @@
 import { data } from './data';
-import { StackedBarplotAlternative } from './StackedBarplotAlternative';
+import { ChartAndTitle } from './ChartAndTitle';
 
 export const BarplotStackedAlternativeDemo = ({
   width = 700,
-  height = 400,
-}) => <StackedBarplotAlternative data={data} width={width} height={height} />;
+  height = 700,
+}) => <ChartAndTitle data={data} width={width} height={height} />;

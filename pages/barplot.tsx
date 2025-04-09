@@ -232,6 +232,7 @@ export default function Home() {
         images={[
           'barplot-stacked-horizontal.png',
           'barplot-stacked-vertical.png',
+          'barplot-stacked-alternative.png',
         ]}
       />
       {/*

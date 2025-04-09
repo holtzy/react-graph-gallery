@@ -86,12 +86,20 @@ export default function Home() {
         straightforward. It’s essentially a set of barplots drawn within the
         bars of an initial barplot! 😋
       </p>
+      <p>
+        There’s a touch of <b>interactivity</b> here: hovering over a segment
+        name highlights it on the chart. This is achieved with the simplest
+        approach: an internal state that controls the opacity of each segment.
+        Check the{' '}
+        <Link href="/react-d3-dataviz-course">hover effect module</Link> to
+        learn more about this technique and other alternatives!
+      </p>
 
       <ChartOrSandbox
         vizName={'BarplotStackedAlternative'}
         VizComponent={BarplotStackedAlternativeDemo}
-        height={400}
-        maxWidth={600}
+        height={600}
+        maxWidth={850}
         caption="A variation to the usual stacked barplot built with d3.js and React."
       />
 
