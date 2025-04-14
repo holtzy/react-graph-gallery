@@ -9,6 +9,7 @@ import { BarplotBasicDemo } from '../viz/BarplotBasic/BarplotBasicDemo';
 import { ResponsiveExplanationSection } from '../component/ResponsiveExplanationSection';
 import { BarplotDatasetTransitionDemo } from '../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo';
 import GraphGallery from 'component/GraphGallery';
+import { BarplotVerticalDemo } from '@/viz/BarplotVertical/BarplotVerticalDemo';
 
 const graphDescription = (
   <>
@@ -247,10 +248,17 @@ export default function Home() {
         a matter of swaping the X and Y axes of the previous example.
       </p>
       <p>
-        This example will be publish soon, please{' '}
-        <Link href="/subscribe">subscribe</Link> below if you want to be
-        notified.
+        Here is a sandbox if you just need the code, but please read the{' '}
+        <Link href="/example/barplot-vertical">dedicated tutorial</Link> for
+        more explanations.
       </p>
+      <ChartOrSandbox
+        vizName={'BarplotVertical'}
+        VizComponent={BarplotVerticalDemo}
+        height={400}
+        maxWidth={600}
+        caption="Basic vertical barplot made with React and D3.js"
+      />
       {/*
       //
       // Hover effect
@@ -274,7 +282,11 @@ export default function Home() {
       </p>
       <br />
       <GraphGallery
-        images={['donut-barplot-transition.gif', 'barplot-the-economist.png']}
+        images={[
+          'donut-barplot-transition.gif',
+          'barplot-the-economist.png',
+          'barplot-vertical.png',
+        ]}
       />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />

@@ -367,6 +367,13 @@ export const graphExampleList: GraphExample[] = [
     img: 'barplot-the-economist.png',
     alt: 'Picture of a barplot made by the Economist',
   },
+  {
+    link: '/example/barplot-vertical',
+    title: 'Vertical barplot',
+    description: 'How to switch to a vertical barplot',
+    img: 'barplot-vertical.png',
+    alt: 'Picture of a vertical barplot',
+  },
 
   //
   // Wordcloud
