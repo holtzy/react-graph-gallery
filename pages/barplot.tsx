@@ -273,7 +273,9 @@ export default function Home() {
         to get details and code.
       </p>
       <br />
-      <GraphGallery images={['donut-barplot-transition.gif']} />
+      <GraphGallery
+        images={['donut-barplot-transition.gif', 'barplot-the-economist.png']}
+      />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="ranking" />
       <div className="mt-20" />

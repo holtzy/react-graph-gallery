@@ -360,6 +360,13 @@ export const graphExampleList: GraphExample[] = [
     img: 'barplot-stacked-alternative.png',
     alt: 'Picture of a grouped barplot used as a good alternative to the stacked barplot',
   },
+  {
+    link: '/example/barplot-the-economist',
+    title: 'The Economist Barplot repro',
+    description: 'Reproduction of a barplot made by The Economist',
+    img: 'barplot-the-economist.png',
+    alt: 'Picture of a barplot made by the Economist',
+  },
 
   //
   // Wordcloud
