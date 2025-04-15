@@ -400,7 +400,7 @@ export const lessonList: Lesson[] = [
   //
   //
   {
-    name: 'What is it?',
+    name: 'What is an hover effect?',
     description: (
       <>
         <p>
