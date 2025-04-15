@@ -10,6 +10,8 @@ import { ResponsiveExplanationSection } from '../component/ResponsiveExplanation
 import { BarplotDatasetTransitionDemo } from '../viz/BarplotDatasetTransition/BarplotDatasetTransitionDemo';
 import GraphGallery from 'component/GraphGallery';
 import { BarplotVerticalDemo } from '@/viz/BarplotVertical/BarplotVerticalDemo';
+import { ChartWithLink } from '@/component/ChartWithLink';
+import { BarplotStreamgraphHoverEffectDemo } from '@/viz/BarplotStreamgraphHoverEffect/BarplotStreamgraphHoverEffectDemo';
 
 const graphDescription = (
   <>
@@ -266,10 +268,24 @@ export default function Home() {
       */}
       <h2 id="hover effect">Hover effect</h2>{' '}
       <p>
-        This example will be publish soon, please{' '}
-        <Link href="subscribe">subscribe</Link> to the newsletter if you want to
-        be notified.
+        There are several strategies to implement a hover effect. If you're not
+        exactly sure what you're doing, I highly recommend reading the{' '}
+        <Link href="/course/hover-effect/introduction">hover effect</Link>{' '}
+        section of the gallery first.
       </p>
+      <p>
+        This example uses strategy #4: connecting two charts through a{' '}
+        <b>shared internal state</b>.
+      </p>
+      <ChartWithLink
+        VizComponent={BarplotStreamgraphHoverEffectDemo}
+        maxWidth={900}
+        height={400}
+        caption={
+          'A barplot and a streamgraph side by side, connected by an hover effect.'
+        }
+        link="/example/barplot-hover-effect"
+      />
       {/*
       //
       // Variations

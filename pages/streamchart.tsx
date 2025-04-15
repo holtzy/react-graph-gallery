@@ -14,6 +14,8 @@ import { LinkAsButton } from 'component/LinkAsButton';
 import { StreamGraphHoverEffectDemo } from 'viz/StreamGraphHoverEffect/StreamGraphHoverEffectDemo';
 import { StreamGraphShapeTransitionDemo } from 'viz/StreamGraphShapeTransition/StreamGraphShapeTransitionDemo';
 import { ToDoSection } from 'component/UI/ToDoSection';
+import { ChartWithLink } from '@/component/ChartWithLink';
+import { BarplotStreamgraphHoverEffectDemo } from '@/viz/BarplotStreamgraphHoverEffect/BarplotStreamgraphHoverEffectDemo';
 
 const graphDescription = (
   <>
@@ -232,10 +234,25 @@ export default function Home() {
         shape that is hovered over will keep its full opacity thanks to a more{' '}
         <b>specific</b> css selector.
       </p>
-      <p>Hover effect is a big topic and I will post more about it soon!</p>
-      <LinkAsButton href="/subscribe" isFilled size="sm">
-        {'Know when'}
-      </LinkAsButton>
+      <p>
+        Another common challenge is to connect the streamgraph with another UI
+        element. Here is an example connecting it with a barplot:
+      </p>
+      <ChartWithLink
+        VizComponent={BarplotStreamgraphHoverEffectDemo}
+        maxWidth={900}
+        height={400}
+        caption={
+          'A barplot and a streamgraph side by side, connected by an hover effect.'
+        }
+        link="/example/barplot-hover-effect"
+      />
+      <p>
+        There are several strategies to implement hover effect. If you're not
+        exactly sure what you're doing, I highly recommend reading the{' '}
+        <Link href="/course/hover-effect/introduction">hover effect</Link>{' '}
+        section of the gallery first.
+      </p>
       {/*
       //
       // Inspiration

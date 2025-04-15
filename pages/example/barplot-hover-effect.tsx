@@ -5,14 +5,13 @@ import ChartFamilySection from 'component/ChartFamilySection';
 import { ChartOrSandbox } from 'component/ChartOrSandbox';
 import Link from 'next/link';
 import GraphGallery from 'component/GraphGallery';
-import { CodeBlock } from '@/component/UI/CodeBlock';
 import { BarplotStreamgraphHoverEffectDemo } from '@/viz/BarplotStreamgraphHoverEffect/BarplotStreamgraphHoverEffectDemo';
 
 const graphDescription = (
   <>
     <p>
       This article is an addition to the <Link href="/barplot">barplot</Link>{' '}
-      and <Link href="/streamgraph">Streamgraph</Link> sections of the gallery.
+      and <Link href="/streamchart">Streamgraph</Link> sections of the gallery.
     </p>
     <p>
       It dives into hover effects, and implements 2 different effects. If you
@@ -75,8 +74,9 @@ export default function Home() {
         <code>highlightedGroup</code> prop.
       </p>
       <p>
-        This approach is explained in detail in the "hover effect" section of
-        the gallery!
+        This approach is explained in detail in the{' '}
+        <Link href="/course/hover-effect/internal-state">hover effect</Link>{' '}
+        section of the gallery!
       </p>
 
       {/*
