@@ -115,7 +115,7 @@ export default function Home() {
 import { scaleLinear } from "d3";
 
 // Use it in your code
-cons xScale = scaleLinear()
+const xScale = scaleLinear()
         `}
       />
       {/* -
