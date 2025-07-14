@@ -114,7 +114,7 @@ export default function Home() {
       </p>
       <CodeBlock
         code={`
-<text x="50" y="50" fill="black">Hello, SVG!</text>
+<text x="50" y="50" fill="red">Hello, SVG!</text>
 `.trim()}
       />
       <p>

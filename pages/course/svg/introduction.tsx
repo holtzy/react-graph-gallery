@@ -338,9 +338,12 @@ const exercices: Exercise[] = [
     toDo: (
       <>
         <p>
-          Add some <b>inline style</b> to the svg area below. Use the{' '}
-          <code>backgroundColor</code>
-          property to change the background to <code>grey</code>.
+          Add a <code>rect</code> SVG element with the same dimensions as the
+          SVG area. Add some <b>inline style</b> to the svg area below.
+        </p>
+        <p>
+          Use the <code>backgroundColor</code> property to change the background
+          to <code>grey</code>.
         </p>
       </>
     ),

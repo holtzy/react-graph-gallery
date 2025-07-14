@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
 import { lessonList } from '@/util/lessonList';
@@ -270,10 +271,14 @@ export default function Home() {
       <p>
         Setting SVG dimensions to "100%" can lead to unexpected results,
         especially in responsive designs. SVGs can scale based on their
-        container, but how they scale depends on the viewBox and
-        preserveAspectRatio attributes. Understanding these attributes is key to
-        ensuring your SVGs display correctly across different screen sizes. For
-        more details, refer to our module on responsiveness.
+        container, but how they scale depends on the <code>viewBox</code> and{' '}
+        <code>preserveAspectRatio</code> attributes. Understanding these
+        attributes is key to ensuring your SVGs display correctly across
+        different screen sizes. For more details, refer to our{' '}
+        <Link href="/course/responsiveness/introduction">
+          module on responsiveness
+        </Link>
+        .
       </p>
 
       <h2>8️⃣ Filters, Blur Effects, and Gradients</h2>
@@ -295,7 +300,7 @@ export default function Home() {
         when layering elements to achieve the desired visual effect.
       </p>
       <div className="full-bleed my-4 max-w-7xl mx-auto">
-        <CodeSandbox vizName="exercise/SvgStackingOrderSolution" />
+        <CodeSandbox vizName="/exercise/SvgStackingOrderSolution" />
       </div>
 
       <h2>🔟 Dealing with Blurry SVG Elements</h2>
