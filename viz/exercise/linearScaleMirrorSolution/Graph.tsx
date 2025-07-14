@@ -2,15 +2,13 @@ import { scaleLinear } from 'd3';
 
 const WIDTH = 500;
 const PADDING_CENTER = 20;
+const LEFT_LINE_X = WIDTH / 2 - PADDING_CENTER / 2;
+const RIGHT_LINE_X = WIDTH / 2 + PADDING_CENTER / 2;
 
 export const Graph = () => {
-  const scaleLeft = scaleLinear()
-    .domain([100, 0])
-    .range([0, WIDTH / 2 - PADDING_CENTER / 2]);
+  const scaleLeft = scaleLinear().domain([0, 100]).range([0, LEFT_LINE_X]);
 
-  const scaleRight = scaleLinear()
-    .domain([0, 100])
-    .range([0, WIDTH / 2 + PADDING_CENTER / 2, WIDTH]);
+  const scaleRight = scaleLinear().domain([0, 100]).range([0, RIGHT_LINE_X]);
 
   return (
     <svg width={WIDTH} height={300}>
@@ -27,9 +25,9 @@ export const Graph = () => {
 
       {/* Grid */}
       <line
-        x1={WIDTH / 2 - PADDING_CENTER / 2}
+        x1={LEFT_LINE_X}
         y1={0}
-        x2={WIDTH / 2 - PADDING_CENTER / 2}
+        x2={LEFT_LINE_X}
         y2={300}
         stroke={'black'}
       />
@@ -43,47 +41,47 @@ export const Graph = () => {
 
       {/* Right Bars */}
       <rect
-        x={scaleRight(0)}
+        x={RIGHT_LINE_X}
         y={50}
         height={30}
-        width={scaleRight(12) - scaleRight(0)}
+        width={scaleRight(12)}
         fill="#69b3a2"
       />
       <rect
-        x={scaleRight(0)}
+        x={RIGHT_LINE_X}
         y={100}
         height={30}
-        width={scaleRight(43) - scaleRight(0)}
+        width={scaleRight(43)}
         fill="#69b3a2"
       />
       <rect
-        x={scaleRight(0)}
+        x={RIGHT_LINE_X}
         y={150}
         height={30}
-        width={scaleRight(98) - scaleRight(0)}
+        width={scaleRight(98)}
         fill="#69b3a2"
       />
 
       {/* Left Bars */}
       <rect
-        x={scaleLeft(23)}
+        x={LEFT_LINE_X - scaleLeft(23)}
         y={50}
         height={30}
-        width={scaleLeft(0) - scaleLeft(23)}
+        width={scaleLeft(23)}
         fill="#69b3a2"
       />
       <rect
-        x={scaleLeft(55)}
+        x={LEFT_LINE_X - scaleLeft(55)}
         y={100}
         height={30}
-        width={scaleLeft(0) - scaleLeft(55)}
+        width={scaleLeft(55)}
         fill="#69b3a2"
       />
       <rect
-        x={scaleLeft(87)}
+        x={LEFT_LINE_X - scaleLeft(87)}
         y={150}
         height={30}
-        width={scaleLeft(0) - scaleLeft(87)}
+        width={scaleLeft(87)}
         fill="#69b3a2"
       />
     </svg>
