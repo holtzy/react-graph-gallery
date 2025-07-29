@@ -94,7 +94,9 @@ export type ChartId =
   | 'animation'
   | 'cheatSheets'
   | 'caveats'
-  | '3d';
+  | '3d'
+  | 'generative'
+
 
 export type ChartFamily =
   | 'distribution'
@@ -104,7 +106,8 @@ export type ChartFamily =
   | 'partOfAWhole'
   | 'general'
   | 'flow'
-  | 'map';
+  | 'map'
+  | 'generative'
 
 export type ChartTypesInfo = {
   id: ChartId;
