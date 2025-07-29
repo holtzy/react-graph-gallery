@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import { data } from './data';
 import { Plot } from './Plot';
 
 const rootElement = document.getElementById('root');
