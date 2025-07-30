@@ -5,6 +5,7 @@ import ChartFamilySection from '../component/ChartFamilySection';
 import { ImageGrid } from 'component/UI/ImageGrid';
 import { GraphLinkImage } from 'component/UI/GraphLinkImage';
 import { graphExampleList } from 'util/graphExampleList';
+import GraphGallery from '@/component/GraphGallery';
 
 const graphDescription = (
   <>
@@ -16,17 +17,6 @@ const graphDescription = (
 );
 
 export default function Home() {
-  const allImages = graphExampleList.map((example, i) => (
-    <GraphLinkImage
-      key={i}
-      link={example.link}
-      title={example.title}
-      description={<p>{example.description}</p>}
-      img={example.img}
-      alt={example.alt}
-    />
-  ));
-
   return (
     <Layout
       title="All graphs"
@@ -38,8 +28,7 @@ export default function Home() {
         chartType="generative"
       />
 
-      <ImageGrid>{allImages}</ImageGrid>
-
+      <GraphGallery images={['GenArtIntroPerlin.webp']} />
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="correlation" />
       <div className="mt-20" />

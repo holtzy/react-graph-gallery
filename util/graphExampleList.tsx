@@ -704,6 +704,17 @@ export const graphExampleList: GraphExample[] = [
     img: 'network-les-miserables.png',
     alt: 'Picture of a force directed network chart showing character co-occurence in les miserables',
   },
+  //
+  // Generative
+  //
+  {
+    link: '/generative/intro-to-perlin-noise.tsx',
+    title: 'Intro to 1D perlin noise',
+    description:
+      'The most simple intro to perlin noise, and how to draw it in react',
+    img: 'GenArtIntroPerlin.webp',
+    alt: 'Picture of 1D perlin noise visualized with a line chart in react',
+  },
   //   {
   //     link: "",
   //     title: "",

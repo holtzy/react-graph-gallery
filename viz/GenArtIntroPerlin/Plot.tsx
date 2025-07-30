@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef, useEffect, useState, useMemo } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import { createNoise2D } from 'simplex-noise';
 import { setupHiDPICanvas } from './setupHiDPICanvas';
 import { scaleLinear } from 'd3';
+import { exportCanvasAsImage } from '../../util/exportCanvas';
 
 type PlotProps = { width: number; height: number };
 
@@ -22,8 +23,9 @@ export const Plot = ({ width, height }: PlotProps) => {
     const ctx = setupHiDPICanvas(canvasRef.current, width, height);
     if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#ebf4fa';
+    ctx.fillRect(0, 0, width, height);
 
-    ctx.strokeStyle = '#6a4c93';
     ctx.globalAlpha = 1;
     ctx.lineWidth = 2;
 
@@ -36,6 +38,13 @@ export const Plot = ({ width, height }: PlotProps) => {
     }
 
     ctx.stroke();
+    if (canvasRef.current && width > 0 && height > 0) {
+      exportCanvasAsImage(
+        canvasRef.current,
+        'GenArtIntroPerlin.webp',
+        'image/webp'
+      );
+    }
   }, [width, height]);
 
   return <canvas ref={canvasRef} style={{ display: 'block', width, height }} />;
