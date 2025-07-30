@@ -708,7 +708,7 @@ export const graphExampleList: GraphExample[] = [
   // Generative
   //
   {
-    link: '/generative/intro-to-perlin-noise.tsx',
+    link: '/generative/intro-to-perlin-noise',
     title: 'Intro to 1D perlin noise',
     description:
       'The most simple intro to perlin noise, and how to draw it in react',

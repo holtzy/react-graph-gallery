@@ -10,8 +10,9 @@ import { GenArtIntroPerlinSliderDemo } from '@/viz/GenArtIntroPerlinSlider/GenAr
 const graphDescription = (
   <>
     <p>
-      Perlin noise is a concept widely used in generative art. Let's discover
-      what it is with 1D perlin noise and see how to build it with react.
+      Perlin noise is a foundational concept in generative art, enabling the
+      creation of organic, natural-looking randomness. Let’s explore what Perlin
+      noise is, how it works in one dimension, and how you can use it in React.
     </p>
   </>
 );
@@ -33,14 +34,15 @@ export default function Home() {
       // Definitiion
       //
       */}
-      <h2 id="Definition">What is Perlin Noise</h2>
+      <h2 id="Definition">What is Perlin Noise?</h2>
       <p>
-        Perline noise is basically a way to generate pseudo random values. They
-        are at the origin of beautiful shape,generation.
+        Perlin noise is a technique for generating smooth, pseudo-random values.
+        It’s the secret behind many beautiful, naturally varying shapes and
+        textures in generative art and computer graphics.
       </p>
       <p>
-        Honestly this video by the coding train is simply the best to understand
-        how it works, so there is no reason for trying to eplain it better!
+        If you want a fantastic introduction, check out this video by The Coding
+        Train—it explains Perlin noise better than words alone ever could!
       </p>
       <iframe
         src="https://www.youtube.com/embed/Qf4dIN99e2w"
@@ -49,8 +51,7 @@ export default function Home() {
         allowFullScreen
       ></iframe>
       <p>
-        NOw, let's see how we can implement the most simple perlin noise example
-        in react.
+        Now, let’s see how to implement a simple Perlin noise example in React.
       </p>
 
       {/*
@@ -58,22 +59,22 @@ export default function Home() {
       // React implementation
       //
       */}
-      <h2 id="noise function">React implementation</h2>
+      <h2 id="noise function">React Implementation</h2>
       <p>
-        There is a js library that implents perlin noise for us:{' '}
+        There’s a handy JavaScript library for Perlin noise called{' '}
         <a href="https://github.com/jwagner/simplex-noise.js" target="_blank">
           simplex-noise
         </a>
+        .
       </p>
       <p>
-        It comes with a function called <code>createNoise2D</code> that expects
-        2 arguments as it is made to work with 2d perlin noise. The first
-        argument is the "offset": where about you pick a noise value. If you
-        pick 2 close offset values, the output values will be close too!{' '}
+        This library provides a <code>createNoise2D</code> function, which
+        generates 2D Perlin noise. The first argument is the “offset”—the
+        position where you sample the noise. If you use two nearby offsets, the
+        resulting values will also be close, creating smooth transitions.
       </p>
       <p>
-        We can pass a zero to the second argument to simulate a 1d perlin noise
-        function.
+        To simulate 1D Perlin noise, simply pass zero as the second argument.
       </p>
       <CodeBlock
         code={`
@@ -87,9 +88,10 @@ noise(10, 0)      // returns -0.4
       />
 
       <p>
-        It is advised to call the function in a useMemo call to make sure the
-        noise generatore won"t be reinstantiated and will thus keep giving the
-        same values when the component rerenders.
+        For best results, create the noise generator inside a{' '}
+        <code>useMemo</code> hook. This ensures the generator isn’t recreated on
+        every render, so you get consistent noise values each time your
+        component updates.
       </p>
 
       {/*
@@ -97,26 +99,30 @@ noise(10, 0)      // returns -0.4
       // Plot 1
       //
       */}
-      <h2 id="plot">Drawing the noise</h2>
-
+      <h2 id="plot">Visualizing Perlin Noise</h2>
       <p>
-        Let's make a loop along all the pixels of our total width. This is the x
-        value of our line chart.
+        Let’s loop through every pixel along the width of our chart—these will
+        be our x-values.
       </p>
       <p>
-        For each pixel, we will compute the related noise value. We will
-        increase the x offset by 0.01. so do noise(0,0) for the first pixel.
-        Then noise(0.01, 0) for the second pixel, noise(0.02, 0) for the third
-        and so on. The output goes between -1 and 1 and plot it on the Y axis.
+        For each pixel, we’ll calculate the corresponding noise value by
+        incrementing the x offset by 0.01 each time. For example:{' '}
+        <code>noise(0, 0)</code> for the first pixel,{' '}
+        <code>noise(0.01, 0)</code> for the next, <code>noise(0.02, 0)</code>{' '}
+        for the third, and so on. The output ranges from -1 to 1, which we’ll
+        plot on the y-axis.
       </p>
-      <p>Talk about the x offset.</p>
+      <p>
+        (Tip: Experiment with the x offset to see how it affects the smoothness
+        of the noise!)
+      </p>
 
       <ChartOrSandbox
         vizName={'GenArtIntroPerlin'}
         VizComponent={GenArtIntroPerlinDemo}
         maxWidth={500}
         height={500}
-        caption={<span>Basic Perlin noise</span>}
+        caption={<span>Simple Perlin noise visualization</span>}
       />
 
       {/*
@@ -124,27 +130,30 @@ noise(10, 0)      // returns -0.4
       // Slider
       //
       */}
-      <h2 id="slider">Playing with x offset</h2>
-
+      <h2 id="slider">Play with the X Offset</h2>
       <p>
-        Let's make a loop along all the pixels of our total width. This is the x
-        value of our line chart.
+        Now, let’s add some interactivity! We’ll again loop through all the
+        pixels along the width, using each as an x-value for our line chart.
       </p>
       <p>
-        For each pixel, we will compute the related noise value that goes
-        between -1 and 1 and plot it on the Y axis.
+        For each pixel, we’ll compute its noise value (between -1 and 1) and
+        plot it on the y-axis. Try adjusting the x offset to see how the pattern
+        shifts and evolves.
       </p>
-      <p>Talk about the x offset.</p>
+      <p>
+        (Notice how changing the x offset changes the “texture” of the
+        noise—this is a powerful tool for generative art!)
+      </p>
 
-      {/* <ChartOrSandbox
+      <ChartOrSandbox
         vizName={'GenArtIntroPerlinSlider'}
         VizComponent={GenArtIntroPerlinSliderDemo}
         maxWidth={500}
         height={500}
         caption={<span>Basic Perlin noise</span>}
-      /> */}
+      />
 
-      <p>Here is a suggestion to implement it:</p>
+      <p>Here’s a suggestion for how you might implement this:</p>
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="distribution" />
       <div className="mt-20" />

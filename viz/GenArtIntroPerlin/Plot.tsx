@@ -38,13 +38,14 @@ export const Plot = ({ width, height }: PlotProps) => {
     }
 
     ctx.stroke();
-    if (canvasRef.current && width > 0 && height > 0) {
-      exportCanvasAsImage(
-        canvasRef.current,
-        'GenArtIntroPerlin.webp',
-        'image/webp'
-      );
-    }
+
+    // if (canvasRef.current && width > 0 && height > 0) {
+    //   exportCanvasAsImage(
+    //     canvasRef.current,
+    //     'GenArtIntroPerlin.webp',
+    //     'image/webp'
+    //   );
+    // }
   }, [width, height]);
 
   return <canvas ref={canvasRef} style={{ display: 'block', width, height }} />;

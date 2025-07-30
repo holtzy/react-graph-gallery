@@ -21,9 +21,11 @@ export const Plot = ({ width, height }: PlotProps) => {
   useEffect(() => {
     const ctx = setupHiDPICanvas(canvasRef.current, width, height);
     if (!ctx) return;
-    ctx.clearRect(0, 0, width, height);
 
-    ctx.strokeStyle = '#6a4c93';
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#ebf4fa';
+    ctx.fillRect(0, 0, width, height);
+
     ctx.globalAlpha = 1;
     ctx.lineWidth = 2;
 
