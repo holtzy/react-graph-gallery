@@ -4,8 +4,8 @@ import { setupHiDPICanvas } from './setupHiDPICanvas';
 import { scaleLinear } from 'd3';
 
 // Animation speed
-const X_OFFSET = 0.01;
-const ANIMATION_SPEED = 0.015;
+const X_OFFSET = 0.001;
+const ANIMATION_SPEED = 0.002;
 
 type PlotProps = { width: number; height: number };
 
@@ -17,6 +17,8 @@ export const Plot = ({ width, height }: PlotProps) => {
   const noise = useMemo(() => createNoise2D(), []);
   const offsetRef = useRef(0);
 
+  const shiftScale = scaleLinear().range([0.8, 1]).domain([-1, 1]);
+
   useEffect(() => {
     let running = true;
     function draw() {
@@ -27,13 +29,25 @@ export const Plot = ({ width, height }: PlotProps) => {
       ctx.fillRect(0, 0, width, height);
       ctx.globalAlpha = 1;
       ctx.lineWidth = 2;
+
       ctx.beginPath();
+      const xShift = noise(offsetRef.current * 4, 0);
       for (let x = 0; x < width; x += 1) {
         const value = noise(x * X_OFFSET + offsetRef.current, 0);
         const y = yScale(value);
-        ctx.lineTo(x, y);
+        ctx.lineTo(x * shiftScale(xShift), y);
       }
       ctx.stroke();
+
+      ctx.beginPath();
+      const xShift2 = noise(offsetRef.current * 4 + 10, 0);
+      for (let x = 0; x < width; x += 1) {
+        const value = noise(x * X_OFFSET + offsetRef.current + 4, 0);
+        const y = yScale(value);
+        ctx.lineTo(x * shiftScale(xShift2), y);
+      }
+      ctx.stroke();
+
       offsetRef.current += ANIMATION_SPEED;
       if (running) {
         animationRef.current = requestAnimationFrame(draw);
