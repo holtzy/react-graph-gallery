@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Layout } from 'component/Layout';
 import TitleAndDescription from 'component/TitleAndDescription';
 import ChartFamilySection from 'component/ChartFamilySection';
@@ -126,15 +126,11 @@ export default function Home() {
           <div className="col-span-6 inline-block">
             <div className="h-20" />
 
-            <div
-              id="0"
-              ref={(el) => (sectionRefs.current[0] = el)}
-              className={cn(
-                activeSection === 0 ? 'opacity-100' : 'opacity-20',
-                'transition-opacity duration-500'
-              )}
+            <Step
+              index={0}
+              active={activeSection === 0}
+              sectionRefs={sectionRefs}
             >
-              <PillNumber number={0} />
               <p>
                 Everything starts with a pretty classic line chart. Each line
                 shows the proportion of a group of comments. The comments
@@ -143,130 +139,145 @@ export default function Home() {
               </p>
               <p>
                 From the graph style, I'm pretty sure it's been made using
-                Python and Matplotlib!
+                Python and Matplotlib.
               </p>
-            </div>
+            </Step>
 
-            <div className="h-20" />
-            <div className="h-20" />
-
-            <div
-              id="1"
-              ref={(el) => (sectionRefs.current[1] = el)}
-              className={cn(
-                activeSection === 1 ? 'opacity-100' : 'opacity-20',
-                'transition-opacity duration-500'
-              )}
+            <Step
+              index={1}
+              active={activeSection === 1}
+              sectionRefs={sectionRefs}
             >
-              <PillNumber number={1} />
               <p>
                 My first step was to reproduce this graph. Not easy, as the
-                underlying data is not sadly available anywhere.. In a perfect
-                world everything would be hosted on Github together with the
-                code but hey 🤷‍♂️.
+                underlying data is not available anywhere. In a perfect world
+                everything would be hosted on Github together with the code but
+                hey 🤷‍♂️
               </p>
               <p>
-                Anyway, I gave the chart to a LLM to get some approximate data
-                and reproduce the chart using Javascript and D3.js. The result
-                is pretty close isnt't it? Now, let's start the fun.
+                I gave the chart to a LLM to extract approximate data and
+                rebuilt it using Javascript and D3. The result is quite close
+                isn't it? Now the fun starts.
               </p>
-            </div>
+            </Step>
 
-            <div className="h-20" />
-            <div className="h-20" />
-
-            <div
-              id="2"
-              ref={(el) => (sectionRefs.current[2] = el)}
-              className={cn(
-                activeSection === 2 ? 'opacity-100' : 'opacity-20',
-                'transition-opacity duration-500'
-              )}
+            <Step
+              index={2}
+              active={activeSection === 2}
+              sectionRefs={sectionRefs}
             >
-              <PillNumber number={2} />
               <p>
-                Next, let’s polish how the mapped variables appear by adjusting
-                their{' '}
-                <b className="simple-highlight-teal">&nbsp;scales&nbsp;</b>.
+                The legend forces readers to jump back and forth to understand
+                the lines. It creates unnecessary cognitive load.
               </p>
-              <p>
-                For the <code>size</code> aesthetic, we use{' '}
-                <code>scale_size_area()</code> to ensure the <b>circle areas</b>{' '}
-                reflect population accurately. Inside the <code>scale</code>, we
-                define meaningful breaks and replace large numbers with clear
-                labels like “10 Million” or “1 Billion.”
-              </p>
-            </div>
+              <p>Direct labeling fixes it.</p>
+            </Step>
 
-            <div className="h-20" />
-            <div className="h-20" />
-
-            <div
-              id="3"
-              ref={(el) => (sectionRefs.current[3] = el)}
-              className={cn(
-                activeSection === 3 ? 'opacity-100' : 'opacity-20',
-                'transition-opacity duration-500'
-              )}
+            <Step
+              index={3}
+              active={activeSection === 3}
+              sectionRefs={sectionRefs}
             >
-              <PillNumber number={3} />
               <p>
-                Then, we use{' '}
-                <b>
-                  <b>
-                    <code>theme()</code>
-                  </b>
-                </b>{' '}
-                to fine-tune the{' '}
-                <b className="simple-highlight-teal">
-                  &nbsp;overall legend layout&nbsp;
-                </b>
-                .
+                A simple improvement: remove the spine. It adds clutter without
+                conveying any information.
               </p>
-              <p>
-                We move the legends to the top, align them to the left, and
-                stack them vertically. Titles appear above the keys, labels
-                below, and text styling uses bold typography for clarity.
-              </p>
-              <p>
-                Tweaking spacing and key dimensions enhances readability and
-                gives the chart a clean, professional balance.
-              </p>
-            </div>
+            </Step>
 
-            <div className="h-20" />
-            <div className="h-20" />
-
-            <div
-              id="4"
-              ref={(el) => (sectionRefs.current[4] = el)}
-              className={cn(
-                activeSection === 4 ? 'opacity-100' : 'opacity-20',
-                'transition-opacity duration-500'
-              )}
+            <Step
+              index={4}
+              active={activeSection === 4}
+              sectionRefs={sectionRefs}
             >
-              <PillNumber number={4} />
               <p>
-                Finally,{' '}
-                <b>
-                  <code>guide_*()</code>
-                </b>{' '}
-                functions control the{' '}
-                <b className="simple-highlight-teal">
-                  &nbsp;legend-specific details&nbsp;
-                </b>
-                , allowing you to fine-tune each legend independently.
+                I’m not a big fan of dense grid lines. In our decluttering
+                mission, removing the horizontal ones is an easy win.
               </p>
-              <p>
-                You can include a <code>guide_*()</code> call inside{' '}
-                <code>guides()</code> — as we do here — or pass it directly
-                through the <code>guide</code> argument of the corresponding
-                <code>scale_*()</code>.
-              </p>
-            </div>
+            </Step>
 
-            <div className="h-20" />
-            <div className="h-20" />
+            <Step
+              index={5}
+              active={activeSection === 5}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                Let's improve the Y axis. The axis title is kind of useless, we
+                just have to add a % next to the numbers and everything gets
+                more obvious, with less clutter!
+              </p>
+            </Step>
+
+            <Step
+              index={6}
+              active={activeSection === 6}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                Now it's obvious that the X axis needs an improvement too! The
+                nuber <code>20</code> was repeated so many times! Let's show
+                only what matters shall we?
+              </p>
+              <p>
+                Also, it's pretty obvious that it's a year, so the Axis title
+                isn't really useful was it?
+              </p>
+            </Step>
+
+            <Step
+              index={7}
+              active={activeSection === 7}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                The author name label at the top right was annoying. It's
+                competing with the most interesting part of the chart: the
+                location where the "end relationship" line spikes.
+              </p>
+              <p>
+                Let's show it as a caption instead, with a bit of formatting.
+              </p>
+            </Step>
+
+            <Step
+              index={8}
+              active={activeSection === 8}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                The title and subtitle don't work: they are descriptive instead
+                of telling a story. You're reader is in a hurry, he wants to
+                understand instantly what's going on here. And you want them to
+                be hooked.
+              </p>
+              <p>
+                Let's change the wording to something that'll make people stop
+                scrolling and still understand what the graph shows.
+              </p>
+            </Step>
+
+            <Step
+              index={9}
+              active={activeSection === 9}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                A few design golden rules: everything must be aligned with
+                something. Use hierarchy of information. What's important must
+                be big and obvious. Alignment matters.
+              </p>
+              <p>Title looks better now doesn't it?</p>
+            </Step>
+
+            <Step
+              index={10}
+              active={activeSection === 10}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                Hey, let's add a slight background with some good margins
+                around!
+              </p>
+            </Step>
           </div>
 
           <div className="col-span-6 relative">
@@ -280,14 +291,18 @@ export default function Home() {
               ) : (
                 <LineChart
                   data={addQuarterlyNoise(data, 1)}
-                  width={600}
-                  height={520}
-                  hasSpine={hasSpine}
-                  hasLegend={hasLegend}
+                  width={640}
+                  height={600}
+                  hasSpine={activeSection > 2 ? false : true}
+                  hasLegend={activeSection > 1 ? false : true}
                   hasHighlight={hasHighlight}
-                  hasGrid={hasGrid}
-                  hasGoodYAxis={hasGoodYAxis}
-                  hasGoodXAxis={hasGoodXAxis}
+                  hasGrid={activeSection > 3 ? false : true}
+                  hasGoodYAxis={activeSection > 4 ? true : false}
+                  hasGoodXAxis={activeSection > 5 ? true : false}
+                  hasGoodAuthorLabel={activeSection > 6 ? true : false}
+                  hasGoodTitleWording={activeSection > 7 ? true : false}
+                  hasGoodTitleAlignment={activeSection > 8 ? true : false}
+                  hasBackground={activeSection > 9 ? true : false}
                 />
               )}
             </div>
@@ -387,8 +402,35 @@ export default function Home() {
 
 const PillNumber = ({ number }: { number: number }) => {
   return (
-    <div className="border flex justify-center items-center p-1 border-black rounded-full h-8 w-8 text-md font-bold">
+    <div className="border flex justify-center items-center p-1 border-black rounded-full h-8 w-8 text-md font-bold mb-4">
       {number}
     </div>
   );
 };
+
+type StepProps = {
+  index: number;
+  active: boolean;
+  children: React.ReactNode;
+  sectionRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
+};
+
+function Step({ index, active, children, sectionRefs }: StepProps) {
+  return (
+    <>
+      <div
+        id={String(index)}
+        ref={(el) => (sectionRefs.current[index] = el)}
+        className={cn(
+          active ? 'opacity-100' : 'opacity-20',
+          'transition-opacity duration-500'
+        )}
+      >
+        <PillNumber number={index} />
+        {children}
+      </div>
+
+      <div className="h-80" />
+    </>
+  );
+}

@@ -82,7 +82,7 @@ export const AxisLeftGood = ({
       {/* Ticks and labels */}
       {ticks.map(({ value, yOffset }, i) => (
         <g key={value} transform={`translate(0, ${yOffset})`}>
-          <line x2={width} x1={-TICK_LENGTH} stroke="#D3D3D3" strokeWidth={1} />
+          <line x2={width} x1={0} stroke="#D3D3D3" strokeWidth={1} />
           <text
             key={value}
             style={{

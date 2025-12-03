@@ -134,14 +134,26 @@ export const data = {
     }
 }
 
-export function addQuarterlyNoise(data: MultiSeries, noiseAmount = 1): MultiSeries {
+// Tiny deterministic RNG
+function mulberry32(seed: number) {
+    return function () {
+        let t = (seed += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+export function addQuarterlyNoise(
+    data: MultiSeries,
+    noiseAmount = 1,
+    seed = 1
+): MultiSeries {
+    const rand = mulberry32(seed);
     const newData: MultiSeries = {};
 
     for (const seriesName in data) {
         const series = data[seriesName];
-        const newSeries: Record<string, number> = {};
-
-        // Collect all points first
         const points: [number, number][] = [];
 
         for (const yearStr in series) {
@@ -150,27 +162,31 @@ export function addQuarterlyNoise(data: MultiSeries, noiseAmount = 1): MultiSeri
 
             points.push([year, value]);
 
-            // Skip fractional years if they already exist
             if (yearStr.includes('.')) continue;
 
             // Add quarters
             for (let q = 0.25; q < 1; q += 0.25) {
                 const quarterYear = year + q;
-                const noisyValue = value + (Math.random() * noiseAmount * 2 - noiseAmount);
-                points.push([parseFloat(quarterYear.toFixed(2)), parseFloat(noisyValue.toFixed(2))]);
+                const noisyValue =
+                    value + (rand() * noiseAmount * 2 - noiseAmount);
+                points.push([
+                    parseFloat(quarterYear.toFixed(2)),
+                    parseFloat(noisyValue.toFixed(2)),
+                ]);
             }
         }
 
-        // Sort by year
+        // Sort
         points.sort((a, b) => a[0] - b[0]);
 
-        // Build newSeries object
+        // Build object
+        const obj: Record<string, number> = {};
         for (const [year, value] of points) {
-            newSeries[year.toFixed(2)] = value;
+            obj[year.toFixed(2)] = value;
         }
 
-        newData[seriesName] = newSeries;
+        newData[seriesName] = obj;
     }
 
-    return newData
+    return newData;
 }

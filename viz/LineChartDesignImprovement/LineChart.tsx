@@ -4,7 +4,7 @@ import { AxisBottom, AxisBottomGood } from './AxisBottom';
 import { AxisLeft, AxisLeftGood } from './AxisLeft';
 import { MultiSeries, Series } from './data';
 
-const MARGIN = { top: 70, right: 90, bottom: 50, left: 90 };
+const MARGIN = { top: 120, right: 140, bottom: 100, left: 90 };
 const COLORS = [
   '#c23b3b', // End Relationship
   '#1f77b4', // Communicate
@@ -34,6 +34,10 @@ type LineChartProps = {
   hasGrid: boolean;
   hasGoodYAxis: boolean;
   hasGoodXAxis: boolean;
+  hasGoodAuthorLabel: boolean;
+  hasGoodTitleWording: boolean;
+  hasGoodTitleAlignment: boolean;
+  hasBackground: boolean;
 };
 
 export const LineChart = ({
@@ -46,6 +50,10 @@ export const LineChart = ({
   hasGrid,
   hasGoodYAxis,
   hasGoodXAxis,
+  hasGoodAuthorLabel,
+  hasGoodTitleWording,
+  hasGoodTitleAlignment,
+  hasBackground,
 }: LineChartProps) => {
   // Convert nested object into list of series
   const allSeries: Series[] = useMemo(() => {
@@ -120,22 +128,34 @@ export const LineChart = ({
   const title = (
     <g>
       <text
-        x={MARGIN.left + 8}
-        y={MARGIN.top - 40}
-        fontSize={16}
+        x={hasGoodTitleAlignment ? MARGIN.left : MARGIN.left + 8}
+        y={hasGoodTitleAlignment ? MARGIN.top - 60 : MARGIN.top - 40}
+        fontSize={hasGoodTitleAlignment ? 22 : 16}
         color="black"
         fontWeight="bold"
       >
-        15 Years of Reddit Relationship Advice (1,166,592 comments)
+        {hasGoodTitleWording
+          ? 'You should just end up your relationship!'
+          : '15 Years of Reddit Relationship Advice (1,166,592 comments)'}
       </text>
-      <text x={MARGIN.left + 15} y={MARGIN.top - 12} fontSize={10} color="grey">
-        Data Source: r/relationship_advice (5,012,500 posts, 52,685,657
-        comments) filtered for quality
+      <text
+        x={hasGoodTitleAlignment ? MARGIN.left : MARGIN.left + 15}
+        y={hasGoodTitleAlignment ? MARGIN.top - 30 : MARGIN.top - 12}
+        fontSize={hasGoodTitleAlignment ? 14 : 10}
+        color="grey"
+      >
+        {hasGoodTitleWording
+          ? "At least that's what people advise more and more on Reddit"
+          : 'Data Source: r/relationship_advice (5,012,500 posts, 52,685,657 comments) filtered for quality'}
       </text>
     </g>
   );
 
-  const authorAnnotation = (
+  const authorAnnotation = hasGoodAuthorLabel ? (
+    <text x={0} y={boundsHeight + 50} fontSize={10} textAnchor="start">
+      Created by ui/GeargeDaGreat123
+    </text>
+  ) : (
     <text x={boundsWidth - 2} y={14} fontSize={10} textAnchor="end">
       created by ui/GeargeDaGreat123
     </text>
@@ -143,6 +163,8 @@ export const LineChart = ({
 
   return (
     <svg width={width} height={height} className="overflow-visible">
+      {hasBackground && <rect width={width} height={height} fill="#f9f9ff" />}
+
       {title}
 
       {/* Axes + grid + author annotation */}
