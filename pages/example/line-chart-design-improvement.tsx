@@ -10,7 +10,18 @@ import { Button } from '@/component/UI/button';
 
 const graphDescription = (
   <>
-    <p>Let's take a line chart and make it look good.</p>
+    <p>
+      I teach data visualization with{' '}
+      <a href="https://www.ggplot2-uncharted.com">R</a> and{' '}
+      <a href="https://www.matplotlib-journey.com">Python</a>, which means I
+      review hundreds of charts from talented students. The same issues come up{' '}
+      <b>again and again</b>.
+    </p>
+    <p>
+      This page takes a chart with a solid message and improves it step by step.
+      It is a practical way to revisit the most common pitfalls and see the
+      impact of each fix. Let us dive in!
+    </p>
   </>
 );
 
@@ -63,17 +74,33 @@ export default function Home() {
   return (
     <Layout title="Line chart revamp." seoDescription="TODO">
       <TitleAndDescription
-        title="Vertical arc diagram"
+        title="Line Chart Remake"
         description={graphDescription}
-        chartType="arc"
+        chartType="line"
       />
 
-      {/*
-      //
-      // Plot and code
-      //
-      */}
-      <h2 id="plot">Let's do it</h2>
+      <h2 id="intro">📍 Original Chart and Code</h2>
+      <p>
+        Reddit hosts an active channel called <code>relationship_advice</code>{' '}
+        where people share their relationship struggles to get guidance.
+        Recently, <code>@GeorgeDaGreat123</code> used AI to analyze fifteen
+        years of comments from this wild corner of the platform.
+      </p>
+      <p>
+        It sparked plenty of{' '}
+        <a
+          href="https://www.reddit.com/r/dataisbeautiful/comments/1o87cy4/oc_i_analyzed_15_years_of_comments_on/"
+          target="_blank"
+        >
+          debate
+        </a>
+        , but that is not the focus here. Instead, let's take a look at the
+        original chart that's been published:
+      </p>
+
+      <div></div>
+
+      <h2 id="plot">🎮 Your turn</h2>
       <div>
         <div className="flex items-center space-x-2">
           <Switch
