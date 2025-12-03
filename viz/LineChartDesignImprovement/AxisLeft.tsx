@@ -32,6 +32,13 @@ export const AxisLeft = ({ yScale, pixelsPerTick, width }: AxisLeftProps) => {
         stroke="currentColor"
       />
 
+      {/* Awis label */}
+      <g transform={`translate(${-40}, ${range[0] / 2})`}>
+        <text transform="rotate(-90)" fontSize={14} textAnchor="middle">
+          Percentage (%)
+        </text>
+      </g>
+
       {/* Ticks and labels */}
       {ticks.map(({ value, yOffset }, i) => (
         <g key={value} transform={`translate(0, ${yOffset})`}>

@@ -4,7 +4,7 @@ import { AxisBottom, AxisBottomGood } from './AxisBottom';
 import { AxisLeft, AxisLeftGood } from './AxisLeft';
 import { MultiSeries, Series } from './data';
 
-const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
+const MARGIN = { top: 70, right: 90, bottom: 50, left: 90 };
 const COLORS = [
   '#c23b3b', // End Relationship
   '#1f77b4', // Communicate
@@ -117,9 +117,35 @@ export const LineChart = ({
     </g>
   );
 
+  const title = (
+    <g>
+      <text
+        x={MARGIN.left + 8}
+        y={MARGIN.top - 40}
+        fontSize={16}
+        color="black"
+        fontWeight="bold"
+      >
+        15 Years of Reddit Relationship Advice (1,166,592 comments)
+      </text>
+      <text x={MARGIN.left + 15} y={MARGIN.top - 12} fontSize={10} color="grey">
+        Data Source: r/relationship_advice (5,012,500 posts, 52,685,657
+        comments) filtered for quality
+      </text>
+    </g>
+  );
+
+  const authorAnnotation = (
+    <text x={boundsWidth - 2} y={14} fontSize={10} textAnchor="end">
+      created by ui/GeargeDaGreat123
+    </text>
+  );
+
   return (
     <svg width={width} height={height} className="overflow-visible">
-      {/* Axes + grid */}
+      {title}
+
+      {/* Axes + grid + author annotation */}
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top})`}>
         {hasGoodYAxis ? (
           <AxisLeftGood
@@ -131,6 +157,7 @@ export const LineChart = ({
           <AxisLeft yScale={yScale} pixelsPerTick={30} width={boundsWidth} />
         )}
       </g>
+
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top + boundsHeight})`}>
         {hasGoodXAxis ? (
           <AxisBottomGood
@@ -142,7 +169,7 @@ export const LineChart = ({
         ) : (
           <AxisBottom
             xScale={xScale}
-            pixelsPerTick={40}
+            pixelsPerTick={30}
             height={boundsHeight}
             hasGrid={hasGrid}
           />
@@ -183,6 +210,9 @@ export const LineChart = ({
           />
         </g>
       )}
+      <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+        {authorAnnotation}
+      </g>
     </svg>
   );
 };
