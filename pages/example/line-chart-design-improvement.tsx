@@ -138,7 +138,10 @@ export default function Home() {
   };
 
   return (
-    <Layout title="Line chart revamp." seoDescription="TODO">
+    <Layout
+      title="Line chart revamp."
+      seoDescription="Learn how to make charts look professional with simple design improvements. Toggle common visualization mistakes, see their impact instantly, and master clearer, more effective data storytelling."
+    >
       <TitleAndDescription
         title="Line Chart Remake"
         description={graphDescription}
