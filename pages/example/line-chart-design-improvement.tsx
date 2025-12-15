@@ -35,6 +35,10 @@ export default function Home() {
   const [hasGoodYAxis, setHasGoodYAxis] = useState(false);
   const [hasGoodXAxis, setHasGoodXAxis] = useState(false);
   const [isLabelOverlapFixed, setIsLabelOverlapFixed] = useState(false);
+  const [hasGoodAuthorLabel, setHasGoodAuthorLabel] = useState(false);
+  const [hasGoodTitleWording, setHasGoodTitleWording] = useState(false);
+  const [hasGoodTitleAlignment, setHasGoodTitleAlignment] = useState(false);
+  const [hasBackground, setHasBackground] = useState(false);
 
   const [activeSection, setActiveSection] = useState<number>(1);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -68,23 +72,41 @@ export default function Home() {
     setHasGoodYAxis(false);
     setHasGoodXAxis(false);
 
-    await wait(1000);
+    await wait(1500);
     setHasSpine(false);
 
-    await wait(1000);
+    await wait(1500);
     setHasLegend(false);
 
-    await wait(1000);
+    await wait(1500);
     setHasHighlight(true);
 
-    await wait(1000);
+    await wait(1500);
     setHasGrid(false);
 
-    await wait(1000);
+    await wait(1500);
     setHasGoodYAxis(true);
 
-    await wait(1000);
+    await wait(1500);
     setHasGoodXAxis(true);
+
+    await wait(1500);
+    setHasGoodAuthorLabel(true);
+
+    await wait(1500);
+    setHasGoodTitleWording(true);
+
+    await wait(1500);
+    setHasGoodTitleAlignment(true);
+
+    await wait(1500);
+    setHasBackground(true);
+
+    await wait(1500);
+    setIsLabelOverlapFixed(true);
+
+    await wait(1500);
+    setHasHighlight(true);
   };
 
   const handleReset = async () => {
@@ -95,6 +117,24 @@ export default function Home() {
     setHasGoodYAxis(false);
     setHasGoodXAxis(false);
     setIsLabelOverlapFixed(false);
+    setHasGoodAuthorLabel(false);
+    setHasGoodTitleWording(false);
+    setHasGoodTitleAlignment(false);
+    setHasBackground(false);
+  };
+
+  const handleGoToEnd = async () => {
+    setHasSpine(!true);
+    setHasLegend(!true);
+    setHasHighlight(!false);
+    setHasGrid(!true);
+    setHasGoodYAxis(!false);
+    setHasGoodXAxis(!false);
+    setIsLabelOverlapFixed(!false);
+    setHasGoodAuthorLabel(!false);
+    setHasGoodTitleWording(!false);
+    setHasGoodTitleAlignment(!false);
+    setHasBackground(!false);
   };
 
   return (
@@ -376,48 +416,74 @@ export default function Home() {
       </div>
 
       <h2 id="plot">🎮 Your turn</h2>
-      <div>
+      <p>
+        Do you ever make a chart that doesn’t feel professional, but you can’t
+        quite say why?
+      </p>
+      <p>That’s a very common feeling.</p>
+      <p>
+        Try playing with the options below to see their effect one by one.
+        Hopefully, you’ll keep them in mind the next time you run into design
+        issues.
+      </p>
+
+      <div className="grid grid-cols-3 gap-x-6 gap-y-2 mt-12">
         <div className="flex items-center space-x-2">
           <Switch
             id="spine"
-            checked={hasSpine}
-            onCheckedChange={(value) => setHasSpine(value)}
+            checked={!hasSpine}
+            onCheckedChange={(value) => setHasSpine(!value)}
           />
           <Label htmlFor="spine" className="font-normal">
-            Spine
+            Remove spine
           </Label>
         </div>
-        <div className="flex items-center space-x-2 mt-2">
+
+        <div className="flex items-center space-x-2">
           <Switch
             id="legend"
-            checked={hasLegend}
-            onCheckedChange={(value) => setHasLegend(value)}
+            checked={!hasLegend}
+            onCheckedChange={(value) => setHasLegend(!value)}
           />
           <Label htmlFor="legend" className="font-normal">
-            Legend
+            Direct labeling
           </Label>
         </div>
-        <div className="flex items-center space-x-2 mt-2">
+
+        <div className="flex items-center space-x-2">
           <Switch
             id="highlight"
             checked={hasHighlight}
             onCheckedChange={(value) => setHasHighlight(value)}
           />
-          <Label htmlFor="legend" className="font-normal">
-            highlight
+          <Label htmlFor="highlight" className="font-normal">
+            Highlight
           </Label>
         </div>
-        <div className="flex items-center space-x-2 mt-2">
+
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="caption"
+            checked={hasGoodAuthorLabel}
+            onCheckedChange={(value) => setHasGoodAuthorLabel(value)}
+          />
+          <Label htmlFor="spine" className="font-normal">
+            Author in caption
+          </Label>
+        </div>
+
+        <div className="flex items-center space-x-2">
           <Switch
             id="grid"
-            checked={hasGrid}
-            onCheckedChange={(value) => setHasGrid(value)}
+            checked={!hasGrid}
+            onCheckedChange={(value) => setHasGrid(!value)}
           />
-          <Label htmlFor="legend" className="font-normal">
-            grid
+          <Label htmlFor="grid" className="font-normal">
+            Remove X Grid
           </Label>
         </div>
-        <div className="flex items-center space-x-2 mt-2">
+
+        <div className="flex items-center space-x-2">
           <Switch
             id="betterY"
             checked={hasGoodYAxis}
@@ -427,7 +493,8 @@ export default function Home() {
             Better Y axis
           </Label>
         </div>
-        <div className="flex items-center space-x-2 mt-2">
+
+        <div className="flex items-center space-x-2">
           <Switch
             id="betterX"
             checked={hasGoodXAxis}
@@ -437,26 +504,118 @@ export default function Home() {
             Better X axis
           </Label>
         </div>
+
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="titleWording"
+            checked={hasGoodTitleWording}
+            onCheckedChange={(value) => setHasGoodTitleWording(value)}
+          />
+          <Label htmlFor="betterX" className="font-normal">
+            Better title wording
+          </Label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="titlealign"
+            checked={hasGoodTitleAlignment}
+            onCheckedChange={(value) => setHasGoodTitleAlignment(value)}
+          />
+          <Label htmlFor="betterX" className="font-normal">
+            Align and format title
+          </Label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="labelOverlap"
+            checked={isLabelOverlapFixed}
+            onCheckedChange={(value) => setIsLabelOverlapFixed(value)}
+          />
+          <Label htmlFor="betterX" className="font-normal">
+            Fix label overlap
+          </Label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="background"
+            checked={hasBackground}
+            onCheckedChange={(value) => setHasBackground(value)}
+          />
+          <Label htmlFor="background" className="font-normal">
+            Show Background
+          </Label>
+        </div>
       </div>
 
       <div className="flex gap-2 my-4">
-        <Button onClick={handleReset} variant={'outline'}>
-          Reset
+        <Button onClick={handleReset} variant={'outline'} size={'sm'}>
+          Start
         </Button>
-        <Button onClick={handleImprove}>Improve step by step</Button>
+        <Button onClick={handleGoToEnd} variant={'outline'} size={'sm'}>
+          End
+        </Button>
+        <Button onClick={handleImprove} size={'sm'}>
+          Improve step by step
+        </Button>
       </div>
 
       <LineChart
         data={addQuarterlyNoise(data, 1)}
-        width={600}
-        height={400}
+        width={700}
+        height={600}
         hasSpine={hasSpine}
         hasLegend={hasLegend}
         hasHighlight={hasHighlight}
         hasGrid={hasGrid}
         hasGoodYAxis={hasGoodYAxis}
         hasGoodXAxis={hasGoodXAxis}
+        hasGoodAuthorLabel={hasGoodAuthorLabel}
+        hasGoodTitleWording={hasGoodTitleWording}
+        hasGoodTitleAlignment={hasGoodTitleAlignment}
+        hasBackground={hasBackground}
+        isLabelOverlapFixed={isLabelOverlapFixed}
       />
+
+      <h2 id="plot">📍 Useful links</h2>
+      <ul>
+        <li>
+          Dataviz{' '}
+          <a
+            href="https://www.matplotlib-journey.com/bonus/design-principles"
+            target="_blank"
+          >
+            design game
+          </a>
+        </li>
+        <li>
+          Learn how to make great charts with{' '}
+          <a href="www.ggplot2-uncharted.com" target="_blank">
+            R
+          </a>{' '}
+          and{' '}
+          <a href="https://www.matplotlib-journey.com" target="_blank">
+            Python
+          </a>
+        </li>
+        <li>
+          List of{' '}
+          <a href="https://www.data-to-viz.com/caveats.html" target="_blank">
+            dataviz caveats
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/holtzy/react-graph-gallery/tree/main/viz/LineChartDesignImprovement"
+            target="_blank"
+          >
+            Code
+          </a>{' '}
+          for this chart
+        </li>
+      </ul>
 
       <div className="full-bleed border-t h-0 bg-gray-100 mb-3 mt-24" />
       <ChartFamilySection chartFamily="evolution" />
