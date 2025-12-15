@@ -121,7 +121,7 @@
   display: grid;
   grid-template-columns:
     1fr
-    min(780px, 100%)
+    min(700px, 100%)
     1fr;
 }
 .narrowWrapper {

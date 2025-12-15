@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import { AxisBottom, AxisBottomGood } from './AxisBottom';
 import { AxisLeft, AxisLeftGood } from './AxisLeft';
 import { MultiSeries, Series } from './data';
+import { cn } from '@/util/utils';
 
 const MARGIN = { top: 120, right: 140, bottom: 100, left: 90 };
 const COLORS = [
@@ -13,15 +14,6 @@ const COLORS = [
   '#9467bd', // Seek Therapy
   '#17becf', // Compromise
   '#7f7f7f', // Other
-];
-const COLORS_HIGHLIGHT = [
-  '#c23b3b', // End Relationship
-  '#1f77b4', // Communicate
-  '#D3D3D3', // Give Space / Time
-  '#D3D3D3', // Set / Respect Boundaries
-  '#D3D3D3', // Seek Therapy
-  '#D3D3D3', // Compromise
-  '#D3D3D3', // Other
 ];
 
 type LineChartProps = {
@@ -38,6 +30,7 @@ type LineChartProps = {
   hasGoodTitleWording: boolean;
   hasGoodTitleAlignment: boolean;
   hasBackground: boolean;
+  isLabelOverlapFixed: boolean;
 };
 
 export const LineChart = ({
@@ -54,6 +47,7 @@ export const LineChart = ({
   hasGoodTitleWording,
   hasGoodTitleAlignment,
   hasBackground,
+  isLabelOverlapFixed,
 }: LineChartProps) => {
   // Convert nested object into list of series
   const allSeries: Series[] = useMemo(() => {
@@ -84,11 +78,22 @@ export const LineChart = ({
     return d3.scaleLinear().domain([0, yMax]).range([boundsHeight, 0]);
   }, [flat, height]);
 
+  // nudge Scale
+  const nudgeScale = d3
+    .scaleOrdinal()
+    .domain(allSeries.map((s) => s.name))
+    .range([0, -2, 8, -3, 4, 7, -3]);
+
+  const opacityScale = d3
+    .scaleOrdinal()
+    .domain(allSeries.map((s) => s.name))
+    .range([1, 1, 0.4, 0.4, 0.4, 0.4, 0.4]);
+
   // Color palette matching the PNG
   const colorScale = d3
     .scaleOrdinal<string>()
     .domain(allSeries.map((s) => s.name))
-    .range(hasHighlight ? COLORS_HIGHLIGHT : COLORS);
+    .range(COLORS);
 
   // Line generator
   const lineBuilder = d3
@@ -102,10 +107,15 @@ export const LineChart = ({
       <text
         key={i}
         x={boundsWidth + 5}
-        y={i === 2 ? yScale(last.y) + 15 : yScale(last.y)}
+        y={
+          yScale(last.y) +
+          (isLabelOverlapFixed ? Number(nudgeScale(s.name)) : 0)
+        }
         fontSize={12}
         fill={colorScale(s.name) ?? '#000'}
         alignmentBaseline="central"
+        opacity={hasHighlight ? Number(opacityScale(s.name)) : 1}
+        className="transition-opacity duration-1000"
       >
         {s.name}
       </text>
@@ -161,68 +171,81 @@ export const LineChart = ({
     </text>
   );
 
+  const getOpacityClass = (bol: boolean) => {
+    return cn(
+      'transition-opacity duration-1000',
+      bol ? 'opacity-100' : 'opacity-0'
+    );
+  };
+
+  const allLines = allSeries.map((s) => {
+    const path = lineBuilder(s.values);
+    if (!path) return null;
+    return (
+      <path
+        key={s.name}
+        d={path}
+        fill="none"
+        stroke={colorScale(s.name) ?? '#000'}
+        strokeWidth={2}
+        opacity={hasHighlight ? Number(opacityScale(s.name)) : 1}
+        className="transition-opacity duration-1000"
+      />
+    );
+  });
+
   return (
     <svg width={width} height={height} className="overflow-visible">
-      {hasBackground && <rect width={width} height={height} fill="#f9f9ff" />}
+      <g className={getOpacityClass(hasBackground)}>
+        <rect width={width} height={height} fill="#f9f9ff" />
+      </g>
 
       {title}
 
       {/* Axes + grid + author annotation */}
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top})`}>
-        {hasGoodYAxis ? (
+        <g className={getOpacityClass(hasGoodYAxis)}>
           <AxisLeftGood
             yScale={yScale}
             pixelsPerTick={100}
             width={boundsWidth}
           />
-        ) : (
+        </g>
+        <g className={getOpacityClass(!hasGoodYAxis)}>
           <AxisLeft yScale={yScale} pixelsPerTick={30} width={boundsWidth} />
-        )}
+        </g>
       </g>
 
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top + boundsHeight})`}>
-        {hasGoodXAxis ? (
+        <g className={getOpacityClass(hasGoodXAxis)}>
           <AxisBottomGood
             xScale={xScale}
             pixelsPerTick={40}
             height={boundsHeight}
             hasGrid={hasGrid}
           />
-        ) : (
+        </g>
+        <g className={getOpacityClass(!hasGoodXAxis)}>
           <AxisBottom
             xScale={xScale}
             pixelsPerTick={30}
             height={boundsHeight}
             hasGrid={hasGrid}
           />
-        )}
+        </g>
       </g>
 
       <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
-        {/* Lines */}
-        {allSeries.map((s) => {
-          const path = lineBuilder(s.values);
-          if (!path) return null;
-          return (
-            <path
-              key={s.name}
-              d={path}
-              fill="none"
-              stroke={colorScale(s.name) ?? '#000'}
-              strokeWidth={2}
-              opacity={1}
-            />
-          );
-        })}
+        {allLines}
 
         {/* Legend (simple) */}
-        {hasLegend && legend}
-        {!hasLegend && allLabels}
+        <g className={getOpacityClass(hasLegend)}>{legend}</g>
+        <g className={getOpacityClass(!hasLegend)}>{allLabels}</g>
       </g>
 
       {/* Spine */}
-      {hasSpine && (
-        <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+      <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+        <g className={getOpacityClass(hasSpine)}>
           <rect
             width={boundsWidth}
             height={boundsHeight}
@@ -231,7 +254,8 @@ export const LineChart = ({
             fill="none"
           />
         </g>
-      )}
+      </g>
+
       <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
         {authorAnnotation}
       </g>

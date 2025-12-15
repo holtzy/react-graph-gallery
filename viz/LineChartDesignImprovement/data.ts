@@ -60,7 +60,7 @@ export const data = {
         "2024": 12,
         "2025": 11
     },
-    "Set / Respect Boundaries": {
+    "Set / Respect Boundar.": {
         "2010": 12,
         "2011": 12,
         "2012": 11,
@@ -78,7 +78,7 @@ export const data = {
         "2024": 15,
         "2025": 15
     },
-    "Seek Therapy / Counselling": {
+    "Seek Therapy": {
         "2010": 6,
         "2011": 6,
         "2012": 6,

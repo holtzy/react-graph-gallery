@@ -8,6 +8,7 @@ import { Switch } from '@/component/UI/switch';
 import { Label } from '@/component/UI/label';
 import { Button } from '@/component/UI/button';
 import { cn } from '@/util/utils';
+import Link from 'next/link';
 
 const graphDescription = (
   <>
@@ -21,7 +22,7 @@ const graphDescription = (
     <p>
       This page takes a chart with a solid message and improves it step by step.
       It is a practical way to revisit the most common pitfalls and see the
-      impact of each fix. Let us dive in!
+      impact of each fix.
     </p>
   </>
 );
@@ -33,6 +34,7 @@ export default function Home() {
   const [hasGrid, setHasGrid] = useState(true);
   const [hasGoodYAxis, setHasGoodYAxis] = useState(false);
   const [hasGoodXAxis, setHasGoodXAxis] = useState(false);
+  const [isLabelOverlapFixed, setIsLabelOverlapFixed] = useState(false);
 
   const [activeSection, setActiveSection] = useState<number>(1);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -92,6 +94,7 @@ export default function Home() {
     setHasGrid(true);
     setHasGoodYAxis(false);
     setHasGoodXAxis(false);
+    setIsLabelOverlapFixed(false);
   };
 
   return (
@@ -122,8 +125,8 @@ export default function Home() {
       </p>
 
       <div className="full-bleed flex justify-center mx-2">
-        <div className="grid grid-cols-12 gap-8" style={{ maxWidth: 1100 }}>
-          <div className="col-span-6 inline-block">
+        <div className="grid grid-cols-12 gap-14" style={{ maxWidth: 1100 }}>
+          <div className="col-span-5 inline-block px-8">
             <div className="h-20" />
 
             <Step
@@ -132,14 +135,18 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                Everything starts with a pretty classic line chart. Each line
-                shows the proportion of a group of comments. The comments
-                advising the break up the relationships are in red, the ones
-                advising to communicate better in blue and so on.
+                Everything starts with a pretty classic{' '}
+                <Link href="/line-chart">line chart</Link>. Each line shows the
+                proportion of a group of comments.
+              </p>
+              <p>
+                The comments advising the break up the relationships are in red,
+                the ones advising to communicate better in blue and so on.
               </p>
               <p>
                 From the graph style, I'm pretty sure it's been made using
-                Python and Matplotlib.
+                Python and{' '}
+                <a href="https://www.matplotlib-journey.com">Matplotlib</a>.
               </p>
             </Step>
 
@@ -149,16 +156,19 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                My first step was to reproduce this graph. Not easy, as the
-                underlying data is not available anywhere. In a perfect world
-                everything would be hosted on Github together with the code but
-                hey 🤷‍♂️
+                My first step was to reproduce this graph using React and{' '}
+                <Link href="/">D3.js</Link>.
               </p>
               <p>
-                I gave the chart to a LLM to extract approximate data and
-                rebuilt it using Javascript and D3. The result is quite close
-                isn't it? Now the fun starts.
+                Not easy, as the underlying data is not available anywhere. In a
+                perfect world everything would be hosted on Github together with
+                the code but hey 🤷‍♂️
               </p>
+              <p>
+                So I gave the chart to a LLM to extract approximate data. The
+                result is quite close isn't it?
+              </p>
+              <p>Now the fun starts.</p>
             </Step>
 
             <Step
@@ -167,10 +177,14 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                The legend forces readers to jump back and forth to understand
-                the lines. It creates unnecessary cognitive load.
+                The legend made readers constantly jump back and forth to
+                interpret the lines.
               </p>
-              <p>Direct labeling fixes it.</p>
+              <p>
+                This adds unnecessary <b>cognitive load</b>. If the story isn’t
+                immediately clear, people will give up.
+              </p>
+              <p>Direct labeling solves this!</p>
             </Step>
 
             <Step
@@ -178,9 +192,14 @@ export default function Home() {
               active={activeSection === 3}
               sectionRefs={sectionRefs}
             >
+              <p>A simple yet powerful improvement: removing the spine.</p>
               <p>
-                A simple improvement: remove the spine. It adds clutter without
-                conveying any information.
+                The spine—the surrounding box—adds clutter without conveying any
+                information.
+              </p>
+              <p>
+                Surprisingly, many viz libraries add it by default. Now our
+                chart has some breathing room, doesn’t it?
               </p>
             </Step>
 
@@ -189,9 +208,10 @@ export default function Home() {
               active={activeSection === 4}
               sectionRefs={sectionRefs}
             >
+              <p>I’m not a big fan of dense grid lines.</p>
               <p>
-                I’m not a big fan of dense grid lines. In our decluttering
-                mission, removing the horizontal ones is an easy win.
+                In our decluttering mission, removing the horizontal ones is an
+                easy win.
               </p>
             </Step>
 
@@ -200,10 +220,14 @@ export default function Home() {
               active={activeSection === 5}
               sectionRefs={sectionRefs}
             >
+              <p>Time to improve the Y axis!</p>
               <p>
-                Let's improve the Y axis. The axis title is kind of useless, we
-                just have to add a % next to the numbers and everything gets
-                more obvious, with less clutter!
+                The axis title isn’t really needed. By simply adding a % next to
+                the numbers, the chart becomes clearer and less cluttered.
+              </p>
+              <p>
+                Same principle applies: use less ink to convey the same
+                information.
               </p>
             </Step>
 
@@ -213,13 +237,13 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                Now it's obvious that the X axis needs an improvement too! The
-                nuber <code>20</code> was repeated so many times! Let's show
-                only what matters shall we?
+                Now it’s clear the X axis could use some improvement. The number{' '}
+                <code>20</code> appeared repeatedly: let’s show only what
+                matters instead.
               </p>
               <p>
-                Also, it's pretty obvious that it's a year, so the Axis title
-                isn't really useful was it?
+                It’s also obvious that these are years, so the axis title isn’t
+                really necessary.
               </p>
             </Step>
 
@@ -229,12 +253,13 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                The author name label at the top right was annoying. It's
-                competing with the most interesting part of the chart: the
-                location where the "end relationship" line spikes.
+                The author label in the top right was distracting, competing
+                with the most interesting part of the chart: the spike in the
+                "end relationship" line.
               </p>
               <p>
-                Let's show it as a caption instead, with a bit of formatting.
+                Let’s move it to a <b>caption</b> instead and give it some
+                subtle formatting.
               </p>
             </Step>
 
@@ -243,15 +268,15 @@ export default function Home() {
               active={activeSection === 8}
               sectionRefs={sectionRefs}
             >
+              <p>The title and subtitle aren’t doing their job.</p>
               <p>
-                The title and subtitle don't work: they are descriptive instead
-                of telling a story. You're reader is in a hurry, he wants to
-                understand instantly what's going on here. And you want them to
-                be hooked.
+                They describe instead of <b>telling a story</b>. Your reader is
+                in a hurry and wants to grasp the point instantly. You want them
+                hooked.
               </p>
               <p>
-                Let's change the wording to something that'll make people stop
-                scrolling and still understand what the graph shows.
+                Let’s reword them to make people stop scrolling while still
+                clearly showing what the graph reveals.
               </p>
             </Step>
 
@@ -260,12 +285,15 @@ export default function Home() {
               active={activeSection === 9}
               sectionRefs={sectionRefs}
             >
+              <p>Some design golden rules:</p>
+              <ul>
+                <li>everything should be aligned with something</li>
+                <li>Use a clear hierarchy of information</li>
+              </ul>
               <p>
-                A few design golden rules: everything must be aligned with
-                something. Use hierarchy of information. What's important must
-                be big and obvious. Alignment matters.
+                That's an easy fix but that makes the chart look more
+                professional.
               </p>
-              <p>Title looks better now doesn't it?</p>
             </Step>
 
             <Step
@@ -274,13 +302,49 @@ export default function Home() {
               sectionRefs={sectionRefs}
             >
               <p>
-                Hey, let's add a slight background with some good margins
-                around!
+                Let’s give the chart some breathing room, along with a subtle
+                background to make it stand out a bit more.
+              </p>
+            </Step>
+
+            <Step
+              index={11}
+              active={activeSection === 11}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                Let’s slightly nudge the line labels—they’re currently
+                overlapping.
+              </p>
+              <p>
+                This is a very common struggle and can be surprisingly
+                time-consuming. Clever helper libraries can solve it, but that’s
+                not today’s topic 🙂
+              </p>
+            </Step>
+
+            <Step
+              index={12}
+              active={activeSection === 12}
+              sectionRefs={sectionRefs}
+            >
+              <p>
+                There are quite a few lines on this chart, but not all of them
+                matter equally for the story.
+              </p>
+              <p>
+                Once again, let’s guide the time-pressed reader toward what
+                matters most.
+              </p>
+              <p>
+                By slightly reducing the opacity of all but two lines, the main
+                message becomes clear: people increasingly advise breakups,
+                while communication is suggested less often.
               </p>
             </Step>
           </div>
 
-          <div className="col-span-6 relative">
+          <div className="col-span-7 relative">
             <div className="sticky top-40 flex justify-center mt-40">
               {activeSection === 0 ? (
                 <img
@@ -293,9 +357,8 @@ export default function Home() {
                   data={addQuarterlyNoise(data, 1)}
                   width={640}
                   height={600}
-                  hasSpine={activeSection > 2 ? false : true}
                   hasLegend={activeSection > 1 ? false : true}
-                  hasHighlight={hasHighlight}
+                  hasSpine={activeSection > 2 ? false : true}
                   hasGrid={activeSection > 3 ? false : true}
                   hasGoodYAxis={activeSection > 4 ? true : false}
                   hasGoodXAxis={activeSection > 5 ? true : false}
@@ -303,6 +366,8 @@ export default function Home() {
                   hasGoodTitleWording={activeSection > 7 ? true : false}
                   hasGoodTitleAlignment={activeSection > 8 ? true : false}
                   hasBackground={activeSection > 9 ? true : false}
+                  isLabelOverlapFixed={activeSection > 10 ? true : false}
+                  hasHighlight={activeSection > 11 ? true : false}
                 />
               )}
             </div>
