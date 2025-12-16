@@ -265,6 +265,7 @@ export default function Home() {
           'timeseries-moving-average.png',
           'radar-chart-animation.png',
           'line-dual-Y-axis.png',
+          'line-chart-design-improvement.png',
         ]}
       />
       {/*

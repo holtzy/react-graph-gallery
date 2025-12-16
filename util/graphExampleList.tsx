@@ -569,6 +569,14 @@ export const graphExampleList: GraphExample[] = [
     img: 'line-dual-Y-axis.png',
     alt: 'dual Y axis line chart made with react',
   },
+  {
+    link: '/example/line-chart-design-improvement',
+    title: 'Line Chart improvement',
+    description:
+      'See how to improve a line chart, step by step, both in terms of storytelling and design',
+    img: 'line-chart-design-improvement.png',
+    alt: 'step by step improvement of a line chart',
+  },
 
   //
   // Area Plot
