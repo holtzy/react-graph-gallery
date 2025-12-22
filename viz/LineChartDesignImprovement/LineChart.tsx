@@ -155,7 +155,7 @@ export const LineChart = ({
         color="grey"
       >
         {hasGoodTitleWording
-          ? "At least that's what people advise more and more on Reddit"
+          ? 'What 52M comments from r/relationship_advice tell us about rel. advice over 15y.'
           : 'Data Source: r/relationship_advice (5,012,500 posts, 52,685,657 comments) filtered for quality'}
       </text>
     </g>
