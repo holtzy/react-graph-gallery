@@ -145,7 +145,7 @@ export const LineChart = ({
         fontWeight="bold"
       >
         {hasGoodTitleWording
-          ? 'You should just end up your relationship!'
+          ? 'You should just end your relationship!'
           : '15 Years of Reddit Relationship Advice (1,166,592 comments)'}
       </text>
       <text
