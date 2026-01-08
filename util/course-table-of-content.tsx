@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type TocItem = {
   name: string;
@@ -26,882 +25,1079 @@ export type CourseTableOfContent = ModuleDescription[];
 
 export const courseTableOfContent: CourseTableOfContent = [
   {
-    name: "Foundations of ggplot2",
-    color: "var(--set1-red)",
+    name: 'Introduction',
+    color: 'var(--set1-red)',
     description: (
       <>
         <p>
-          A structured introduction to the <b>Grammar of Graphics</b>, the core
-          philosophy behind <code>ggplot2</code>. You'll gain a deep
-          understanding of how aesthetics, geometric and statistical layers, and
-          scales interact to build visualizations with <code>ggplot2</code>.
+          While you're likely familiar with React, you might not know that D3 is
+          the <b>essential JavaScript library</b> for data visualization.
         </p>
         <p>
-          <b>
-            Mastering the foundations will elevate your entire visualization
-            workflow 🏗️
-          </b>
-          <br></br>A solid grasp of the conceptual principles saves time,
-          reduces frustration, and provides the flexibility to tackle any
-          visualization challenge with confidence!
+          This module provides a quick overview of the <b>tools needed</b> to
+          create great charts in a browser.
         </p>
       </>
     ),
     moduleNumber: 1,
     toc: [
       {
-        name: "Why R and ggplot2?",
-        title: "Crafting Data Visualizations: Why R and ggplot2?",
+        name: 'What is react',
+        title: 'What is react',
         description: (
           <>
             <p>
-              What makes <code>ggplot2</code> different — and why should you
-              choose it over tools like Excel or Tableau? This lesson dives into
-              what sets <code>R</code> and <code>ggplot2</code> apart when it
-              comes to{" "}
-              <b>customization, reproducibility, and the power of code</b>.
-            </p>
-            <p>
-              Let's get a clear sense of when and why to reach for{" "}
-              <code>ggplot2</code> — and how it fits into the broader data
-              visualization landscape.
+              React is the most widely used javascript library when it comes to
+              building user interfaces.
             </p>
           </>
         ),
-        url: "/module1/why-ggplot", // Link is folder name in /app/module1/
+        url: '/course/introduction/introduction-to-react',
         isFree: true,
         isAvailable: true,
-        time: 5,
+        time: 4,
         exoNumber: 0,
       },
       {
-        name: "Principles of ggplot2",
-        title: "Principles of ggplot2: Understanding Components",
+        name: "Chart libraries: don't",
+        title: "Chart libraries: don't",
         description: (
           <>
             <p>
-              Unlike many other charting libraries, <code>ggplot2</code> doesn’t
-              provide functions for specific chart types like{" "}
-              <code>scatterplot()</code> or
-              <code>boxplot()</code>. Instead, it follows the grammar of
-              graphics: a structured yet flexible approach where{" "}
-              <b>plots are built from components</b> like sentences from words.
-            </p>
-            <p>
-              Let’s look at how this “sentence-building” approach works — and
-              why it’s such a powerful way to visualize data!
+              Why it will make you save time at the beginning, but is a bad idea
+              on the long run
             </p>
           </>
         ),
-        url: "/module1/principles",
+        url: '/course/introduction/js-dataviz-libraries',
         isFree: true,
         isAvailable: true,
-        time: 6,
-        exoNumber: 6,
-      },
-      {
-        name: "Aesthetics: Fundamentals",
-        title: "Aesthetics: Mapping Data to Visual Properties",
-        description: (
-          <>
-            <p>
-              Every plot in <code>ggplot2</code> begins with aesthetic mappings:{" "}
-              <b>which variables you want to show, and how</b> you want to
-              represent them visually.
-            </p>
-            <p>
-              In this lesson, you’ll learn how to map data to position, color,
-              size, shape, and more — and how these choices influence how your
-              audience reads and interprets your plot.
-            </p>
-            <p>
-              For a quick overview of available aesthetics and usage examples,
-              check out the <Link href="#explorer">aesthetics explorer</Link>{" "}
-              widget at the end of the lesson!
-            </p>
-          </>
-        ),
-        url: "/module1/aesthetics",
-        isFree: false,
-        isAvailable: true,
-        time: 10,
-        exoNumber: 6,
-      },
-      {
-        name: "Aesthetics: Caveats",
-        title: "Aesthetics: Handling Caveats When Mapping Variables",
-        description: (
-          <>
-            <p>
-              Aesthetic mappings are powerful — but they can sometimes produce{" "}
-              <b>unexpected results</b>. In this session, we’ll explore{" "}
-              <b>common pitfalls</b> that trip up even experienced users — from
-              missing legends to confusing lines or plots that just don’t “look
-              right.”
-            </p>
-            <p>
-              You’ll learn to spot, understand, and fix these issues — so you
-              can <b>debug your plots with confidence</b> and avoid frustration
-              down the line.
-            </p>
-          </>
-        ),
-        url: "/module1/aesthetics-caveats",
-        isFree: false,
-        isAvailable: true,
-        time: 8,
-        exoNumber: 5,
-      },
-      {
-        name: "Geometric Layers",
-        title: "Geometric Layers: Choosing the Visual Representation",
-        description: (
-          <>
-            <p>
-              Bars, lines, points, and beyond — geometric layers define how your
-              data appears on your panel. Think of them as the “verbs” in your
-              visualization sentence.
-            </p>
-            <p>
-              This lesson explores how to pick the right geom for the job and
-              how different layers can be combined to tell richer, more nuanced
-              stories.
-            </p>
-          </>
-        ),
-        url: "/module1/geoms",
-        isFree: false,
-        isAvailable: true,
-        time: 11,
-        exoNumber: 5,
-      },
-      {
-        name: "Statistical Layers",
-        title: "Statistical Layers: Transforming Data Before Plotting",
-        description: (
-          <>
-            <p>
-              Every geom in <code>ggplot2</code> applies a statistical
-              transformation to processes your raw data before plotting. So far,
-              you’ve mostly used geoms and let their default stats do the work
-              behind the scenes. But sometimes, the defaults are not what you
-              need.
-            </p>
-            <p>
-              In this lesson, we’ll explore how to{" "}
-              <b>explicitly control statistical transformations</b> in layers.
-              Understanding the link between geoms and stats — and when to
-              switch or customize them — helps you create clearer, more advanced
-              visualizations.
-            </p>
-          </>
-        ),
-        url: "/module1/stats",
-        isFree: false,
-        isAvailable: true,
-        time: 6,
-        exoNumber: 5,
-      },
-      {
-        name: "Coordinate Systems",
-        title: "Coordinate Systems: Setting the Stage for Your Plot",
-        description: (
-          <>
-            <p>
-              Coordinate systems determine how data is projected onto the
-              plotting canvas. They influence the layout, orientation, and even
-              the perceived shape of your geometries.
-            </p>
-            <p>
-              From the brand-new <code>coord_radial()</code> to flexible options
-              like <code>coord_trans()</code>, you'll learn how different
-              coordinate systems can reshape your plot — and your perspective on
-              your data.
-            </p>
-          </>
-        ),
-        url: "/module1/coordinates",
-        isFree: false,
-        isAvailable: true,
-        time: 5,
-        exoNumber: 5,
-      },
-      {
-        name: "Scales",
-        title: "Scales: Defining How Data is Mapped to Aesthetics",
-        description: (
-          <>
-            <p>
-              Scales determine how raw data gets converted into colors, sizes,
-              axes, and more. They’re the link between data values and their
-              visual representation.
-            </p>
-            <p>
-              From color palettes to log transforms, you’ll learn how to take
-              full control over the look and feel of your plots — without
-              changing the data itself.
-            </p>
-          </>
-        ),
-        url: "/module1/scales",
-        isFree: false,
-        isAvailable: true,
-        time: 9,
-        exoNumber: 6,
-      },
-      {
-        name: "Exporting Plots",
-        title: "Exporting Plots: Saving High-Quality Graphics",
-        description: (
-          <>
-            <p>
-              You've crafted your viusalization — now what? Time to share it!
-              This lesson covers how to export high-quality graphics from R for
-              papers, slides, or social media.
-            </p>
-            <p>
-              Learn which formats to choose, how to control resolution, and what
-              to watch out for when saving plots across platforms.
-            </p>
-          </>
-        ),
-        url: "/module1/export",
-        isFree: true,
-        isAvailable: true,
-        time: 6,
+        time: 4,
         exoNumber: 0,
       },
       {
-        name: "Project",
-        title: "Your Turn: Real-World Project",
+        name: 'What is d3',
+        title: 'What is d3',
         description: (
           <>
             <p>
-              <span className="simple-highlight-teal">
-                &nbsp;Congrats!&nbsp;
-              </span>{" "}
-              🥳 You’ve completed the first module! You now have a clear
-              understanding of what ggplot2 is and how to create and save your
-              own charts.
-            </p>
-            <p>
-              Now, let's put this knowledge into practice with real-world
-              datasets, before we take your skills to the next level! 🚀
+              React is the most widely used javascript library when it comes to
+              building user interfaces.
             </p>
           </>
         ),
-        url: "/module1/project",
-        isFree: false,
+        url: '/course/introduction/introduction-to-d3',
+        isFree: true,
         isAvailable: true,
-        time: 20,
+        time: 4,
         exoNumber: 0,
+      },
+      {
+        name: 'Initial setup',
+        title: 'Initial setup',
+        description: (
+          <>
+            <p>Be ready to build graph in 10 seconds.</p>
+          </>
+        ),
+        url: '/course/introduction/initial-setup',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
-  //
-  //
-  // MODULE 2
-  //
-  //
-  //
   {
-    name: "Customization & Styling",
-    color: "var(--set1-orange)",
+    name: 'SVG',
+    color: 'var(--set1-orange)',
     description: (
       <>
+        <p>A graph is basically a compendium of shapes drawn on a screen.</p>
         <p>
-          How to customize and style visualizations to make them clear,
-          accessible, and publication-ready. You'll explore themes for
-          consistent design, fine-tune <code>scale_*()</code> functions,
-          customize color palettes, and enhance legends to ensure your plots
-          align with your specific needs and branding.
-        </p>
-        <p>
-          <b>
-            Creating polished visualizations will allow you to leave a lasting
-            impression 🎨
-          </b>
-          <br></br>
-          Moving beyond default settings will help you craft charts that are not
-          only informative but also visually compelling, consistent, and
-          professionally designed!
+          The most common way to draw shapes in a browser is to use SVG. Let's
+          learn the essential of what SVG is, step by step.
         </p>
       </>
     ),
     moduleNumber: 2,
     toc: [
       {
-        name: "Complete Themes",
-        title: "Complete Themes: Quickly Change the Style of Your Plots",
+        name: 'Introduction to svg',
+        title: 'Introduction to svg',
         description: (
           <>
             <p>
-              Themes control the <b>overall style</b> of your plots — from
-              typefaces and font settings to grid lines, backgrounds, and
-              margins. They’re what make a chart feel clean, polished, and
-              consistent.
-            </p>
-
-            <p>
-              In this lesson, you’ll learn how to apply and adjust complete
-              themes to give your plots a <b>cohesive look</b> without touching
-              the underlying data or mappings. By the end, you’ll know how to
-              switch between built-in themes, customize them, and make your
-              charts presentation-ready with just a few lines of code.
+              SVG stands for vector graphic. Let's see why it is useful and
+              widespread in dataviz.
             </p>
           </>
         ),
-        url: "/module2/complete-themes",
+        url: '/course/svg/introduction',
         isFree: true,
         isAvailable: true,
         time: 4,
-        exoNumber: 2,
-      },
-      {
-        name: "Custom Themes",
-        title: "Custom Themes: Fine-Tune Your Plot's Appearance",
-        description: (
-          <>
-            <p>
-              In the{" "}
-              <Link href="/module2/complete-themes">previous lesson</Link>, we
-              explored how to use complete themes. But to create a true visual
-              identity, you need to know how to <b>customize themes</b>.
-            </p>
-
-            <p>
-              It's time to dive deep into the{" "}
-              <b>
-                <code>theme()</code>
-              </b>{" "}
-              function and learn how to modify every aspect of your charts.
-              Let's forget the defaults and make your visuals match your brand
-              and publication style!
-            </p>
-          </>
-        ),
-        url: "/module2/custom-themes",
-        isFree: false,
-        isAvailable: true,
-        time: 7,
-        exoNumber: 4,
-      },
-      {
-        name: "Color Choice",
-        title: "Color Choice: Picking Palettes with Purpose",
-        description: (
-          <>
-            <p>
-              Great visualizations don’t use color just for decoration — they
-              use it to <b>clarify, emphasize, and guide</b>. Effective color
-              choices make your plots readable, accurate, and inclusive.
-              Choosing colors thoughtfully helps avoid misleading impressions
-              and highlights the patterns that matter most.
-            </p>
-
-            <p>
-              This <b>no-code lesson focusses on how to choose colors</b> with
-              both purpose and accessibility in mind: selecting well-designed
-              palettes, ensuring color-blind safety and sufficient contrast, and
-              applying principles that make visualizations clearer and more
-              reliable for everyone.
-            </p>
-          </>
-        ),
-        url: "/module2/color-choice",
-        isFree: false,
-        isAvailable: true,
-        time: 9,
         exoNumber: 0,
       },
       {
-        name: "Color Palettes",
-        title: "Color Palettes: Moving Beyond ggplot2 Defaults",
+        name: 'Main SVG elements',
+        title: 'Main SVG elements',
         description: (
           <>
             <p>
-              Colors are one of the most powerful tools to tell a story with
-              your data. In this lesson, you’ll use color to highlight patterns,
-              reinforce categories, and make your plots more readable — all
-              while moving beyond
-              <code>ggplot2</code>’s default palettes.
-            </p>
-
-            <p>
-              You’ll explore built-in palettes, learn to tweak scales for
-              impact, and discover popular community palettes like
-              <code>viridis</code> and <code>RColorBrewer</code>. Along the way,
-              you’ll also see how to craft custom palettes, giving you full
-              flexibility without getting lost in options.
+              Let's learn how to draw the basic SVG shapes: circle, rectangles,
+              segment and text.
             </p>
           </>
         ),
-        url: "/module2/palettes",
-        isFree: false,
+        url: '/course/svg/main-svg-elements',
+        isFree: true,
         isAvailable: true,
-        time: 13,
-        exoNumber: 7,
-      },
-      {
-        name: "Legend Styling",
-        title: "Legend Styling: Highlight What Matters",
-        description: (
-          <>
-            <p>
-              Legends bridge the gap between <b>data</b> and <b>perception</b> —
-              they help viewers decode colors, shapes, and lines at a glance.
-              But a cluttered or confusing legend can break that connection
-              fast.
-            </p>
-            <p>
-              You’ll learn how to customize legend placement, direction, titles,
-              spacing, and keys with <code>guides()</code> and{" "}
-              <code>theme()</code>. By the end, your legends will complement
-              your story instead of competing with it.
-            </p>
-          </>
-        ),
-        url: "/module2/legend-styling",
-        isFree: false,
-        isAvailable: true,
-        time: 12,
-        exoNumber: 8,
-      },
-      {
-        name: "Project",
-        title: "Your Turn: Real-World Project",
-        description: (
-          <>
-            <p>
-              <span className="simple-highlight-teal">
-                &nbsp;Congrats!&nbsp;
-              </span>{" "}
-              🥳 You’ve completed the second module! You now know how to
-              customize a chart to make it pretty and aligned with your brand.
-            </p>
-            <p>
-              Now, let's put this knowledge into practice with real-world
-              datasets, before we take your skills to the next level! 🚀
-            </p>
-          </>
-        ),
-        url: "/module2/project",
-        isFree: false,
-        isAvailable: true,
-        time: 20,
+        time: 4,
         exoNumber: 0,
+      },
+      {
+        name: 'The path element',
+        title: 'The path element',
+        description: (
+          <>
+            <p>path is the most complicated yet most useful svg element.</p>
+          </>
+        ),
+        url: '/course/svg/path-element',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Building shapes with d3',
+        title: 'Building shapes with d3',
+        description: (
+          <>
+            <p>
+              Some shapes are complicated to draw. Fortunately, d3.js is here.
+            </p>
+          </>
+        ),
+        url: '/course/svg/d3-shape',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'SVG tips & tricks',
+        title: 'SVG tips & tricks',
+        description: (
+          <>
+            <p>path is the most complicated yet most useful svg element.</p>
+          </>
+        ),
+        url: '/course/svg/tips-and-tricks',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
-
-  //
-  //
-  //
-  // MODULE 3
-  //
   {
-    name: "Labels, Titles & Annotations",
-    color: "var(--set1-gold)",
+    name: 'Scales',
+    color: 'var(--set1-gold)',
     description: (
       <>
         <p>
-          This module covers techniques to enhance readability and communication
-          in your plots. You’ll learn to add informative titles, captions, and
-          annotations, use smart text placement with <code>ggrepel</code> and{" "}
-          <code>geomtextpath</code>, and explore advanced text rendering options
-          for better storytelling.
+          Your svg area goes from 0 to 500px. Your data goes from 0 to 100. If
+          the value of a data point is 30, where should you draw it?
         </p>
-        <p>
-          <b>
-            Elevate your storytelling techniques by crafting charts that not
-            just show data—but guide your audience with clarity 🎯
-          </b>
-          <br></br>
-          Clear and well-placed text elements make your visualizations more
-          engaging, helping viewers understand key insights at a glance.
-        </p>
+        <p>You need a scale to find out.</p>
       </>
     ),
     moduleNumber: 3,
     toc: [
       {
-        name: "Titles & Captions",
-        title: "Titles & Captions: Adding Context to Your Plots",
+        name: 'Introduction to scales',
+        title: 'Introduction to scales',
         description: (
           <>
             <p>
-              A strong title can turn a good chart into a clear message.
-              Subtitles, captions, and tags provide context, guide
-              interpretation, and make your visual narrative easier to follow.
+              Thanks to SVG we now know how to build any shape anywhere on the
+              screen. But we do not want to draw theme anywhere.
             </p>
-
             <p>
-              In this lesson, you’ll learn how to craft effective titles and
-              apply best-practice principles for hierarchy and clarity. We’ll
-              cover all label options that are available and demonstrate
-              practical styling techniques to make titles, subtitles, and
-              captions feel intentional and well-balanced.
+              We want to draw them on a spot determined by data. And we need a
+              scale for this.
             </p>
           </>
         ),
-        url: "/module3/titles-captions",
+        url: '/course/scales/introduction',
         isFree: true,
         isAvailable: true,
-        time: 9,
+        time: 4,
         exoNumber: 0,
       },
       {
-        name: "Annotations & Callouts",
-        title:
-          "Annotations & Callouts: Guiding the Viewer with Additional Insights",
+        name: 'Linear Scales',
+        title: 'Linear Scales',
         description: (
           <>
             <p>
-              Sometimes the story lives in a single point, line, or trend — and
-              annotations help you draw attention to it. They turn raw data into
-              clear communication.
+              Thanks to SVG we now know how to build any shape anywhere on the
+              screen. But we do not want to draw theme anywhere.
             </p>
             <p>
-              You’ll explore <code>annotate()</code>, <code>geom_text()</code>,
-              and <code>geom_label()</code> for direct text notes, along with
-              arrows, boxes, and shapes to call out important findings. Learn to
-              emphasize without overwhelming.
+              We want to draw them on a spot determined by data. And we need a
+              scale for this.
             </p>
           </>
         ),
-        url: "/module3/annotations",
-        isFree: false,
+        url: '/course/scales/linear-scale',
+        isFree: true,
         isAvailable: true,
-        time: 9,
-        exoNumber: 7,
-      },
-      {
-        name: "Smart Label Placement",
-        title: "Smart Label Placement: Minimizing Effort for Clear Annotations",
-        description: (
-          <>
-            <p>
-              Labels can make or break a plot — too many and it’s cluttered, too
-              few and it’s cryptic. The trick is to let text breathe while
-              keeping it close to its data points.
-            </p>
-            <p>
-              This lesson introduces strategies and packages like{" "}
-              <code>ggrepel</code> to automatically avoid overlaps and
-              collisions. You’ll learn to position text dynamically so every
-              label stays readable and elegant.
-            </p>
-          </>
-        ),
-        url: "/module3/smart-labels",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 8,
-      },
-      {
-        name: "Text Styling",
-        title: "Text Styling: Advanced Formatting and Rendering Techniques",
-        description: (
-          <>
-            <p>
-              Typography gives your visualization personality and polish. Beyond
-              size and font family, text styling can highlight structure,
-              hierarchy, and emotion.
-            </p>
-            <p>
-              Here, you’ll explore advanced formatting with{" "}
-              <code>element_text()</code>, inline markdown, and rich-text
-              rendering. From bold emphasis to multi-color annotations, learn
-              how to make your textual elements both expressive and consistent.
-            </p>
-          </>
-        ),
-        url: "/module3/styling-text",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
-      },
-      {
-        name: "Project",
-        title: "Your Turn: Real-World Project",
-        description: (
-          <>
-            <p>
-              <span className="simple-highlight-teal">
-                &nbsp;Congrats!&nbsp;
-              </span>{" "}
-              🥳 You’ve completed the third module! Labels, annotation and text
-              is a core part of a great chart and you now master them with R and
-              ggplot2.
-            </p>
-            <p>
-              Now, let's put this knowledge into practice with real-world
-              datasets, before we take your skills to the next level! 🚀
-            </p>
-          </>
-        ),
-        url: "/module3/project",
-        isFree: false,
-        isAvailable: false,
-        time: 20,
+        time: 4,
         exoNumber: 0,
+      },
+      {
+        name: 'Other scale types',
+        title: 'Other scale types',
+        description: (
+          <>
+            <p>
+              Thanks to SVG we now know how to build any shape anywhere on the
+              screen. But we do not want to draw theme anywhere.
+            </p>
+            <p>
+              We want to draw them on a spot determined by data. And we need a
+              scale for this.
+            </p>
+          </>
+        ),
+        url: '/course/scales/other-scale-types',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Project',
+        title: 'Project',
+        description: (
+          <>
+            <p>
+              Time to apply what we know about scales and SVG to reproduce a
+              barplot from the Economist!
+            </p>
+          </>
+        ),
+        url: '/course/scales/project',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
-
-  //
-  //
-  //
-  //
-  //
   {
-    name: "Plot Composition",
-    color: "var(--set1-teal)",
+    name: 'Axes',
+    color: 'var(--set1-teal)',
     description: (
       <>
         <p>
-          This module teaches you how to arrange multiple plots into a coherent
-          narrative. You'll learn about small multiples, advanced faceting
-          techniques, and multi-plot layouts to structure visualizations
-          effectively.
-        </p>
-        <p>
-          <b>
-            Learning to structure multiple plots effectively will transform your
-            visualizations into a compelling narrative 📚
-          </b>
-          <br></br>
-          Mastering plot composition allows you to showcase trends, compare
-          categories, and communicate complex insights with clarity.
+          Now that we know how to add shapes on the graph, it is time to add
+          context to it. Let's see how to draw axes.
         </p>
       </>
     ),
     moduleNumber: 4,
     toc: [
       {
-        name: "Small Multiples",
-        title: "Small Multiples: Comparing Subsets with Facets",
+        name: 'Introduction',
+        title: 'Introduction',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>How to add margins around the chart withouth the headache</p>
           </>
         ),
-        url: "/module4/small-multiple",
+        url: '/course/axis/introduction',
         isFree: true,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        isAvailable: true,
+        time: 2,
+        exoNumber: 0,
       },
       {
-        name: "Hierarchical Facets",
-        title: "Hierarchical Facets: Advanced Layouts for Small Multiples",
+        name: 'Margin and translation',
+        title: 'Margin and translation',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>How to add margins around the chart withouth the headache</p>
           </>
         ),
-        url: "/module4/facets-advanced",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/axis/margin-and-translation',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
       },
       {
-        name: "Multi-Plot Layouts",
-        title: "Multi-Plot Layouts: The Composition of Charts",
+        name: 'Build a bottom axis',
+        title: 'Build a bottom axis',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>Let's learn how to build a bottom axis component</p>
           </>
         ),
-        url: "/module4/plot-layouts",
+        url: '/course/axis/bottom-axis',
+        isFree: true,
+        isAvailable: true,
+        time: 8,
+        exoNumber: 0,
+      },
+      {
+        name: 'Axis component variations',
+        title: 'Axis component variations',
+        description: (
+          <>
+            <p>
+              Bottom axis? Axis with grids? Axis title? Let's see how to create
+              those variations.
+            </p>
+          </>
+        ),
+        url: '/course/axis/axis-variations',
         isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Alternative: use d3 helper',
+        title: 'Alternative: use d3 helper',
+        description: (
+          <>
+            <p>
+              D3 has some great functions to draw the axes. I do not recommend
+              it, but you can use them!
+            </p>
+          </>
+        ),
+        url: '/course/axis/axis-with-d3',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Project',
+        title: 'Project',
+        description: (
+          <>
+            <p>
+              Time to apply what we know about scales and SVG to reproduce a
+              barplot from the Economist!
+            </p>
+          </>
+        ),
+        url: '/course/axis/project',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
-
-  //
-  //
-  //
-  //
-  //
   {
-    name: "Visualizing Spatial Data",
-    color: "var(--set1-purple)",
+    name: 'Responsiveness',
+    color: 'var(--set1-purple)',
     description: (
       <>
         <p>
-          This module covers the essentials of working with spatial data in{" "}
-          <code>ggplot2</code>
-          and <code>sf</code>. You’ll learn how to create maps, customize
-          spatial layers, and fine-tune geographic visualizations for effective
-          storytelling.
-        </p>
-        <p>
-          <b>
-            Building spatial visualizations helps you explore geographic
-            insights and reveal meaningful patterns 🗺️
-          </b>
-          <br></br>
-          Whether you’re analyzing geographic trends or presenting
-          location-based insights, learning how to create well-designed spatial
-          visualizations allows you to add depth and clarity to your data.
+          Some people have big monitors when others will read your work on their
+          phone. Let's see how to make your graph look good in any situation.
         </p>
       </>
     ),
     moduleNumber: 5,
     toc: [
       {
-        name: "Spatial Data",
-        title: "Spatial Data: The Basics of Geospatial Information",
+        name: 'Introduction to responsiveness',
+        title: 'Introduction to responsiveness',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              Learn the basics of what responsiveness means and why it is
+              crucial for creating dynamic charts.
+            </p>
           </>
         ),
-        url: "/module6/spatial-data",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/responsiveness/introduction',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
       },
       {
-        name: "Maps with ggplot2",
-        title: "Maps with ggplot2: Plotting Geospatial Data",
+        name: 'Creating a useDimensions Hook',
+        title: 'Creating a useDimensions Hook',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              Discover how to create a custom hook that listens for changes in
+              dimensions, a key component for responsive charts.
+            </p>
           </>
         ),
-        url: "/module6/maps-basics",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/responsiveness/use-dimension-hook',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
       },
       {
-        name: "Customizing Maps",
-        title: "Customizing Maps: Enhancing Spatial Visualization",
+        name: 'Integrating the Hook with Your Graph',
+        title: 'Integrating the Hook with Your Graph',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              Learn how to pass the results of the useDimensions hook to your
+              graph components to make them fully responsive.
+            </p>
           </>
         ),
-        url: "/module6/maps-custom",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/responsiveness/using-the-hook',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
       },
       {
-        name: "Tile Grid Maps",
-        title: "Tile Grid Maps: Creating Spatial Small Multiples",
+        name: 'Best Practices for Code Organization',
+        title: 'Best Practices for Code Organization',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              Explore suggested ways to organize your code when working with
+              responsive charts in React and D3.
+            </p>
           </>
         ),
-        url: "/module6/spatial-data",
+        url: '/course/responsiveness/code-organization',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Common Pitfalls and How to Avoid Them',
+        title: 'Common Pitfalls and How to Avoid Them',
+        description: (
+          <>
+            <p>
+              Identify common issues you might face when implementing responsive
+              charts and learn strategies to overcome them.
+            </p>
+          </>
+        ),
+        url: '/course/responsiveness/common-pitfalls',
         isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
-
-  //
-  //
-  //
-  //
-  //
   {
-    name: "Interactivity & Animation",
-    color: "var(--set1-blue)",
+    name: 'Hover effect',
+    color: 'var(--set1-blue)',
     description: (
       <>
         <p>
-          This module introduces interactive and animated visualizations to make
-          your data more engaging. You’ll explore quick interactive plots with{" "}
-          <code>plotly</code>, more refined interactive charts with{" "}
-          <code>ggiraph</code>, and dynamic animations using{" "}
-          <code>gganimate</code>.
-        </p>
-        <p>
-          <b>
-            Crafting interactive and animated visualizations empowers your
-            audience to explore details and engage with your findings 🕹️
-          </b>
-          <br></br>
-          Interactive and animated charts make your insights more intuitive,
-          helping users explore data in a way that static plots simply can’t.
+          You want something to happen when a graph element is hovered. This
+          module dives into several strategies using CSS and Javascript. It
+          provides a clear mental modal of the main use cases and how to deal
+          with each of them.
         </p>
       </>
     ),
     moduleNumber: 6,
     toc: [
       {
-        name: "Instant Interactivity with plotly",
-        title: "Instant Interactivity with plotly: A Quick Wrapper for ggplot2",
+        name: 'What is an hover effect?',
+        title: 'What is an hover effect?',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              What's an hover effect? Why is it important? How to make it look
+              good?
+            </p>
           </>
         ),
-        url: "/module5/interactivity-plots",
+        url: '/course/hover-effect/introduction',
         isFree: true,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        isAvailable: true,
+        time: 3,
+        exoNumber: 0,
       },
       {
-        name: "Custom Interactivity with ggiraph",
-        title:
-          "Custom Interactivity with ggiraph: Interactive Charts without Losing Elegance",
+        name: 'Strategy 1: CSS pseudo element',
+        title: 'Strategy 1: CSS pseudo element',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              First simple but weak strategy using css pseudo element. Good for
+              performance, but weak in term of design.
+            </p>
           </>
         ),
-        url: "/module5/interactivity-ggiraph",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/hover-effect/css-pseudo-class',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
       },
       {
-        name: "Styling Tooltips & Effects",
-        title:
-          "Styling Tooltips & Effects: Making Interactive Charts More Engaging",
+        name: 'Strategy 2: CSS descendant selector',
+        title: 'Strategy 2: CSS descendant selector',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              With smart usage of css descending selectors, you can start
+              creating good looking hover effects.
+            </p>
           </>
         ),
-        url: "/module5/tooltips-hover-effects",
-        isFree: false,
-        isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        url: '/course/hover-effect/css-descendant-selector',
+        isFree: true,
+        isAvailable: true,
+        time: 10,
+        exoNumber: 0,
       },
       {
-        name: "Animated Charts",
-        title: "Animated Charts: Unveiling Insights Step-by-Step",
+        name: 'Strategy 3: toggle css classes',
+        title: 'Strategy 3: toggle css classes',
         description: (
           <>
-            <p>Work in progress</p>
+            <p>
+              With smart usage of css descending selectors, you can start
+              creating good looking hover effects.
+            </p>
           </>
         ),
-        url: "/module5/animations",
+        url: '/course/hover-effect/toggle-class-in-js',
+        isFree: true,
+        isAvailable: true,
+        time: 14,
+        exoNumber: 0,
+      },
+      {
+        name: 'Strategy 4: react internal state',
+        title: 'Strategy 4: react internal state',
+        description: (
+          <>
+            <p>Perfect to build complicated UIs, but mind the performances!</p>
+          </>
+        ),
+        url: '/course/hover-effect/internal-state',
+        isFree: true,
+        isAvailable: true,
+        time: 12,
+        exoNumber: 0,
+        isEndOfModule: true,
+      },
+    ],
+  },
+  {
+    name: 'Tooltip',
+    color: 'var(--set1-pink)',
+    description: (
+      <>
+        <p>
+          Let's check how to add a tooltip. Give a tooltip definition. Give
+          several tooltip component starters.
+        </p>
+      </>
+    ),
+    moduleNumber: 7,
+    toc: [
+      {
+        name: 'Introduction',
+        title: 'Introduction',
+        description: (
+          <>
+            <p>
+              Before coding, let's check what a tooltip is, when it can be
+              useful, and how to make it look good.
+            </p>
+          </>
+        ),
+        url: '/course/tooltip/introduction',
+        isFree: true,
+        isAvailable: true,
+        time: 3,
+        exoNumber: 0,
+      },
+      {
+        name: 'Tooltip component',
+        title: 'Tooltip component',
+        description: (
+          <>
+            <p>Let's create a tooltip component</p>
+          </>
+        ),
+        url: '/course/tooltip/tooltip-component',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Display on hover',
+        title: 'Display on hover',
+        description: (
+          <>
+            <p>
+              Now, let's displays the tooltip only on hover, at the right
+              position.
+            </p>
+          </>
+        ),
+        url: '/course/tooltip/display-on-hover',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Templates',
+        title: 'Templates',
+        description: (
+          <>
+            <p>
+              Several tooltip template components ready to be used in your
+              graph.
+            </p>
+          </>
+        ),
+        url: '/course/tooltip/templates',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Project',
+        title: 'Project',
+        description: (
+          <>
+            <p>
+              Let's create a stunning heatmap with good tooltips to apply
+              everything we learnt so far.
+            </p>
+          </>
+        ),
+        url: '/course/tooltip/project',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
+      },
+    ],
+  },
+  {
+    name: 'Reading data',
+    color: 'var(--set1-green)',
+    description: (
+      <>
+        <p>
+          Your data can be a json file or a tabular format. It can be hosted
+          locally or available through an API. How can you read it?
+        </p>
+      </>
+    ),
+    moduleNumber: 8,
+    toc: [
+      {
+        name: 'local JSON file',
+        title: 'local JSON file',
+        description: (
+          <>
+            <p>Be ready to build graph in 10 seconds.</p>
+          </>
+        ),
+        url: '',
         isFree: false,
         isAvailable: false,
-        time: 9,
-        exoNumber: 4,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'local csv file',
+        title: 'local csv file',
+        description: (
+          <>
+            <p>Be ready to build graph in 10 seconds.</p>
+          </>
+        ),
+        url: '',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'data fetching',
+        title: 'data fetching',
+        description: (
+          <>
+            <p>Be ready to build graph in 10 seconds.</p>
+          </>
+        ),
+        url: '',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'spinner for data loading',
+        title: 'spinner for data loading',
+        description: (
+          <>
+            <p>Be ready to build graph in 10 seconds.</p>
+          </>
+        ),
+        url: '/course/data-fetching/spinner',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
+      },
+    ],
+  },
+  {
+    name: 'Legend',
+    color: 'var(--set1-yellow)',
+    description: (
+      <>
+        <p>
+          Those little legends are often small, but as complicated to build as
+          the main graph. This module provides a few ready to use legend
+          components.
+        </p>
+      </>
+    ),
+    moduleNumber: 9,
+    toc: [
+      {
+        name: 'Do you really need a legend?',
+        title: 'Do you really need a legend?',
+        description: (
+          <>
+            <p>
+              Check the few alternatives that exist instead of using a legend
+            </p>
+          </>
+        ),
+        url: '/course/legend/introduction',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Categoric legend',
+        title: 'Categoric legend',
+        description: (
+          <>
+            <p>
+              Check the few alternatives that exist instead of using a legend
+            </p>
+          </>
+        ),
+        url: '',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Continuous legend',
+        title: 'Continuous legend',
+        description: (
+          <>
+            <p>
+              Check the few alternatives that exist instead of using a legend
+            </p>
+          </>
+        ),
+        url: '',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
+      },
+    ],
+  },
+  {
+    name: 'Animation',
+    color: 'var(--set1-brown)',
+    description: (
+      <>
+        <p>
+          Let's dig into those smooth dataset transition that make the viz
+          magical. It's challenging, but <code>react-spring</code> is of great
+          help here.
+        </p>
+      </>
+    ),
+    moduleNumber: 10,
+    toc: [
+      {
+        name: 'Introduction',
+        title: 'Introduction',
+        description: (
+          <>
+            <p>
+              There are 2 big families of animation. Let's understand why spring
+              animations are more natural.
+            </p>
+          </>
+        ),
+        url: '/course/animation/introduction',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Introduction to react-spring for data visualization',
+        title: 'Introduction to react-spring for data visualization',
+        description: (
+          <>
+            <p>
+              Let's try to make the most simple animation with react-spring.
+              Just a circle that moves from right to left.
+            </p>
+          </>
+        ),
+        url: '/course/animation/react-spring-for-dataviz',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Application on a scatterplot',
+        title: 'Application on a scatterplot',
+        description: (
+          <>
+            <p>
+              Now, let's create a reusable circle component that we can use to
+              animate a scatterplot transition.
+            </p>
+          </>
+        ),
+        url: '/course/animation/scatterplot',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Enter, Update, Exit',
+        title: 'Enter, Update, Exit',
+        description: (
+          <>
+            <p>
+              Let's see how to deal with shapes that appear, move and leave the
+              graph.
+            </p>
+          </>
+        ),
+        url: '/course/animation/enter-update-exit',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Dealing with path',
+        title: 'Dealing with path',
+        description: (
+          <>
+            <p>
+              Let's see how to deal with shapes that appear, move and leave the
+              graph.
+            </p>
+          </>
+        ),
+        url: '/course/animation/dealing-with-path',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Project',
+        title: 'Project',
+        description: (
+          <>
+            <p>
+              Let's apply everything we learnt to create a nice mirror histogram
+              with animation
+            </p>
+          </>
+        ),
+        url: '/course/animation/project',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
+      },
+    ],
+  },
+  {
+    name: 'Canvas',
+    color: 'var(--set1-grey)',
+    description: (
+      <>
+        <p>
+          With thousands of shapes on your graph, using SVG will make your graph
+          slow.
+        </p>
+        <p>
+          Canvas is an alternative way to draw on a screen. Much more
+          performant, but harder to deal with.
+        </p>
+      </>
+    ),
+    moduleNumber: 11,
+    toc: [
+      {
+        name: 'What is it, and why is it useful?',
+        title: 'What is it, and why is it useful?',
+        description: (
+          <>
+            <p>
+              Canvas is the alternative to SVG to increase performance. This
+              lesson explains what is it and why it's faster.
+            </p>
+          </>
+        ),
+        url: '/course/canvas/introduction',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Drawing shapes with canvas',
+        title: 'Drawing shapes with canvas',
+        description: (
+          <>
+            <p>
+              A quick intro to drawing circles, rectangles, lines, paths and any
+              shape you need.
+            </p>
+          </>
+        ),
+        url: '/course/canvas/drawing-shapes-with-canvas',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Combining SVG and Canvas',
+        title: 'Combining SVG and Canvas',
+        description: (
+          <>
+            <p>
+              Let's keep using SVG for axes, but use canvas for numerous
+              elements. Your first canvas scatterplot!
+            </p>
+          </>
+        ),
+        url: '/course/canvas/combining-svg-and-canvas',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Using paths in Canvas',
+        title: 'Using paths in Canvas',
+        description: (
+          <>
+            <p>
+              D3 builds SVG paths for us. How can we use it in a canvas context?
+              Let's make a donhut chart.
+            </p>
+          </>
+        ),
+        url: '/course/canvas/svg-path-in-canvas',
+        isFree: true,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Hover effect',
+        title: 'Hover effect',
+        description: (
+          <>
+            <p>
+              Let's use a little trick for a nice hover effect: using 2 canvas
+              layers: one for the normal state, one for the hovered state.
+            </p>
+          </>
+        ),
+        url: '/course/canvas/hover-effect',
+        isFree: false,
+        isAvailable: true,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Tooltip',
+        title: 'Tooltip',
+        description: (
+          <>
+            <p>
+              There is no <code>onMouseMove</code> on canvas elements. How can
+              we add a tooltip?
+            </p>
+          </>
+        ),
+        url: '/course/canvas/tooltip',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+      },
+      {
+        name: 'Animation',
+        title: 'Animation',
+        description: (
+          <>
+            <p>How to animate this canvas?</p>
+          </>
+        ),
+        url: '/course/canvas/animation',
+        isFree: false,
+        isAvailable: false,
+        time: 4,
+        exoNumber: 0,
+        isEndOfModule: true,
       },
     ],
   },
@@ -920,69 +1116,69 @@ export const courseTableOfContent: CourseTableOfContent = [
 //
 export const bonusBasicRTableOfContent: TocItem[] = [
   {
-    name: "Quick Intro to R",
-    title: "Getting Started: A Quick Introduction to R",
+    name: 'Quick Intro to R',
+    title: 'Getting Started: A Quick Introduction to R',
     description: (
       <>
         <p>
-          Welcome to the world of R! If you’re new here, don’t worry — you don’t
+          Welcome to the world of R! If you're new here, don't worry — you don't
           need to be a coding wizard to get things done. R is a programming
           language designed with data in mind, and with the right tools, it
           becomes surprisingly intuitive.
         </p>
         <p>
-          In this short bonus lesson, we’ll walk you through the essential
+          In this short bonus lesson, we'll walk you through the essential
           building blocks of R: how to store values in objects, use functions,
           and load packages. Just enough to help you feel at home before jumping
           into our data visualization course!
         </p>
       </>
     ),
-    url: "/bonus/intro-to-r",
+    url: '/bonus/intro-to-r',
     isAvailable: true,
     time: 7,
     exoNumber: 7,
   },
   {
-    name: "Your Own Project",
-    title: "Working on Your Own R Project",
+    name: 'Your Own Project',
+    title: 'Working on Your Own R Project',
     description: (
       <>
         <p>
           This course lets you run R code directly in our sandboxes. But in real
-          life, you’ll need to <b>work with R in your own setup</b> to analyze
+          life, you'll need to <b>work with R in your own setup</b> to analyze
           data and create your own graphs.
         </p>
         <p>
-          This bonus lesson shows how to work efficiently with R: using an{" "}
-          <b>IDE</b>, writing <b>scripts</b>, loading <b>data</b>, and{" "}
+          This bonus lesson shows how to work efficiently with R: using an{' '}
+          <b>IDE</b>, writing <b>scripts</b>, loading <b>data</b>, and{' '}
           <b>visualizing</b> results without drowning in a messy workspace. By
-          the end, you’ll have the skills to start your own projects with
+          the end, you'll have the skills to start your own projects with
           confidence and reproducibility.
         </p>
       </>
     ),
-    url: "/bonus/own-r-project",
+    url: '/bonus/own-r-project',
     isAvailable: true,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Data Wrangling Basics",
-    title: "Data Wrangling Basics: Transform Your Data Sets for ggplot2",
+    name: 'Data Wrangling Basics',
+    title: 'Data Wrangling Basics: Transform Your Data Sets for ggplot2',
     description: (
       <>
         <p>Work in progress</p>
       </>
     ),
-    url: "/bonus/data-wrangling",
+    url: '/bonus/data-wrangling',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Publish Your Work",
-    title: "Publish Your Work: How to Share Your ggplot2 Graphic",
+    name: 'Publish Your Work',
+    title: 'Publish Your Work: How to Share Your ggplot2 Graphic',
     description: (
       <>
         <p>
@@ -991,13 +1187,13 @@ export const bonusBasicRTableOfContent: TocItem[] = [
           machine.
         </p>
         <p>
-          This lesson shows how to <b>package</b>, <b>store</b>, and{" "}
+          This lesson shows how to <b>package</b>, <b>store</b>, and{' '}
           <b>share</b> your work in a way that is safe, reproducible, and easy
           for others to read and reuse.
         </p>
       </>
     ),
-    url: "/bonus/publish",
+    url: '/bonus/publish',
     isAvailable: true,
     time: 8,
     exoNumber: 0,
@@ -1006,67 +1202,67 @@ export const bonusBasicRTableOfContent: TocItem[] = [
 
 export const bonusTipsAndTricksTableOfContent: TocItem[] = [
   {
-    name: "Common Pitfalls",
-    title: "Common Pitfalls: Debugging Dilemmas & Troubleshooting Tips",
+    name: 'Common Pitfalls',
+    title: 'Common Pitfalls: Debugging Dilemmas & Troubleshooting Tips',
     description: (
       <>
         <p>Work in progress</p>
       </>
     ),
-    url: "/bonus/pitfalls",
+    url: '/bonus/pitfalls',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Beyond Basic Geoms",
-    title: "Beyond Basic Geoms: Exploring Specialized Chart Types",
+    name: 'Beyond Basic Geoms',
+    title: 'Beyond Basic Geoms: Exploring Specialized Chart Types',
     description: (
       <>
         <p>here</p>
         <p>here</p>
       </>
     ),
-    url: "/bonus/beyond-basic-geoms",
+    url: '/bonus/beyond-basic-geoms',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Exciting Ectensions",
-    title: "Exciting Extensions: Overview of Powerful Packages for ggplot2",
+    name: 'Exciting Ectensions',
+    title: 'Exciting Extensions: Overview of Powerful Packages for ggplot2',
     description: (
       <>
         <p>Work in progress</p>
       </>
     ),
-    url: "/bonus/exciting-extensions",
+    url: '/bonus/exciting-extensions',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Record Your Process",
-    title: "Record Your Process: Creating Step-by-Step Videos with camcorder",
+    name: 'Record Your Process',
+    title: 'Record Your Process: Creating Step-by-Step Videos with camcorder',
     description: (
       <>
         <p>Work in progress</p>
       </>
     ),
-    url: "/bonus/camcorder",
+    url: '/bonus/camcorder',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
   },
   {
-    name: "Further Learning",
-    title: "Further Learning: Books, Courses & Additional Resources",
+    name: 'Further Learning',
+    title: 'Further Learning: Books, Courses & Additional Resources',
     description: (
       <>
         <p>Work in progress</p>
       </>
     ),
-    url: "/bonus/resources",
+    url: '/bonus/resources',
     isAvailable: false,
     time: 8,
     exoNumber: 4,
