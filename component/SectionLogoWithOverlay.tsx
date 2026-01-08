@@ -1,4 +1,3 @@
-import React from 'react';
 import SectionLogo from 'component/SectionLogo';
 import { ChartLogo, chartTypesInfo } from 'util/sectionDescriptions';
 import Link from 'next/link';
@@ -28,7 +27,7 @@ export default function SectionLogoWithOverlay({
   const cursor = isAvailable ? 'cursor-pointer' : 'cursor-not-allowed';
 
   return (
-    <Link href={isAvailable ? link : 'subscribe'} className="no-underline">
+    <Link href={isAvailable ? link : 'subscribe'} className="no-underline!">
       <div className="flex flex-col items-center">
         <div
           style={{ width: size, height: size }}
@@ -57,7 +56,11 @@ export default function SectionLogoWithOverlay({
         </div>
 
         {/* Caption */}
-        <p className={'font-light text-sm text-gray-600' + ' ' + opacity}>
+        <p
+          className={
+            'font-light text-sm text-gray-600 no-underline!' + ' ' + opacity
+          }
+        >
           {caption}
         </p>
       </div>
