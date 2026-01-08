@@ -61,19 +61,19 @@
     "tsparticles": "^2.3.4"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/d3-interpolate-path": "^2.0.0",
     "@types/lodash": "^4.14.182",
     "@types/node": "16.11.10",
     "@types/prismjs": "^1.16.6",
     "@types/react": "17.0.37",
     "@types/react-dom": "^17.0.11",
-    "autoprefixer": "^10.4.19",
     "babel-plugin-prismjs": "^2.1.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
     "postcss": "^8.4.40",
     "prettier": "^3.0.0",
-    "tailwindcss": "^3.4.7",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
 }

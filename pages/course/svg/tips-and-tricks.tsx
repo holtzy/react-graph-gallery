@@ -285,7 +285,7 @@ export default function Home() {
       <p>
         SVG offers powerful capabilities for applying visual effects, such as
         filters and gradients. Filters like <code>blur</code>,{' '}
-        <code>drop-shadow</code>, and <code>grayscale</code> can add depth and
+        <code>drop-shadow-sm</code>, and <code>grayscale</code> can add depth and
         dimension to your graphics. Gradients allow for smooth transitions
         between colors, which can be applied to fills or strokes, adding
         richness to your visualizations.

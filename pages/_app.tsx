@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css';
 import '../style/style.css';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';

@@ -28,7 +28,7 @@ export const ScatterplotR2PlaygroundDemo = ({ width = 700, height = 400 }) => {
           return (
             <Button
               key={i}
-              variant={data === d.data ? 'default' : 'outline'}
+              variant={data === d.data ? 'default' : 'outline-solid'}
               size="sm"
               onClick={() => setData(d.data)}
             >

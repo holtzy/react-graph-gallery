@@ -77,7 +77,7 @@ export const HorizontalTabBar = ({
     return (
       <button
         key={i}
-        className={`text-xs px-2 py-1 bg-black border text-white rounded-lg flex-shrink-0 ${
+        className={`text-xs px-2 py-1 bg-black border text-white rounded-lg shrink-0 ${
           i === selectedItem
             ? 'opacity-100 border-blue-500'
             : 'opacity-40 border-white border-opacity-40'
@@ -100,8 +100,8 @@ export const HorizontalTabBar = ({
       </div>
       {hasGradient && (
         <>
-          <div className="absolute inset-y-0 left-0 w-28 h-full  bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-28 h-full  bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-28 h-full  bg-linear-to-r from-black to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-28 h-full  bg-linear-to-l from-black to-transparent pointer-events-none"></div>
         </>
       )}
     </div>
