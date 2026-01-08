@@ -233,7 +233,6 @@
 }
 
 /* ---------- Global CSS ----------------- */
-/* App content is wrapped in a main in _app.tsx. This main loads the fonts */
 main {
   font-family: var(--font-roboto);
 }

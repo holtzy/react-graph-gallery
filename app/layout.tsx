@@ -1,4 +1,5 @@
 import '../style/style.css';
+import { bitterFontClass, firaFontClass, robotoFontClass } from 'util/fonts';
 
 export default function RootLayout({
   children,
@@ -7,7 +8,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body
+        className={`${bitterFontClass} ${robotoFontClass} ${firaFontClass}`}
+      >
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

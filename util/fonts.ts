@@ -4,6 +4,7 @@
 // Users won't make a call to google when using the website
 import { Bitter, Roboto, Fira_Mono } from 'next/font/google';
 
+// For titles
 const bitter = Bitter({
   subsets: ['latin'],
   display: 'swap',

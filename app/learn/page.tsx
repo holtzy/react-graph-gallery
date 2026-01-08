@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div>
+    <div className="wrapper">
+      <h1>This is the first title mate</h1>
       <p className="bg-red-300">Hello</p>
       <Card>eyooooo</Card>
     </div>
