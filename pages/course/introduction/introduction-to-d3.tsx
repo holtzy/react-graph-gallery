@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
-import { lessonList } from '@/util/lessonList';
+import { lessonList } from '@/util/course-table-of-content';
 import { Sidenote } from '@/component/SideNote';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/component/UI/tabs';
 import { ScatterplotHoverHighlightPseudoClassDemo } from '@/viz/ScatterplotHoverHighlightPseudoClass/ScatterplotHoverHighlightPseudoClassDemo';

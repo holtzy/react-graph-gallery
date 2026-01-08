@@ -1,6 +1,6 @@
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
-import { lessonList } from '@/util/lessonList';
+import { lessonList } from '@/util/course-table-of-content';
 import React, { useRef } from 'react';
 import { data as densityChartData } from '@/data/one-numeric-variable-random';
 import { useDimensions } from '@/hook/use-dimensions';

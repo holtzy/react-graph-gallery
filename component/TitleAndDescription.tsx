@@ -8,7 +8,7 @@ import { LinkAsButton } from './LinkAsButton';
 import { Tooltip } from './UI/Tooltip';
 import SectionLogo from './SectionLogo';
 
-import { Lesson, LessonStatus } from '@/util/lessonList';
+import { Lesson, LessonStatus } from '@/util/course-table-of-content';
 import { LessonBadge } from './LessonBadge';
 import { TocBreadcrumb } from './TocBreadcrumb';
 

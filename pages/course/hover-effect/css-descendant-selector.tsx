@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
-import { lessonList } from '@/util/lessonList';
+import { lessonList } from '@/util/course-table-of-content';
 import { ChartOrSandbox } from '@/component/ChartOrSandbox';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Badge } from '@/component/UI/badge';

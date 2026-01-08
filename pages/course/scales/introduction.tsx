@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
-import { lessonList } from '@/util/lessonList';
+import { lessonList } from '@/util/course-table-of-content';
 import { CodeBlock } from '@/component/UI/CodeBlock';
 import { Button } from '@/component/UI/button';
 import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';

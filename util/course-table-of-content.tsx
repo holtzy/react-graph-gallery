@@ -8,6 +8,7 @@ export type TocItem = {
   isFree?: boolean;
   isNew?: boolean;
   isAvailable?: boolean;
+  isWip?: boolean; // Mark lessons that are work in progress
   isEndOfModule?: boolean; // if last lesson of module, triggers a modal when user clicks next.
   time?: number;
   exoNumber?: number;
@@ -198,6 +199,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/svg/tips-and-tricks',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
         isEndOfModule: true,
@@ -370,6 +372,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/axis/axis-variations',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -505,6 +508,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/responsiveness/common-pitfalls',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
         isEndOfModule: true,
@@ -891,6 +895,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/animation/react-spring-for-dataviz',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -908,6 +913,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/animation/scatterplot',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -925,6 +931,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/animation/enter-update-exit',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -942,6 +949,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/animation/dealing-with-path',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -959,6 +967,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/animation/project',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
         isEndOfModule: true,
@@ -1064,6 +1073,7 @@ export const courseTableOfContent: CourseTableOfContent = [
         url: '/course/canvas/hover-effect',
         isFree: false,
         isAvailable: true,
+        isWip: true,
         time: 4,
         exoNumber: 0,
       },
@@ -1268,3 +1278,121 @@ export const bonusTipsAndTricksTableOfContent: TocItem[] = [
     exoNumber: 4,
   },
 ];
+
+//
+//
+// Helper functions and types for backward compatibility
+// These allow the codebase to use the old Lesson and Module types
+//
+//
+
+export type LessonStatus = 'not available' | 'wip' | 'free' | 'membersOnly';
+
+export type ModuleId =
+  | 'introduction'
+  | 'svg'
+  | 'scales'
+  | 'axis'
+  | 'responsiveness'
+  | 'hover effect'
+  | 'tooltip'
+  | 'reading-data'
+  | 'legend'
+  | 'animation'
+  | 'canvas';
+
+// Map module names to module IDs
+const moduleNameToId: Record<string, ModuleId> = {
+  Introduction: 'introduction',
+  SVG: 'svg',
+  Scales: 'scales',
+  Axes: 'axis',
+  Responsiveness: 'responsiveness',
+  'Hover effect': 'hover effect',
+  Tooltip: 'tooltip',
+  'Reading data': 'reading-data',
+  Legend: 'legend',
+  Animation: 'animation',
+  Canvas: 'canvas',
+};
+
+// Convert TocItem to Lesson format
+function tocItemToLesson(
+  tocItem: TocItem,
+  moduleId: ModuleId
+): {
+  name: string;
+  description: ReactNode;
+  readTime: number;
+  link: string;
+  status: LessonStatus;
+  moduleId: ModuleId;
+} {
+  // Determine status from TocItem properties
+  let status: LessonStatus = 'not available';
+
+  if (tocItem.isFree) {
+    status = 'free';
+  } else if (tocItem.isWip) {
+    status = 'wip';
+  } else if (tocItem.isAvailable) {
+    status = 'membersOnly';
+  } else {
+    status = 'not available';
+  }
+
+  return {
+    name: tocItem.name,
+    description: tocItem.description,
+    readTime: tocItem.time || 0,
+    link: tocItem.url,
+    status,
+    moduleId,
+  };
+}
+
+// Export lessonList in the old format
+export const lessonList = courseTableOfContent.flatMap((module) => {
+  const moduleId = moduleNameToId[module.name];
+  if (!moduleId) {
+    console.warn(`Unknown module name: ${module.name}`);
+    return [];
+  }
+  return module.toc.map((tocItem) => tocItemToLesson(tocItem, moduleId));
+});
+
+// Export moduleList in the old format
+export const moduleList = courseTableOfContent
+  .map((module) => {
+    const moduleId = moduleNameToId[module.name];
+    if (!moduleId) {
+      console.warn(`Unknown module name: ${module.name}`);
+      return null;
+    }
+    return {
+      id: moduleId,
+      name: module.name,
+      description: module.description,
+    };
+  })
+  .filter(
+    (m): m is { id: ModuleId; name: string; description: ReactNode } =>
+      m !== null
+  );
+
+// Export Lesson type for backward compatibility
+export type Lesson = {
+  name: string;
+  description: ReactNode;
+  readTime: number;
+  link: string;
+  status: LessonStatus;
+  moduleId: ModuleId;
+};
+
+// Export Module type for backward compatibility
+export type Module = {
+  id: ModuleId;
+  name: string;
+  description: ReactNode;
+};

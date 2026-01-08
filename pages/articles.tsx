@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout } from '../component/Layout';
 import TitleAndDescription from '../component/TitleAndDescription';
 import Link from 'next/link';
@@ -10,9 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/component/UI/accordion';
-import { Lesson, lessonList } from '@/util/lessonList';
-import { Badge } from '@/component/UI/badge';
-import { moduleList } from '@/util/moduleList';
+import { Lesson } from '@/util/course-table-of-content';
 
 const graphDescription = (
   <>

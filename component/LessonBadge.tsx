@@ -1,4 +1,4 @@
-import { LessonStatus } from '@/util/lessonList';
+import { LessonStatus } from '@/util/course-table-of-content';
 import { Badge } from './UI/badge';
 
 type LessonBadgeProps = {

@@ -2,7 +2,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { HeadSeo } from './HeadSeo';
 import Link from 'next/link';
-import { Lesson } from '@/util/lessonList';
+import { Lesson } from '@/util/course-table-of-content';
 
 type LayoutCourseProps = {
   children: React.ReactNode;

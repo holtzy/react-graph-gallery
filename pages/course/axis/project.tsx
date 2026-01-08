@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleAndDescription from '@/component/TitleAndDescription';
 import { LayoutCourse } from '@/component/LayoutCourse';
-import { lessonList } from '@/util/lessonList';
+import { lessonList } from '@/util/course-table-of-content';
 import Link from 'next/link';
 import { CircleScaleExercise } from '@/component/interactiveTeaching/CircleScaleExercise';
 import { CodeBlock } from '@/component/UI/CodeBlock';

@@ -8,9 +8,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/component/UI/accordion';
-import { Lesson, lessonList } from '@/util/lessonList';
+import { Lesson, lessonList, moduleList } from '@/util/course-table-of-content';
 import { Badge } from '@/component/UI/badge';
-import { moduleList } from '@/util/moduleList';
 import { LessonBadge } from '@/component/LessonBadge';
 import { buttonVariants } from '@/component/UI/button';
 

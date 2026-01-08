@@ -17,8 +17,7 @@ import {
   DropdownMenuTrigger,
 } from './UI/dropdown-menu';
 import { Button, buttonVariants } from '@/component/UI/button';
-import { moduleList } from '@/util/moduleList';
-import { Lesson, lessonList } from '@/util/lessonList';
+import { moduleList, Lesson, lessonList } from '@/util/course-table-of-content';
 import { Circle } from 'lucide-react';
 import { LessonBadge } from './LessonBadge';
 import Link from 'next/link';
