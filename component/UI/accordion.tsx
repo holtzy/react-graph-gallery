@@ -21,8 +21,8 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-  // Margin added by Yan Holtz
-  <AccordionPrimitive.Header className="flex mt-0 pb-0 font-normal">
+  // Margin controlled by Yan Holtz because Radix uses a h3 under the hood
+  <AccordionPrimitive.Header className="flex !mt-0 !pb-0 font-normal">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
