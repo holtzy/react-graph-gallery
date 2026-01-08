@@ -1,3 +1,4 @@
+import { Card } from '@/component/UI/card';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <p>HEllo</p>;
+  return (
+    <div>
+      <p className="bg-red-300">Hello</p>
+      <Card>eyooooo</Card>
+    </div>
+  );
 }
